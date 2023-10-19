@@ -101,6 +101,18 @@
             "position": "after"
           },
           {
+            "pattern": "@/types/**",
+            "group": "type"
+          },
+          {
+            "pattern": "../types/**",
+            "group": "type"
+          },
+          {
+            "pattern": "./types/**",
+            "group": "type"
+          },
+          {
             "pattern": "@/**",
             "group": "index"
           },
