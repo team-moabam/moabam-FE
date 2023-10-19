@@ -20,6 +20,7 @@ module.exports = {
         'test',
         'design',
         'remove',
+        'rename',
         'init'
       ]
     ]
