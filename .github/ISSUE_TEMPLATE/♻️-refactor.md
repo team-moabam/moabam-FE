@@ -1,9 +1,10 @@
 ---
 name: "♻️ REFACTOR"
 about: refactor 작업 사항을 작성해주세요!
-title: ''
-labels: "♻️ refactor"
+title: 'refactor: '
+labels: "☁️ FE, ♻️ refactor"
 assignees: ''
+
 ---
 
 # ♻️ Refactor

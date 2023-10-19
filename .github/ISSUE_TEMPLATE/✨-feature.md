@@ -1,9 +1,10 @@
 ---
 name: "✨ FEATURE"
 about: feature 작업 사항을 작성해주세요!
-title: ''
-labels: "✨ feature"
+title: 'feat: '
+labels: "☁️ FE, ✨ feature"
 assignees: ''
+
 ---
 
 # ✨ Feature
