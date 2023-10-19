@@ -1,5 +1,5 @@
 ---
-name: "✨ FEATURE"
+name: "✨ Feature"
 about: feature 작업 사항을 작성해주세요!
 title: 'feat: '
 labels: "☁️ FE, ✨ feature"
