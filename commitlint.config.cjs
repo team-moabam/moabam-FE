@@ -18,7 +18,9 @@ module.exports = {
         'revert',
         'style',
         'test',
-        'design'
+        'design',
+        'remove',
+        'init'
       ]
     ]
   }
