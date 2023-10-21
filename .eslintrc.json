@@ -1,0 +1,136 @@
+{
+  "root": true,
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "plugins": ["react-refresh", "import", "@tanstack/query"],
+  "rules": {
+    "react-refresh/only-export-components": [
+      "warn",
+      { "allowConstantExport": true }
+    ],
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": "warn",
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          "builtin",
+          "internal",
+          "external",
+          "unknown",
+          "index",
+          "parent",
+          "sibling",
+          "object",
+          "type"
+        ],
+        "pathGroups": [
+          {
+            "pattern": "react",
+            "group": "internal",
+            "position": "before"
+          },
+          {
+            "pattern": "react-dom/**",
+            "group": "internal"
+          },
+          {
+            "pattern": "react-router-dom",
+            "group": "internal"
+          },
+          {
+            "pattern": "react-error-boundary",
+            "group": "internal"
+          },
+          {
+            "pattern": "axios",
+            "group": "external"
+          },
+          {
+            "pattern": "@tanstack/react-query",
+            "group": "external"
+          },
+          {
+            "pattern": "@tanstack/react-query-devtools",
+            "group": "external"
+          },
+          {
+            "pattern": "@/components/**",
+            "group": "object"
+          },
+          {
+            "pattern": "../components/**",
+            "group": "object"
+          },
+          {
+            "pattern": "./components/**",
+            "group": "object"
+          },
+          {
+            "pattern": "@/pages/**",
+            "group": "object",
+            "position": "after"
+          },
+          {
+            "pattern": "../pages/**",
+            "group": "object",
+            "position": "after"
+          },
+          {
+            "pattern": "./pages/**",
+            "group": "object",
+            "position": "after"
+          },
+          {
+            "pattern": "@/types/**",
+            "group": "type"
+          },
+          {
+            "pattern": "../types/**",
+            "group": "type"
+          },
+          {
+            "pattern": "./types/**",
+            "group": "type"
+          },
+          {
+            "pattern": "@/**",
+            "group": "index"
+          },
+          {
+            "pattern": "../**",
+            "group": "parent"
+          },
+          {
+            "pattern": "./**",
+            "group": "sibling"
+          },
+          {
+            "pattern": "**",
+            "group": "unknown"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": ["@tanstack*"]
+      }
+    ]
+  }
+}
