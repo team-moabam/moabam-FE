@@ -1,7 +1,7 @@
 ---
 name: "\U0001F6A8 Hotfix"
 about: hotfix 작업 사항을 작성해주세요!
-title: 'fix: '
+title: ''
 labels: [☁️ FE, \U0001F41B fix]
 assignees: ''
 

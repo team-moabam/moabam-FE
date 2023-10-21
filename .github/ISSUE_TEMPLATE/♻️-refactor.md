@@ -1,7 +1,7 @@
 ---
 name: "♻️ Refactor"
 about: refactor 작업 사항을 작성해주세요!
-title: 'refactor: '
+title: ''
 labels: [☁️ FE, ♻️ refactor]
 assignees: ''
 

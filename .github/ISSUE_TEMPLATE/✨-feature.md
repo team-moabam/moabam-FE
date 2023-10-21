@@ -1,7 +1,7 @@
 ---
 name: "✨ Feature"
 about: feature 작업 사항을 작성해주세요!
-title: 'feat: '
+title: ''
 labels: [☁️ FE, ✨ feature]
 assignees: ''
 
@@ -9,7 +9,7 @@ assignees: ''
 
 # ✨ Feature
 ## Description
-현재 어떤 기능 구현을 진행중인지 간단한게 한줄로 작성해주세요.
+현재 어떤 기능 구현을 진행중인지 간단하게 한줄로 작성해주세요.
 
 ## To-do
 - [ ] 상세 내용 1
