@@ -1,8 +1,6 @@
 name: Pull Request
 
 on:
-  push:
-    branches: ['chore/#6/build-workflow']
   pull_request:
     branches: ['chore/#6/build-workflow']
 
