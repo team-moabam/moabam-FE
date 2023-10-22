@@ -1,6 +1,22 @@
 {
+  "React Component": {
+    "prefix": ["!comp"],
+    "body": [
+      "import React from 'react';",
+      "",
+      "interface ${1:${TM_FILENAME_BASE}}Props {}",
+      "",
+      "const ${1:${TM_FILENAME_BASE}} = ({}: ${1:${TM_FILENAME_BASE}}Props) => {",
+      "\treturn <></>;",
+      "};",
+      "",
+      "export default ${1:${TM_FILENAME_BASE}};",
+      ""
+    ],
+    "description": "✨ 리액트 컴포넌트 작성"
+  },
   "Storybook Component": {
-    "prefix": ["@story"],
+    "prefix": ["!story"],
     "body": [
       "import type { Meta, StoryObj } from '@storybook/react';",
       "import $1 from '@/components/$1';",
