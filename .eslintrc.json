@@ -14,6 +14,8 @@
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:react-hooks/recommended",
+    "plugin:storybook/recommended",
+    "plugin:tailwindcss/recommended",
     "plugin:prettier/recommended"
   ],
   "parser": "@typescript-eslint/parser",
@@ -21,14 +23,21 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": ["react-refresh", "import", "@tanstack/query"],
+  "plugins": [
+    "react-refresh",
+    "import",
+    "@tanstack/query"
+  ],
   "rules": {
     "react-refresh/only-export-components": [
       "warn",
-      { "allowConstantExport": true }
+      {
+        "allowConstantExport": true
+      }
     ],
     "no-unused-vars": "off",
     "@typescript-eslint/no-unused-vars": "warn",
+    "@typescript-eslint/no-explicit-any": "warn",
     "import/order": [
       "error",
       {
@@ -129,7 +138,9 @@
             "group": "unknown"
           }
         ],
-        "pathGroupsExcludedImportTypes": ["@tanstack*"]
+        "pathGroupsExcludedImportTypes": [
+          "@tanstack*"
+        ]
       }
     ]
   }
