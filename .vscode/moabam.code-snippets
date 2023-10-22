@@ -6,11 +6,11 @@
       "",
       "interface ${1:${TM_FILENAME_BASE}}Props {}",
       "",
-      "const ${1:${TM_FILENAME_BASE}} = ({}: ${1:${TM_FILENAME_BASE}}Props) => {",
+      "const $1 = ({}: $1Props) => {",
       "\treturn <></>;",
       "};",
       "",
-      "export default ${1:${TM_FILENAME_BASE}};",
+      "export default $1;",
       ""
     ],
     "description": "✨ 리액트 컴포넌트 작성"
@@ -19,7 +19,7 @@
     "prefix": ["!story"],
     "body": [
       "import type { Meta, StoryObj } from '@storybook/react';",
-      "import $1 from '@/components/$1';",
+      "import ${1:${TM_FILENAME_BASE/\\.stories$//}} from '@/components/$1';",
       "",
       "const meta = {",
       "  title: 'Components/$1',",
