@@ -2,7 +2,7 @@ name: React App CI/CD
 
 on:
   push:
-    branches: ['chore/#11/ci-script']
+    branches: ['main']
 
 jobs:
   build:
