@@ -23,11 +23,7 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": [
-    "react-refresh",
-    "import",
-    "@tanstack/query"
-  ],
+  "plugins": ["react-refresh", "import", "@tanstack/query"],
   "rules": {
     "react-refresh/only-export-components": [
       "warn",
@@ -43,16 +39,19 @@
       {
         "groups": [
           "builtin",
-          "internal",
-          "external",
-          "unknown",
-          "index",
-          "parent",
-          "sibling",
-          "object",
-          "type"
+          "internal", // 리액트 내부와 밀접한 연관이 있는 패키지
+          "external", // 네트워크와 연관이 있는 패키지
+          "unknown", // 그 외의 경로 미지정된 서드파티 패키지
+          "index", // core or shared 디렉토리의 소스코드
+          "parent", // 부모 (../)
+          "sibling", // 형제 (./)
+          "object", // 컴포넌트 or 페이지
+          "type" // 타입
         ],
         "pathGroups": [
+          /**
+            리액트 내부와 밀접한 연관이 있는 패키지
+          */
           {
             "pattern": "react",
             "group": "internal",
@@ -70,6 +69,9 @@
             "pattern": "react-error-boundary",
             "group": "internal"
           },
+          /**
+            네트워크와 연관이 있는 패키지
+          */
           {
             "pattern": "axios",
             "group": "external"
@@ -82,49 +84,72 @@
             "pattern": "@tanstack/react-query-devtools",
             "group": "external"
           },
+          /**
+            컴포넌트 or 페이지
+          */
           {
-            "pattern": "@/components/**",
+            "pattern": "{@,.,..}/*/components/*",
             "group": "object"
           },
           {
-            "pattern": "../components/**",
+            "pattern": "{@,.,..}/shared/*/components/*",
             "group": "object"
           },
           {
-            "pattern": "./components/**",
+            "pattern": "{@,.,..}/shared/*",
             "group": "object"
           },
           {
-            "pattern": "@/pages/**",
+            "pattern": "{@,.,..}/components/*",
+            "group": "object"
+          },
+          {
+            "pattern": "{@,.,..}/pages/*",
             "group": "object",
             "position": "after"
           },
+          /**
+            타입
+          */
           {
-            "pattern": "../pages/**",
-            "group": "object",
-            "position": "after"
-          },
-          {
-            "pattern": "./pages/**",
-            "group": "object",
-            "position": "after"
-          },
-          {
-            "pattern": "@/types/**",
+            "pattern": "{@,.,..}/core/types/*",
             "group": "type"
           },
           {
-            "pattern": "../types/**",
+            "pattern": "{@,.,..}/shared/*/types/*",
             "group": "type"
           },
           {
-            "pattern": "./types/**",
+            "pattern": "{@,.,..}/*/types/*",
             "group": "type"
           },
+          /**
+            core or shared 디렉토리의 소스코드
+          */
           {
-            "pattern": "@/**",
+            "pattern": "{@,.,..}/core/**",
+            "group": "index",
+            "position": "before"
+          },
+          {
+            "pattern": "{@,.,..}/shared/**",
             "group": "index"
           },
+          /**
+            도메인 디렉토리
+          */
+          {
+            "pattern": "@/*/**", // 도메인 디렉토리에 들어 있는 각종 파일
+            "group": "index",
+            "position": "after"
+          },
+          {
+            "pattern": "@/*", // [domain] 디렉토리의 index.tsx 파일
+            "group": "object"
+          },
+          /**
+            부모, 형제, 그 외 서드파티
+          */
           {
             "pattern": "../**",
             "group": "parent"
@@ -138,9 +163,7 @@
             "group": "unknown"
           }
         ],
-        "pathGroupsExcludedImportTypes": [
-          "@tanstack*"
-        ]
+        "pathGroupsExcludedImportTypes": ["@tanstack*"]
       }
     ]
   }
