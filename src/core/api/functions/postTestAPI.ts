@@ -20,16 +20,14 @@ const postTestAPI = {
   postPost: async (post: Post) => {
     const { data } = await baseInstance.post<{ message: string }>(
       '/example/posts',
-      {
-        data: post
-      }
+      post
     );
     return data;
   },
   putPost: async (post: Post) => {
     const { data } = await baseInstance.put<{ message: string }>(
       `/example/posts/${post.id}`,
-      { data: post }
+      post
     );
     return data;
   },

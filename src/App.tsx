@@ -1,25 +1,26 @@
 import { useState } from 'react';
 import { RouterProvider } from 'react-router-dom';
-import axios from 'axios';
+import postTestAPI from './core/api/functions/postTestAPI';
 import router from '@/core/routes/router';
 
 const App = () => {
   const [postId, setPostId] = useState(1);
 
   const handleAllFetch = async () => {
-    const { data } = await axios.get('/example/posts');
+    const data = await postTestAPI.getAllPosts();
+
     console.log(data);
   };
 
   const handleDetailFetch = async () => {
-    const { data } = await axios.get(
-      `/example/posts/${postId}?paramA=1&paramB=2`
-    );
+    const data = await postTestAPI.getDetailPost(`${postId}`);
+
     console.log(data);
   };
 
   const handlePostPost = async () => {
-    const { data } = await axios.post('/example/posts', {
+    const data = await postTestAPI.postPost({
+      id: 1,
       title: 'foo',
       body: 'bar',
       userId: 1
@@ -29,7 +30,8 @@ const App = () => {
   };
 
   const handlePutPost = async () => {
-    const { data } = await axios.put(`/example/posts/${postId}`, {
+    const data = await postTestAPI.putPost({
+      id: 1,
       title: 'foo',
       body: 'bar',
       userId: 1
@@ -39,7 +41,7 @@ const App = () => {
   };
 
   const handleDeletePost = async () => {
-    const { data } = await axios.delete(`/example/posts/${postId}`);
+    const data = await postTestAPI.deletePost(`${postId}`);
 
     console.log(data);
   };
