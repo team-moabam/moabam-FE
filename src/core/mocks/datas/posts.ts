@@ -1,3 +1,4 @@
+// TODO: MSW로 API를 모킹하는 방법을 나타낸 예시 코드에요. 이후에 모킹 함수가 적당히 나온다면 삭제해도 좋은 파일이에요.
 export const ALL_POST = [
   {
     userId: 1,
