@@ -1,3 +1,4 @@
+// TODO: 예시 코드에서 사용하는 더미 데이터에요. 이후에 모킹 함수가 적당히 나온다면 삭제해도 좋은 파일이에요.
 export const ALL_COMMENT = [
   {
     postId: 1,
