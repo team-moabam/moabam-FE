@@ -9,21 +9,21 @@ type Post = {
 };
 
 const postTestAPI = {
-  fetchPosts: async () => {
+  getAllPosts: async () => {
     const { data } = await baseInstance.get<Post[]>(`/posts`);
     return data;
   },
-  fetchPostDetail: async (postId: string) => {
+  getDetailPost: async (postId: string) => {
     const { data } = await baseInstance.get<Post>(`/posts/${postId}`);
     return data;
   },
-  addPost: async (post: Post) => {
+  postPost: async (post: Post) => {
     const { data } = await baseInstance.post<{ message: string }>('/posts', {
       data: post
     });
     return data;
   },
-  modifyPost: async (post: Post) => {
+  putPost: async (post: Post) => {
     const { data } = await baseInstance.put<{ message: string }>(
       `/posts/${post.id}`,
       { data: post }

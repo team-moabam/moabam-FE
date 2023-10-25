@@ -2,15 +2,15 @@
 import { createQueryKeys } from '@lukemorales/query-key-factory';
 import postAPI from '../functions/postTestAPI';
 
-const postsTest = createQueryKeys('postsTest', {
+const postsTestQuery = createQueryKeys('postsTest', {
   all: {
     queryKey: null,
-    queryFn: postAPI.fetchPosts
+    queryFn: postAPI.getAllPosts
   },
   detail: (postId: string) => ({
     queryKey: [postId],
-    queryFn: () => postAPI.fetchPostDetail(postId)
+    queryFn: () => postAPI.getDetailPost(postId)
   })
 });
 
-export default postsTest;
+export default postsTestQuery;
