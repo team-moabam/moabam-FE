@@ -1,4 +1,7 @@
 import { setupWorker } from 'msw/browser';
-import { postHandlers, commentHandlers } from './handlers';
+import { examplePostHandlers, exampleCommentHandlers } from './handlers';
 
-export const worker = setupWorker(...postHandlers, ...commentHandlers);
+export const worker = setupWorker(
+  ...examplePostHandlers,
+  ...exampleCommentHandlers
+);

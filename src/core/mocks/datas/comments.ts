@@ -1,4 +1,4 @@
-export const ALL_COMMENTS = [
+export const ALL_COMMENT = [
   {
     postId: 1,
     id: 1,

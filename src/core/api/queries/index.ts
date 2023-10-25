@@ -1,3 +1,3 @@
-import postsTestQuery from './postsTest';
+import examplePostQuery from './examplePost';
 
-export { postsTestQuery };
+export { examplePostQuery };

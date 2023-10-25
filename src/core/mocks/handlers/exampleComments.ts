@@ -1,16 +1,16 @@
 // TODO: MSW로 API를 모킹하는 방법을 나타낸 예시 코드에요. 이후에 모킹 함수가 적당히 나온다면 삭제해도 좋은 파일이에요.
 import { http, HttpResponse, delay } from 'msw';
-import { ALL_COMMENTS } from '../datas/comments';
+import { ALL_COMMENT } from '../datas/comments';
 
-const commentHandlers = [
+const exampleCommentHandlers = [
   http.get('/example/comments', async () => {
     await delay(200);
-    return HttpResponse.json(ALL_COMMENTS);
+    return HttpResponse.json(ALL_COMMENT);
   }),
 
   http.get('/example/comments/:commentId', async ({ params }) => {
     await delay(200);
-    return HttpResponse.json(ALL_COMMENTS[Number(params.commentId) - 1]);
+    return HttpResponse.json(ALL_COMMENT[Number(params.commentId) - 1]);
   }),
 
   http.post('/example/comments', async ({ request }) => {
@@ -43,4 +43,4 @@ const commentHandlers = [
   })
 ];
 
-export default commentHandlers;
+export default exampleCommentHandlers;

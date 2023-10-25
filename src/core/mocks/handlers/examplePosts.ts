@@ -2,7 +2,7 @@
 import { http, HttpResponse, delay } from 'msw';
 import { ALL_POST } from '../datas/posts';
 
-const postHandlers = [
+const examplePostHandlers = [
   http.get('/example/posts', async () => {
     await delay(200);
     return HttpResponse.json(ALL_POST);
@@ -43,4 +43,4 @@ const postHandlers = [
   })
 ];
 
-export default postHandlers;
+export default examplePostHandlers;

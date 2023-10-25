@@ -1,2 +1,2 @@
-export { default as postHandlers } from './posts';
-export { default as commentHandlers } from './comments';
+export { default as examplePostHandlers } from './examplePosts';
+export { default as exampleCommentHandlers } from './exampleComments';

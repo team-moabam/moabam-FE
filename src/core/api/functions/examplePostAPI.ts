@@ -8,7 +8,7 @@ type Post = {
   body: string;
 };
 
-const postTestAPI = {
+const examplePostAPI = {
   getAllPosts: async () => {
     const { data } = await baseInstance.get<Post[]>(`/example/posts`);
     return data;
@@ -39,4 +39,4 @@ const postTestAPI = {
   }
 };
 
-export default postTestAPI;
+export default examplePostAPI;
