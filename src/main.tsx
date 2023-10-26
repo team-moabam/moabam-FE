@@ -6,7 +6,7 @@ import App from './App';
 import './main.css';
 
 const setupMSW = async () => {
-  if (import.meta.env.VITE_MSW_MODE !== 'true') {
+  if (import.meta.env.VITE_MSW !== 'true') {
     return;
   }
 
