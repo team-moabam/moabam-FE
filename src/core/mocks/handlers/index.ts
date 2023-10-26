@@ -1,2 +1,6 @@
-export { default as examplePostHandlers } from './examplePosts';
-export { default as exampleCommentHandlers } from './exampleComments';
+import examplePostHandlers from './examplePosts';
+import exampleCommentHandlers from './exampleComments';
+
+const handlers = [...examplePostHandlers, ...exampleCommentHandlers];
+
+export default handlers;
