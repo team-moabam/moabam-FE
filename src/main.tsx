@@ -5,7 +5,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import App from './App';
 import './main.css';
 
-const deferRender = async () => {
+const setupMSW = async () => {
   if (import.meta.env.VITE_MSW_MODE !== 'true') {
     return;
   }
@@ -17,7 +17,7 @@ const deferRender = async () => {
 
 const queryClient = new QueryClient();
 
-deferRender().then(() => {
+setupMSW().then(() => {
   ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
       <QueryClientProvider client={queryClient}>
