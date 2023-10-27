@@ -3,7 +3,9 @@ import { createPortal } from 'react-dom';
 
 const CONTAINER_ID = 'bottom-sheet';
 
-interface BottomSheetProps {}
+interface BottomSheetProps {
+  isShow: boolean;
+}
 
 const BottomSheet = ({ children }: PropsWithChildren<BottomSheetProps>) => {
   return createPortal(
