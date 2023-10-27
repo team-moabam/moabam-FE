@@ -14,10 +14,10 @@ const BottomSheet = ({
   isShow,
   onClose
 }: PropsWithChildren<BottomSheetProps>) => {
-  const innerRef = useRef<HTMLDivElement>(null);
+  const backgroundRef = useRef<HTMLDivElement>(null);
 
   const handleClose: React.MouseEventHandler = (e) => {
-    if (e.target !== innerRef.current) {
+    if (e.target !== backgroundRef.current) {
       return;
     }
 
@@ -30,10 +30,10 @@ const BottomSheet = ({
         'absolute left-0 top-0 min-h-screen w-full bg-neutral-200/30',
         { hidden: !isShow }
       )}
-      ref={innerRef}
+      ref={backgroundRef}
       onClick={handleClose}
     >
-      <div className="absolute bottom-0 w-full bg-red-300">{children}</div>
+      <div className="absolute bottom-0 w-full">{children}</div>
     </div>,
     document.getElementById(CONTAINER_ID)!
   );
