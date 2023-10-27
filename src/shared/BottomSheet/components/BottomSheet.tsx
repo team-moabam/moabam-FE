@@ -1,5 +1,6 @@
 import { useRef, PropsWithChildren } from 'react';
 import { createPortal } from 'react-dom';
+import classNames from 'classnames';
 
 const CONTAINER_ID = 'bottom-sheet';
 
@@ -25,9 +26,10 @@ const BottomSheet = ({
 
   return createPortal(
     <div
-      className={`absolute left-0 top-0 min-h-screen w-full bg-neutral-200/30 ${
-        !isShow && 'hidden'
-      }`}
+      className={classNames(
+        'absolute left-0 top-0 min-h-screen w-full bg-neutral-200/30',
+        { hidden: !isShow }
+      )}
       ref={innerRef}
       onClick={handleClose}
     >
