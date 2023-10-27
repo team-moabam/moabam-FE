@@ -7,7 +7,7 @@ import progressbar from './progressbar';
 const meta = {
   title: 'Components/progressbar',
   component: progressbar,
-  argTypes: {}
+  argTypes: { progress: { control: 'range', min: 1, max: 100 } }
 } satisfies Meta<typeof progressbar>;
 
 export default meta;
@@ -15,5 +15,5 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
-  args: {}
+  args: { progress: 50 }
 };
