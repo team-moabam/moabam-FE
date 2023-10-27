@@ -25,8 +25,8 @@ const router = createBrowserRouter([
       <>
         <div>
           {/* 그냥 컬러 */}
-          <p className="text-red">red</p>
-          <p className="text-green">green</p>
+          <p className="text-danger">red</p>
+          <p className="text-success">green</p>
         </div>
         {/* 다크/라이트 모드를 조정하는 상위요소 class 를 통해 전환 */}
         <div className="dark bg-slate-600 font-IMHyemin-bold">
