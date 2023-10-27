@@ -1,6 +1,5 @@
 import { useRef, PropsWithChildren } from 'react';
 import { createPortal } from 'react-dom';
-import clsx from 'clsx';
 import { AnimatePresence, motion, Variants } from 'framer-motion';
 
 const CONTAINER_ID = 'bottom-sheet';
