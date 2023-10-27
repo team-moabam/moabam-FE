@@ -5,7 +5,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import PasswordInput from './PasswordInput';
 
 const meta = {
-  title: 'Components/ExampleButton',
+  title: 'Components/PasswordInput',
   component: PasswordInput,
   argTypes: {}
 } satisfies Meta<typeof PasswordInput>;
