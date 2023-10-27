@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import useBottomSheet from '../hooks/useBottomSheet';
-import BottomSheet from './BottomSheet';
+import { useBottomSheet, BottomSheet } from '..';
 
 const meta = {
   title: 'Shared/BottomSheet'
@@ -11,13 +10,13 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 const Page = () => {
-  const { BottomSheet, toggle, close } = useBottomSheet();
+  const { bottomSheetProps, toggle, close } = useBottomSheet();
 
   return (
     <>
-      <button onClick={toggle}>토글</button>
-      <BottomSheet>
-        <div className="bg-green-200">
+      <button onClick={toggle}>BottomSheet 열기</button>
+      <BottomSheet {...bottomSheetProps}>
+        <div className="rounded-2xl bg-dark-main p-2 text-white">
           <h1>하이하이</h1>
           <div>요건 내부의 내용이에요</div>
           <div>요건 내부의 내용이에요</div>

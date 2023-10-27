@@ -1,5 +1,5 @@
-import { useState, useCallback, useMemo, PropsWithChildren } from 'react';
-import BottomSheet from '../components/BottomSheet';
+import { useState, useCallback } from 'react';
+import { BottomSheetProps } from '../components/BottomSheet';
 
 const useBottomSheet = () => {
   const [isShow, setIsShow] = useState(false);
@@ -8,22 +8,12 @@ const useBottomSheet = () => {
   const close = useCallback(() => setIsShow(false), []);
   const toggle = useCallback(() => setIsShow((prev) => !prev), []);
 
-  const BottomSheetComponent = useMemo(
-    () =>
-      ({ children }: PropsWithChildren) => {
-        return (
-          <BottomSheet
-            isShow={isShow}
-            onClose={close}
-          >
-            {children}
-          </BottomSheet>
-        );
-      },
-    [isShow, close]
-  );
+  const bottomSheetProps: BottomSheetProps = {
+    isShow,
+    onClose: close
+  };
 
-  return { isShow, open, close, toggle, BottomSheet: BottomSheetComponent };
+  return { bottomSheetProps, isShow, open, close, toggle };
 };
 
 export default useBottomSheet;
