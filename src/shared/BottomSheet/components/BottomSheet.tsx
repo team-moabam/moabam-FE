@@ -1,18 +1,18 @@
 import { useRef, PropsWithChildren } from 'react';
 import { createPortal } from 'react-dom';
-import { AnimatePresence, motion, Variants } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 
 const CONTAINER_ID = 'bottom-sheet';
 
 export interface BottomSheetProps {
   isShow: boolean;
-  onClose: VoidFunction;
+  close: VoidFunction;
 }
 
 const BottomSheet = ({
   children,
   isShow,
-  onClose
+  close
 }: PropsWithChildren<BottomSheetProps>) => {
   const backgroundRef = useRef<HTMLDivElement>(null);
 
@@ -21,13 +21,13 @@ const BottomSheet = ({
       return;
     }
 
-    onClose && onClose();
+    close && close();
   };
 
   return createPortal(
     <AnimatePresence>
       {isShow && (
-        <motion.div
+        <motion.aside
           className={
             'absolute left-0 top-0 min-h-screen w-full bg-dark-gray/50'
           }
@@ -37,8 +37,15 @@ const BottomSheet = ({
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
         >
-          <div className="absolute bottom-0 w-full">{children}</div>
-        </motion.div>
+          <motion.section
+            className="absolute bottom-0 w-full"
+            initial={{ y: '100%' }}
+            animate={{ y: '0%' }}
+            exit={{ y: '100%' }}
+          >
+            {children}
+          </motion.section>
+        </motion.aside>
       )}
     </AnimatePresence>,
     document.getElementById(CONTAINER_ID)!

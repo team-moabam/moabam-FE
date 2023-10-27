@@ -8,10 +8,7 @@ const useBottomSheet = () => {
   const close = useCallback(() => setIsShow(false), []);
   const toggle = useCallback(() => setIsShow((prev) => !prev), []);
 
-  const bottomSheetProps: BottomSheetProps = {
-    isShow,
-    onClose: close
-  };
+  const bottomSheetProps: BottomSheetProps = { isShow, close };
 
   return { bottomSheetProps, isShow, open, close, toggle };
 };
