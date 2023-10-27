@@ -16,6 +16,10 @@ jobs:
           node-version: 18.x
           cache: 'npm'
 
+      - name: Setup .env
+        run: |
+          echo "VITE_BACKEND_API_ENDPOINT=${{ secrets.VITE_BACKEND_API_ENDPOINT }}" >> .env
+
       - run: npm i
       - run: npm run build --if-present
 

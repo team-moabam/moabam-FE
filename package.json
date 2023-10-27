@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev:msw": "cross-env VITE_MSW=true vite",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
@@ -17,8 +18,7 @@
     "@hookform/resolvers": "^3.3.2",
     "@lukemorales/query-key-factory": "^1.3.2",
     "@suspensive/react": "^1.17.5",
-    "@tanstack/react-query": "^5.0.0",
-    "@tanstack/react-query-devtools": "^5.0.1",
+    "@tanstack/react-query": "^5.0.5",
     "axios": "^1.5.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -41,6 +41,7 @@
     "@storybook/react-vite": "^7.5.1",
     "@storybook/testing-library": "^0.2.2",
     "@tanstack/eslint-plugin-query": "^5.0.0",
+    "@tanstack/react-query-devtools": "^5.1.0",
     "@types/node": "^20.8.7",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
@@ -48,6 +49,7 @@
     "@typescript-eslint/parser": "^6.0.0",
     "@vitejs/plugin-react": "^4.0.3",
     "autoprefixer": "^10.4.16",
+    "cross-env": "^7.0.3",
     "eslint": "^8.45.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-import-resolver-typescript": "^3.6.1",
@@ -59,6 +61,7 @@
     "eslint-plugin-tailwindcss": "^3.13.0",
     "husky": "^8.0.3",
     "lint-staged": "^15.0.2",
+    "msw": "^2.0.0",
     "postcss": "^8.4.31",
     "prettier": "3.0.3",
     "storybook": "^7.5.1",
@@ -71,5 +74,8 @@
       "eslint --fix",
       "prettier --write"
     ]
+  },
+  "msw": {
+    "workerDirectory": "public"
   }
 }
