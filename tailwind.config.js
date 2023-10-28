@@ -26,8 +26,8 @@ export default {
           sub: '#ffffff',
           point: {
             DEFAULT: '#60d4de',
-            hover: '#3FB7C1',
-            ring: '#70E3ED'
+            hover: '#3fb7c1',
+            ring: '#70e3ed'
           }
         },
         dark: {
@@ -35,9 +35,9 @@ export default {
           main: '#1f2544',
           sub: '#121837',
           point: {
-            DEFAULT: '#F9BD7D',
-            hover: '#F0AA60',
-            ring: '#FFC588'
+            DEFAULT: '#f9bd7d',
+            hover: '#f0aa60',
+            ring: '#ffc588'
           }
         },
         disabled: '#93a3af',
