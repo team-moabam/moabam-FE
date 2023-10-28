@@ -1,12 +1,19 @@
 import { Link } from 'react-router-dom';
 import type { Meta, StoryObj } from '@storybook/react';
 import { withRouter } from 'storybook-addon-react-router-v6';
-import buttonVariants from '.';
+import { buttonVariants } from './index';
 
 const meta = {
   title: 'Shared/ButtonVariants',
   tags: ['autodocs'],
-  decorators: [withRouter]
+  decorators: [withRouter],
+  parameters: {
+    docs: {
+      description: {
+        component: '버튼에 적용되는 기본 스타일을 제공합니다.'
+      }
+    }
+  }
 } satisfies Meta;
 
 export default meta;
@@ -64,12 +71,21 @@ export const Options: Story = {
 export const Tags: Story = {
   render: () => (
     <div className="flex gap-2">
+      <button className={buttonVariants('light-point')}>button</button>
+      <div className={buttonVariants('light-point')}>div</div>
+      <span className={buttonVariants('light-point')}>span</span>
       <Link
         to="/"
-        className={buttonVariants('light-point')}
+        className={buttonVariants('success')}
       >
         Link
       </Link>
     </div>
   )
+};
+
+export const Custom: Story = {
+  args: {},
+  argTypes: {},
+  render: (args) => <div>ㅇㅇ</div>
 };
