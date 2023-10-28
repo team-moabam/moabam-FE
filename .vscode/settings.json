@@ -2,4 +2,19 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
   },
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
+  "editor.quickSuggestions": {
+    "strings": "on"
+  },
+  "tailwindCSS.classAttributes": [
+    "class",
+    "className",
+    "ngClass",
+    ".*Style*",
+    ".*Styles*",
+    ".*Variant*",
+    ".*Variants*"
+  ]
 }
