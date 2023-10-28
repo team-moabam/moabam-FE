@@ -40,6 +40,7 @@ export default {
             ring: '#FFC588'
           }
         },
+        disabled: '#93a3af',
         bronze: '#854d0e'
       },
       fontFamily: {
