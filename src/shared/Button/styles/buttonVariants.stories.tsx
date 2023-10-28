@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import clsx from 'clsx';
 import type { Meta, StoryObj } from '@storybook/react';
 import { withRouter } from 'storybook-addon-react-router-v6';
 import buttonVariants from './buttonVariants';
@@ -86,6 +87,27 @@ export const Tags: Story = {
 
 export const Custom: Story = {
   args: {},
-  argTypes: {},
-  render: (args) => <div>ㅇㅇ</div>
+  render: (args) => (
+    <div className="flex flex-col items-center justify-center gap-2">
+      <div className="w-full">
+        <button
+          className={clsx(buttonVariants('danger'), 'w-full text-center')}
+        >
+          width 100%
+        </button>
+      </div>
+      <div>
+        <button
+          disabled
+          className={clsx(
+            buttonVariants('success'),
+            'flex items-center justify-center gap-2'
+          )}
+        >
+          <div className="h-4 w-4 animate-spin rounded-full border-2 border-solid border-white border-t-transparent" />
+          <span>로딩중...</span>
+        </button>
+      </div>
+    </div>
+  )
 };

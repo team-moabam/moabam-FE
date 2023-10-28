@@ -5,7 +5,7 @@ const pesudoVariants = {
   hover: 'enabled:hover:-translate-y-0.5',
   focus: 'focus:ring-4 focus:ring-opacity-75',
   click: 'enabled:active:translate-y-0 enabled:active:scale-95',
-  disabled: 'disabled:bg-gray-400 disabled:cursor-not-allowed'
+  disabled: 'disabled:cursor-not-allowed'
 };
 
 const themeVariants = {
