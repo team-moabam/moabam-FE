@@ -27,7 +27,7 @@ const themeVariants = {
  * @returns string
  */
 const buttonVariants = (
-  theme: keyof typeof themeVariants = 'danger',
+  theme: keyof typeof themeVariants = 'light-point',
   options?: Partial<{ [K in keyof typeof pesudoVariants]: boolean }>
 ) => {
   const { hover, focus, click, disabled } = {
