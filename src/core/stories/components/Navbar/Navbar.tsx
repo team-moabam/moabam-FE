@@ -1,9 +1,8 @@
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
-import { GoHomeFill } from 'react-icons/go';
-import { HiViewGridAdd } from 'react-icons/hi';
+import { HiHome } from 'react-icons/hi2';
 import { ImSearch } from 'react-icons/im';
-import { FaUser } from 'react-icons/fa6';
+import { FaUser, FaClipboardList } from 'react-icons/fa6';
 
 const Navbar = () => {
   const { pathname } = useLocation();
@@ -11,11 +10,11 @@ const Navbar = () => {
 
   const NavbarOptions = [
     {
-      icon: <GoHomeFill />,
+      icon: <HiHome />,
       route: '/'
     },
     {
-      icon: <HiViewGridAdd />,
+      icon: <FaClipboardList />,
       route: '/room' // 이거 정의 어떻게 하죠
     },
     {
@@ -30,7 +29,7 @@ const Navbar = () => {
   return (
     <>
       {NavbarOptions.find(({ route }) => route === pathname) && (
-        <nav className="fixed bottom-0 flex h-16 w-full max-w-lg rounded-t-lg bg-light-sub text-3xl text-black dark:bg-dark-sub dark:text-white">
+        <nav className="fixed bottom-0 flex h-16 w-full max-w-lg rounded-t-lg bg-light-sub text-2xl text-black dark:bg-dark-sub dark:text-white">
           {NavbarOptions.map(({ icon, route }) => (
             <Link
               className={`grid h-full grow place-items-center transition-all hover:text-light-point dark:hover:text-dark-point ${
