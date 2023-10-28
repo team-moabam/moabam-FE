@@ -22,6 +22,14 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Themes: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'buttonVariants() 함수의 첫 번째 인자로 색상 테마를 설정할 수 있습니다.'
+      }
+    }
+  },
   render: () => (
     <div className="flex gap-2">
       <button className={buttonVariants('danger')}>danger</button>
@@ -34,6 +42,14 @@ export const Themes: Story = {
 };
 
 export const Options: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          '모든 버튼은 기본적으로 hover, focus, click, disabled 상태에 따라 스타일이 변경됩니다. 이를 제어하기 위해 두 번째 인자로 객체를 전달할 수 있습니다.'
+      }
+    }
+  },
   render: () => (
     <div className="flex gap-2">
       <button className={buttonVariants('light-point')}>기본</button>
@@ -70,6 +86,14 @@ export const Options: Story = {
 };
 
 export const Tags: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          '컴포넌트가 아닌 객체로 스타일을 매핑했기 때문에, button이 아닌 다른 태그에도 스타일을 적용할 수 있습니다.'
+      }
+    }
+  },
   render: () => (
     <div className="flex gap-2">
       <button className={buttonVariants('light-point')}>button</button>
@@ -85,9 +109,16 @@ export const Tags: Story = {
   )
 };
 
-export const Custom: Story = {
-  args: {},
-  render: (args) => (
+export const Examples: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          '버튼에 추가로 스타일을 적용하고 싶다면, className을 추가할 수 있습니다.'
+      }
+    }
+  },
+  render: () => (
     <div className="flex flex-col items-center justify-center gap-2">
       <div className="w-full">
         <button
