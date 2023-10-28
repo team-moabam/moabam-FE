@@ -5,18 +5,18 @@ import TabItem, { TabItemProps } from '../components/TabItem';
 
 interface useTabProps {
   tabChildren: React.ReactNode;
-  initialTabIndex?: number;
+  defaultIndex?: number;
 }
 
-export const useTab = ({ tabChildren, initialTabIndex = 0 }: useTabProps) => {
+export const useTab = ({ tabChildren, defaultIndex = 0 }: useTabProps) => {
   const tabItems = childrenToArray<TabItemProps>(tabChildren, TabItem);
   const titleOfTabItems = tabItems.map((tabItem) => tabItem.props.title);
 
-  if (initialTabIndex >= tabItems.length) {
+  if (defaultIndex >= tabItems.length) {
     throw new Error('wrong initial index');
   }
 
-  const [currentTabIndex, setCurrentTabIndex] = useState(initialTabIndex);
+  const [currentTabIndex, setCurrentTabIndex] = useState(defaultIndex);
 
   return {
     titleOfTabItems,

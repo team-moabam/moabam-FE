@@ -6,7 +6,7 @@ const Example = () => {
   return (
     <>
       <h2>Tab 컴포넌트 예시</h2>
-      <Tab>
+      <Tab defaultIndex={1}>
         <TabItem title="tab1">
           <div>탭 1 내용입니다</div>
           <div>탭 1 내용입니다</div>
@@ -18,10 +18,5 @@ const Example = () => {
     </>
   );
 };
-
-// Tab 에서 해야하는 일
-// TabItem 을 하나씩 받아서
-// title 과 children prop 을 뽑기
-// title 은 TabHeader 에 박기?
 
 export default Example;

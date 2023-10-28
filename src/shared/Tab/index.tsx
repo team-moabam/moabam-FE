@@ -4,12 +4,14 @@ import { useTab } from './hooks/useTab';
 
 interface TabProps {
   children: React.ReactNode;
+  defaultIndex?: number;
 }
 
-const Tab = ({ children }: TabProps) => {
+const Tab = ({ children, defaultIndex }: TabProps) => {
   const { titleOfTabItems, setCurrentTabIndex, currentTabTitle, currentTab } =
     useTab({
-      tabChildren: children
+      tabChildren: children,
+      defaultIndex
     });
 
   return (
