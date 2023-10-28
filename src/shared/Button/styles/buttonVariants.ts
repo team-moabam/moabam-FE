@@ -1,9 +1,9 @@
 const defaultVariant =
-  'rounded-lg px-4 py-2 shadow-md duration-100 ease-in-out focus:outline-none';
+  'rounded-3xl px-4 py-2 shadow-md duration-100 ease-in-out focus:outline-none';
 
 const pesudoVariants = {
   hover: 'enabled:hover:-translate-y-0.5',
-  focus: 'focus:ring-4 focus:ring-opacity-75',
+  focus: 'focus:ring-2 focus:ring-opacity-75',
   click: 'enabled:active:translate-y-0 enabled:active:scale-95',
   disabled: 'disabled:cursor-not-allowed'
 };
