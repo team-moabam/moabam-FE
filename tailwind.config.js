@@ -7,18 +7,27 @@ export default {
       colors: {
         danger: {
           DEFAULT: '#dc2626',
-          hover: '#b91c1c'
+          hover: '#b91c1c',
+          ring: '#f87171'
         },
-        success: '#22c55e',
-        bronze: '##854d0e',
-        warning: '#facc15',
+        success: {
+          DEFAULT: '#22c55e',
+          hover: '#16a34a',
+          ring: '#4ade80'
+        },
+        warning: {
+          DEFAULT: '#facc15',
+          hover: '#eab308',
+          ring: '#fde047'
+        },
         light: {
           gray: '#d1d5db',
           main: '#f8f8f8',
           sub: '#ffffff',
           point: {
             DEFAULT: '#60d4de',
-            hover: '#3FB7C1'
+            hover: '#3FB7C1',
+            ring: '#70E3ED'
           }
         },
         dark: {
@@ -27,9 +36,11 @@ export default {
           sub: '#121837',
           point: {
             DEFAULT: '#F9BD7D',
-            hover: '#F0AA60'
+            hover: '#F0AA60',
+            ring: '#FFC588'
           }
-        }
+        },
+        bronze: '#854d0e'
       },
       fontFamily: {
         'IMHyemin-bold': ['IM_Hyemin-Bold'],
