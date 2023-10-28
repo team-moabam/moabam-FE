@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
 import type { Meta, StoryObj } from '@storybook/react';
 import { withRouter } from 'storybook-addon-react-router-v6';
-import { buttonVariants } from './index';
+import buttonVariants from './buttonVariants';
 
 const meta = {
-  title: 'Shared/ButtonVariants',
+  title: 'Shared/Button/buttonVariants',
   tags: ['autodocs'],
   decorators: [withRouter],
   parameters: {
