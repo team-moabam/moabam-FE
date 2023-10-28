@@ -9,7 +9,7 @@ const TabItem = ({ title, children }: TabItemProps) => {
   if (!title) {
     throw new Error('TabItem must have title');
   }
-  return <div>{children}</div>;
+  return children;
 };
 
 export default TabItem;
