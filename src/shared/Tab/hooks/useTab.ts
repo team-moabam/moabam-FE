@@ -20,8 +20,8 @@ export const useTab = ({ tabChildren, defaultIndex = 0 }: useTabProps) => {
 
   return {
     titleOfTabItems,
+    currentTabIndex,
     setCurrentTabIndex,
-    currentTabTitle: tabItems[currentTabIndex].props.title,
     currentTab: tabItems[currentTabIndex]
   };
 };
