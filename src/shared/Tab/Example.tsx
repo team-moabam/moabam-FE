@@ -1,6 +1,4 @@
-import React from 'react';
-import Tab from '.';
-import TabItem from './components/TabItem';
+import Tab, { TabItem } from './Tab';
 
 const Example = () => {
   return (

@@ -1,6 +1,6 @@
 import React from 'react';
 import { TabHeader, TabViewer } from './components';
-import { useTab } from './hooks/useTab';
+import { useTab } from './hooks';
 
 interface TabProps {
   children: React.ReactNode;
@@ -29,3 +29,4 @@ const Tab = ({ children, defaultIndex, align }: TabProps) => {
 };
 
 export default Tab;
+export { TabItem } from './components';

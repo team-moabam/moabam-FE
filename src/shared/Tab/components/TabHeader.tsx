@@ -1,5 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react';
-import TabBar from './TabBar';
+import React from 'react';
+import { TabBar } from '.';
+import { useTabBarStyle } from '../hooks';
 
 interface TabHeaderProps {
   titles: string[];
@@ -14,36 +15,30 @@ const TabHeader = ({
   setCurrentTabIndex,
   align
 }: TabHeaderProps) => {
-  const headerJustify = `justify-${align}`;
-  const currentTitleColor = 'text-black dark:text-white';
-  const titleColor = 'text-dark-gray';
+  const { titleRefs, tabBarLeft, tabBarWidth } =
+    useTabBarStyle(currentTabIndex);
 
-  const titleRefs = useRef<null[] | HTMLDivElement[]>([]);
-  const [tabBarWidth, setTabBarWidth] = useState(0);
-  const [tabBarLeft, setTabBarLeft] = useState(0);
-
-  useEffect(() => {
-    setTabBarWidth(() => titleRefs.current[currentTabIndex]?.offsetWidth || 0);
-    setTabBarLeft(
-      () =>
-        titleRefs.current[currentTabIndex]?.getBoundingClientRect().left || 0
-    );
-  }, [currentTabIndex, titleRefs]);
+  const tabHeaderStyle = {
+    container: 'relative',
+    titleWrapper: `flex flex-row gap-4 justify-${align} font-IMHyemin-bold text-xl`,
+    title: (index: number) =>
+      `${
+        index === currentTabIndex
+          ? 'text-black dark:text-white'
+          : 'text-dark-gray'
+      } pb-2 pt-1`
+  };
 
   return (
-    <div className="relative">
-      <div
-        className={`flex flex-row gap-4 ${headerJustify} font-IMHyemin-bold`}
-      >
+    <div className={tabHeaderStyle.container}>
+      <div className={tabHeaderStyle.titleWrapper}>
         {titles.map((title, index) => (
           <div
             key={title}
             ref={(element) => {
               titleRefs.current[index] = element;
             }}
-            className={`${
-              index === currentTabIndex ? currentTitleColor : titleColor
-            } pb-2 pt-1 text-xl`}
+            className={tabHeaderStyle.title(index)}
             onClick={() => setCurrentTabIndex(index)}
           >
             {title}

@@ -8,7 +8,7 @@ interface useTabProps {
   defaultIndex?: number;
 }
 
-export const useTab = ({ tabChildren, defaultIndex = 0 }: useTabProps) => {
+const useTab = ({ tabChildren, defaultIndex = 0 }: useTabProps) => {
   const tabItems = childrenToArray<TabItemProps>(tabChildren, TabItem);
   const titleOfTabItems = tabItems.map((tabItem) => tabItem.props.title);
 
@@ -25,3 +25,5 @@ export const useTab = ({ tabChildren, defaultIndex = 0 }: useTabProps) => {
     currentTab: tabItems[currentTabIndex]
   };
 };
+
+export default useTab;
