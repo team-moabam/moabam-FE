@@ -7,7 +7,7 @@ import Input from './Input';
 const meta = {
   title: 'Components/Input',
   component: Input,
-  argTypes: {}
+  argTypes: { size: { control: 'radio', options: ['sm', 'base', 'lg'] } }
 } satisfies Meta<typeof Input>;
 
 export default meta;
