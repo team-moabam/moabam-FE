@@ -111,7 +111,9 @@ export const Provider: Story = {
     docs: {
       description: {
         story:
-          '`IconContext.Provider` 를 사용하여 여러 아이콘의 스타일을 동시에 지정할 수 있습니다. <br/>'
+          '`IconContext.Provider` 를 사용하여 여러 아이콘의 스타일을 동시에 지정할 수 있습니다.<br/>' +
+          '이 경우 DOM 트리상에 공통 노드가 생성되지 않은 채 각각의 아이콘에 공통 스타일을 적용할 수 있습니다.<br/><br/>' +
+          '그런데 ContextAPI를 사용하지 않고 상위 래퍼 노드에서 스타일을 줘도 됩니다. 이 경우에는 상위에 공통 노드가 생성됩니다.<br/>'
       }
     }
   },
