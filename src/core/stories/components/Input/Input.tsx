@@ -1,6 +1,6 @@
 import { PropsWithChildren } from 'react';
 
-interface TestButtonProps {
+interface InputProps {
   size?: 'sm' | 'base' | 'lg';
   className?: string;
 }
@@ -9,7 +9,7 @@ const Input = ({
   size = 'base',
   className = '',
   ...props
-}: PropsWithChildren<TestButtonProps>) => (
+}: PropsWithChildren<InputProps>) => (
   <input
     type="text"
     className={`
