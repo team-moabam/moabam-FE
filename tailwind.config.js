@@ -21,7 +21,7 @@ export default {
           ring: '#fde047'
         },
         light: {
-          gray: '#d1d5db',
+          gray: '#f3f4f6',
           main: '#f8f8f8',
           sub: '#ffffff',
           point: {
