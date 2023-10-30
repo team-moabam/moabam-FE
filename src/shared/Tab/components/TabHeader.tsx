@@ -1,4 +1,5 @@
 import React from 'react';
+import { clsx } from 'clsx';
 import { TabBar } from '.';
 import { useTabBarStyle } from '../hooks';
 
@@ -20,13 +21,16 @@ const TabHeader = ({
 
   const tabHeaderStyle = {
     container: 'relative',
-    titleWrapper: `flex flex-row gap-4 font-IMHyemin-bold text-xl justify-${align}`,
+    titleWrapper: clsx('flex flex-row gap-4 font-IMHyemin-bold text-xl', {
+      'justify-start': align === 'start',
+      'justify-center': align === 'center',
+      'justify-end': align === 'end'
+    }),
     title: (index: number) =>
-      `${
-        index === currentTabIndex
-          ? 'text-black dark:text-white'
-          : 'text-dark-gray'
-      } pb-2 pt-1 cursor-pointer`
+      clsx('cursor-pointer pb-2 pt-1', {
+        'text-black dark:text-white': index === currentTabIndex,
+        'text-dark-gray': index !== currentTabIndex
+      })
   };
 
   return (
