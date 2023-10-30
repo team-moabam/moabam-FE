@@ -22,3 +22,12 @@ export const Default: Story = {
     contribution: 65
   }
 };
+
+export const Manager: Story = {
+  args: {
+    imgUrl: 'https://picsum.photos/200',
+    nickname: '볼록눈이',
+    contribution: 65,
+    manager: true
+  }
+};
