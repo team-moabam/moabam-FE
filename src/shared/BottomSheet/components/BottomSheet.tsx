@@ -28,20 +28,21 @@ const BottomSheet = forwardRef<
       {isShow && (
         <motion.aside
           className={
-            'dark absolute left-0 top-0 min-h-screen w-full bg-dark-gray/50'
+            'dark absolute left-0 top-0 min-h-screen w-full overflow-hidden bg-dark-gray/50'
           }
-          ref={backgroundRef}
-          onClick={handleClose}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
+          ref={backgroundRef}
+          onClick={handleClose}
         >
           <motion.section
-            className={`absolute bottom-0 w-full overflow-hidden rounded-2xl bg-white p-2 text-black dark:bg-dark-main dark:text-white ${className}`}
-            ref={ref}
+            className={`absolute bottom-0 max-h-full w-full overflow-scroll rounded-t-2xl bg-white p-2 text-black dark:bg-dark-main dark:text-white ${className} shadow-inner drop-shadow-2xl`}
             initial={{ y: '100%' }}
             animate={{ y: '0%' }}
+            transition={{ type: 'spring', damping: 20, stiffness: 100 }}
             exit={{ y: '100%' }}
+            ref={ref}
             {...props}
           >
             {children}
