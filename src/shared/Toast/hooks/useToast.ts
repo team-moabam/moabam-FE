@@ -1,17 +1,17 @@
 import { useState, useEffect } from 'react';
 
-const useToast = (initialState: boolean) => {
+const useToast = (initialState: boolean, time: number) => {
   const [toast, setToast] = useState(initialState);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       if (toast) setToast(false);
-    }, 4000);
+    }, time);
 
     return () => {
       clearTimeout(timer);
     };
-  }, [toast]);
+  }, [toast, time]);
 
   const changeToastOpen = () => {
     setToast(true);

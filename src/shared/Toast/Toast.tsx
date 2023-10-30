@@ -9,7 +9,7 @@ interface ToastProps {
 }
 
 const Toast = ({ text, type, icon, subText }: ToastProps) => {
-  const [toast, handleOpenToast, handleCloseToast] = useToast(false);
+  const [toast, handleOpenToast, handleCloseToast] = useToast(false, 3000);
 
   const bgColor = {
     info: 'bg-info',
@@ -38,7 +38,7 @@ const Toast = ({ text, type, icon, subText }: ToastProps) => {
                 <div className="absolute left-[0.44rem] top-[0.5rem] mr-[0.75rem] h-[1.5625rem] w-[1.5625rem] bg-[url(/icons/icon-hand-cursor.png)] bg-contain bg-no-repeat"></div>
               )}
               <div className="pr-[1.56rem] text-white">
-                <span>{text}</span>
+                <span className="font-IMHyemin-bold">{text}</span>
                 {subText && (
                   <>
                     <br />

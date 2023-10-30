@@ -6,7 +6,7 @@ export default {
     extend: {
       keyframes: {
         fadeout: {
-          '80%': { opacity: 0 },
+          '75%': { opacity: 1 },
           '100%': { opacity: 0 }
         }
       },
