@@ -4,12 +4,14 @@ interface InputProps {
   size?: 'sm' | 'base' | 'lg';
   className?: string;
   type?: string;
+  name?: string;
 }
 
 const Input = ({
   size = 'base',
   className = '',
   type = 'text',
+  name = '',
   ...props
 }: PropsWithChildren<InputProps>) => (
   <input
@@ -31,6 +33,7 @@ const Input = ({
       ${className} 
       ${sizeVariants[size]}
       `}
+    name={name}
     {...props}
   />
 );
