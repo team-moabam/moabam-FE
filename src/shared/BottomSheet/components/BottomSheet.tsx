@@ -5,15 +5,19 @@ import { AnimatePresence, motion, HTMLMotionProps } from 'framer-motion';
 
 const CONTAINER_ID = 'bottom-sheet';
 
+// TODO: 다크모드에 대한 논의 이후에 수정될 가능성이 높은 코드에요.
+interface Theme {
+  theme?: 'light' | 'dark';
+}
+
 export interface BottomSheetProps {
-  theme: 'light' | 'dark'; // TODO: 다크모드에 대한 논의 이후에 수정될 가능성이 높은 코드에요.
   isShow: boolean;
   close: VoidFunction;
 }
 
 const BottomSheet = forwardRef<
   HTMLElement,
-  PropsWithChildren<HTMLMotionProps<'section'> & BottomSheetProps>
+  PropsWithChildren<HTMLMotionProps<'section'> & BottomSheetProps & Theme>
 >(({ children, className, theme, isShow, close, ...props }, ref) => {
   const backgroundRef = useRef<HTMLDivElement>(null);
 
