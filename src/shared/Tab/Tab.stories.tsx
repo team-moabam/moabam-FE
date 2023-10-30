@@ -1,11 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { withRouter } from 'storybook-addon-react-router-v6';
 import { Tab, TabItem } from '@/shared/Tab';
 
 const meta = {
   title: 'Shared/Tab',
-  tags: ['autodocs'],
-  decorators: [withRouter]
+  tags: ['autodocs']
 } satisfies Meta<typeof Tab>;
 
 export default meta;
