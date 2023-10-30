@@ -1,0 +1,51 @@
+@tailwind components;
+
+@layer components {
+  .btn {
+    @apply rounded-3xl px-4 py-2 shadow-md duration-100 ease-in-out focus:outline-none;
+  }
+
+  .btn:disabled {
+    @apply disabled:cursor-not-allowed;
+  }
+
+  .btn-transition:hover {
+    @apply enabled:hover:-translate-y-0.5;
+  }
+
+  .btn-transition:hover {
+    @apply enabled:hover:-translate-y-0.5;
+  }
+
+  .btn-transition:focus {
+    @apply enabled:focus:ring-2 enabled:focus:ring-opacity-75;
+  }
+
+  .btn-transition:active {
+    @apply enabled:active:translate-y-0 enabled:active:scale-95;
+  }
+
+  .btn-disabled {
+    @apply text-white bg-disabled;
+  }
+
+  .btn-success {
+    @apply text-white bg-success hover:bg-success-hover focus:ring-success-ring;
+  }
+
+  .btn-warning {
+    @apply text-white bg-warning hover:bg-warning-hover focus:ring-warning-ring;
+  }
+
+  .btn-danger {
+    @apply text-white bg-danger hover:bg-danger-hover focus:ring-danger-ring;
+  }
+
+  .btn-light-point {
+    @apply text-white bg-light-point hover:bg-light-point-hover focus:ring-light-point-ring;
+  }
+
+  .btn-dark-point {
+    @apply text-white bg-dark-point hover:bg-dark-point-hover focus:ring-dark-point-ring;
+  }
+}

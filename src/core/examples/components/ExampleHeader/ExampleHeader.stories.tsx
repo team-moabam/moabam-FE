@@ -6,7 +6,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 const meta = {
   title: 'Components/ExampleHeader',
   render: () => (
-    <div className="flex justify-center bg-green-300 p-4">
+    <div className="bg-green-300 flex justify-center p-4">
       예시용 헤더입니다
     </div>
   )
