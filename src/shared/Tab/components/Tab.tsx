@@ -1,6 +1,6 @@
 import React from 'react';
-import { TabHeader, TabViewer } from './components';
-import { useTab } from './hooks';
+import { TabHeader, TabViewer } from '.';
+import { useTab } from '../hooks';
 
 interface TabProps {
   children: React.ReactNode;
@@ -16,7 +16,7 @@ const Tab = ({ children, defaultIndex, align }: TabProps) => {
     });
 
   return (
-    <>
+    <div className="flex h-full flex-col">
       <TabHeader
         align={align}
         titles={titleOfTabItems}
@@ -24,9 +24,8 @@ const Tab = ({ children, defaultIndex, align }: TabProps) => {
         setCurrentTabIndex={setCurrentTabIndex}
       />
       <TabViewer currentTab={currentTab} />
-    </>
+    </div>
   );
 };
 
 export default Tab;
-export { TabItem } from './components';

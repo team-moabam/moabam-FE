@@ -7,10 +7,7 @@ const useTabBarStyle = (currentTabIndex: number) => {
 
   useEffect(() => {
     setTabBarWidth(() => titleRefs.current[currentTabIndex]?.offsetWidth || 0);
-    setTabBarLeft(
-      () =>
-        titleRefs.current[currentTabIndex]?.getBoundingClientRect().left || 0
-    );
+    setTabBarLeft(() => titleRefs.current[currentTabIndex]?.offsetLeft || 0);
   }, [currentTabIndex, titleRefs]);
 
   return {

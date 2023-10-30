@@ -5,7 +5,7 @@ interface TabViewerProps {
 }
 
 const TabViewer = ({ currentTab }: TabViewerProps) => {
-  return <div>{currentTab}</div>;
+  return <div className="h-full">{currentTab}</div>;
 };
 
 export default TabViewer;

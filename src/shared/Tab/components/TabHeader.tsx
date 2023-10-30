@@ -20,13 +20,13 @@ const TabHeader = ({
 
   const tabHeaderStyle = {
     container: 'relative',
-    titleWrapper: `flex flex-row gap-4 justify-${align} font-IMHyemin-bold text-xl`,
+    titleWrapper: `flex flex-row gap-4 font-IMHyemin-bold text-xl justify-${align}`,
     title: (index: number) =>
       `${
         index === currentTabIndex
           ? 'text-black dark:text-white'
           : 'text-dark-gray'
-      } pb-2 pt-1`
+      } pb-2 pt-1 cursor-pointer`
   };
 
   return (
