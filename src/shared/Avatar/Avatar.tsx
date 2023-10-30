@@ -15,9 +15,9 @@ const Avatar = ({ imgUrl, contribution, nickname }: AvatarProps) => {
           className="h-[50px] w-[50px] rounded-full"
         />
       </div>
-      <div className="flex flex-col text-[14px] font-bold">
-        <span className="text-black">{nickname}</span>
-        <span className="text-light-gray">기여도 : {contribution}점</span>
+      <div className="flex flex-col  text-[14px]">
+        <span className="font-IMHyemin-bold text-black">{nickname}</span>
+        <span className="text-darkGray">기여도 : {contribution}점</span>
       </div>
     </div>
   );
