@@ -20,7 +20,7 @@ const TabHeader = ({
     useTabBarStyle(currentTabIndex);
 
   const tabHeaderStyle = {
-    container: 'relative',
+    container: 'relative flex-shrink-0',
     titleWrapper: clsx('flex flex-row gap-4 font-IMHyemin-bold text-xl', {
       'justify-start': align === 'start',
       'justify-center': align === 'center',

@@ -27,7 +27,7 @@ export const Default: Story = {
       <div className={'bg-light-main ' + containerStyle}>
         <Tab>
           <TabItem title="탭 제목 첫번째">
-            <div className={`${tabItemStyle} bg-slate-300`}>
+            <div className={`${tabItemStyle} h-[500px] bg-slate-300`}>
               탭 1 내용입니다.
             </div>
           </TabItem>
