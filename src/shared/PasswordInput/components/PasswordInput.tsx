@@ -1,20 +1,13 @@
-import { PropsWithChildren } from 'react';
 import { useState } from 'react';
 import { BsFillEyeFill, BsFillEyeSlashFill } from 'react-icons/bs';
 import Input from '../../Input/components/Input';
-
-interface PasswordInputProps {
-  size?: 'sm' | 'base' | 'lg';
-  className?: string;
-  name?: string;
-}
+import { InputProps } from '../../Input/components/Input';
 
 const PasswordInput = ({
   size = 'base',
   className = '',
-  name = '',
   ...props
-}: PropsWithChildren<PasswordInputProps>) => {
+}: InputProps) => {
   const [hide, setHide] = useState(true);
 
   return (
@@ -23,7 +16,6 @@ const PasswordInput = ({
         size={size}
         className={className}
         type={hide ? 'password' : 'text'}
-        name={name}
         {...props}
       />
       <div

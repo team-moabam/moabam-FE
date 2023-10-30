@@ -1,28 +1,17 @@
-import { PropsWithChildren } from 'react';
-
-interface InputProps {
+export interface InputProps
+  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
   size?: 'sm' | 'base' | 'lg';
-  className?: string;
-  type?: string;
-  name?: string;
 }
 
-const Input = ({
-  size = 'base',
-  className = '',
-  type = 'text',
-  name = '',
-  ...props
-}: PropsWithChildren<InputProps>) => (
+const Input = ({ size = 'base', className = '', ...props }: InputProps) => (
   <input
-    type={type}
     className={`
       w-full
       rounded-lg 
       border 
       border-gray-300 
-      p-3
-      shadow-sm 
+      p-3 
+      shadow-sm
       placeholder:text-gray-400
       focus:border-light-point
       focus:outline-none
@@ -33,7 +22,6 @@ const Input = ({
       ${className} 
       ${sizeVariants[size]}
       `}
-    name={name}
     {...props}
   />
 );
