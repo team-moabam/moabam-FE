@@ -3,15 +3,17 @@ import { PropsWithChildren } from 'react';
 interface InputProps {
   size?: 'sm' | 'base' | 'lg';
   className?: string;
+  type?: string;
 }
 
 const Input = ({
   size = 'base',
   className = '',
+  type = 'text',
   ...props
 }: PropsWithChildren<InputProps>) => (
   <input
-    type="text"
+    type={type}
     className={`
       w-full
       rounded-lg 
