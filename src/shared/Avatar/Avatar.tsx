@@ -2,15 +2,10 @@ interface AvatarProps {
   imgUrl: string;
   contribution: number;
   nickname: string;
-  manager?: true;
+  manager?: boolean;
 }
 
-const Avatar = ({
-  imgUrl,
-  contribution,
-  nickname,
-  manager = true
-}: AvatarProps) => {
+const Avatar = ({ imgUrl, contribution, nickname, manager }: AvatarProps) => {
   return (
     <div className="flex items-center">
       <div className="pr-[16px]">
