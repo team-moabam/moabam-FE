@@ -1,4 +1,4 @@
-import { useRef, PropsWithChildren } from 'react';
+import { useRef, PropsWithChildren, forwardRef } from 'react';
 import { createPortal } from 'react-dom';
 import { AnimatePresence, motion, HTMLMotionProps } from 'framer-motion';
 
@@ -9,13 +9,10 @@ export interface BottomSheetProps {
   close: VoidFunction;
 }
 
-const BottomSheet = ({
-  children,
-  className,
-  isShow,
-  close,
-  ...props
-}: PropsWithChildren<HTMLMotionProps<'section'> & BottomSheetProps>) => {
+const BottomSheet = forwardRef<
+  HTMLElement,
+  PropsWithChildren<HTMLMotionProps<'section'> & BottomSheetProps>
+>(({ children, className, isShow, close, ...props }, ref) => {
   const backgroundRef = useRef<HTMLDivElement>(null);
 
   const handleClose: React.MouseEventHandler = (e) => {
@@ -41,6 +38,7 @@ const BottomSheet = ({
         >
           <motion.section
             className={`absolute bottom-0 w-full overflow-hidden rounded-2xl bg-white p-2 text-black dark:bg-dark-main dark:text-white ${className}`}
+            ref={ref}
             initial={{ y: '100%' }}
             animate={{ y: '0%' }}
             exit={{ y: '100%' }}
@@ -53,6 +51,8 @@ const BottomSheet = ({
     </AnimatePresence>,
     document.getElementById(CONTAINER_ID)!
   );
-};
+});
+
+BottomSheet.displayName = 'BottomSheet';
 
 export default BottomSheet;
