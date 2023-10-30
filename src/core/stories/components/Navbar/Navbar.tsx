@@ -4,7 +4,7 @@ import { ImSearch } from 'react-icons/im';
 import { FaUser, FaClipboardList } from 'react-icons/fa6';
 
 const Navbar = () => {
-  const userID = '1234'; //상태에 있을 유저 정보 가져올 예정
+  const userID = '1234';
 
   const NavbarOptions = [
     {
@@ -13,7 +13,7 @@ const Navbar = () => {
     },
     {
       icon: <FaClipboardList />,
-      route: '/room' // 이거 정의 어떻게 하죠
+      route: '/room/:roomID'
     },
     {
       icon: <ImSearch />,
