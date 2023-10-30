@@ -14,14 +14,14 @@ interface HeaderProps {
 const Header = ({
   prev,
   title,
-  titleSize,
+  titleSize = 'xl',
   children,
   className
 }: HeaderProps) => {
   return (
     <div
       className={
-        'sticky left-0 top-0 flex h-16 w-full items-center justify-between px-2 font-IMHyemin-bold ' +
+        'flex-shrink-0 dark:text-white sticky left-0 top-0 flex h-16 w-full items-center justify-between px-2 font-IMHyemin-bold ' +
         `${className ? className : ''}`
       }
     >
@@ -38,7 +38,7 @@ const Header = ({
       )}
       {title && (
         <div
-          className={clsx({
+          className={clsx('mx-3', {
             'text-xl': titleSize === 'xl',
             'text-base': titleSize === 'md'
           })}
@@ -46,7 +46,7 @@ const Header = ({
           {title}
         </div>
       )}
-      <div className="min-w-[3rem]">{children}</div>
+      <div className="mx-2 min-w-[1rem]">{children}</div>
     </div>
   );
 };
