@@ -1,7 +1,7 @@
 import { PropsWithChildren } from 'react';
 import { useState } from 'react';
 import { BsFillEyeFill, BsFillEyeSlashFill } from 'react-icons/bs';
-import Input from '../Input/Input';
+import Input from '../../Input/components/Input';
 
 interface PasswordInputProps {
   size?: 'sm' | 'base' | 'lg';
