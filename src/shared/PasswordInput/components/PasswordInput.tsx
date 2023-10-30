@@ -6,11 +6,13 @@ import Input from '../../Input/components/Input';
 interface PasswordInputProps {
   size?: 'sm' | 'base' | 'lg';
   className?: string;
+  name?: string;
 }
 
 const PasswordInput = ({
   size = 'base',
   className = '',
+  name = '',
   ...props
 }: PropsWithChildren<PasswordInputProps>) => {
   const [hide, setHide] = useState(true);
@@ -21,6 +23,7 @@ const PasswordInput = ({
         size={size}
         className={className}
         type={hide ? 'password' : 'text'}
+        name={name}
         {...props}
       />
       <div
