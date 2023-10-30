@@ -10,7 +10,7 @@ const useBottomSheet = () => {
 
   const bottomSheetProps: BottomSheetProps = { isShow, close };
 
-  return { bottomSheetProps, isShow, open, close, toggle };
+  return { bottomSheetProps, isShow, open, close, toggle } as const;
 };
 
 export default useBottomSheet;
