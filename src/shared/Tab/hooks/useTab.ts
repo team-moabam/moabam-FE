@@ -5,10 +5,10 @@ import TabItem, { TabItemProps } from '../components/TabItem';
 
 interface useTabProps {
   tabChildren: React.ReactNode;
-  defaultIndex?: number;
+  defaultIndex: number;
 }
 
-const useTab = ({ tabChildren, defaultIndex = 0 }: useTabProps) => {
+const useTab = ({ tabChildren, defaultIndex }: useTabProps) => {
   const tabItems = childrenToArray<TabItemProps>(tabChildren, TabItem);
   const titleOfTabItems = tabItems.map((tabItem) => tabItem.props.title);
 

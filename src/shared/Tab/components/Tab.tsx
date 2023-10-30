@@ -5,10 +5,10 @@ import { useTab } from '../hooks';
 interface TabProps {
   children: React.ReactNode;
   defaultIndex?: number;
-  align: 'center' | 'start' | 'end';
+  align?: 'center' | 'start' | 'end';
 }
 
-const Tab = ({ children, defaultIndex, align }: TabProps) => {
+const Tab = ({ children, defaultIndex = 0, align = 'center' }: TabProps) => {
   const { titleOfTabItems, setCurrentTabIndex, currentTabIndex, currentTab } =
     useTab({
       tabChildren: children,

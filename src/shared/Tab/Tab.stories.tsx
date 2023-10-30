@@ -27,10 +27,7 @@ export const Default: Story = {
   render: () => {
     return (
       <div className={'bg-light-main ' + containerStyle}>
-        <Tab
-          defaultIndex={0}
-          align="center"
-        >
+        <Tab>
           <TabItem title="탭 제목 첫번째">
             <div className={`${tabItemStyle} bg-slate-300`}>
               탭 1 내용입니다.
