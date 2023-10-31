@@ -1,28 +1,27 @@
-import { useEffect, useRef, useState } from 'react';
-import {
-  Navigation,
-  Pagination,
-  Scrollbar,
-  A11y,
-  FreeMode,
-  Mousewheel
-} from 'swiper/modules';
+import { useState } from 'react';
+import { FreeMode, Mousewheel } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import './TimePicker.css';
 
 interface TimePickerProps {}
 
-const items = [
-  '04 : 00',
-  '05 : 00',
-  '06 : 00',
-  '07 : 00',
-  '08 : 00',
-  '09 : 00',
-  '10 : 00'
-];
+// const items = [
+//   '04 : 00',
+//   '05 : 00',
+//   '06 : 00',
+//   '07 : 00',
+//   '08 : 00',
+//   '09 : 00',
+//   '10 : 00'
+// ];
+
+const items = Array.from({ length: 24 }).map(
+  (_, i) => `${i.toString().padStart(2, '0')} : 00`
+);
 
 const TimePicker = () => {
+  const [selected, setSelected] = useState(0);
+
   return (
     <>
       <div>ㅇㅇ</div>
@@ -34,7 +33,7 @@ const TimePicker = () => {
       <div>ㅇㅇ</div>
       <div>ㅇㅇ</div>
       <Swiper
-        className="time-picker flex h-44 cursor-pointer select-none items-center"
+        className="time-picker flex h-44 w-40 cursor-pointer select-none items-center rounded-2xl shadow-md"
         modules={[FreeMode, Mousewheel]}
         direction="vertical"
         slidesPerView={3}
@@ -51,14 +50,14 @@ const TimePicker = () => {
           momentumVelocityRatio: 0.25,
           minimumVelocity: 0.1
         }}
-        onSlideChange={(swiper) => console.log(swiper)}
+        onSlideChange={(swiper) => console.log(swiper.activeIndex)}
       >
-        {Array.from({ length: 50 }).map((_, index) => (
+        {items.map((item) => (
           <SwiperSlide
-            className="flex items-center justify-center transition-all duration-300 ease-in-out"
-            key={index}
+            className="flex items-center justify-center text-2xl transition-all duration-300 ease-in-out"
+            key={item}
           >
-            Slide {index}
+            {item}
           </SwiperSlide>
         ))}
       </Swiper>
