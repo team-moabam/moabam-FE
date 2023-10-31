@@ -1,11 +1,12 @@
 import React, { PropsWithChildren } from 'react';
+import { StepNames } from '../types/funnel';
 import Step from './Step';
 
-interface FunnelProps<T extends readonly string[]> {
+interface FunnelProps<T extends StepNames> {
   current: T[number];
 }
 
-const Funnel = <T extends readonly string[]>({
+const Funnel = <T extends StepNames>({
   current,
   children
 }: PropsWithChildren<FunnelProps<T>>) => {
@@ -18,7 +19,9 @@ const Funnel = <T extends readonly string[]>({
   );
 
   if (currentStepIndex === -1) {
-    throw new Error('퍼널 스텝 리스트에 현재 스텝이 없습니다.');
+    throw new Error(
+      '보여주려는 current 스텝이 Funnel의 children 중에 존재하지 않습니다.'
+    );
   }
 
   return <>{filteredChildren[currentStepIndex]}</>;

@@ -1,6 +1,7 @@
 import { useState } from 'react';
+import { StepNames } from '../types/funnel';
 
-const useFunnel = <T extends readonly string[]>(steps: T) => {
+const useFunnel = <T extends StepNames>(steps: T) => {
   const [current, setCurrent] = useState<T[number]>(steps[0]);
   const currentIdx = steps.indexOf(current);
 
