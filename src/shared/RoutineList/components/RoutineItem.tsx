@@ -4,12 +4,10 @@ import { clsx } from 'clsx';
 interface ItemWithContents {
   contents: string;
   completed?: boolean;
-  className?: string;
 }
 interface ItemWithChildren {
   children: React.ReactNode;
   completed?: boolean;
-  className?: string;
 }
 type RoutineItemProps = ItemWithContents | ItemWithChildren;
 
