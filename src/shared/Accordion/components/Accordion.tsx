@@ -10,9 +10,11 @@ const Accordion = ({ children }: AccordionProps) => {
   const toggleOpen = () => setIsOpen((prev) => !prev);
 
   return (
-    <AccordionContext.Provider value={{ isOpen, toggleOpen }}>
-      {children}
-    </AccordionContext.Provider>
+    <div className="w-full overflow-hidden">
+      <AccordionContext.Provider value={{ isOpen, toggleOpen }}>
+        {children}
+      </AccordionContext.Provider>
+    </div>
   );
 };
 
