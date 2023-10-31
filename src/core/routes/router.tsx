@@ -8,7 +8,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: 'about',
-        element: <div className="h-[1000px]">About</div>
+        element: <div className="h-[1000px] bg-yellow-100">About</div>
       },
       {
         path: 'tailwind',
