@@ -26,7 +26,7 @@ const AccordionHeader = ({
       <div>{children}</div>
       <div
         onClick={toggleOpen}
-        className={clsx('cursor-pointer duration-300 ease-in', {
+        className={clsx('ml-3 cursor-pointer duration-300 ease-in', {
           'rotate-180': isOpen,
           'text-light-point dark:text-dark-point': buttonColored && isOpen,
           'text-black dark:text-white': !buttonColored && isOpen,

@@ -15,11 +15,11 @@ const AccordionBody = ({ children, className }: AccordionBodyProps) => {
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          initial={{ height: 0 }}
-          animate={{ height: 'auto' }}
-          exit={{ height: 0 }}
-          transition={{ type: 'spring', duration: 0.7, bounce: 0 }}
-          className={'overflow-hidden' + `${className ? className : ''}`}
+          initial={{ height: 0, opacity: 0 }}
+          animate={{ height: 'auto', opacity: 1 }}
+          exit={{ height: 0, opacity: 0 }}
+          transition={{ type: 'spring', duration: 0.8, bounce: 0 }}
+          className={'box-border h-auto ' + `${className ? className : ''}`}
         >
           <div>{children}</div>
         </motion.div>

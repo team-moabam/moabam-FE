@@ -10,7 +10,7 @@ const Accordion = ({ children }: AccordionProps) => {
   const toggleOpen = () => setIsOpen((prev) => !prev);
 
   return (
-    <div className="overflow-hidden">
+    <div className="overflow-hidden p-1">
       <AccordionContext.Provider value={{ isOpen, toggleOpen }}>
         {children}
       </AccordionContext.Provider>
