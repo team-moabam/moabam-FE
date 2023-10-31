@@ -1,31 +1,24 @@
 import { useState } from 'react';
 
-const useFunnel = (steps: React.ReactNode[], initialStep: number) => {
-  const [currentStep, setCurrentStep] = useState(
-    initialStep < 0
-      ? 0
-      : initialStep > steps.length - 1
-      ? steps.length - 1
-      : initialStep
-  );
+const useFunnel = (steps: readonly string[]) => {
+  const [current, setCurrent] = useState(0);
 
-  const toPrevStep = () => {
-    if (currentStep === 0) {
-      return;
-    }
+  const hasPrev = current > 0;
+  const hasNext = current < steps.length - 1;
 
-    setCurrentStep(currentStep - 1);
+  const toPrev = () => {
+    if (!hasPrev) return;
+
+    setCurrent(current - 1);
   };
 
-  const toNextStep = () => {
-    if (currentStep === steps.length - 1) {
-      return;
-    }
+  const toNext = () => {
+    if (!hasNext) return;
 
-    setCurrentStep(currentStep + 1);
+    setCurrent(current + 1);
   };
 
-  return { steps, currentStep, toPrevStep, toNextStep };
+  return { current, hasPrev, hasNext, toPrev, toNext };
 };
 
 export default useFunnel;
