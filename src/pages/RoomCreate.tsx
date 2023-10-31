@@ -33,36 +33,42 @@ import 루틴정보 from '@/RoomCreate/components/루틴정보';
 
 // TODO: 스탭에 들어가는 컴포넌트를 children으로 만들기
 // TODO: 퍼널 스탭간에 상태 공유하기
+
+//
 const RoomCreate = () => {
   const steps = ['방선택', '인증시간', '루틴정보'] as const;
+  const funnel = useFunnel(steps);
 
-  const { current, hasNext, hasPrev, toNext, toPrev } = useFunnel(steps);
+  console.log(funnel.current);
 
   return (
     <>
-      <Funnel current={current}>
-        <Step<(typeof steps)[number]> name="방선택">
+      <Funnel
+        {...funnel}
+        steps={steps}
+      >
+        <Funnel.Step<typeof steps> name="방선택">
           <방선택 />
-        </Step>
-        <Step<(typeof steps)[number]> name="인증시간">
-          <인증시간 />
-        </Step>
-        <Step<(typeof steps)[number]> name="루틴정보">
+        </Funnel.Step>
+        <Funnel.Step<typeof steps> name="루틴정보">
           <루틴정보 />
-        </Step>
+        </Funnel.Step>
+        <Funnel.Step<typeof steps> name="인증시간">
+          <인증시간 />
+        </Funnel.Step>
       </Funnel>
-      {hasPrev && (
+      {funnel.hasPrev && (
         <button
           className="btn btn-danger"
-          onClick={toPrev}
+          onClick={funnel.toPrev}
         >
           이전으로
         </button>
       )}
-      {hasNext && (
+      {funnel.hasNext && (
         <button
           className="btn btn-success"
-          onClick={toNext}
+          onClick={funnel.toNext}
         >
           다음으로
         </button>

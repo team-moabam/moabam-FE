@@ -1,16 +1,21 @@
-import React, { isValidElement, PropsWithChildren } from 'react';
+import React, { PropsWithChildren } from 'react';
 import Step from './Step';
 
-interface FunnelProps {
-  current: number;
+interface FunnelProps<Steps extends readonly string[]> {
+  steps: Steps;
+  current: Steps[number];
 }
 
-const Funnel = ({ current, children }: PropsWithChildren<FunnelProps>) => {
+const Funnel = <Steps extends readonly string[]>({
+  children
+}: PropsWithChildren<FunnelProps<Steps>>) => {
   const filteredChildren = React.Children.toArray(children)
-    .filter(isValidElement)
+    .filter(React.isValidElement)
     .filter((child) => child.type === Step);
 
-  return <>{filteredChildren[current]}</>;
+  return <>{filteredChildren}</>;
 };
+
+Funnel.Step = Step;
 
 export default Funnel;

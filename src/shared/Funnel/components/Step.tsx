@@ -1,13 +1,13 @@
 import { PropsWithChildren } from 'react';
 
-interface StepProps<T> {
-  name: T;
+interface StepProps<Steps extends readonly string[]> {
+  name: Steps[number];
+  children?: React.ReactNode;
 }
 
-const Step = <T extends string>({
-  children,
-  name
-}: PropsWithChildren<StepProps<T>>) => {
+const Step = <Steps extends readonly string[]>({
+  children
+}: PropsWithChildren<StepProps<Steps>>) => {
   return <>{children}</>;
 };
 
