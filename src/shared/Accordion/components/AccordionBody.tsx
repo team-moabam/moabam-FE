@@ -10,6 +10,7 @@ interface AccordionBodyProps {
 
 const AccordionBody = ({ children, className }: AccordionBodyProps) => {
   const { isOpen } = useAccordion();
+
   return (
     <AnimatePresence>
       {isOpen && (

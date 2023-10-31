@@ -6,22 +6,31 @@ import { Icon } from '@/shared/Icon';
 
 export interface AccordionHeaderProps {
   children: React.ReactNode;
+  buttonColored?: boolean;
   className?: string;
 }
 
-const AccordionHeader = ({ children, className }: AccordionHeaderProps) => {
+const AccordionHeader = ({
+  children,
+  buttonColored = false,
+  className
+}: AccordionHeaderProps) => {
   const { isOpen, toggleOpen } = useAccordion();
+
   return (
     <motion.div
       className={
-        'flex justify-between items-center' + `${className ? className : ''}`
+        'flex justify-between items-center ' + `${className ? className : ''}`
       }
     >
       <div>{children}</div>
       <div
         onClick={toggleOpen}
         className={clsx('cursor-pointer duration-300 ease-in', {
-          'rotate-180': isOpen
+          'rotate-180': isOpen,
+          'text-light-point dark:text-dark-point': buttonColored && isOpen,
+          'text-black dark:text-white': !buttonColored && isOpen,
+          'text-dark-gray': !isOpen
         })}
       >
         <Icon
