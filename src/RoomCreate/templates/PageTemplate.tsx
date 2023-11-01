@@ -2,7 +2,7 @@ import React from 'react';
 import { Header } from '@/shared/Header';
 import Navbar from '../components/Navbar';
 
-const PageTempalte = ({ children }: React.PropsWithChildren) => {
+const PageTemplate = ({ children }: React.PropsWithChildren) => {
   return (
     <div className="flex h-full flex-col">
       <Header prev="#" />
@@ -12,4 +12,4 @@ const PageTempalte = ({ children }: React.PropsWithChildren) => {
   );
 };
 
-export default PageTempalte;
+export default PageTemplate;
