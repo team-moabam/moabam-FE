@@ -4,15 +4,6 @@ export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
-      keyframes: {
-        fadeout: {
-          '75%': { opacity: 1 },
-          '100%': { opacity: 0 }
-        }
-      },
-      animation: {
-        toast: 'fadeout 4s'
-      },
       colors: {
         danger: {
           DEFAULT: '#dc2626',

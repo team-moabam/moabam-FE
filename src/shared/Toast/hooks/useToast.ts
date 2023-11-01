@@ -1,27 +1,34 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
-const useToast = (initialState: boolean, time: number) => {
-  const [toast, setToast] = useState(initialState);
+const useToast = (time: number) => {
+  const [toast, setToast] = useState(false);
+  const [show, setShow] = useState(false);
+  const timeoutId = useRef<NodeJS.Timeout>();
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      if (toast) setToast(false);
+    timeoutId.current && clearTimeout(timeoutId.current);
+
+    timeoutId.current = setTimeout(() => {
+      setToast(false);
+      setTimeout(() => setShow(false), 600);
     }, time);
 
     return () => {
-      clearTimeout(timer);
+      timeoutId.current && clearTimeout(timeoutId.current);
     };
   }, [toast, time]);
 
   const changeToastOpen = () => {
     setToast(true);
+    setShow(true);
   };
 
   const changeToastClose = () => {
     setToast(false);
+    setTimeout(() => setShow(false), 600);
   };
 
-  return [toast, changeToastOpen, changeToastClose] as const;
+  return [show, toast, changeToastOpen, changeToastClose] as const;
 };
 
 export default useToast;
