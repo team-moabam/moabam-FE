@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { BsFillEyeFill, BsFillEyeSlashFill } from 'react-icons/bs';
-import Input from '../../Input/components/Input';
-import { InputProps } from '../../Input/components/Input';
+import Input from './Input';
+import { InputProps } from './Input';
 
 const PasswordInput = ({
   size = 'base',
