@@ -6,9 +6,7 @@ export interface TabItemProps {
 }
 
 const TabItem = ({ title, children }: TabItemProps) => {
-  if (!title) {
-    throw new Error('TabItem must have title');
-  }
+  title;
   return children;
 };
 
