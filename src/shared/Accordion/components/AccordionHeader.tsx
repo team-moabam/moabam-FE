@@ -2,6 +2,7 @@ import React from 'react';
 import { clsx } from 'clsx';
 import { motion } from 'framer-motion';
 import useAccordion from '../hooks/useAccordion';
+import useAccordionGroup from '../hooks/useAccordionGroup';
 import { Icon } from '@/shared/Icon';
 
 export interface AccordionHeaderProps {
@@ -16,11 +17,14 @@ const AccordionHeader = ({
   className
 }: AccordionHeaderProps) => {
   const { isOpen, toggleOpen } = useAccordion();
+  const { headerStyle } = useAccordionGroup();
 
   return (
     <motion.div
       className={
-        'flex justify-between items-center ' + `${className ? className : ''}`
+        'flex justify-between items-center ' +
+        `${headerStyle} ` +
+        `${className ? className : ''}`
       }
     >
       <div>{children}</div>

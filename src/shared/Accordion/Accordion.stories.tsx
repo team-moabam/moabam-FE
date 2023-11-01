@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Accordion, AccordionHeader, AccordionBody } from '.';
+import { Accordion, AccordionHeader, AccordionBody, AccordionGroup } from '.';
 
 const meta = {
   title: 'Shared/Accordion',
@@ -90,7 +90,7 @@ export const Custom: Story = {
       description: {
         story:
           '`AccordionHeader`, `AccordionBody` 에 className 을 부여하고, 하위 노드를 자유롭게 작성하여 커스텀할 수 있습니다.\
-           <br/><b>대부분의 커스텀 스타일은 아코디언 컴포넌트가 아닌, 하위의 children 상에서 부여하는 것을 권장합니다! (특히, 위아래 padding)</b>'
+           <br/><b>하지만 대부분의 커스텀 스타일은 아코디언 컴포넌트가 아닌, 하위의 children 상에서 부여하는 것을 권장합니다! (특히, 위아래 padding)</b>'
       }
     }
   },
@@ -117,6 +117,79 @@ export const Custom: Story = {
             </small>
           </AccordionBody>
         </Accordion>
+      </div>
+    );
+  }
+};
+
+export const Group: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'AccordionGroup 을 사용하여, AccordionHeader 와 AccordionBody 에 className 으로 부여되는 스타일을 일괄적용할 수 있습니다.'
+      }
+    }
+  },
+  render: () => {
+    return (
+      <div className="font-IMHyemin-bold">
+        <AccordionGroup
+          headerStyle="relative z-10 rounded-2xl border bg-light-main p-4 shadow-md"
+          bodyStyle="relative top-[-20px] z-0 rounded-2xl border shadow"
+        >
+          <Accordion>
+            <AccordionHeader buttonColored>
+              <div>Section 1</div>
+              <small>
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sint
+                dolorem qui similique quisquam vitae
+              </small>
+            </AccordionHeader>
+            <AccordionBody>
+              <small className="block p-3 pt-6">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque
+                quia doloremque, sit praesentium totam non possimus molestias
+                quod, mollitia ducimus provident. Corrupti soluta sit dolor
+                voluptas consequatur ex dolores veritatis.
+              </small>
+            </AccordionBody>
+          </Accordion>
+          <Accordion>
+            <AccordionHeader buttonColored>
+              <div>Section 1</div>
+              <small>
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sint
+                dolorem qui similique quisquam vitae
+              </small>
+            </AccordionHeader>
+            <AccordionBody>
+              <small className="block p-3 pt-6">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque
+                quia doloremque, sit praesentium totam non possimus molestias
+                quod, mollitia ducimus provident. Corrupti soluta sit dolor
+                voluptas consequatur ex dolores veritatis.
+              </small>
+            </AccordionBody>
+          </Accordion>
+          <Accordion>
+            <AccordionHeader buttonColored>
+              <div>Section 1</div>
+              <small>
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sint
+                dolorem qui similique quisquam vitae
+              </small>
+            </AccordionHeader>
+            <AccordionBody>
+              <small className="block p-3 pt-6">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque
+                quia doloremque, sit praesentium totam non possimus molestias
+                quod, mollitia ducimus provident. Corrupti soluta sit dolor
+                voluptas consequatur ex dolores veritatis.
+              </small>
+            </AccordionBody>
+          </Accordion>
+        </AccordionGroup>
       </div>
     );
   }

@@ -1,7 +1,7 @@
 import React from 'react';
-import { clsx } from 'clsx';
 import { AnimatePresence, motion } from 'framer-motion';
 import useAccordion from '../hooks/useAccordion';
+import useAccordionGroup from '../hooks/useAccordionGroup';
 
 interface AccordionBodyProps {
   children: React.ReactNode;
@@ -10,6 +10,7 @@ interface AccordionBodyProps {
 
 const AccordionBody = ({ children, className }: AccordionBodyProps) => {
   const { isOpen } = useAccordion();
+  const { bodyStyle } = useAccordionGroup();
 
   return (
     <AnimatePresence>
@@ -19,7 +20,11 @@ const AccordionBody = ({ children, className }: AccordionBodyProps) => {
           animate={{ height: 'auto', opacity: 1 }}
           exit={{ height: 0, opacity: 0 }}
           transition={{ type: 'spring', duration: 0.8, bounce: 0 }}
-          className={'box-border h-auto ' + `${className ? className : ''}`}
+          className={
+            'box-border h-auto ' +
+            `${bodyStyle} ` +
+            `${className ? className : ''}`
+          }
         >
           <div>{children}</div>
         </motion.div>
