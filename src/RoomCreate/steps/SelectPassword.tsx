@@ -9,7 +9,7 @@ const SelectPassword = () => {
       <h1 className={headingStyle}>
         <strong>마지막 !</strong>
         <p>
-          <strong>비밀번호</strong>를 걸까요?
+          <b>비밀번호</b>를 걸까요?
         </p>
       </h1>
 
