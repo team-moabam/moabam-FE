@@ -6,20 +6,20 @@ import '../styles/TimePicker.css';
 interface TimePickerProps {
   className?: string;
   range: [number, number];
-  defaultTime?: number;
+  initialTime?: number;
   onTimeChange?: (time: number) => void;
 }
 
 /**
  * 시간을 선택할 수 있는 컴포넌트
  * @param range: 선택할 수 있는 시간 범위 ex) [5, 28]
- * @param defaultTime: 기본으로 선택되어 있는 시간 ex) 10
+ * @param initialTime: 기본으로 선택되어 있는 시간 ex) 10
  * @param onTimeChange: 시간을 선택할 때 호출되는 콜백함수
  */
 const TimePicker = ({
   className,
   range,
-  defaultTime,
+  initialTime,
   onTimeChange
 }: TimePickerProps) => {
   range = range.sort((a, b) => a - b);
@@ -28,7 +28,7 @@ const TimePicker = ({
     (_, i) => range[0] + i
   );
 
-  const initialSlide = hours.findIndex((v) => v === defaultTime);
+  const initialSlide = hours.findIndex((v) => v === initialTime);
 
   const handleSlideChange = (swiper: SwiperClass) => {
     const selectedHour = hours[swiper.activeIndex] % 24;

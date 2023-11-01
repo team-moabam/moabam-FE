@@ -1,4 +1,6 @@
 import { Link, Outlet } from 'react-router-dom';
+import 'swiper/css';
+import 'swiper/css/bundle';
 
 const App = () => {
   return (
