@@ -24,3 +24,7 @@
   font-weight: normal;
   font-style: normal;
 }
+body {
+  width: 100vw;
+  height: 100vh;
+}
