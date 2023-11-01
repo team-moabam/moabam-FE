@@ -1,15 +1,16 @@
 import PageTemplate from '../templates/PageTemplate';
+import { headingStyle, descriptionStyle } from '../constants/styles';
 import BirdCard from '../components/BirdCard';
 
 const SelectRoom = () => {
   return (
     <PageTemplate>
-      <h1 className="text-3xl leading-[3rem]">
-        <strong className="font-bold">어떤 새를</strong>
-        <div>키우는 방일까요?</div>
+      <h1 className={headingStyle}>
+        <strong>어떤 새를</strong>
+        <p>키우는 방일까요?</p>
       </h1>
 
-      <p className="pt-2 text-base text-dark-gray">
+      <p className={descriptionStyle}>
         방마다 정해진 새는 <b>변경할 수 없어요.</b>
       </p>
 
