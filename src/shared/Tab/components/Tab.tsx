@@ -1,5 +1,5 @@
 import React from 'react';
-import { TabHeader, TabViewer } from '.';
+import { TabHeader } from '.';
 import { useTab } from '../hooks';
 
 interface TabProps {
@@ -23,7 +23,7 @@ const Tab = ({ children, defaultIndex = 0, align = 'center' }: TabProps) => {
         currentTabIndex={currentTabIndex}
         setCurrentTabIndex={setCurrentTabIndex}
       />
-      <TabViewer currentTab={currentTab} />
+      <div className="h-full overflow-y-auto">{currentTab}</div>
     </div>
   );
 };
