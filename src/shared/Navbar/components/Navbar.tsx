@@ -26,7 +26,7 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="fixed bottom-0 mt-12 flex h-16 w-full max-w-md rounded-t-lg bg-light-sub text-2xl text-black dark:bg-dark-sub dark:text-white">
+    <nav className="flex h-16 w-full rounded-t-lg bg-light-sub text-2xl text-black dark:bg-dark-sub dark:text-white">
       {NavbarOptions.map(({ icon, route }) => (
         <NavLink
           to={route}
