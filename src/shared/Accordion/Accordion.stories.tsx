@@ -137,9 +137,10 @@ export const Group: Story = {
         <AccordionGroup
           headerStyle="relative z-10 rounded-2xl border bg-light-main p-4 shadow-md"
           bodyStyle="relative top-[-20px] z-0 rounded-2xl border shadow"
+          buttonColored
         >
           <Accordion>
-            <AccordionHeader buttonColored>
+            <AccordionHeader>
               <div>Section 1</div>
               <small>
                 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sint
@@ -156,7 +157,7 @@ export const Group: Story = {
             </AccordionBody>
           </Accordion>
           <Accordion>
-            <AccordionHeader buttonColored>
+            <AccordionHeader>
               <div>Section 1</div>
               <small>
                 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sint
@@ -173,7 +174,7 @@ export const Group: Story = {
             </AccordionBody>
           </Accordion>
           <Accordion>
-            <AccordionHeader buttonColored>
+            <AccordionHeader>
               <div>Section 1</div>
               <small>
                 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sint

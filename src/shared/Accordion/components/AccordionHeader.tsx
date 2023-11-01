@@ -17,7 +17,8 @@ const AccordionHeader = ({
   className
 }: AccordionHeaderProps) => {
   const { isOpen, toggleOpen } = useAccordion();
-  const { headerStyle } = useAccordionGroup();
+  const { headerStyle, buttonColored: headerButtonColored } =
+    useAccordionGroup();
 
   return (
     <motion.div
@@ -32,8 +33,10 @@ const AccordionHeader = ({
         onClick={toggleOpen}
         className={clsx('ml-3 cursor-pointer duration-300 ease-in', {
           'rotate-180': isOpen,
-          'text-light-point dark:text-dark-point': buttonColored && isOpen,
-          'text-black dark:text-white': !buttonColored && isOpen,
+          'text-light-point dark:text-dark-point':
+            (buttonColored || headerButtonColored) && isOpen,
+          'text-black dark:text-white':
+            !(buttonColored || headerButtonColored) && isOpen,
           'text-dark-gray': !isOpen
         })}
       >
