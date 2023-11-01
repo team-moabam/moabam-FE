@@ -13,12 +13,12 @@ interface ToastProps {
 }
 
 const Toast = ({
-  toast,
   text,
   type,
   icon,
   subText,
-  handleCloseToast
+  handleCloseToast,
+  toast
 }: ToastProps) => {
   const ref = useRef(null);
 
