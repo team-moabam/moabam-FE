@@ -1,4 +1,5 @@
 import { Link, Outlet } from 'react-router-dom';
+import routes from './core/routes/routes';
 
 const App = () => {
   return (
@@ -10,9 +11,9 @@ const App = () => {
 
       {/* TODO: 임시 네브바, 공통 컴포넌트로 교체해야 함 */}
       <div className="flex h-16 justify-between bg-slate-300 p-2 text-2xl">
-        <h1>Hello</h1>
-        <Link to="about">about</Link>
-        <Link to="tailwind">Tailwind</Link>
+        <Link to={routes.home.path}>home</Link>
+        <Link to={routes.routines.path}>routines</Link>
+        <Link to={routes.mybird.path}>mybird</Link>
       </div>
     </div>
   );
