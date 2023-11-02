@@ -1,4 +1,5 @@
 import React from 'react';
+import Room from '@/pages/Room';
 
 interface Route {
   path: string;
@@ -18,6 +19,7 @@ export type RouteNames =
   | 'myLog'
   | 'createRoom'
   | 'room'
+  | 'roomDetail'
   | 'roomLog'
   | 'roomSetting'
   | 'mybird'
@@ -81,10 +83,16 @@ const routes: Routes = {
     element: <div>create room</div>
   },
   room: {
+    path: 'room',
+    authRequired: true,
+    navBarRequired: true,
+    element: <Room />
+  },
+  roomDetail: {
     path: 'room/:roomId',
     authRequired: true,
     navBarRequired: true,
-    element: <div>room</div>
+    element: <div>roomDetail</div>
   },
   roomLog: {
     path: 'room/:roomId/log/:logId',
