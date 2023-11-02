@@ -26,7 +26,7 @@ export const Default: Story = {
           '**1. steps 정의** <br/>' +
           '`const steps = ["방선택", "인증시간", "루틴정보", "비밀번호", "마무리"] as const;`<br/><br/>' +
           '**2. useFunnel 훅 사용**<br/>' +
-          '`const funnel = useFunnel(steps);`<br/><br/>' +
+          '`const funnel = useFunnel(steps, <최초로 보여줄 스텝>);`<br/><br/>' +
           '**3. Funnel 컴포넌트 사용**<br/>' +
           '`<Funnel {...funnel}>`<br/><br/>' +
           '**4. Funnel.Step 컴포넌트 사용**<br/>' +
@@ -50,7 +50,7 @@ const DefaultPage = () => {
     '마무리'
   ] as const;
 
-  const funnel = useFunnel(steps);
+  const funnel = useFunnel(steps, '인증시간');
 
   return (
     <div className="bg-slate-100">
