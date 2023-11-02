@@ -4,8 +4,6 @@ import { ImSearch } from 'react-icons/im';
 import { FaUser, FaClipboardList } from 'react-icons/fa6';
 
 const Navbar = () => {
-  const userID = '1234';
-
   const NavbarOptions = [
     {
       icon: <HiHome />,
@@ -21,7 +19,7 @@ const Navbar = () => {
     },
     {
       icon: <FaUser />,
-      route: `/user/${userID}`
+      route: `/user/`
     }
   ];
 
