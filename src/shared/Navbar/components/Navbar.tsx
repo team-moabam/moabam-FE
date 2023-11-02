@@ -28,7 +28,7 @@ const Navbar = ({ currentPath = '' }: NavbarProps) => {
     {
       icon: <FaUser />,
       route: `/user/`,
-      activeRoutes: ['/user/', '/user/:userId']
+      activeRoutes: ['/user', '/user/:userId']
     }
   ];
 
