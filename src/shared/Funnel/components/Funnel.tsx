@@ -10,11 +10,11 @@ const Funnel = <T extends StepNames>({
   current,
   children
 }: PropsWithChildren<FunnelProps<T>>) => {
-  const filteredChildren = React.Children.toArray(children)
+  const validChildren = React.Children.toArray(children)
     .filter<React.ReactElement>(React.isValidElement)
     .filter((child) => child.type === Step);
 
-  const currentStepIndex = filteredChildren.findIndex(
+  const currentStepIndex = validChildren.findIndex(
     (step) => step.props.name === current
   );
 
@@ -24,7 +24,7 @@ const Funnel = <T extends StepNames>({
     );
   }
 
-  return <>{filteredChildren[currentStepIndex]}</>;
+  return <>{validChildren[currentStepIndex]}</>;
 };
 
 Funnel.Step = Step;
