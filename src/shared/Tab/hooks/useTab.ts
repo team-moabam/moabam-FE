@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { childrenToArray } from '../utils/childrenToArray';
 import TabItem, { TabItemProps } from '../components/TabItem';
-import TabThumnail, { TabThumnailProps } from '../components/TabThumnail';
+import TabThumnail, { TabThumbnailProps } from '../components/TabThumbnail';
 
 interface useTabProps {
   tabChildren: React.ReactNode;
@@ -11,7 +11,7 @@ interface useTabProps {
 
 const useTab = ({ tabChildren, defaultIndex }: useTabProps) => {
   const tabItems = childrenToArray<TabItemProps>(tabChildren, TabItem);
-  const tabThumnails = childrenToArray<TabThumnailProps>(
+  const tabThumnails = childrenToArray<TabThumbnailProps>(
     tabChildren,
     TabThumnail
   );
