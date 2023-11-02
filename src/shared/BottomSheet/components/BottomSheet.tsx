@@ -2,13 +2,8 @@ import { useRef, PropsWithChildren, forwardRef } from 'react';
 import clsx from 'clsx';
 import { createPortal } from 'react-dom';
 import { AnimatePresence, motion, HTMLMotionProps } from 'framer-motion';
-
-const CONTAINER_ID = 'bottom-sheet';
-
-// TODO: 다크모드에 대한 논의 이후에 수정될 가능성이 높은 코드에요.
-interface Theme {
-  theme?: 'light' | 'dark';
-}
+import useTheme from '@/core/hooks/useTheme';
+import { PORTALS } from '@/core/constants/portals';
 
 export interface BottomSheetProps {
   isShow: boolean;
@@ -17,9 +12,10 @@ export interface BottomSheetProps {
 
 const BottomSheet = forwardRef<
   HTMLElement,
-  PropsWithChildren<HTMLMotionProps<'section'> & BottomSheetProps & Theme>
->(({ children, className, theme, isShow, close, ...props }, ref) => {
+  PropsWithChildren<HTMLMotionProps<'section'> & BottomSheetProps>
+>(({ className, isShow, close, children, ...props }, ref) => {
   const backgroundRef = useRef<HTMLDivElement>(null);
+  const { theme } = useTheme();
 
   const handleClose: React.MouseEventHandler = (e) => {
     if (e.target !== backgroundRef.current) {
@@ -44,7 +40,10 @@ const BottomSheet = forwardRef<
           onClick={handleClose}
         >
           <motion.section
-            className={`absolute bottom-0 max-h-full w-full overflow-auto rounded-t-2xl bg-white p-2 text-black dark:bg-dark-main dark:text-white ${className} shadow-inner drop-shadow-2xl`}
+            className={clsx(
+              'absolute bottom-0 max-h-full w-full overflow-auto rounded-t-2xl bg-white p-2 text-black shadow-inner drop-shadow-2xl dark:bg-dark-main dark:text-white',
+              className
+            )}
             initial={{ y: '100%' }}
             animate={{ y: '0%' }}
             transition={{ type: 'spring', damping: 20, stiffness: 100 }}
@@ -57,7 +56,7 @@ const BottomSheet = forwardRef<
         </motion.aside>
       )}
     </AnimatePresence>,
-    document.getElementById(CONTAINER_ID)!
+    document.getElementById(PORTALS.bottomSheet)!
   );
 });
 

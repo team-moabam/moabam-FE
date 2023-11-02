@@ -1,5 +1,6 @@
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+import useTheme, { ThemeProvider } from '@/core/hooks/useTheme';
 import { useBottomSheet, BottomSheet } from '..';
 
 const meta = {
@@ -29,7 +30,11 @@ export const Default: Story = {
     }
   },
   render: () => {
-    return <DefaultPage />;
+    return (
+      <ThemeProvider>
+        <DefaultPage />
+      </ThemeProvider>
+    );
   }
 };
 
@@ -62,11 +67,7 @@ export const Custom: Story = {
 
 const DefaultPage = () => {
   const { bottomSheetProps, toggle, close } = useBottomSheet();
-  const [theme, setTheme] = useState<'light' | 'dark'>('light');
-
-  const handleToggleTheme = () => {
-    setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
-  };
+  const { theme, toggleTheme } = useTheme();
 
   return (
     <div className={theme === 'dark' ? 'dark' : ''}>
@@ -78,14 +79,11 @@ const DefaultPage = () => {
       </button>
       <button
         className="btn btn-transition btn-success"
-        onClick={handleToggleTheme}
+        onClick={toggleTheme}
       >
         테마 변경
       </button>
-      <BottomSheet
-        {...bottomSheetProps}
-        theme={theme}
-      >
+      <BottomSheet {...bottomSheetProps}>
         <h1 className="text-light-point dark:text-dark-point">하이하이</h1>
         <div>요건 내부의 내용이에요</div>
         <div>요건 내부의 내용이에요</div>
@@ -113,10 +111,7 @@ const OverflowPage = () => {
       >
         엄청 긴거 열기
       </button>
-      <BottomSheet
-        {...bottomSheetProps}
-        theme="dark"
-      >
+      <BottomSheet {...bottomSheetProps}>
         <h1>내용이 엄청 길면 이렇게 스크롤이 생겨요</h1>
         {Array.from({ length: 50 }).map((_, i) => (
           <div key={i}>{i}</div>
@@ -146,7 +141,7 @@ const CustomPage = () => {
       </button>
       <BottomSheet
         {...bottomSheetProps}
-        className="bg-green-400"
+        className="bg-green-500"
         ref={cardRef}
       >
         <div>스타일을 변경할 수 있어요</div>
