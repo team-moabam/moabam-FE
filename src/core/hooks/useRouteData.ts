@@ -36,13 +36,14 @@ const useRouteData = () => {
     if (isMatchPath(`/${route.path}`, pathname)) {
       return {
         ...route,
+        location: pathname,
         params,
         search: parseQueryString(search)
       };
     }
   }
 
-  return { ...routeMap.notFound, params: {}, search: {} };
+  return { ...routeMap.notFound, location: pathname, params: {}, search: {} };
 };
 
 export default useRouteData;

@@ -7,7 +7,7 @@ interface Route {
   element: React.ReactNode;
 }
 
-type RouteNames =
+export type RouteNames =
   | 'home'
   | 'guide'
   | 'join'
