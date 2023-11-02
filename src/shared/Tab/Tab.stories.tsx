@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Tab, TabItem } from '@/shared/Tab';
+import { Tab, TabItem, TabThumnail } from '@/shared/Tab';
 
 const meta = {
   title: 'Shared/Tab',
@@ -113,6 +113,40 @@ export const Example: Story = {
             <div className={`${tabItemStyle} bg-slate-500`}>
               탭 3 내용입니다.
             </div>
+          </TabItem>
+        </Tab>
+      </div>
+    );
+  }
+};
+
+export const Thumnail: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          '`<Tab>` 으로 컨텐츠를 감싸고, 각 탭 컨텐츠를 `<TabItem title="헤더에 들어갈 제목">` 으로 감싸 적용할 수 있습니다. '
+      }
+    }
+  },
+  render: () => {
+    return (
+      <div className={'bg-light-main ' + containerStyle}>
+        <Tab
+          thumnailStyle="h-[300px] mb-4"
+          itemStyle="h-[500px]"
+        >
+          <TabThumnail>
+            <div className={`${tabItemStyle} bg-slate-300`}>오목눈이 복장</div>
+          </TabThumnail>
+          <TabThumnail>
+            <div className={`${tabItemStyle} bg-slate-300`}>부엉이 복장</div>
+          </TabThumnail>
+          <TabItem title="탭 제목 첫번째">
+            <div className={`${tabItemStyle} bg-slate-300`}>오목눈이 옷장</div>
+          </TabItem>
+          <TabItem title="두번째 탭">
+            <div className={`${tabItemStyle} bg-slate-400`}>부엉이 옷장</div>
           </TabItem>
         </Tab>
       </div>

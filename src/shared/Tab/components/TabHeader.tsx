@@ -1,7 +1,7 @@
 import React from 'react';
 import { clsx } from 'clsx';
-import { TabBar } from '.';
 import { useTabBarStyle } from '../hooks';
+import TabBar from './TabBar';
 
 interface TabHeaderProps {
   titles: string[];

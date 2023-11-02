@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { childrenToArray } from '../utils/childrenToArray';
 import TabItem, { TabItemProps } from '../components/TabItem';
+import TabThumnail, { TabThumnailProps } from '../components/TabThumnail';
 
 interface useTabProps {
   tabChildren: React.ReactNode;
@@ -10,6 +11,10 @@ interface useTabProps {
 
 const useTab = ({ tabChildren, defaultIndex }: useTabProps) => {
   const tabItems = childrenToArray<TabItemProps>(tabChildren, TabItem);
+  const tabThumnails = childrenToArray<TabThumnailProps>(
+    tabChildren,
+    TabThumnail
+  );
   const titleOfTabItems = tabItems.map((tabItem) => tabItem.props.title);
 
   if (defaultIndex >= tabItems.length) {
@@ -22,7 +27,8 @@ const useTab = ({ tabChildren, defaultIndex }: useTabProps) => {
     titleOfTabItems,
     currentTabIndex,
     setCurrentTabIndex,
-    currentTab: tabItems[currentTabIndex]
+    currentTab: tabItems[currentTabIndex],
+    currentThumnail: tabThumnails[currentTabIndex]
   };
 };
 
