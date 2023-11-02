@@ -1,7 +1,8 @@
 import { NavLink } from 'react-router-dom';
 import { HiHome } from 'react-icons/hi2';
 import { ImSearch } from 'react-icons/im';
-import { FaUser, FaClipboardList } from 'react-icons/fa6';
+import { BiSolidDoorOpen } from 'react-icons/bi';
+import { FaUser } from 'react-icons/fa6';
 
 const Navbar = () => {
   const NavbarOptions = [
@@ -10,7 +11,7 @@ const Navbar = () => {
       route: '/'
     },
     {
-      icon: <FaClipboardList />,
+      icon: <BiSolidDoorOpen />,
       route: '/room/:roomID'
     },
     {
