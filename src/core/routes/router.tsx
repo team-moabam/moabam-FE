@@ -1,5 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 import App from '@/App';
+import RoomPage from '@/pages/RoomPage';
 
 const router = createBrowserRouter([
   {
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
             </div>
           </>
         )
+      },
+      {
+        path: 'room/:roomId',
+        element: <RoomPage />
       }
     ]
   }
