@@ -1,4 +1,5 @@
 import { headingStyle, descriptionStyle } from '../constants/styles';
+import { TimePicker } from '@/TimePicker';
 
 const SelectTime = () => {
   return (
@@ -12,7 +13,14 @@ const SelectTime = () => {
         인증 시간은 선택한 시간 전후 10분이에요
       </p>
 
-      {/* TODO: TimePicker 컴포넌트 */}
+      <section className="mt-10 flex w-full flex-col items-center gap-6">
+        <div>04 : 00</div>
+        <TimePicker
+          range={[4, 10]}
+          initialTime={4}
+        />
+        <div>10 : 00</div>
+      </section>
     </>
   );
 };
