@@ -1,21 +1,12 @@
 import IconText from './IconText';
 
-// {
-//   "roomId": 32,
-//   "title": "윤명이의 루틴방",
-//   "type": "MORNING",
-//   "certifyTime": 9,
-//   "currentUserCount": 5,
-//   "maxUserCount": 9,
-//   "isCertifiedToday": true
-// },
-
 interface RoomSummaryProps {
   title: string;
   type: 'MORNING' | 'NIGHT';
   certifyTime: number;
   currentUserCount: number;
   maxUserCount: number;
+  managerNickname?: string;
 }
 
 const birdByType = {
@@ -39,7 +30,8 @@ const RoomSummary = ({
   certifyTime,
   currentUserCount,
   maxUserCount,
-  type
+  type,
+  managerNickname
 }: RoomSummaryProps) => {
   const certifyTimeToString = `${
     certifyTime < 10 ? `0${certifyTime}` : certifyTime
@@ -62,10 +54,18 @@ const RoomSummary = ({
             icon="LuAlarmClock"
             text={certifyTimeToString}
           />
-          <IconText
-            icon="IoPeopleCircle"
-            text={userCountToString}
-          />
+          <div className="flex gap-5">
+            <IconText
+              icon="IoPeopleCircle"
+              text={userCountToString}
+            />
+            {managerNickname && (
+              <IconText
+                icon="FaCrown"
+                text={managerNickname}
+              />
+            )}
+          </div>
         </div>
       </div>
     </div>

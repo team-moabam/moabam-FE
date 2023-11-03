@@ -1,4 +1,4 @@
-import RoomSummary from '@/RoomSummary/components/RoomSummary';
+import { RoomSummary } from '@/RoomSummary';
 import { Header } from '@/shared/Header';
 
 const Routines = () => {
@@ -16,6 +16,7 @@ const Routines = () => {
             certifyTime={8}
             currentUserCount={6}
             maxUserCount={10}
+            managerNickname="공포정치"
           />
         </div>
       </div>

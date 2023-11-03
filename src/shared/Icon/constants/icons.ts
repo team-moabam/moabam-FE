@@ -16,13 +16,8 @@ import {
 } from 'react-icons/bi';
 import { BsFillEyeFill, BsFillEyeSlashFill } from 'react-icons/bs';
 import { CgClose } from 'react-icons/cg';
-import {
-  FaPlus,
-  FaMinus,
-  FaPlusCircle,
-  FaMinusCircle,
-  FaCrown
-} from 'react-icons/fa';
+import { FaPlus, FaMinus, FaPlusCircle, FaMinusCircle } from 'react-icons/fa';
+import { FaCrown } from 'react-icons/fa6';
 import {
   FaRankingStar,
   FaUser,
