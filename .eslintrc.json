@@ -25,6 +25,12 @@
   },
   "plugins": ["react-refresh", "import", "@tanstack/query"],
   "rules": {
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
+      }
+    ],
     "react-refresh/only-export-components": [
       "warn",
       {
