@@ -1,10 +1,12 @@
 import { Link, Outlet } from 'react-router-dom';
 import clsx from 'clsx';
-import useTheme from '@/core/hooks/useTheme';
+import { routes } from '@/core/routes';
+import { useRouteData, useTheme } from '@/core/hooks';
 import 'swiper/css';
 import 'swiper/css/bundle';
 
 const App = () => {
+  const { navBarRequired } = useRouteData();
   const { theme } = useTheme();
 
   return (
@@ -18,12 +20,14 @@ const App = () => {
         <Outlet />
       </div>
 
-      {/* TODO: 임시 네브바, 공통 컴포넌트로 교체해야 함 */}
-      <div className="flex h-16 justify-between bg-slate-300 p-2 text-2xl">
-        <h1>Hello</h1>
-        <Link to="about">about</Link>
-        <Link to="tailwind">Tailwind</Link>
-      </div>
+      {navBarRequired && (
+        // TODO: 임시 네브바, 공통 컴포넌트로 교체해야 함
+        <div className="flex h-16 justify-between bg-slate-300 p-2 text-2xl">
+          <Link to={routes.home.path}>home</Link>
+          <Link to={routes.routines.path}>routines</Link>
+          <Link to={routes.room.path}>room</Link>
+        </div>
+      )}
     </div>
   );
 };
