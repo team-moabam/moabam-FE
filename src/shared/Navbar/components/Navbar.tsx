@@ -9,29 +9,6 @@ interface NavbarProps {
 }
 
 const Navbar = ({ currentPath = '' }: NavbarProps) => {
-  const NavbarOptions = [
-    {
-      icon: <HiHome />,
-      route: '/',
-      activeRoutes: ['/']
-    },
-    {
-      icon: <BiSolidDoorOpen />,
-      route: '/room',
-      activeRoutes: ['/room', '/room/:roomId']
-    },
-    {
-      icon: <ImSearch />,
-      route: '/search',
-      activeRoutes: ['/search']
-    },
-    {
-      icon: <FaUser />,
-      route: `/user`,
-      activeRoutes: ['/user', '/user/:userId']
-    }
-  ];
-
   return (
     <nav className="flex h-16 w-full rounded-t-lg bg-light-sub text-2xl text-black dark:bg-dark-sub dark:text-white">
       {NavbarOptions.map(({ icon, route, activeRoutes }) => (
@@ -51,3 +28,26 @@ const Navbar = ({ currentPath = '' }: NavbarProps) => {
 };
 
 export default Navbar;
+
+const NavbarOptions = [
+  {
+    icon: <HiHome />,
+    route: '/',
+    activeRoutes: ['/']
+  },
+  {
+    icon: <BiSolidDoorOpen />,
+    route: '/room',
+    activeRoutes: ['/room', '/room/:roomId']
+  },
+  {
+    icon: <ImSearch />,
+    route: '/search',
+    activeRoutes: ['/search']
+  },
+  {
+    icon: <FaUser />,
+    route: `/user`,
+    activeRoutes: ['/user', '/user/:userId']
+  }
+];
