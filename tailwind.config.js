@@ -41,7 +41,9 @@ export default {
           }
         },
         disabled: '#93a3af',
-        bronze: '#854d0e'
+        bronze: '#854d0e',
+        lightGray: '#d1d5db',
+        darkGray: '#9ca3af'
       },
       fontFamily: {
         'IMHyemin-bold': ['IM_Hyemin-Bold'],
