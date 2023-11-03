@@ -1,6 +1,6 @@
 import React from 'react';
 import Room from '@/pages/Room';
-import Routines from '@/pages/routines';
+import Routines from '@/pages/Routines';
 
 interface Route {
   path: string;
