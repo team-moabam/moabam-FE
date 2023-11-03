@@ -41,7 +41,6 @@ export default {
             ring: '#ffc588'
           }
         },
-        white: '#fff',
         disabled: '#93a3af',
         info: '#F9BD7D',
         confirm: '#10B981',

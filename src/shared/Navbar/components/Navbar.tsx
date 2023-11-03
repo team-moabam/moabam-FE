@@ -32,8 +32,8 @@ export default Navbar;
 const NavbarOptions = [
   {
     icon: <HiHome />,
-    route: '/',
-    activeRoutes: ['/']
+    route: '/routines',
+    activeRoutes: ['/routines']
   },
   {
     icon: <BiSolidDoorOpen />,
