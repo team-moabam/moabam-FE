@@ -20,6 +20,7 @@ export default {
           hover: '#eab308',
           ring: '#fde047'
         },
+
         light: {
           gray: '#d1d5db',
           main: '#f8f8f8',
@@ -40,7 +41,10 @@ export default {
             ring: '#ffc588'
           }
         },
+        white: '#fff',
         disabled: '#93a3af',
+        info: '#F9BD7D',
+        confirm: '#10B981',
         bronze: '#854d0e'
       },
       fontFamily: {
