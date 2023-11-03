@@ -1,13 +1,13 @@
-import SelectPassword from '@/RoomCreate/steps/SelectPassword';
-import SelectRoom from '@/RoomCreate/steps/SelectRoom';
-import SelectTime from '@/RoomCreate/steps/SelectTime';
-import SelectDetail from '@/RoomCreate/steps/SelectDetail';
-import Summary from '@/RoomCreate/steps/Summary';
+import SelectPassword from '@/RoomNew/steps/SelectPassword';
+import SelectRoom from '@/RoomNew/steps/SelectRoom';
+import SelectTime from '@/RoomNew/steps/SelectTime';
+import SelectDetail from '@/RoomNew/steps/SelectDetail';
+import Summary from '@/RoomNew/steps/Summary';
 import { useFunnel, Funnel } from '@/shared/Funnel';
-import Navbar from '@/RoomCreate/components/Navbar';
+import Navbar from '@/RoomNew/components/Navbar';
 import { Header } from '@/shared/Header';
 
-const RoomCreate = () => {
+const RoomNew = () => {
   const steps = [
     '방선택',
     '인증시간',
@@ -49,4 +49,4 @@ const RoomCreate = () => {
   );
 };
 
-export default RoomCreate;
+export default RoomNew;
