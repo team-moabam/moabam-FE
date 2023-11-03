@@ -20,8 +20,12 @@ const RoomCreate = () => {
 
   return (
     <div className="flex h-full flex-col">
-      <Header prev="#" />
-      <main className="grow px-8 py-12">
+      <Header
+        prev="#"
+        title="방 만들기"
+        className="bg-light-main"
+      />
+      <main className="grow overflow-auto px-8 py-12">
         <Funnel {...funnel}>
           <Funnel.Step<typeof steps> name="방선택">
             <SelectRoom />
