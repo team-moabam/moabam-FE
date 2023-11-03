@@ -10,7 +10,7 @@ interface NavbarProps {
 
 const Navbar = ({ currentPath = '' }: NavbarProps) => {
   return (
-    <nav className="flex h-16 w-full rounded-t-lg bg-light-sub text-2xl text-black dark:bg-dark-sub dark:text-white">
+    <nav className="flex h-16 w-full overflow-hidden rounded-t-lg bg-light-sub text-2xl text-black shadow-nav dark:bg-dark-sub dark:text-white">
       {NavbarOptions.map(({ icon, route, activeRoutes }) => (
         <Link
           to={route}
@@ -32,8 +32,8 @@ export default Navbar;
 const NavbarOptions = [
   {
     icon: <HiHome />,
-    route: '/',
-    activeRoutes: ['/']
+    route: '/routines',
+    activeRoutes: ['/routines']
   },
   {
     icon: <BiSolidDoorOpen />,
