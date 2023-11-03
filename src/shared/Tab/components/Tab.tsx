@@ -27,12 +27,11 @@ const Tab = ({
     tabChildren: children,
     defaultIndex
   });
-  console.log(currentThumnail);
 
   return (
     <div className="flex h-full flex-col">
       {currentThumnail && (
-        <div className={'h-full overflow-y-auto ' + thumnailStyle}>
+        <div className={'overflow-y-auto ' + thumnailStyle}>
           {currentThumnail}
         </div>
       )}
@@ -42,7 +41,7 @@ const Tab = ({
         currentTabIndex={currentTabIndex}
         setCurrentTabIndex={setCurrentTabIndex}
       />
-      <div className={'h-full overflow-y-auto ' + itemStyle}>{currentTab}</div>
+      <div className={'overflow-y-auto ' + itemStyle}>{currentTab}</div>
     </div>
   );
 };

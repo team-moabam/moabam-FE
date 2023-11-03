@@ -10,7 +10,6 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-const tabItemStyle = 'flex h-full items-center justify-center';
 const containerStyle = 'box-border h-[500px] w-[400px] border p-3';
 
 export const Default: Story = {
@@ -25,19 +24,19 @@ export const Default: Story = {
   render: () => {
     return (
       <div className={'bg-light-main ' + containerStyle}>
-        <Tab>
+        <Tab itemStyle="h-[500px]">
           <TabItem title="탭 제목 첫번째">
-            <div className={`${tabItemStyle} h-[500px] bg-slate-300`}>
+            <div className="flex h-full items-center justify-center bg-slate-300">
               탭 1 내용입니다.
             </div>
           </TabItem>
           <TabItem title="두번째 탭">
-            <div className={`${tabItemStyle} bg-slate-400`}>
+            <div className="flex h-full items-center justify-center bg-slate-400">
               탭 2 내용입니다.
             </div>
           </TabItem>
           <TabItem title="tab3">
-            <div className={`${tabItemStyle} bg-slate-500`}>
+            <div className="flex h-full items-center justify-center bg-slate-500">
               탭 3 내용입니다.
             </div>
           </TabItem>
@@ -61,21 +60,16 @@ export const DarkMode: Story = {
         <Tab
           defaultIndex={0}
           align="center"
+          itemStyle="h-[500px]"
         >
           <TabItem title="탭 제목 첫번째">
-            <div className={`${tabItemStyle} bg-slate-300`}>
-              탭 1 내용입니다.
-            </div>
+            <div className="h-full bg-slate-300">탭 1 내용입니다.</div>
           </TabItem>
           <TabItem title="두번째 탭">
-            <div className={`${tabItemStyle} bg-slate-400`}>
-              탭 2 내용입니다.
-            </div>
+            <div className="h-full bg-slate-400">탭 2 내용입니다.</div>
           </TabItem>
           <TabItem title="tab3">
-            <div className={`${tabItemStyle} bg-slate-500`}>
-              탭 3 내용입니다.
-            </div>
+            <div className="h-full bg-slate-500">탭 3 내용입니다.</div>
           </TabItem>
         </Tab>
       </div>
@@ -98,21 +92,16 @@ export const Example: Story = {
         <Tab
           defaultIndex={1}
           align="start"
+          itemStyle="h-[500px]"
         >
           <TabItem title="탭 제목 첫번째">
-            <div className={`${tabItemStyle} bg-slate-300`}>
-              탭 1 내용입니다.
-            </div>
+            <div className="h-full bg-slate-300">탭 1 내용입니다.</div>
           </TabItem>
           <TabItem title="두번째 탭">
-            <div className={`${tabItemStyle} bg-slate-400`}>
-              탭 2 내용입니다.
-            </div>
+            <div className="h-full bg-slate-400">탭 2 내용입니다.</div>
           </TabItem>
           <TabItem title="tab3">
-            <div className={`${tabItemStyle} bg-slate-500`}>
-              탭 3 내용입니다.
-            </div>
+            <div className="h-full bg-slate-500">탭 3 내용입니다.</div>
           </TabItem>
         </Tab>
       </div>
@@ -133,20 +122,20 @@ export const Thumnail: Story = {
     return (
       <div className={'bg-light-main ' + containerStyle}>
         <Tab
-          thumnailStyle="h-[300px] mb-4"
-          itemStyle="h-[500px]"
+          thumnailStyle="h-[300px] mb-4 bg-slate-200"
+          itemStyle="h-[500px] bg-slate-300"
         >
           <TabThumbnail>
-            <div className={`${tabItemStyle} bg-slate-300`}>오목눈이 복장</div>
+            <div>오목눈이 복장</div>
           </TabThumbnail>
           <TabThumbnail>
-            <div className={`${tabItemStyle} bg-slate-300`}>부엉이 복장</div>
+            <div>부엉이 복장</div>
           </TabThumbnail>
           <TabItem title="탭 제목 첫번째">
-            <div className={`${tabItemStyle} bg-slate-300`}>오목눈이 옷장</div>
+            <div>오목눈이 옷장</div>
           </TabItem>
           <TabItem title="두번째 탭">
-            <div className={`${tabItemStyle} bg-slate-400`}>부엉이 옷장</div>
+            <div>부엉이 옷장</div>
           </TabItem>
         </Tab>
       </div>
