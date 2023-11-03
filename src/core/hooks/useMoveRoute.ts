@@ -1,11 +1,10 @@
 import { useLocation, useNavigate } from 'react-router-dom';
-import routes, { RouteNames } from '../routes/routes';
+import { routes, RouteNames, ParamNames, PARAM_NAMES } from '../routes';
 
-type ParamNames = 'userId' | 'roomId' | 'logId';
 type Parameters = Partial<Record<ParamNames, string>>;
 
 const isValidParamName = (paramName: string): paramName is ParamNames =>
-  ['userId', 'roomId', 'logId'].includes(paramName);
+  PARAM_NAMES.includes(paramName);
 
 const parseNextLocation = ({
   currentPath,

@@ -1,5 +1,5 @@
 import { useLocation, useParams } from 'react-router-dom';
-import routeMap from '../routes/routes';
+import { routes as routeMap } from '../routes';
 
 const isParameterSegment = (segment: string) => segment[0] === ':';
 
