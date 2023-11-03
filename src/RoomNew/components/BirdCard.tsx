@@ -6,7 +6,7 @@ interface BirdCardProps {
 
 const BirdCard = ({ imgSrc, name, time }: BirdCardProps) => {
   return (
-    <div className="flex h-48 grow flex-col items-center justify-center rounded-xl border border-light-point bg-white">
+    <div className="flex h-48 grow cursor-pointer select-none flex-col items-center justify-center rounded-xl border border-light-point bg-white">
       <img
         src={imgSrc}
         className="w-20"
