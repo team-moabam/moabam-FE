@@ -33,6 +33,7 @@ import { HiHome } from 'react-icons/hi2';
 import { ImSearch } from 'react-icons/im';
 import { MdSupervisedUserCircle, MdEdit, MdTitle } from 'react-icons/md';
 import { PiBirdFill } from 'react-icons/pi';
+import { IoPeopleCircle } from 'react-icons/io5';
 import {
   RiTimerLine,
   RiUser3Fill,
@@ -41,6 +42,7 @@ import {
 } from 'react-icons/ri';
 import { RxExit, RxEnter } from 'react-icons/rx';
 import { TbListDetails, TbConfetti } from 'react-icons/tb';
+import { LuAlarmClock } from 'react-icons/lu';
 
 export const iconMap = {
   AiOutlineLock,
@@ -82,5 +84,7 @@ export const iconMap = {
   RxExit,
   RxEnter,
   TbListDetails,
-  TbConfetti
+  TbConfetti,
+  LuAlarmClock,
+  IoPeopleCircle
 } as const;

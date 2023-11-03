@@ -1,3 +1,4 @@
+import RoomSummary from '@/RoomSummary/components/RoomSummary';
 import { Header } from '@/shared/Header';
 
 const Routines = () => {
@@ -8,7 +9,15 @@ const Routines = () => {
         className=" bg-slate-400 "
       />
       <div className="h-full overflow-auto">
-        <div className="h-[1000px]">Routine</div>
+        <div className="h-[1000px]">
+          <RoomSummary
+            title="물마시기"
+            type="MORNING"
+            certifyTime={8}
+            currentUserCount={6}
+            maxUserCount={10}
+          />
+        </div>
       </div>
     </div>
   );
