@@ -20,8 +20,9 @@ export default {
           hover: '#eab308',
           ring: '#fde047'
         },
+
         light: {
-          gray: '#f3f4f6',
+          gray: '#d1d5db',
           main: '#f8f8f8',
           sub: '#ffffff',
           point: {
@@ -31,7 +32,7 @@ export default {
           }
         },
         dark: {
-          gray: '#93a3af',
+          gray: '#9ca3af',
           main: '#1f2544',
           sub: '#121837',
           point: {
@@ -40,10 +41,12 @@ export default {
             ring: '#ffc588'
           }
         },
-        disabled: '#93a3af',
-        bronze: '#854d0e',
         lightGray: '#d1d5db',
-        darkGray: '#9ca3af'
+        darkGray: '#9ca3af',
+        bronze: '#854d0e',
+        disabled: '#93a3af',
+        confirm: '#10B981',
+        info: '#F9BD7D'
       },
       fontFamily: {
         'IMHyemin-bold': ['IM_Hyemin-Bold'],
