@@ -15,7 +15,7 @@ export type RouteNames =
   | 'routines'
   | 'search'
   | 'user'
-  | 'my'
+  | 'myPage'
   | 'myLog'
   | 'createRoom'
   | 'room'
@@ -58,7 +58,7 @@ const routes: Routes = {
     navBarRequired: true,
     element: <div>search</div>
   },
-  my: {
+  myPage: {
     path: 'user',
     authRequired: true,
     navBarRequired: true,
@@ -68,7 +68,7 @@ const routes: Routes = {
     path: 'user/:userId',
     authRequired: true,
     navBarRequired: true,
-    element: <div>user</div>
+    element: <div>user page</div>
   },
   myLog: {
     path: 'user/log',
