@@ -1,7 +1,7 @@
 import { headingStyle, descriptionStyle } from '../constants/styles';
 import { TimePicker } from '@/TimePicker';
 
-const SelectTime = () => {
+const TimeStep = () => {
   return (
     <>
       <h1 className={headingStyle}>
@@ -25,4 +25,4 @@ const SelectTime = () => {
   );
 };
 
-export default SelectTime;
+export default TimeStep;

@@ -1,19 +1,21 @@
-import SelectPassword from '@/RoomNew/steps/SelectPassword';
-import SelectRoom from '@/RoomNew/steps/SelectRoom';
-import SelectTime from '@/RoomNew/steps/SelectTime';
-import SelectDetail from '@/RoomNew/steps/SelectDetail';
-import Summary from '@/RoomNew/steps/Summary';
 import { useFunnel, Funnel } from '@/shared/Funnel';
 import Navbar from '@/RoomNew/components/Navbar';
 import { Header } from '@/shared/Header';
+import {
+  BirdStep,
+  PasswordStep,
+  RoutineStep,
+  SummaryStep,
+  TimeStep
+} from '@/RoomNew';
 
 const RoomNew = () => {
   const steps = [
-    '방선택',
-    '인증시간',
-    '루틴정보',
-    '비밀번호',
-    '마무리'
+    'BirdStep',
+    'TimeStep',
+    'RoutineStep',
+    'PasswordStep',
+    'SummaryStep'
   ] as const;
 
   const funnel = useFunnel(steps);
@@ -27,20 +29,20 @@ const RoomNew = () => {
       />
       <main className="grow overflow-auto px-8 py-12">
         <Funnel {...funnel}>
-          <Funnel.Step<typeof steps> name="방선택">
-            <SelectRoom />
+          <Funnel.Step<typeof steps> name="BirdStep">
+            <BirdStep />
           </Funnel.Step>
-          <Funnel.Step<typeof steps> name="인증시간">
-            <SelectTime />
+          <Funnel.Step<typeof steps> name="TimeStep">
+            <TimeStep />
           </Funnel.Step>
-          <Funnel.Step<typeof steps> name="루틴정보">
-            <SelectDetail />
+          <Funnel.Step<typeof steps> name="RoutineStep">
+            <RoutineStep />
           </Funnel.Step>
-          <Funnel.Step<typeof steps> name="비밀번호">
-            <SelectPassword />
+          <Funnel.Step<typeof steps> name="PasswordStep">
+            <PasswordStep />
           </Funnel.Step>
-          <Funnel.Step<typeof steps> name="마무리">
-            <Summary />
+          <Funnel.Step<typeof steps> name="SummaryStep">
+            <SummaryStep />
           </Funnel.Step>
         </Funnel>
       </main>

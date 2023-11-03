@@ -7,7 +7,7 @@ interface Info {
   text: string;
 }
 
-const Summary = () => {
+const SummaryStep = () => {
   const infos: Info[] = [
     {
       icon: 'PiBirdFill',
@@ -60,4 +60,4 @@ const Summary = () => {
   );
 };
 
-export default Summary;
+export default SummaryStep;

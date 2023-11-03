@@ -1,7 +1,7 @@
 import { headingStyle, descriptionStyle } from '../constants/styles';
 import BirdCard from '../components/BirdCard';
 
-const SelectRoom = () => {
+const BirdStep = () => {
   return (
     <>
       <h1 className={headingStyle}>
@@ -29,4 +29,4 @@ const SelectRoom = () => {
   );
 };
 
-export default SelectRoom;
+export default BirdStep;

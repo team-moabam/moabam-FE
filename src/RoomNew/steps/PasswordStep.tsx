@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import { headingStyle, descriptionStyle } from '../constants/styles';
 import { PasswordInput } from '@/shared/Input';
 
-const SelectPassword = () => {
+const PasswordStep = () => {
   return (
     <>
       <h1 className={headingStyle}>
@@ -21,4 +21,4 @@ const SelectPassword = () => {
   );
 };
 
-export default SelectPassword;
+export default PasswordStep;

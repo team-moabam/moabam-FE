@@ -7,7 +7,7 @@ const iconStyle =
 const headingStyle = 'mb-6';
 const detailSectionStyle = 'mb-8 text-xl leading-[2rem]';
 
-const SelectDetail = () => {
+const RoutineStep = () => {
   return (
     <>
       <section className={detailSectionStyle}>
@@ -71,4 +71,4 @@ const SelectDetail = () => {
   );
 };
 
-export default SelectDetail;
+export default RoutineStep;
