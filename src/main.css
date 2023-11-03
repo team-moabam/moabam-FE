@@ -25,6 +25,12 @@
   font-style: normal;
 }
 
+* {
+  font-family: 'IM_Hyemin-Regular';
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
   width: 100vw;
   height: 100vh;
