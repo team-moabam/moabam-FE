@@ -4,8 +4,8 @@
 @tailwind utilities;
 
 @layer base {
-  html {
-    font-family: "IM_Hyemin-Regular", sans-serif;
+  * {
+    font-family: 'IM_Hyemin-Regular', sans-serif;
   }
 }
 

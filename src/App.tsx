@@ -1,9 +1,19 @@
 import { Link, Outlet } from 'react-router-dom';
+import clsx from 'clsx';
+import useTheme from '@/core/hooks/useTheme';
+import 'swiper/css';
+import 'swiper/css/bundle';
 
 const App = () => {
+  const { theme } = useTheme();
+
   return (
-    /* TODO: 가장 상위 div 에서 다크모드 부여해야 함 */
-    <div className="absolute inset-x-0 m-auto flex h-screen w-full max-w-md flex-col">
+    <div
+      className={clsx(
+        'absolute inset-x-0 m-auto flex h-screen w-full max-w-md flex-col',
+        theme === 'dark' && 'dark'
+      )}
+    >
       <div className="h-full overflow-auto bg-light-main text-black dark:bg-dark-main dark:text-white">
         <Outlet />
       </div>
