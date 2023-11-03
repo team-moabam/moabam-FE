@@ -13,7 +13,10 @@ const App = () => {
     <div
       className={clsx(
         'absolute inset-x-0 m-auto flex h-screen w-full max-w-md flex-col',
-        theme === 'dark' && 'dark'
+        {
+          'dark bg-dark-main': theme === 'dark',
+          'bg-light-main': theme !== 'dark'
+        }
       )}
     >
       <div className="h-full overflow-auto bg-light-main text-black dark:bg-dark-main dark:text-white">

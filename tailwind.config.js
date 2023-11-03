@@ -49,6 +49,9 @@ export default {
       fontFamily: {
         'IMHyemin-bold': ['IM_Hyemin-Bold'],
         'IMHyemin-regular': ['IM_Hyemin-Regular']
+      },
+      boxShadow: {
+        nav: '0px -1px 4px 0px rgba(0, 0, 0, 0.25)'
       }
     }
   }
