@@ -1,10 +1,9 @@
-import PageTemplate from '../templates/PageTemplate';
 import { headingStyle, descriptionStyle } from '../constants/styles';
 import BirdCard from '../components/BirdCard';
 
 const SelectRoom = () => {
   return (
-    <PageTemplate>
+    <>
       <h1 className={headingStyle}>
         <strong>어떤 새를</strong>
         <p>키우는 방일까요?</p>
@@ -26,7 +25,7 @@ const SelectRoom = () => {
           time="20시 ~ 2시"
         />
       </section>
-    </PageTemplate>
+    </>
   );
 };
 

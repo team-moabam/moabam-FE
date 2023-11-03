@@ -1,6 +1,5 @@
 import clsx from 'clsx';
 import { headingStyle, descriptionStyle } from '../constants/styles';
-import PageTemplate from '../templates/PageTemplate';
 import { Icon, iconMap } from '@/shared/Icon';
 
 interface Info {
@@ -37,7 +36,7 @@ const Summary = () => {
   ];
 
   return (
-    <PageTemplate>
+    <>
       <h1 className={headingStyle}>
         <strong>준비 끝 !</strong>
       </h1>
@@ -57,7 +56,7 @@ const Summary = () => {
           </li>
         ))}
       </ul>
-    </PageTemplate>
+    </>
   );
 };
 

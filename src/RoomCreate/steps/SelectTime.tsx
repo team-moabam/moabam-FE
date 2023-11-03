@@ -1,9 +1,8 @@
-import PageTemplate from '../templates/PageTemplate';
 import { headingStyle, descriptionStyle } from '../constants/styles';
 
 const SelectTime = () => {
   return (
-    <PageTemplate>
+    <>
       <h1 className={headingStyle}>
         <strong>언제 </strong>
         인증할까요?
@@ -14,7 +13,7 @@ const SelectTime = () => {
       </p>
 
       {/* TODO: TimePicker 컴포넌트 */}
-    </PageTemplate>
+    </>
   );
 };
 

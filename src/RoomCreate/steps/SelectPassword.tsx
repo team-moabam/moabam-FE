@@ -1,11 +1,10 @@
 import clsx from 'clsx';
-import PageTemplate from '../templates/PageTemplate';
 import { headingStyle, descriptionStyle } from '../constants/styles';
 import { PasswordInput } from '@/shared/Input';
 
 const SelectPassword = () => {
   return (
-    <PageTemplate>
+    <>
       <h1 className={headingStyle}>
         <strong>마지막 !</strong>
         <p>
@@ -18,7 +17,7 @@ const SelectPassword = () => {
       </p>
 
       <PasswordInput placeholder="비워두시면 공개방이 됩니다" />
-    </PageTemplate>
+    </>
   );
 };
 
