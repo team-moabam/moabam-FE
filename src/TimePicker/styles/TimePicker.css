@@ -1,0 +1,11 @@
+.time-picker {
+  background: linear-gradient(180deg, #E9E9E9 0%, rgba(255, 255, 255, 0.00) 25.52%, rgba(255, 255, 255, 0.00) 72.92%, #EDEDED 100%);
+}
+
+.time-picker .swiper-slide {
+  @apply opacity-25;
+}
+
+.time-picker .swiper-slide-active {
+  @apply opacity-100 text-3xl font-bold;
+}
