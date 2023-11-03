@@ -1,13 +1,12 @@
 import { Link, Outlet } from 'react-router-dom';
-import routes from './core/routes/routes';
-import useRouteData from './core/hooks/useRouteData';
 import clsx from 'clsx';
-import useTheme from '@/core/hooks/useTheme';
+import { routes } from '@/core/routes';
+import { useRouteData, useTheme } from '@/core/hooks';
 import 'swiper/css';
 import 'swiper/css/bundle';
 
 const App = () => {
-  onst { navBarRequired } = useRouteData();
+  const { navBarRequired } = useRouteData();
   const { theme } = useTheme();
 
   return (
