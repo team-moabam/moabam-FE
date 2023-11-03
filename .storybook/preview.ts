@@ -1,4 +1,6 @@
 import type { Preview } from '@storybook/react';
+import 'swiper/css';
+import 'swiper/css/bundle';
 import '../src/main.css';
 
 const preview: Preview = {

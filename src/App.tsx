@@ -1,6 +1,8 @@
 import { Link, Outlet } from 'react-router-dom';
 import clsx from 'clsx';
 import useTheme from '@/core/hooks/useTheme';
+import 'swiper/css';
+import 'swiper/css/bundle';
 
 const App = () => {
   const { theme } = useTheme();
