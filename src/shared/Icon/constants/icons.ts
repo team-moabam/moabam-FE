@@ -1,4 +1,4 @@
-import { AiOutlineLock } from 'react-icons/ai';
+import { AiOutlineLock, AiFillNotification } from 'react-icons/ai';
 import { BsMouse } from 'react-icons/bs';
 import {
   BiBugAlt,
@@ -82,5 +82,6 @@ export const iconMap = {
   RxExit,
   RxEnter,
   TbListDetails,
-  TbConfetti
+  TbConfetti,
+  AiFillNotification
 } as const;
