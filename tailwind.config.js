@@ -40,7 +40,6 @@ export default {
             ring: '#ffc588'
           }
         },
-        darkGray: '#9ca3af',
         disabled: '#93a3af',
         bronze: '#854d0e'
       },
