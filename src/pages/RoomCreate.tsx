@@ -1,6 +1,7 @@
 import SelectPassword from '@/RoomCreate/steps/SelectPassword';
 import SelectRoom from '@/RoomCreate/steps/SelectRoom';
 import SelectTime from '@/RoomCreate/steps/SelectTime';
+import SelectDetail from '@/RoomCreate/steps/SelectDetail';
 import Summary from '@/RoomCreate/steps/Summary';
 import { useFunnel, Funnel } from '@/shared/Funnel';
 import Navbar from '@/RoomCreate/components/Navbar';
@@ -29,7 +30,7 @@ const RoomCreate = () => {
             <SelectTime />
           </Funnel.Step>
           <Funnel.Step<typeof steps> name="루틴정보">
-            <Summary />
+            <SelectDetail />
           </Funnel.Step>
           <Funnel.Step<typeof steps> name="비밀번호">
             <SelectPassword />
