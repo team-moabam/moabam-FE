@@ -1,32 +1,27 @@
-import { useState, forwardRef } from 'react';
+import { forwardRef } from 'react';
+import clsx from 'clsx';
 import Input from './Input';
 import { InputProps } from './Input';
 
 interface InnerTextInputProps extends InputProps {
   text?: string;
+  wrapperStyle?: string;
   textStyle?: string;
 }
 
 const InnerTextInput = forwardRef<HTMLInputElement, InnerTextInputProps>(
-  ({ text, textStyle, ...props }, ref) => {
-    const [hide, setHide] = useState(true);
-
+  ({ text, wrapperStyle, textStyle, ...props }, ref) => {
     return (
-      <div className="relative">
+      <div className={clsx('relative', wrapperStyle)}>
         <Input
           ref={ref}
           {...props}
         />
         <div
-          className={`
-            absolute 
-            inset-y-0 
-            right-5 
-            grid 
-            place-content-center
-            ${textStyle}
-          `}
-          onClick={() => setHide(!hide)}
+          className={clsx(
+            'absolute inset-y-0 right-5 grid place-content-center text-xs text-gray-400',
+            textStyle
+          )}
         >
           {text}
         </div>
