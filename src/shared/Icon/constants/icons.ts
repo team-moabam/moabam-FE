@@ -2,6 +2,7 @@ import { AiOutlineLock } from 'react-icons/ai';
 import { BsMouse } from 'react-icons/bs';
 import {
   BiBugAlt,
+  BiSolidBugAlt,
   BiChevronUpCircle,
   BiChevronDownCircle,
   BiChevronLeftCircle,
@@ -43,6 +44,7 @@ export const iconMap = {
   AiOutlineLock,
   BsMouse,
   BiBugAlt,
+  BiSolidBugAlt,
   BiChevronUpCircle,
   BiChevronDownCircle,
   BiChevronLeftCircle,

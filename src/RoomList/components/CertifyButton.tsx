@@ -17,7 +17,7 @@ const CerticifyButton = ({
     <div
       onClick={() => !isCertifiedToday && moveTo('roomDetail', { roomId })}
       className={clsx(
-        'btn-transition cursor-pointer rounded-2xl px-4 py-1 text-sm shadow-md',
+        'btn-transition cursor-pointer rounded-2xl px-5 py-1 font-IMHyemin-bold text-sm shadow-md',
         {
           'btn-light-point dark:btn-dark-point': !isCertifiedToday,
           'btn-disabled cursor-default': isCertifiedToday
