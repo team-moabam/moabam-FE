@@ -1,7 +1,7 @@
 import React from 'react';
 import Room from '@/pages/Room';
 import Routines from '@/pages/Routines';
-
+import MyBird from '@/pages/MyBird';
 interface Route {
   path: string;
   authRequired: boolean;
@@ -111,7 +111,7 @@ const routes: Routes = {
     path: 'mybird',
     authRequired: true,
     navBarRequired: false,
-    element: <div>mybird</div>
+    element: <MyBird></MyBird>
   },
   notFound: {
     path: '*',
