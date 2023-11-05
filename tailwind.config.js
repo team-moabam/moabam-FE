@@ -52,6 +52,18 @@ export default {
       },
       boxShadow: {
         nav: '0px -1px 4px 0px rgba(0, 0, 0, 0.25)'
+      },
+      borderWidth: {
+        DEFAULT: '1px',
+        0: '0',
+        1: '1px',
+        2: '2px',
+        3: '3px',
+        4: '4px',
+        5: '5px',
+        6: '6px',
+        7: '7px',
+        8: '8px'
       }
     }
   }
