@@ -1,7 +1,7 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import { routes, RouteNames, ParamNames, PARAM_NAMES } from '../routes';
 
-type Parameters = Partial<Record<ParamNames, string>>;
+type Parameters = Partial<Record<ParamNames, string | number>>;
 
 const isValidParamName = (paramName: string): paramName is ParamNames =>
   PARAM_NAMES.includes(paramName);
