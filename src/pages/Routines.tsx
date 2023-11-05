@@ -1,7 +1,9 @@
-import { RoomSummary } from '@/RoomSummary';
+import { myJoinRoom } from '@/RoomList/mocks/myJoinRoom';
+import RoomCard from '@/RoomList/components/RoomCard';
 import { Header } from '@/shared/Header';
 
 const Routines = () => {
+  const { bugs, participateRooms } = myJoinRoom;
   return (
     <div className="flex h-full flex-col">
       <Header
@@ -9,15 +11,13 @@ const Routines = () => {
         className=" bg-slate-400 "
       />
       <div className="h-full overflow-auto">
-        <div className="h-[1000px]">
-          <RoomSummary
-            title="물마시기"
-            type="MORNING"
-            certifyTime={8}
-            currentUserCount={6}
-            maxUserCount={10}
-            managerNickname="공포정치"
-          />
+        <div className="flex flex-col gap-3 p-2">
+          {participateRooms.map((room) => (
+            <RoomCard
+              room={room}
+              key={room.roomId}
+            />
+          ))}
         </div>
       </div>
     </div>
