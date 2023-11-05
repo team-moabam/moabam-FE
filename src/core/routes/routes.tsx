@@ -1,6 +1,7 @@
 import React from 'react';
 import Room from '@/pages/Room';
 import Routines from '@/pages/Routines';
+import RoomNew from '@/pages/RoomNew';
 
 interface Route {
   path: string;
@@ -81,7 +82,7 @@ const routes: Routes = {
     path: 'room/new',
     authRequired: true,
     navBarRequired: false,
-    element: <div>create room</div>
+    element: <RoomNew />
   },
   room: {
     path: 'room',
