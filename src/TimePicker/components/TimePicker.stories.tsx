@@ -28,7 +28,7 @@ const meta = {
       control: 'string',
       description: '컴포넌트에 추가할 클래스 (tailwind 스타일링 가능)'
     },
-    onTimeChange: {
+    onChangeTime: {
       control: 'function',
       description: '시간을 선택할 때 호출되는 콜백함수'
     }
@@ -43,7 +43,7 @@ export const Default: Story = {
   args: {
     range: [5, 27],
     initialTime: 10,
-    onTimeChange: (time) => console.log(time, '시를 선택했습니다.')
+    onChangeTime: (time) => console.log(time, '시를 선택했습니다.')
   },
   render: (args) => <TimePicker {...args} />
 };

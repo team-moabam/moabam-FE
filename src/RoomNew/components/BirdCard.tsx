@@ -11,7 +11,7 @@ const BirdCard = ({ active = false, type, onClick }: BirdCardProps) => {
   return (
     <div
       className={clsx(
-        'border-3 flex h-48 grow cursor-pointer select-none flex-col items-center justify-center rounded-xl bg-white',
+        'flex h-48 grow cursor-pointer select-none flex-col items-center justify-center rounded-xl border-3 bg-white',
         active ? 'border-light-point' : 'border-transparent'
       )}
       onClick={onClick}
