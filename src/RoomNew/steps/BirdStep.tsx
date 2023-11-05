@@ -15,7 +15,7 @@ const BirdStep = () => {
 
       <section className="flex justify-around gap-10 pt-10 max-[320px]:flex-col">
         <BirdCard
-          imgSrc="/assets/Long-Tailed.png"
+          imgSrc="/assets/Omok.png"
           name="오목눈이"
           time="4시 ~ 10시"
         />
