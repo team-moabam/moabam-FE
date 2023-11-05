@@ -1,6 +1,6 @@
 import { FunnelHook } from '@/shared/Funnel/hooks/useFunnel';
 
-const Navbar = ({ hasNext, hasPrev, toNext, toPrev }: FunnelHook) => {
+const Navbar = ({ hasNext, hasPrev, toNext, toPrev }: FunnelHook<string[]>) => {
   return (
     <nav className="grid grid-cols-2 text-2xl">
       <button
