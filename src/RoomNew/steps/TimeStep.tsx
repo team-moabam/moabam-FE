@@ -1,7 +1,24 @@
-import { headingStyle, descriptionStyle } from '../constants/styles';
+import { useFormContext } from 'react-hook-form';
+import { formatHourString } from '@/TimePicker/utils/hour';
+import {
+  headingStyle,
+  descriptionStyle,
+  errorStyle
+} from '../constants/styles';
+import { TIME_RANGE } from '../constants/literals';
+import { Inputs } from '../constants/form';
 import { TimePicker } from '@/TimePicker';
 
 const TimeStep = () => {
+  const {
+    setValue,
+    watch,
+    formState: { errors }
+  } = useFormContext<Inputs>();
+
+  const watchType = watch('type');
+  const watchCertifyTime = watch('certifyTime');
+
   return (
     <>
       <h1 className={headingStyle}>
@@ -14,13 +31,18 @@ const TimeStep = () => {
       </p>
 
       <section className="mt-10 flex w-full flex-col items-center gap-6">
-        <div>04 : 00</div>
+        <div>{formatHourString(TIME_RANGE[watchType][0])}</div>
         <TimePicker
-          range={[4, 10]}
-          initialTime={4}
+          range={TIME_RANGE[watchType]}
+          initialTime={watchCertifyTime}
+          onChangeTime={(time) => setValue('certifyTime', time)}
         />
-        <div>10 : 00</div>
+        <div>{formatHourString(TIME_RANGE[watchType][1])}</div>
       </section>
+
+      {errors.certifyTime && (
+        <p className={errorStyle}>{errors.certifyTime.message}</p>
+      )}
     </>
   );
 };

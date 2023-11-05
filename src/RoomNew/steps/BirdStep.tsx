@@ -1,7 +1,22 @@
-import { headingStyle, descriptionStyle } from '../constants/styles';
+import { useFormContext } from 'react-hook-form';
+import {
+  headingStyle,
+  descriptionStyle,
+  errorStyle
+} from '../constants/styles';
+import { Inputs } from '../constants/form';
+import { TIME_RANGE, ROOM_TYPES } from '../constants/literals';
 import BirdCard from '../components/BirdCard';
 
 const BirdStep = () => {
+  const {
+    setValue,
+    watch,
+    formState: { errors }
+  } = useFormContext<Inputs>();
+
+  const watchType = watch('type');
+
   return (
     <>
       <h1 className={headingStyle}>
@@ -14,17 +29,20 @@ const BirdStep = () => {
       </p>
 
       <section className="flex justify-around gap-10 pt-10 max-[320px]:flex-col">
-        <BirdCard
-          imgSrc="/assets/Omok.png"
-          name="오목눈이"
-          time="4시 ~ 10시"
-        />
-        <BirdCard
-          imgSrc="/assets/Owl.png"
-          name="부엉이"
-          time="20시 ~ 2시"
-        />
+        {ROOM_TYPES.map((type) => (
+          <BirdCard
+            key={type}
+            type={type}
+            active={watchType === type}
+            onClick={() => {
+              setValue('type', type);
+              setValue('certifyTime', TIME_RANGE[type][0]);
+            }}
+          />
+        ))}
       </section>
+
+      {errors.type && <p className={errorStyle}>{errors.type.message}</p>}
     </>
   );
 };

@@ -1,8 +1,27 @@
 import clsx from 'clsx';
-import { headingStyle, descriptionStyle } from '../constants/styles';
+import { useFormContext } from 'react-hook-form';
+import {
+  headingStyle,
+  descriptionStyle,
+  errorStyle
+} from '../constants/styles';
+import { PASSWORD } from '../constants/literals';
+import { Inputs } from '../constants/form';
 import { PasswordInput } from '@/shared/Input';
 
 const PasswordStep = () => {
+  const {
+    register,
+    setValue,
+    formState: { errors }
+  } = useFormContext<Inputs>();
+
+  const handleChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value.replace(/[^0-9]/g, '');
+
+    setValue('password', value);
+  };
+
   return (
     <>
       <h1 className={headingStyle}>
@@ -13,10 +32,20 @@ const PasswordStep = () => {
       </h1>
 
       <p className={clsx(descriptionStyle, 'mb-10')}>
-        선택사항입니다. 4자리에서 8자리 숫자를 적어주세요!
+        선택사항입니다. {PASSWORD.min}자리에서 {PASSWORD.max}자리 숫자를
+        적어주세요!
       </p>
 
-      <PasswordInput placeholder="비워두시면 공개방이 됩니다" />
+      <PasswordInput
+        {...register('password')}
+        placeholder="비워두시면 공개방이 됩니다"
+        maxLength={PASSWORD.max}
+        onChange={handleChangePassword}
+      />
+
+      {errors.password && (
+        <p className={errorStyle}>{errors.password.message}</p>
+      )}
     </>
   );
 };
