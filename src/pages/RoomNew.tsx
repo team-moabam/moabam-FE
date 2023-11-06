@@ -1,3 +1,5 @@
+import { useMutation } from '@tanstack/react-query';
+import axios from 'axios';
 import {
   SubmitErrorHandler,
   SubmitHandler,
@@ -5,6 +7,7 @@ import {
   FormProvider
 } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import roomAPI from '@/core/api/functions/roomAPI';
 import { Inputs, defaultValues, formSchema } from '@/RoomNew/constants/form';
 import { useFunnel, Funnel } from '@/shared/Funnel';
 import Navbar from '@/RoomNew/components/Navbar';
@@ -34,10 +37,33 @@ const RoomNew = () => {
     resolver: zodResolver(formSchema)
   });
 
+  const { mutate: postRoom } = useMutation({
+    mutationFn: roomAPI.postRoom
+  });
+  // TODO: API 요청하는 코드를 추후에 작성해야 합니다.
+  // TODO: certifyTime 필드는 % 24 로 계산한 뒤에 보내야 합니다.
+
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-    // TODO: API 요청하는 코드를 추후에 작성해야 합니다.
-    // TODO: certifyTime 필드는 % 24 로 계산한 뒤에 보내야 합니다.
-    console.log(data);
+    postRoom(
+      {
+        title: data.title,
+        password: data.password,
+        type: data.type,
+        routine: data.routines.map((r) => r.value),
+        certifyTime: data.certifyTime % 24,
+        maxUserCount: data.userCount
+      },
+      {
+        onSuccess: (data) => {
+          console.log(data);
+        },
+        onError: (error) => {
+          console.error(error);
+          // if (axios.isAxiosError(error)) {
+          // }
+        }
+      }
+    );
   };
 
   const onError: SubmitErrorHandler<Inputs> = (errors) => console.error(errors);
