@@ -19,7 +19,7 @@ const App = () => {
         }
       )}
     >
-      <div className="h-full overflow-scroll bg-light-main text-black dark:bg-dark-main dark:text-white">
+      <div className="h-full overflow-y-scroll bg-light-main text-black dark:bg-dark-main dark:text-white">
         <Outlet />
       </div>
 
