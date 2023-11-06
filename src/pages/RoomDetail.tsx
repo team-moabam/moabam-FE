@@ -14,7 +14,7 @@ const RoomDetail = () => {
     <div className="relative">
       <Header
         title="물마시기 대작전"
-        className="absolute text-white"
+        className="absolute z-[1] text-white"
       >
         <div className="flex">
           <Link
@@ -34,7 +34,6 @@ const RoomDetail = () => {
           </button>
         </div>
       </Header>
-
       <RoomNotice content="2일 이상 인증 안하면 칼추방 2일 이상 인증 안하면 칼추방 2일 이상 인증 안하면 칼추방 2일 이상 인증 안하면 칼추방 2일 이상 인증 안하면 칼추방" />
       <div className="h-[20.56rem] bg-[url('/level1.png')] bg-cover bg-no-repeat text-white">
         <RoomInfo />
