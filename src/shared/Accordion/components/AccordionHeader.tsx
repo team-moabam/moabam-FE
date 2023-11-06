@@ -14,7 +14,7 @@ export interface AccordionHeaderProps {
 const AccordionHeader = ({
   children,
   buttonColored = false,
-  className
+  className = ''
 }: AccordionHeaderProps) => {
   const { isOpen, toggleOpen } = useAccordion();
   const { headerStyle, buttonColored: headerButtonColored } =
@@ -23,9 +23,7 @@ const AccordionHeader = ({
   return (
     <motion.div
       className={
-        'flex justify-between items-center ' +
-        `${headerStyle} ` +
-        `${className ? className : ''}`
+        'flex justify-between items-center ' + `${headerStyle} ` + className
       }
     >
       <div>{children}</div>
