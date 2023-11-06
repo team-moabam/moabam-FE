@@ -43,6 +43,7 @@ import { RxExit, RxEnter } from 'react-icons/rx';
 import { TbListDetails, TbConfetti } from 'react-icons/tb';
 
 export const iconMap = {
+  AiFillNotification,
   AiOutlineLock,
   BsMouse,
   BiBugAlt,
@@ -81,7 +82,6 @@ export const iconMap = {
   RiFlowChart,
   RxExit,
   RxEnter,
-  TbListDetails,
   TbConfetti,
-  AiFillNotification
+  TbListDetails
 } as const;

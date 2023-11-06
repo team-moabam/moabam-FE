@@ -2,9 +2,9 @@ import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import clsx from 'clsx';
 
-import RoomInfo from '@/Room/RoomInfo';
-import RoomNotice from '@/Room/RoomNotice';
-import RoomWorkspace from '@/Room/RoomWorkspace';
+import RoomInfo from '@/RoomDetail/components/RoomInfo';
+import RoomNotice from '@/RoomDetail/components/RoomNotice';
+import RoomWorkspace from '@/RoomDetail/components/RoomWorkspace';
 
 import { Header } from '@/shared/Header';
 import { Icon } from '@/shared/Icon';

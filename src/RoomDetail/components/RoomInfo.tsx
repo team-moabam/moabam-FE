@@ -8,7 +8,7 @@ const RoomInfo = () => {
           <span className="block h-[1.93rem] w-[4.62rem] rounded-[6.25rem] bg-light-point py-[0.16rem] text-center font-IMHyemin-bold text-light-main dark:bg-dark-point">
             Lv{3}
           </span>
-          <span className="font-IMHyemin-bold text-darkGray">
+          <span className="text-darkGray font-IMHyemin-bold">
             {6}/{10}
           </span>
         </div>
