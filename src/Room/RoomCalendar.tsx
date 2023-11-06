@@ -3,7 +3,7 @@ import { Icon } from '@/shared/Icon';
 
 const RoomCalendar = () => {
   return (
-    <div className="mb-[3.19rem]">
+    <div className="mb-[3.19rem] mt-[1.87rem]">
       <h4 className="pb-[0.5rem] text-base text-black dark:text-white">
         2023년 10월
       </h4>
@@ -54,9 +54,9 @@ const RoomCalendar = () => {
         ].map((el) => {
           const RoomCalendarStyle = {
             calendarItem: clsx(
-              'flex h-[5.87rem] w-[3.12rem] flex-col items-center rounded-[0.62rem] border-[0.06rem] pt-[0.2rem] text-center ',
+              'flex h-[5.87rem] w-[3.12rem] flex-col items-center rounded-[0.62rem]  pt-[0.2rem] text-center ',
               {
-                'border-light-point text-light-point dark:border-dark-point dark:text-dark-point':
+                'border-light-point text-light-point dark:border-dark-point dark:text-dark-point border-[0.06rem]':
                   el.point === true,
                 'text-darkGray': el.point === false
               }
