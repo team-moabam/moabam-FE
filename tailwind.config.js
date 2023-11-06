@@ -64,6 +64,10 @@ export default {
         6: '6px',
         7: '7px',
         8: '8px'
+      },
+      zIndex: {
+        bottomSheet: '100',
+        toast: '110'
       }
     }
   }
