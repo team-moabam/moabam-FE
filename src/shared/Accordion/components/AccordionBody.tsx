@@ -8,7 +8,7 @@ interface AccordionBodyProps {
   className?: string;
 }
 
-const AccordionBody = ({ children, className }: AccordionBodyProps) => {
+const AccordionBody = ({ children, className = '' }: AccordionBodyProps) => {
   const { isOpen } = useAccordion();
   const { bodyStyle } = useAccordionGroup();
 
@@ -20,11 +20,7 @@ const AccordionBody = ({ children, className }: AccordionBodyProps) => {
           animate={{ height: 'auto', opacity: 1 }}
           exit={{ height: 0, opacity: 0 }}
           transition={{ type: 'spring', duration: 0.8, bounce: 0 }}
-          className={
-            'box-border h-auto ' +
-            `${bodyStyle} ` +
-            `${className ? className : ''}`
-          }
+          className={'box-border h-auto ' + `${bodyStyle} ` + className}
         >
           <div>{children}</div>
         </motion.div>

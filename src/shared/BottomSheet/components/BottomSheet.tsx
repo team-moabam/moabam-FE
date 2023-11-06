@@ -30,7 +30,7 @@ const BottomSheet = forwardRef<
       {isShow && (
         <motion.aside
           className={clsx(
-            'absolute left-0 top-0 min-h-screen w-full overflow-hidden bg-dark-gray/50',
+            'app-container z-bottomSheet overflow-hidden bg-dark-gray/50',
             theme === 'dark' && 'dark'
           )}
           initial={{ opacity: 0 }}
