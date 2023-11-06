@@ -41,10 +41,10 @@ export default {
             ring: '#ffc588'
           }
         },
+        bronze: '#854d0e',
         disabled: '#93a3af',
-        info: '#F9BD7D',
         confirm: '#10B981',
-        bronze: '#854d0e'
+        info: '#F9BD7D'
       },
       fontFamily: {
         'IMHyemin-bold': ['IM_Hyemin-Bold'],
