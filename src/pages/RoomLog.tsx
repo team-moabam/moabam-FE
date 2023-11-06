@@ -1,4 +1,4 @@
-import RoomLogItem from '../RoomLog/RoomLogItem';
+import RoomLogItem from '../RoomLog/components/RoomLogItem';
 import { Header } from '@/shared/Header';
 
 const RoomLog = () => {
