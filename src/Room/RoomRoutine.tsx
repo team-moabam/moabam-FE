@@ -2,7 +2,7 @@ import { RoutineList, RoutineItem } from '@/shared/RoutineList';
 
 const RoomRoutine = () => {
   return (
-    <div className="mb-[1.19rem]">
+    <div>
       <div className="mb-[0.88rem] flex justify-between text-base">
         <h4 className="text-black dark:text-white">개인 인증</h4>
         <span className="text-darkGray">아직이예여</span>
