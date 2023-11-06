@@ -11,13 +11,10 @@ const App = () => {
 
   return (
     <div
-      className={clsx(
-        'absolute inset-x-0 m-auto flex h-screen w-full max-w-md flex-col',
-        {
-          'dark bg-dark-main': theme === 'dark',
-          'bg-light-main': theme !== 'dark'
-        }
-      )}
+      className={clsx('app-container flex flex-col', {
+        'dark bg-dark-main': theme === 'dark',
+        'bg-light-main': theme !== 'dark'
+      })}
     >
       <div className="h-full overflow-hidden bg-light-main text-black dark:bg-dark-main dark:text-white">
         <Outlet />
