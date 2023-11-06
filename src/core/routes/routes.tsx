@@ -1,7 +1,9 @@
 import React from 'react';
 import Room from '@/pages/Room';
+import RoomDetail from '@/pages/RoomDetail';
 import Routines from '@/pages/Routines';
 import RoomNew from '@/pages/RoomNew';
+import RoomLog from '@/pages/RoomLog';
 
 interface Route {
   path: string;
@@ -94,13 +96,13 @@ const routes: Routes = {
     path: 'room/:roomId',
     authRequired: true,
     navBarRequired: true,
-    element: <div>roomDetail</div>
+    element: <RoomDetail />
   },
   roomLog: {
     path: 'room/:roomId/log/:logId',
     authRequired: true,
     navBarRequired: false,
-    element: <div>roomLog</div>
+    element: <RoomLog />
   },
   roomSetting: {
     path: 'room/:roomId/setting',
