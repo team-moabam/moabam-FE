@@ -10,32 +10,24 @@ type Post = {
 
 const examplePostAPI = {
   getAllPosts: async () => {
-    const { data } = await baseInstance.get<Post[]>(`/example/posts`);
-    return data;
+    return await baseInstance.get<Post[]>(`/example/posts`);
   },
   getDetailPost: async (postId: string) => {
-    const { data } = await baseInstance.get<Post>(`/example/posts/${postId}`);
-    return data;
+    return await baseInstance.get<Post>(`/example/posts/${postId}`);
   },
   postPost: async (post: Post) => {
-    const { data } = await baseInstance.post<{ message: string }>(
-      '/example/posts',
-      post
-    );
-    return data;
+    return await baseInstance.post<{ message: string }>('/example/posts', post);
   },
   putPost: async (post: Post) => {
-    const { data } = await baseInstance.put<{ message: string }>(
+    return await baseInstance.put<{ message: string }>(
       `/example/posts/${post.id}`,
       post
     );
-    return data;
   },
   deletePost: async (postId: string) => {
-    const { data } = await baseInstance.delete<{ message: string }>(
+    return await baseInstance.delete<{ message: string }>(
       `/example/posts/${postId}`
     );
-    return data;
   }
 };
 
