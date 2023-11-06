@@ -1,26 +1,27 @@
 import { FreeMode, Mousewheel } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { SwiperClass } from 'swiper/react';
+import { formatHourString } from '../utils/hour';
 import '../styles/TimePicker.css';
 
 interface TimePickerProps {
   className?: string;
   range: [number, number];
   initialTime?: number;
-  onTimeChange?: (time: number) => void;
+  onChangeTime?: (time: number) => void;
 }
 
 /**
  * 시간을 선택할 수 있는 컴포넌트
  * @param range: 선택할 수 있는 시간 범위 ex) [5, 28]
  * @param initialTime: 기본으로 선택되어 있는 시간 ex) 10
- * @param onTimeChange: 시간을 선택할 때 호출되는 콜백함수
+ * @param onChangeTime: 시간을 선택할 때 호출되는 콜백함수
  */
 const TimePicker = ({
   className,
   range,
   initialTime,
-  onTimeChange
+  onChangeTime
 }: TimePickerProps) => {
   range = range.sort((a, b) => a - b);
 
@@ -31,9 +32,9 @@ const TimePicker = ({
   const initialSlide = hours.findIndex((v) => v === initialTime);
 
   const handleSlideChange = (swiper: SwiperClass) => {
-    const selectedHour = hours[swiper.activeIndex] % 24;
+    const selectedHour = hours[swiper.activeIndex];
 
-    onTimeChange?.(selectedHour);
+    onChangeTime?.(selectedHour);
   };
 
   return (
@@ -63,7 +64,7 @@ const TimePicker = ({
           className="flex items-center justify-center text-2xl transition-all duration-300 ease-in-out"
           key={hour}
         >
-          {(hour % 24).toString().padStart(2, '0')} : 00
+          {formatHourString(hour)}
         </SwiperSlide>
       ))}
     </Swiper>

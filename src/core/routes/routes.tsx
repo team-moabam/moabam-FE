@@ -1,6 +1,8 @@
 import React from 'react';
 import Room from '@/pages/Room';
 import RoomDetail from '@/pages/RoomDetail';
+import Routines from '@/pages/Routines';
+import RoomNew from '@/pages/RoomNew';
 
 interface Route {
   path: string;
@@ -51,7 +53,7 @@ const routes: Routes = {
     path: 'routines',
     authRequired: true,
     navBarRequired: true,
-    element: <div>routines</div>
+    element: <Routines />
   },
   search: {
     path: 'search',
@@ -81,7 +83,7 @@ const routes: Routes = {
     path: 'room/new',
     authRequired: true,
     navBarRequired: false,
-    element: <div>create room</div>
+    element: <RoomNew />
   },
   room: {
     path: 'room',
