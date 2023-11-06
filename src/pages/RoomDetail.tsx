@@ -12,7 +12,10 @@ import { Icon } from '@/shared/Icon';
 const RoomDetail = () => {
   return (
     <div className="relative">
-      <Header title="물마시기 대작전">
+      <Header
+        title="물마시기 대작전"
+        className="absolute text-white"
+      >
         <div className="flex">
           <Link
             to="setting"
