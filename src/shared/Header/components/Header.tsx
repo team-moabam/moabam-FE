@@ -5,7 +5,7 @@ import { Icon } from '@/shared/Icon';
 
 interface HeaderProps {
   prev?: string;
-  title?: string;
+  title?: React.ReactNode;
   titleSize?: 'md' | 'xl';
   children?: React.ReactNode;
   className?: string;
