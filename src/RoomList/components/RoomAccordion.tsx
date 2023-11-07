@@ -14,7 +14,6 @@ interface RoomAccordionProps {
 const RoomAccordion = ({ room }: RoomAccordionProps) => {
   const { routine, id } = room;
   const moveTo = useMoveRoute();
-
   const [hoverRef, hovered] = useHover<HTMLDivElement>();
 
   return (

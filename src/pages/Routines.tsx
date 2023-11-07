@@ -1,11 +1,8 @@
 import { myJoinRoom } from '@/RoomList/mocks/myJoinRoom';
-import { totalRooms } from '@/RoomList/mocks/rooms';
-import RoomCard from '@/RoomList/components/RoomCard';
-import RoomAccordion from '@/RoomList/components/RoomAccordion';
+import { RoomCard } from '@/RoomList';
 
 const Routines = () => {
   const { bugs, participateRooms } = myJoinRoom;
-  const { rooms } = totalRooms;
   return (
     <div className="flex h-full flex-col">
       <div className="h-full overflow-auto">
@@ -14,14 +11,6 @@ const Routines = () => {
             <RoomCard
               room={room}
               key={room.roomId}
-            />
-          ))}
-        </div>
-        <div className="flex flex-col gap-3 p-2">
-          {rooms.map((room) => (
-            <RoomAccordion
-              room={room}
-              key={room.id}
             />
           ))}
         </div>
