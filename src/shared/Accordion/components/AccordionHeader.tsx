@@ -24,7 +24,7 @@ const AccordionHeader = ({
   return (
     <motion.div
       className={twMerge(
-        'flex justify-between items-center ' + `${headerStyle} `,
+        'flex justify-between items-center ' + `${headerStyle}`,
         className
       )}
     >

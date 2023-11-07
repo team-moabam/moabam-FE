@@ -21,7 +21,7 @@ const AccordionBody = ({ children, className = '' }: AccordionBodyProps) => {
           animate={{ height: 'auto', opacity: 1 }}
           exit={{ height: 0, opacity: 0 }}
           transition={{ type: 'spring', duration: 0.8, bounce: 0 }}
-          className={twMerge('box-border h-auto ' + `${bodyStyle} `, className)}
+          className={twMerge('box-border h-auto ' + `${bodyStyle}`, className)}
         >
           <div>{children}</div>
         </motion.div>

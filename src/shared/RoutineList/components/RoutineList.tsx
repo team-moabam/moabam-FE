@@ -7,7 +7,7 @@ interface RoutineListProps {
 
 const RoutineList = ({ children, className = '' }: RoutineListProps) => {
   return (
-    <div className={twMerge('flex flex-col gap-4 ', className)}>{children}</div>
+    <div className={twMerge('flex flex-col gap-4', className)}>{children}</div>
   );
 };
 

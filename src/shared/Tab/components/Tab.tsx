@@ -32,7 +32,7 @@ const Tab = ({
   return (
     <div className="flex h-full flex-col">
       {currentThumnail && (
-        <div className={twMerge('overflow-y-auto ', thumnailStyle)}>
+        <div className={twMerge('overflow-y-auto', thumnailStyle)}>
           {currentThumnail}
         </div>
       )}
@@ -42,7 +42,7 @@ const Tab = ({
         currentTabIndex={currentTabIndex}
         setCurrentTabIndex={setCurrentTabIndex}
       />
-      <div className={twMerge('overflow-y-auto ', itemStyle)}>{currentTab}</div>
+      <div className={twMerge('overflow-y-auto', itemStyle)}>{currentTab}</div>
     </div>
   );
 };

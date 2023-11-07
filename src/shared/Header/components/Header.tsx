@@ -22,7 +22,7 @@ const Header = ({
   return (
     <div
       className={twMerge(
-        'flex-shrink-0 dark:text-white flex h-16 w-full items-center justify-between px-2 font-IMHyemin-bold ',
+        'flex-shrink-0 dark:text-white flex h-16 w-full items-center justify-between px-2 font-IMHyemin-bold',
         className
       )}
     >
