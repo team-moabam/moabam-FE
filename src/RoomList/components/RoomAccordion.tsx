@@ -45,6 +45,7 @@ const RoomAccordion = ({ room }: RoomAccordionProps) => {
       >
         <div
           className="cursor-pointer py-3"
+          onClick={() => moveTo('roomDetail', { roomId: id })}
           ref={hoverTargetElement}
         >
           <RoomSummary {...room} />
