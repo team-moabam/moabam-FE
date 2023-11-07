@@ -1,4 +1,5 @@
 import React from 'react';
+import { twMerge } from 'tailwind-merge';
 import { clsx } from 'clsx';
 import { motion } from 'framer-motion';
 import useAccordion from '../hooks/useAccordion';
@@ -14,7 +15,7 @@ export interface AccordionHeaderProps {
 const AccordionHeader = ({
   children,
   buttonColored = false,
-  className
+  className = ''
 }: AccordionHeaderProps) => {
   const { isOpen, toggleOpen } = useAccordion();
   const { headerStyle, buttonColored: headerButtonColored } =
@@ -22,11 +23,10 @@ const AccordionHeader = ({
 
   return (
     <motion.div
-      className={
-        'flex justify-between items-center ' +
-        `${headerStyle} ` +
-        `${className ? className : ''}`
-      }
+      className={twMerge(
+        'flex justify-between items-center ' + `${headerStyle}`,
+        className
+      )}
     >
       <div>{children}</div>
       <div

@@ -1,4 +1,4 @@
-import { AiOutlineLock } from 'react-icons/ai';
+import { AiOutlineLock, AiFillNotification } from 'react-icons/ai';
 import { BsMouse } from 'react-icons/bs';
 import {
   BiBugAlt,
@@ -41,6 +41,7 @@ import { TbListDetails, TbConfetti } from 'react-icons/tb';
 import { LuAlarmClock } from 'react-icons/lu';
 
 export const iconMap = {
+  AiFillNotification,
   AiOutlineLock,
   BsMouse,
   BiBugAlt,

@@ -4,11 +4,13 @@ import { AccordionGroupContext } from '../hooks/useAccordionGroup';
 interface AccordionGroupProps {
   headerStyle?: string;
   bodyStyle?: string;
+  containerStyle?: string;
   buttonColored?: boolean;
   children: React.ReactNode;
 }
 
 const AccordionGroup = ({
+  containerStyle = '',
   headerStyle = '',
   bodyStyle = '',
   buttonColored = false,
@@ -16,7 +18,7 @@ const AccordionGroup = ({
 }: AccordionGroupProps) => {
   return (
     <AccordionGroupContext.Provider
-      value={{ headerStyle, bodyStyle, buttonColored }}
+      value={{ containerStyle, headerStyle, bodyStyle, buttonColored }}
     >
       {children}
     </AccordionGroupContext.Provider>

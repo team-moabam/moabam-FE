@@ -3,12 +3,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  * {
-    font-family: "IM_Hyemin-Regular", sans-serif;
-  }
-}
-
 @font-face {
   font-family: 'IM_Hyemin-Bold';
   src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2106@1.1/IM_Hyemin-Bold.woff2')
@@ -34,4 +28,8 @@
 body {
   width: 100vw;
   height: 100vh;
+}
+
+.app-container {
+  @apply absolute inset-x-0 m-auto h-screen w-full max-w-md;
 }

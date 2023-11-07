@@ -41,10 +41,10 @@ export default {
             ring: '#ffc588'
           }
         },
+        bronze: '#854d0e',
         disabled: '#93a3af',
-        info: '#F9BD7D',
         confirm: '#10B981',
-        bronze: '#854d0e'
+        info: '#F9BD7D'
       },
       fontFamily: {
         'IMHyemin-bold': ['IM_Hyemin-Bold'],
@@ -52,6 +52,22 @@ export default {
       },
       boxShadow: {
         nav: '0px -1px 4px 0px rgba(0, 0, 0, 0.25)'
+      },
+      borderWidth: {
+        DEFAULT: '1px',
+        0: '0',
+        1: '1px',
+        2: '2px',
+        3: '3px',
+        4: '4px',
+        5: '5px',
+        6: '6px',
+        7: '7px',
+        8: '8px'
+      },
+      zIndex: {
+        bottomSheet: '100',
+        toast: '110'
       }
     }
   }

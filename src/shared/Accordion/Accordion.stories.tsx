@@ -137,6 +137,7 @@ export const Group: Story = {
         <AccordionGroup
           headerStyle="relative z-10 rounded-2xl border bg-light-main p-4 shadow-md"
           bodyStyle="relative top-[-20px] z-0 rounded-2xl border shadow"
+          containerStyle="border"
           buttonColored
         >
           <Accordion>
