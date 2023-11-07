@@ -1,15 +1,13 @@
-import React from 'react';
+import { twMerge } from 'tailwind-merge';
 
 interface RoutineListProps {
   children: React.ReactNode;
   className?: string;
 }
 
-const RoutineList = ({ children, className }: RoutineListProps) => {
+const RoutineList = ({ children, className = '' }: RoutineListProps) => {
   return (
-    <div className={'flex flex-col gap-4 ' + `${className ? className : ''}`}>
-      {children}
-    </div>
+    <div className={twMerge('flex flex-col gap-4 ', className)}>{children}</div>
   );
 };
 

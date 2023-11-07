@@ -1,4 +1,5 @@
 import { forwardRef } from 'react';
+import { twMerge } from 'tailwind-merge';
 
 export interface InputProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
@@ -9,7 +10,8 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
   ({ size = 'base', className, ...props }, ref) => {
     return (
       <input
-        className={`
+        className={twMerge(
+          `
           w-full
           rounded-lg
           border
@@ -23,9 +25,10 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
           focus:ring-light-point
           dark:focus:border-dark-point
           dark:focus:ring-dark-point
-          ${className}
           ${sizeVariants[size]}
-          `}
+          `,
+          className
+        )}
         ref={ref}
         {...props}
       />

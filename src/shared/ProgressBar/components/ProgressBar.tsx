@@ -1,3 +1,5 @@
+import { twMerge } from 'tailwind-merge';
+
 interface ProgressBarProps extends React.HTMLAttributes<HTMLDivElement> {
   progress: number;
 }
@@ -8,7 +10,7 @@ const ProgressBar = ({
   ...props
 }: ProgressBarProps) => (
   <div
-    className={`h-2.5 w-full overflow-hidden bg-lightGray ${className}`}
+    className={twMerge('h-2.5 w-full overflow-hidden bg-lightGray', className)}
     {...props}
   >
     <div

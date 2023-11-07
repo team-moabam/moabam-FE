@@ -1,5 +1,5 @@
 import { forwardRef } from 'react';
-import clsx from 'clsx';
+import { twMerge } from 'tailwind-merge';
 import Input from './Input';
 import { InputProps } from './Input';
 
@@ -12,13 +12,13 @@ interface InnerTextInputProps extends InputProps {
 const InnerTextInput = forwardRef<HTMLInputElement, InnerTextInputProps>(
   ({ text, wrapperStyle, textStyle, ...props }, ref) => {
     return (
-      <div className={clsx('relative', wrapperStyle)}>
+      <div className={twMerge('relative', wrapperStyle)}>
         <Input
           ref={ref}
           {...props}
         />
         <div
-          className={clsx(
+          className={twMerge(
             'absolute inset-y-0 right-5 grid place-content-center text-xs text-gray-400',
             textStyle
           )}
