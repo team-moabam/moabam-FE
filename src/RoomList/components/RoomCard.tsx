@@ -1,15 +1,18 @@
 import { clsx } from 'clsx';
 import { useMoveRoute } from '@/core/hooks';
+import { ParticipateRoom } from '@/RoomList/mocks/types/myJoinRoom';
 import CertifyButton from './CertifyButton';
 import BugInfo from './BugInfo';
 import { RoomSummary } from '@/RoomSummary';
-import { ParticipateRoom } from '@/core/types/myJoinRoom';
+
 interface RoomCardProps {
   room: ParticipateRoom;
 }
+
 const RoomCard = ({ room }: RoomCardProps) => {
   const moveTo = useMoveRoute();
   const { roomId, isCertifiedToday, bug } = room;
+
   return (
     <div
       onClick={() => moveTo('roomDetail', { roomId })}
