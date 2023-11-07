@@ -45,6 +45,26 @@ export const totalRooms: {
       ]
     },
     {
+      id: 15,
+      title: '방이름이엄청나게긴루틴방이랍니다하하하하',
+      managerNickname: 'long_Frong',
+      level: 5,
+      type: 'MORNING',
+      certifyTime: 9,
+      currentUserCount: 4,
+      maxUserCount: 10,
+      routine: [
+        {
+          routineId: 5,
+          content: 'PR 올리기'
+        },
+        {
+          routineId: 9,
+          content: '코드 리뷰하기'
+        }
+      ]
+    },
+    {
       id: 12,
       title: '영명이의 루틴방',
       managerNickname: 'ymkim',

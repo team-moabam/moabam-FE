@@ -22,6 +22,16 @@ export const myJoinRoom: MyJoinRoom = {
       maxUserCount: 9,
       isCertifiedToday: false,
       bug: 0
+    },
+    {
+      roomId: 15,
+      title: '방이름이엄청나게긴루틴방이랍니다하하하하',
+      type: 'MORNING',
+      certifyTime: 9,
+      currentUserCount: 4,
+      maxUserCount: 10,
+      isCertifiedToday: true,
+      bug: 3
     }
   ]
 };

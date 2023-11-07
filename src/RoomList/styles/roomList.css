@@ -1,12 +1,6 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-@layer components {
-  .room-card-ring {
-    @apply ring-light-point ring-opacity-[0.5] duration-200 dark:ring-dark-point dark:ring-opacity-[0.5];
-  }
-  .room-card-bg {
-    @apply bg-light-sub shadow dark:bg-dark-sub dark:shadow-dark-main;
-  }
+.room-card-ring {
+  @apply ring-light-point ring-opacity-[0.5] duration-200 dark:ring-dark-point dark:ring-opacity-[0.5];
+}
+.room-card-bg {
+  @apply bg-light-sub shadow dark:bg-dark-sub dark:shadow-dark-main;
 }

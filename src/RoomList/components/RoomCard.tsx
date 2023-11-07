@@ -24,7 +24,7 @@ const RoomCard = ({ room }: RoomCardProps) => {
       )}
     >
       <RoomSummary {...room} />
-      <div className="flex flex-col justify-between">
+      <div className="flex shrink-0 flex-col justify-between">
         <BugInfo bug={bug} />
         <CertifyButton
           roomId={roomId}

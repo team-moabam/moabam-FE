@@ -8,7 +8,7 @@ interface IconTextProps {
 
 const IconText = ({ icon, text }: IconTextProps) => {
   return (
-    <div className="flex items-center">
+    <div className="mr-4 flex items-center">
       <Icon
         icon={icon}
         className="mr-1 text-base"
