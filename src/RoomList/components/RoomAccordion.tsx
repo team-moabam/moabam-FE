@@ -1,10 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react';
 import { clsx } from 'clsx';
 import { useMoveRoute } from '@/core/hooks';
+import useHover from '@/RoomList/hooks/useHover';
+import { Room } from '@/RoomList/mocks/types/rooms';
 import { Accordion, AccordionHeader, AccordionBody } from '@/shared/Accordion';
 import { RoomSummary } from '@/RoomSummary';
 import { RoutineItem, RoutineList } from '@/shared/RoutineList';
-import { Room } from '../mocks/types/rooms';
 
 interface RoomAccordionProps {
   room: Room;
@@ -14,24 +14,7 @@ const RoomAccordion = ({ room }: RoomAccordionProps) => {
   const { routine, id } = room;
   const moveTo = useMoveRoute();
 
-  const [hovered, setHovered] = useState(false);
-  const hoverTargetElement = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handleMouseEnter = () => setHovered(true);
-    const handleMouseLeave = () => setHovered(false);
-    const target = hoverTargetElement.current;
-    if (target) {
-      target.addEventListener('mouseenter', handleMouseEnter);
-      target.addEventListener('mouseleave', handleMouseLeave);
-    }
-    return () => {
-      if (target) {
-        target.removeEventListener('mouseenter', handleMouseEnter);
-        target.removeEventListener('mouseleave', handleMouseLeave);
-      }
-    };
-  }, []);
+  const [hoverRef, hovered] = useHover<HTMLDivElement>();
 
   return (
     <Accordion className="w-full">
@@ -46,7 +29,7 @@ const RoomAccordion = ({ room }: RoomAccordionProps) => {
         <div
           className="cursor-pointer py-3"
           onClick={() => moveTo('roomDetail', { roomId: id })}
-          ref={hoverTargetElement}
+          ref={hoverRef}
         >
           <RoomSummary {...room} />
         </div>
