@@ -1,5 +1,6 @@
 import { useRef, PropsWithChildren, forwardRef } from 'react';
 import clsx from 'clsx';
+import { twMerge } from 'tailwind-merge';
 import { createPortal } from 'react-dom';
 import { AnimatePresence, motion, HTMLMotionProps } from 'framer-motion';
 import useTheme from '@/core/hooks/useTheme';
@@ -40,7 +41,7 @@ const BottomSheet = forwardRef<
           onClick={handleClose}
         >
           <motion.section
-            className={clsx(
+            className={twMerge(
               'absolute bottom-0 max-h-full w-full overflow-auto rounded-t-2xl bg-white p-2 text-black shadow-inner drop-shadow-2xl dark:bg-dark-main dark:text-white',
               className
             )}
