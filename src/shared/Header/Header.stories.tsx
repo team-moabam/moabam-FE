@@ -66,7 +66,11 @@ export const TitleSize: Story = {
       <div className="dark h-40 w-full border bg-dark-main">
         <Header
           prev="/"
-          title="2023년 10월 31일"
+          title={
+            <div className="flex items-center gap-3">
+              2023년 10월 31일 <Icon icon="BiBugAlt" />
+            </div>
+          }
           titleSize="md"
         />
         <div className="m-10">page</div>
