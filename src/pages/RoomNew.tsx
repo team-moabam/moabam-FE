@@ -40,8 +40,6 @@ const RoomNew = () => {
   const { mutate: postRoom } = useMutation({
     mutationFn: roomAPI.postRoom
   });
-  // TODO: API 요청하는 코드를 추후에 작성해야 합니다.
-  // TODO: certifyTime 필드는 % 24 로 계산한 뒤에 보내야 합니다.
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     postRoom(
@@ -55,12 +53,46 @@ const RoomNew = () => {
       },
       {
         onSuccess: (data) => {
-          console.log(data);
+          // TODO: 성공 Toast 메시지를 보여줘야 해요.
+          // TODO: toast({ message: '방이 생성되었습니다.', type: 'success' });
+          console.log(data.message);
+
+          // TODO: 방 상세 페이지로 redirect 해야 해요.
+          console.log('TODO: 방 상세 페이지로 redirect');
         },
         onError: (error) => {
-          console.error(error);
-          // if (axios.isAxiosError(error)) {
-          // }
+          if (!axios.isAxiosError(error)) {
+            return;
+          }
+
+          // TODO: 에러 Toast 메시지를 보여줘야 해요.
+          // TODO: toast({ message: '서버에서 날아온 에러 메시지.', type: 'error' });
+          console.log(error.response?.data?.message);
+
+          if (error.response?.data?.validation) {
+            const { setError } = form;
+
+            const {
+              title,
+              password,
+              type,
+              routine,
+              certifyTime,
+              maxUserCount
+            } = error.response.data.validation;
+
+            setError('title', { message: title });
+            setError('password', { message: password });
+            setError('type', { message: type });
+            setError('routines', { message: routine });
+            setError('certifyTime', { message: certifyTime });
+            setError('userCount', { message: maxUserCount });
+          }
+
+          if (error.response?.status === 401) {
+            // TODO: 로그인 페이지로 redirect 해야 해요.
+            console.log('TODO: 로그인 페이지로 redirect');
+          }
         }
       }
     );
