@@ -1,4 +1,4 @@
-import { MyJoinRoom } from '@/core/types/myJoinRoom';
+import type { MyJoinRoom } from './types/myJoinRoom';
 
 export const myJoinRoom: MyJoinRoom = {
   bugs: 5,
