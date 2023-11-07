@@ -1,6 +1,7 @@
 import { useContext, createContext } from 'react';
 
 export const AccordionGroupContext = createContext({
+  containerStyle: '',
   headerStyle: '',
   bodyStyle: '',
   buttonColored: false
