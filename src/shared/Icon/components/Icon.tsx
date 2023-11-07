@@ -1,4 +1,5 @@
 import { IconBaseProps } from 'react-icons';
+import { twMerge } from 'tailwind-merge';
 import { iconMap } from '../constants/icons';
 
 const sizeMap = {
@@ -22,12 +23,12 @@ interface IconProps extends Omit<IconBaseProps, 'size'> {
   size?: keyof typeof sizeMap;
 }
 
-const Icon = ({ icon, size = 'md', className, ...props }: IconProps) => {
+const Icon = ({ icon, size = 'md', className = '', ...props }: IconProps) => {
   const SelectedIcon = iconMap[icon];
 
   return (
     <SelectedIcon
-      className={`${sizeMap[size]} ${className}`}
+      className={twMerge(sizeMap[size], className)}
       {...props}
     />
   );

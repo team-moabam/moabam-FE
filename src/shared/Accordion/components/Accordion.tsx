@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { twMerge } from 'tailwind-merge';
 import { AccordionContext } from '../hooks/useAccordion';
 import useAccordionGroup from '../hooks/useAccordionGroup';
 
@@ -14,9 +15,10 @@ const Accordion = ({ children, className = '' }: AccordionProps) => {
 
   return (
     <div
-      className={
-        'w-full overflow-hidden p-1 ' + `${containerStyle} ` + className
-      }
+      className={twMerge(
+        'w-full overflow-hidden p-1 ' + `${containerStyle}`,
+        className
+      )}
     >
       <AccordionContext.Provider value={{ isOpen, toggleOpen }}>
         {children}

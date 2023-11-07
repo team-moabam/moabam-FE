@@ -1,4 +1,5 @@
 import React from 'react';
+import { twMerge } from 'tailwind-merge';
 import { clsx } from 'clsx';
 import { motion } from 'framer-motion';
 import useAccordion from '../hooks/useAccordion';
@@ -22,9 +23,10 @@ const AccordionHeader = ({
 
   return (
     <motion.div
-      className={
-        'flex justify-between items-center ' + `${headerStyle} ` + className
-      }
+      className={twMerge(
+        'flex justify-between items-center ' + `${headerStyle}`,
+        className
+      )}
     >
       <div>{children}</div>
       <div
