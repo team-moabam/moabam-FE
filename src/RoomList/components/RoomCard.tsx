@@ -4,6 +4,7 @@ import { ParticipateRoom } from '@/RoomList/mocks/types/myJoinRoom';
 import CertifyButton from './CertifyButton';
 import BugInfo from './BugInfo';
 import { RoomSummary } from '@/RoomSummary';
+import '@/RoomList/styles/roomList.css';
 
 interface RoomCardProps {
   room: ParticipateRoom;
@@ -17,10 +18,9 @@ const RoomCard = ({ room }: RoomCardProps) => {
     <div
       onClick={() => moveTo('roomDetail', { roomId })}
       className={clsx(
-        'flex justify-between overflow-hidden',
+        'flex justify-between overflow-hidden p-3',
         'cursor-pointer hover:ring-2',
-        'rounded-2xl bg-light-sub p-3 shadow dark:bg-dark-sub',
-        'ring-light-point ring-opacity-[0.5] duration-200 dark:ring-dark-point dark:ring-opacity-[0.5]'
+        'room-card-bg room-card-ring rounded-2xl'
       )}
     >
       <RoomSummary {...room} />

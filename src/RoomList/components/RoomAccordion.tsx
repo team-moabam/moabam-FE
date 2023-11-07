@@ -5,6 +5,7 @@ import { Room } from '@/RoomList/mocks/types/rooms';
 import { Accordion, AccordionHeader, AccordionBody } from '@/shared/Accordion';
 import { RoomSummary } from '@/RoomSummary';
 import { RoutineItem, RoutineList } from '@/shared/RoutineList';
+import '@/RoomList/styles/roomList.css';
 
 interface RoomAccordionProps {
   room: Room;
@@ -21,9 +22,10 @@ const RoomAccordion = ({ room }: RoomAccordionProps) => {
       <AccordionHeader
         buttonColored
         className={clsx(
-          'relative z-10 rounded-2xl bg-light-sub px-3 shadow dark:bg-dark-sub',
-          'ring-light-point ring-opacity-[0.5] duration-200 dark:ring-dark-point dark:ring-opacity-[0.5]',
-          { 'ring-2': hovered }
+          'room-card-bg room-card-ring relative z-10 rounded-2xl px-3',
+          {
+            'ring-2': hovered
+          }
         )}
       >
         <div
@@ -34,7 +36,7 @@ const RoomAccordion = ({ room }: RoomAccordionProps) => {
           <RoomSummary {...room} />
         </div>
       </AccordionHeader>
-      <AccordionBody className="relative top-[-0.6rem] rounded-b-2xl bg-light-sub shadow dark:bg-dark-sub">
+      <AccordionBody className="room-card-bg relative top-[-0.6rem] rounded-b-2xl">
         <div className="p-4 pt-5">
           <RoutineList>
             {routine.map(({ routineId, content }) => (
