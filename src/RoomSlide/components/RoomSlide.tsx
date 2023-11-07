@@ -13,7 +13,7 @@ const RoomSlide = ({ type, rooms, bugs }: RoomSlideProps) => {
   const { TITLE, START, END, ABOUT_BUG } = DAY_TYPE[type];
 
   return (
-    <div>
+    <div className="h-full p-8">
       <div className="mb-5 flex items-end gap-3">
         <div className="font-IMHyemin-bold text-xl">{TITLE}</div>
         <div className="text-sm text-dark-gray">
