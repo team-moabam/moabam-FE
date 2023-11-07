@@ -1,20 +1,21 @@
 import { useDebounce } from '@/core/hooks';
 import { selectBirdImgType } from '../..';
 import BirdItem from '../BirdItem';
-import { birdItems, BirdItemType } from '../../DUMMY_DATA';
+import { birdItems } from '../../DUMMY_DATA';
+import { BirdItemType } from '../../type';
 
 interface BirdItemsProps {
   itemType: 'MORNING' | 'NIGHT';
   selectBirdImg: selectBirdImgType;
   setSelectBirdImg: React.Dispatch<React.SetStateAction<selectBirdImgType>>;
-  modalOpen: (birdItem: BirdItemType) => void;
+  handleOpenModal: (birdItem: BirdItemType) => void;
 }
 
 const BirdItems = ({
   itemType,
   selectBirdImg,
   setSelectBirdImg,
-  modalOpen
+  handleOpenModal
 }: BirdItemsProps) => {
   // 여기서 퀴리로 받을듯
   const { purchasedItems, notPurchasedItems } = birdItems[itemType];
@@ -25,34 +26,30 @@ const BirdItems = ({
 
   return (
     <div className="grid grid-cols-3 gap-3 p-3">
-      {purchasedItems.map(({ id, name, image }) => (
+      {purchasedItems.map((birdItem) => (
         <div
-          key={id}
+          key={birdItem.id}
           className="mb-6"
           onClick={() => {
-            setSelectBirdImg({ ...selectBirdImg, [itemType]: image });
-            fetchSelectItem(id);
+            setSelectBirdImg({ ...selectBirdImg, [itemType]: birdItem.image });
+            fetchSelectItem(birdItem.id);
           }}
         >
           <BirdItem
-            isLock={false}
-            name={name}
-            image={image}
-            isSelect={selectBirdImg[itemType] === image}
+            isSelect={selectBirdImg[itemType] === birdItem.image}
+            birdItem={birdItem}
           />
         </div>
       ))}
       {notPurchasedItems.map((birdItem) => (
         <div
           key={birdItem.id}
-          onClick={() => modalOpen(birdItem)}
+          onClick={() => handleOpenModal(birdItem)}
           className="mb-3"
         >
           <BirdItem
             isLock={true}
-            name={birdItem.name}
-            image={birdItem.image}
-            isSelect={selectBirdImg[itemType] === birdItem.image}
+            birdItem={birdItem}
           />
         </div>
       ))}

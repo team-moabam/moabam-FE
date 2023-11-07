@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import { BiSolidBugAlt } from 'react-icons/bi';
-import { bugArray, wallet, bugColor, BirdItemType } from './DUMMY_DATA';
+import { bugArray, bugColor } from './DUMMY_DATA';
+import { BirdItemType } from './type';
 import BirdItems from './components/BirdItems';
 import { Header } from '@/shared/Header';
 import { Tab, TabItem, TabThumbnail } from '@/shared/Tab';
 import { BottomSheet, useBottomSheet } from '@/shared/BottomSheet';
+import PurchaseBird from './components/PurchaseBird';
 
 export interface selectBirdImgType {
   MORNING: string;
@@ -12,8 +14,14 @@ export interface selectBirdImgType {
 }
 
 const MyBird = () => {
-  const { bottomSheetProps, open } = useBottomSheet();
-  const [modalBird, setModalBird] = useState<BirdItemType>();
+  const userLevel = 3; // 유저레벨 및 유저가 지금 어떤 새 장착했는지 정보 필요함
+  const [wallet] = useState({
+    morningBug: 4,
+    nightBug: 300,
+    goldenBug: 100
+  });
+  const { bottomSheetProps, open, close } = useBottomSheet();
+  const [productBird, setProductBird] = useState<BirdItemType>();
   const [selectBirdImg, setSelectBirdImg] = useState<selectBirdImgType>({
     MORNING:
       'https://pbs.twimg.com/profile_images/1568998644673843202/CZgQSNk8_400x400.jpg',
@@ -21,17 +29,25 @@ const MyBird = () => {
       'https://pbs.twimg.com/profile_images/1568998644673843202/CZgQSNk8_400x400.jpg'
   });
 
-  const handleModal = (birdItem: BirdItemType) => {
-    console.log(birdItem);
-    setModalBird(modalBird);
+  const handleOpenModal = (birdItem: BirdItemType) => {
+    setProductBird(birdItem);
     open();
+  };
+
+  const purchaseBird = (
+    id: string,
+    image: string,
+    type: string,
+    purchaseType: string | undefined
+  ) => {
+    setSelectBirdImg({ ...selectBirdImg, [type]: image });
+    close();
+    console.log(id, purchaseType);
+    alert(id + '상품 구매 요청! (지갑에서 차감되는건 다시 받아올 듯 )');
   };
 
   return (
     <div className="relative h-screen">
-      <div className="absolute z-50 h-full w-full bg-[rgba(1,1,1,0.5)]">
-        <div className="min-h-[20px] w-full bg-white "></div>
-      </div>
       <Header
         prev="/"
         className="absolute z-10 text-white"
@@ -51,12 +67,12 @@ const MyBird = () => {
       <Tab itemStyle="flex-1">
         {myBirdTabOption.thumbnail.map(({ type, bgImage }) => (
           <TabThumbnail key={type}>
-            <div className="relative mb-5 aspect-video w-full overflow-hidden bg-slate-500">
+            <div className="relative mb-5 aspect-video w-full overflow-hidden">
               <img
                 src={bgImage}
-                className="absolute w-full object-cover"
+                className="absolute  w-full object-cover"
               />
-              <div className="absolute left-1/3 h-48 w-48 bg-red-100">
+              <div className="absolute bottom-[15%] left-[15%] h-20 w-20">
                 <img src={selectBirdImg[type]} />
               </div>
             </div>
@@ -71,40 +87,26 @@ const MyBird = () => {
               itemType={type}
               selectBirdImg={selectBirdImg}
               setSelectBirdImg={setSelectBirdImg}
-              modalOpen={handleModal}
+              handleOpenModal={handleOpenModal}
             />
           </TabItem>
         ))}
       </Tab>
       <BottomSheet {...bottomSheetProps}>
-        {modalBird && (
-          <div className="p-3">
-            <h1 className="my-3 text-xl">
-              어떻게 <br /> {modalBird.name}를 <br /> 구매하시겠어요?
-            </h1>
-          </div>
+        {productBird && (
+          <PurchaseBird
+            purchaseBird={purchaseBird}
+            productBird={productBird}
+            userLevel={userLevel}
+            wallet={wallet}
+          />
         )}
-        <div className="p-3">
-          <h1 className="my-3 text-xl">
-            어떻게 <br /> 1를 <br /> 구매하시겠어요?
-          </h1>
-        </div>
       </BottomSheet>
     </div>
   );
 };
 
 export default MyBird;
-// export interface BirdItemType {
-//   id: string;
-//   type: string;
-//   category: string;
-//   name: string;
-//   image: string;
-//   level: number;
-//   bugPrice: number;
-//   goldenBugPrice: number;
-// }
 
 interface MyBirdTabOption {
   thumbnail: {
@@ -122,7 +124,7 @@ const myBirdTabOption: MyBirdTabOption = {
     {
       type: 'MORNING',
       bgImage:
-        'https://i.pinimg.com/564x/1f/82/ee/1f82eeadee88c0acbc8c5364538824ed.jpg'
+        'https://i.pinimg.com/564x/36/da/67/36da67003994f6c6008c4915615f43be.jpg'
     },
     {
       type: 'NIGHT',
