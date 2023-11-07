@@ -20,10 +20,7 @@ const App = () => {
         <Outlet />
       </div>
 
-      {navBarRequired && (
-        // TODO: 임시 네브바, 공통 컴포넌트로 교체해야 함
-        <Navbar currentPath={`/${path}`} />
-      )}
+      {navBarRequired && <Navbar currentPath={`/${path}`} />}
     </div>
   );
 };
