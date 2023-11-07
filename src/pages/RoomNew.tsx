@@ -37,7 +37,7 @@ const RoomNew = () => {
     resolver: zodResolver(formSchema)
   });
 
-  const { mutate: postRoom } = useMutation({
+  const { mutate: postRoom, isPending } = useMutation({
     mutationFn: roomAPI.postRoom
   });
 
@@ -130,7 +130,10 @@ const RoomNew = () => {
             </Funnel.Step>
           </Funnel>
         </main>
-        <Navbar {...funnel} />
+        <Navbar
+          {...funnel}
+          isPending={isPending}
+        />
       </FormProvider>
     </form>
   );
