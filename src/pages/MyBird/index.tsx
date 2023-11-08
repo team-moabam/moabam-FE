@@ -70,7 +70,7 @@ const MyBird = () => {
             <div className="relative mb-5 aspect-video w-full overflow-hidden">
               <img
                 src={bgImage}
-                className="absolute  w-full object-cover"
+                className="absolute w-full object-cover "
               />
               <div className="absolute bottom-[15%] left-[15%] h-20 w-20">
                 <img src={selectBirdImg[type]} />
@@ -123,13 +123,11 @@ const myBirdTabOption: MyBirdTabOption = {
   thumbnail: [
     {
       type: 'MORNING',
-      bgImage:
-        'https://i.pinimg.com/564x/36/da/67/36da67003994f6c6008c4915615f43be.jpg'
+      bgImage: 'public/morningShop.png'
     },
     {
       type: 'NIGHT',
-      bgImage:
-        'https://i.pinimg.com/564x/1f/82/ee/1f82eeadee88c0acbc8c5364538824ed.jpg'
+      bgImage: 'public/nightShop.png'
     }
   ],
   item: [
