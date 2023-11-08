@@ -4,6 +4,7 @@ import RoomDetail from '@/pages/RoomDetail';
 import RoutinesPage from '@/pages/RoutinesPage';
 import RoomNew from '@/pages/RoomNew';
 import RoomLog from '@/pages/RoomLog';
+import RoomSetting from '@/pages/RoomSetting';
 import Search from '@/pages/Search';
 
 interface Route {
@@ -109,7 +110,7 @@ const routes: Routes = {
     path: 'room/:roomId/setting',
     authRequired: true,
     navBarRequired: false,
-    element: <div>roomSetting</div>
+    element: <RoomSetting />
   },
   mybird: {
     path: 'mybird',
