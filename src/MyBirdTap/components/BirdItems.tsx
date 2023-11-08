@@ -1,8 +1,8 @@
 import { useDebounce } from '@/core/hooks';
-import { selectBirdImgType } from '../..';
-import BirdItem from '../BirdItem';
-import { birdItems } from '../../DUMMY_DATA';
-import { BirdItemType } from '../../type';
+import { birdItems } from '../mocks/birdItems';
+import BirdItem from './BirdItem';
+import { selectBirdImgType } from '@/pages/MyBirdPage';
+import { BirdItemType } from '../mocks/types/birdItem';
 
 interface BirdItemsProps {
   itemType: 'MORNING' | 'NIGHT';

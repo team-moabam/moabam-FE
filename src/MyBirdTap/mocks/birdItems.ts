@@ -1,4 +1,4 @@
-import { BirdItemsType, Wallet } from './type';
+import { BirdItemsType } from './types/birdItems';
 
 export const birdItems: BirdItemsType = {
   MORNING: {
@@ -121,26 +121,4 @@ export const birdItems: BirdItemsType = {
       }
     ]
   }
-};
-
-export const bugArray: ('morningBug' | 'nightBug' | 'goldenBug')[] = [
-  'morningBug',
-  'nightBug',
-  'goldenBug'
-];
-
-export const wallet: Wallet = {
-  morningBug: 4,
-  nightBug: 300,
-  goldenBug: 100
-};
-
-interface BugColor {
-  [key: string]: string;
-}
-
-export const bugColor: BugColor = {
-  morningBug: 'text-light-point',
-  nightBug: 'text-dark-point',
-  goldenBug: 'text-warning'
 };

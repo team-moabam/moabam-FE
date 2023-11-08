@@ -1,19 +1,15 @@
 import { useState } from 'react';
 import { BiSolidBugAlt } from 'react-icons/bi';
-import { bugArray, bugColor } from './DUMMY_DATA';
-import { BirdItemType } from './type';
-import BirdItems from './components/BirdItems';
+import { BirdItemType } from '@/MyBirdTap/mocks/types/birdItem';
+import { bugColor } from '@/MyBirdTap/mocks/bugColor';
+import { bugArray } from '@/MyBirdTap/mocks/bugArray';
+import { useBottomSheet, BottomSheet } from '@/shared/BottomSheet';
 import { Header } from '@/shared/Header';
 import { Tab, TabItem, TabThumbnail } from '@/shared/Tab';
-import { BottomSheet, useBottomSheet } from '@/shared/BottomSheet';
-import PurchaseBird from './components/PurchaseBird';
+import BirdItems from '@/MyBirdTap/components/BirdItems';
+import PurchaseSheet from '@/MyBirdPurchaseSheet/components/PurchaseSheet';
 
-export interface selectBirdImgType {
-  MORNING: string;
-  NIGHT: string;
-}
-
-const MyBird = () => {
+const MyBirdPage = () => {
   const userLevel = 3; // 유저레벨 및 유저가 지금 어떤 새 장착했는지 정보 필요함
   const [wallet] = useState({
     morningBug: 4,
@@ -94,7 +90,7 @@ const MyBird = () => {
       </Tab>
       <BottomSheet {...bottomSheetProps}>
         {productBird && (
-          <PurchaseBird
+          <PurchaseSheet
             purchaseBird={purchaseBird}
             productBird={productBird}
             userLevel={userLevel}
@@ -106,7 +102,12 @@ const MyBird = () => {
   );
 };
 
-export default MyBird;
+export default MyBirdPage;
+
+export interface selectBirdImgType {
+  MORNING: string;
+  NIGHT: string;
+}
 
 interface MyBirdTabOption {
   thumbnail: {

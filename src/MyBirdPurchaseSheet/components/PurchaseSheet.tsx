@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { BiSolidBugAlt } from 'react-icons/bi';
-import { BirdItemType, Wallet } from '../../type';
+import { Wallet } from '@/MyBirdTap/mocks/types/wallet';
+import { BirdItemType } from '../../MyBirdTap/mocks/types/birdItem';
 
-interface PurchaseBirdProps {
+interface PurchaseSheetProps {
   productBird: BirdItemType;
   userLevel: number;
   wallet: Wallet;
@@ -14,12 +15,12 @@ interface PurchaseBirdProps {
   ) => void;
 }
 
-const PurchaseBird = ({
+const PurchaseSheet = ({
   productBird,
   userLevel,
   wallet,
   purchaseBird
-}: PurchaseBirdProps) => {
+}: PurchaseSheetProps) => {
   const [purchaseOption, setPurchaseOption] = useState<string>();
   const { bugPrice, goldenBugPrice, id, image, level, name, type } =
     productBird;
@@ -126,4 +127,4 @@ const PurchaseBird = ({
   );
 };
 
-export default PurchaseBird;
+export default PurchaseSheet;
