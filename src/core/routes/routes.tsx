@@ -5,6 +5,7 @@ import RoutinesPage from '@/pages/RoutinesPage';
 import RoomNew from '@/pages/RoomNew';
 import RoomLog from '@/pages/RoomLog';
 import Search from '@/pages/Search';
+import JoinPage from '@/pages/joinPage';
 
 interface Route {
   path: string;
@@ -49,7 +50,7 @@ const routes: Routes = {
     path: 'join',
     authRequired: false,
     navBarRequired: false,
-    element: <div>join</div>
+    element: <JoinPage />
   },
   routines: {
     path: 'routines',
