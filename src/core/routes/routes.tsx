@@ -1,9 +1,10 @@
 import React from 'react';
 import Room from '@/pages/Room';
 import RoomDetailPage from '@/pages/RoomDetailPage';
-import Routines from '@/pages/Routines';
-import RoomNew from '@/pages/RoomNew';
 import RoomLogPage from '@/pages/RoomLogPage';
+import RoutinesPage from '@/pages/RoutinesPage';
+import RoomNew from '@/pages/RoomNew';
+import Search from '@/pages/Search';
 
 interface Route {
   path: string;
@@ -54,13 +55,13 @@ const routes: Routes = {
     path: 'routines',
     authRequired: true,
     navBarRequired: true,
-    element: <Routines />
+    element: <RoutinesPage />
   },
   search: {
     path: 'search',
     authRequired: true,
     navBarRequired: true,
-    element: <div>search</div>
+    element: <Search />
   },
   myPage: {
     path: 'user',

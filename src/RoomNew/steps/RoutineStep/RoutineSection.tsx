@@ -84,6 +84,11 @@ const RoutineSection = () => {
             )}
           </li>
         ))}
+
+        {errors.routines && (
+          <p className={errorStyle}>{errors.routines?.message}</p>
+        )}
+
         <li className="flex flex-col items-center gap-3">
           <Icon
             className={iconButtonStyle}

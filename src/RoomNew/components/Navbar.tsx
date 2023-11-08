@@ -1,15 +1,22 @@
 import { useFormContext } from 'react-hook-form';
+import clsx from 'clsx';
 import { FunnelHook } from '@/shared/Funnel/hooks/useFunnel';
 import { Inputs } from '../constants/form';
+import { LoadingSpinner } from '@/shared/LoadingSpinner';
 import { steps } from '@/pages/RoomNew';
 
+interface NavbarProps extends FunnelHook<typeof steps> {
+  isPending: boolean;
+}
+
 const Navbar = ({
+  isPending,
   current,
   hasNext,
   hasPrev,
   toNext,
   toPrev
-}: FunnelHook<typeof steps>) => {
+}: NavbarProps) => {
   const { trigger } = useFormContext<Inputs>();
 
   // 다음 스텝으로 넘어가기 전 각 스텝에서 수행되어야 할 유효성 검사 필드를 정의합니다.
@@ -30,7 +37,20 @@ const Navbar = ({
       return;
     }
 
-    toNext();
+    // 다음 스텝으로 넘어가자마자 submit이 되는 현상 방지
+    setTimeout(toNext, 0);
+  };
+
+  const buttonContent = () => {
+    if (isPending) {
+      return <LoadingSpinner size="4xl" />;
+    }
+
+    if (!hasNext) {
+      return '방 만들기';
+    }
+
+    return '다음';
   };
 
   return (
@@ -46,11 +66,16 @@ const Navbar = ({
       )}
 
       <button
-        className="col-start-2 h-16 rounded-ee-xl bg-light-point text-white transition-all hover:bg-light-point-hover"
+        className={clsx(
+          'col-start-2 flex h-16 items-center justify-center',
+          'rounded-ee-xl bg-light-point text-white transition-all hover:bg-light-point-hover',
+          isPending && 'cursor-not-allowed'
+        )}
         type={hasNext ? 'button' : 'submit'}
+        disabled={isPending}
         onClick={handleToNext}
       >
-        {hasNext ? '다음' : '방 만들기'}
+        {buttonContent()}
       </button>
     </nav>
   );

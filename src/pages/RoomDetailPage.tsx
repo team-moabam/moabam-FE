@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 
 import { useQuery } from '@tanstack/react-query';
-import { roomAPI } from '@/core/api/functions/roomAPI';
+import roomAPI from '@/core/api/functions/roomAPI';
 
 import RoomInfo from '@/RoomDetail/components/RoomInfo';
 import RoomNotice from '@/RoomDetail/components/RoomNotice';

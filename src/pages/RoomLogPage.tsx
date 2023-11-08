@@ -7,7 +7,7 @@ const RoomLogPage = () => {
       <div className="dark:bg-dark-sub">
         <Header
           className="sticky  text-black"
-          prev="/"
+          prev="roomDetail"
           title="2023년 10월 8일"
         />
       </div>

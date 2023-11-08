@@ -1,10 +1,24 @@
 import {
+  AxiosError,
   AxiosInstance,
   AxiosResponse,
   AxiosRequestConfig,
   AxiosInterceptorManager,
   InternalAxiosRequestConfig
 } from 'axios';
+import '@tanstack/react-query';
+
+// Tanstack-Query 글로벌 에러 타입 설정
+declare module '@tanstack/react-query' {
+  interface Register {
+    defaultError: AxiosError<{
+      message?: string;
+      validation?: {
+        [key: string]: any;
+      };
+    }>;
+  }
+}
 
 // statusCode를 포함한 응답 타입
 export type ResponseWithStatusCode<T = any> = T & { statusCode: number };

@@ -1,11 +1,11 @@
 import examplePostHandlers from './examplePosts';
 import exampleCommentHandlers from './exampleComments';
-import roomHandlers from './room';
+import roomsHandlers from './rooms';
 
 const handlers = [
   ...examplePostHandlers,
   ...exampleCommentHandlers,
-  ...roomHandlers
+  ...roomsHandlers
 ];
 
 export default handlers;

@@ -1,11 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
+import { RouteNames } from '@/core/routes';
+import { useMoveRoute } from '@/core/hooks';
 import { Icon } from '@/shared/Icon';
 
 interface HeaderProps {
-  prev?: string;
+  prev?: RouteNames;
   title?: React.ReactNode;
   titleSize?: 'md' | 'xl';
   children?: React.ReactNode;
@@ -19,6 +20,8 @@ const Header = ({
   children,
   className = ''
 }: HeaderProps) => {
+  const moveTo = useMoveRoute();
+
   return (
     <div
       className={twMerge(
@@ -27,15 +30,15 @@ const Header = ({
       )}
     >
       {prev && (
-        <Link
-          to={prev}
-          className="flex h-12 w-12 items-center justify-center"
+        <div
+          onClick={() => moveTo(prev)}
+          className="flex h-12 w-12 cursor-pointer items-center justify-center"
         >
           <Icon
             icon="BiChevronLeft"
             size="5xl"
           />
-        </Link>
+        </div>
       )}
       {title && (
         <div
