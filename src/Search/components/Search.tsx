@@ -10,20 +10,20 @@ const Search = () => {
   const [type, setType] = useState<SelectType>('all');
 
   return (
-    <div className="flex h-full flex-col gap-4">
-      <div className="px-6 pt-6">
+    <div className="flex h-full flex-col">
+      <div className="px-6 pb-2 pt-6">
         <Input
-          className="rounded-2xl pl-4"
+          className="rounded-2xl pl-4 dark:bg-dark-sub"
           placeholder="방 제목, 루틴 등을 써보세요"
         />
       </div>
-      <div className="relative h-[50rem] overflow-y-scroll px-6 pr-2">
-        <div className="sticky top-0 z-20">
-          <Selection
-            currentType={type}
-            setType={setType}
-          />
-        </div>
+      <div className="border-b px-6 py-3 dark:border-b-dark-sub">
+        <Selection
+          currentType={type}
+          setType={setType}
+        />
+      </div>
+      <div className="relative h-[50rem] overflow-y-scroll px-5">
         <div className="mt-3 flex flex-col gap-2 pb-4">
           {rooms.map((room) => (
             <RoomAccordion
