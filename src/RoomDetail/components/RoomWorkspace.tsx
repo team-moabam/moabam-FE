@@ -15,7 +15,7 @@ type RoomWorkspaceProps = {
 
 const RoomWorkspace = ({ roomWorkspaceData }: RoomWorkspaceProps) => {
   const { bottomSheetProps, toggle, close } = useBottomSheet();
-  const { completePercentage, certifiedDates, routine, todayCertificateRank } =
+  const { completePercentage, routine, todayCertificateRank } =
     roomWorkspaceData;
 
   // Todo : RoomCalendar data props
