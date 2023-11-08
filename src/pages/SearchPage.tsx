@@ -1,7 +1,7 @@
 import { totalRooms } from '@/RoomList/mocks/totalRooms';
 import { RoomAccordion } from '@/RoomList';
 
-const Search = () => {
+const SearchPage = () => {
   const { rooms } = totalRooms;
   return (
     <div className="h-full overflow-auto">
@@ -17,4 +17,4 @@ const Search = () => {
   );
 };
 
-export default Search;
+export default SearchPage;
