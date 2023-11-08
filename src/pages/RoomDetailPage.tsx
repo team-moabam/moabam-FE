@@ -41,20 +41,6 @@ const RoomDetailPage = () => {
   }
   const { title, announcement } = roomDetailData;
 
-  const roomInfoData = {
-    level: roomDetailData.level,
-    currentUserCount: roomDetailData.currentUserCount,
-    maxUserCount: roomDetailData.maxUserCount,
-    todayCertificateRank: roomDetailData.todayCertificateRank
-  };
-
-  const roomWorkspaceData = {
-    completePercentage: roomDetailData.completePercentage,
-    certifiedDates: roomDetailData.certifiedDates,
-    routine: roomDetailData.routine,
-    todayCertificateRank: roomDetailData.todayCertificateRank
-  };
-
   return (
     <div className="relative">
       <Header
@@ -81,10 +67,10 @@ const RoomDetailPage = () => {
       </Header>
       <RoomNotice content={announcement} />
       <div className="h-[20.56rem] bg-[url('/level1.png')] bg-cover bg-no-repeat text-white">
-        <RoomInfo roomInfoData={roomInfoData} />
+        <RoomInfo {...roomDetailData} />
       </div>
       <div className="px-[1.81rem] pb-[1.62rem] pt-[1.88rem]">
-        <RoomWorkspace {...ㄱoomWorkspaceData} />
+        <RoomWorkspace {...roomDetailData} />
       </div>
     </div>
   );

@@ -2,16 +2,12 @@ import RoomMemberRank from './RoomMemberRank';
 import { ProgressBar } from '@/shared/ProgressBar';
 import { RoomInfo as RoomInfoType } from '@/core/types/Room';
 
-interface RoomInfoProps {
-  roomInfoData: Pick<
-    RoomInfoType,
-    'level' | 'currentUserCount' | 'maxUserCount' | 'todayCertificateRank'
-  >;
-}
-
-const RoomInfo = ({ roomInfoData }: RoomInfoProps) => {
-  const { level, currentUserCount, maxUserCount, todayCertificateRank } =
-    roomInfoData;
+const RoomInfo = ({
+  level,
+  currentUserCount,
+  maxUserCount,
+  todayCertificateRank
+}: RoomInfoType) => {
   return (
     <div className="relative h-[20.56rem]">
       <RoomMemberRank todayCertificateRank={todayCertificateRank} />

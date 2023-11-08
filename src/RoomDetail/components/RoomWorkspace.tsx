@@ -6,17 +6,12 @@ import { BottomSheet, useBottomSheet } from '@/shared/BottomSheet';
 import { Tab, TabItem } from '@/shared/Tab';
 import { RoomInfo } from '@/core/types/Room';
 
-interface RoomWorkspaceProps {
-  roomWorkspaceData: Pick<
-    RoomInfo,
-    'completePercentage' | 'certifiedDates' | 'routine' | 'todayCertificateRank'
-  >;
-}
-
-const RoomWorkspace = ({ roomWorkspaceData }: RoomWorkspaceProps) => {
+const RoomWorkspace = ({
+  completePercentage,
+  routine,
+  todayCertificateRank
+}: RoomInfo) => {
   const { bottomSheetProps, toggle, close } = useBottomSheet();
-  const { completePercentage, routine, todayCertificateRank } =
-    roomWorkspaceData;
 
   // Todo : RoomCalendar data props
 

@@ -6,7 +6,6 @@ interface RoomMemberRankProps {
 }
 
 const RoomMemberRank = ({ todayCertificateRank }: RoomMemberRankProps) => {
-  console.log(todayCertificateRank);
   return (
     <>
       {todayCertificateRank
