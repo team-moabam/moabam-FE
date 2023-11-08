@@ -2,7 +2,7 @@ import { Header } from '@/shared/Header';
 import { Tab, TabItem } from '@/shared/Tab';
 import { RoomTab, MemberTab, RemoveTab } from '@/RoomSetting';
 
-const RoomSetting = () => {
+const RoomSettingPage = () => {
   return (
     <>
       <Header prev="roomDetail" />
@@ -25,4 +25,4 @@ const RoomSetting = () => {
   );
 };
 
-export default RoomSetting;
+export default RoomSettingPage;

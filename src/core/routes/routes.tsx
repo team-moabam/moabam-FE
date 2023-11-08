@@ -2,9 +2,9 @@ import React from 'react';
 import Room from '@/pages/Room';
 import RoomDetail from '@/pages/RoomDetail';
 import RoutinesPage from '@/pages/RoutinesPage';
-import RoomNew from '@/pages/RoomNew';
+import RoomNewPage from '@/pages/RoomNewPage';
 import RoomLog from '@/pages/RoomLog';
-import RoomSetting from '@/pages/RoomSetting';
+import RoomSettingPage from '@/pages/RoomSettingPage';
 import Search from '@/pages/Search';
 
 interface Route {
@@ -86,7 +86,7 @@ const routes: Routes = {
     path: 'room/new',
     authRequired: true,
     navBarRequired: false,
-    element: <RoomNew />
+    element: <RoomNewPage />
   },
   room: {
     path: 'room',
@@ -110,7 +110,7 @@ const routes: Routes = {
     path: 'room/:roomId/setting',
     authRequired: true,
     navBarRequired: false,
-    element: <RoomSetting />
+    element: <RoomSettingPage />
   },
   mybird: {
     path: 'mybird',
