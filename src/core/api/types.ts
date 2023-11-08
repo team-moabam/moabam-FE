@@ -11,7 +11,12 @@ import '@tanstack/react-query';
 // Tanstack-Query 글로벌 에러 타입 설정
 declare module '@tanstack/react-query' {
   interface Register {
-    defaultError: AxiosError;
+    defaultError: AxiosError<{
+      message?: string;
+      validation?: {
+        [key: string]: any;
+      };
+    }>;
   }
 }
 
