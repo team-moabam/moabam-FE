@@ -1,7 +1,10 @@
 import { ProgressBar } from '@/shared/ProgressBar';
 
-const RoomProgress = () => {
-  const percentage = 50;
+type CertificationProgressProps = {
+  percentage: number;
+};
+
+const CertificationProgress = ({ percentage }: CertificationProgressProps) => {
   return (
     <div className="mb-[2.13rem]">
       <div className="flex items-end  justify-between pb-[0.5rem]">
@@ -20,4 +23,4 @@ const RoomProgress = () => {
   );
 };
 
-export default RoomProgress;
+export default CertificationProgress;

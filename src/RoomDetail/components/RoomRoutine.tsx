@@ -2,7 +2,11 @@ import ImageList from './ImageList';
 import { BottomSheet, useBottomSheet } from '@/shared/BottomSheet';
 import { RoutineList, RoutineItem } from '@/shared/RoutineList';
 
-const RoomRoutine = () => {
+type RoomRoutineProps = {
+  routines: { routineId: number; content: string }[];
+};
+
+const RoomRoutine = ({ routines }: RoomRoutineProps) => {
   const { bottomSheetProps, toggle, close } = useBottomSheet();
 
   return (
@@ -31,18 +35,13 @@ const RoomRoutine = () => {
       <div className="rounded-[0.5rem] bg-light-sub px-[1.31rem] py-[1rem] shadow-[0px_4px_6px_-2px_rgba(0,0,0,0.05)] dark:bg-dark-sub ">
         <span className="mb-[1.31rem] block text-dark-gray">17:00~17:10</span>
         <RoutineList className="mb-[2rem]">
-          <RoutineItem
-            contents="책 읽기"
-            completed={false}
-          />
-          <RoutineItem
-            contents="책 읽기"
-            completed={false}
-          />
-          <RoutineItem
-            contents="책 읽기"
-            completed={false}
-          />
+          {routines.map(({ routineId, content }) => (
+            <RoutineItem
+              key={routineId}
+              contents={content}
+              completed={false}
+            />
+          ))}
         </RoutineList>
         <button
           className="btn btn-light-point dark:btn-dark-point w-full rounded-[0.5rem] text-base"

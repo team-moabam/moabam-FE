@@ -1,12 +1,24 @@
 import RoomCalendar from './RoomCalendar';
-import RoomProgress from './RoomProgress';
+import RoomProgress from './CertificationProgress';
 import RoomRoutine from './RoomRoutine';
 import RoomMembers from './RoomMembers';
 import { BottomSheet, useBottomSheet } from '@/shared/BottomSheet';
 import { Tab, TabItem } from '@/shared/Tab';
+import { RoomInfo } from '@/core/types/Room';
 
-const RoomWorkspace = () => {
+type RoomWorkspaceProps = {
+  roomWorkspaceData: Pick<
+    RoomInfo,
+    'completePercentage' | 'certifiedDates' | 'routine' | 'todayCertificateRank'
+  >;
+};
+
+const RoomWorkspace = ({ roomWorkspaceData }: RoomWorkspaceProps) => {
   const { bottomSheetProps, toggle, close } = useBottomSheet();
+  const { completePercentage, certifiedDates, routine, todayCertificateRank } =
+    roomWorkspaceData;
+
+  // Todo : RoomCalendar data props
 
   return (
     <>
@@ -35,8 +47,8 @@ const RoomWorkspace = () => {
       >
         <TabItem title="루틴">
           <RoomCalendar />
-          <RoomProgress />
-          <RoomRoutine />
+          <RoomProgress percentage={completePercentage} />
+          <RoomRoutine routines={routine} />
           <button
             className="mt-[1.19rem] text-[0.87rem] text-black  dark:text-white"
             onClick={toggle}
@@ -45,7 +57,7 @@ const RoomWorkspace = () => {
           </button>
         </TabItem>
         <TabItem title="멤버">
-          <RoomMembers />
+          <RoomMembers members={todayCertificateRank} />
           <button className="mt-[1.62rem] text-[0.87rem] text-black dark:text-white">
             신고하기
           </button>
