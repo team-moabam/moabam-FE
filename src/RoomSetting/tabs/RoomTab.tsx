@@ -104,7 +104,7 @@ const RoomTab = () => {
         />
       </section>
 
-      <button className="btn btn-transition btn-light-point mb-5 w-full text-xl">
+      <button className="btn btn-transition btn-light-point mb-24 w-full text-xl">
         적용
       </button>
     </>
