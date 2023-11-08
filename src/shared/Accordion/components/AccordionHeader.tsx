@@ -28,7 +28,7 @@ const AccordionHeader = ({
         className
       )}
     >
-      <div>{children}</div>
+      <div className="flex-1">{children}</div>
       <div
         onClick={toggleOpen}
         className={clsx('ml-3 cursor-pointer duration-300 ease-in', {

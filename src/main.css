@@ -19,6 +19,12 @@
   font-style: normal;
 }
 
+:root {
+  @media screen and (max-width: 320px) {
+    font-size: 14px;
+  }
+}
+
 * {
   font-family: 'IM_Hyemin-Regular';
   font-weight: normal;

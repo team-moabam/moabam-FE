@@ -4,6 +4,7 @@ import RoomDetail from '@/pages/RoomDetail';
 import Routines from '@/pages/Routines';
 import RoomNew from '@/pages/RoomNew';
 import RoomLog from '@/pages/RoomLog';
+import Search from '@/pages/Search';
 
 interface Route {
   path: string;
@@ -60,7 +61,7 @@ const routes: Routes = {
     path: 'search',
     authRequired: true,
     navBarRequired: true,
-    element: <div>search</div>
+    element: <Search />
   },
   myPage: {
     path: 'user',
