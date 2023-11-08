@@ -2,10 +2,10 @@ import { clsx } from 'clsx';
 import { useMoveRoute } from '@/core/hooks';
 import useHover from '@/RoomList/hooks/useHover';
 import { Room } from '@/RoomList/mocks/types/rooms';
+import roomListStyle from '@/RoomList/styles/roomListStyle';
 import { Accordion, AccordionHeader, AccordionBody } from '@/shared/Accordion';
 import { RoomSummary } from '@/RoomSummary';
 import { RoutineItem, RoutineList } from '@/shared/RoutineList';
-import '@/RoomList/styles/roomList.css';
 
 interface RoomAccordionProps {
   room: Room;
@@ -21,7 +21,9 @@ const RoomAccordion = ({ room }: RoomAccordionProps) => {
       <AccordionHeader
         buttonColored
         className={clsx(
-          'room-card-bg room-card-ring relative z-10 rounded-2xl px-3',
+          'relative z-10 rounded-2xl px-3',
+          roomListStyle['bg-room-card'],
+          roomListStyle['ring-room-card'],
           {
             'ring-2': hovered
           }
@@ -35,7 +37,12 @@ const RoomAccordion = ({ room }: RoomAccordionProps) => {
           <RoomSummary {...room} />
         </div>
       </AccordionHeader>
-      <AccordionBody className="room-card-bg relative top-[-0.6rem] rounded-b-2xl">
+      <AccordionBody
+        className={clsx(
+          'relative top-[-0.6rem] rounded-b-2xl',
+          roomListStyle['bg-room-card']
+        )}
+      >
         <div className="p-4 pt-5">
           <RoutineList>
             {routine.map(({ routineId, content }) => (

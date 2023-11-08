@@ -1,10 +1,10 @@
 import { clsx } from 'clsx';
 import { useMoveRoute } from '@/core/hooks';
 import { ParticipateRoom } from '@/RoomList/mocks/types/myJoinRoom';
+import roomListStyle from '../styles/roomListStyle';
 import CertifyButton from './CertifyButton';
 import BugInfo from './BugInfo';
 import { RoomSummary } from '@/RoomSummary';
-import '@/RoomList/styles/roomList.css';
 
 interface RoomCardProps {
   room: ParticipateRoom;
@@ -18,9 +18,10 @@ const RoomCard = ({ room }: RoomCardProps) => {
     <div
       onClick={() => moveTo('roomDetail', { roomId })}
       className={clsx(
-        'flex justify-between overflow-hidden p-3',
+        'flex justify-between overflow-hidden rounded-2xl p-3',
         'cursor-pointer hover:ring-2',
-        'room-card-bg room-card-ring rounded-2xl'
+        roomListStyle['bg-room-card'],
+        roomListStyle['ring-room-card']
       )}
     >
       <RoomSummary {...room} />
