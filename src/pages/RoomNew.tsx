@@ -61,10 +61,6 @@ const RoomNew = () => {
           console.log('TODO: 방 상세 페이지로 redirect');
         },
         onError: (error) => {
-          if (!axios.isAxiosError(error)) {
-            return;
-          }
-
           // TODO: 에러 Toast 메시지를 보여줘야 해요.
           // TODO: toast({ message: '서버에서 날아온 에러 메시지.', type: 'error' });
           console.log(error.response?.data?.message);
