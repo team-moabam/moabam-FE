@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { FunnelHook } from '@/shared/Funnel/hooks/useFunnel';
 import { Inputs } from '../constants/form';
 import { LoadingSpinner } from '@/shared/LoadingSpinner';
-import { steps } from '@/pages/RoomNew';
+import { steps } from '@/pages/RoomNewPage';
 
 interface NavbarProps extends FunnelHook<typeof steps> {
   isPending: boolean;
