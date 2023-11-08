@@ -1,7 +1,7 @@
 import RoomLogItem from '../RoomLog/components/RoomLogItem';
 import { Header } from '@/shared/Header';
 
-const RoomLog = () => {
+const RoomLogPage = () => {
   return (
     <>
       <div className="dark:bg-dark-sub">
@@ -27,4 +27,4 @@ const RoomLog = () => {
   );
 };
 
-export default RoomLog;
+export default RoomLogPage;

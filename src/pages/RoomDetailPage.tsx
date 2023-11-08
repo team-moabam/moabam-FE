@@ -10,7 +10,7 @@ import RoomWorkspace from '@/RoomDetail/components/RoomWorkspace';
 import { Header } from '@/shared/Header';
 import { Icon } from '@/shared/Icon';
 
-const RoomDetail = () => {
+const RoomDetailPage = () => {
   const { getRoomDetail } = roomAPI;
   const roomId = '1234';
   const { data, isLoading } = useQuery({
@@ -84,10 +84,10 @@ const RoomDetail = () => {
         <RoomInfo roomInfoData={roomInfoData} />
       </div>
       <div className="px-[1.81rem] pb-[1.62rem] pt-[1.88rem]">
-        <RoomWorkspace roomWorkspaceData={roomWorkspaceData} />
+        <RoomWorkspace {...ㄱoomWorkspaceData} />
       </div>
     </div>
   );
 };
 
-export default RoomDetail;
+export default RoomDetailPage;
