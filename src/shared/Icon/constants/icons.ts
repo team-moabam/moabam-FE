@@ -2,6 +2,7 @@ import { AiOutlineLock, AiFillNotification } from 'react-icons/ai';
 import { BsMouse } from 'react-icons/bs';
 import {
   BiBugAlt,
+  BiSolidBugAlt,
   BiChevronUpCircle,
   BiChevronDownCircle,
   BiChevronLeftCircle,
@@ -16,13 +17,8 @@ import {
 } from 'react-icons/bi';
 import { BsFillEyeFill, BsFillEyeSlashFill } from 'react-icons/bs';
 import { CgClose } from 'react-icons/cg';
-import {
-  FaPlus,
-  FaMinus,
-  FaPlusCircle,
-  FaMinusCircle,
-  FaCrown
-} from 'react-icons/fa';
+import { FaPlus, FaMinus, FaPlusCircle, FaMinusCircle } from 'react-icons/fa';
+import { FaCrown } from 'react-icons/fa6';
 import {
   FaRankingStar,
   FaUser,
@@ -33,6 +29,7 @@ import { HiHome } from 'react-icons/hi2';
 import { ImSearch } from 'react-icons/im';
 import { MdSupervisedUserCircle, MdEdit, MdTitle } from 'react-icons/md';
 import { PiBirdFill } from 'react-icons/pi';
+import { IoPeopleCircle } from 'react-icons/io5';
 import {
   RiTimerLine,
   RiUser3Fill,
@@ -41,12 +38,14 @@ import {
 } from 'react-icons/ri';
 import { RxExit, RxEnter } from 'react-icons/rx';
 import { TbListDetails, TbConfetti } from 'react-icons/tb';
+import { LuAlarmClock } from 'react-icons/lu';
 
 export const iconMap = {
   AiFillNotification,
   AiOutlineLock,
   BsMouse,
   BiBugAlt,
+  BiSolidBugAlt,
   BiChevronUpCircle,
   BiChevronDownCircle,
   BiChevronLeftCircle,
@@ -82,6 +81,8 @@ export const iconMap = {
   RiFlowChart,
   RxExit,
   RxEnter,
+  TbListDetails,
   TbConfetti,
-  TbListDetails
+  LuAlarmClock,
+  IoPeopleCircle
 } as const;
