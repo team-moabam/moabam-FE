@@ -1,7 +1,7 @@
 import { clsx } from 'clsx';
 import { useMoveRoute } from '@/core/hooks';
+import roomListStyle from '@/RoomList/styles/roomListStyle';
 import { Icon } from '@/shared/Icon';
-import '@/RoomList/styles/roomList.css';
 
 const BlankCard = () => {
   const moveTo = useMoveRoute();
@@ -9,10 +9,12 @@ const BlankCard = () => {
     <div
       onClick={() => moveTo('createRoom')}
       className={clsx(
-        'room-card-bg flex items-center justify-center rounded-2xl p-6',
+        'flex items-center justify-center rounded-2xl p-6',
         'text-light-point dark:text-dark-point',
         'hover:text-light-point-hover dark:text-dark-point-hover',
-        'room-card-ring cursor-pointer hover:ring-2'
+        'cursor-pointer hover:ring-2',
+        roomListStyle['bg-room-card'],
+        roomListStyle['ring-room-card']
       )}
     >
       <Icon
