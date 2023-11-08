@@ -104,7 +104,7 @@ const RoomNew = () => {
       <FormProvider {...form}>
         <Header
           className="bg-light-main"
-          prev="#"
+          prev="routines"
           title="방 만들기"
         />
         <main className="grow overflow-auto px-8 py-12">
