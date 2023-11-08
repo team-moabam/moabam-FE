@@ -2,6 +2,7 @@ import { useFormContext } from 'react-hook-form';
 import clsx from 'clsx';
 import { FunnelHook } from '@/shared/Funnel/hooks/useFunnel';
 import { Inputs } from '../constants/form';
+import { LoadingSpinner } from '@/shared/LoadingSpinner';
 import { steps } from '@/pages/RoomNew';
 
 interface NavbarProps extends FunnelHook<typeof steps> {
@@ -42,9 +43,7 @@ const Navbar = ({
 
   const buttonContent = () => {
     if (isPending) {
-      return (
-        <div className="h-8 w-8 animate-spin rounded-full border-2 border-solid border-white border-t-transparent" />
-      );
+      return <LoadingSpinner size="4xl" />;
     }
 
     if (!hasNext) {
