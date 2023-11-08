@@ -4,12 +4,13 @@ import { RoomTab, MemberTab, RemoveTab } from '@/RoomSetting';
 
 const RoomSetting = () => {
   return (
-    <>
+    <div className="flex h-full flex-col">
       <Header prev="roomDetail" />
+
       <main className="grow overflow-auto px-8">
         <Tab
-          align="start"
-          itemStyle="mt-5"
+          align="center"
+          itemStyle="mt-10"
         >
           <TabItem title="방 관리">
             <RoomTab />
@@ -22,7 +23,7 @@ const RoomSetting = () => {
           </TabItem>
         </Tab>
       </main>
-    </>
+    </div>
   );
 };
 
