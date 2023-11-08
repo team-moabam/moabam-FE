@@ -7,3 +7,7 @@ export type Member = {
   sleepImage: string;
   certificationImage: { routineId: number; image: string }[];
 };
+
+export interface RankMember extends Member {
+  rank: number;
+}

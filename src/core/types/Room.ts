@@ -1,8 +1,4 @@
-import { Member } from './Member';
-
-interface RankMember extends Member {
-  rank: number;
-}
+import { RankMember } from './Member';
 
 export type RoomInfo = {
   roomId: number;
