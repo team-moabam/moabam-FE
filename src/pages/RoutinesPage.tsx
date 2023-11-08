@@ -3,7 +3,7 @@ import { useTheme } from '@/core/hooks';
 import { myJoinRoom } from '@/RoomList/mocks/myJoinRoom';
 import RoomSlide from '@/RoomSlide/components/RoomSlide';
 
-const Routines = () => {
+const RoutinesPage = () => {
   const { participateRooms } = myJoinRoom;
 
   // TODO : 임시 시간대 설정 코드입니다. 수정 예정!
@@ -41,4 +41,4 @@ const Routines = () => {
   );
 };
 
-export default Routines;
+export default RoutinesPage;

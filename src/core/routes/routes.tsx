@@ -1,7 +1,7 @@
 import React from 'react';
 import Room from '@/pages/Room';
 import RoomDetail from '@/pages/RoomDetail';
-import Routines from '@/pages/Routines';
+import RoutinesPage from '@/pages/RoutinesPage';
 import RoomNew from '@/pages/RoomNew';
 import RoomLog from '@/pages/RoomLog';
 import Search from '@/pages/Search';
@@ -55,7 +55,7 @@ const routes: Routes = {
     path: 'routines',
     authRequired: true,
     navBarRequired: true,
-    element: <Routines />
+    element: <RoutinesPage />
   },
   search: {
     path: 'search',
