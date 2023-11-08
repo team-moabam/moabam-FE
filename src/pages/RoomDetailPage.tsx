@@ -11,12 +11,12 @@ import { Header } from '@/shared/Header';
 import { Icon } from '@/shared/Icon';
 
 const RoomDetail = () => {
-  const { fetchRoomDetail } = roomAPI;
+  const { getRoomDetail } = roomAPI;
   const roomId = '1234';
   const { data, isLoading } = useQuery({
     queryKey: ['roomDetail', roomId],
     queryFn: ({ queryKey }) => {
-      return fetchRoomDetail(queryKey[1]);
+      return getRoomDetail(queryKey[1]);
     }
   });
 

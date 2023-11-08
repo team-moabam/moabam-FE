@@ -1,14 +1,10 @@
 import { Avatar } from '@/shared/Avatar';
 import { Icon } from '@/shared/Icon';
-import { Member } from '@/core/types/Member';
+import { RankMember } from '@/core/types/Member';
 
-interface Members extends Member {
-  rank: number;
+interface RoomMembers {
+  members: RankMember[];
 }
-
-type RoomMembers = {
-  members: Members[];
-};
 
 const RoomMembers = ({ members }: RoomMembers) => {
   return (
@@ -25,7 +21,7 @@ const RoomMembers = ({ members }: RoomMembers) => {
               nickname={nickname}
               contribution={contributionPoint}
             />
-            <button className="btn dark:btn-dark-point btn-light-point flex h-[1.875rem] w-[4.37rem] items-center rounded-[0.5rem] p-0  px-[0.56rem] font-IMHyemin-bold text-sm">
+            <button className="btn dark:btn-dark-point btn-light-point flex h-[1.875rem] w-[4.37rem] items-center rounded-s-lg p-0  px-[0.56rem] font-IMHyemin-bold text-sm">
               <Icon
                 icon="BiSolidHandRight"
                 size="lg"

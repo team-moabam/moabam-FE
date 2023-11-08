@@ -28,7 +28,7 @@ const RoomMemberRank = ({ todayCertificateRank }: RoomMemberRankProps) => {
               />
               <span
                 className={clsx(
-                  'block  w-fit rounded-2xl px-[0.75rem] py-[0.05rem] text-[0.75rem] text-white',
+                  'block  w-fit rounded-2xl px-3 py-[0.05rem] text-xs text-white',
                   {
                     'bg-gold': rank === 1,
                     'bg-silver': rank === 2,
