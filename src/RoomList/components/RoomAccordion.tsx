@@ -17,7 +17,7 @@ const RoomAccordion = ({ room }: RoomAccordionProps) => {
   const [hoverRef, hovered] = useHover<HTMLDivElement>();
 
   return (
-    <Accordion>
+    <Accordion className="shrink-0">
       <AccordionHeader
         buttonColored
         className={clsx(

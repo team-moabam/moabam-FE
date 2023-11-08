@@ -1,18 +1,9 @@
-import { totalRooms } from '@/RoomList/mocks/totalRooms';
-import { RoomAccordion } from '@/RoomList';
+import Search from '@/Search/components/Search';
 
 const SearchPage = () => {
-  const { rooms } = totalRooms;
   return (
-    <div className="h-full overflow-auto">
-      <div className="flex flex-col gap-3 p-2">
-        {rooms.map((room) => (
-          <RoomAccordion
-            room={room}
-            key={room.id}
-          />
-        ))}
-      </div>
+    <div className="h-full overflow-hidden">
+      <Search />
     </div>
   );
 };
