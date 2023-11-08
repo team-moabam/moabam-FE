@@ -44,7 +44,8 @@ const RoomDetail = () => {
   const roomInfoData = {
     level: roomDetailData.level,
     currentUserCount: roomDetailData.currentUserCount,
-    maxUserCount: roomDetailData.maxUserCount
+    maxUserCount: roomDetailData.maxUserCount,
+    todayCertificateRank: roomDetailData.todayCertificateRank
   };
 
   const roomWorkspaceData = {
