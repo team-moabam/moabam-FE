@@ -5,6 +5,7 @@ import RoutinesPage from '@/pages/RoutinesPage';
 import RoomNew from '@/pages/RoomNew';
 import RoomLog from '@/pages/RoomLog';
 import Search from '@/pages/Search';
+import UserPage from '@/pages/UserPage';
 
 interface Route {
   path: string;
@@ -67,13 +68,13 @@ const routes: Routes = {
     path: 'user',
     authRequired: true,
     navBarRequired: true,
-    element: <div>my</div>
+    element: <UserPage />
   },
   user: {
     path: 'user/:userId',
     authRequired: true,
     navBarRequired: true,
-    element: <div>user page</div>
+    element: <UserPage />
   },
   myLog: {
     path: 'user/log',
