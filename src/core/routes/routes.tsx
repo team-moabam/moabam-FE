@@ -5,6 +5,7 @@ import RoutinesPage from '@/pages/RoutinesPage';
 import RoomNew from '@/pages/RoomNew';
 import RoomLog from '@/pages/RoomLog';
 import Search from '@/pages/Search';
+import NotFoundPage from '@/pages/notFoundPage';
 
 interface Route {
   path: string;
@@ -121,7 +122,7 @@ const routes: Routes = {
     path: '*',
     authRequired: false,
     navBarRequired: false,
-    element: <div>notFound</div>
+    element: <NotFoundPage />
   }
 } as const;
 
