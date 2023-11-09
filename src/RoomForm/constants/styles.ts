@@ -1,9 +1,3 @@
-// 각각의 인풋과 라벨을 감싸는 영역의 스타일
-export const inputSectionStyle = 'mb-10 flex flex-col';
-
-// 인풋의 라벨에 적용할 스타일
-export const labelStyle = 'mb-2 font-bold';
-
 // 플러스(+), 마이너스(-) 버튼에 적용할 스타일
 export const iconButtonStyle =
   'cursor-pointer text-light-point transition-all hover:text-light-point-hover';

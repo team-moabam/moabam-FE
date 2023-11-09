@@ -1,16 +1,15 @@
 import { useCallback } from 'react';
 import { useFormContext } from 'react-hook-form';
-import { Inputs } from '@/RoomSetting/constants/form';
-import { iconButtonStyle, errorStyle, labelStyle } from './styles';
+import { iconButtonStyle, errorStyle } from '../constants/styles';
 import { USER_COUNT } from '@/RoomNew';
 import { Icon } from '@/shared/Icon';
 
-const MemberSection = () => {
+const MemberInput = () => {
   const {
     setValue,
     watch,
     formState: { errors }
-  } = useFormContext<Inputs>();
+  } = useFormContext<{ userCount: number }>();
 
   const watchUserCount = watch('userCount');
 
@@ -27,7 +26,6 @@ const MemberSection = () => {
 
   return (
     <>
-      <label className={labelStyle}>인원</label>
       <div className="flex items-center justify-center gap-10">
         <Icon
           icon="FaMinusCircle"
@@ -50,4 +48,4 @@ const MemberSection = () => {
   );
 };
 
-export default MemberSection;
+export default MemberInput;

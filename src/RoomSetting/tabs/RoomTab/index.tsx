@@ -11,12 +11,10 @@ import {
   defaultValues,
   formSchema
 } from '@/RoomSetting/constants/form';
+import { TIME_RANGE } from '@/RoomForm/constants/literals';
 import { errorStyle, inputSectionStyle, labelStyle } from './styles';
-import RoutineSection from './RoutineSection';
-import MemberSection from './MemberSection';
-import PasswordSection from './PasswordSection';
+import { MemberInput, RoutineInputs, PasswordInput } from '@/RoomForm';
 import { Input } from '@/shared/Input';
-import { TIME_RANGE } from '@/RoomNew';
 import { TimePicker } from '@/TimePicker';
 
 const RoomTab = () => {
@@ -96,15 +94,18 @@ const RoomTab = () => {
         </section>
 
         <section className={inputSectionStyle}>
-          <RoutineSection />
+          <label className={labelStyle}>루틴 목록</label>
+          <RoutineInputs />
         </section>
 
         <section className={inputSectionStyle}>
-          <MemberSection />
+          <label className={labelStyle}>인원</label>
+          <MemberInput />
         </section>
 
         <section className={inputSectionStyle}>
-          <PasswordSection />
+          <label className={labelStyle}>비밀번호</label>
+          <PasswordInput />
         </section>
 
         <button className="btn btn-transition btn-light-point mb-24 w-full text-xl">

@@ -1,27 +1,9 @@
 import clsx from 'clsx';
-import { useFormContext } from 'react-hook-form';
 import { PASSWORD } from '@/RoomForm/constants/literals';
-import {
-  headingStyle,
-  descriptionStyle,
-  errorStyle
-} from '../constants/styles';
-import { Inputs } from '../constants/form';
-import { PasswordInput } from '@/shared/Input';
+import { headingStyle, descriptionStyle } from '../constants/styles';
+import { PasswordInput } from '@/RoomForm';
 
 const PasswordStep = () => {
-  const {
-    register,
-    setValue,
-    formState: { errors }
-  } = useFormContext<Inputs>();
-
-  const handleChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value.replace(/[^0-9]/g, '');
-
-    setValue('password', value);
-  };
-
   return (
     <>
       <h1 className={headingStyle}>
@@ -36,16 +18,7 @@ const PasswordStep = () => {
         적어주세요!
       </p>
 
-      <PasswordInput
-        {...register('password')}
-        placeholder="비워두시면 공개방이 됩니다"
-        maxLength={PASSWORD.max}
-        onChange={handleChangePassword}
-      />
-
-      {errors.password && (
-        <p className={errorStyle}>{errors.password.message}</p>
-      )}
+      <PasswordInput />
     </>
   );
 };
