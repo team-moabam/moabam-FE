@@ -12,5 +12,6 @@ export {
   ROUTINE_NAME,
   ROOM_NAME,
   PASSWORD,
-  USER_COUNT
+  USER_COUNT,
+  ANNOUNCEMENT
 } from './constants/roomLiterals';
