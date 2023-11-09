@@ -5,7 +5,7 @@ import {
   errorStyle
 } from '../constants/styles';
 import { Inputs } from '../constants/form';
-import { TIME_RANGE, ROOM_TYPES } from '../constants/literals';
+import { TIME_RANGE, ROOM_TYPES } from '../constants/roomLiterals';
 import BirdCard from '../components/BirdCard';
 
 const BirdStep = () => {

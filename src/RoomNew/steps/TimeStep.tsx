@@ -5,7 +5,7 @@ import {
   descriptionStyle,
   errorStyle
 } from '../constants/styles';
-import { TIME_RANGE } from '../constants/literals';
+import { TIME_RANGE } from '../constants/roomLiterals';
 import { Inputs } from '../constants/form';
 import { TimePicker } from '@/TimePicker';
 

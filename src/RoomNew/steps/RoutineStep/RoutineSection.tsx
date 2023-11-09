@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import { useFieldArray, useFormContext } from 'react-hook-form';
 import { Inputs } from '../../constants/form';
-import { ROUTINE_COUNT, ROUTINE_NAME } from '../../constants/literals';
+import { ROUTINE_COUNT, ROUTINE_NAME } from '../../constants/roomLiterals';
 import { errorStyle } from '../../constants/styles';
 import { detailSectionStyle, headingStyle, iconButtonStyle } from './styles';
 import { Icon } from '@/shared/Icon';

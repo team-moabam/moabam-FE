@@ -3,7 +3,7 @@ import { useFormContext } from 'react-hook-form';
 import { formatHourString } from '@/TimePicker/utils/hour';
 import { headingStyle, descriptionStyle } from '../constants/styles';
 import { Inputs } from '../constants/form';
-import { BIRD } from '../constants/literals';
+import { BIRD } from '../constants/roomLiterals';
 import { Icon, iconMap } from '@/shared/Icon';
 
 interface Info {

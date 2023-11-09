@@ -5,7 +5,7 @@ import {
   descriptionStyle,
   errorStyle
 } from '../constants/styles';
-import { PASSWORD } from '../constants/literals';
+import { PASSWORD } from '../constants/roomLiterals';
 import { Inputs } from '../constants/form';
 import { PasswordInput } from '@/shared/Input';
 

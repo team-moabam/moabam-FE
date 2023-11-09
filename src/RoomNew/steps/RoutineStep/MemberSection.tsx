@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { descriptionStyle, errorStyle } from '../../constants/styles';
 import { Inputs } from '../../constants/form';
-import { USER_COUNT } from '../../constants/literals';
+import { USER_COUNT } from '../../constants/roomLiterals';
 import { detailSectionStyle, headingStyle, iconButtonStyle } from './styles';
 import { Icon } from '@/shared/Icon';
 
