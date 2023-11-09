@@ -4,7 +4,6 @@ import RoomDetailPage from '@/pages/RoomDetailPage';
 import RoomLogPage from '@/pages/RoomLogPage';
 import RoutinesPage from '@/pages/RoutinesPage';
 import RoomNewPage from '@/pages/RoomNewPage';
-import RoomLog from '@/pages/RoomLog';
 import RoomSettingPage from '@/pages/RoomSettingPage';
 import Search from '@/pages/Search';
 
