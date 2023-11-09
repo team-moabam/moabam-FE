@@ -6,7 +6,7 @@ import RoomNew from '@/pages/RoomNew';
 import RoomLog from '@/pages/RoomLog';
 import Search from '@/pages/Search';
 import UserPage from '@/pages/UserPage';
-
+import RankPage from '@/pages/RankPage';
 interface Route {
   path: string;
   authRequired: boolean;
@@ -30,7 +30,8 @@ export type RouteNames =
   | 'roomLog'
   | 'roomSetting'
   | 'mybird'
-  | 'notFound';
+  | 'notFound'
+  | 'rank';
 
 type Routes = Record<RouteNames, Route>;
 
@@ -88,6 +89,12 @@ const routes: Routes = {
     authRequired: true,
     navBarRequired: false,
     element: <div>myCoupon</div>
+  },
+  rank: {
+    path: 'rank',
+    authRequired: false,
+    navBarRequired: false,
+    element: <RankPage />
   },
   createRoom: {
     path: 'room/new',
