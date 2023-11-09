@@ -8,6 +8,7 @@ import Search from '@/pages/Search';
 import UserPage from '@/pages/UserPage';
 import RankPage from '@/pages/RankPage';
 import CouponPage from '@/pages/CouponPage';
+import LogPage from '@/pages/LogPage';
 
 interface Route {
   path: string;
@@ -84,7 +85,7 @@ const routes: Routes = {
     path: 'user/log',
     authRequired: true,
     navBarRequired: false,
-    element: <div>userLog</div>
+    element: <LogPage />
   },
   myCoupon: {
     path: 'user/coupon',
