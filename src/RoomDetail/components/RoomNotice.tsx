@@ -11,13 +11,13 @@ const RoomNotice = ({ content }: RoomNoticeProps) => {
 
   const InfoStyle = {
     container: clsx(
-      'absolute top-[4rem] z-[1] flex w-full items-start  bg-[rgba(0,0,0,0.3)] px-[0.69rem] py-[0.56rem] text-white'
+      'absolute top-16 z-[1] flex w-full items-start  bg-[rgba(0,0,0,0.3)] px-[0.69rem] py-[0.56rem] text-white'
     ),
-    button: 'flex w-[1rem] items-center justify-center',
+    button: 'flex w-4 items-center justify-center',
     para: clsx(
       ' mr-[0.4rem] min-w-[16.43rem] overflow-hidden font-IMHyemin-bold text-xs',
       {
-        'h-[1rem] truncate': show === true,
+        'h-4 truncate': show === true,
         'h-full': show === false
       }
     )
@@ -25,7 +25,7 @@ const RoomNotice = ({ content }: RoomNoticeProps) => {
 
   return (
     <div className={InfoStyle.container}>
-      <button className={`mr-[0.87rem] ${InfoStyle.button}`}>
+      <button className={`mr-3.5 ${InfoStyle.button}`}>
         <Icon
           icon="AiFillNotification"
           size="sm"
