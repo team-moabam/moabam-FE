@@ -23,6 +23,7 @@ export type RouteNames =
   | 'user'
   | 'myPage'
   | 'myLog'
+  | 'myCoupon'
   | 'createRoom'
   | 'room'
   | 'roomDetail'
@@ -81,6 +82,12 @@ const routes: Routes = {
     authRequired: true,
     navBarRequired: false,
     element: <div>userLog</div>
+  },
+  myCoupon: {
+    path: 'user/coupon',
+    authRequired: true,
+    navBarRequired: false,
+    element: <div>myCoupon</div>
   },
   createRoom: {
     path: 'room/new',
