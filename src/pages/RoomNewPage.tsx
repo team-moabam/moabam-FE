@@ -28,7 +28,7 @@ export const steps = [
   'SummaryStep'
 ] as const;
 
-const RoomNew = () => {
+const RoomNewPage = () => {
   const funnel = useFunnel(steps);
 
   const form = useForm<Inputs>({
@@ -135,4 +135,4 @@ const RoomNew = () => {
   );
 };
 
-export default RoomNew;
+export default RoomNewPage;
