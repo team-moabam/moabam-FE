@@ -9,6 +9,7 @@ import UserPage from '@/pages/UserPage';
 import RankPage from '@/pages/RankPage';
 import CouponPage from '@/pages/CouponPage';
 import LogPage from '@/pages/LogPage';
+import OrderLogPage from '@/pages/OrderLogPage';
 
 interface Route {
   path: string;
@@ -26,6 +27,7 @@ export type RouteNames =
   | 'user'
   | 'myPage'
   | 'myLog'
+  | 'myOrderLog'
   | 'myCoupon'
   | 'createRoom'
   | 'room'
@@ -86,6 +88,12 @@ const routes: Routes = {
     authRequired: true,
     navBarRequired: false,
     element: <LogPage />
+  },
+  myOrderLog: {
+    path: 'user/orderLog',
+    authRequired: true,
+    navBarRequired: false,
+    element: <OrderLogPage />
   },
   myCoupon: {
     path: 'user/coupon',
