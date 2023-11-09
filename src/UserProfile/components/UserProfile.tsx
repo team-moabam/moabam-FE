@@ -9,9 +9,9 @@ interface UserProfileProps {
 const UserProfile = ({ nickname, intro }: UserProfileProps) => {
   const [profileData, setProfileData] = useState({ nickname, intro });
 
-  const handleImageChange = (e) => {
-    console.log(e.target.files[0]);
-  };
+  // const handleImageChange = (e) => {
+  //   console.log(e.target.files[0]);
+  // };
 
   return (
     <>
@@ -29,7 +29,7 @@ const UserProfile = ({ nickname, intro }: UserProfileProps) => {
         </div>
         <div className="my-2 text-xl">{profileData.nickname}</div>
         <div className="text-dark-gray">{profileData.intro}</div>
-        <button
+        {/* <button
           onClick={() => {
             setProfileData({ nickname: '바보', intro: '멍청이' });
           }}
@@ -40,7 +40,7 @@ const UserProfile = ({ nickname, intro }: UserProfileProps) => {
           type="file"
           accept="image/*"
           onChange={handleImageChange}
-        />{' '}
+        />{' '} */}
       </div>
     </>
   );
