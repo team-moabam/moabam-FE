@@ -56,7 +56,7 @@ export const USER_COUNT = {
 
 // 공지사항 길이
 export const ANNOUNCEMENT = {
-  min: 1,
+  min: 0,
   max: 120 // TODO: 정확한 수치는 추후에 논의가 필요함.
 };
 
