@@ -1,5 +1,5 @@
-import axios, { AxiosError } from 'axios';
 import { baseInstance } from '../instance';
+import { RoomInfo } from '@/core/types/Room';
 
 const roomAPI = {
   postRoom: async (body: {
@@ -11,6 +11,9 @@ const roomAPI = {
     maxUserCount: number;
   }) => {
     return await baseInstance.post<{ message: string }>('/rooms', body);
+  },
+  getRoomDetail: async (roomId: string) => {
+    return await baseInstance.get(`/rooms/${roomId}`);
   }
 };
 
