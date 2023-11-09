@@ -7,6 +7,8 @@ import RoomLog from '@/pages/RoomLog';
 import Search from '@/pages/Search';
 import UserPage from '@/pages/UserPage';
 import RankPage from '@/pages/RankPage';
+import CouponPage from '@/pages/CouponPage';
+
 interface Route {
   path: string;
   authRequired: boolean;
@@ -88,7 +90,7 @@ const routes: Routes = {
     path: 'user/coupon',
     authRequired: true,
     navBarRequired: false,
-    element: <div>myCoupon</div>
+    element: <CouponPage />
   },
   rank: {
     path: 'rank',
