@@ -97,11 +97,11 @@ const RoomNewPage = () => {
   const onError: SubmitErrorHandler<Inputs> = (errors) => console.error(errors);
 
   return (
-    <form
-      className="flex h-full flex-col"
-      onSubmit={form.handleSubmit(onSubmit, onError)}
-    >
-      <FormProvider {...form}>
+    <FormProvider {...form}>
+      <form
+        className="flex h-full flex-col"
+        onSubmit={form.handleSubmit(onSubmit, onError)}
+      >
         <Header
           className="bg-light-main"
           prev="routines"
@@ -130,8 +130,8 @@ const RoomNewPage = () => {
           {...funnel}
           isPending={isPending}
         />
-      </FormProvider>
-    </form>
+      </form>
+    </FormProvider>
   );
 };
 
