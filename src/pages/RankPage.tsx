@@ -1,26 +1,15 @@
-import { Link } from 'react-router-dom';
-import { IoIosArrowBack } from 'react-icons/io';
 import { Header } from '@/shared/Header';
+
 const RankPage = () => {
   return (
     <div className="flex h-screen w-full max-w-md flex-col">
       <div>
-        {/* <div className="relative grid h-16 place-content-center">
-          <Link
-            to="#"
-            onClick={() => window.history.back()}
-            className="absolute inset-y-0 left-3 grid place-content-center text-3xl"
-          >
-            <IoIosArrowBack />
-          </Link>
-          <div className="text-xl">랭킹</div>
-        </div> */}
         <Header
-          prev="user"
-          className="bg-light-sub"
+          prev="myPage"
+          className="bg-light-sub dark:bg-dark-sub"
           title="랭킹"
         />
-        <div className="flex items-end bg-light-sub p-5 shadow-md">
+        <div className="flex items-end bg-light-sub p-5 shadow-md dark:bg-dark-sub">
           <div className="flex h-full flex-1 flex-col justify-end ">
             <div className="grid place-items-center">
               <div className="relative mb-5  h-16 w-16">
@@ -29,7 +18,7 @@ const RankPage = () => {
                   alt=""
                   className="absolute rounded-full"
                 />
-                <div className="absolute -bottom-1 -right-1 z-10 grid h-6 w-6 place-content-center rounded-full bg-light-gray text-light-sub">
+                <div className="absolute -bottom-1 -right-1 z-10 grid h-6 w-6 place-content-center rounded-full bg-light-gray font-extrabold text-light-sub">
                   <h1>2</h1>
                 </div>
               </div>
@@ -47,7 +36,7 @@ const RankPage = () => {
                   alt=""
                   className="absolute rounded-full"
                 />
-                <div className="absolute -bottom-1 -right-1 z-10 grid h-6 w-6 place-content-center rounded-full bg-warning text-light-sub">
+                <div className="absolute -bottom-1 -right-1 z-10 grid h-6 w-6 place-content-center rounded-full bg-warning font-extrabold text-light-sub">
                   <h1>1</h1>
                 </div>
               </div>
@@ -65,8 +54,8 @@ const RankPage = () => {
                   alt=""
                   className="absolute rounded-full"
                 />
-                <div className="absolute -bottom-1 -right-1 z-10 grid h-6 w-6 place-content-center rounded-full bg-light-gray text-light-sub">
-                  <h1>2</h1>
+                <div className="absolute -bottom-1 -right-1 z-10 grid h-6 w-6 place-content-center rounded-full bg-bronze font-extrabold text-light-sub">
+                  <h1>3</h1>
                 </div>
               </div>
               <div className="text-sm">볼록눈이</div>
@@ -95,7 +84,7 @@ const RankPage = () => {
         </ul>
       </div>
       {/* 나 */}
-      <div className="flex h-16 items-center bg-light-sub p-3">
+      <div className="flex h-16 items-center bg-light-sub p-3 dark:bg-dark-sub">
         <div className="w-10  text-center text-xl">2</div>
         <div className="mx-2 h-11 w-11 rounded-full bg-slate-600"></div>
         <div className="flex-1">감자칩</div>
