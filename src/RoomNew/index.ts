@@ -14,4 +14,4 @@ export {
   PASSWORD,
   USER_COUNT,
   ANNOUNCEMENT
-} from './constants/roomLiterals';
+} from '../RoomForm/constants/literals';

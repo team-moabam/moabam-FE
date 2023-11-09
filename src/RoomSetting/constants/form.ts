@@ -4,50 +4,42 @@ import {
   ROUTINE_NAME,
   ROOM_NAME,
   USER_COUNT,
-  PASSWORD
-} from '@/RoomNew';
-
-const MESSAGE = {
-  ANNOUNCEMENT: `공지사항은 ${ANNOUNCEMENT.min}글자에서 ${ANNOUNCEMENT.max}글자 사이여야 해요.`,
-  ROUTINE_NAME: `루틴 내용은 ${ROUTINE_NAME.min}글자에서 ${ROUTINE_NAME.max}글자 사이여야 해요.`,
-  ROOM_NAME: `방 제목은 ${ROOM_NAME.min}글자에서 ${ROOM_NAME.max}글자 사이여야 해요.`,
-  USER_COUNT: `인원을 올바르게 선택해주세요.`,
-  PASSWORD: `비밀번호는 ${PASSWORD.min}자리에서 ${PASSWORD.max}자리의 숫자여야 해요.}`,
-  ONLY_NUMERIC_PASSWORD: `비밀번호는 숫자로만 입력해주세요.`
-};
+  PASSWORD,
+  FORM_MESSAGE
+} from '@/RoomForm/constants/literals';
 
 export const formSchema = z.object({
   title: z
     .string()
     .trim()
-    .min(ROOM_NAME.min, MESSAGE.ROOM_NAME)
-    .max(ROOM_NAME.max, MESSAGE.ROOM_NAME),
+    .min(ROOM_NAME.min, FORM_MESSAGE.ROOM_NAME)
+    .max(ROOM_NAME.max, FORM_MESSAGE.ROOM_NAME),
   announcement: z
     .string()
     .trim()
-    .min(ANNOUNCEMENT.min, MESSAGE.ANNOUNCEMENT)
-    .max(ANNOUNCEMENT.max, MESSAGE.ANNOUNCEMENT),
+    .min(ANNOUNCEMENT.min, FORM_MESSAGE.ANNOUNCEMENT)
+    .max(ANNOUNCEMENT.max, FORM_MESSAGE.ANNOUNCEMENT),
   certifyTime: z.number(),
   routines: z.array(
     z.object({
       value: z
         .string()
         .trim()
-        .min(ROUTINE_NAME.min, MESSAGE.ROUTINE_NAME)
-        .max(ROUTINE_NAME.max, MESSAGE.ROUTINE_NAME)
+        .min(ROUTINE_NAME.min, FORM_MESSAGE.ROUTINE_NAME)
+        .max(ROUTINE_NAME.max, FORM_MESSAGE.ROUTINE_NAME)
     })
   ),
   userCount: z
     .number()
-    .gte(USER_COUNT.min, MESSAGE.USER_COUNT)
-    .lte(USER_COUNT.max, MESSAGE.USER_COUNT),
+    .gte(USER_COUNT.min, FORM_MESSAGE.USER_COUNT)
+    .lte(USER_COUNT.max, FORM_MESSAGE.USER_COUNT),
   password: z.literal('').or(
     z
       .string()
-      .min(PASSWORD.min, MESSAGE.PASSWORD)
-      .max(PASSWORD.max, MESSAGE.PASSWORD)
+      .min(PASSWORD.min, FORM_MESSAGE.PASSWORD)
+      .max(PASSWORD.max, FORM_MESSAGE.PASSWORD)
       .refine((v) => /^\d*$/.test(v), {
-        message: MESSAGE.ONLY_NUMERIC_PASSWORD
+        message: FORM_MESSAGE.ONLY_NUMERIC_PASSWORD
       })
   )
 });

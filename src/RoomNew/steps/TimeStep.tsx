@@ -1,11 +1,11 @@
 import { useFormContext } from 'react-hook-form';
 import { formatHourString } from '@/TimePicker/utils/hour';
+import { TIME_RANGE } from '@/RoomForm/constants/literals';
 import {
   headingStyle,
   descriptionStyle,
   errorStyle
 } from '../constants/styles';
-import { TIME_RANGE } from '../constants/roomLiterals';
 import { Inputs } from '../constants/form';
 import { TimePicker } from '@/TimePicker';
 

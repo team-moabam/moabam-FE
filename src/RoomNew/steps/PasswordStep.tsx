@@ -1,11 +1,11 @@
 import clsx from 'clsx';
 import { useFormContext } from 'react-hook-form';
+import { PASSWORD } from '@/RoomForm/constants/literals';
 import {
   headingStyle,
   descriptionStyle,
   errorStyle
 } from '../constants/styles';
-import { PASSWORD } from '../constants/roomLiterals';
 import { Inputs } from '../constants/form';
 import { PasswordInput } from '@/shared/Input';
 

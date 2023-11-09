@@ -1,5 +1,5 @@
 import { useFormContext } from 'react-hook-form';
-import { ROOM_NAME } from '@/RoomNew/constants/roomLiterals';
+import { ROOM_NAME } from '@/RoomForm/constants/literals';
 import { Inputs } from '../../constants/form';
 import { errorStyle } from '../../constants/styles';
 import { detailSectionStyle, headingStyle } from './styles';

@@ -1,6 +1,6 @@
 import { useFormContext } from 'react-hook-form';
 import { Inputs } from '@/RoomSetting/constants/form';
-import { PASSWORD } from '@/RoomNew/constants/roomLiterals';
+import { PASSWORD } from '@/RoomForm/constants/literals';
 import { errorStyle, labelStyle } from './styles';
 import { PasswordInput } from '@/shared/Input';
 

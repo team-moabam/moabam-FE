@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { RoomType, BIRD, TIME_RANGE } from '../constants/roomLiterals';
+import { RoomType, BIRD, TIME_RANGE } from '@/RoomForm/constants/literals';
 
 interface BirdCardProps {
   active?: boolean;

@@ -6,7 +6,7 @@ import {
   ROOM_NAME,
   USER_COUNT,
   PASSWORD
-} from './roomLiterals';
+} from '@/RoomForm/constants/literals';
 
 const MESSAGE = {
   ROUTINE_NAME: `루틴 내용은 ${ROUTINE_NAME.min}글자에서 ${ROUTINE_NAME.max}글자 사이여야 해요.`,
