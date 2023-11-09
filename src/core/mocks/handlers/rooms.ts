@@ -35,9 +35,8 @@ const roomsHandlers = [
   }),
   http.get(baseURL('/rooms/:roomId'), async () => {
     await delay(200);
-    return HttpResponse.json({
-      data: RoomInfo
-    });
+    const response = RoomInfo;
+    return HttpResponse.json(response);
   })
 ];
 

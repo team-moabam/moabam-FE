@@ -13,17 +13,10 @@ import { Icon } from '@/shared/Icon';
 const RoomDetailPage = () => {
   const { getRoomDetail } = roomAPI;
   const roomId = '1234';
-  const { data, isLoading } = useQuery({
+  const { data: roomDetailData } = useQuery({
     queryKey: ['roomDetail', roomId],
-    queryFn: ({ queryKey }) => {
-      return getRoomDetail(queryKey[1]);
-    }
-  });
-
-  let roomDetailData = data;
-
-  if (isLoading) {
-    roomDetailData = {
+    queryFn: ({ queryKey }) => getRoomDetail(queryKey[1]),
+    placeholderData: {
       roomId: 1,
       title: '',
       managerNickname: '',
@@ -34,11 +27,12 @@ const RoomDetailPage = () => {
       maxUserCount: 0,
       announcement: '',
       completePercentage: 0,
-      certifiedDates: '',
+      certifiedDates: [''],
       routine: [{ routineId: 0, content: '' }],
       todayCertificateRank: []
-    };
-  }
+    }
+  });
+
   const { title, announcement } = roomDetailData;
 
   return (

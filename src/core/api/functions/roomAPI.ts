@@ -1,4 +1,5 @@
 import { baseInstance } from '../instance';
+import { RoomInfo } from '@/core/types/Room';
 
 const roomAPI = {
   postRoom: async (body: {
