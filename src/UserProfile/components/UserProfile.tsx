@@ -9,13 +9,9 @@ interface UserProfileProps {
 const UserProfile = ({ nickname, intro }: UserProfileProps) => {
   const [profileData, setProfileData] = useState({ nickname, intro });
 
-  // const handleImageChange = (e) => {
-  //   console.log(e.target.files[0]);
-  // };
-
   return (
-    <>
-      <div className="absolute right-5 cursor-pointer text-3xl text-dark-gray hover:text-black dark:hover:text-white">
+    <div className="relative p-3">
+      <div className="absolute right-3 cursor-pointer text-3xl text-dark-gray hover:text-black dark:hover:text-white">
         <MdModeEdit />
       </div>
       <div className="flex flex-col items-center">
@@ -29,20 +25,8 @@ const UserProfile = ({ nickname, intro }: UserProfileProps) => {
         </div>
         <div className="my-2 text-xl">{profileData.nickname}</div>
         <div className="text-dark-gray">{profileData.intro}</div>
-        {/* <button
-          onClick={() => {
-            setProfileData({ nickname: '바보', intro: '멍청이' });
-          }}
-        >
-          바꾸기
-        </button>
-        <input
-          type="file"
-          accept="image/*"
-          onChange={handleImageChange}
-        />{' '} */}
       </div>
-    </>
+    </div>
   );
 };
 
