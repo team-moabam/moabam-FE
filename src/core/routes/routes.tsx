@@ -5,7 +5,7 @@ import RoutinesPage from '@/pages/RoutinesPage';
 import RoomNew from '@/pages/RoomNew';
 import RoomLog from '@/pages/RoomLog';
 import Search from '@/pages/Search';
-import NotFoundPage from '@/pages/notFoundPage';
+import NotFoundPage from '@/pages/NotFoundPage';
 
 interface Route {
   path: string;
