@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { iconButtonStyle, errorStyle } from '../constants/styles';
-import { USER_COUNT } from '@/RoomNew';
+import { USER_COUNT } from '../constants/literals';
 import { Icon } from '@/shared/Icon';
 
 const MemberInput = () => {

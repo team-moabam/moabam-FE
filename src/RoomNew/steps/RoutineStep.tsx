@@ -1,9 +1,8 @@
 import { useFormContext } from 'react-hook-form';
 import { ROOM_NAME } from '@/RoomForm/constants/literals';
-import { errorStyle } from '../../constants/styles';
-import { Inputs } from '../../constants/form';
-import { descriptionStyle } from '../../constants/styles';
-import { detailSectionStyle, headingStyle } from './styles';
+import { errorStyle } from '../constants/styles';
+import { Inputs } from '../constants/form';
+import { descriptionStyle } from '../constants/styles';
 import { RoutineInputs, MemberInput } from '@/RoomForm';
 import { Input } from '@/shared/Input';
 
@@ -15,24 +14,24 @@ const RoutineStep = () => {
 
   return (
     <>
-      <section className={detailSectionStyle}>
+      <section className={sectionStyle}>
         <h2 className={headingStyle}>
           같이 <b>어떤 루틴</b>을 해볼까요?
         </h2>
         <RoutineInputs />
       </section>
-      <section className={detailSectionStyle}>
+      <section className={sectionStyle}>
         <h2 className={headingStyle}>
           <b>방 이름</b>을 지어주세요.
-          <Input
-            {...register('title')}
-            maxLength={ROOM_NAME.max}
-            placeholder="짧고 명확하게!"
-          />
-          {errors.title && <p className={errorStyle}>{errors.title.message}</p>}
         </h2>
+        <Input
+          {...register('title')}
+          maxLength={ROOM_NAME.max}
+          placeholder="짧고 명확하게!"
+        />
+        {errors.title && <p className={errorStyle}>{errors.title.message}</p>}
       </section>
-      <section className={detailSectionStyle}>
+      <section className={sectionStyle}>
         <h2 className={headingStyle}>
           <b>최대 몇 명</b>의 친구들과
           <p>함께하고 싶으세요?</p>
@@ -45,3 +44,9 @@ const RoutineStep = () => {
 };
 
 export default RoutineStep;
+
+// 각 섹션의 헤딩에 적용할 스타일
+export const headingStyle = 'mb-6';
+
+// 각 섹션에 적용할 스타일
+export const sectionStyle = 'mb-8 text-xl leading-[2rem]';

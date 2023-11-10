@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { useFieldArray, useFormContext } from 'react-hook-form';
-import { ROUTINE_COUNT, ROUTINE_NAME } from '@/RoomNew/index';
+import { ROUTINE_COUNT, ROUTINE_NAME } from '../constants/literals';
 import { errorStyle, iconButtonStyle } from '../constants/styles';
 import { InnerTextInput } from '@/shared/Input';
 import { Icon } from '@/shared/Icon';
@@ -77,7 +77,7 @@ const RoutineInputs = () => {
         </li>
       ))}
 
-      {errors.routines && (
+      {errors.routines?.message && (
         <li className={errorStyle}>{errors.routines?.message}</li>
       )}
 
