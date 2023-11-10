@@ -60,7 +60,7 @@ const StoreList = () => {
                 <h1>0원</h1>
               </div>
               <hr />
-              <div className="flex font-extrabold text-light-point dark:bg-dark-point">
+              <div className="flex font-extrabold text-light-point dark:text-dark-point">
                 <h1 className="grow">총 결제 금액</h1>
                 <h1>7000원</h1>
               </div>
