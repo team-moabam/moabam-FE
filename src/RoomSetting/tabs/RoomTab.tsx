@@ -12,7 +12,6 @@ import {
   formSchema
 } from '@/RoomSetting/constants/form';
 import { TIME_RANGE } from '@/RoomForm/constants/literals';
-import { errorStyle, inputSectionStyle, labelStyle } from './styles';
 import { MemberInput, RoutineInputs, PasswordInput } from '@/RoomForm';
 import { Input } from '@/shared/Input';
 import { TimePicker } from '@/TimePicker';
@@ -40,7 +39,7 @@ const RoomTab = () => {
   return (
     <FormProvider {...form}>
       <form onSubmit={handleSubmit(onSubmit, onError)}>
-        <section className={inputSectionStyle}>
+        <section className={sectionStyle}>
           <label
             className={labelStyle}
             htmlFor="title"
@@ -56,7 +55,7 @@ const RoomTab = () => {
           )}
         </section>
 
-        <section className={inputSectionStyle}>
+        <section className={sectionStyle}>
           <label
             className={labelStyle}
             htmlFor="announcement"
@@ -72,7 +71,7 @@ const RoomTab = () => {
           )}
         </section>
 
-        <section className={inputSectionStyle}>
+        <section className={sectionStyle}>
           <label
             className={labelStyle}
             htmlFor="notice"
@@ -93,17 +92,17 @@ const RoomTab = () => {
           )}
         </section>
 
-        <section className={inputSectionStyle}>
+        <section className={sectionStyle}>
           <label className={labelStyle}>루틴 목록</label>
           <RoutineInputs />
         </section>
 
-        <section className={inputSectionStyle}>
+        <section className={sectionStyle}>
           <label className={labelStyle}>인원</label>
           <MemberInput />
         </section>
 
-        <section className={inputSectionStyle}>
+        <section className={sectionStyle}>
           <label className={labelStyle}>비밀번호</label>
           <PasswordInput />
         </section>
@@ -117,3 +116,12 @@ const RoomTab = () => {
 };
 
 export default RoomTab;
+
+// 섹션 영역의 스타일
+const sectionStyle = 'mb-10 flex flex-col';
+
+// 인풋의 라벨에 적용할 스타일
+const labelStyle = 'mb-2 font-bold';
+
+// 에러 메시지를 표시할 때 적용할 스타일
+const errorStyle = 'ml-2 mt-4 text-red-500 text-sm';

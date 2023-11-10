@@ -45,8 +45,8 @@ const RoutineStep = () => {
 
 export default RoutineStep;
 
-// 각 섹션의 헤딩에 적용할 스타일
-export const headingStyle = 'mb-6';
+// 섹션의 헤딩에 적용할 스타일
+const headingStyle = 'mb-6';
 
-// 각 섹션에 적용할 스타일
-export const sectionStyle = 'mb-8 text-xl leading-[2rem]';
+// 섹션에 적용할 스타일
+const sectionStyle = 'mb-8 text-xl leading-[2rem]';
