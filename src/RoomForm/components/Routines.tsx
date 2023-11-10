@@ -5,7 +5,7 @@ import { errorStyle, iconButtonStyle } from '../constants/styles';
 import { InnerTextInput } from '@/shared/Input';
 import { Icon } from '@/shared/Icon';
 
-const RoutineInputs = () => {
+const Routines = () => {
   const {
     register,
     watch,
@@ -96,4 +96,4 @@ const RoutineInputs = () => {
   );
 };
 
-export default RoutineInputs;
+export default Routines;

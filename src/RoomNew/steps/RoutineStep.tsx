@@ -3,7 +3,7 @@ import { ROOM_NAME } from '@/RoomForm/constants/literals';
 import { errorStyle } from '../constants/styles';
 import { Inputs } from '../constants/form';
 import { descriptionStyle } from '../constants/styles';
-import { RoutineInputs, MemberInput } from '@/RoomForm';
+import { Routines, UserCount } from '@/RoomForm';
 import { Input } from '@/shared/Input';
 
 const RoutineStep = () => {
@@ -18,7 +18,7 @@ const RoutineStep = () => {
         <h2 className={headingStyle}>
           같이 <b>어떤 루틴</b>을 해볼까요?
         </h2>
-        <RoutineInputs />
+        <Routines />
       </section>
       <section className={sectionStyle}>
         <h2 className={headingStyle}>
@@ -37,7 +37,7 @@ const RoutineStep = () => {
           <p>함께하고 싶으세요?</p>
           <p className={descriptionStyle}>(본인 포함)</p>
         </h2>
-        <MemberInput />
+        <UserCount />
       </section>
     </>
   );

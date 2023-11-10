@@ -4,7 +4,7 @@ import { iconButtonStyle, errorStyle } from '../constants/styles';
 import { USER_COUNT } from '../constants/literals';
 import { Icon } from '@/shared/Icon';
 
-const MemberInput = () => {
+const UserCount = () => {
   const {
     setValue,
     watch,
@@ -48,4 +48,4 @@ const MemberInput = () => {
   );
 };
 
-export default MemberInput;
+export default UserCount;

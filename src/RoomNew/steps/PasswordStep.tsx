@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { PASSWORD } from '@/RoomForm/constants/literals';
 import { headingStyle, descriptionStyle } from '../constants/styles';
-import { PasswordInput } from '@/RoomForm';
+import { Password } from '@/RoomForm';
 
 const PasswordStep = () => {
   return (
@@ -18,7 +18,7 @@ const PasswordStep = () => {
         적어주세요!
       </p>
 
-      <PasswordInput />
+      <Password />
     </>
   );
 };

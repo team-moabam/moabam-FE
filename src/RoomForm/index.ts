@@ -1,3 +1,3 @@
-export { default as MemberInput } from './components/MemberInput';
-export { default as RoutineInputs } from './components/RoutineInputs';
-export { default as PasswordInput } from './components/PasswordInput';
+export { default as UserCount } from './components/UserCount';
+export { default as Routines } from './components/Routines';
+export { default as Password } from './components/Password';

@@ -1,9 +1,9 @@
 import { useFormContext } from 'react-hook-form';
 import { PASSWORD } from '@/RoomForm/constants/literals';
 import { errorStyle } from '../constants/styles';
-import { PasswordInput as PasswordInputComponent } from '@/shared/Input';
+import { PasswordInput } from '@/shared/Input';
 
-const PasswordInput = () => {
+const Password = () => {
   const {
     register,
     setValue,
@@ -18,7 +18,7 @@ const PasswordInput = () => {
 
   return (
     <>
-      <PasswordInputComponent
+      <PasswordInput
         {...register('password')}
         placeholder="비워두시면 공개방이 됩니다"
         maxLength={PASSWORD.max}
@@ -31,4 +31,4 @@ const PasswordInput = () => {
   );
 };
 
-export default PasswordInput;
+export default Password;
