@@ -1,5 +1,4 @@
 import { useMutation } from '@tanstack/react-query';
-import axios from 'axios';
 import {
   SubmitErrorHandler,
   SubmitHandler,
@@ -7,6 +6,7 @@ import {
   FormProvider
 } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { motion } from 'framer-motion';
 import roomAPI from '@/core/api/functions/roomAPI';
 import { Inputs, defaultValues, formSchema } from '@/RoomNew/constants/form';
 import { useFunnel, Funnel } from '@/shared/Funnel';
@@ -27,6 +27,16 @@ export const steps = [
   'PasswordStep',
   'SummaryStep'
 ] as const;
+
+const stepComponents: {
+  [key in (typeof steps)[number]]: JSX.Element;
+} = {
+  BirdStep: <BirdStep />,
+  TimeStep: <TimeStep />,
+  RoutineStep: <RoutineStep />,
+  PasswordStep: <PasswordStep />,
+  SummaryStep: <SummaryStep />
+};
 
 const RoomNewPage = () => {
   const funnel = useFunnel(steps);
@@ -97,11 +107,11 @@ const RoomNewPage = () => {
   const onError: SubmitErrorHandler<Inputs> = (errors) => console.error(errors);
 
   return (
-    <form
-      className="flex h-full flex-col"
-      onSubmit={form.handleSubmit(onSubmit, onError)}
-    >
-      <FormProvider {...form}>
+    <FormProvider {...form}>
+      <form
+        className="flex h-full flex-col"
+        onSubmit={form.handleSubmit(onSubmit, onError)}
+      >
         <Header
           className="bg-light-main"
           prev="routines"
@@ -109,29 +119,29 @@ const RoomNewPage = () => {
         />
         <main className="grow overflow-auto px-8 py-12">
           <Funnel {...funnel}>
-            <Funnel.Step<typeof steps> name="BirdStep">
-              <BirdStep />
-            </Funnel.Step>
-            <Funnel.Step<typeof steps> name="TimeStep">
-              <TimeStep />
-            </Funnel.Step>
-            <Funnel.Step<typeof steps> name="RoutineStep">
-              <RoutineStep />
-            </Funnel.Step>
-            <Funnel.Step<typeof steps> name="PasswordStep">
-              <PasswordStep />
-            </Funnel.Step>
-            <Funnel.Step<typeof steps> name="SummaryStep">
-              <SummaryStep />
-            </Funnel.Step>
+            {steps.map((step) => (
+              <Funnel.Step
+                key={step}
+                name={step}
+              >
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ ease: 'easeInOut', duration: 0.25 }}
+                >
+                  {stepComponents[step]}
+                </motion.div>
+              </Funnel.Step>
+            ))}
           </Funnel>
         </main>
         <Navbar
           {...funnel}
           isPending={isPending}
         />
-      </FormProvider>
-    </form>
+      </form>
+    </FormProvider>
   );
 };
 
