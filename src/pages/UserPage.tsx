@@ -37,7 +37,9 @@ const UserPage = () => {
       />
       <div className="px-5">
         <div className="my-2 mt-4 flex w-full items-end justify-between">
-          <div className="text-xl text-light-point">Lv {level}</div>
+          <div className="text-xl text-light-point dark:text-dark-point">
+            Lv {level}
+          </div>
           <div>{exp} / 10</div>
         </div>
         <ProgressBar
@@ -48,7 +50,7 @@ const UserPage = () => {
           <div>대표 새</div>
           <Link
             to="/mybird"
-            className="cursor-pointer text-light-point"
+            className="cursor-pointer text-light-point dark:text-dark-point"
           >
             변경
           </Link>
@@ -77,7 +79,9 @@ const UserPage = () => {
         </div>
         <div className="mb-3 mt-8 flex w-full justify-between">
           <div>뱃지</div>
-          <div className="cursor-pointer text-light-point">더보기</div>
+          {/* <div className="cursor-pointer text-light-point dark:text-dark-point">
+            더보기
+          </div> */}
         </div>
         <div className="flex h-36 w-full rounded-lg  text-sm">
           {badgeArray.map((badge) => (
@@ -120,7 +124,7 @@ const UserPage = () => {
         <div className="my-3 flex w-full justify-end">
           <Link
             to={`/user/orderLog`}
-            className="text-light-point"
+            className="text-light-point dark:text-dark-point"
           >
             사용내역보기
           </Link>

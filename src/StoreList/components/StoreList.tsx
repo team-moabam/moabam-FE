@@ -47,7 +47,7 @@ const StoreList = () => {
               황금벌레 {selectProduct.name} <br /> 상품을 구매하시겠어요?
             </h1>
             <h1 className="my-1 text-dark-gray">쿠폰</h1>
-            <select className="w-full rounded-md border-2 p-1">
+            <select className="w-full rounded-md border-2 p-1 dark:text-black">
               <option value="10원할인">10원 할인 쿠폰</option>
             </select>
             <div className="mt-8 flex flex-col gap-2 text-dark-gray">
