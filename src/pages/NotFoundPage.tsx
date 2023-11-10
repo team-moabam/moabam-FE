@@ -17,7 +17,7 @@ const NotFoundPage = () => {
       </div>
       <Link
         to={'/'}
-        className="absolute inset-x-0 bottom-5 mx-5 rounded-full bg-light-point p-3 text-center font-extrabold text-white"
+        className="absolute inset-x-0 bottom-5 mx-5 rounded-full bg-light-point p-3 text-center font-extrabold text-white dark:bg-dark-point"
       >
         홈으로
       </Link>
