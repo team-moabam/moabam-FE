@@ -25,6 +25,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
           focus:ring-light-point
           dark:focus:border-dark-point
           dark:focus:ring-dark-point
+          dark:text-black
           ${sizeVariants[size]}
           `,
           className

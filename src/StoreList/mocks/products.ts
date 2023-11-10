@@ -13,7 +13,7 @@ export const data: { products: Product[] } = {
       id: 2,
       type: 'BUG',
       name: 'X20',
-      price: 3000,
+      price: 30000,
       quantity: 20
     }
   ]

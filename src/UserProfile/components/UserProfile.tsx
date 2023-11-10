@@ -10,7 +10,7 @@ const UserProfile = ({ nickname, intro }: UserProfileProps) => {
   const [profileData, setProfileData] = useState({ nickname, intro });
 
   return (
-    <div className="relative p-3">
+    <div className="relative p-3 pb-0">
       <div className="absolute right-3 cursor-pointer text-3xl text-dark-gray hover:text-black dark:hover:text-white">
         <MdModeEdit />
       </div>
