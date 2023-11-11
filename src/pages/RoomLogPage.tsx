@@ -1,7 +1,7 @@
 import RoomLogItem from '../RoomLog/components/RoomLogItem';
 import { Header } from '@/shared/Header';
 
-const RoomLog = () => {
+const RoomLogPage = () => {
   return (
     <>
       <div className="dark:bg-dark-sub">
@@ -11,7 +11,7 @@ const RoomLog = () => {
           title="2023년 10월 8일"
         />
       </div>
-      <div className="px-[1.75rem] py-[2.13rem]">
+      <div className="px-7 py-[2.13rem]">
         <RoomLogItem />
         <RoomLogItem />
         <RoomLogItem />
@@ -27,4 +27,4 @@ const RoomLog = () => {
   );
 };
 
-export default RoomLog;
+export default RoomLogPage;

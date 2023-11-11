@@ -1,5 +1,6 @@
 import { http, HttpResponse, delay } from 'msw';
 import { baseURL } from '../baseURL';
+import { RoomInfo } from '../datas/room';
 
 const roomsHandlers = [
   http.post(baseURL('/rooms'), async () => {
@@ -31,6 +32,11 @@ const roomsHandlers = [
     }
 
     return HttpResponse.json(response, { status });
+  }),
+  http.get(baseURL('/rooms/:roomId'), async () => {
+    await delay(200);
+    const response = RoomInfo;
+    return HttpResponse.json(response);
   })
 ];
 
