@@ -1,28 +1,30 @@
 // 새 종류 별 방 타입
-export const ROOM_TYPES = ['morning', 'night'] as const;
+import { RoomInfo } from '@/core/types/Room';
+
+export const ROOM_TYPES = ['MORNING', 'NIGHT'] as const;
 
 // 새 종류 및 이미지
 export const BIRD: Record<
-  RoomType,
+  RoomInfo['roomType'],
   {
     name: string;
     image: string;
   }
 > = {
-  morning: {
+  MORNING: {
     name: '오목눈이',
     image: '/assets/Omok.png'
   },
-  night: {
+  NIGHT: {
     name: '부엉이',
     image: '/assets/Owl.png'
   }
 } as const;
 
 // 새 종류 별 선택할 수 있는 인증 시간 범위
-export const TIME_RANGE: Record<RoomType, [number, number]> = {
-  morning: [4, 10],
-  night: [20, 26]
+export const TIME_RANGE: Record<RoomInfo['roomType'], [number, number]> = {
+  MORNING: [4, 10],
+  NIGHT: [20, 26]
 };
 
 // 등록할 수 있는 최대 루틴 수
@@ -59,9 +61,6 @@ export const ANNOUNCEMENT = {
   min: 0,
   max: 100
 };
-
-// 새 종류 별 방 타입
-export type RoomType = (typeof ROOM_TYPES)[number];
 
 // 폼 유효성 검사 메시지
 export const FORM_MESSAGE = {

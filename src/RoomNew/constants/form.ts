@@ -49,8 +49,8 @@ export const formSchema = z.object({
 });
 
 export const defaultValues: Inputs = {
-  type: 'morning',
-  certifyTime: TIME_RANGE['morning'][0],
+  type: 'MORNING',
+  certifyTime: TIME_RANGE['MORNING'][0],
   routines: [{ value: '' }],
   userCount: 5,
   title: '',
