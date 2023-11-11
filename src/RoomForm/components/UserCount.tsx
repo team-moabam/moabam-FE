@@ -13,7 +13,7 @@ const UserCount = () => {
 
   const watchUserCount = watch('userCount');
 
-  const setUserCount = useCallback(
+  const handleSetUserCount = useCallback(
     (count: number) => {
       if (count <= 0 || count > USER_COUNT.max) {
         return;
@@ -31,14 +31,14 @@ const UserCount = () => {
           icon="FaMinusCircle"
           size="3xl"
           className={iconButtonStyle}
-          onClick={() => setUserCount(watchUserCount - 1)}
+          onClick={() => handleSetUserCount(watchUserCount - 1)}
         />
         <b className="text-xl">{watchUserCount} 명</b>
         <Icon
           icon="FaPlusCircle"
           size="3xl"
           className={iconButtonStyle}
-          onClick={() => setUserCount(watchUserCount + 1)}
+          onClick={() => handleSetUserCount(watchUserCount + 1)}
         />
       </div>
       {errors.userCount && (

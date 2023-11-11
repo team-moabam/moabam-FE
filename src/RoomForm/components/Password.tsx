@@ -1,3 +1,4 @@
+import { useCallback } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { PASSWORD } from '@/RoomForm/constants/literals';
 import { errorStyle } from '../constants/styles';
@@ -10,11 +11,14 @@ const Password = () => {
     formState: { errors }
   } = useFormContext<{ password: string }>();
 
-  const handleChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value.replace(/[^0-9]/g, '');
+  const handleChangePassword = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const value = e.target.value.replace(/[^0-9]/g, '');
 
-    setValue('password', value);
-  };
+      setValue('password', value);
+    },
+    [setValue]
+  );
 
   return (
     <>

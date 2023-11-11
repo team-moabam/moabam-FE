@@ -24,7 +24,7 @@ const Routines = () => {
     control
   });
 
-  const appendRoutine = useCallback(() => {
+  const handleAppendRoutine = useCallback(() => {
     if (routines.length >= ROUTINE_COUNT.max) {
       return;
     }
@@ -32,7 +32,7 @@ const Routines = () => {
     append({ value: '' });
   }, [routines.length, append]);
 
-  const removeRoutine = useCallback(
+  const handleRemoveRoutine = useCallback(
     (idx: number) => {
       remove(idx);
     },
@@ -62,7 +62,7 @@ const Routines = () => {
             {idx !== 0 && (
               <div
                 className="absolute right-0 top-1/2 -mr-8 flex h-8 -translate-y-1/2 cursor-pointer items-center justify-center rounded-l-lg bg-dark-gray px-1 text-white transition-all hover:bg-gray-600"
-                onClick={() => removeRoutine(idx)}
+                onClick={() => handleRemoveRoutine(idx)}
               >
                 <Icon
                   icon="CgClose"
@@ -86,7 +86,7 @@ const Routines = () => {
           className={iconButtonStyle}
           icon="FaPlusCircle"
           size="3xl"
-          onClick={appendRoutine}
+          onClick={handleAppendRoutine}
         />
         <div className="text-center text-xs">
           {routines.length} / {ROUTINE_COUNT.max}
