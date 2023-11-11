@@ -4,7 +4,11 @@ import ReactTextareaAutosize from 'react-textarea-autosize';
 import clsx from 'clsx';
 import { roomOptions } from '@/core/api/options';
 import { formatHourString } from '@/TimePicker/utils/hour';
-import { TIME_RANGE, ANNOUNCEMENT } from '@/RoomForm/constants/literals';
+import {
+  TIME_RANGE,
+  ANNOUNCEMENT,
+  ROOM_NAME
+} from '@/RoomForm/constants/literals';
 import useRoomForm from '../hooks/useRoomForm';
 import { UserCount, Routines, Password } from '@/RoomForm';
 import { Input } from '@/shared/Input';
@@ -55,6 +59,7 @@ const RoomTab = ({ roomId }: RoomTabProps) => {
           <Input
             id="title"
             {...register('title')}
+            maxLength={ROOM_NAME.max}
           />
           {errors.title && (
             <p className={errorStyle}>{errors.title?.message}</p>
