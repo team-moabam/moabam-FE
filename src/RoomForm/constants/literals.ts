@@ -41,7 +41,7 @@ export const ROUTINE_NAME = {
 // 방 제목 길이
 export const ROOM_NAME = {
   min: 1,
-  max: 10
+  max: 20
 };
 
 // 비밀번호 길이
