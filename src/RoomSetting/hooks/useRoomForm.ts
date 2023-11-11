@@ -1,20 +1,28 @@
 import { useMutation } from '@tanstack/react-query';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
 import z from 'zod';
+import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 import roomAPI from '@/core/api/functions/roomAPI';
 import {
-  FORM_MESSAGE,
-  ROOM_TYPES,
-  TIME_RANGE,
+  ANNOUNCEMENT,
   ROUTINE_NAME,
   ROOM_NAME,
   USER_COUNT,
-  PASSWORD
+  PASSWORD,
+  FORM_MESSAGE
 } from '@/RoomForm/constants/literals';
 
 export const formSchema = z.object({
-  type: z.enum(ROOM_TYPES),
+  title: z
+    .string()
+    .trim()
+    .min(ROOM_NAME.min, FORM_MESSAGE.ROOM_NAME)
+    .max(ROOM_NAME.max, FORM_MESSAGE.ROOM_NAME),
+  announcement: z
+    .string()
+    .trim()
+    .min(ANNOUNCEMENT.min, FORM_MESSAGE.ANNOUNCEMENT)
+    .max(ANNOUNCEMENT.max, FORM_MESSAGE.ANNOUNCEMENT),
   certifyTime: z.number(),
   routines: z.array(
     z.object({
@@ -25,11 +33,6 @@ export const formSchema = z.object({
         .max(ROUTINE_NAME.max, FORM_MESSAGE.ROUTINE_NAME)
     })
   ),
-  title: z
-    .string()
-    .trim()
-    .min(ROOM_NAME.min, FORM_MESSAGE.ROOM_NAME)
-    .max(ROOM_NAME.max, FORM_MESSAGE.ROOM_NAME),
   userCount: z
     .number()
     .gte(USER_COUNT.min, FORM_MESSAGE.USER_COUNT)
@@ -47,20 +50,18 @@ export const formSchema = z.object({
 
 export type Inputs = z.infer<typeof formSchema>;
 
-const useFormManagement = () => {
+interface useRoomFormProps {
+  roomId: number;
+  defaultValues: Inputs;
+}
+
+const useRoomForm = ({ roomId, defaultValues }: useRoomFormProps) => {
   const mutation = useMutation({
-    mutationFn: roomAPI.postRoom
+    mutationFn: roomAPI.putRoom
   });
 
   const form = useForm<Inputs>({
-    defaultValues: {
-      type: 'MORNING',
-      certifyTime: TIME_RANGE['MORNING'][0],
-      routines: [{ value: '' }],
-      userCount: 5,
-      title: '',
-      password: ''
-    },
+    defaultValues,
     mode: 'onBlur',
     resolver: zodResolver(formSchema)
   });
@@ -68,47 +69,43 @@ const useFormManagement = () => {
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     mutation.mutate(
       {
+        roomId,
         title: data.title,
-        password: data.password,
-        type: data.type,
-        routine: data.routines.map((r) => r.value),
+        announcement: data.announcement,
         certifyTime: data.certifyTime % 24,
-        maxUserCount: data.userCount
+        routine: data.routines.map((r) => r.value),
+        maxUserCount: data.userCount,
+        password: data.password
       },
       {
-        onSuccess: (data) => {
-          // TODO: toast({ message: '방이 생성되었습니다.', type: 'success' });
-          console.log(data.message);
-
-          // TODO: 방 상세 페이지로 redirect 해야 해요.
-          console.log('TODO: 방 상세 페이지로 redirect');
-        },
+        onSuccess: (data) => console.log(data),
         onError: (error) => {
-          // TODO: toast({ message: '서버에서 날아온 에러 메시지.', type: 'error' });
+          const { setError } = form;
+
+          // TODO: 에러 Toast 메시지를 보여줘야 해요.
           console.log(error.response?.data?.message);
 
           if (error.response?.data?.validation) {
-            const { setError } = form;
-
             const {
               title,
-              password,
-              type,
+              announcement,
               routine,
+              password,
               certifyTime,
               maxUserCount
             } = error.response.data.validation;
 
             setError('title', { message: title });
-            setError('password', { message: password });
-            setError('type', { message: type });
+            setError('announcement', { message: announcement });
             setError('routines', { message: routine });
+            setError('password', { message: password });
             setError('certifyTime', { message: certifyTime });
             setError('userCount', { message: maxUserCount });
           }
 
           if (error.response?.status === 401) {
             // TODO: 로그인 페이지로 redirect 해야 해요.
+            // TODO: 혹은 전역 MutationCache에 리다이렉션 관련 로직을 작업해야 해요.
             console.log('TODO: 로그인 페이지로 redirect');
           }
         }
@@ -123,4 +120,4 @@ const useFormManagement = () => {
   return { form, handleSubmit, mutation };
 };
 
-export default useFormManagement;
+export default useRoomForm;

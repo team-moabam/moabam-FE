@@ -5,7 +5,7 @@ import {
   descriptionStyle,
   errorStyle
 } from '../constants/styles';
-import { Inputs } from '../hooks/useFormManagement';
+import { Inputs } from '../hooks/useRoomForm';
 import BirdCard from '../components/BirdCard';
 
 const BirdStep = () => {

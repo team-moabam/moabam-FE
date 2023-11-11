@@ -7,7 +7,7 @@ import {
   RoutineStep,
   SummaryStep,
   TimeStep,
-  useFormManagement,
+  useRoomForm,
   Navbar
 } from '@/RoomNew';
 
@@ -21,7 +21,7 @@ export const steps = [
 
 const RoomNewPage = () => {
   const funnel = useFunnel(steps);
-  const { form, mutation, handleSubmit } = useFormManagement();
+  const { form, mutation, handleSubmit } = useRoomForm();
 
   return (
     <FormProvider {...form}>

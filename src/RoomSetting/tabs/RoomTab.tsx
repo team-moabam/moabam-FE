@@ -5,7 +5,7 @@ import clsx from 'clsx';
 import { roomOptions } from '@/core/api/options';
 import { formatHourString } from '@/TimePicker/utils/hour';
 import { TIME_RANGE, ANNOUNCEMENT } from '@/RoomForm/constants/literals';
-import useFormManagement from '../hooks/useFormManagement';
+import useRoomForm from '../hooks/useRoomForm';
 import { UserCount, Routines, Password } from '@/RoomForm';
 import { Input } from '@/shared/Input';
 import { TimePicker } from '@/TimePicker';
@@ -21,7 +21,7 @@ const RoomTab = ({ roomId }: RoomTabProps) => {
     staleTime: Infinity
   });
 
-  const { form, handleSubmit, mutation } = useFormManagement({
+  const { form, handleSubmit, mutation } = useRoomForm({
     roomId,
     defaultValues: {
       title: room.title,
