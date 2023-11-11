@@ -3,8 +3,6 @@ import Room from '@/pages/Room';
 import RoomDetailPage from '@/pages/RoomDetailPage';
 import RoomLogPage from '@/pages/RoomLogPage';
 import RoutinesPage from '@/pages/RoutinesPage';
-import RoomNew from '@/pages/RoomNew';
-import RoomLog from '@/pages/RoomLog';
 import SearchPage from '@/pages/SearchPage';
 import RoomNewPage from '@/pages/RoomNewPage';
 import RoomSettingPage from '@/pages/RoomSettingPage';

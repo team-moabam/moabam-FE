@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { totalRooms } from '@/RoomList/mocks/totalRooms';
-import { SearchBar, Selection, ResultList } from '@/Search';
-import { SelectType } from '@/Search/types/search';
+import { SearchBar, Selection, ResultList } from '@/RoomSearch';
+import { SelectType } from '@/RoomSearch/types/search';
 
 const SearchPage = () => {
   // TODO : mock api 연결하기
