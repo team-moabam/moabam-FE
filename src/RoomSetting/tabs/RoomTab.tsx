@@ -1,21 +1,16 @@
-import { useEffect } from 'react';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import {
-  useForm,
   SubmitHandler,
   SubmitErrorHandler,
+  useForm,
   FormProvider
 } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
 import ReactTextareaAutosize from 'react-textarea-autosize';
 import clsx from 'clsx';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { roomOptions } from '@/core/api/options';
 import { formatHourString } from '@/TimePicker/utils/hour';
-import {
-  Inputs,
-  defaultValues,
-  formSchema
-} from '@/RoomSetting/constants/form';
+import { Inputs, formSchema } from '@/RoomSetting/constants/form';
 import { TIME_RANGE, ANNOUNCEMENT } from '@/RoomForm/constants/literals';
 import { UserCount, Routines, Password } from '@/RoomForm';
 import { Input } from '@/shared/Input';
@@ -28,12 +23,18 @@ interface RoomTabProps {
 const RoomTab = ({ roomId }: RoomTabProps) => {
   const { data: room } = useSuspenseQuery({
     ...roomOptions.detail(roomId),
-    staleTime: Infinity,
-    gcTime: 0
+    staleTime: Infinity
   });
 
   const form = useForm<Inputs>({
-    defaultValues,
+    defaultValues: {
+      title: room.title,
+      announcement: room.announcement,
+      certifyTime: room.certifyTime,
+      routines: room.routine.map((r) => ({ value: r.content })),
+      userCount: room.maxUserCount,
+      password: ''
+    },
     mode: 'onBlur',
     resolver: zodResolver(formSchema)
   });
@@ -53,19 +54,6 @@ const RoomTab = ({ roomId }: RoomTabProps) => {
   };
 
   const onError: SubmitErrorHandler<Inputs> = (errors) => console.error(errors);
-
-  useEffect(() => {
-    const { title, announcement, certifyTime, routine, maxUserCount } = room;
-
-    setValue('title', title);
-    setValue('announcement', announcement);
-    setValue('certifyTime', certifyTime);
-    setValue(
-      'routines',
-      routine.map((r) => ({ value: r.content }))
-    );
-    setValue('userCount', maxUserCount);
-  }, []);
 
   return (
     <FormProvider {...form}>
@@ -149,7 +137,7 @@ const RoomTab = ({ roomId }: RoomTabProps) => {
           <Password />
         </section>
 
-        <button className="btn btn-transition btn-light-point mb-24 w-full text-xl">
+        <button className="btn btn-light-point mb-24 w-full text-xl">
           적용
         </button>
       </form>

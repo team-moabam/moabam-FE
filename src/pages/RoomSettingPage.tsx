@@ -3,8 +3,7 @@ import { ErrorBoundary } from '@suspensive/react';
 import { useRouteData } from '@/core/hooks';
 import { Header } from '@/shared/Header';
 import { Tab, TabItem } from '@/shared/Tab';
-import { RoomTab, MemberTab, RemoveTab } from '@/RoomSetting';
-import { LoadingSpinner } from '@/shared/LoadingSpinner';
+import { RoomTab, MemberTab, RemoveTab, LoadingFallback } from '@/RoomSetting';
 
 const RoomSettingPage = () => {
   const { params } = useRouteData();
@@ -20,16 +19,7 @@ const RoomSettingPage = () => {
           itemStyle="mt-10 px-8"
         >
           <TabItem title="방 관리">
-            <Suspense
-              fallback={
-                <div className="flex justify-center overflow-hidden">
-                  <LoadingSpinner
-                    size="7xl"
-                    colorStyle="text-black"
-                  />
-                </div>
-              }
-            >
+            <Suspense fallback={<LoadingFallback />}>
               <RoomTab roomId={roomId} />
             </Suspense>
           </TabItem>
