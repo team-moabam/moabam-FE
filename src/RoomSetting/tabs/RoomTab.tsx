@@ -1,18 +1,11 @@
-import { useMutation, useSuspenseQuery } from '@tanstack/react-query';
-import {
-  SubmitHandler,
-  SubmitErrorHandler,
-  useForm,
-  FormProvider
-} from 'react-hook-form';
+import { useSuspenseQuery } from '@tanstack/react-query';
+import { FormProvider } from 'react-hook-form';
 import ReactTextareaAutosize from 'react-textarea-autosize';
 import clsx from 'clsx';
-import { zodResolver } from '@hookform/resolvers/zod';
 import { roomOptions } from '@/core/api/options';
-import roomAPI from '@/core/api/functions/roomAPI';
 import { formatHourString } from '@/TimePicker/utils/hour';
-import { Inputs, formSchema } from '@/RoomSetting/constants/form';
 import { TIME_RANGE, ANNOUNCEMENT } from '@/RoomForm/constants/literals';
+import useFormManagement from '../hooks/useFormManagement';
 import { UserCount, Routines, Password } from '@/RoomForm';
 import { Input } from '@/shared/Input';
 import { TimePicker } from '@/TimePicker';
@@ -28,11 +21,8 @@ const RoomTab = ({ roomId }: RoomTabProps) => {
     staleTime: Infinity
   });
 
-  const { mutate, isPending } = useMutation({
-    mutationFn: roomAPI.putRoom
-  });
-
-  const form = useForm<Inputs>({
+  const { form, handleSubmit, mutation } = useFormManagement({
+    roomId,
     defaultValues: {
       title: room.title,
       announcement: room.announcement,
@@ -40,72 +30,21 @@ const RoomTab = ({ roomId }: RoomTabProps) => {
       routines: room.routine.map((r) => ({ value: r.content })),
       userCount: room.maxUserCount,
       password: ''
-    },
-    mode: 'onBlur',
-    resolver: zodResolver(formSchema)
+    }
   });
 
   const {
     register,
-    handleSubmit,
     setValue,
-    setError,
     watch,
     formState: { errors }
   } = form;
 
   const watchAnnouncement = watch('announcement');
 
-  const onSubmit: SubmitHandler<Inputs> = (data) => {
-    mutate(
-      {
-        roomId,
-        title: data.title,
-        announcement: data.announcement,
-        certifyTime: data.certifyTime % 24,
-        routine: data.routines.map((r) => r.value),
-        maxUserCount: data.userCount,
-        password: data.password
-      },
-      {
-        onSuccess: (data) => console.log(data),
-        onError: (error) => {
-          // TODO: 에러 Toast 메시지를 보여줘야 해요.
-          console.log(error.response?.data?.message);
-
-          if (error.response?.data?.validation) {
-            const {
-              title,
-              announcement,
-              routine,
-              password,
-              certifyTime,
-              maxUserCount
-            } = error.response.data.validation;
-
-            setError('title', { message: title });
-            setError('announcement', { message: announcement });
-            setError('routines', { message: routine });
-            setError('password', { message: password });
-            setError('certifyTime', { message: certifyTime });
-            setError('userCount', { message: maxUserCount });
-          }
-
-          if (error.response?.status === 401) {
-            // TODO: 로그인 페이지로 redirect 해야 해요.
-            // TODO: 혹은 전역 MutationCache에 리다이렉션 관련 로직을 작업해야 해요.
-            console.log('TODO: 로그인 페이지로 redirect');
-          }
-        }
-      }
-    );
-  };
-
-  const onError: SubmitErrorHandler<Inputs> = (errors) => console.error(errors);
-
   return (
     <FormProvider {...form}>
-      <form onSubmit={handleSubmit(onSubmit, onError)}>
+      <form onSubmit={handleSubmit}>
         <section className={sectionStyle}>
           <label
             className={labelStyle}
@@ -188,11 +127,11 @@ const RoomTab = ({ roomId }: RoomTabProps) => {
         <button
           className={clsx(
             'btn btn-light-point mb-24 flex h-12 w-full items-center justify-center text-xl',
-            isPending && 'cursor-not-allowed'
+            mutation.isPending && 'cursor-not-allowed'
           )}
-          disabled={isPending}
+          disabled={mutation.isPending}
         >
-          {isPending ? <LoadingSpinner size="3xl" /> : '수정하기'}
+          {mutation.isPending ? <LoadingSpinner size="3xl" /> : '수정하기'}
         </button>
       </form>
     </FormProvider>
