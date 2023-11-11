@@ -7,7 +7,7 @@ import { RoomTab, MemberTab, RemoveTab, LoadingFallback } from '@/RoomSetting';
 
 const RoomSettingPage = () => {
   const { params } = useRouteData();
-  const roomId = Number(params.roomId);
+  const roomId = params.roomId || '';
 
   return (
     <>

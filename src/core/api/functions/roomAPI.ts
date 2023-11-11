@@ -13,7 +13,7 @@ const roomAPI = {
     return await baseInstance.post<{ message: string }>('/rooms', body);
   },
   putRoom: async (params: {
-    roomId: number;
+    roomId: string;
     title: string;
     announcement: string;
     routine: string[];
@@ -24,7 +24,7 @@ const roomAPI = {
     const { roomId, ...body } = params;
     return await baseInstance.put(`/rooms/${roomId}`, body);
   },
-  getRoomDetail: async (roomId: number) => {
+  getRoomDetail: async (roomId: string) => {
     return await baseInstance.get<RoomInfo>(`/rooms/${roomId}`);
   }
 };

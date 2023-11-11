@@ -16,7 +16,7 @@ import { TimePicker } from '@/TimePicker';
 import { LoadingSpinner } from '@/shared/LoadingSpinner';
 
 interface RoomTabProps {
-  roomId: number;
+  roomId: string;
 }
 
 const RoomTab = ({ roomId }: RoomTabProps) => {

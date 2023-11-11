@@ -51,7 +51,7 @@ export const formSchema = z.object({
 export type Inputs = z.infer<typeof formSchema>;
 
 interface useRoomFormProps {
-  roomId: number;
+  roomId: string;
   defaultValues: Inputs;
 }
 
