@@ -4,7 +4,11 @@ import { PASSWORD } from '@/RoomForm/constants/literals';
 import { errorStyle } from '../constants/styles';
 import { PasswordInput } from '@/shared/Input';
 
-const Password = () => {
+interface PasswordProps {
+  placeholder: string;
+}
+
+const Password = ({ placeholder }: PasswordProps) => {
   const {
     register,
     setValue,
@@ -24,7 +28,7 @@ const Password = () => {
     <>
       <PasswordInput
         {...register('password')}
-        placeholder="비워두시면 공개방이 됩니다"
+        placeholder={placeholder}
         maxLength={PASSWORD.max}
         onChange={handleChangePassword}
       />

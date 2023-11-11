@@ -18,7 +18,7 @@ const PasswordStep = () => {
         적어주세요!
       </p>
 
-      <Password />
+      <Password placeholder="비워두시면 공개방이 됩니다" />
     </>
   );
 };

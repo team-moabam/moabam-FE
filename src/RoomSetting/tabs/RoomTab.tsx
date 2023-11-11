@@ -182,7 +182,7 @@ const RoomTab = ({ roomId }: RoomTabProps) => {
 
         <section className={sectionStyle}>
           <label className={labelStyle}>비밀번호</label>
-          <Password />
+          <Password placeholder="비워두시면 기존의 비밀번호가 적용됩니다" />
         </section>
 
         <button
