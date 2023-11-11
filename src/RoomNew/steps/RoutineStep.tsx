@@ -1,7 +1,7 @@
 import { useFormContext } from 'react-hook-form';
 import { ROOM_NAME } from '@/RoomForm/constants/literals';
 import { errorStyle } from '../constants/styles';
-import { Inputs } from '../constants/form';
+import { Inputs } from '../hooks/useFormManagement';
 import { descriptionStyle } from '../constants/styles';
 import { Routines, UserCount } from '@/RoomForm';
 import { Input } from '@/shared/Input';

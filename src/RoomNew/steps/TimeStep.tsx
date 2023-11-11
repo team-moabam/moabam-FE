@@ -6,7 +6,7 @@ import {
   descriptionStyle,
   errorStyle
 } from '../constants/styles';
-import { Inputs } from '../constants/form';
+import { Inputs } from '../hooks/useFormManagement';
 import { TimePicker } from '@/TimePicker';
 
 const TimeStep = () => {
