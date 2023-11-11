@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+import { useSuspenseQuery } from '@tanstack/react-query';
 import {
   useForm,
   SubmitHandler,
@@ -7,6 +9,7 @@ import {
 import { zodResolver } from '@hookform/resolvers/zod';
 import ReactTextareaAutosize from 'react-textarea-autosize';
 import clsx from 'clsx';
+import { roomOptions } from '@/core/api/options';
 import { formatHourString } from '@/TimePicker/utils/hour';
 import {
   Inputs,
@@ -18,7 +21,17 @@ import { UserCount, Routines, Password } from '@/RoomForm';
 import { Input } from '@/shared/Input';
 import { TimePicker } from '@/TimePicker';
 
-const RoomTab = () => {
+interface RoomTabProps {
+  roomId: number;
+}
+
+const RoomTab = ({ roomId }: RoomTabProps) => {
+  const { data: room } = useSuspenseQuery({
+    ...roomOptions.detail(roomId),
+    staleTime: Infinity,
+    gcTime: 0
+  });
+
   const form = useForm<Inputs>({
     defaultValues,
     mode: 'onBlur',
@@ -40,6 +53,19 @@ const RoomTab = () => {
   };
 
   const onError: SubmitErrorHandler<Inputs> = (errors) => console.error(errors);
+
+  useEffect(() => {
+    const { title, announcement, certifyTime, routine, maxUserCount } = room;
+
+    setValue('title', title);
+    setValue('announcement', announcement);
+    setValue('certifyTime', certifyTime);
+    setValue(
+      'routines',
+      routine.map((r) => ({ value: r.content }))
+    );
+    setValue('userCount', maxUserCount);
+  }, []);
 
   return (
     <FormProvider {...form}>
@@ -95,13 +121,13 @@ const RoomTab = () => {
             인증 시간
           </label>
           <div className="flex w-full flex-col items-center gap-6">
-            <div>{formatHourString(TIME_RANGE['night'][0])}</div>
+            <div>{formatHourString(TIME_RANGE[room.roomType][0])}</div>
             <TimePicker
-              range={TIME_RANGE['night']}
-              initialTime={5}
+              range={TIME_RANGE[room.roomType]}
+              initialTime={room.certifyTime}
               onChangeTime={(time) => setValue('certifyTime', time)}
             />
-            <div>{formatHourString(TIME_RANGE['night'][1])}</div>
+            <div>{formatHourString(TIME_RANGE[room.roomType][1])}</div>
           </div>
           {errors.certifyTime && (
             <p className={errorStyle}>{errors.certifyTime?.message}</p>
