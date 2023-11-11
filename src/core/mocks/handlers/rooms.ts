@@ -34,8 +34,23 @@ const roomsHandlers = [
     return HttpResponse.json(response, { status });
   }),
   http.get(baseURL('/rooms/:roomId'), async () => {
-    await delay(200);
-    const response = RoomInfo;
+    await delay(1000);
+
+    const status: number = 200;
+    let response = {};
+
+    switch (status) {
+      case 200:
+        response = RoomInfo;
+        break;
+      case 401:
+        response = { message: '존재하지 않는 유저입니다.' };
+        break;
+      case 404:
+        response = { message: '존재하지 않는 방입니다.' };
+        break;
+    }
+
     return HttpResponse.json(response);
   })
 ];
