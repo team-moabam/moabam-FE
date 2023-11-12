@@ -3,9 +3,9 @@ import Background from '@/StartSlide/components/Background';
 
 const StartPage = () => {
   return (
-    <>
-      <Background type="night" />
-    </>
+    <div>
+      <Background type="morning" />
+    </div>
   );
 };
 

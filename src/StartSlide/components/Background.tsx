@@ -1,5 +1,6 @@
 import React from 'react';
 import { clsx } from 'clsx';
+import Star from './Star';
 
 interface BackgroundProps {
   type: 'morning' | 'night';
@@ -8,14 +9,14 @@ interface BackgroundProps {
 const bgStyle = {
   morning: {
     skyObject: '/assets/Sun.png',
-    skyObjectStyle: 'absolute bottom-16 right-12 w-3/5',
+    skyObjectStyle: 'absolute bottom-16 right-8 w-3/5',
     skyColor: 'bg-gradient-to-b from-[#0084c6] to-[#fea4af]',
     mountain: '/assets/MorningMountain.png'
   },
   night: {
     skyObject: '/assets/Moon.png',
     skyObjectStyle: 'absolute top-24 left-2 w-1/2',
-    skyColor: 'bg-gradient-to-b from-[#662d91] to-[#000f2a]',
+    skyColor: 'bg-gradient-to-b from-[#61298c] to-[#000f2a]',
     mountain: '/assets/NightMountain.png'
   }
 };
@@ -28,6 +29,11 @@ const Background = ({ type }: BackgroundProps) => {
         bgStyle[type].skyColor
       )}
     >
+      <div className="absolute top-0 h-1/2 w-full opacity-80">
+        {Array.from({ length: 16 }, (_, index) => (
+          <Star key={index} />
+        ))}
+      </div>
       <img
         className={bgStyle[type].skyObjectStyle}
         src={bgStyle[type].skyObject}
