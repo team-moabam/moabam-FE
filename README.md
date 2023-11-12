@@ -1,29 +1,23 @@
+# 모아밤
+
+## 기획 배경 및 동기
+
+> 열심히 사는 새가 벌레를 먹는다. 🐦🦉
+
+당신은 규칙적인 삶을 살고 계신가요? 혹시 집과 회사만을 오가는 일상에 치여 자신과의 약속을 미루고 있지는 않나요?  
+쉽지만은 않은 자신과의 약속. 여러분과 같은 고민을 하고 있는 사람들과 함께 의지를 다져보면 어떨까요?
+
+> 오늘 날을 살아가는 사람들은 규칙적인 생활, 정리된 건강한 생활을 보내고 싶어합니다.   
+> 따라서 ‘루틴’ 이라는 용어도 급부상 하게 되었습니다. 하지만 마음과는 달리 바쁜 일상, 집과 회사만 오가는 패턴으로 인해 이를 실천하기를 어려워 합니다.  
+> 이런 문제를 해결하기 위해, 그룹 + 보상 이라는 시스템으로 루틴을 실천할 수 있도록 도와주는 서비스인 모아밤을 기획하게 되었습니다.   
+
 [➡️ 스토리북 URL](https://moabam-storybook.netlify.app/)  
+[➡️ 모아밤 배포 URL (현재 개발중!)](https://www.moabam.com/)
 
-# React + TypeScript + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
+## 개발 서버 실행 방법
+```
+npm install
+npm run dev
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## 기술 스택
