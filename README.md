@@ -21,3 +21,48 @@ npm run dev
 ```
 
 ## 기술 스택
+<table>
+  <tr>
+    <td align="center">언어 및 라이브러리</td>
+    <td>
+      <img src="https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=000&style=for-the-badge"/>
+      <img src="https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=fff&style=for-the-badge"/>
+    </td>
+  <tr>
+  <tr>
+    <td align="center">통신 클라이언트</td>
+    <td>
+      <img src="https://img.shields.io/badge/Axios-5A29E4?logo=axios&logoColor=fff&style=for-the-badge"/>
+      <img src="https://img.shields.io/badge/tanstack%20query-FF4154?logo=reactquery&logoColor=fff&style=for-the-badge"/>
+    </td>
+  <tr>
+    <td align="center">폼 데이터 관리</td>
+    <td>
+      <img src="https://img.shields.io/badge/React%20Hook%20Form-EC5990?logo=reacthookform&logoColor=fff&style=for-the-badge"/>
+      <img src="https://img.shields.io/badge/Zod-3E67B1?logo=zod&logoColor=fff&style=for-the-badge"/>
+    </td>
+  <tr>
+  <tr>
+    <td align="center">문서화 및 API 모킹</td>
+    <td>
+      <img src="https://img.shields.io/badge/Storybook-FF4785?style=for-the-badge&logo=storybook&logoColor=white"/>
+      <img src="https://img.shields.io/badge/Mock_Service_Worker-FF6A33?style=for-the-badge&logo=mockserviceworker&logoColor=white"/>
+    </td>
+  </tr>
+    <td align="center">코드 컨벤션</td>
+    <td>
+      <img src="https://img.shields.io/badge/ESLint-4B32C3?logo=eslint&logoColor=fff&style=for-the-badge"/>
+      <img src="https://img.shields.io/badge/Prettier-F7B93E?logo=prettier&logoColor=fff&style=for-the-badge"/>
+      <img src="https://img.shields.io/badge/husky-F05032?logo=git&logoColor=fff&style=for-the-badge"/>
+      <img src="https://img.shields.io/badge/commitlint-000000?logo=commitlint&logoColor=fff&style=for-the-badge"/>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">기타</td>
+    <td>
+      <img src="https://img.shields.io/badge/React%20Router-CA4245?logo=reactrouter&logoColor=fff&style=for-the-badge"/>
+      <img src="https://img.shields.io/badge/Swiper-6332F6?logo=swiper&logoColor=fff&style=for-the-badge"/>
+      <img src="https://img.shields.io/badge/Framer_Motion-black?style=for-the-badge&logo=framer&logoColor=blue"/>
+    </td>
+  </tr>
+</table>
