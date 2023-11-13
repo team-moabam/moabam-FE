@@ -81,7 +81,7 @@ const RoomTab = ({ roomId }: RoomTabProps) => {
               'w-full resize-none p-3 text-sm',
               'rounded-lg border border-gray-300 shadow-sm placeholder:text-gray-400',
               'focus:border-light-point focus:outline-none focus:ring-1 focus:ring-light-point',
-              'dark:focus:border-dark-point dark:focus:ring-dark-point'
+              'dark:bg-dark-sub dark:focus:border-dark-point dark:focus:ring-dark-point'
             )}
             minRows={3}
             maxLength={ANNOUNCEMENT.max}
