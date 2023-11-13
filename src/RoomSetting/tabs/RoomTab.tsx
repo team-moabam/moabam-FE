@@ -1,114 +1,155 @@
+import { useSuspenseQuery } from '@tanstack/react-query';
+import { FormProvider } from 'react-hook-form';
+import ReactTextareaAutosize from 'react-textarea-autosize';
+import clsx from 'clsx';
+import { roomOptions } from '@/core/api/options';
 import { formatHourString } from '@/TimePicker/utils/hour';
-import { Input, InnerTextInput, PasswordInput } from '@/shared/Input';
+import {
+  TIME_RANGE,
+  ANNOUNCEMENT,
+  ROOM_NAME
+} from '@/RoomForm/constants/literals';
+import useRoomForm from '../hooks/useRoomForm';
+import { UserCount, Routines, Password } from '@/RoomForm';
+import { Input } from '@/shared/Input';
 import { TimePicker } from '@/TimePicker';
-import { Icon } from '@/shared/Icon';
+import { LoadingSpinner } from '@/shared/LoadingSpinner';
 
-// 각각의 인풋과 라벨을 감싸는 영역의 스타일
-const inputSectionStyle = 'mb-10 flex flex-col gap-2';
+interface RoomTabProps {
+  roomId: string;
+}
 
-// 플러스(+), 마이너스(-) 버튼에 적용할 스타일
-const iconButtonStyle =
-  'cursor-pointer text-light-point transition-all hover:text-light-point-hover';
+const RoomTab = ({ roomId }: RoomTabProps) => {
+  const { data: room } = useSuspenseQuery({
+    ...roomOptions.detail(roomId),
+    staleTime: Infinity
+  });
 
-const RoomTab = () => {
+  const { form, handleSubmit, mutation } = useRoomForm({
+    roomId,
+    defaultValues: {
+      title: room.title,
+      announcement: room.announcement,
+      certifyTime: room.certifyTime,
+      routines: room.routine.map((r) => ({ value: r.content })),
+      userCount: room.maxUserCount,
+      password: ''
+    }
+  });
+
+  const {
+    register,
+    setValue,
+    watch,
+    formState: { errors }
+  } = form;
+
+  const watchAnnouncement = watch('announcement');
+
   return (
-    <>
-      <section className={inputSectionStyle}>
-        <label htmlFor="title">
-          <b>방 이름</b>
-        </label>
-        <Input id="title" />
-      </section>
-
-      <section className={inputSectionStyle}>
-        <label htmlFor="notice">
-          <b>공지사항</b>
-        </label>
-        <Input id="notice" />
-      </section>
-
-      <section className={inputSectionStyle}>
-        <label htmlFor="notice">
-          <b>인증 시간</b>
-        </label>
-        <div className="flex w-full flex-col items-center gap-6">
-          <div>{formatHourString(4)}</div>
-          <TimePicker
-            range={[4, 10]}
-            initialTime={5}
+    <FormProvider {...form}>
+      <form onSubmit={handleSubmit}>
+        <section className={sectionStyle}>
+          <label
+            className={labelStyle}
+            htmlFor="title"
+          >
+            방 이름
+          </label>
+          <Input
+            id="title"
+            {...register('title')}
+            maxLength={ROOM_NAME.max}
           />
-          <div>{formatHourString(10)}</div>
-        </div>
-      </section>
+          {errors.title && (
+            <p className={errorStyle}>{errors.title?.message}</p>
+          )}
+        </section>
 
-      <section className={inputSectionStyle}>
-        <label>
-          <b>루틴 목록</b>
-        </label>
-        <ul className="flex flex-col gap-4">
-          <li className="w-full">
-            <div className="relative w-full">
-              <InnerTextInput
-                wrapperStyle="w-full"
-                textStyle="text-xs text-gray-400"
-                text={'0 / 20'}
-              />
-            </div>
-          </li>
-          {Array.from({ length: 3 }).map(() => (
-            <li className="w-full">
-              <div className="relative w-full">
-                <InnerTextInput
-                  wrapperStyle="w-full"
-                  textStyle="text-xs text-gray-400"
-                  text={'0 / 20'}
-                />
-                <div className="absolute right-0 top-1/2 -mr-8 flex h-8 -translate-y-1/2 cursor-pointer items-center justify-center rounded-l-lg bg-dark-gray px-1 text-white transition-all hover:bg-gray-600">
-                  <Icon
-                    icon="CgClose"
-                    size="sm"
-                  />
-                </div>
-              </div>
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      <section className={inputSectionStyle}>
-        <label>
-          <b>인원</b>
-        </label>
-        <div className="flex items-center justify-center gap-10">
-          <Icon
-            icon="FaMinusCircle"
-            size="3xl"
-            className={iconButtonStyle}
+        <section className={sectionStyle}>
+          <label
+            className={clsx(labelStyle, 'flex justify-between')}
+            htmlFor="announcement"
+          >
+            <b>공지사항</b>
+            <p className="text-xs text-gray-400">
+              {watchAnnouncement.length} / {ANNOUNCEMENT.max}
+            </p>
+          </label>
+          <ReactTextareaAutosize
+            className={clsx(
+              'w-full resize-none p-3 text-sm',
+              'rounded-lg border border-gray-300 shadow-sm placeholder:text-gray-400',
+              'focus:border-light-point focus:outline-none focus:ring-1 focus:ring-light-point',
+              'dark:focus:border-dark-point dark:focus:ring-dark-point'
+            )}
+            minRows={3}
+            maxLength={ANNOUNCEMENT.max}
+            id="announcement"
+            {...register('announcement')}
           />
-          <b className="text-xl">5 명</b>
-          <Icon
-            icon="FaPlusCircle"
-            size="3xl"
-            className={iconButtonStyle}
-          />
-        </div>
-      </section>
+          {errors.announcement && (
+            <p className={errorStyle}>{errors.announcement?.message}</p>
+          )}
+        </section>
 
-      <section className={inputSectionStyle}>
-        <label htmlFor="password">
-          <b>비밀번호</b>
-        </label>
-        <PasswordInput
-          id="password"
-          placeholder="비워두시면 공개방이 됩니다"
-        />
-      </section>
+        <section className={sectionStyle}>
+          <label
+            className={labelStyle}
+            htmlFor="notice"
+          >
+            인증 시간
+          </label>
+          <div className="flex w-full flex-col items-center gap-6">
+            <div>{formatHourString(TIME_RANGE[room.roomType][0])}</div>
+            <TimePicker
+              range={TIME_RANGE[room.roomType]}
+              initialTime={room.certifyTime}
+              onChangeTime={(time) => setValue('certifyTime', time)}
+            />
+            <div>{formatHourString(TIME_RANGE[room.roomType][1])}</div>
+          </div>
+          {errors.certifyTime && (
+            <p className={errorStyle}>{errors.certifyTime?.message}</p>
+          )}
+        </section>
 
-      <button className="btn btn-transition btn-light-point mb-24 w-full text-xl">
-        적용
-      </button>
-    </>
+        <section className={sectionStyle}>
+          <label className={labelStyle}>루틴 목록</label>
+          <Routines />
+        </section>
+
+        <section className={sectionStyle}>
+          <label className={labelStyle}>인원</label>
+          <UserCount />
+        </section>
+
+        <section className={sectionStyle}>
+          <label className={labelStyle}>비밀번호</label>
+          <Password placeholder="비워두시면 기존의 비밀번호가 적용됩니다" />
+        </section>
+
+        <button
+          className={clsx(
+            'btn btn-light-point mb-24 flex h-12 w-full items-center justify-center text-xl',
+            mutation.isPending && 'cursor-not-allowed'
+          )}
+          disabled={mutation.isPending}
+        >
+          {mutation.isPending ? <LoadingSpinner size="3xl" /> : '수정하기'}
+        </button>
+      </form>
+    </FormProvider>
   );
 };
 
 export default RoomTab;
+
+// 섹션 영역의 스타일
+const sectionStyle = 'mb-10 flex flex-col';
+
+// 인풋의 라벨에 적용할 스타일
+const labelStyle = 'mb-2 font-bold';
+
+// 에러 메시지를 표시할 때 적용할 스타일
+const errorStyle = 'ml-2 mt-4 text-red-500 text-sm';

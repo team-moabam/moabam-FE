@@ -1,7 +1,7 @@
 import { useFormContext } from 'react-hook-form';
 import clsx from 'clsx';
 import { FunnelHook } from '@/shared/Funnel/hooks/useFunnel';
-import { Inputs } from '../constants/form';
+import { Inputs } from '../hooks/useRoomForm';
 import { LoadingSpinner } from '@/shared/LoadingSpinner';
 import { steps } from '@/pages/RoomNewPage';
 
