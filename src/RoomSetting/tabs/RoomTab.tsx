@@ -131,7 +131,7 @@ const RoomTab = ({ roomId }: RoomTabProps) => {
 
         <button
           className={clsx(
-            'btn btn-light-point mb-24 flex h-12 w-full items-center justify-center text-xl',
+            'btn btn-light-point mb-24 flex h-12 w-full items-center justify-center text-xl dark:bg-dark-point',
             mutation.isPending && 'cursor-not-allowed'
           )}
           disabled={mutation.isPending}
