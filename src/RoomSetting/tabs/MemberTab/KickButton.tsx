@@ -20,27 +20,25 @@ const KickButton = () => {
         className="p-6"
       >
         <h1 className={ModalHeadingStyle}>
-          <b>
-            <span className="font-bold text-light-point dark:text-dark-point">
-              니나 잘해
-            </span>
-            님을
-          </b>
+          <b>니나 잘해 님을</b>
           <b>
             <span className="font-bold text-danger">추방</span>하시겠어요?
           </b>
         </h1>
         <p className={descriptionStyle}>바쁜 일이 있었던 걸지도 몰라요.</p>
-        <section className="mb-6 mt-10 flex flex-col gap-2">
+        <section className="mt-10 flex flex-col gap-2">
           <label
             htmlFor="nickname"
             className="text-base"
           >
             추방하려는 멤버의 닉네임을 적어주세요.
           </label>
-          <Input id="nickname" />
+          <Input
+            id="nickname"
+            autoComplete="off"
+          />
         </section>
-        <button className="btn btn-danger w-full">추방</button>
+        <button className="btn btn-danger mt-6 w-full">추방</button>
       </BottomSheet>
     </>
   );

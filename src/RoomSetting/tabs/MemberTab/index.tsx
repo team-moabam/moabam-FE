@@ -1,6 +1,7 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { roomOptions } from '@/core/api/options';
 import KickButton from './KickButton';
+import DelegationButton from './DelegationButton';
 import { Avatar } from '@/shared/Avatar';
 
 interface MemberTabProps {
@@ -28,9 +29,7 @@ const MemberTab = ({ roomId }: MemberTabProps) => {
           />
           <div className="flex gap-2">
             <KickButton />
-            <button className="btn btn-light-point dark:btn-dark-point rounded-2xl px-3 py-1">
-              방장 위임
-            </button>
+            <DelegationButton />
           </div>
         </div>
       ))}
