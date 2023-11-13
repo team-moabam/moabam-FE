@@ -36,7 +36,7 @@ const RoomDetailPage = () => {
   const { title, announcement } = roomDetailData;
 
   return (
-    <div className="relative">
+    <div className="app-container">
       <Header
         title={title}
         className="absolute z-[1] text-white"
