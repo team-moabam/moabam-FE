@@ -1,11 +1,11 @@
 import { useFormContext } from 'react-hook-form';
+import { TIME_RANGE, ROOM_TYPES } from '@/RoomForm/constants/literals';
 import {
   headingStyle,
   descriptionStyle,
   errorStyle
 } from '../constants/styles';
-import { Inputs } from '../constants/form';
-import { TIME_RANGE, ROOM_TYPES } from '../constants/literals';
+import { Inputs } from '../hooks/useRoomForm';
 import BirdCard from '../components/BirdCard';
 
 const BirdStep = () => {

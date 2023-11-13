@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 
 import { useQuery } from '@tanstack/react-query';
-import roomAPI from '@/core/api/functions/roomAPI';
+import { roomOptions } from '@/core/api/options';
 
 import RoomInfo from '@/RoomDetail/components/RoomInfo';
 import RoomNotice from '@/RoomDetail/components/RoomNotice';
@@ -11,27 +11,13 @@ import { Header } from '@/shared/Header';
 import { Icon } from '@/shared/Icon';
 
 const RoomDetailPage = () => {
-  const { getRoomDetail } = roomAPI;
   const roomId = '1234';
-  const { data: roomDetailData } = useQuery({
-    queryKey: ['roomDetail', roomId],
-    queryFn: ({ queryKey }) => getRoomDetail(queryKey[1]),
-    placeholderData: {
-      roomId: 1,
-      title: '',
-      managerNickname: '',
-      level: 0,
-      roomType: 'MORNING',
-      certifyTime: 0,
-      currentUserCount: 0,
-      maxUserCount: 0,
-      announcement: '',
-      completePercentage: 0,
-      certifiedDates: [''],
-      routine: [{ routineId: 0, content: '' }],
-      todayCertificateRank: []
-    }
+
+  const { data: roomDetailData, status } = useQuery({
+    ...roomOptions.detail(roomId)
   });
+
+  if (status !== 'success') return <div>임시 Loading...</div>;
 
   const { title, announcement } = roomDetailData;
 
