@@ -6,6 +6,7 @@ import RoutinesPage from '@/pages/RoutinesPage';
 import RoomNewPage from '@/pages/RoomNewPage';
 import RoomSettingPage from '@/pages/RoomSettingPage';
 import Search from '@/pages/Search';
+import StartPage from '@/pages/StartPage';
 
 interface Route {
   path: string;
@@ -15,7 +16,7 @@ interface Route {
 }
 
 export type RouteNames =
-  | 'home'
+  | 'start'
   | 'guide'
   | 'join'
   | 'routines'
@@ -34,11 +35,11 @@ export type RouteNames =
 type Routes = Record<RouteNames, Route>;
 
 const routes: Routes = {
-  home: {
+  start: {
     path: '',
     authRequired: true,
     navBarRequired: false,
-    element: <div>home</div>
+    element: <StartPage />
   },
   guide: {
     path: 'guide',

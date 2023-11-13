@@ -1,6 +1,6 @@
 import { clsx } from 'clsx';
 import { useMoveRoute } from '@/core/hooks';
-import useHover from '@/RoomList/hooks/useHover';
+import useHover from '@/core/hooks/useHover';
 import { Room } from '@/RoomList/mocks/types/rooms';
 import roomListStyle from '@/RoomList/styles/roomListStyle';
 import { Accordion, AccordionHeader, AccordionBody } from '@/shared/Accordion';
