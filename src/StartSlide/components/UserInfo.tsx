@@ -1,6 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { clsx } from 'clsx';
 import { motion } from 'framer-motion';
+import useHover from '@/core/hooks/useHover';
 import { userData } from '@/StartSlide/mocks/userData';
 import { CONTENTS } from '../constants/contents';
 
@@ -12,6 +14,7 @@ const UserInfo = ({ type }: UserInfoProps) => {
   // TODO : /members GET
   const { nickname, level, birds } = userData;
   const birdSkin = type === 'morning' ? birds.MORNING_SKIN : birds.NIGHT_SKIN;
+  const [hoverRef, hovered] = useHover<HTMLDivElement>();
 
   return (
     <div className="absolute h-full w-full overflow-hidden text-white">
@@ -41,6 +44,19 @@ const UserInfo = ({ type }: UserInfoProps) => {
         >
           <img src={birdSkin} />
         </motion.div>
+      </div>
+
+      {/* TODO : 페이지 이동 버튼 드래그/스크롤로 바꾸어야 함. 임시! */}
+      <div
+        ref={hoverRef}
+        className={clsx(
+          'absolute inset-x-0 bottom-12 mx-auto w-fit',
+          'cursor-pointer text-lg',
+          'flex flex-col items-center gap-2'
+        )}
+      >
+        {hovered && <div>Click!</div>}
+        <Link to={'/routines'}>오늘의 루틴 확인하기</Link>
       </div>
     </div>
   );
