@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import useHover from '@/core/hooks/useHover';
 import { userData } from '@/StartSlide/mocks/userData';
 import { CONTENTS } from '../constants/contents';
+import SwipeArrow from './SwipeArrow';
 
 interface UserInfoProps {
   type: 'morning' | 'night';
@@ -49,14 +50,9 @@ const UserInfo = ({ type }: UserInfoProps) => {
       {/* TODO : 페이지 이동 버튼 드래그/스크롤로 바꾸어야 함. 임시! */}
       <div
         ref={hoverRef}
-        className={clsx(
-          'absolute inset-x-0 bottom-12 mx-auto w-fit',
-          'cursor-pointer text-lg',
-          'flex flex-col items-center gap-2'
-        )}
+        className={clsx('absolute inset-x-0 bottom-8 mx-auto w-fit')}
       >
-        {hovered && <div>Click!</div>}
-        <Link to={'/routines'}>오늘의 루틴 확인하기</Link>
+        <SwipeArrow />
       </div>
     </div>
   );
