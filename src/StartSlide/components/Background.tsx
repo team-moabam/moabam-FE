@@ -28,8 +28,8 @@ const Background = ({ type }: BackgroundProps) => {
         bgStyle[type].skyColor
       )}
     >
-      <div className="absolute top-0 h-1/2 w-full opacity-80">
-        {Array.from({ length: 16 }, (_, index) => (
+      <div className="absolute top-0 h-1/2 w-full">
+        {Array.from({ length: 24 }, (_, index) => (
           <Star key={index} />
         ))}
       </div>
