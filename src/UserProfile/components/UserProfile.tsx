@@ -29,19 +29,6 @@ const UserProfile = () => {
               />
               <div className="absolute h-full w-full bg-[rgba(1,1,1,0.5)]"></div>
             </div>
-            <div className="my-2 text-xl">{editData.nickname}</div>
-            <div className="text-dark-gray">{editData.intro}</div>
-          </>
-        ) : (
-          <>
-            <div className="relative h-28 w-28 overflow-hidden rounded-full">
-              <img
-                src="https://storage.enuri.info/pic_upload/knowbox2/202005/08362910620200507cd5549b2-9c1f-4447-aa00-72645ae3a069.jpg"
-                alt=""
-                className="absolute h-full w-full object-cover"
-              />
-              <div className="absolute h-full w-full bg-[rgba(1,1,1,0.5)]"></div>
-            </div>
             <div className="my-2 flex w-full flex-col gap-2">
               <Input
                 size="sm"
@@ -53,6 +40,19 @@ const UserProfile = () => {
               />
             </div>
             <button className="btn btn-light-point w-full">수정하기</button>
+          </>
+        ) : (
+          <>
+            <div className="relative h-28 w-28 overflow-hidden rounded-full">
+              <img
+                src="https://storage.enuri.info/pic_upload/knowbox2/202005/08362910620200507cd5549b2-9c1f-4447-aa00-72645ae3a069.jpg"
+                alt=""
+                className="absolute h-full w-full object-cover"
+              />
+              <div className="absolute h-full w-full bg-[rgba(1,1,1,0.5)]"></div>
+            </div>
+            <div className="my-2 text-xl">{editData.nickname}</div>
+            <div className="text-dark-gray">{editData.intro}</div>
           </>
         )}
       </div>
