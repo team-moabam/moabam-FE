@@ -69,6 +69,7 @@ const Navbar = ({
         className={clsx(
           'col-start-2 flex h-16 w-full items-center justify-center',
           'bg-light-point text-white transition-all hover:bg-light-point-hover',
+          'dark:bg-dark-point hover:dark:bg-dark-point-hover',
           isPending && 'cursor-not-allowed'
         )}
         type={hasNext ? 'button' : 'submit'}
