@@ -6,27 +6,26 @@ import {
 } from 'react-hook-form';
 import clsx from 'clsx';
 import { twMerge } from 'tailwind-merge';
-import { FormCertificationImage } from './CertificationBottomSheet';
 import { Icon } from '@/shared/Icon';
 
 interface ImageInputProps {
-  imgData?: string | undefined;
-  routineId: number;
+  register: UseFormRegister<{ file: null | FileList }[]>;
+  errors: FieldErrors<{ file: null | FileList }[]>;
+  clearErrors: UseFormClearErrors<{ file: null | FileList }[]>;
   content: string;
-  register: UseFormRegister<FormCertificationImage>;
-  errors: FieldErrors<FormCertificationImage>;
-  clearErrors: UseFormClearErrors<FormCertificationImage>;
+  image: string | null;
+  idx: number;
 }
 
 const ImageInput = ({
-  imgData,
-  routineId,
-  content,
   register,
   errors,
-  clearErrors
+  clearErrors,
+  content,
+  image,
+  idx
 }: ImageInputProps) => {
-  const [imgSrc, setImgSrc] = useState(imgData);
+  const [imgSrc, setImgSrc] = useState(image);
 
   const saveFileImage = (fileBlob: File) => {
     const fileUrl = URL.createObjectURL(fileBlob);
@@ -40,7 +39,7 @@ const ImageInput = ({
           clsx(
             'relative mb-1 h-0 w-full overflow-hidden rounded-2xl border border-dark-gray pb-[100%] shadow-[0_1px_4px_0px_rgba(0,0,0,0.2)]',
             {
-              'border-danger': errors[content]?.message
+              'border-danger': errors[idx]?.file?.message
             }
           )
         )}
@@ -48,14 +47,14 @@ const ImageInput = ({
         <input
           type="file"
           id={content}
-          {...register(content, {
+          {...register(`${idx}.file`, {
             required: '이미지를 넣어주세요'
           })}
           className="absolute left-0 top-0 h-full w-full before:block before:h-full before:w-full before:bg-white before:content-[''] after:absolute"
           onChange={(e) => {
             if (e.target.files) {
               saveFileImage(e.target.files[0]);
-              clearErrors(content);
+              clearErrors(`${idx}.file`);
             }
           }}
         />
@@ -82,9 +81,9 @@ const ImageInput = ({
         </label>
       </div>
       <div>
-        {errors[content]?.message && (
+        {errors[idx]?.file?.message && (
           <span className="block font-IMHyemin-bold text-sm text-danger">
-            <>{errors[content]?.message}</>
+            <>{errors[idx]?.file?.message}</>
           </span>
         )}
         <span className="block font-IMHyemin-bold text-sm">{content}</span>

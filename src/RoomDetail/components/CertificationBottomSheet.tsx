@@ -18,20 +18,19 @@ const routine = [
 const data = [
   {
     routineId: 5,
-    // image: 'https://picsum.photos/200'
-    image: null
+    image: 'https://picsum.photos/200'
+    // image: null
   },
   {
     routineId: 9,
-    // image: 'https://picsum.photos/200'
-    image: null
+    image: 'https://picsum.photos/200'
+    // image: null
   }
 ];
 
-export type FormCertificationImage =
-  | CertificationImage[]
-  | { [key: string]: FileList };
-
+export interface FormCertificationImage {
+  file: null | FileList;
+}
 interface CertificationBottomSheetProps {
   close: () => void;
   bottomSheetProps: BottomSheetProps;
@@ -41,40 +40,44 @@ const CertificationBottomSheet = ({
   close,
   bottomSheetProps
 }: CertificationBottomSheetProps) => {
+  const defaultData = data.map(() => {
+    return {
+      file: null
+    };
+  });
+
   const {
     register,
     watch,
     handleSubmit,
     clearErrors,
     formState: { errors }
-  } = useForm<FormCertificationImage>({
+  } = useForm<FormCertificationImage[]>({
     mode: 'onSubmit',
-    defaultValues: data
+    defaultValues: defaultData
   });
 
-  const onSubmit = async (data: FormCertificationImage) => {
+  const handleSubmitButtonClick = async (data: FormCertificationImage[]) => {
     const formData = new FormData();
 
-    console.log(data);
-
     for (const [key, value] of Object.entries(data)) {
-      formData.append(key, value[0]);
+      if (value.file) {
+        formData.append(`${routine[Number(key)].routineId}`, value.file[0]);
+      }
     }
-
     // TODO : Form Data 전송
   };
 
-  const handleButtonClick = (e: MouseEvent<HTMLButtonElement>) => {
+  const handleEditButtonClick = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     const files = watch();
     const formData = new FormData();
 
     for (const [key, value] of Object.entries(files)) {
-      if (value[0]) {
-        formData.append(key, value[0]);
+      if (value.file && value.file.length > 0) {
+        formData.append(`${routine[Number(key)].routineId}`, value.file[0]);
       }
     }
-
     // TODO : Form Data 전송
   };
 
@@ -88,24 +91,20 @@ const CertificationBottomSheet = ({
           모든 칸을 채워주세요
         </h1>
         <form
-          onSubmit={handleSubmit(onSubmit)}
+          onSubmit={handleSubmit(handleSubmitButtonClick)}
           className="mb-8 grid grid-cols-2 gap-x-3 gap-y-[1.34rem] rounded-2xl text-black dark:text-white"
           id="certificationForm"
         >
-          {routine.map(({ routineId, content }) => {
-            const routineData = data.find(
-              ({ routineId: id }) => routineId === id
-            );
-
+          {routine.map(({ routineId, content }, idx) => {
             return (
               <ImageInput
                 key={routineId}
-                routineId={routineId}
-                imgData={routineData?.image}
-                content={content}
                 register={register}
                 errors={errors}
                 clearErrors={clearErrors}
+                content={content}
+                image={data[idx].image}
+                idx={idx}
               />
             );
           })}
@@ -117,7 +116,7 @@ const CertificationBottomSheet = ({
           <button
             type="button"
             className="btn dark:btn-dark-point btn-light-point w-full"
-            onClick={handleButtonClick}
+            onClick={handleEditButtonClick}
             form="certificationForm"
           >
             수정
