@@ -50,7 +50,7 @@ const DelegationButton = ({
         className="p-6"
       >
         <h1 className={ModalHeadingStyle}>
-          <b>{nickname} 님에게</b>
+          <b>"{nickname}" 님에게</b>
           <b>
             <span className="font-bold text-light-point dark:text-dark-point">
               방장을 위임

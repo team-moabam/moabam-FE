@@ -56,6 +56,7 @@ const RemoveTab = ({ roomId }: RemoveTabProps) => {
           <Input
             id="confirm"
             value={confirmInput}
+            autoComplete="off"
             placeholder={room.title}
             onChange={(e) => setConfirmInput(e.target.value)}
           />
@@ -68,7 +69,7 @@ const RemoveTab = ({ roomId }: RemoveTabProps) => {
         <button
           className="btn btn-danger mt-8 flex w-full items-start justify-center"
           onClick={handleRemove}
-          disabled={confirmInput !== room.title}
+          disabled={confirmInput !== room.title || isPending}
         >
           {isPending ? <LoadingSpinner size="2xl" /> : '방 삭제'}
         </button>
