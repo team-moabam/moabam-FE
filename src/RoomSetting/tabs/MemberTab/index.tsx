@@ -29,7 +29,10 @@ const MemberTab = ({ roomId }: MemberTabProps) => {
           />
           <div className="flex gap-2">
             <KickButton {...member} />
-            <DelegationButton {...member} />
+            <DelegationButton
+              {...member}
+              roomId={roomId}
+            />
           </div>
         </div>
       ))}
