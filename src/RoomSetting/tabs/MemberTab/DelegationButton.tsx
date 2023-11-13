@@ -1,9 +1,12 @@
 import { ModalHeadingStyle, descriptionStyle } from './styles';
 import { BottomSheet, useBottomSheet } from '@/shared/BottomSheet';
 
-interface DelegationButtonProps {}
+interface DelegationButtonProps {
+  memberId: string;
+  nickname: string;
+}
 
-const DelegationButton = () => {
+const DelegationButton = ({ memberId, nickname }: DelegationButtonProps) => {
   const { bottomSheetProps, open } = useBottomSheet();
 
   return (
@@ -19,7 +22,7 @@ const DelegationButton = () => {
         className="p-6"
       >
         <h1 className={ModalHeadingStyle}>
-          <b>니나 잘해 님에게</b>
+          <b>{nickname} 님에게</b>
           <b>
             <span className="font-bold text-light-point dark:text-dark-point">
               방장을 위임

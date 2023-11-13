@@ -2,9 +2,12 @@ import { ModalHeadingStyle, descriptionStyle } from './styles';
 import { Input } from '@/shared/Input';
 import { BottomSheet, useBottomSheet } from '@/shared/BottomSheet';
 
-interface KickButtonProps {}
+interface KickButtonProps {
+  memberId: string;
+  nickname: string;
+}
 
-const KickButton = () => {
+const KickButton = ({ memberId, nickname }: KickButtonProps) => {
   const { bottomSheetProps, open } = useBottomSheet();
 
   return (
@@ -20,7 +23,7 @@ const KickButton = () => {
         className="p-6"
       >
         <h1 className={ModalHeadingStyle}>
-          <b>니나 잘해 님을</b>
+          <b>{nickname} 님을</b>
           <b>
             <span className="font-bold text-danger">추방</span>하시겠어요?
           </b>
