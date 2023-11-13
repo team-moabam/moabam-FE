@@ -24,7 +24,7 @@ const RoomSettingPage = () => {
             </Suspense>
           </TabItem>
           <TabItem title="멤버 관리">
-            <MemberTab />
+            <MemberTab roomId={roomId} />
           </TabItem>
           <TabItem title="방 삭제">
             <RemoveTab />
