@@ -53,7 +53,7 @@ const EventCard = ({
         </div>
         <div className="mb-5 text-xs text-dark-gray">{description}</div>
         <div
-          className="btn btn-light-point cursor-pointer text-center"
+          className="btn btn-light-point dark:btn-dark-point cursor-pointer text-center font-IMHyemin-bold"
           onClick={() => handleGetCoupon(couponId)}
         >
           쿠폰 받기
