@@ -1,17 +1,16 @@
-import { ParticipateRoom } from '@/RoomList/mocks/types/myJoinRoom';
+import { Suspense } from 'react';
 import { DAY_TYPE } from '../constants/dayType';
-import BlankCard from './BlankCard';
-import { RoomCard } from '@/RoomList';
+import RoomData from './RoomData';
+import LoadingFallback from './LoadingFallback';
+import { LoadingSpinner } from '@/shared/LoadingSpinner';
+import { DayType } from '@/core/types/Room';
 
 interface RoomSlideProps {
-  type: 'MORNING' | 'NIGHT';
-  rooms: ParticipateRoom[];
-  bugs: number;
+  type: DayType;
 }
 
-const RoomSlide = ({ type, rooms, bugs }: RoomSlideProps) => {
-  const { TITLE, START, END, ABOUT_BUG } = DAY_TYPE[type];
-
+const RoomSlide = ({ type }: RoomSlideProps) => {
+  const { TITLE, START, END } = DAY_TYPE[type];
   return (
     <div className="h-full p-8">
       <div className="mb-5 flex items-end gap-3">
@@ -20,20 +19,10 @@ const RoomSlide = ({ type, rooms, bugs }: RoomSlideProps) => {
           {START} ~ {END}시
         </div>
       </div>
-      <div className="flex flex-col gap-2">
-        {rooms.map((room) => (
-          <RoomCard
-            room={room}
-            key={room.roomId}
-          />
-        ))}
-        <BlankCard />
-      </div>
-      <div className="mr-1 mt-4 text-end font-IMHyemin-bold text-sm">
-        {ABOUT_BUG} : {bugs}
-      </div>
+      <Suspense fallback={<LoadingFallback />}>
+        <RoomData dayType={type} />
+      </Suspense>
     </div>
   );
 };
-
 export default RoomSlide;
