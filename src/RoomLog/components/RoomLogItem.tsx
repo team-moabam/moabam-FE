@@ -14,13 +14,13 @@ const RoomLogItem = () => {
           />
         </AccordionHeader>
         <AccordionBody>
-          <div className="grid grid-cols-2 gap-x-[0.75rem] gap-y-[1.32rem] px-[1.19rem] py-[1.75rem]">
+          <div className="grid grid-cols-2 gap-x-3 gap-y-[1.32rem] px-[1.19rem] py-7">
             <div>
               <div className="">
                 <img
                   src="https://picsum.photos/200"
                   alt=""
-                  className="rounded-[1rem]"
+                  className="rounded-2xl"
                 />
               </div>
               <span>ddd</span>
@@ -30,7 +30,7 @@ const RoomLogItem = () => {
                 <img
                   src="https://picsum.photos/200"
                   alt=""
-                  className="rounded-[1rem]"
+                  className="rounded-2xl"
                 />
               </div>
               <span>ddd</span>
@@ -40,7 +40,7 @@ const RoomLogItem = () => {
                 <img
                   src="https://picsum.photos/200"
                   alt=""
-                  className="rounded-[1rem]"
+                  className="rounded-2xl"
                 />
               </div>
               <span>ddd</span>

@@ -41,6 +41,8 @@ export default {
             ring: '#ffc588'
           }
         },
+        gold: '#FBBF24',
+        silver: '#9ca3af',
         bronze: '#854d0e',
         disabled: '#93a3af',
         confirm: '#10B981',

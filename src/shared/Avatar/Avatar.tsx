@@ -26,7 +26,7 @@ const Avatar = ({
         <div className="flex items-center">
           <span className="font-IMHyemin-bold text-black">{nickname}</span>
           {manager && (
-            <div className="ml-[.5625rem] h-[1.25rem] w-[1.25rem] bg-[url('/icons/icon-crown.png')] bg-contain bg-center bg-no-repeat" />
+            <div className="ml-[.5625rem] h-5 w-5 bg-[url('/icons/icon-crown.png')] bg-contain bg-center bg-no-repeat" />
           )}
         </div>
         {contribution && (

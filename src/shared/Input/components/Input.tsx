@@ -15,16 +15,17 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
           w-full
           rounded-lg
           border
-          border-gray-300
+          border-dark-gray
           p-3
           shadow-sm
-          placeholder:text-gray-400
+          placeholder:text-dark-gray
           focus:border-light-point
           focus:outline-none
           focus:ring-1
           focus:ring-light-point
           dark:focus:border-dark-point
           dark:focus:ring-dark-point
+          dark:bg-dark-sub
           ${sizeVariants[size]}
           `,
           className

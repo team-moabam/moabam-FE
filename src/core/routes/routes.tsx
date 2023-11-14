@@ -1,10 +1,12 @@
 import React from 'react';
 import Room from '@/pages/Room';
-import RoomDetail from '@/pages/RoomDetail';
+import RoomDetailPage from '@/pages/RoomDetailPage';
+import RoomLogPage from '@/pages/RoomLogPage';
 import RoutinesPage from '@/pages/RoutinesPage';
-import RoomNew from '@/pages/RoomNew';
-import RoomLog from '@/pages/RoomLog';
-import Search from '@/pages/Search';
+import SearchPage from '@/pages/SearchPage';
+import RoomNewPage from '@/pages/RoomNewPage';
+import RoomSettingPage from '@/pages/RoomSettingPage';
+import StartPage from '@/pages/StartPage';
 import JoinPage from '@/pages/JoinPage';
 
 interface Route {
@@ -15,7 +17,7 @@ interface Route {
 }
 
 export type RouteNames =
-  | 'home'
+  | 'start'
   | 'guide'
   | 'join'
   | 'routines'
@@ -34,11 +36,11 @@ export type RouteNames =
 type Routes = Record<RouteNames, Route>;
 
 const routes: Routes = {
-  home: {
+  start: {
     path: '',
     authRequired: true,
     navBarRequired: false,
-    element: <div>home</div>
+    element: <StartPage />
   },
   guide: {
     path: 'guide',
@@ -62,7 +64,7 @@ const routes: Routes = {
     path: 'search',
     authRequired: true,
     navBarRequired: true,
-    element: <Search />
+    element: <SearchPage />
   },
   myPage: {
     path: 'user',
@@ -86,7 +88,7 @@ const routes: Routes = {
     path: 'room/new',
     authRequired: true,
     navBarRequired: false,
-    element: <RoomNew />
+    element: <RoomNewPage />
   },
   room: {
     path: 'room',
@@ -98,19 +100,19 @@ const routes: Routes = {
     path: 'room/:roomId',
     authRequired: true,
     navBarRequired: true,
-    element: <RoomDetail />
+    element: <RoomDetailPage />
   },
   roomLog: {
     path: 'room/:roomId/log/:logId',
     authRequired: true,
     navBarRequired: false,
-    element: <RoomLog />
+    element: <RoomLogPage />
   },
   roomSetting: {
     path: 'room/:roomId/setting',
     authRequired: true,
     navBarRequired: false,
-    element: <div>roomSetting</div>
+    element: <RoomSettingPage />
   },
   mybird: {
     path: 'mybird',
