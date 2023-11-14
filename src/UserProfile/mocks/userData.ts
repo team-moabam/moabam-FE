@@ -14,5 +14,6 @@ export const userData = {
     어른_오목눈이: false,
     어른_부엉이: false,
     부엉이_탄생: true
-  }
+  },
+  img: undefined
 };

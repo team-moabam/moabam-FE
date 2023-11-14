@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
-import UserProfile from '@/UserProfile/components/UserProfile';
+import UserMain from '@/UserProfile/components/UserMain';
 import UserEtc from '@/UserEtc/components/UserEtc';
 import UserBugs from '@/UserBugs/components/UserBugs';
 
@@ -10,7 +10,7 @@ const UserPage = () => {
 
   return (
     <div className="h-full overflow-auto px-5 pb-5">
-      <UserProfile />
+      <UserMain />
       {!userParamsId && (
         <>
           <div className="mb-3 mt-8 flex w-full justify-between">
