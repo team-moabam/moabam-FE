@@ -22,7 +22,7 @@ const RoomDetailPage = () => {
   const { title, announcement } = roomDetailData;
 
   return (
-    <div className="relative">
+    <div className="relative h-full overflow-y-scroll">
       <Header
         title={title}
         className="absolute z-[1] text-white"
