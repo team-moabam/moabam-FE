@@ -1,11 +1,14 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { useTheme } from '@/core/hooks';
 import { myJoinRoom } from '@/RoomList/mocks/myJoinRoom';
-import RoomSlide from '@/RoomSlide/components/RoomSlide';
-import EventBanner from '@/Events/components/EventBanner';
+import { coupons } from '@/Events/mocks/coupons';
+import { RoomSlide } from '@/RoomSlide';
+import { EventBanner } from '@/Events';
 
 const RoutinesPage = () => {
+  // TODO : 참여중인 방 조회 + 진행 중인 쿠폰 조회
   const { participateRooms } = myJoinRoom;
+  const { length: eventCount } = coupons;
 
   // TODO : 임시 시간대 설정 코드입니다. 수정 예정!
   const { theme } = useTheme();
@@ -37,7 +40,7 @@ const RoutinesPage = () => {
           </SwiperSlide>
         ))}
       </Swiper>
-      <EventBanner eventCount={10} />
+      <EventBanner eventCount={eventCount} />
     </div>
     // </div>
   );

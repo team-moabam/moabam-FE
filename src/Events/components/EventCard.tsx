@@ -1,5 +1,7 @@
 import React from 'react';
 import { clsx } from 'clsx';
+import useToast from '@/shared/Toast/hooks/useToast';
+import { Toast } from '@/shared/Toast';
 import { CouponType } from '../mocks/types/couponType';
 
 interface EventCardProps {
@@ -13,7 +15,7 @@ interface EventCardProps {
 }
 
 const EventCard = ({
-  // couponId,
+  couponId,
   name,
   // couponType,
   stock,
@@ -21,6 +23,11 @@ const EventCard = ({
   // point,
   description
 }: EventCardProps) => {
+  const handleGetCoupon = (couponId: number) => {
+    console.log(couponId, '요청');
+    console.log('쿠폰 발급 완료!'); // TODO: 쿠폰 받기 onSuccess > 토스트
+  };
+
   return (
     <div
       className={clsx(
@@ -45,7 +52,10 @@ const EventCard = ({
           <div className="text-xs text-dark-gray">3일 뒤 종료</div>
         </div>
         <div className="mb-5 text-xs text-dark-gray">{description}</div>
-        <div className="btn btn-light-point cursor-pointer text-center">
+        <div
+          className="btn btn-light-point cursor-pointer text-center"
+          onClick={() => handleGetCoupon(couponId)}
+        >
           쿠폰 받기
         </div>
       </div>
