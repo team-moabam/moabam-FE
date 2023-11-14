@@ -1,12 +1,7 @@
 import { Link } from 'react-router-dom';
-
 import { useQuery } from '@tanstack/react-query';
 import { roomOptions } from '@/core/api/options';
-
-import RoomInfo from '@/RoomDetail/components/RoomInfo';
-import RoomNotice from '@/RoomDetail/components/RoomNotice';
-import RoomWorkspace from '@/RoomDetail/components/RoomWorkspace';
-
+import { RoomInfo, RoomNotice, RoomWorkspace } from '@/RoomDetail';
 import { Header } from '@/shared/Header';
 import { Icon } from '@/shared/Icon';
 
