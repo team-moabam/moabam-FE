@@ -9,17 +9,17 @@ const UserPage = () => {
   const userParamsId = pathname.split('/')[2];
 
   return (
-    <div className="h-screen overflow-scroll px-5 pb-20">
+    <div className="h-full overflow-auto px-5 pb-5">
       <UserProfile />
-      {userParamsId && (
+      {!userParamsId && (
         <>
           <div className="mb-3 mt-8 flex w-full justify-between">
-            <div>
+            <h1>
               그 외{' '}
               <span className="text-dark-gray">
                 (다른사람들에게 공개되지 않아요)
               </span>
-            </div>
+            </h1>
           </div>
           <UserBugs />
           <div className="my-3 flex w-full justify-end">

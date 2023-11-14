@@ -10,7 +10,7 @@ const UserProfile = () => {
   const [isEditMode, setIsEditMode] = useState(false);
   const [editData, seteditData] = useState({ nickname, intro });
   return (
-    <div className="relative p-3 pb-0">
+    <div className="relative pt-5">
       <div
         className="absolute right-0 cursor-pointer text-3xl text-dark-gray hover:text-black dark:hover:text-white"
         onClick={() => setIsEditMode(!isEditMode)}
@@ -68,7 +68,7 @@ const UserProfile = () => {
         className="rounded-full "
       />
       <div className="mb-3 mt-8 flex w-full justify-between">
-        <div>대표 새</div>
+        <h1>대표 새</h1>
         <Link
           to="/mybird"
           className="cursor-pointer text-light-point dark:text-dark-point"
@@ -99,7 +99,7 @@ const UserProfile = () => {
         </div>
       </div>
       <div className="mb-3 mt-8 flex w-full justify-between">
-        <div>뱃지</div>
+        <h1>뱃지</h1>
       </div>
       <div className="flex h-36 w-full rounded-lg  text-sm">
         {badgeArray.map((badge) => (
