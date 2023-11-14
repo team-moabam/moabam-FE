@@ -1,6 +1,6 @@
 import React from 'react';
-import { coupons } from '@/EventCard/components/mocks/coupons';
-import EventCard from '@/EventCard/components/EventCard';
+import { coupons } from '@/Events/mocks/coupons';
+import EventCard from '@/Events/components/EventCard';
 import { Header } from '@/shared/Header';
 
 const EventPage = () => {
@@ -10,9 +10,12 @@ const EventPage = () => {
         prev="routines"
         title="이벤트"
       />
-      <div className="flex h-full flex-col gap-6 overflow-y-auto p-6 pt-2">
+      <div className="flex h-full flex-col items-center gap-6 overflow-y-auto p-6 pt-2">
         {coupons.map((coupon) => (
-          <EventCard {...coupon} />
+          <EventCard
+            key={coupon.couponId}
+            {...coupon}
+          />
         ))}
       </div>
     </div>

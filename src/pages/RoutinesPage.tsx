@@ -2,6 +2,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { useTheme } from '@/core/hooks';
 import { myJoinRoom } from '@/RoomList/mocks/myJoinRoom';
 import RoomSlide from '@/RoomSlide/components/RoomSlide';
+import EventBanner from '@/Events/components/EventBanner';
 
 const RoutinesPage = () => {
   const { participateRooms } = myJoinRoom;
@@ -21,8 +22,8 @@ const RoutinesPage = () => {
 
   return (
     // <div className="flex h-full flex-col">
-    <div className="h-full overflow-auto">
-      <Swiper className="h-full">
+    <div className="flex h-full flex-col overflow-auto">
+      <Swiper className="h-full w-full">
         {DAY_TYPES.map((type) => (
           <SwiperSlide
             className="h-full"
@@ -36,6 +37,7 @@ const RoutinesPage = () => {
           </SwiperSlide>
         ))}
       </Swiper>
+      <EventBanner eventCount={10} />
     </div>
     // </div>
   );

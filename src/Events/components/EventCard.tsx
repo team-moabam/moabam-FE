@@ -1,6 +1,6 @@
 import React from 'react';
 import { clsx } from 'clsx';
-import { CouponType } from './mocks/types/couponType';
+import { CouponType } from '../mocks/types/couponType';
 
 interface EventCardProps {
   couponId: number;
@@ -24,7 +24,7 @@ const EventCard = ({
   return (
     <div
       className={clsx(
-        'flex shrink-0 flex-col overflow-hidden',
+        'flex w-full shrink-0 flex-col overflow-hidden',
         'rounded-xl bg-light-sub shadow-md dark:bg-dark-sub'
       )}
     >
