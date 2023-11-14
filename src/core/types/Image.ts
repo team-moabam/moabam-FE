@@ -1,4 +1,4 @@
 export type CertificationImage = {
   routineId: number;
-  image: string | null | FileList;
+  image: string | null;
 };
