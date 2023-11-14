@@ -37,7 +37,7 @@ const Background = ({ type }: BackgroundProps) => {
         className={bgStyle[type].skyObjectStyle}
         src={bgStyle[type].skyObject}
       />
-      <div className="absolute -bottom-1">
+      <div className="absolute bottom-5">
         <img
           className="relative top-40 scale-x-150 scale-y-110 opacity-50"
           src={bgStyle[type].mountain}
@@ -47,6 +47,7 @@ const Background = ({ type }: BackgroundProps) => {
           src={bgStyle[type].mountain}
         />
       </div>
+      <div className="absolute bottom-0 h-5 w-full bg-[#522762] dark:bg-[#031430]"></div>
     </div>
   );
 };
