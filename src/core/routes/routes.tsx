@@ -7,6 +7,7 @@ import SearchPage from '@/pages/SearchPage';
 import RoomNewPage from '@/pages/RoomNewPage';
 import RoomSettingPage from '@/pages/RoomSettingPage';
 import StartPage from '@/pages/StartPage';
+import NotFoundPage from '@/pages/NotFoundPage';
 import JoinPage from '@/pages/JoinPage';
 
 interface Route {
@@ -124,7 +125,7 @@ const routes: Routes = {
     path: '*',
     authRequired: false,
     navBarRequired: false,
-    element: <div>notFound</div>
+    element: <NotFoundPage />
   }
 } as const;
 
