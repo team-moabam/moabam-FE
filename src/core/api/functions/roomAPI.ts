@@ -1,4 +1,5 @@
 import { baseInstance } from '../instance';
+import { MyJoinRoom } from '@/core/types/MyJoinRoom';
 import { RoomInfo } from '@/core/types/Room';
 
 const roomAPI = {
@@ -26,6 +27,9 @@ const roomAPI = {
   },
   getRoomDetail: async (roomId: string) => {
     return await baseInstance.get<RoomInfo>(`/rooms/${roomId}`);
+  },
+  getMyJoinRoom: async () => {
+    return await baseInstance.get<MyJoinRoom>('/rooms/my-join');
   }
 };
 
