@@ -1,30 +1,22 @@
 import { useState } from 'react';
-import {
-  UseFormRegister,
-  FieldErrors,
-  UseFormClearErrors
-} from 'react-hook-form';
+import { useFormContext } from 'react-hook-form';
 import clsx from 'clsx';
 import { twMerge } from 'tailwind-merge';
+import { FormCertificationImage } from '../types/type';
 import { Icon } from '@/shared/Icon';
 
 interface ImageInputProps {
-  register: UseFormRegister<{ file: null | FileList }[]>;
-  errors: FieldErrors<{ file: null | FileList }[]>;
-  clearErrors: UseFormClearErrors<{ file: null | FileList }[]>;
   content: string;
   image: string | null;
   idx: number;
 }
 
-const ImageInput = ({
-  register,
-  errors,
-  clearErrors,
-  content,
-  image,
-  idx
-}: ImageInputProps) => {
+const ImageInput = ({ content, image, idx }: ImageInputProps) => {
+  const {
+    register,
+    formState: { errors },
+    clearErrors
+  } = useFormContext<FormCertificationImage[]>();
   const [imgSrc, setImgSrc] = useState(image);
 
   const saveFileImage = (fileBlob: File) => {

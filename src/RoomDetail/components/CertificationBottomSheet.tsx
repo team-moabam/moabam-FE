@@ -1,5 +1,6 @@
 import { MouseEvent } from 'react';
-import { useForm } from 'react-hook-form';
+import { useFormContext } from 'react-hook-form';
+import { FormCertificationImage } from '../types/type';
 import ImageInput from './ImageInput';
 import { BottomSheet } from '@/shared/BottomSheet';
 import { BottomSheetProps } from '@/shared/BottomSheet/components/BottomSheet';
@@ -27,32 +28,15 @@ const certificationImage = [
   }
 ];
 
-export interface FormCertificationImage {
-  file: null | FileList;
-}
 interface CertificationBottomSheetProps {
   bottomSheetProps: BottomSheetProps;
+  close: () => void;
 }
 
 const CertificationBottomSheet = ({
   bottomSheetProps
 }: CertificationBottomSheetProps) => {
-  const defaultData = certificationImage.map(() => {
-    return {
-      file: null
-    };
-  });
-
-  const {
-    register,
-    watch,
-    handleSubmit,
-    clearErrors,
-    formState: { errors }
-  } = useForm<FormCertificationImage[]>({
-    mode: 'onSubmit',
-    defaultValues: defaultData
-  });
+  const { watch, handleSubmit } = useFormContext<FormCertificationImage[]>();
 
   const handleFormSubmit = async (data: FormCertificationImage[]) => {
     const formData = new FormData();
@@ -96,9 +80,6 @@ const CertificationBottomSheet = ({
             return (
               <ImageInput
                 key={routineId}
-                register={register}
-                errors={errors}
-                clearErrors={clearErrors}
                 content={content}
                 image={certificationImage[idx].image}
                 idx={idx}
