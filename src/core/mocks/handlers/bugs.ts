@@ -4,7 +4,7 @@ import { TODAY_BUGS } from '../datas/todayBugs';
 
 const bugsHandlers = [
   http.get(baseURL('/bugs/today'), async () => {
-    await delay(3000);
+    await delay(1000);
     return HttpResponse.json(TODAY_BUGS, { status: 200 });
   })
 ];

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const LoadingFallback = () => {
+const RoomDataFallback = () => {
   const skeletonStyles = {
     roomCard: 'w-full h-24 bg-light-gray rounded-2xl animate-pulse',
     aboutBug: 'w-40 h-5 bg-light-gray rounded-2xl animate-pulse'
@@ -20,4 +20,4 @@ const LoadingFallback = () => {
   );
 };
 
-export default LoadingFallback;
+export default RoomDataFallback;

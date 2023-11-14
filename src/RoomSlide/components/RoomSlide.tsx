@@ -1,8 +1,8 @@
 import { Suspense } from 'react';
 import { DAY_TYPE } from '../constants/dayType';
 import RoomData from './RoomData';
-import LoadingFallback from './LoadingFallback';
-import { LoadingSpinner } from '@/shared/LoadingSpinner';
+import RoomDataFallback from './RoomDataFallback';
+import { Deffered } from '@/shared/Deffered';
 import { DayType } from '@/core/types/Room';
 
 interface RoomSlideProps {
@@ -19,7 +19,13 @@ const RoomSlide = ({ type }: RoomSlideProps) => {
           {START} ~ {END}시
         </div>
       </div>
-      <Suspense fallback={<LoadingFallback />}>
+      <Suspense
+        fallback={
+          <Deffered>
+            <RoomDataFallback />
+          </Deffered>
+        }
+      >
         <RoomData dayType={type} />
       </Suspense>
     </div>
