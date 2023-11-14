@@ -38,7 +38,7 @@ import {
 } from 'react-icons/ri';
 import { RxExit, RxEnter } from 'react-icons/rx';
 import { TbListDetails, TbConfetti } from 'react-icons/tb';
-import { LuAlarmClock } from 'react-icons/lu';
+import { LuAlarmClock, LuChevronUp } from 'react-icons/lu';
 
 export const iconMap = {
   AiFillNotification,
@@ -84,5 +84,6 @@ export const iconMap = {
   TbListDetails,
   TbConfetti,
   LuAlarmClock,
-  IoPeopleCircle
+  IoPeopleCircle,
+  LuChevronUp
 } as const;
