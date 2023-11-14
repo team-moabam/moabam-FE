@@ -3,8 +3,12 @@ import Room from '@/pages/Room';
 import RoomDetailPage from '@/pages/RoomDetailPage';
 import RoomLogPage from '@/pages/RoomLogPage';
 import RoutinesPage from '@/pages/RoutinesPage';
-import RoomNew from '@/pages/RoomNew';
-import Search from '@/pages/Search';
+import SearchPage from '@/pages/SearchPage';
+import RoomNewPage from '@/pages/RoomNewPage';
+import RoomSettingPage from '@/pages/RoomSettingPage';
+import StartPage from '@/pages/StartPage';
+import NotFoundPage from '@/pages/NotFoundPage';
+import JoinPage from '@/pages/JoinPage';
 
 interface Route {
   path: string;
@@ -14,7 +18,7 @@ interface Route {
 }
 
 export type RouteNames =
-  | 'home'
+  | 'start'
   | 'guide'
   | 'join'
   | 'routines'
@@ -33,11 +37,11 @@ export type RouteNames =
 type Routes = Record<RouteNames, Route>;
 
 const routes: Routes = {
-  home: {
+  start: {
     path: '',
     authRequired: true,
     navBarRequired: false,
-    element: <div>home</div>
+    element: <StartPage />
   },
   guide: {
     path: 'guide',
@@ -49,7 +53,7 @@ const routes: Routes = {
     path: 'join',
     authRequired: false,
     navBarRequired: false,
-    element: <div>join</div>
+    element: <JoinPage />
   },
   routines: {
     path: 'routines',
@@ -61,7 +65,7 @@ const routes: Routes = {
     path: 'search',
     authRequired: true,
     navBarRequired: true,
-    element: <Search />
+    element: <SearchPage />
   },
   myPage: {
     path: 'user',
@@ -85,7 +89,7 @@ const routes: Routes = {
     path: 'room/new',
     authRequired: true,
     navBarRequired: false,
-    element: <RoomNew />
+    element: <RoomNewPage />
   },
   room: {
     path: 'room',
@@ -109,7 +113,7 @@ const routes: Routes = {
     path: 'room/:roomId/setting',
     authRequired: true,
     navBarRequired: false,
-    element: <div>roomSetting</div>
+    element: <RoomSettingPage />
   },
   mybird: {
     path: 'mybird',
@@ -121,7 +125,7 @@ const routes: Routes = {
     path: '*',
     authRequired: false,
     navBarRequired: false,
-    element: <div>notFound</div>
+    element: <NotFoundPage />
   }
 } as const;
 
