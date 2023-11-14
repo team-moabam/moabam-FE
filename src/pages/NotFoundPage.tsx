@@ -11,8 +11,8 @@ const NotFoundPage = () => {
           />
         </div>
         <div className="flex flex-col items-center text-center ">
-          <h1 className="mb-4 text-2xl">어라라</h1>
-          <h3 className="text-dark-gray">숲에서 길을 잃었어요...</h3>
+          <h1 className="mb-4 text-3xl">어라라</h1>
+          <h3 className="text-lg text-dark-gray">숲에서 길을 잃었어요...</h3>
         </div>
       </div>
       <Link
