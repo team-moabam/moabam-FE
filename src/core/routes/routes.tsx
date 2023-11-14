@@ -8,6 +8,8 @@ import RoomNewPage from '@/pages/RoomNewPage';
 import RoomSettingPage from '@/pages/RoomSettingPage';
 import StartPage from '@/pages/StartPage';
 import EventPage from '@/pages/EventPage';
+import NotFoundPage from '@/pages/NotFoundPage';
+import JoinPage from '@/pages/JoinPage';
 
 interface Route {
   path: string;
@@ -53,7 +55,7 @@ const routes: Routes = {
     path: 'join',
     authRequired: false,
     navBarRequired: false,
-    element: <div>join</div>
+    element: <JoinPage />
   },
   routines: {
     path: 'routines',
@@ -131,7 +133,7 @@ const routes: Routes = {
     path: '*',
     authRequired: false,
     navBarRequired: false,
-    element: <div>notFound</div>
+    element: <NotFoundPage />
   }
 } as const;
 
