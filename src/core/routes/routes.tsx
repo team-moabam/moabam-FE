@@ -7,6 +7,7 @@ import SearchPage from '@/pages/SearchPage';
 import RoomNewPage from '@/pages/RoomNewPage';
 import RoomSettingPage from '@/pages/RoomSettingPage';
 import StartPage from '@/pages/StartPage';
+import EventPage from '@/pages/EventPage';
 
 interface Route {
   path: string;
@@ -30,7 +31,8 @@ export type RouteNames =
   | 'roomLog'
   | 'roomSetting'
   | 'mybird'
-  | 'notFound';
+  | 'notFound'
+  | 'event';
 
 type Routes = Record<RouteNames, Route>;
 
@@ -118,6 +120,12 @@ const routes: Routes = {
     authRequired: true,
     navBarRequired: false,
     element: <div>mybird</div>
+  },
+  event: {
+    path: 'event',
+    authRequired: true,
+    navBarRequired: false,
+    element: <EventPage />
   },
   notFound: {
     path: '*',

@@ -20,24 +20,24 @@ const RoutinesPage = () => {
     filterRooms(dayType).reduce((total, { bug }) => total + bug, 0);
 
   return (
-    <div className="flex h-full flex-col">
-      <div className="h-full overflow-auto">
-        <Swiper className="h-full">
-          {DAY_TYPES.map((type) => (
-            <SwiperSlide
-              className="h-full"
-              key={type}
-            >
-              <RoomSlide
-                rooms={filterRooms(type)}
-                type={type}
-                bugs={totalBugs(type)}
-              />
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </div>
+    // <div className="flex h-full flex-col">
+    <div className="h-full overflow-auto">
+      <Swiper className="h-full">
+        {DAY_TYPES.map((type) => (
+          <SwiperSlide
+            className="h-full"
+            key={type}
+          >
+            <RoomSlide
+              rooms={filterRooms(type)}
+              type={type}
+              bugs={totalBugs(type)}
+            />
+          </SwiperSlide>
+        ))}
+      </Swiper>
     </div>
+    // </div>
   );
 };
 
