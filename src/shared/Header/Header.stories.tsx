@@ -24,7 +24,7 @@ export const Default: Story = {
   args: {
     title: '페이지 제목',
     titleSize: 'xl',
-    prev: 'home'
+    prev: 'start'
   },
   parameters: {
     docs: {
@@ -46,7 +46,7 @@ export const OnlyPrev: Story = {
   render: () => {
     return (
       <div className="h-40 w-full border bg-light-main">
-        <Header prev="home" />
+        <Header prev="start" />
         <div className="m-10">page</div>
       </div>
     );
@@ -65,7 +65,7 @@ export const TitleSize: Story = {
     return (
       <div className="dark h-40 w-full border bg-dark-main">
         <Header
-          prev="home"
+          prev="start"
           title={
             <div className="flex items-center gap-3">
               2023년 10월 31일 <Icon icon="BiBugAlt" />

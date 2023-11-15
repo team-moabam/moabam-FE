@@ -1,0 +1,23 @@
+.star {
+  border-radius: 50%;
+  background-color: rgb(231, 231, 231);
+  position: absolute;
+  overflow: hidden;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+  animation-name: twinkling;
+}
+
+@keyframes twinkling {
+  0% {
+    box-shadow: 0 0 12px 0px rgb(255, 255, 255, 0.1);
+  }
+
+  50% {
+    box-shadow: 0 0 12px 4px rgb(255, 255, 255, 0.4);
+  }
+
+  100% {
+    box-shadow: 0 0 12px 0px rgb(255, 255, 255, 0.1);
+  }
+}

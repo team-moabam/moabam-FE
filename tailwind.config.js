@@ -69,7 +69,8 @@ export default {
       },
       zIndex: {
         bottomSheet: '100',
-        toast: '110'
+        toast: '110',
+        navbar: '50'
       }
     }
   }

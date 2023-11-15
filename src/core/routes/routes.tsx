@@ -3,9 +3,18 @@ import Room from '@/pages/Room';
 import RoomDetailPage from '@/pages/RoomDetailPage';
 import RoomLogPage from '@/pages/RoomLogPage';
 import RoutinesPage from '@/pages/RoutinesPage';
+import SearchPage from '@/pages/SearchPage';
 import RoomNewPage from '@/pages/RoomNewPage';
 import RoomSettingPage from '@/pages/RoomSettingPage';
-import Search from '@/pages/Search';
+import StartPage from '@/pages/StartPage';
+import NotFoundPage from '@/pages/NotFoundPage';
+import JoinPage from '@/pages/JoinPage';
+import UserPage from '@/pages/UserPage';
+import RankPage from '@/pages/RankPage';
+import CouponPage from '@/pages/CouponPage';
+import VisitLogPage from '@/pages/VisitLogPage';
+import OrderLogPage from '@/pages/OrderLogPage';
+import StorePage from '@/pages/StorePage';
 
 interface Route {
   path: string;
@@ -15,7 +24,7 @@ interface Route {
 }
 
 export type RouteNames =
-  | 'home'
+  | 'start'
   | 'guide'
   | 'join'
   | 'routines'
@@ -23,22 +32,26 @@ export type RouteNames =
   | 'user'
   | 'myPage'
   | 'myLog'
+  | 'myOrderLog'
+  | 'myCoupon'
+  | 'store'
   | 'createRoom'
   | 'room'
   | 'roomDetail'
   | 'roomLog'
   | 'roomSetting'
   | 'mybird'
-  | 'notFound';
+  | 'notFound'
+  | 'rank';
 
 type Routes = Record<RouteNames, Route>;
 
 const routes: Routes = {
-  home: {
+  start: {
     path: '',
     authRequired: true,
     navBarRequired: false,
-    element: <div>home</div>
+    element: <StartPage />
   },
   guide: {
     path: 'guide',
@@ -50,7 +63,7 @@ const routes: Routes = {
     path: 'join',
     authRequired: false,
     navBarRequired: false,
-    element: <div>join</div>
+    element: <JoinPage />
   },
   routines: {
     path: 'routines',
@@ -62,25 +75,49 @@ const routes: Routes = {
     path: 'search',
     authRequired: true,
     navBarRequired: true,
-    element: <Search />
+    element: <SearchPage />
   },
   myPage: {
     path: 'user',
     authRequired: true,
     navBarRequired: true,
-    element: <div>my</div>
+    element: <UserPage />
   },
   user: {
     path: 'user/:userId',
     authRequired: true,
     navBarRequired: true,
-    element: <div>user page</div>
+    element: <UserPage />
   },
   myLog: {
-    path: 'user/log',
+    path: 'user/visitLog',
     authRequired: true,
     navBarRequired: false,
-    element: <div>userLog</div>
+    element: <VisitLogPage />
+  },
+  myOrderLog: {
+    path: 'user/orderLog',
+    authRequired: true,
+    navBarRequired: false,
+    element: <OrderLogPage />
+  },
+  myCoupon: {
+    path: 'user/coupon',
+    authRequired: true,
+    navBarRequired: false,
+    element: <CouponPage />
+  },
+  store: {
+    path: 'store',
+    authRequired: true,
+    navBarRequired: false,
+    element: <StorePage />
+  },
+  rank: {
+    path: 'rank',
+    authRequired: false,
+    navBarRequired: false,
+    element: <RankPage />
   },
   createRoom: {
     path: 'room/new',
@@ -122,7 +159,7 @@ const routes: Routes = {
     path: '*',
     authRequired: false,
     navBarRequired: false,
-    element: <div>notFound</div>
+    element: <NotFoundPage />
   }
 } as const;
 
