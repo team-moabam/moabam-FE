@@ -78,6 +78,6 @@ const etc = [
   {
     icon: <MdLineWeight />,
     text: '방 참여기록',
-    route: 'log'
+    route: 'participate-log'
   }
 ];
