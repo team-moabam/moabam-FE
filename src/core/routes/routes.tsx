@@ -43,7 +43,7 @@ export type RouteNames =
   | 'roomSetting'
   | 'mybird'
   | 'notFound'
-  | 'event';
+  | 'event'
   | 'rank';
 
 type Routes = Record<RouteNames, Route>;

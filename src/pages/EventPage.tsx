@@ -1,6 +1,6 @@
 import React from 'react';
-import { coupons } from '@/Events/mocks/coupons';
-import EventCard from '@/Events/components/EventCard';
+import { coupons } from '@/Promotion/mocks/coupons';
+import EventCard from '@/Promotion/components/EventCard';
 import { Header } from '@/shared/Header';
 
 const EventPage = () => {

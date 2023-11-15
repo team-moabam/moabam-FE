@@ -1,9 +1,9 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { useTheme } from '@/core/hooks';
 import { myJoinRoom } from '@/RoomList/mocks/myJoinRoom';
-import { coupons } from '@/Events/mocks/coupons';
+import { coupons } from '@/Promotion/mocks/coupons';
 import { RoomSlide } from '@/RoomSlide';
-import { EventBanner } from '@/Events';
+import { EventBanner } from '@/Promotion';
 
 const RoutinesPage = () => {
   // TODO : 참여중인 방 조회 + 진행 중인 쿠폰 조회
