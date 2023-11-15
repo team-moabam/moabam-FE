@@ -24,10 +24,14 @@ const RoomSettingPage = () => {
             </Suspense>
           </TabItem>
           <TabItem title="멤버 관리">
-            <MemberTab />
+            <Suspense fallback={<LoadingFallback />}>
+              <MemberTab roomId={roomId} />
+            </Suspense>
           </TabItem>
           <TabItem title="방 삭제">
-            <RemoveTab />
+            <Suspense fallback={<LoadingFallback />}>
+              <RemoveTab roomId={roomId} />
+            </Suspense>
           </TabItem>
         </Tab>
       </ErrorBoundary>
