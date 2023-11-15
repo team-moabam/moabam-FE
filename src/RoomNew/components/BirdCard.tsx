@@ -1,9 +1,10 @@
 import clsx from 'clsx';
-import { RoomType, BIRD, TIME_RANGE } from '../constants/literals';
+import { BIRD, TIME_RANGE } from '@/RoomForm/constants/literals';
+import { RoomInfo } from '@/core/types/Room';
 
 interface BirdCardProps {
   active?: boolean;
-  type: RoomType;
+  type: RoomInfo['roomType'];
   onClick: VoidFunction;
 }
 

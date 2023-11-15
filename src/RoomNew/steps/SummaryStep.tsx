@@ -1,9 +1,9 @@
 import clsx from 'clsx';
 import { useFormContext } from 'react-hook-form';
 import { formatHourString } from '@/TimePicker/utils/hour';
+import { BIRD } from '@/RoomForm/constants/literals';
 import { headingStyle, descriptionStyle } from '../constants/styles';
-import { Inputs } from '../constants/form';
-import { BIRD } from '../constants/literals';
+import { Inputs } from '../hooks/useRoomForm';
 import { Icon, iconMap } from '@/shared/Icon';
 
 interface Info {

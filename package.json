@@ -12,7 +12,8 @@
     "postinstall": "husky install",
     "lint-staged": "lint-staged",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "generate-pwa-assets": "pwa-assets-generator"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.2",
@@ -26,6 +27,7 @@
     "react-hook-form": "^7.47.0",
     "react-icons": "^4.11.0",
     "react-router-dom": "^6.17.0",
+    "react-textarea-autosize": "^8.5.3",
     "swiper": "^11.0.3",
     "zod": "^3.22.4",
     "zustand": "^4.4.3"
@@ -49,6 +51,7 @@
     "@types/react-dom": "^18.2.7",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
+    "@vite-pwa/assets-generator": "^0.0.10",
     "@vitejs/plugin-react": "^4.0.3",
     "autoprefixer": "^10.4.16",
     "cross-env": "^7.0.3",
@@ -71,7 +74,8 @@
     "tailwind-merge": "^2.0.0",
     "tailwindcss": "^3.3.3",
     "typescript": "^5.0.2",
-    "vite": "^4.4.5"
+    "vite": "^4.4.5",
+    "vite-plugin-pwa": "^0.16.7"
   },
   "lint-staged": {
     "*.{cjs,js,jsx,ts,tsx}": [
