@@ -1,7 +1,7 @@
 import { Header } from '@/shared/Header';
 import LogList from '@/LogList/components/LogList';
 
-const LogPage = () => {
+const RoomLogPage = () => {
   return (
     <div className="h-full overflow-auto ">
       <Header
@@ -14,4 +14,4 @@ const LogPage = () => {
   );
 };
 
-export default LogPage;
+export default RoomLogPage;
