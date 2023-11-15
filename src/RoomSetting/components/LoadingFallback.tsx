@@ -5,7 +5,7 @@ const LoadingFallback = () => {
     <div className="flex justify-center overflow-hidden">
       <LoadingSpinner
         size="7xl"
-        colorStyle="text-black"
+        colorStyle="text-black dark:text-white"
       />
     </div>
   );
