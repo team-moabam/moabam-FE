@@ -45,8 +45,11 @@ const RoomData = ({ dayType }: RoomDataProps) => {
           <NewRoomCard disabled={rooms.length >= 3} />
         </div>
       )}
-      <div className="mr-1 mt-4 text-end font-IMHyemin-bold text-sm">
-        {ABOUT_BUG} : {bugs ?? 0}
+      <div className="mr-1 mt-4 text-end  text-sm">
+        {ABOUT_BUG} :{' '}
+        <span className="font-IMHyemin-bold text-light-point-hover dark:text-dark-point-hover">
+          {bugs} 마리
+        </span>
       </div>
     </>
   );
