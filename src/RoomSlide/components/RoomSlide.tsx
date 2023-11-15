@@ -12,7 +12,7 @@ interface RoomSlideProps {
 const RoomSlide = ({ type }: RoomSlideProps) => {
   const { TITLE, START, END } = DAY_TYPE[type];
   return (
-    <div className="h-full p-8">
+    <div className="h-full overflow-auto p-8">
       <div className="mb-5 flex items-end gap-3">
         <div className="font-IMHyemin-bold text-xl">{TITLE}</div>
         <div className="text-sm text-dark-gray">

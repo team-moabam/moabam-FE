@@ -13,6 +13,11 @@ const roomAPI = {
   }) => {
     return await baseInstance.post<{ message: string }>('/rooms', body);
   },
+
+  getRoomDetail: async (roomId: string) => {
+    return await baseInstance.get<RoomInfo>(`/rooms/${roomId}`);
+  },
+
   putRoom: async (params: {
     roomId: string;
     title: string;
@@ -25,11 +30,25 @@ const roomAPI = {
     const { roomId, ...body } = params;
     return await baseInstance.put(`/rooms/${roomId}`, body);
   },
-  getRoomDetail: async (roomId: string) => {
-    return await baseInstance.get<RoomInfo>(`/rooms/${roomId}`);
-  },
+
   getMyJoinRoom: async () => {
     return await baseInstance.get<MyJoinRoom>('/rooms/my-join');
+  },
+
+  deleteRoom: async (roomId: string) => {
+    return await baseInstance.delete(`/rooms/${roomId}`);
+  },
+
+  deleteKickUser: async (params: { roomId: string; memberId: string }) => {
+    const { roomId, memberId } = params;
+    return await baseInstance.delete(`/rooms/${roomId}/members/${memberId}`);
+  },
+
+  putDelegateMaster: async (params: { roomId: string; memberId: string }) => {
+    const { roomId, memberId } = params;
+    return await baseInstance.put(
+      `/rooms/${roomId}/members/${memberId}/delegation`
+    );
   }
 };
 

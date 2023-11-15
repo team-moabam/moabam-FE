@@ -25,6 +25,7 @@ const RoutinesPage = () => {
         </Swiper>
       </div>
     </div>
+    // </div>
   );
 };
 

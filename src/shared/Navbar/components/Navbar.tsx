@@ -10,7 +10,7 @@ interface NavbarProps {
 
 const Navbar = ({ currentPath = '' }: NavbarProps) => {
   return (
-    <nav className="flex h-16 w-full overflow-hidden rounded-t-lg bg-light-sub text-2xl text-black shadow-nav dark:bg-dark-sub dark:text-white">
+    <nav className="z-navbar flex h-16 w-full overflow-hidden rounded-t-lg bg-light-sub text-2xl text-black shadow-nav dark:bg-dark-sub dark:text-white">
       {NavbarOptions.map(({ icon, route, activeRoutes }) => (
         <Link
           to={route}
