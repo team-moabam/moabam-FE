@@ -13,9 +13,9 @@ export const formDataInstance: CustomAxiosInstance = axios.create({
 });
 
 const onSucessResponse = (res: AxiosResponse) => {
-  const { data, status } = res;
+  const { data } = res;
 
-  return { ...data, statusCode: status };
+  return data;
 };
 
 const onErrorResponse = (error: any) => Promise.reject(error);
