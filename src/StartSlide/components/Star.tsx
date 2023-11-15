@@ -1,8 +1,5 @@
 import '@/StartSlide/styles/star.css';
-
-const getRandomValue = (max: number) => {
-  return Math.floor(Math.random() * max);
-};
+import getRandomValue from '../utils/getRandomValue';
 
 const Star = () => {
   const x = getRandomValue(100);

@@ -10,7 +10,7 @@ const ProgressBar = ({
   ...props
 }: ProgressBarProps) => (
   <div
-    className={twMerge('h-2.5 w-full overflow-hidden bg-lightGray', className)}
+    className={twMerge('h-2.5 w-full overflow-hidden bg-light-gray', className)}
     {...props}
   >
     <div
