@@ -41,7 +41,7 @@ const RoomNewPage = () => {
         onSubmit={handleSubmit}
       >
         <Header
-          className="bg-light-main"
+          className="bg-light-main dark:bg-dark-main"
           prev="routines"
           title="방 만들기"
         />

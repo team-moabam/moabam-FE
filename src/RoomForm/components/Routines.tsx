@@ -82,12 +82,14 @@ const Routines = () => {
       )}
 
       <li className="flex flex-col items-center gap-3">
-        <Icon
-          className={iconButtonStyle}
-          icon="FaPlusCircle"
-          size="3xl"
-          onClick={handleAppendRoutine}
-        />
+        <button type="button">
+          <Icon
+            className={iconButtonStyle}
+            icon="FaPlusCircle"
+            size="3xl"
+            onClick={handleAppendRoutine}
+          />
+        </button>
         <div className="text-center text-xs">
           {routines.length} / {ROUTINE_COUNT.max}
         </div>
