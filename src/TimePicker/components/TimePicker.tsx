@@ -1,6 +1,7 @@
 import { FreeMode, Mousewheel } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { SwiperClass } from 'swiper/react';
+import clsx from 'clsx';
 import { formatHourString } from '../utils/hour';
 import '../styles/TimePicker.css';
 
@@ -39,7 +40,12 @@ const TimePicker = ({
 
   return (
     <Swiper
-      className={`time-picker flex h-44 w-40 cursor-pointer select-none items-center rounded-2xl shadow-md ${className}`}
+      className={clsx(
+        'time-picker flex h-44 w-40 cursor-pointer select-none items-center rounded-2xl shadow-md',
+        // 'border-1 dark:border-dark-gray',
+        'border-y-1 border-dark-gray',
+        className
+      )}
       modules={[FreeMode, Mousewheel]}
       direction="vertical"
       slidesPerView={3}

@@ -27,19 +27,23 @@ const UserCount = () => {
   return (
     <>
       <div className="flex items-center justify-center gap-10">
-        <Icon
-          icon="FaMinusCircle"
-          size="3xl"
-          className={iconButtonStyle}
-          onClick={() => handleSetUserCount(watchUserCount - 1)}
-        />
+        <button type="button">
+          <Icon
+            icon="FaMinusCircle"
+            size="3xl"
+            className={iconButtonStyle}
+            onClick={() => handleSetUserCount(watchUserCount - 1)}
+          />
+        </button>
         <b className="text-xl">{watchUserCount} 명</b>
-        <Icon
-          icon="FaPlusCircle"
-          size="3xl"
-          className={iconButtonStyle}
-          onClick={() => handleSetUserCount(watchUserCount + 1)}
-        />
+        <button type="button">
+          <Icon
+            icon="FaPlusCircle"
+            size="3xl"
+            className={iconButtonStyle}
+            onClick={() => handleSetUserCount(watchUserCount + 1)}
+          />
+        </button>
       </div>
       {errors.userCount && (
         <p className={errorStyle}>{errors.userCount.message}</p>

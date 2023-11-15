@@ -36,6 +36,7 @@ const Selection = ({ currentType, setType }: SelectionProps) => {
             }
           )}
           onClick={() => setType(type)}
+          key={type}
         >
           {typeMap[type]}
         </div>
