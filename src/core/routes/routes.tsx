@@ -9,6 +9,7 @@ import RoomSettingPage from '@/pages/RoomSettingPage';
 import StartPage from '@/pages/StartPage';
 import NotFoundPage from '@/pages/NotFoundPage';
 import JoinPage from '@/pages/JoinPage';
+import JoinKakaoPage from '@/pages/JoinKakaoPage';
 
 interface Route {
   path: string;
@@ -21,6 +22,7 @@ export type RouteNames =
   | 'start'
   | 'guide'
   | 'join'
+  | 'joinKakao'
   | 'routines'
   | 'search'
   | 'user'
@@ -54,6 +56,12 @@ const routes: Routes = {
     authRequired: false,
     navBarRequired: false,
     element: <JoinPage />
+  },
+  joinKakao: {
+    path: 'login/kakao/oauth',
+    authRequired: false,
+    navBarRequired: false,
+    element: <JoinKakaoPage />
   },
   routines: {
     path: 'routines',

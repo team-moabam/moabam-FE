@@ -1,3 +1,14 @@
+const baseURI = import.meta.env.PROD
+  ? import.meta.env.VITE_DEPLOY_ENDPOINT
+  : import.meta.env.VITE_LOCALHOST;
+
+const KAKAO_LOGIN_URL =
+  `https://kauth.kakao.com/oauth/authorize?` +
+  `response_type=code&` +
+  `client_id=${import.meta.env.VITE_KAKAO_LOGIN_CLIENT_ID}&` +
+  `redirect_uri=${baseURI}` +
+  `/login/kakao/oauth&scope=profile_nickname,profile_image`;
+
 const JoinPage = () => {
   return (
     <div className="relative h-screen">
@@ -17,9 +28,9 @@ const JoinPage = () => {
         </div>
       </div>
       <div className="absolute inset-x-0 bottom-5 mx-5 overflow-hidden rounded-full">
-        <button
-          className="relative w-full cursor-pointer select-none bg-[#FFEB06] p-3 text-center font-extrabold text-[#6A2346]"
-          onClick={() => alert('준비중입니다.')}
+        <a
+          className="relative block w-full cursor-pointer select-none bg-[#FFEB06] p-3 text-center font-extrabold text-[#6A2346]"
+          href={KAKAO_LOGIN_URL}
         >
           <div className="absolute inset-y-0 left-5 grid place-content-center">
             <img
@@ -29,7 +40,7 @@ const JoinPage = () => {
             />
           </div>
           <h1>카카오톡으로 로그인하기</h1>
-        </button>
+        </a>
       </div>
     </div>
   );
