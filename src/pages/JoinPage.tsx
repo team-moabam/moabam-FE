@@ -27,6 +27,16 @@ const JoinPage = () => {
           </h3>
         </div>
       </div>
+      <div>
+        <a href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=96d07a615c87b642450e7a9e41bff0ac&redirect_uri=http://localhost:5173/login/kakao/oauth&scope=profile_nickname,profile_image">
+          카카오 로그인 후 redirect to FE localhost
+        </a>
+      </div>
+      <div>
+        <a href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=96d07a615c87b642450e7a9e41bff0ac&redirect_uri=https://dev-api.moabam.com/members/login/kakao/oauth&scope=profile_nickname,profile_image">
+          카카오 로그인 후 redirect to dev-api
+        </a>
+      </div>
       <div className="absolute inset-x-0 bottom-5 mx-5 overflow-hidden rounded-full">
         <a
           className="relative block w-full cursor-pointer select-none bg-[#FFEB06] p-3 text-center font-extrabold text-[#6A2346]"
