@@ -7,6 +7,7 @@ import SearchPage from '@/pages/SearchPage';
 import RoomNewPage from '@/pages/RoomNewPage';
 import RoomSettingPage from '@/pages/RoomSettingPage';
 import StartPage from '@/pages/StartPage';
+import EventPage from '@/pages/EventPage';
 import NotFoundPage from '@/pages/NotFoundPage';
 import JoinPage from '@/pages/JoinPage';
 import UserPage from '@/pages/UserPage';
@@ -42,6 +43,7 @@ export type RouteNames =
   | 'roomSetting'
   | 'mybird'
   | 'notFound'
+  | 'event'
   | 'rank';
 
 type Routes = Record<RouteNames, Route>;
@@ -154,6 +156,12 @@ const routes: Routes = {
     authRequired: true,
     navBarRequired: false,
     element: <div>mybird</div>
+  },
+  event: {
+    path: 'event',
+    authRequired: true,
+    navBarRequired: false,
+    element: <EventPage />
   },
   notFound: {
     path: '*',

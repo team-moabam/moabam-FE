@@ -23,7 +23,7 @@ const SearchPage = () => {
           setType={setType}
         />
       </div>
-      <div className="h-full overflow-y-scroll px-5 py-4 pr-3">
+      <div className="h-full overflow-y-auto px-5 py-4">
         <ResultList rooms={rooms} />
       </div>
     </div>
