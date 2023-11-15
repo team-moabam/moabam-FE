@@ -11,8 +11,8 @@ const EventBanner = () => {
       couponEnded: false,
       couponNotStarted: false
     }),
-    select: ({ statusCode, ...coupons }): number => {
-      return Object.values(coupons).length;
+    select: (data): number => {
+      return Object.values(data).length;
     }
   });
 
