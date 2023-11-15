@@ -86,7 +86,7 @@ const routes: Routes = {
     element: <UserPage />
   },
   myLog: {
-    path: 'user/roomLog',
+    path: 'user/visitLog',
     authRequired: true,
     navBarRequired: false,
     element: <VisitLogPage />
