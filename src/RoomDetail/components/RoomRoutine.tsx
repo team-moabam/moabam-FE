@@ -22,26 +22,22 @@ interface RoomRoutineProps {
 }
 
 const RoomRoutine = ({ routines }: RoomRoutineProps) => {
-  const defaultData = certificationImage.map(() => {
-    return {
-      file: null
-    };
-  });
-
   const { bottomSheetProps, toggle, close } = useBottomSheet();
-  const methods = useForm<FormCertificationImage[]>({
+  const form = useForm<FormCertificationImage[]>({
     mode: 'onSubmit',
-    defaultValues: defaultData
+    defaultValues: certificationImage.map(() => ({
+      file: null
+    }))
   });
 
   const handleToggle = () => {
-    methods.clearErrors();
+    form.clearErrors();
     toggle();
   };
 
   return (
     <>
-      <FormProvider {...methods}>
+      <FormProvider {...form}>
         <CertificationBottomSheet
           bottomSheetProps={bottomSheetProps}
           close={close}

@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 import clsx from 'clsx';
-import { twMerge } from 'tailwind-merge';
 import { FormCertificationImage } from '../types/type';
 import { Icon } from '@/shared/Icon';
 
@@ -27,13 +26,11 @@ const ImageInput = ({ content, image, idx }: ImageInputProps) => {
   return (
     <div>
       <div
-        className={twMerge(
-          clsx(
-            'relative mb-1 h-0 w-full overflow-hidden rounded-2xl border border-dark-gray pb-[100%] shadow-[0_1px_4px_0px_rgba(0,0,0,0.2)]',
-            {
-              'border-danger': errors[idx]?.file?.message
-            }
-          )
+        className={clsx(
+          'relative mb-1 h-0 w-full overflow-hidden rounded-2xl border border-dark-gray pb-[100%] shadow-[0_1px_4px_0px_rgba(0,0,0,0.2)]',
+          {
+            'border-danger': errors[idx]?.file?.message
+          }
         )}
       >
         <input
