@@ -1,6 +1,8 @@
+import { Suspense } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { useTheme } from '@/core/hooks';
 import RoomSlide from '@/RoomSlide/components/RoomSlide';
+import { EventBanner } from '@/Promotion';
 
 const RoutinesPage = () => {
   // TODO : 임시 시간대 설정 코드입니다. 수정 예정!
@@ -11,19 +13,20 @@ const RoutinesPage = () => {
       : (['MORNING', 'NIGHT'] as const);
 
   return (
-    <div className="flex h-full flex-col">
-      <div className="h-full overflow-auto">
-        <Swiper className="h-full">
-          {DAY_TYPES.map((type) => (
-            <SwiperSlide
-              className="h-full"
-              key={type}
-            >
-              <RoomSlide type={type} />
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </div>
+    <div className="flex h-full flex-col overflow-auto">
+      <Swiper className="h-full w-full">
+        {DAY_TYPES.map((type) => (
+          <SwiperSlide
+            className="h-full"
+            key={type}
+          >
+            <RoomSlide type={type} />
+          </SwiperSlide>
+        ))}
+      </Swiper>
+      <Suspense>
+        <EventBanner />
+      </Suspense>
     </div>
     // </div>
   );
