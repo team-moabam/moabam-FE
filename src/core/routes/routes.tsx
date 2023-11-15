@@ -8,7 +8,7 @@ import Search from '@/pages/Search';
 import UserPage from '@/pages/UserPage';
 import RankPage from '@/pages/RankPage';
 import CouponPage from '@/pages/CouponPage';
-import RoomLogPage from '@/pages/RoomLogPage';
+import VisitLogPage from '@/pages/VisitLogPage';
 import OrderLogPage from '@/pages/OrderLogPage';
 import StorePage from '@/pages/StorePage';
 
@@ -89,7 +89,7 @@ const routes: Routes = {
     path: 'user/roomLog',
     authRequired: true,
     navBarRequired: false,
-    element: <RoomLogPage />
+    element: <VisitLogPage />
   },
   myOrderLog: {
     path: 'user/orderLog',
