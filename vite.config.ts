@@ -10,6 +10,7 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       injectRegister: 'auto',
+      filename: 'firebase-messaging-sw.js',
       devOptions: {
         enabled: false,
         type: 'module'
