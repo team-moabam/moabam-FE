@@ -152,6 +152,25 @@ const roomsHandlers = [
     }
 
     return HttpResponse.json(response, { status });
+  }),
+
+  http.post(baseURL('/rooms/:roomId/certification'), async ({ request }) => {
+    await delay(1000);
+
+    const data = await request.formData();
+    const file = data.get('5');
+
+    if (!file) {
+      return new HttpResponse('Missing do   cument', { status: 400 });
+    }
+
+    if (!(file instanceof File)) {
+      return new HttpResponse('Uploaded document is not a File', {
+        status: 400
+      });
+    }
+
+    return HttpResponse.json({}, { status: 200 });
   })
 ];
 

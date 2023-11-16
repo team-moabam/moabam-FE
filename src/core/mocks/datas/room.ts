@@ -33,11 +33,11 @@ export const ROOM_INFO = {
       certificationImage: [
         {
           routineId: 5,
-          image: 'https://picsum.photos/200'
+          image: null
         },
         {
           routineId: 9,
-          image: 'https://picsum.photos/200'
+          image: null
         }
       ]
     },
