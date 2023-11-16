@@ -1,6 +1,6 @@
 import { http, HttpResponse, delay } from 'msw';
 import { baseURL } from '../baseURL';
-import { RoomInfo } from '../datas/room';
+import { ROOM_INFO } from '../datas/room';
 
 const roomsHandlers = [
   http.post(baseURL('/rooms'), async () => {
@@ -42,7 +42,7 @@ const roomsHandlers = [
 
     switch (status) {
       case 200:
-        response = RoomInfo;
+        response = ROOM_INFO;
         break;
       case 401:
         response = { message: '존재하지 않는 유저입니다.' };
