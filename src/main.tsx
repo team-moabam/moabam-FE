@@ -17,7 +17,7 @@ const setupMSW = async () => {
   return worker.start();
 };
 
-const queryClient = new QueryClient();
+export const queryClient = new QueryClient();
 
 setupMSW().then(() => {
   ReactDOM.createRoot(document.getElementById('root')!).render(
