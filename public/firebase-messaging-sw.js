@@ -1,3 +1,7 @@
+import { precacheAndRoute } from 'workbox-precaching';
+
+precacheAndRoute(self.__WB_MANIFEST);
+
 self.addEventListener('install', function (e) {
   console.log('[FCM] Service Worker Installed.');
   self.skipWaiting();

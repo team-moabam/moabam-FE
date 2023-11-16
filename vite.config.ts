@@ -10,12 +10,16 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       injectRegister: 'auto',
+      strategies: 'injectManifest',
       filename: 'firebase-messaging-sw.js',
       devOptions: {
         enabled: false,
         type: 'module'
       },
       manifest: {
+        name: 'Moabam: 당신의 루틴을 지켜요!',
+        short_name: 'Moabam',
+        description: '성취감과 의무감을 더하는 루틴 관리 웹 앱',
         theme_color: '#60D4DE',
         icons: [
           {
