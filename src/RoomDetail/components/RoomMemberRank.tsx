@@ -11,7 +11,10 @@ const RoomMemberRank = ({ todayCertificateRank }: RoomMemberRankProps) => {
       {todayCertificateRank
         .filter((el) => el.rank <= 3)
         .map((el) => {
-          const { memberId, nickname, awakeImage, rank } = el;
+          const { memberId, nickname, rank } = el;
+          const awakeImage = '/assets/skins/awakeOmokSkin0.png';
+          const sleepImage = '/assets/skins/sleepOmokSkin0.png';
+          const time = 23;
           return (
             <div
               key={memberId}
@@ -22,8 +25,16 @@ const RoomMemberRank = ({ todayCertificateRank }: RoomMemberRankProps) => {
               })}
             >
               <div
-                className="mb-[0.22rem] h-[2.88rem] w-[3.25rem] bg-contain bg-no-repeat"
-                style={{ backgroundImage: `url(${awakeImage})` }}
+                className={clsx(
+                  'relative mb-[0.22rem] h-[2.88rem] w-[3.25rem] bg-contain bg-no-repeat ',
+                  {
+                    "after:absolute after:right-[-14px] after:top-[-10px] after:block after:content-['zzz'] after:origin-center after:rotate-[-16deg]":
+                      time > 16
+                  }
+                )}
+                style={{
+                  backgroundImage: `url(${time > 16 ? sleepImage : awakeImage})`
+                }}
               />
               <span
                 className={clsx(
