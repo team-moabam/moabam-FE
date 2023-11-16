@@ -1,52 +1,60 @@
 import { MouseEvent } from 'react';
+import { useLocation } from 'react-router-dom';
+import { useMutation } from '@tanstack/react-query';
 import { useFormContext } from 'react-hook-form';
+import roomAPI from '@/core/api/functions/roomAPI';
 import { FormCertificationImage } from '../types/type';
 import ImageInput from './ImageInput';
 import { BottomSheet } from '@/shared/BottomSheet';
 import { BottomSheetProps } from '@/shared/BottomSheet/components/BottomSheet';
-
-const routine = [
-  {
-    routineId: 5,
-    content: '물 마시기'
-  },
-  {
-    routineId: 9,
-    content: '아침 먹기'
-  }
-];
-const certificationImage = [
-  {
-    routineId: 5,
-    // image: 'https://picsum.photos/200'
-    image: null
-  },
-  {
-    routineId: 9,
-    // image: 'https://picsum.photos/200'
-    image: null
-  }
-];
+import { queryClient } from '@/main';
 
 interface CertificationBottomSheetProps {
   bottomSheetProps: BottomSheetProps;
+  myCertificationImage?: { routineId: number; image: string }[];
   close: () => void;
+  routines: { routineId: number; content: string }[];
 }
 
 const CertificationBottomSheet = ({
-  bottomSheetProps
+  bottomSheetProps,
+  myCertificationImage,
+  routines
 }: CertificationBottomSheetProps) => {
+  const { pathname } = useLocation();
+  const roomId = pathname.split('/')[2];
   const { watch, handleSubmit } = useFormContext<FormCertificationImage[]>();
+
+  const mutation = useMutation({
+    mutationFn: roomAPI.postRoutineCertificate
+  });
 
   const handleFormSubmit = async (data: FormCertificationImage[]) => {
     const formData = new FormData();
 
     for (const [key, value] of Object.entries(data)) {
       if (value.file) {
-        formData.append(`${routine[Number(key)].routineId}`, value.file[0]);
+        formData.append(`${routines[Number(key)].routineId}`, value.file[0]);
       }
     }
-    // TODO : Form Data 전송
+
+    mutation.mutate(
+      {
+        roomId,
+        body: formData
+      },
+      {
+        onSuccess: () => {
+          queryClient.invalidateQueries({
+            queryKey: ['rooms', 'detail', roomId]
+          });
+          close();
+        },
+        onError: () => {
+          // TODO : 에러 처리
+        }
+      }
+    );
   };
 
   const handleEditButtonClick = (e: MouseEvent<HTMLButtonElement>) => {
@@ -56,10 +64,23 @@ const CertificationBottomSheet = ({
 
     for (const [key, value] of Object.entries(files)) {
       if (value.file && value.file.length > 0) {
-        formData.append(`${routine[Number(key)].routineId}`, value.file[0]);
+        formData.append(`${routines[Number(key)].routineId}`, value.file[0]);
       }
     }
-    // TODO : Form Data 전송
+    mutation.mutate(
+      {
+        roomId,
+        body: formData
+      },
+      {
+        onSucces: () => {
+          close();
+        },
+        onError: () => {
+          // TODO : 에러 처리
+        }
+      }
+    );
   };
 
   return (
@@ -76,12 +97,12 @@ const CertificationBottomSheet = ({
           className="mb-8 grid grid-cols-2 gap-x-3 gap-y-[1.34rem] rounded-2xl text-black dark:text-white"
           id="certificationForm"
         >
-          {routine.map(({ routineId, content }, idx) => {
+          {routines.map(({ routineId, content }, idx) => {
             return (
               <ImageInput
                 key={routineId}
                 content={content}
-                image={certificationImage[idx].image}
+                image={myCertificationImage && myCertificationImage[idx].image}
                 idx={idx}
               />
             );
@@ -90,8 +111,8 @@ const CertificationBottomSheet = ({
         <span className="mb-[1rem] block font-IMHyemin-bold text-xs text-dark-gray">
           다른 새들이 알아볼 수 있게 찍어주세요!
         </span>
-        {certificationImage.filter((el) => el.image).length ===
-        routine.length ? (
+        {myCertificationImage?.filter((el) => el.image).length ===
+        routines.length ? (
           <button
             type="button"
             className="btn dark:btn-dark-point btn-light-point w-full"

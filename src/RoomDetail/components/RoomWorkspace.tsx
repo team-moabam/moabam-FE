@@ -13,6 +13,10 @@ const RoomWorkspace = ({
 }: RoomInfo) => {
   const { bottomSheetProps, toggle, close } = useBottomSheet();
 
+  const myCertificationImage = todayCertificateRank.find(
+    ({ memberId }) => memberId === '5'
+  )?.certificationImage;
+
   // Todo : RoomCalendar data props
 
   return (
@@ -43,7 +47,10 @@ const RoomWorkspace = ({
         <TabItem title="루틴">
           <RoomCalendar />
           <CertificationProgress percentage={completePercentage} />
-          <RoomRoutine routines={routine} />
+          <RoomRoutine
+            routines={routine}
+            myCertificationImage={myCertificationImage}
+          />
           <button
             className="mt-[1.19rem] text-sm text-black  dark:text-white"
             onClick={toggle}
