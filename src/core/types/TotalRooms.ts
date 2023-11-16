@@ -1,5 +1,7 @@
 import { DayType } from '.';
 
+export type RoomSelectType = 'morning' | 'night' | 'all';
+
 export interface Room {
   id: number;
   title: string;
@@ -20,7 +22,7 @@ export interface TotalRooms {
 }
 
 export interface RoomsRequestParams {
-  type?: 'morning' | 'night' | 'all';
+  type?: RoomSelectType;
   page?: number;
   size?: number;
 }

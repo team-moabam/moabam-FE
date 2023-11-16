@@ -52,7 +52,7 @@ const roomAPI = {
     );
   },
 
-  getRoomsAll: async (params: RoomsRequestParams) => {
+  getRoomsAll: async (params?: RoomsRequestParams) => {
     return await baseInstance.get('/rooms', { params });
   }
 };

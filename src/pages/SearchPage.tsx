@@ -1,12 +1,9 @@
 import { useState } from 'react';
-import { totalRooms } from '@/RoomList/mocks/totalRooms';
+import { RoomSelectType } from '@/core/types';
 import { SearchBar, Selection, ResultList } from '@/RoomSearch';
-import { SelectType } from '@/RoomSearch/types/search';
 
 const SearchPage = () => {
-  // TODO : mock api 연결하기
-  const { rooms } = totalRooms;
-  const [type, setType] = useState<SelectType>('all');
+  const [type, setType] = useState<RoomSelectType>('all');
   const [keyword, setKeyword] = useState('');
 
   return (
@@ -24,7 +21,7 @@ const SearchPage = () => {
         />
       </div>
       <div className="h-full overflow-y-auto px-5 py-4">
-        <ResultList rooms={rooms} />
+        <ResultList type={type} />
       </div>
     </div>
   );

@@ -15,9 +15,9 @@ const roomOptions = {
       queryFn: () => roomAPI.getMyJoinRoom()
     }),
 
-  all: (params: RoomsRequestParams) =>
+  all: (params?: RoomsRequestParams) =>
     queryOptions({
-      queryKey: ['rooms', params.type || 'all'] as const,
+      queryKey: ['rooms', params?.type || 'all'] as const,
       queryFn: () => roomAPI.getRoomsAll(params)
     })
 };
