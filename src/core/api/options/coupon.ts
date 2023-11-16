@@ -5,7 +5,7 @@ import couponAPI from '../functions/couponAPI';
 const couponOptions = {
   all: (body: CouponStatus) =>
     queryOptions({
-      queryKey: ['coupons'] as const,
+      queryKey: ['coupons', body] as const,
       queryFn: () => couponAPI.postAllCoupons(body)
     })
 };
