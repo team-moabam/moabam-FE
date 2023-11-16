@@ -2,6 +2,7 @@ import { http, HttpResponse, delay } from 'msw';
 import { baseURL } from '../baseURL';
 import { RoomInfo } from '../datas/room';
 import { MY_JOIN_ROOMS } from '../datas/myJoinRoom';
+import { TOTAL_ROOMS } from '../datas/totalRooms';
 
 const roomsHandlers = [
   http.post(baseURL('/rooms'), async () => {
@@ -158,6 +159,35 @@ const roomsHandlers = [
     }
 
     return HttpResponse.json(response, { status });
+  }),
+
+  http.get(baseURL('/rooms'), async ({ request }) => {
+    const url = new URL(request.url);
+    const type = url.searchParams.get('type');
+    const page = Number(url.searchParams.get('page')) || 1;
+    const size = Number(url.searchParams.get('size')) || 10;
+
+    const totalRooms = TOTAL_ROOMS.rooms;
+    const morningRooms = totalRooms.filter(
+      ({ roomType }) => roomType === 'MORNING'
+    );
+    const nightRooms = totalRooms.filter(
+      ({ roomType }) => roomType === 'NIGHT'
+    );
+
+    let rooms = [];
+    switch (type) {
+      case 'morning':
+        rooms = morningRooms.slice(size * (page - 1), size * page);
+        break;
+      case 'night':
+        rooms = nightRooms.slice(size * (page - 1), size * page);
+        break;
+      default:
+        rooms = totalRooms.slice(size * (page - 1), size * page);
+    }
+
+    return HttpResponse.json({ rooms }, { status: 200 });
   })
 ];
 
