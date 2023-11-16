@@ -15,12 +15,12 @@ const RoutinesPage = () => {
   return (
     <div className="flex h-full flex-col overflow-auto">
       <Swiper className="h-full w-full">
-        {DAY_TYPES.map((type) => (
+        {DAY_TYPES.map((roomType) => (
           <SwiperSlide
             className="h-full"
-            key={type}
+            key={roomType}
           >
-            <RoomSlide type={type} />
+            <RoomSlide roomType={roomType} />
           </SwiperSlide>
         ))}
       </Swiper>

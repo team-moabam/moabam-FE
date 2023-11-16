@@ -6,11 +6,11 @@ import { Deffered } from '@/shared/Deffered';
 import { DayType } from '@/core/types/Room';
 
 interface RoomSlideProps {
-  type: DayType;
+  roomType: DayType;
 }
 
-const RoomSlide = ({ type }: RoomSlideProps) => {
-  const { TITLE, START, END } = DAY_TYPE[type];
+const RoomSlide = ({ roomType }: RoomSlideProps) => {
+  const { TITLE, START, END } = DAY_TYPE[roomType];
   return (
     <div className="h-full overflow-auto p-8">
       <div className="mb-5 flex items-end gap-3">
@@ -26,7 +26,7 @@ const RoomSlide = ({ type }: RoomSlideProps) => {
           </Deffered>
         }
       >
-        <RoomData dayType={type} />
+        <RoomData dayType={roomType} />
       </Suspense>
     </div>
   );

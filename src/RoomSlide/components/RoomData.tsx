@@ -22,7 +22,7 @@ const RoomData = ({ dayType }: RoomDataProps) => {
       {
         ...roomOptions.myJoin(),
         select: ({ participatingRooms }: MyJoinRoom): ParticipatingRoom[] =>
-          participatingRooms.filter(({ type }) => type === dayType)
+          participatingRooms.filter(({ roomType }) => roomType === dayType)
       },
       {
         ...bugOptions.today(),

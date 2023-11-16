@@ -3,7 +3,7 @@ export interface Room {
   title: string;
   managerNickname: string;
   level: number;
-  type: 'MORNING' | 'NIGHT';
+  roomType: 'MORNING' | 'NIGHT';
   certifyTime: number;
   currentUserCount: number;
   maxUserCount: number;
