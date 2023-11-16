@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { Suspense, useState } from 'react';
 import { RoomSelectType } from '@/core/types';
 import { SearchBar, Selection, ResultList } from '@/RoomSearch';
+import { LoadingSpinner } from '@/shared/LoadingSpinner';
 
 const SearchPage = () => {
   const [type, setType] = useState<RoomSelectType>('all');

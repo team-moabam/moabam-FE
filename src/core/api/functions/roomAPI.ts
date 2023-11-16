@@ -1,4 +1,4 @@
-import { RoomsRequestParams } from '@/core/types';
+import { RoomsRequestParams, TotalRooms } from '@/core/types';
 import { baseInstance } from '../instance';
 import { MyJoinRoom } from '@/core/types/MyJoinRoom';
 import { RoomInfo } from '@/core/types/Room';
@@ -53,7 +53,8 @@ const roomAPI = {
   },
 
   getRoomsAll: async (params?: RoomsRequestParams) => {
-    return await baseInstance.get('/rooms', { params });
+    const response: TotalRooms = await baseInstance.get('/rooms', { params });
+    return response.rooms;
   }
 };
 

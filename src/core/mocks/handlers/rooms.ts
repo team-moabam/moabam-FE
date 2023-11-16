@@ -162,6 +162,7 @@ const roomsHandlers = [
   }),
 
   http.get(baseURL('/rooms'), async ({ request }) => {
+    await delay(2000);
     const url = new URL(request.url);
     const type = url.searchParams.get('type');
     const page = Number(url.searchParams.get('page')) || 1;

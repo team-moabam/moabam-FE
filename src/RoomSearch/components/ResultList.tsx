@@ -1,6 +1,7 @@
-import { useQuery } from '@tanstack/react-query';
-import { roomOptions } from '@/core/api/options';
-import { RoomSelectType, TotalRooms } from '@/core/types';
+import { useInfiniteQuery } from '@tanstack/react-query';
+
+import { RoomSelectType } from '@/core/types';
+import roomAPI from '@/core/api/functions/roomAPI';
 import { RoomAccordion } from '@/RoomList';
 
 interface ResultListProps {
@@ -8,19 +9,27 @@ interface ResultListProps {
 }
 
 const ResultList = ({ type }: ResultListProps) => {
-  const { data: rooms } = useQuery({
-    ...roomOptions.all({ type }),
-    select: ({ rooms }: TotalRooms) => rooms
+  const { fetchNextPage, hasNextPage, data } = useInfiniteQuery({
+    queryKey: ['rooms', type],
+    queryFn: ({ pageParam }) => roomAPI.getRoomsAll({ page: pageParam, type }),
+    initialPageParam: 1,
+    getNextPageParam: (lastPage, allPages, lastPageParam) =>
+      lastPage.length < 10 ? null : lastPageParam + 1
   });
 
   return (
     <div className="flex flex-col gap-2">
-      {rooms?.map((room) => (
-        <RoomAccordion
-          room={room}
-          key={room.id}
-        />
-      ))}
+      {data?.pages.map((rooms) =>
+        rooms.map((room) => (
+          <RoomAccordion
+            room={room}
+            key={room.id}
+          />
+        ))
+      )}
+      {hasNextPage && (
+        <button onClick={() => fetchNextPage()}>다음페이지 로드</button>
+      )}
     </div>
   );
 };
