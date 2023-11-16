@@ -6,6 +6,12 @@ const roomOptions = {
     queryOptions({
       queryKey: ['rooms', 'detail', roomId] as const,
       queryFn: () => roomAPI.getRoomDetail(roomId)
+    }),
+
+  myJoin: () =>
+    queryOptions({
+      queryKey: ['rooms', 'myJoin'] as const,
+      queryFn: () => roomAPI.getMyJoinRoom()
     })
 };
 

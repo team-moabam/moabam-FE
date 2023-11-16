@@ -1,11 +1,13 @@
 import { RankMember } from './Member';
 
+export type DayType = 'MORNING' | 'NIGHT';
+
 export type RoomInfo = {
   roomId: number;
   title: string;
   managerNickname: string;
   level: number;
-  roomType: 'MORNING' | 'NIGHT';
+  roomType: DayType;
   certifyTime: number;
   currentUserCount: number;
   maxUserCount: number;
