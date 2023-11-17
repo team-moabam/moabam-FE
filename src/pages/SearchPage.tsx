@@ -1,7 +1,8 @@
 import { Suspense, useState } from 'react';
 import { RoomSelectType } from '@/core/types';
 import { SearchBar, Selection, ResultList } from '@/RoomSearch';
-import { LoadingSpinner } from '@/shared/LoadingSpinner';
+import { Deffered } from '@/shared/Deffered';
+import ResultListFallback from '@/RoomSearch/components/ResultListFallback';
 
 const SearchPage = () => {
   const [type, setType] = useState<RoomSelectType>('all');
@@ -22,7 +23,18 @@ const SearchPage = () => {
         />
       </div>
       <div className="h-full overflow-y-auto px-5 py-4">
-        <ResultList type={type} />
+        <Suspense
+          fallback={
+            <Deffered>
+              <ResultListFallback size={5} />
+            </Deffered>
+          }
+        >
+          <ResultList
+            type={type}
+            size={5}
+          />
+        </Suspense>
       </div>
     </div>
   );
