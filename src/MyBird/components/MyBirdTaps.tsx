@@ -1,6 +1,10 @@
+import { useEffect } from 'react';
+
 const MyBirdTaps = () => {
-  console.log('MyBirdTaps');
-  return <></>;
+  useEffect(() => {
+    console.log('MyBirdTaps');
+  });
+  return <>asdadasdasdas</>;
 };
 
 export default MyBirdTaps;

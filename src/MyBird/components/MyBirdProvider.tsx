@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { MyBirdContext } from '@/contexts/myBirdContext';
+import { MyBirdContext } from '../contexts/myBirdContext';
 
 interface MyBirdProviderProps {
   children: React.ReactNode;

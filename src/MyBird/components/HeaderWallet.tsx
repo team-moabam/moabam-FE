@@ -1,12 +1,15 @@
+import { useEffect } from 'react';
 import { useContextSelector } from 'use-context-selector';
-import { MyBirdContext } from '@/contexts/myBirdContext';
+import { MyBirdContext } from '../contexts/myBirdContext';
 
 const HeaderWallet = () => {
   const bugs = useContextSelector(MyBirdContext, (state) => state.bugs);
   const setBugs = useContextSelector(MyBirdContext, (state) => state.setBugs);
-  console.log('HeaderWallet');
-  console.log(bugs);
 
+  useEffect(() => {
+    console.log('HeaderWallet');
+    console.log(bugs);
+  });
   return (
     <>
       <button
