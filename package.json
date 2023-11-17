@@ -29,6 +29,7 @@
     "react-router-dom": "^6.17.0",
     "react-textarea-autosize": "^8.5.3",
     "swiper": "^11.0.3",
+    "uuid": "^9.0.1",
     "zod": "^3.22.4",
     "zustand": "^4.4.3"
   },
@@ -49,6 +50,7 @@
     "@types/node": "^20.8.7",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
+    "@types/uuid": "^9.0.7",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
     "@vite-pwa/assets-generator": "^0.0.10",

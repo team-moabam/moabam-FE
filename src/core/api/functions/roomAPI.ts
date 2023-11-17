@@ -1,4 +1,5 @@
 import { baseInstance } from '../instance';
+import { MyJoinRoom } from '@/core/types/MyJoinRoom';
 import { RoomInfo } from '@/core/types/Room';
 
 const roomAPI = {
@@ -28,6 +29,10 @@ const roomAPI = {
   }) => {
     const { roomId, ...body } = params;
     return await baseInstance.put(`/rooms/${roomId}`, body);
+  },
+
+  getMyJoinRoom: async () => {
+    return await baseInstance.get<MyJoinRoom>('/rooms/my-join');
   },
 
   deleteRoom: async (roomId: string) => {

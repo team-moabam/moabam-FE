@@ -1,8 +1,12 @@
+import { clsx } from 'clsx';
+import { DayType } from '@/core/types';
+import { useTheme } from '@/core/hooks';
 import IconText from './IconText';
 
 interface RoomSummaryProps {
   title: string;
-  type: 'MORNING' | 'NIGHT';
+  roomType: DayType;
+  currentType?: DayType;
   certifyTime: number;
   currentUserCount: number;
   maxUserCount: number;
@@ -10,19 +14,19 @@ interface RoomSummaryProps {
 }
 
 const birdByType = {
-  // 임시입니다 mockData 아닙니다!
   MORNING: {
-    containerStyle: 'h-12 w-12 rounded-full overflow-hidden shrink-0',
-    imgStyle: '',
-    bird: '오목눈이',
-    imgSrc: 'https://i.ibb.co/QkqCq9J/image-107.png'
+    containerBg: 'bg-[#F9F8CA]',
+    imgStyle: 'relative left-[0.1rem] top-1 scale-[95%]',
+    bird: 'Omok',
+    imgSrc: (isAwake?: boolean) =>
+      `/assets/skins/${isAwake ? 'awake' : 'sleep'}OmokSkin0.png`
   },
   NIGHT: {
-    containerStyle:
-      'relative h-12 w-12 rounded-full bg-[#FFF5E9] overflow-hidden shrink-0',
-    imgStyle: 'absolute left-1 top-1',
-    bird: '부엉이',
-    imgSrc: 'https://i.ibb.co/HCyhrsM/image-90.png'
+    containerBg: 'bg-[#FFF5E9]',
+    imgStyle: 'relative scale-[85%] top-1',
+    bird: 'Owl',
+    imgSrc: (isAwake?: boolean) =>
+      `/assets/skins/${isAwake ? 'awake' : 'sleep'}OwlSkin0.png`
   }
 };
 
@@ -31,21 +35,28 @@ const RoomSummary = ({
   certifyTime,
   currentUserCount,
   maxUserCount,
-  type,
+  roomType,
   managerNickname
 }: RoomSummaryProps) => {
   const certifyTimeToString = `${
     certifyTime < 10 ? `0${certifyTime}` : certifyTime
   } : 00`;
   const userCountToString = `${currentUserCount} / ${maxUserCount}`;
+  const { theme } = useTheme();
+  const currentType = theme === 'dark' ? 'NIGHT' : 'MORNING';
 
   return (
     <div className="flex items-center gap-4">
-      <div className={birdByType[type].containerStyle}>
+      <div
+        className={clsx(
+          'h-12 w-12 shrink-0 overflow-hidden rounded-full',
+          birdByType[roomType].containerBg
+        )}
+      >
         <img
-          className={birdByType[type].imgStyle}
-          src={birdByType[type].imgSrc}
-          alt={birdByType[type].bird}
+          className={birdByType[roomType].imgStyle}
+          src={birdByType[roomType].imgSrc(roomType === currentType)}
+          alt={birdByType[roomType].bird}
         />
       </div>
       <div className="flex flex-col gap-[0.3rem]">
