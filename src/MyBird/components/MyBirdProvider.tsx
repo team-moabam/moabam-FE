@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { MyBirdContext } from '@/contexts/myBirdContext';
 
 interface MyBirdProviderProps {
@@ -5,7 +6,33 @@ interface MyBirdProviderProps {
 }
 
 const MyBirdProvider = ({ children }: MyBirdProviderProps) => {
-  return <MyBirdContext.Provider value={{}}>{children}</MyBirdContext.Provider>;
+  const level = 3;
+  const [selectItem, setSelectItem] = useState({
+    MORNING: undefined,
+    NIGHT: undefined
+  });
+  const [productItem, setProductItem] = useState();
+  const [bugs, setBugs] = useState({
+    morningBug: 4,
+    nightBug: 300,
+    goldenBug: 100
+  });
+
+  return (
+    <MyBirdContext.Provider
+      value={{
+        level,
+        selectItem,
+        setSelectItem,
+        productItem,
+        setProductItem,
+        bugs,
+        setBugs
+      }}
+    >
+      {children}
+    </MyBirdContext.Provider>
+  );
 };
 
 export default MyBirdProvider;
