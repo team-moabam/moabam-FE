@@ -1,70 +1,34 @@
-import { useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, Navigate } from 'react-router-dom';
 import { withAsyncBoundary } from '@suspensive/react';
 import { useSuspenseQuery } from '@tanstack/react-query';
-import axios, { AxiosError } from 'axios';
+import { AxiosError } from 'axios';
 import authOptions from '@/core/api/options/auth';
+import { LoadingSpinner } from '@/shared/LoadingSpinner';
 
 const JoinKakaoPage = withAsyncBoundary(
   () => {
     const [searchParams] = useSearchParams();
     const code = searchParams.get('code');
 
-    // useSuspenseQuery({
-    //   ...authOptions.kakao(code ?? ''),
-    //   retry: 1
-    // });
+    const { data } = useSuspenseQuery({
+      ...authOptions.kakao(code ?? ''),
+      retry: 1
+    });
 
-    useEffect(() => {
-      axios
-        .get(
-          `https://dev-api.moabam.com/members/login/kakao/oauth?code=${code}`
-          // {
-          //   headers: {
-          //     'Content-Type': 'x-form-urlencoded'
-          //   }
-          // }
-        )
-        .then((res) => {
-          console.log(res);
-        })
-        .catch(console.error);
-      console.log(code);
-    }, []);
-
-    return <>TODO: 로그인 작업중</>;
+    return <Navigate to={data.signUp ? '/guide' : '/'} />;
   },
   {
-    pendingFallback: <>로그인 처리중...</>,
+    pendingFallback: (
+      <div className="flex h-full items-center justify-center">
+        <LoadingSpinner
+          colorStyle="text-light-point dark:text-dark-point"
+          size="7xl"
+        />
+      </div>
+    ),
     rejectedFallback: ({ error }) =>
       error instanceof AxiosError ? error.response?.data?.message : '에러 발생!'
   }
 );
-
-// interface JoinProps {
-//   code: string;
-// }
-
-// const Join = ({ code }: JoinProps) => {
-//   const { data } = useSuspenseQuery({
-//     ...authOptions.kakao(code ?? ''),
-//     retry: 1
-//   });
-
-//   return <div>로그인 성공</div>;
-// };
-
-// const JoinKakaoPage = () => {
-//   const [searchParams, setSearchParams] = useSearchParams();
-//   const code = searchParams.get('code');
-
-//   return (
-//     <ErrorBoundary fallback={<>에러</>}>
-//       <Suspense fallback={<>로딩..........</>}>
-//         <Join code={code ?? ''} />
-//       </Suspense>
-//     </ErrorBoundary>
-//   );
-// };
 
 export default JoinKakaoPage;

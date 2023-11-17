@@ -5,7 +5,7 @@ const membersHandlers = [
   http.get(baseURL('/members/login/kakao/oauth'), async () => {
     await delay(1000);
 
-    const status: number = 201;
+    const status: number = 200;
     let response = {};
     const headers = new Headers();
 
