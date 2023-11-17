@@ -34,7 +34,6 @@ const RoomAccordion = ({ room }: RoomAccordionProps) => {
           onClick={() => moveTo('roomDetail', { roomId: id })}
           ref={hoverRef}
         >
-          <div>{id}</div>
           <RoomSummary {...room} />
         </div>
       </AccordionHeader>

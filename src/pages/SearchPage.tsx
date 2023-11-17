@@ -26,13 +26,13 @@ const SearchPage = () => {
         <Suspense
           fallback={
             <Deffered>
-              <ResultListFallback size={5} />
+              <ResultListFallback size={10} />
             </Deffered>
           }
         >
           <ResultList
             type={type}
-            size={5}
+            size={10}
           />
         </Suspense>
       </div>

@@ -1,5 +1,6 @@
 import { RoomSelectType } from '@/core/types';
 import { useInfiniteSearch } from '@/core/api/queries';
+import useIntersectionObserver from '../hooks/useIntersectionObserver';
 import ResultListFallback from './ResultListFallback';
 import { RoomAccordion } from '@/RoomList';
 import { Deffered } from '@/shared/Deffered';
@@ -10,8 +11,14 @@ interface ResultListProps {
 }
 
 const ResultList = ({ type, size }: ResultListProps) => {
-  const { fetchNextPage, hasNextPage, results, isFetchingNextPage } =
-    useInfiniteSearch({ type, size });
+  const { fetchNextPage, results, isFetchingNextPage } = useInfiniteSearch({
+    type,
+    size
+  });
+  const [intersectionRef] = useIntersectionObserver({
+    threshold: 0.5,
+    onObserve: fetchNextPage
+  });
 
   return (
     <div className="flex flex-col gap-2">
@@ -24,13 +31,14 @@ const ResultList = ({ type, size }: ResultListProps) => {
         ))
       )}
       {isFetchingNextPage && (
-        <Deffered defferTime={0}>
+        <Deffered>
           <ResultListFallback size={size} />
         </Deffered>
       )}
-      {hasNextPage && (
-        <button onClick={() => fetchNextPage()}>다음페이지 로드</button>
-      )}
+      <div
+        ref={intersectionRef}
+        className="h-4"
+      ></div>
     </div>
   );
 };
