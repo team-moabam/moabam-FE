@@ -9,7 +9,8 @@ import { RoomInfo } from '@/core/types/Room';
 const RoomWorkspace = ({
   completePercentage,
   routine,
-  todayCertificateRank
+  todayCertificateRank,
+  certifiedDates
 }: RoomInfo) => {
   const { bottomSheetProps, toggle, close } = useBottomSheet();
 
@@ -41,7 +42,7 @@ const RoomWorkspace = ({
         defaultIndex={0}
       >
         <TabItem title="루틴">
-          <RoomCalendar />
+          <RoomCalendar certifiedDates={certifiedDates} />
           <CertificationProgress percentage={completePercentage} />
           <RoomRoutine routines={routine} />
           <button
