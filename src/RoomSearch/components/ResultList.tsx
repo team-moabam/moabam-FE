@@ -11,7 +11,7 @@ interface ResultListProps {
 }
 
 const ResultList = ({ type, size }: ResultListProps) => {
-  const { fetchNextPage, results, isFetchingNextPage, hasNextPage } =
+  const { fetchNextPage, data, isFetchingNextPage, hasNextPage } =
     useInfiniteSearch({
       type,
       size
@@ -23,7 +23,7 @@ const ResultList = ({ type, size }: ResultListProps) => {
 
   return (
     <div className="flex flex-col gap-2">
-      {results.map((rooms) =>
+      {data.map((rooms) =>
         rooms.map((room) => (
           <RoomAccordion
             room={room}

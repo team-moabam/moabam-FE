@@ -9,23 +9,19 @@ const useInfiniteSearch = ({
   type: RoomSelectType;
   size: number;
 }) => {
-  const { fetchNextPage, hasNextPage, data, isFetchingNextPage } =
-    useSuspenseInfiniteQuery({
-      queryKey: ['rooms', type],
-      queryFn: ({ pageParam }) =>
-        roomAPI.getRoomsAll({ page: pageParam, type, size }),
-      initialPageParam: 1,
-      getNextPageParam: (lastPage, allPages, lastPageParam) =>
-        lastPage.length < size ? null : lastPageParam + 1,
-      select: ({ pages }) => pages
-    });
+  return useSuspenseInfiniteQuery({
+    queryKey: ['rooms', type],
 
-  return {
-    fetchNextPage,
-    hasNextPage,
-    results: data,
-    isFetchingNextPage
-  };
+    queryFn: ({ pageParam }) =>
+      roomAPI.getRoomsAll({ page: pageParam, type, size }),
+
+    initialPageParam: 1,
+
+    getNextPageParam: (lastPage, allPages, lastPageParam) =>
+      lastPage.length < size ? null : lastPageParam + 1,
+
+    select: ({ pages }) => pages
+  });
 };
 
 export default useInfiniteSearch;
