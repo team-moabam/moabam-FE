@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 
 interface ObserverOptions {
   root?: Element | null;
@@ -11,18 +11,13 @@ const useIntersectionObserver = ({
   onObserve,
   ...options
 }: ObserverOptions) => {
-  const [isIntersecting, setIntersecting] = useState(false);
   const intersectionRef = useRef<HTMLDivElement>(null);
 
   const handleIntersect: IntersectionObserverCallback = useCallback(
-    (entries, observer) => {
+    (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          setIntersecting(true);
           onObserve();
-          observer.unobserve(entry.target);
-        } else {
-          setIntersecting(false);
         }
       });
     },
@@ -40,7 +35,7 @@ const useIntersectionObserver = ({
     };
   }, [handleIntersect, options]);
 
-  return [intersectionRef, isIntersecting] as const;
+  return intersectionRef;
 };
 
 export default useIntersectionObserver;

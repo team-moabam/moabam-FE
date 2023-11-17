@@ -11,11 +11,12 @@ interface ResultListProps {
 }
 
 const ResultList = ({ type, size }: ResultListProps) => {
-  const { fetchNextPage, results, isFetchingNextPage } = useInfiniteSearch({
-    type,
-    size
-  });
-  const [intersectionRef] = useIntersectionObserver({
+  const { fetchNextPage, results, isFetchingNextPage, hasNextPage } =
+    useInfiniteSearch({
+      type,
+      size
+    });
+  const intersectionRef = useIntersectionObserver({
     threshold: 0.5,
     onObserve: fetchNextPage
   });
@@ -35,10 +36,16 @@ const ResultList = ({ type, size }: ResultListProps) => {
           <ResultListFallback size={size} />
         </Deffered>
       )}
-      <div
-        ref={intersectionRef}
-        className="h-4"
-      ></div>
+      {hasNextPage ? (
+        <div
+          ref={intersectionRef}
+          className="h-4"
+        ></div>
+      ) : (
+        <div className="my-4 text-center text-sm text-dark-gray">
+          모든 방을 다 불러왔어요.
+        </div>
+      )}
     </div>
   );
 };

@@ -10,7 +10,7 @@ const ResultListFallback = ({ size = 10 }: ResultListFallbackProps) => {
       {Array.from({ length: size }, (_, index) => (
         <div
           key={index}
-          className="my-1 h-24 w-full animate-pulse rounded-2xl bg-dark-gray"
+          className="my-1 h-24 w-full animate-pulse rounded-2xl bg-light-gray dark:bg-dark-gray"
         ></div>
       ))}
     </div>
