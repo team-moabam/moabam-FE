@@ -10,7 +10,7 @@ export const RoomInfo = {
   maxUserCount: 9,
   announcement: '2번 연속 인증 안하는 사람은 추방할 예정입니다 ㅅㄱ!',
   completePercentage: 66.7,
-  certifiedDates: ['2023-03-02', '2023-03-03', '2023-03-02'],
+  certifiedDates: ['2023-11-13', '2023-11-14', '2023-11-16'],
   routine: [
     {
       routineId: 5,
