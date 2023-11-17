@@ -13,7 +13,7 @@ const RoomSettingPage = () => {
     <>
       <Header prev="roomDetail" />
 
-      <QueryErrorBoundary fallback={NetworkFallback}>
+      <QueryErrorBoundary fallback={<NetworkFallback />}>
         <Tab
           align="center"
           itemStyle="mt-10 px-8"
