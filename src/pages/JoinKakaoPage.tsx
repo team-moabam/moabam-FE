@@ -33,7 +33,8 @@ const JoinKakaoPage = () => {
           size="7xl"
         />
       )}
-      {isError && error.response?.data?.message}
+      {(isError && error.response?.data?.message) ??
+        '로그인 중에 문제가 발생했어요.'}
     </div>
   );
 };
