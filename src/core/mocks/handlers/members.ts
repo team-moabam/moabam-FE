@@ -2,7 +2,7 @@ import { http, HttpResponse, delay } from 'msw';
 import { baseURL } from '../baseURL';
 
 const membersHandlers = [
-  http.get(baseURL('/members/login/kakao/oauth'), async () => {
+  http.post(baseURL('/members/login/kakao/oauth'), async () => {
     await delay(1000);
 
     const status: number = 200;

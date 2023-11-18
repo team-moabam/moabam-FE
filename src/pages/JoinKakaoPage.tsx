@@ -1,34 +1,41 @@
-import { useSearchParams, Navigate } from 'react-router-dom';
-import { withAsyncBoundary } from '@suspensive/react';
-import { useSuspenseQuery } from '@tanstack/react-query';
-import { AxiosError } from 'axios';
-import authOptions from '@/core/api/options/auth';
+import { useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import { useMutation } from '@tanstack/react-query';
+import memberAPI from '@/core/api/functions/memberAPI';
+import { useMoveRoute } from '@/core/hooks';
 import { LoadingSpinner } from '@/shared/LoadingSpinner';
 
-const JoinKakaoPage = withAsyncBoundary(
-  () => {
-    const [searchParams] = useSearchParams();
-    const code = searchParams.get('code');
+const JoinKakaoPage = () => {
+  const [searchParams] = useSearchParams();
+  const code = searchParams.get('code');
+  const moveTo = useMoveRoute();
 
-    const { data } = useSuspenseQuery({
-      ...authOptions.kakao(code ?? ''),
-      retry: 1
-    });
+  const { mutate, isPending, isError, error } = useMutation({
+    mutationFn: memberAPI.postMemberKakaoAuth
+  });
 
-    return <Navigate to={data.signUp ? '/guide' : '/'} />;
-  },
-  {
-    pendingFallback: (
-      <div className="flex h-full items-center justify-center">
+  useEffect(() => {
+    mutate(
+      { code: code ?? '' },
+      {
+        onSuccess: ({ signUp }) => {
+          moveTo(signUp ? 'guide' : 'start');
+        }
+      }
+    );
+  }, []);
+
+  return (
+    <div className="flex h-full items-center justify-center">
+      {isPending && (
         <LoadingSpinner
           colorStyle="text-light-point dark:text-dark-point"
           size="7xl"
         />
-      </div>
-    ),
-    rejectedFallback: ({ error }) =>
-      error instanceof AxiosError ? error.response?.data?.message : '에러 발생!'
-  }
-);
+      )}
+      {isError && error.response?.data?.message}
+    </div>
+  );
+};
 
 export default JoinKakaoPage;

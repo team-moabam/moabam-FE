@@ -5,7 +5,7 @@ const authOptions = {
   kakao: (code: string) =>
     queryOptions({
       queryKey: ['auth', 'kakao', code] as const,
-      queryFn: () => memberAPI.getMemberKakaoAuth({ code })
+      queryFn: () => memberAPI.postMemberKakaoAuth({ code })
     })
 };
 
