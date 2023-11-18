@@ -1,7 +1,9 @@
 import { useEffect } from 'react';
 import { useContextSelector } from 'use-context-selector';
 import { MyBirdContext } from '../contexts/MyBirdContext';
+import BirdItems from './BirdItems';
 import { Tab, TabItem, TabThumbnail } from '@/shared/Tab';
+
 const MyBirdTaps = () => {
   const selectItem = useContextSelector(
     MyBirdContext,
@@ -43,3 +45,35 @@ const MyBirdTaps = () => {
 };
 
 export default MyBirdTaps;
+
+const myBirdTabOption: {
+  thumbnail: {
+    type: 'MORNING' | 'NIGHT';
+    bgImage: string;
+  }[];
+  item: {
+    type: 'MORNING' | 'NIGHT';
+    title: string;
+  }[];
+} = {
+  thumbnail: [
+    {
+      type: 'MORNING',
+      bgImage: 'public/assets/morningShop.png'
+    },
+    {
+      type: 'NIGHT',
+      bgImage: 'public/assets/nightShop.png'
+    }
+  ],
+  item: [
+    {
+      type: 'MORNING',
+      title: '오목눈이'
+    },
+    {
+      type: 'NIGHT',
+      title: '부엉이'
+    }
+  ]
+};
