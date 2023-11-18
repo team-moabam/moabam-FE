@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { MyBirdContext } from '../contexts/MyBirdContext';
+import { MyBirdContext } from '../contexts/myBirdContext';
 import { SelectItemType } from '../types/selectItem';
 import { ItemType } from '../types/item';
 

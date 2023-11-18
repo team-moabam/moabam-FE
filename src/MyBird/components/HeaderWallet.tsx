@@ -1,14 +1,13 @@
 import { useEffect } from 'react';
 import { useContextSelector } from 'use-context-selector';
 import { BiSolidBugAlt } from 'react-icons/bi';
-import { MyBirdContext } from '../contexts/MyBirdContext';
+import { MyBirdContext } from '../contexts/myBirdContext';
 
 const HeaderWallet = () => {
   const bugs = useContextSelector(MyBirdContext, (state) => state.bugs);
 
   useEffect(() => {
     console.log('HeaderWallet');
-    console.log(bugs);
   });
   return (
     <>

@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useContextSelector } from 'use-context-selector';
 import useDebounce from '@/core/hooks/useDebounce';
 import { birdItems } from '../mocks/birdItems';
-import { MyBirdContext } from '../contexts/MyBirdContext';
+import { MyBirdContext } from '../contexts/myBirdContext';
 import BirdItem from './BirdItem';
 import ProductSheet from './ProductSheet';
 import { useBottomSheet, BottomSheet } from '@/shared/BottomSheet';
@@ -16,18 +16,8 @@ const BirdItems = ({ itemType }: BirdItemsProps) => {
   const { purchasedItems, notPurchasedItems, defaultItemId } =
     birdItems[itemType];
 
-  const selectItem = useContextSelector(
-    MyBirdContext,
-    (state) => state.selectItem
-  );
-  const setSelectItem = useContextSelector(
-    MyBirdContext,
-    (state) => state.setSelectItem
-  );
-  const setProductItem = useContextSelector(
-    MyBirdContext,
-    (state) => state.setProductItem
-  );
+  const { selectItem, productItem, setSelectItem, setProductItem } =
+    useContextSelector(MyBirdContext, (state) => state);
 
   const { bottomSheetProps, open, close } = useBottomSheet();
 
@@ -83,7 +73,7 @@ const BirdItems = ({ itemType }: BirdItemsProps) => {
             }
           </div>
           <BottomSheet {...bottomSheetProps}>
-            <ProductSheet close={close} />
+            {productItem && <ProductSheet close={close} />}
           </BottomSheet>
         </>
       )}

@@ -3,23 +3,17 @@ import { BiSolidBugAlt } from 'react-icons/bi';
 import { useContextSelector } from 'use-context-selector';
 import { ItemType } from '../types/item';
 import { BugsType } from '../types/bugs';
-import { MyBirdContext } from '../contexts/MyBirdContext';
+import { MyBirdContext } from '../contexts/myBirdContext';
 
 const ProductSheet = ({ close }: { close: () => void }) => {
-  const userLevel = useContextSelector(MyBirdContext, (state) => state.level);
-  const productItem = useContextSelector(
-    MyBirdContext,
-    (state) => state.productItem
-  );
-  const bugs = useContextSelector(MyBirdContext, (state) => state.bugs);
-  const selectItem = useContextSelector(
-    MyBirdContext,
-    (state) => state.selectItem
-  );
-  const setSelectItem = useContextSelector(
-    MyBirdContext,
-    (state) => state.setSelectItem
-  );
+  const {
+    level: userLevel,
+    productItem,
+    bugs,
+    selectItem,
+    setSelectItem
+  } = useContextSelector(MyBirdContext, (state) => state);
+
   const { bugPrice, goldenBugPrice, level, name, type } =
     productItem as ItemType;
   const { morningBug, nightBug, goldenBug } = bugs as BugsType;
