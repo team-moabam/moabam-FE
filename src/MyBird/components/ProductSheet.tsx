@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
+import { useMutation } from '@tanstack/react-query';
 import { BiSolidBugAlt } from 'react-icons/bi';
 import { useContextSelector } from 'use-context-selector';
+import itemAPI from '@/core/api/functions/itemAPI';
 import { ItemType } from '../types/item';
 import { BugsType } from '../types/bugs';
 import { MyBirdContext } from '../contexts/myBirdContext';
@@ -13,6 +15,9 @@ const ProductSheet = ({ close }: { close: () => void }) => {
     selectItem,
     setSelectItem
   } = useContextSelector(MyBirdContext, (state) => state);
+  const mutation = useMutation({
+    mutationFn: itemAPI.purchase
+  });
 
   const { bugPrice, goldenBugPrice, level, name, type } =
     productItem as ItemType;
@@ -40,9 +45,14 @@ const ProductSheet = ({ close }: { close: () => void }) => {
     }
   ];
 
-  const purchaseBird = (productItem: ItemType) => {
-    setSelectItem({ ...selectItem, [type]: productItem });
-    close();
+  const purchaseBird = (id: string) => {
+    if (purchaseOption) {
+      mutation.mutate({ itemId: id, bugType: purchaseOption }, {});
+      setSelectItem({ ...selectItem, [type]: productItem });
+      close();
+    } else {
+      console.log('레벨로 구매하는 경우 api 가 어떻게 해야하는건지 모르겠네요');
+    }
   };
 
   return (
@@ -66,7 +76,7 @@ const ProductSheet = ({ close }: { close: () => void }) => {
               }`}
               disabled={!isLevelEnough}
               onClick={() => {
-                if (productItem) purchaseBird(productItem);
+                if (productItem) purchaseBird(productItem.id);
               }}
             >
               구매
@@ -112,7 +122,7 @@ const ProductSheet = ({ close }: { close: () => void }) => {
               }`}
               disabled={!purchaseOption}
               onClick={() => {
-                if (productItem) purchaseBird(productItem);
+                if (productItem) purchaseBird(productItem.id);
               }}
             >
               구매

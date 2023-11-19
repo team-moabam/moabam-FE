@@ -1,28 +1,45 @@
 import { useEffect } from 'react';
+import { useSuspenseQueries, useMutation } from '@tanstack/react-query';
 import { useContextSelector } from 'use-context-selector';
 import useDebounce from '@/core/hooks/useDebounce';
-import { birdItems } from '../mocks/birdItems';
+import itemOptions from '@/core/api/options/item';
+import itemAPI from '@/core/api/functions/itemAPI';
 import { MyBirdContext } from '../contexts/myBirdContext';
 import BirdItem from './BirdItem';
 import ProductSheet from './ProductSheet';
 import { useBottomSheet, BottomSheet } from '@/shared/BottomSheet';
+import { ItemsType } from '@/core/types/MyBird';
 
 interface BirdItemsProps {
   itemType: 'MORNING' | 'NIGHT';
 }
 
 const BirdItems = ({ itemType }: BirdItemsProps) => {
-  // 여기서 퀴리로 받을듯
-  const { purchasedItems, notPurchasedItems, defaultItemId } =
-    birdItems[itemType];
-
+  const [
+    {
+      data: { defaultItemId, notPurchasedItems, purchasedItems }
+    }
+  ] = useSuspenseQueries({
+    queries: [
+      {
+        ...itemOptions.all(itemType),
+        select: (items: ItemsType) => items[itemType]
+      }
+    ]
+  });
+  const mutation = useMutation({
+    mutationFn: itemAPI.select
+  });
   const { selectItem, productItem, setSelectItem, setProductItem } =
     useContextSelector(MyBirdContext, (state) => state);
-
   const { bottomSheetProps, open, close } = useBottomSheet();
 
   const fetchSelectItem = useDebounce((id: string) => {
-    console.log(id + '로 변경 요청'); // 스킨 적용 패칭
+    mutation.mutate(id, {
+      onSuccess: (data) => {
+        console.log('토스트로 성공 보여주기?');
+      }
+    });
   }, 1000);
 
   useEffect(() => {
