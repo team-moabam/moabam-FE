@@ -7,7 +7,7 @@ const MyBirdPage = () => {
   return (
     <MyBirdProvider>
       <Header
-        prev="user"
+        prev="myPage"
         className="absolute z-10 text-white"
       >
         <HeaderWallet />
