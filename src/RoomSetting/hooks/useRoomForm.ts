@@ -3,6 +3,7 @@ import z from 'zod';
 import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import roomAPI from '@/core/api/functions/roomAPI';
+import { useMoveRoute } from '@/core/hooks';
 import {
   ANNOUNCEMENT,
   ROUTINE_NAME,
@@ -11,6 +12,7 @@ import {
   PASSWORD,
   FORM_MESSAGE
 } from '@/RoomForm/constants/literals';
+import { Toast } from '@/shared/Toast';
 
 export const formSchema = z.object({
   title: z
@@ -56,6 +58,8 @@ interface useRoomFormProps {
 }
 
 const useRoomForm = ({ roomId, defaultValues }: useRoomFormProps) => {
+  const moveTo = useMoveRoute();
+
   const mutation = useMutation({
     mutationFn: roomAPI.putRoom
   });
@@ -78,12 +82,19 @@ const useRoomForm = ({ roomId, defaultValues }: useRoomFormProps) => {
         password: data.password
       },
       {
-        onSuccess: (data) => console.log(data),
+        onSuccess: (data) => {
+          Toast.show({
+            message: '방 정보를 수정했어요.',
+            status: 'confirm'
+          });
+        },
         onError: (error) => {
           const { setError } = form;
 
-          // TODO: 에러 Toast 메시지를 보여줘야 해요.
-          console.log(error.response?.data?.message);
+          Toast.show({
+            message: error.response?.data?.message || '오류가 발생했어요.',
+            status: 'danger'
+          });
 
           if (error.response?.data?.validation) {
             const {
@@ -104,9 +115,7 @@ const useRoomForm = ({ roomId, defaultValues }: useRoomFormProps) => {
           }
 
           if (error.response?.status === 401) {
-            // TODO: 로그인 페이지로 redirect 해야 해요.
-            // TODO: 혹은 전역 MutationCache에 리다이렉션 관련 로직을 작업해야 해요.
-            console.log('TODO: 로그인 페이지로 redirect');
+            moveTo('join');
           }
         }
       }

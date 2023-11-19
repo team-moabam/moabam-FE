@@ -5,6 +5,7 @@ import roomAPI from '@/core/api/functions/roomAPI';
 import { useMoveRoute } from '@/core/hooks';
 import { Input } from '@/shared/Input';
 import { LoadingSpinner } from '@/shared/LoadingSpinner';
+import { Toast } from '@/shared/Toast';
 
 interface RemoveTabProps {
   roomId: string;
@@ -27,9 +28,15 @@ const RemoveTab = ({ roomId }: RemoveTabProps) => {
     mutate(roomId, {
       onSuccess: () => {
         moveTo('routines');
-        // TODO: 토스트 메시지로 방을 삭제했음을 알려야 해요.
+        Toast.show({ message: '방을 삭제했어요.', status: 'confirm' });
       },
-      onError: (err) => console.error(err)
+      onError: (err) => {
+        console.error(err);
+        Toast.show({
+          message: err.response?.data.message ?? '오류가 발생했어요.',
+          status: 'danger'
+        });
+      }
     });
   };
 
