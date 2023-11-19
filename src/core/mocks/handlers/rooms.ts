@@ -13,7 +13,7 @@ const roomsHandlers = [
 
     switch (status) {
       case 201:
-        response = { message: '모킹 룸 생성 완료', roomId: 1 };
+        response = { roomId: 1 };
         break;
       case 400:
         response = {

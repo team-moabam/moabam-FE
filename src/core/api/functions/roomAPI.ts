@@ -12,7 +12,7 @@ const roomAPI = {
     certifyTime: number;
     maxUserCount: number;
   }) => {
-    return await baseInstance.post<{ message: string }>('/rooms', body);
+    return await baseInstance.post<{ roomId: number }>('/rooms', body);
   },
 
   getRoomDetail: async (roomId: string) => {

@@ -3,6 +3,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
 import z from 'zod';
 import roomAPI from '@/core/api/functions/roomAPI';
+import { useMoveRoute } from '@/core/hooks';
 import {
   FORM_MESSAGE,
   ROOM_TYPES,
@@ -12,6 +13,7 @@ import {
   USER_COUNT,
   PASSWORD
 } from '@/RoomForm/constants/literals';
+import { Toast } from '@/shared/Toast';
 
 export const formSchema = z.object({
   type: z.enum(ROOM_TYPES),
@@ -48,6 +50,8 @@ export const formSchema = z.object({
 export type Inputs = z.infer<typeof formSchema>;
 
 const useRoomForm = () => {
+  const moveTo = useMoveRoute();
+
   const mutation = useMutation({
     mutationFn: roomAPI.postRoom
   });
@@ -77,15 +81,18 @@ const useRoomForm = () => {
       },
       {
         onSuccess: (data) => {
-          // TODO: toast({ message: '방이 생성되었습니다.', type: 'success' });
-          console.log(data.message);
+          Toast.show({
+            message: '새로운 방을 만들었어요.',
+            status: 'confirm'
+          });
 
-          // TODO: 방 상세 페이지로 redirect 해야 해요.
-          console.log('TODO: 방 상세 페이지로 redirect');
+          moveTo('roomDetail', { roomId: data.roomId });
         },
         onError: (error) => {
-          // TODO: toast({ message: '서버에서 날아온 에러 메시지.', type: 'error' });
-          console.log(error.response?.data?.message);
+          Toast.show({
+            message: error.response?.data?.message ?? '오류가 발생했어요.',
+            status: 'danger'
+          });
 
           if (error.response?.data?.validation) {
             const { setError } = form;
@@ -108,8 +115,7 @@ const useRoomForm = () => {
           }
 
           if (error.response?.status === 401) {
-            // TODO: 로그인 페이지로 redirect 해야 해요.
-            console.log('TODO: 로그인 페이지로 redirect');
+            moveTo('join');
           }
         }
       }
