@@ -5,6 +5,8 @@ export type RoomSelectType = 'morning' | 'night' | 'all';
 export interface Room {
   id: number;
   title: string;
+  image: string;
+  isPassword: boolean;
   managerNickname: string;
   level: number;
   roomType: DayType;
@@ -18,11 +20,12 @@ export interface Room {
 }
 
 export interface TotalRooms {
+  hasNext: boolean;
   rooms: Room[];
 }
 
 export interface RoomsRequestParams {
   type?: RoomSelectType;
-  page?: number;
-  size?: number;
+  roomId?: number;
+  keyword?: string;
 }

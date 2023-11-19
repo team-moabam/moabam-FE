@@ -2,23 +2,17 @@ import { useSuspenseInfiniteQuery } from '@tanstack/react-query';
 import { RoomSelectType } from '@/core/types';
 import roomAPI from '../functions/roomAPI';
 
-const useInfiniteSearch = ({
-  type,
-  size
-}: {
-  type: RoomSelectType;
-  size: number;
-}) => {
+const useInfiniteSearch = (type: RoomSelectType) => {
   return useSuspenseInfiniteQuery({
     queryKey: ['rooms', type],
 
     queryFn: ({ pageParam }) =>
-      roomAPI.getRoomsAll({ page: pageParam, type, size }),
+      roomAPI.getRoomsAll({ type, roomId: pageParam }),
 
-    initialPageParam: 1,
+    initialPageParam: 0,
 
-    getNextPageParam: (lastPage, allPages, lastPageParam) =>
-      lastPage.length < size ? null : lastPageParam + 1,
+    getNextPageParam: (lastPage) =>
+      lastPage.hasNext ? lastPage.rooms.at(-1)?.id : null,
 
     select: ({ pages }) => pages
   });

@@ -12,10 +12,8 @@ interface ResultListProps {
 
 const ResultList = ({ type, size }: ResultListProps) => {
   const { fetchNextPage, data, isFetchingNextPage, hasNextPage } =
-    useInfiniteSearch({
-      type,
-      size
-    });
+    useInfiniteSearch(type);
+
   const intersectionRef = useIntersectionObserver({
     threshold: 0.5,
     onObserve: fetchNextPage
@@ -23,7 +21,7 @@ const ResultList = ({ type, size }: ResultListProps) => {
 
   return (
     <div className="flex flex-col gap-2">
-      {data.map((rooms) =>
+      {data.map(({ rooms }) =>
         rooms.map((room) => (
           <RoomAccordion
             room={room}
