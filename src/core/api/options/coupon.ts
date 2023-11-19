@@ -6,7 +6,7 @@ const couponOptions = {
   all: (body: CouponStatus) =>
     queryOptions({
       queryKey: ['coupons', body] as const,
-      queryFn: () => couponAPI.postAllCoupons(body)
+      queryFn: () => couponAPI.postCouponsByStatus(body)
     })
 };
 

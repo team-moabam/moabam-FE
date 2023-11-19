@@ -17,7 +17,15 @@ const setupMSW = async () => {
   return worker.start();
 };
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: 1,
+      refetchOnReconnect: false,
+      refetchOnWindowFocus: false
+    }
+  }
+});
 
 setupMSW().then(() => {
   ReactDOM.createRoot(document.getElementById('root')!).render(
