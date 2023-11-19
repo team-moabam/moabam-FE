@@ -7,11 +7,11 @@ export const makeDays = () => {
   const todayDay = today.getDay();
 
   for (let i = 0; i < 7; i++) {
-    const monDate = todayDate - todayDay + 1;
-    const date = monDate + i;
+    const mondayDate = todayDate - todayDay + 1;
+    const date = mondayDate + i;
 
     weekArray[i] = new Date(todayYear, todayMonth, date);
   }
 
-  return { thisWeekDays: weekArray, today: today };
+  return { thisWeekDates: weekArray, today: today };
 };
