@@ -2,6 +2,8 @@ import { clsx } from 'clsx';
 import { DayType } from '@/core/types';
 import { useTheme } from '@/core/hooks';
 import IconText from './IconText';
+import { useKeyword } from '@/RoomSearch';
+import KeywordText from '@/RoomSearch/components/KeywordText';
 
 interface RoomSummaryProps {
   title: string;
@@ -44,6 +46,7 @@ const RoomSummary = ({
   const userCountToString = `${currentUserCount} / ${maxUserCount}`;
   const { theme } = useTheme();
   const currentType = theme === 'dark' ? 'NIGHT' : 'MORNING';
+  const keyword = useKeyword();
 
   return (
     <div className="flex items-center gap-4">
@@ -60,21 +63,35 @@ const RoomSummary = ({
         />
       </div>
       <div className="flex flex-col gap-[0.3rem]">
-        <div className="line-clamp-2 font-IMHyemin-bold">{title}</div>
+        <div className="line-clamp-2 font-IMHyemin-bold">
+          {keyword ? (
+            <KeywordText
+              keyword={keyword}
+              content={title}
+            />
+          ) : (
+            title
+          )}
+        </div>
         <div className="flex flex-col gap-1 text-xs text-dark-gray">
           <IconText
             icon="LuAlarmClock"
-            text={certifyTimeToString}
+            content={certifyTimeToString}
           />
           <div className="flex flex-wrap gap-1">
             <IconText
               icon="IoPeopleCircle"
-              text={userCountToString}
+              content={userCountToString}
             />
             {managerNickname && (
               <IconText
                 icon="FaCrown"
-                text={managerNickname}
+                content={
+                  <KeywordText
+                    content={managerNickname}
+                    keyword={keyword}
+                  />
+                }
               />
             )}
           </div>

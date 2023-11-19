@@ -10,6 +10,7 @@ const SearchBar = ({ onSearch }: SearchBarProps) => {
     debounce: 500,
     onSearch
   });
+
   return (
     <div>
       <Input
