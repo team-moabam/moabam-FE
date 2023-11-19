@@ -24,8 +24,14 @@ export interface TotalRooms {
   rooms: Room[];
 }
 
-export interface RoomsRequestParams {
+export type RoomsRequestParams = TotalParams | SearchParams;
+
+interface TotalParams {
   type?: RoomSelectType;
+  roomId?: number;
+}
+
+interface SearchParams {
   roomId?: number;
   keyword?: string;
 }

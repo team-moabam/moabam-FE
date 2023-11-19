@@ -11,10 +11,7 @@ const SearchPage = () => {
   return (
     <div className="flex h-full flex-col">
       <div className="px-6 pb-2 pt-6">
-        <SearchBar
-          keyword={keyword}
-          setKeyword={setKeyword}
-        />
+        <SearchBar onSearch={setKeyword} />
       </div>
       <div className="border-b px-6 py-3 dark:border-b-dark-sub">
         <Selection
@@ -32,7 +29,7 @@ const SearchPage = () => {
         >
           <ResultList
             type={type}
-            size={10}
+            keyword={keyword}
           />
         </Suspense>
       </div>

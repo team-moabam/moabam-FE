@@ -4,6 +4,7 @@ import { baseURL } from '../baseURL';
 import { RoomInfo } from '../datas/room';
 import { MY_JOIN_ROOMS } from '../datas/myJoinRoom';
 import { ROOMS } from '../datas/totalRooms';
+import { SEARCH_ROOMS } from '../datas/searchRooms';
 
 const roomsHandlers = [
   http.post(baseURL('/rooms'), async () => {
@@ -166,6 +167,7 @@ const roomsHandlers = [
     await delay(2000);
     const url = new URL(request.url);
     const type = url.searchParams.get('type');
+    const keyword = url.searchParams.get('keyword');
     const lastId = Number(url.searchParams.get('roomId'));
 
     const morningRooms = ROOMS.filter(({ roomType }) => roomType === 'MORNING');
@@ -177,6 +179,18 @@ const roomsHandlers = [
     };
 
     let responseRooms = [];
+
+    if (keyword) {
+      responseRooms = cutNextPage(SEARCH_ROOMS);
+      return HttpResponse.json(
+        {
+          rooms: responseRooms,
+          hasNext: responseRooms.length === 10
+        },
+        { status: 200 }
+      );
+    }
+
     switch (type) {
       case 'morning':
         responseRooms = cutNextPage(morningRooms);
