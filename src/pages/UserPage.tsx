@@ -1,17 +1,19 @@
+import { Suspense } from 'react';
 import { Link } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import UserMain from '@/UserProfile/components/UserMain';
 import UserEtc from '@/UserEtc/components/UserEtc';
 import UserBugs from '@/UserBugs/components/UserBugs';
 
 const UserPage = () => {
-  const { pathname } = useLocation();
-  const userParamsId = pathname.split('/')[2];
+  const { userId } = useParams();
 
   return (
     <div className="h-full overflow-auto px-5 pb-5">
-      <UserMain />
-      {!userParamsId && (
+      <Suspense>
+        <UserMain userId={userId} />
+      </Suspense>
+      {!userId && (
         <>
           <div className="mb-3 mt-8 flex w-full justify-between">
             <h1>

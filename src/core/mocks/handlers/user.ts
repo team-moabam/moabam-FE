@@ -1,11 +1,15 @@
 import { http, HttpResponse, delay } from 'msw';
 import { baseURL } from '../baseURL';
-import { userData } from '../datas/user';
+import { myData, otherUserData } from '../datas/user';
 
 const userHandlers = [
+  http.get(baseURL('/members/'), async () => {
+    await delay(1000);
+    return HttpResponse.json(myData, { status: 200 });
+  }),
   http.get(baseURL('/members/:userId'), async () => {
     await delay(1000);
-    return HttpResponse.json(userData, { status: 200 });
+    return HttpResponse.json(otherUserData, { status: 200 });
   }),
   http.put(baseURL('/members'), async ({ request }) => {
     try {

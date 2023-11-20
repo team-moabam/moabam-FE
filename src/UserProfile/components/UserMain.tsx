@@ -1,10 +1,26 @@
 import { Link } from 'react-router-dom';
-import { userData } from '../mocks/userData';
+import { useSuspenseQueries } from '@tanstack/react-query';
+import userOptions from '@/core/api/options/user';
 import UserProfile from './UserProfile';
 import { ProgressBar } from '@/shared/ProgressBar';
+import { userType } from '@/core/types/User';
+interface UserMainProps {
+  userId: string | undefined;
+}
 
-const UserMain = () => {
-  const { nickname, intro, level, exp, birds, badges, img } = userData;
+const UserMain = ({ userId = '' }: UserMainProps) => {
+  const [
+    {
+      data: { nickname, intro, level, exp, birds, badges, img }
+    }
+  ] = useSuspenseQueries({
+    queries: [
+      {
+        ...userOptions.user(userId),
+        select: (user: userType) => user
+      }
+    ]
+  });
 
   return (
     <div className="relative pt-5">
