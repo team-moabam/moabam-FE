@@ -7,6 +7,11 @@ const couponOptions = {
     queryOptions({
       queryKey: ['coupons', body] as const,
       queryFn: () => couponAPI.postCouponsByStatus(body)
+    }),
+  my: () =>
+    queryOptions({
+      queryKey: ['coupons', 'my'] as const,
+      queryFn: () => couponAPI.myCoupon()
     })
 };
 
