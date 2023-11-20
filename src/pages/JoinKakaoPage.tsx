@@ -20,6 +20,7 @@ const JoinKakaoPage = () => {
       {
         onSuccess: ({ signUp }) => {
           moveTo(signUp ? 'guide' : 'start');
+          // TODO: FCM 토큰을 발급받고 API 서버에 전달하는 로직 추가
         }
       }
     );
