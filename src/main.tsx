@@ -3,7 +3,9 @@ import ReactDOM from 'react-dom/client';
 import { RouterProvider } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import router from './core/routes/router';
+import router from '@/core/routes/router';
+import Debounce from '@/core/utils/debounce';
+import { getFCMToken } from '@/core/utils/firebase';
 import { ThemeProvider } from '@/core/hooks/useTheme';
 import './main.css';
 
@@ -17,6 +19,35 @@ const setupMSW = async () => {
   return worker.start();
 };
 
+const setupFCM = async () => {
+  const debounce = new Debounce();
+
+  if (!('permissions' in navigator)) {
+    return;
+  }
+
+  const permission = await navigator.permissions.query({
+    name: 'notifications'
+  });
+
+  permission.onchange = () => {
+    if (permission.state !== 'granted') {
+      return;
+    }
+
+    debounce.run(async () => {
+      try {
+        const token = await getFCMToken();
+
+        // TODO: 백엔드 API 서버에게 FCM 토큰을 보내야 해요.
+        console.log('TODO: 서버에게 보낼 FCM 토큰:', token);
+      } catch (err) {
+        console.error(err);
+      }
+    }, 1000);
+  };
+};
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -27,15 +58,17 @@ const queryClient = new QueryClient({
   }
 });
 
-setupMSW().then(() => {
-  ReactDOM.createRoot(document.getElementById('root')!).render(
-    <React.StrictMode>
-      <QueryClientProvider client={queryClient}>
-        <ThemeProvider>
-          <RouterProvider router={router} />
-          <ReactQueryDevtools initialIsOpen={false} />
-        </ThemeProvider>
-      </QueryClientProvider>
-    </React.StrictMode>
-  );
-});
+setupMSW()
+  .then(setupFCM)
+  .then(() => {
+    ReactDOM.createRoot(document.getElementById('root')!).render(
+      <React.StrictMode>
+        <QueryClientProvider client={queryClient}>
+          <ThemeProvider>
+            <RouterProvider router={router} />
+            <ReactQueryDevtools initialIsOpen={false} />
+          </ThemeProvider>
+        </QueryClientProvider>
+      </React.StrictMode>
+    );
+  });
