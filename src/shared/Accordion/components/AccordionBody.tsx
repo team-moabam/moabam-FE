@@ -16,8 +16,7 @@ const animation = {
   },
   collapse: {
     height: 0,
-    opacity: 0,
-    transition: { duration: 0.5 }
+    opacity: 0
   }
 };
 
@@ -38,6 +37,7 @@ const AccordionBody = ({ children, className = '' }: AccordionBodyProps) => {
           animate="open"
           exit="collapse"
           variants={animation}
+          transition={{ duration: 0.4, ease: 'easeInOut' }}
           className={twMerge('box-border h-auto ' + `${bodyStyle}`, className)}
         >
           <motion.div variants={childrenAnimation}>{children}</motion.div>
