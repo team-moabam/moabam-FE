@@ -17,38 +17,37 @@ const BirdItem = ({
   return (
     <>
       <div
-        className={`relative mb-2 aspect-[3/4] overflow-hidden rounded-2xl bg-light-sub transition-all ${
+        className={`relative mb-2 grid aspect-[3/4] place-content-center overflow-hidden rounded-2xl bg-light-sub transition-all dark:bg-dark-sub ${
           isSelect && 'border-4 border-light-point dark:border-dark-point'
         }`}
       >
         <img
           src={image}
-          alt=""
-          className="absolute h-full object-cover"
+          className="absolute left-1/2 top-1/2 w-[70%] -translate-x-1/2 -translate-y-1/2"
         />
         {isLock && (
-          <div className="absolute grid h-full w-full place-content-center bg-[rgba(1,1,1,0.5)] text-white">
-            <FaLock size="35" />
-            <div className="absolute bottom-2 right-3  gap-1 text-xl font-extrabold">
-              {bugPrice === 0 && goldenBugPrice === 0 ? (
-                <h1>Lv {level}</h1>
-              ) : (
-                <>
-                  <div
-                    className={`flex items-center gap-1 font-extrabold ${
-                      type === 'MORNING'
-                        ? 'text-light-point'
-                        : 'text-dark-point'
-                    }`}
-                  >
-                    <BiSolidBugAlt />
-                    <h1>{bugPrice}</h1>
-                  </div>
-                  <div className="flex items-center gap-1 font-extrabold text-warning">
-                    <BiSolidBugAlt />
-                    <h1>{goldenBugPrice}</h1>
-                  </div>
-                </>
+          <div className="absolute h-full w-full bg-[rgba(1,1,1,0.5)] text-white">
+            <div className="absolute right-[5%] top-[5%]">
+              <FaLock size="25" />
+            </div>
+
+            <div className="absolute bottom-2 right-3 flex flex-col items-end text-xl font-extrabold">
+              {level !== 0 && <h1>Lv {level}</h1>}
+              {bugPrice !== 0 && (
+                <div
+                  className={`flex items-center gap-1 font-extrabold ${
+                    type === 'MORNING' ? 'text-light-point' : 'text-dark-point'
+                  }`}
+                >
+                  <BiSolidBugAlt />
+                  <h1>{bugPrice}</h1>
+                </div>
+              )}
+              {goldenBugPrice !== 0 && (
+                <div className="flex items-center gap-1 font-extrabold text-warning">
+                  <BiSolidBugAlt />
+                  <h1>{goldenBugPrice}</h1>
+                </div>
               )}
             </div>
           </div>

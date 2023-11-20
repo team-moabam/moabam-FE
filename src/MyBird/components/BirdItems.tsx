@@ -35,9 +35,10 @@ const BirdItems = ({ itemType }: BirdItemsProps) => {
   const { bottomSheetProps, open, close } = useBottomSheet();
 
   const fetchSelectItem = useDebounce((id: string) => {
+    console.log('스킨 변경 요청 중..');
     mutation.mutate(id, {
       onSuccess: (data) => {
-        console.log('토스트로 성공 보여주기?');
+        console.log('스킨 변경 요청 성공!');
       }
     });
   }, 1000);
