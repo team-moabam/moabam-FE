@@ -1,14 +1,23 @@
 import { useState, useRef, ChangeEvent } from 'react';
 import { MdAdd } from 'react-icons/md';
-import EditInput from './EditInput';
+import { useForm } from 'react-hook-form';
 
-interface EditForm {
-  setIsEditMode: Dispatch<SetStateAction<boolean>>;
-}
+interface EditFormProps {}
 
-const EditForm = ({ setIsEditMode }: EditForm) => {
+const EditForm = ({
+  img = '',
+  onSubmit = () => {},
+  setIsEditMode = (b: boolean) => {}
+}) => {
   const editImgInput = useRef<HTMLInputElement>(null);
   const [state, setState] = useState<string | null>(null);
+  const {
+    register,
+    watch,
+    handleSubmit,
+    formState: { errors }
+  } = useForm();
+  console.log(watch('nickname'));
 
   const handleImageSelect = (e: ChangeEvent<HTMLInputElement>) => {
     const selectedImage = e.target.files?.[0];
@@ -26,14 +35,17 @@ const EditForm = ({ setIsEditMode }: EditForm) => {
 
   return (
     <>
-      <form className="flex w-full flex-col items-center">
+      <form
+        className="flex w-full flex-col items-center"
+        onSubmit={handleSubmit(onSubmit)}
+      >
         <input
+          {...register('profile_image')}
           type="file"
           ref={editImgInput}
           className="hidden"
           accept="image/gif,image/jpeg,image/png"
           onChange={handleImageSelect}
-          name="profile_image"
         />
         <div className="relative h-24 w-24 overflow-hidden rounded-full">
           <img
@@ -55,16 +67,24 @@ const EditForm = ({ setIsEditMode }: EditForm) => {
           </div>
         </div>
         <div className="my-2 flex w-full max-w-[16rem] flex-col items-center gap-2">
-          <EditInput
+          <input
+            type="text"
             placeholder={'새 닉네임 (최대 20자)'}
-            id="new-nickname"
-            name="nickname"
+            className="w-full border-b border-light-gray bg-transparent p-1 focus:border-b-2
+            focus:border-light-point focus:outline-none focus:ring-light-point
+            dark:focus:border-dark-point dark:focus:ring-dark-point"
+            {...register('nickname', { required: true })}
           />
-
-          <EditInput
+          {errors.nickname && (
+            <div className="w-full text-danger">닉네임은 필수!</div>
+          )}
+          <input
+            type="text"
             placeholder={'한 줄 소개 (최대 20자)'}
-            id="new-intro"
-            name="intro"
+            className="w-full border-b border-light-gray bg-transparent p-1 focus:border-b-2
+            focus:border-light-point focus:outline-none focus:ring-light-point
+            dark:focus:border-dark-point dark:focus:ring-dark-point"
+            {...register('intro')}
           />
         </div>
         <div className="flex w-full max-w-[16rem] gap-2">

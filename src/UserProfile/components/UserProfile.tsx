@@ -1,6 +1,6 @@
-import { useState, useRef, ChangeEvent } from 'react';
+import { useState, ChangeEvent } from 'react';
 import { MdModeEdit, MdAdd } from 'react-icons/md';
-import EditInput from './EditInput';
+import { useForm } from 'react-hook-form';
 
 interface UserProfileProps {
   nickname: string;
@@ -10,8 +10,20 @@ interface UserProfileProps {
 
 const UserProfile = ({ nickname, intro, img }: UserProfileProps) => {
   const [isEditMode, setIsEditMode] = useState(false);
-  const editImgInput = useRef<HTMLInputElement>(null);
-  const [state, setState] = useState<string | null>(null);
+  const [newImgUrl, setNewImgUrl] = useState<string | null>(null);
+  const {
+    register,
+    watch,
+    handleSubmit,
+    formState: { errors }
+  } = useForm();
+
+  console.log(watch('nickname', errors.nickname));
+
+  const onSubmit = (data) => {
+    console.log(data);
+    console.log(data.profile_image);
+  };
 
   const handleImageSelect = (e: ChangeEvent<HTMLInputElement>) => {
     const selectedImage = e.target.files?.[0];
@@ -20,7 +32,8 @@ const UserProfile = ({ nickname, intro, img }: UserProfileProps) => {
       reader.onload = (e) => {
         if (e.target) {
           const imageUrl = e.target.result as string;
-          setState(imageUrl);
+          setNewImgUrl(imageUrl);
+          console.log(imageUrl);
         }
       };
       reader.readAsDataURL(selectedImage);
@@ -35,49 +48,64 @@ const UserProfile = ({ nickname, intro, img }: UserProfileProps) => {
       >
         <MdModeEdit />
       </div>
-      {isEditMode ? (
+      {!isEditMode ? (
         <form
           className="flex w-full flex-col items-center"
-          onSubmit={() => console.log('요청보내자~')}
+          onSubmit={handleSubmit(onSubmit)}
         >
           <input
+            {...register('profile_image')}
             type="file"
-            ref={editImgInput}
+            id="profile_image"
             className="hidden"
             accept="image/gif,image/jpeg,image/png"
             onChange={handleImageSelect}
-            name="profile_image"
           />
           <div className="relative h-24 w-24 overflow-hidden rounded-full">
             <img
               src={img ?? 'public/assets/user.png'}
               className="absolute h-full w-full object-cover"
             />
-            {state && (
-              <img
-                src={state}
-                alt=""
-                className="absolute grid h-full w-full object-cover"
-              />
+            {newImgUrl && (
+              <>
+                <div className="absolute h-full w-full bg-light-main" />
+                <img
+                  src={newImgUrl}
+                  className="absolute grid h-full w-full object-cover"
+                />
+              </>
             )}
             <div
               className="absolute grid h-full w-full place-content-center bg-[rgba(1,1,1,0.2)] text-4xl text-light-main transition-all hover:text-dark-gray"
-              onClick={() => editImgInput.current?.click()}
+              onClick={() => {
+                const profile_image = document.querySelector(
+                  '#profile_image'
+                ) as HTMLInputElement;
+                profile_image?.click();
+              }}
             >
               <MdAdd />
             </div>
           </div>
           <div className="my-2 flex w-full max-w-[16rem] flex-col items-center gap-2">
-            <EditInput
+            <input
+              type="text"
               placeholder={'새 닉네임 (최대 20자)'}
-              id="new-nickname"
-              name="nickname"
+              className="w-full border-b border-light-gray bg-transparent p-1 focus:border-b-2
+            focus:border-light-point focus:outline-none focus:ring-light-point
+            dark:focus:border-dark-point dark:focus:ring-dark-point"
+              {...register('nickname', { required: true })}
             />
-
-            <EditInput
+            {errors.nickname && (
+              <div className="w-full text-danger">닉네임은 필수!</div>
+            )}
+            <input
+              type="text"
               placeholder={'한 줄 소개 (최대 20자)'}
-              id="new-intro"
-              name="intro"
+              className="w-full border-b border-light-gray bg-transparent p-1 focus:border-b-2
+            focus:border-light-point focus:outline-none focus:ring-light-point
+            dark:focus:border-dark-point dark:focus:ring-dark-point"
+              {...register('intro')}
             />
           </div>
           <div className="flex w-full max-w-[16rem] gap-2">
