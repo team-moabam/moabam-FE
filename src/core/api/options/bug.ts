@@ -11,6 +11,11 @@ const bugOptions = {
     queryOptions({
       queryKey: ['bugs', 'history'] as const,
       queryFn: () => bugAPI.bugHistory()
+    }),
+  myBug: () =>
+    queryOptions({
+      queryKey: ['bugs', 'myBug'] as const,
+      queryFn: () => bugAPI.myBug()
     })
 };
 

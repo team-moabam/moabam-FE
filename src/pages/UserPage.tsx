@@ -23,7 +23,9 @@ const UserPage = () => {
               </span>
             </h1>
           </div>
-          <UserBugs />
+          <Suspense>
+            <UserBugs />
+          </Suspense>
           <div className="my-3 flex w-full justify-end">
             <Link
               to={`/user/orderLog`}

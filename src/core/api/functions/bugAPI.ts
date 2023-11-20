@@ -7,6 +7,9 @@ const bugAPI = {
   },
   bugHistory: async () => {
     return await baseInstance.get('/bugs/history');
+  },
+  myBug: async () => {
+    return await baseInstance.get('/bugs');
   }
 };
 
