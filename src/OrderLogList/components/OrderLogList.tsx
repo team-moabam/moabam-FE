@@ -1,14 +1,24 @@
+import { useSuspenseQueries } from '@tanstack/react-query';
 import { RiCoupon2Fill } from 'react-icons/ri';
 import { FaClipboardList } from 'react-icons/fa6';
 import { IoMdCash } from 'react-icons/io';
-import { data } from '../mocks/bugsHistory';
+import { bugOptions } from '@/core/api/options';
 import { bugs } from '../mocks/Bugs';
+import { bugHistoryType } from '@/core/types/bugHistory';
 
 const OrderLogList = () => {
-  const { history } = data;
+  const [{ data }] = useSuspenseQueries({
+    queries: [
+      {
+        ...bugOptions.history(),
+        select: ({ history }: { history: bugHistoryType[] }) => history
+      }
+    ]
+  });
+
   return (
     <ul>
-      {history.map(({ id, bugType, action, amount, date }) => (
+      {data.map(({ id, bugType, action, amount, date }) => (
         <li
           className="flex items-center p-5"
           key={id}
