@@ -4,6 +4,7 @@ import { useTheme } from '@/core/hooks';
 import IconText from './IconText';
 import { useKeyword } from '@/RoomSearch';
 import KeywordText from '@/RoomSearch/components/KeywordText';
+import { Icon } from '@/shared/Icon';
 
 interface RoomSummaryProps {
   title: string;
@@ -13,6 +14,7 @@ interface RoomSummaryProps {
   currentUserCount: number;
   maxUserCount: number;
   managerNickname?: string;
+  isPassword?: boolean;
 }
 
 const birdByType = {
@@ -38,7 +40,8 @@ const RoomSummary = ({
   currentUserCount,
   maxUserCount,
   roomType,
-  managerNickname
+  managerNickname,
+  isPassword
 }: RoomSummaryProps) => {
   const certifyTimeToString = `${
     certifyTime < 10 ? `0${certifyTime}` : certifyTime
@@ -52,7 +55,7 @@ const RoomSummary = ({
     <div className="flex items-center gap-4">
       <div
         className={clsx(
-          'h-12 w-12 shrink-0 overflow-hidden rounded-full',
+          'relative h-12 w-12 shrink-0 overflow-hidden rounded-full',
           birdByType[roomType].containerBg
         )}
       >
@@ -62,6 +65,20 @@ const RoomSummary = ({
           alt={birdByType[roomType].bird}
         />
       </div>
+      {isPassword && (
+        <div
+          className={clsx(
+            'absolute h-6 w-6 rounded-full border-2 border-light-gray bg-dark-gray',
+            'left-10 top-12 flex items-center  justify-center'
+          )}
+        >
+          <Icon
+            icon="MdLockOutline"
+            color="white"
+            className="mb-[0.05rem]"
+          />
+        </div>
+      )}
       <div className="flex flex-col gap-[0.3rem]">
         <div className="line-clamp-2 font-IMHyemin-bold">
           {keyword ? (
