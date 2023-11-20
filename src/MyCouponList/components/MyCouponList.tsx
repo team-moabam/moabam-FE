@@ -7,10 +7,8 @@ const MyCouponList = () => {
     queries: [
       {
         ...couponOptions.my(),
-        select: ({ myCouponsResponse }: { myCouponsResponse: MyCoupon[] }) => {
-          console.log(myCouponsResponse);
-          return myCouponsResponse;
-        }
+        select: ({ myCouponsResponse }: { myCouponsResponse: MyCoupon[] }) =>
+          myCouponsResponse
       }
     ]
   });
