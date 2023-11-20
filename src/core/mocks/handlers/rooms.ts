@@ -3,7 +3,7 @@ import { baseURL } from '../baseURL';
 import { RoomInfo } from '../datas/room';
 import { MY_JOIN_ROOMS } from '../datas/myJoinRoom';
 import { TOTAL_ROOMS } from '../datas/totalRooms';
-
+import { participateLog } from '../datas/participateLog';
 const roomsHandlers = [
   http.post(baseURL('/rooms'), async () => {
     await delay(1000);
@@ -39,6 +39,11 @@ const roomsHandlers = [
   http.get(baseURL('/rooms/my-join'), async () => {
     await delay(1000);
     return HttpResponse.json(MY_JOIN_ROOMS, { status: 200 });
+  }),
+
+  http.get(baseURL('/rooms/join-history'), async () => {
+    await delay(1000);
+    return HttpResponse.json(participateLog, { status: 200 });
   }),
 
   http.get(baseURL('/rooms/:roomId'), async () => {
