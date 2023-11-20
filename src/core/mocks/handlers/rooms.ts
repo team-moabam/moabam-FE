@@ -21,8 +21,8 @@ const roomsHandlers = [
           validation: {
             title: 'Title Error',
             password: 'Password Error',
-            type: 'Type Error',
-            routine: 'Routine Error',
+            roomType: 'RoomType Error',
+            routines: 'Routines Error',
             certifyTime: 'CertifyTime Error',
             maxUserCount: 'MaxUserCount Error'
           }

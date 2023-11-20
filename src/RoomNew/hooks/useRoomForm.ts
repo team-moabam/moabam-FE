@@ -16,7 +16,7 @@ import {
 import { Toast } from '@/shared/Toast';
 
 export const formSchema = z.object({
-  type: z.enum(ROOM_TYPES),
+  roomType: z.enum(ROOM_TYPES),
   certifyTime: z.number(),
   routines: z.array(
     z.object({
@@ -58,7 +58,7 @@ const useRoomForm = () => {
 
   const form = useForm<Inputs>({
     defaultValues: {
-      type: 'MORNING',
+      roomType: 'MORNING',
       certifyTime: TIME_RANGE['MORNING'][0],
       routines: [{ value: '' }],
       userCount: 5,
@@ -74,8 +74,8 @@ const useRoomForm = () => {
       {
         title: data.title,
         password: data.password,
-        type: data.type,
-        routine: data.routines.map((r) => r.value),
+        roomType: data.roomType,
+        routines: data.routines.map((r) => r.value),
         certifyTime: data.certifyTime % 24,
         maxUserCount: data.userCount
       },
@@ -100,16 +100,16 @@ const useRoomForm = () => {
             const {
               title,
               password,
-              type,
-              routine,
+              roomType,
+              routines,
               certifyTime,
               maxUserCount
             } = error.response.data.validation;
 
             setError('title', { message: title });
             setError('password', { message: password });
-            setError('type', { message: type });
-            setError('routines', { message: routine });
+            setError('roomType', { message: roomType });
+            setError('routines', { message: routines });
             setError('certifyTime', { message: certifyTime });
             setError('userCount', { message: maxUserCount });
           }

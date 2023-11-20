@@ -7,8 +7,8 @@ const roomAPI = {
   postRoom: async (body: {
     title: string;
     password: string;
-    type: string;
-    routine: string[];
+    roomType: string;
+    routines: string[];
     certifyTime: number;
     maxUserCount: number;
   }) => {
