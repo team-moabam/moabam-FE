@@ -19,6 +19,11 @@ const roomOptions = {
     queryOptions({
       queryKey: ['rooms', params?.type || 'all'] as const,
       queryFn: () => roomAPI.getRoomsAll(params)
+    }),
+  joinHistory: () =>
+    queryOptions({
+      queryKey: ['rooms', 'joinHistory'] as const,
+      queryFn: () => roomAPI.roomJoinHistory()
     })
 };
 
