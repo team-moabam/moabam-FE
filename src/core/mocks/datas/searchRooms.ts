@@ -25,7 +25,7 @@ export const SEARCH_ROOMS: Room[] = [
   },
   {
     id: 2,
-    title: '영명이의 루틴방',
+    title: '방이름이엄청나게긴루틴방입니다하하하',
     managerNickname: '물먹기',
     level: 7,
     roomType: 'NIGHT',

@@ -3,19 +3,22 @@ import React from 'react';
 interface KeywordTextProps {
   keyword: string;
   content: string;
+  className?: string;
 }
 
-const KeywordText = ({ keyword, content }: KeywordTextProps) => {
+const KeywordText = ({ keyword, content, className }: KeywordTextProps) => {
   const segments = content
     .split(new RegExp(`(${keyword})`, 'gi'))
     .filter(Boolean);
 
   return (
-    <div>
+    <div className={className}>
       {segments.map((segment, i) => (
         <React.Fragment key={i}>
           {segment.toLowerCase() === keyword.toLowerCase() ? (
-            <span className="text-light-point dark:text-dark-point">
+            <span
+              className={`text-light-point dark:text-dark-point ${className}`}
+            >
               {segment}
             </span>
           ) : (

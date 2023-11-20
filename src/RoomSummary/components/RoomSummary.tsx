@@ -68,6 +68,7 @@ const RoomSummary = ({
             <KeywordText
               keyword={keyword}
               content={title}
+              className="font-IMHyemin-bold"
             />
           ) : (
             title
