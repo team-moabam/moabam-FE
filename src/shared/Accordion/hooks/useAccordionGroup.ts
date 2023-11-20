@@ -4,7 +4,12 @@ export const AccordionGroupContext = createContext({
   containerStyle: '',
   headerStyle: '',
   bodyStyle: '',
-  buttonColored: false
+  singleOpen: false,
+  openedId: '',
+  buttonColored: false,
+  setOpenedId: (id: string) => {
+    id;
+  }
 });
 
 const useAccordionGroup = () => {

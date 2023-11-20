@@ -4,6 +4,7 @@ import useIntersectionObserver from '../hooks/useIntersectionObserver';
 import ResultListFallback from './ResultListFallback';
 import { RoomAccordion } from '@/RoomList';
 import { Deffered } from '@/shared/Deffered';
+import { AccordionGroup } from '@/shared/Accordion';
 
 interface ResultListProps {
   type: RoomSelectType;
@@ -23,14 +24,16 @@ const ResultList = ({ type, size }: ResultListProps) => {
 
   return (
     <div className="flex flex-col gap-2">
-      {data.map((rooms) =>
-        rooms.map((room) => (
-          <RoomAccordion
-            room={room}
-            key={room.id}
-          />
-        ))
-      )}
+      <AccordionGroup>
+        {data.map((rooms) =>
+          rooms.map((room) => (
+            <RoomAccordion
+              room={room}
+              key={room.id}
+            />
+          ))
+        )}
+      </AccordionGroup>
       {isFetchingNextPage && (
         <Deffered>
           <ResultListFallback size={size} />
