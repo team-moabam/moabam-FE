@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import { Header } from '@/shared/Header';
 import OrderLogList from '@/OrderLogList/components/OrderLogList';
 
@@ -10,7 +11,9 @@ const OrderLogPage = () => {
           title="구매 내역"
           className="sticky top-0 bg-light-main dark:bg-dark-main"
         />
-        <OrderLogList />
+        <Suspense>
+          <OrderLogList />
+        </Suspense>
       </div>
     </>
   );

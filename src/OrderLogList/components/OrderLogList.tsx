@@ -39,7 +39,7 @@ const OrderLogList = () => {
 export default OrderLogList;
 
 const actionsIcon = {
-  보상: <RiCoupon2Fill />,
-  쿠폰: <FaClipboardList />,
+  보상: <FaClipboardList />,
+  쿠폰: <RiCoupon2Fill />,
   충전: <IoMdCash />
 };
