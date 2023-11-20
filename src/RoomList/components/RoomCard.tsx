@@ -1,18 +1,18 @@
 import { clsx } from 'clsx';
 import { useMoveRoute } from '@/core/hooks';
-import { ParticipateRoom } from '@/RoomList/mocks/types/myJoinRoom';
+import { ParticipatingRoom } from '@/core/types';
 import roomListStyle from '../styles/roomListStyle';
 import CertifyButton from './CertifyButton';
 import BugInfo from './BugInfo';
 import { RoomSummary } from '@/RoomSummary';
 
 interface RoomCardProps {
-  room: ParticipateRoom;
+  room: ParticipatingRoom;
 }
 
 const RoomCard = ({ room }: RoomCardProps) => {
   const moveTo = useMoveRoute();
-  const { roomId, isCertifiedToday, bug } = room;
+  const { roomId, isMemberCertifiedToday, obtainedBugs } = room;
 
   return (
     <div
@@ -26,11 +26,8 @@ const RoomCard = ({ room }: RoomCardProps) => {
     >
       <RoomSummary {...room} />
       <div className="flex shrink-0 flex-col justify-between">
-        <BugInfo bug={bug} />
-        <CertifyButton
-          roomId={roomId}
-          isCertifiedToday={isCertifiedToday}
-        />
+        <BugInfo bug={obtainedBugs} />
+        <CertifyButton isCertifiedToday={isMemberCertifiedToday} />
       </div>
     </div>
   );

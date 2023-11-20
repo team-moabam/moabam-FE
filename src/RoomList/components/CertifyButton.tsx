@@ -1,30 +1,23 @@
 import React from 'react';
 import '@/core/styles/button.css';
 import { clsx } from 'clsx';
-import { useMoveRoute } from '@/core/hooks';
 
 interface CerticifyButtonProps {
   isCertifiedToday: boolean;
-  roomId: number;
 }
 
-const CerticifyButton = ({
-  isCertifiedToday,
-  roomId
-}: CerticifyButtonProps) => {
-  const moveTo = useMoveRoute();
+const CerticifyButton = ({ isCertifiedToday }: CerticifyButtonProps) => {
   return (
     <div
-      onClick={() => !isCertifiedToday && moveTo('roomDetail', { roomId })}
       className={clsx(
-        'btn-transition cursor-pointer rounded-2xl px-4 py-1 font-IMHyemin-bold text-sm shadow-md',
+        'w-20 rounded-2xl py-[0.15rem] text-center text-sm text-white',
         {
-          'btn-light-point dark:btn-dark-point': !isCertifiedToday,
-          'btn-disabled cursor-default': isCertifiedToday
+          'bg-light-point dark:bg-dark-point-hover': isCertifiedToday,
+          'bg-disabled': !isCertifiedToday
         }
       )}
     >
-      {isCertifiedToday ? '인증완료' : '인증하기'}
+      {isCertifiedToday ? '인증완료' : '미인증'}
     </div>
   );
 };

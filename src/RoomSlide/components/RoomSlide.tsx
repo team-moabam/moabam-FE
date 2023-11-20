@@ -1,17 +1,16 @@
-import { ParticipateRoom } from '@/RoomList/mocks/types/myJoinRoom';
+import { Suspense } from 'react';
 import { DAY_TYPE } from '../constants/dayType';
-import BlankCard from './BlankCard';
-import { RoomCard } from '@/RoomList';
+import RoomData from './RoomData';
+import RoomDataFallback from './RoomDataFallback';
+import { Deffered } from '@/shared/Deffered';
+import { DayType } from '@/core/types/Room';
 
 interface RoomSlideProps {
-  type: 'MORNING' | 'NIGHT';
-  rooms: ParticipateRoom[];
-  bugs: number;
+  roomType: DayType;
 }
 
-const RoomSlide = ({ type, rooms, bugs }: RoomSlideProps) => {
-  const { TITLE, START, END, ABOUT_BUG } = DAY_TYPE[type];
-
+const RoomSlide = ({ roomType }: RoomSlideProps) => {
+  const { TITLE, START, END } = DAY_TYPE[roomType];
   return (
     <div className="h-full overflow-auto p-8">
       <div className="mb-5 flex items-end gap-3">
@@ -20,20 +19,16 @@ const RoomSlide = ({ type, rooms, bugs }: RoomSlideProps) => {
           {START} ~ {END}시
         </div>
       </div>
-      <div className="flex flex-col gap-2">
-        {rooms.map((room) => (
-          <RoomCard
-            room={room}
-            key={room.roomId}
-          />
-        ))}
-        <BlankCard />
-      </div>
-      <div className="mr-1 mt-4 text-end font-IMHyemin-bold text-sm">
-        {ABOUT_BUG} : {bugs}
-      </div>
+      <Suspense
+        fallback={
+          <Deffered>
+            <RoomDataFallback />
+          </Deffered>
+        }
+      >
+        <RoomData dayType={roomType} />
+      </Suspense>
     </div>
   );
 };
-
 export default RoomSlide;
