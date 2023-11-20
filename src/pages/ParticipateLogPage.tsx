@@ -1,7 +1,7 @@
 import { Header } from '@/shared/Header';
 import LogList from '@/LogList/components/LogList';
 
-const ParticipateLog = () => {
+const ParticipateLogPage = () => {
   return (
     <div className="h-full overflow-auto ">
       <Header
@@ -14,4 +14,4 @@ const ParticipateLog = () => {
   );
 };
 
-export default ParticipateLog;
+export default ParticipateLogPage;
