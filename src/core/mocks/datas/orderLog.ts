@@ -13,7 +13,7 @@ interface History {
   };
 }
 
-export const data: { history: History[] } = {
+export const orderLog: { history: History[] } = {
   history: [
     {
       id: 3,

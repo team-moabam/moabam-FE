@@ -1,4 +1,4 @@
-export const bugs = {
+export const myBugs = {
   morningBug: 4,
   nightBug: 3,
   goldenBug: 100
