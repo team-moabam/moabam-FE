@@ -166,12 +166,18 @@ const roomsHandlers = [
   http.get(baseURL('/rooms'), async ({ request }) => {
     await delay(2000);
     const url = new URL(request.url);
-    const type = url.searchParams.get('type');
+    const type = url.searchParams.get('roomType');
     const keyword = url.searchParams.get('keyword');
     const lastId = Number(url.searchParams.get('roomId'));
 
     const morningRooms = ROOMS.filter(({ roomType }) => roomType === 'MORNING');
+    const searchMorningRooms = SEARCH_ROOMS.filter(
+      ({ roomType }) => roomType === 'MORNING'
+    );
     const nightRooms = ROOMS.filter(({ roomType }) => roomType === 'NIGHT');
+    const searchNightRooms = SEARCH_ROOMS.filter(
+      ({ roomType }) => roomType === 'NIGHT'
+    );
 
     const cutNextPage = (rooms: Room[]) => {
       const lastIndex = rooms.findIndex(({ id }) => id === lastId);
@@ -180,26 +186,17 @@ const roomsHandlers = [
 
     let responseRooms = [];
 
-    if (keyword) {
-      responseRooms = cutNextPage(SEARCH_ROOMS);
-      return HttpResponse.json(
-        {
-          rooms: responseRooms,
-          hasNext: responseRooms.length === 10
-        },
-        { status: 200 }
-      );
-    }
-
     switch (type) {
       case 'morning':
-        responseRooms = cutNextPage(morningRooms);
+        responseRooms = cutNextPage(
+          keyword ? searchMorningRooms : morningRooms
+        );
         break;
       case 'night':
-        responseRooms = cutNextPage(nightRooms);
+        responseRooms = cutNextPage(keyword ? searchNightRooms : nightRooms);
         break;
       default:
-        responseRooms = cutNextPage(ROOMS);
+        responseRooms = cutNextPage(keyword ? SEARCH_ROOMS : ROOMS);
     }
 
     return HttpResponse.json(

@@ -6,13 +6,13 @@ import { RoomAccordion } from '@/RoomList';
 import { Deffered } from '@/shared/Deffered';
 
 interface ResultListProps {
-  type: RoomSelectType;
+  roomType: RoomSelectType;
   keyword: string;
 }
 
-const ResultList = ({ type, keyword }: ResultListProps) => {
+const ResultList = ({ roomType, keyword }: ResultListProps) => {
   const { fetchNextPage, data, isFetchingNextPage, hasNextPage } =
-    useSearchRooms({ type, keyword });
+    useSearchRooms({ roomType, keyword });
 
   const intersectionRef = useIntersectionObserver({
     threshold: 0.5,

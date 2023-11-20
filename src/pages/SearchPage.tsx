@@ -6,7 +6,7 @@ import { Deffered } from '@/shared/Deffered';
 import ResultListFallback from '@/RoomSearch/components/ResultListFallback';
 
 const SearchPage = () => {
-  const [type, setType] = useState<RoomSelectType>('all');
+  const [roomType, setRoomType] = useState<RoomSelectType>('all');
   const [keyword, setKeyword] = useState('');
 
   return (
@@ -17,8 +17,8 @@ const SearchPage = () => {
         </div>
         <div className="border-b px-6 py-3 dark:border-b-dark-sub">
           <Selection
-            currentType={type}
-            setType={setType}
+            currentRoomType={roomType}
+            setRoomType={setRoomType}
           />
         </div>
         <div className="h-full overflow-y-auto px-5 py-4">
@@ -30,7 +30,7 @@ const SearchPage = () => {
             }
           >
             <ResultList
-              type={type}
+              roomType={roomType}
               keyword={keyword}
             />
           </Suspense>

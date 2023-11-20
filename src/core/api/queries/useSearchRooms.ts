@@ -3,17 +3,17 @@ import { RoomSelectType } from '@/core/types';
 import roomAPI from '../functions/roomAPI';
 
 const useSearchRooms = ({
-  type,
+  roomType,
   keyword
 }: {
-  type: RoomSelectType;
+  roomType: RoomSelectType;
   keyword: string;
 }) => {
   return useSuspenseInfiniteQuery({
-    queryKey: ['rooms', type, keyword],
+    queryKey: ['rooms', roomType, keyword],
 
     queryFn: ({ pageParam }) =>
-      roomAPI.getRoomsAll({ type, roomId: pageParam, keyword }),
+      roomAPI.getRoomsAll({ roomType, roomId: pageParam, keyword }),
 
     initialPageParam: 0,
 
