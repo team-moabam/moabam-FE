@@ -1,4 +1,8 @@
+import userAPI from '@/core/api/functions/userAPI';
+import { useMoveRoute } from '@/core/hooks';
+
 const Logout = () => {
+  const moveTo = useMoveRoute();
   return (
     <div className="p-3">
       <h1 className="mb-10 mt-5 text-xl font-extrabold">
@@ -6,7 +10,10 @@ const Logout = () => {
       </h1>
       <button
         className="btn btn-danger w-full"
-        onClick={() => console.log('로그아웃')}
+        onClick={() => {
+          userAPI.logout();
+          moveTo('join');
+        }}
       >
         로그아웃
       </button>
