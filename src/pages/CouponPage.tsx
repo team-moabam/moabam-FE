@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import { Header } from '@/shared/Header';
 import MyCouponList from '@/MyCouponList/components/MyCouponList';
 
@@ -8,7 +9,9 @@ const CouponPage = () => {
         prev="myPage"
         title="쿠폰함"
       />
-      <MyCouponList />
+      <Suspense>
+        <MyCouponList />
+      </Suspense>
     </div>
   );
 };
