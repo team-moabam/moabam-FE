@@ -6,16 +6,6 @@ export const itemOptions = {
     queryOptions({
       queryKey: ['item'] as const,
       queryFn: () => itemAPI.all(type)
-    }),
-  purchase: (itemId: string) =>
-    queryOptions({
-      queryKey: ['item', 'purchase', itemId] as const,
-      queryFn: () => itemAPI.purchase(itemId)
-    }),
-  select: (itemId: string) =>
-    queryOptions({
-      queryKey: ['select', itemId] as const,
-      queryFn: () => itemAPI.select(itemId)
     })
 };
 

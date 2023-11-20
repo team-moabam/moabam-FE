@@ -28,11 +28,7 @@ const HeaderWallet = () => {
 
 export default HeaderWallet;
 
-const bugArray: ('morningBug' | 'nightBug' | 'goldenBug')[] = [
-  'morningBug',
-  'nightBug',
-  'goldenBug'
-];
+const bugArray = ['morningBug', 'nightBug', 'goldenBug'] as const;
 
 const bugColor = {
   morningBug: 'text-light-point',

@@ -7,7 +7,11 @@ import { ItemType } from '../types/item';
 import { BugsType } from '../types/bugs';
 import { MyBirdContext } from '../contexts/myBirdContext';
 
-const ProductSheet = ({ close }: { close: () => void }) => {
+interface ProductSheetProps {
+  close: () => void;
+}
+
+const ProductSheet = ({ close }: ProductSheetProps) => {
   const {
     level: userLevel,
     productItem,
