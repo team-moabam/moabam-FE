@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { Suspense } from 'react';
 import BirdItems from './BirdItems';
 import MyBirdThumbnail from './MyBirdThumbnail';
 import { Tab, TabItem, TabThumbnail } from '@/shared/Tab';
@@ -24,7 +25,9 @@ const MyBirdTaps = () => {
             title={title}
             key={type}
           >
-            <BirdItems itemType={type} />
+            <Suspense>
+              <BirdItems itemType={type} />
+            </Suspense>
           </TabItem>
         ))}
       </Tab>
