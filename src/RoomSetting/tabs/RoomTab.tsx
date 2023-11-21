@@ -31,7 +31,7 @@ const RoomTab = ({ roomId }: RoomTabProps) => {
       title: room.title,
       announcement: room.announcement,
       certifyTime: room.certifyTime,
-      routines: room.routine.map((r) => ({ value: r.content })),
+      routines: room.routines.map((r) => ({ value: r.content })),
       userCount: room.maxUserCount,
       password: ''
     }

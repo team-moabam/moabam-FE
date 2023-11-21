@@ -1,29 +1,33 @@
 import { RoomsRequestParams, TotalRooms } from '@/core/types';
 import { baseInstance } from '../instance';
 import { MyJoinRoom } from '@/core/types/MyJoinRoom';
-import { RoomInfo } from '@/core/types/Room';
+import { RoomInfo, RoomInfoBeforeEditing } from '@/core/types/Room';
 
 const roomAPI = {
   postRoom: async (body: {
     title: string;
     password: string;
-    type: string;
-    routine: string[];
+    roomType: string;
+    routines: string[];
     certifyTime: number;
     maxUserCount: number;
   }) => {
-    return await baseInstance.post<{ message: string }>('/rooms', body);
+    return await baseInstance.post<{ roomId: number }>('/rooms', body);
   },
 
   getRoomDetail: async (roomId: string) => {
-    return await baseInstance.get<RoomInfo>(`/rooms/${roomId}`);
+    return await baseInstance.get<RoomInfoBeforeEditing>(`/rooms/${roomId}`);
+  },
+
+  getRoomDetailByDate: async (roomId: string, date: string) => {
+    return await baseInstance.get<RoomInfo>(`/rooms/${roomId}/${date}`);
   },
 
   putRoom: async (params: {
     roomId: string;
     title: string;
     announcement: string;
-    routine: string[];
+    routines: string[];
     password: string;
     certifyTime: number;
     maxUserCount: number;
