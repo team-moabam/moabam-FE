@@ -2,18 +2,14 @@ import { useState, useCallback, createContext, useContext } from 'react';
 
 type Theme = 'light' | 'dark';
 
-const ThemeContext = createContext<{
-  theme: Theme;
-  setTheme: (theme: Theme) => void;
-  toggleTheme: VoidFunction;
-}>({
+const ThemeContext = createContext({
   theme: 'light',
-  setTheme: () => {},
+  setTheme: (theme: Theme) => {},
   toggleTheme: () => {}
 });
 
 export const ThemeProvider = ({ children }: React.PropsWithChildren) => {
-  const [theme, setTheme] = useState<Theme>('light');
+  const [theme, setTheme] = useState<Theme>('dark');
 
   const toggleTheme = useCallback(() => {
     setTheme(theme === 'light' ? 'dark' : 'light');
