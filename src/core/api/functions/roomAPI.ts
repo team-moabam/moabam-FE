@@ -23,7 +23,7 @@ const roomAPI = {
     roomId: string;
     title: string;
     announcement: string;
-    routine: string[];
+    routines: string[];
     password: string;
     certifyTime: number;
     maxUserCount: number;

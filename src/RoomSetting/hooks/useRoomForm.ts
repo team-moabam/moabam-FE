@@ -77,7 +77,7 @@ const useRoomForm = ({ roomId, defaultValues }: useRoomFormProps) => {
         title: data.title,
         announcement: data.announcement,
         certifyTime: data.certifyTime % 24,
-        routine: data.routines.map((r) => r.value),
+        routines: data.routines.map((r) => r.value),
         maxUserCount: data.userCount,
         password: data.password
       },

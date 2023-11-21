@@ -40,7 +40,7 @@ const RemoveTab = ({ roomId }: RemoveTabProps) => {
     });
   };
 
-  if (room.currentUserCount > 1) {
+  if (room.participants.length > 1) {
     return (
       <>
         <h1 className={headingStyle}>
