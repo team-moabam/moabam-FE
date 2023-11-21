@@ -1,5 +1,5 @@
 export interface ItemType {
-  id: string;
+  id: number;
   type: 'MORNING' | 'NIGHT';
   category: string;
   name: string;
@@ -11,12 +11,12 @@ export interface ItemType {
 
 export interface ItemsType {
   MORNING: {
-    defaultItemId: string;
+    defaultItemId: number;
     purchasedItems: ItemType[];
     notPurchasedItems: ItemType[];
   };
   NIGHT: {
-    defaultItemId: string;
+    defaultItemId: number;
     purchasedItems: ItemType[];
     notPurchasedItems: ItemType[];
   };
