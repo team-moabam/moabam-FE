@@ -1,7 +1,8 @@
 import React from 'react';
 import { clsx } from 'clsx';
 import useToast from '@/shared/Toast/hooks/useToast';
-import { Toast } from '@/shared/Toast';
+import { COUPON_MAP } from '../coustants/CouponMap';
+import DisabledCover from './DisabledCover';
 import { CouponType } from '../mocks/types/couponType';
 
 interface EventCardProps {
@@ -9,19 +10,23 @@ interface EventCardProps {
   name: string;
   couponType: CouponType;
   stock: number;
-  endAt: string;
   point: number;
   description: string;
+  dueType: 'onGoing' | 'notStarted' | 'ended';
+  startDiff: number;
+  endDiff: number;
 }
 
 const EventCard = ({
   couponId,
   name,
-  // couponType,
+  couponType,
   stock,
-  // endAt,
-  // point,
-  description
+  point,
+  description,
+  dueType,
+  startDiff,
+  endDiff
 }: EventCardProps) => {
   const handleGetCoupon = (couponId: number) => {
     console.log(couponId, '요청');
@@ -31,34 +36,66 @@ const EventCard = ({
   return (
     <div
       className={clsx(
-        'flex w-full shrink-0 flex-col overflow-hidden',
+        'relative flex w-full shrink-0 flex-col overflow-hidden',
         'rounded-xl bg-light-sub shadow-md dark:bg-dark-sub'
       )}
     >
-      <div className="relative flex h-32 items-center justify-center bg-dark-gray p-3">
-        <div
-          className={clsx(
-            'absolute right-3 top-3 w-fit rounded-2xl px-2 py-1',
-            'border border-warning text-xs text-warning'
-          )}
-        >
-          {stock}개 남음
-        </div>
-        <div className="flex items-center"></div>
+      <div className="relative flex h-48">
+        <img
+          className="object-cover"
+          src={COUPON_MAP[couponType].imgSrc}
+        ></img>
+        {dueType === 'onGoing' && (
+          <div
+            className={clsx(
+              'absolute right-3 top-3 w-fit rounded-2xl px-2 py-1',
+              'border border-light-gray text-xs text-light-gray',
+              'bg-black bg-opacity-[0.4]'
+            )}
+          >
+            {endDiff}일 뒤 종료
+          </div>
+        )}
       </div>
-      <div className="p-4">
-        <div className="mb-2 flex items-center justify-between">
-          <div className="font-IMHyemin-bold">{name}</div>
-          <div className="text-xs text-dark-gray">3일 뒤 종료</div>
+
+      <div className="flex flex-col gap-3 px-3 py-4">
+        <div className="flex flex-col gap-1">
+          <div className="font-IMHyemin-bold">
+            {name}
+            <span
+              className={clsx(
+                'ml-2 font-IMHyemin-bold',
+                COUPON_MAP[couponType].textStyle
+              )}
+            >
+              {COUPON_MAP[couponType].prefix}
+            </span>{' '}
+            {point}
+            {COUPON_MAP[couponType].unit}
+          </div>
+          <div className="text-xs text-dark-gray">{description}</div>
         </div>
-        <div className="mb-5 text-xs text-dark-gray">{description}</div>
-        <div
-          className="btn btn-light-point dark:btn-dark-point cursor-pointer text-center font-IMHyemin-bold"
-          onClick={() => handleGetCoupon(couponId)}
-        >
-          쿠폰 받기
+
+        <div className="flex items-center justify-between">
+          <div className="text-xs text-dark-gray">{stock}개 남음</div>
+          <div
+            className={clsx(
+              'cursor-pointer text-center font-IMHyemin-bold',
+              'btn px-7 py-1 text-sm text-white',
+              COUPON_MAP[couponType].bgStyle
+            )}
+            onClick={() => handleGetCoupon(couponId)}
+          >
+            쿠폰 받기
+          </div>
         </div>
       </div>
+      {dueType !== 'onGoing' && (
+        <DisabledCover
+          dueType={dueType}
+          startDiff={startDiff}
+        />
+      )}
     </div>
   );
 };

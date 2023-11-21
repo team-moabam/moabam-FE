@@ -1,7 +1,6 @@
-import React from 'react';
-import { coupons } from '@/Promotion/mocks/coupons';
-import EventCard from '@/Promotion/components/EventCard';
+import React, { Suspense } from 'react';
 import { Header } from '@/shared/Header';
+import EventList from '@/Promotion/components/EventList';
 
 const EventPage = () => {
   return (
@@ -10,14 +9,9 @@ const EventPage = () => {
         prev="routines"
         title="이벤트"
       />
-      <div className="flex h-full flex-col items-center gap-6 overflow-y-auto p-6 pt-2">
-        {coupons.map((coupon) => (
-          <EventCard
-            key={coupon.couponId}
-            {...coupon}
-          />
-        ))}
-      </div>
+      <Suspense>
+        <EventList />
+      </Suspense>
     </div>
   );
 };
