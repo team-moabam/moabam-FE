@@ -7,6 +7,7 @@ import router from '@/core/routes/router';
 import Debounce from '@/core/utils/debounce';
 import { getFCMToken } from '@/core/utils/firebase';
 import { ThemeProvider } from '@/core/hooks/useTheme';
+import notificationAPI from '@/core/api/functions/notificationAPI';
 import './main.css';
 
 const setupMSW = async () => {
@@ -37,10 +38,8 @@ const setupFCM = async () => {
 
     debounce.run(async () => {
       try {
-        const token = await getFCMToken();
-
-        // TODO: 백엔드 API 서버에게 FCM 토큰을 보내야 해요.
-        console.log('TODO: 서버에게 보낼 FCM 토큰:', token);
+        const fcmToken = await getFCMToken();
+        notificationAPI.postFCMToken({ fcmToken });
       } catch (err) {
         console.error(err);
       }

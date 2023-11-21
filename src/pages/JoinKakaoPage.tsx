@@ -2,7 +2,9 @@ import { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 import memberAPI from '@/core/api/functions/memberAPI';
+import { getFCMToken } from '@/core/utils/firebase';
 import { useMoveRoute } from '@/core/hooks';
+import notificationAPI from '@/core/api/functions/notificationAPI';
 import { LoadingSpinner } from '@/shared/LoadingSpinner';
 
 const JoinKakaoPage = () => {
@@ -18,9 +20,11 @@ const JoinKakaoPage = () => {
     mutate(
       { code: code ?? '' },
       {
-        onSuccess: ({ signUp }) => {
+        onSuccess: async ({ signUp }) => {
           moveTo(signUp ? 'guide' : 'start');
-          // TODO: FCM 토큰을 발급받고 API 서버에 전달하는 로직 추가
+
+          const fcmToken = await getFCMToken();
+          notificationAPI.postFCMToken({ fcmToken });
         }
       }
     );
