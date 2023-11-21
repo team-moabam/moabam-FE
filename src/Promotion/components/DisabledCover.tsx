@@ -9,11 +9,11 @@ interface DisabledCoverProps {
 
 const DisabledCover = ({ dueType, startDiff }: DisabledCoverProps) => {
   return (
-    <div className="absolute inset-0 flex justify-center bg-white bg-opacity-[0.7] text-white">
+    <div className="absolute inset-0 flex justify-center bg-black bg-opacity-[0.4] text-white">
       {dueType === 'ended' ? (
         <span
           className={clsx(
-            'mt-20 h-fit rounded-full px-3 py-1 font-IMHyemin-bold',
+            'mt-24 h-fit rounded-full px-3 py-1 font-IMHyemin-bold',
             'bg-black bg-opacity-[0.3]'
           )}
         >
