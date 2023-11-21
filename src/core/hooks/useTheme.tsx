@@ -9,7 +9,7 @@ const ThemeContext = createContext({
 });
 
 export const ThemeProvider = ({ children }: React.PropsWithChildren) => {
-  const [theme, setTheme] = useState<Theme>('dark');
+  const [theme, setTheme] = useState<Theme>('light');
 
   const toggleTheme = useCallback(() => {
     setTheme(theme === 'light' ? 'dark' : 'light');
