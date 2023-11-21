@@ -1,11 +1,11 @@
-import { useEffect, useRef, useContext, useMemo } from 'react';
+import { useEffect, useRef, useContext } from 'react';
 import clsx from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { makeWeekCalendar } from '../utils/utils';
 import { DAY_OF_THE_WEEK } from '../constants/constant';
+import { DateRoomDetailContext } from './RoomDetailProvider';
 import { Icon } from '@/shared/Icon';
 import { Toast } from '@/shared/Toast';
-import { DateRoomDetailContext } from '@/pages/RoomDetailPage';
 
 interface RoomCalendarProps {
   certifiedDates: string[];
@@ -19,23 +19,23 @@ const RoomCalendar = ({
   serverTime
 }: RoomCalendarProps) => {
   const dateRef = useRef<HTMLDivElement>(null);
-  const { changeDate, date: changedDate } = useContext(DateRoomDetailContext);
+  const { selectDate, date: chooseDate } = useContext(DateRoomDetailContext);
 
   const { thisWeekTimestamp } = makeWeekCalendar(serverTime);
-  const changedDateTimestamp = `${changedDate.getFullYear()}-${
-    changedDate.getMonth() + 1
-  }-${changedDate.getDate()}`;
+  const chooseDateTimestamp = `${chooseDate.getFullYear()}-${
+    chooseDate.getMonth() + 1
+  }-${chooseDate.getDate()}`;
 
   useEffect(() => {
     const handleOutsideClose = (e: MouseEvent) => {
       if (dateRef.current && !dateRef.current?.contains(e.target as Node)) {
-        changeDate(serverTime);
+        selectDate(serverTime);
       }
     };
     document.addEventListener('click', handleOutsideClose);
 
     return () => document.removeEventListener('click', handleOutsideClose);
-  }, [changeDate, serverTime]);
+  }, [selectDate, serverTime]);
 
   return (
     <div className="mb-[3.19rem] mt-[1.87rem]">
@@ -61,7 +61,7 @@ const RoomCalendar = ({
                   'text-dark-gray': serverTime.getTime() < thisDate.getTime(),
                   'text-black': serverTime.getTime() >= thisDate.getTime(),
                   'rounded-[0.62rem] border-light-point text-light-point dark:border-dark-point dark:text-dark-point border-[0.06rem]':
-                    thisDateTimestamp === changedDateTimestamp
+                    thisDateTimestamp === chooseDateTimestamp
                 }
               )
             )
@@ -77,7 +77,7 @@ const RoomCalendar = ({
                 routineLimitTime.setMinutes(50);
 
                 if (serverTime.getTime() >= thisDate.getTime()) {
-                  changeDate(thisDate);
+                  selectDate(thisDate);
 
                   if (
                     thisDate.getDate() === routineLimitTime.getDate() &&

@@ -1,8 +1,8 @@
 import { useContext } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { roomOptions } from '@/core/api/options';
+import { DateRoomDetailContext } from './RoomDetailProvider';
 import { RoomInfo, RoomWorkspace } from '@/RoomDetail';
-import { DateRoomDetailContext } from '@/pages/RoomDetailPage';
 import { RoomInfo as RoomInfoType } from '@/core/types/Room';
 interface RoomDetailContainerProps {
   roomDetailData: RoomInfoType;
@@ -15,10 +15,10 @@ const RoomDetailContainer = ({
 }: RoomDetailContainerProps) => {
   const { date } = useContext(DateRoomDetailContext);
   const roomId = '1234';
-  const stringDate = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
+  const chooseDate = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
 
   const { data: roomDetailDataByDate, status } = useQuery({
-    ...roomOptions.detailByDate(roomId, stringDate)
+    ...roomOptions.detailByDate(roomId, chooseDate)
   });
 
   if (roomDetailDataByDate) {
