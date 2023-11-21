@@ -1,5 +1,5 @@
 export interface bugHistoryType {
-  id: string;
+  id: number;
   bugType: 'MORNING_BUG' | 'NIGHT_BUG' | 'GOLDEN_BUG';
   action: '보상' | '쿠폰' | '충전';
   amount: number;

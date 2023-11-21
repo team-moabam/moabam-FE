@@ -1,5 +1,5 @@
 export interface ParticipateLogType {
-  roomId: string | null;
+  roomId: number | null;
   title: string;
   createdAt: string;
   deletedAt: null | string;
