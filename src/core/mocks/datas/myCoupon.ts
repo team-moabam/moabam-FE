@@ -1,4 +1,4 @@
-export const MyCoupons = {
+export const MY_COUPON = {
   myCouponsResponse: [
     {
       couponId: 1,

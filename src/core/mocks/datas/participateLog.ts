@@ -1,6 +1,6 @@
 import { ParticipateLogType } from '@/core/types/participateLog';
 
-export const participateLog: { roomHistory: ParticipateLogType[] } = {
+export const PARTICIPATE_LOG: { roomHistory: ParticipateLogType[] } = {
   roomHistory: [
     {
       roomId: '34',

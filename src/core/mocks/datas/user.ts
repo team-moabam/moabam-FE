@@ -1,4 +1,4 @@
-export const myData = {
+export const MY_DATA = {
   nickname: '자려고 사는 사람',
   intro: '너무나 졸린사람',
   level: 3,
@@ -18,7 +18,7 @@ export const myData = {
   img: undefined
 };
 
-export const otherUserData = {
+export const OTHER_USER_DATA = {
   nickname: '죽으려고 사는 사람',
   intro: '으앙',
   level: 4,

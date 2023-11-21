@@ -1,6 +1,6 @@
 import { bugHistoryType } from '@/core/types/bugHistory';
 
-export const bugHistory: {
+export const BUG_HISTORY: {
   history: bugHistoryType[];
 } = {
   history: [
