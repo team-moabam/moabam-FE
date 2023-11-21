@@ -4,6 +4,7 @@ import userOptions from '@/core/api/options/user';
 import UserProfile from './UserProfile';
 import { ProgressBar } from '@/shared/ProgressBar';
 import { userType } from '@/core/types/User';
+
 interface UserMainProps {
   userId: string | undefined;
 }
