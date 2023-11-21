@@ -6,9 +6,13 @@ import { DateRoomDetailContext } from '@/pages/RoomDetailPage';
 import { RoomInfo as RoomInfoType } from '@/core/types/Room';
 interface RoomDetailContainerProps {
   roomDetailData: RoomInfoType;
+  serverTime: Date;
 }
 
-const RoomDetailContainer = ({ roomDetailData }: RoomDetailContainerProps) => {
+const RoomDetailContainer = ({
+  roomDetailData,
+  serverTime
+}: RoomDetailContainerProps) => {
   const { date } = useContext(DateRoomDetailContext);
   const roomId = '1234';
   const stringDate = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
@@ -16,16 +20,24 @@ const RoomDetailContainer = ({ roomDetailData }: RoomDetailContainerProps) => {
   const { data: roomDetailDataByDate, status } = useQuery({
     ...roomOptions.detailByDate(roomId, stringDate)
   });
-  if (status !== 'success') return <div>임시 Loading...</div>;
+
+  if (roomDetailDataByDate) {
+    roomDetailData = roomDetailDataByDate;
+  }
 
   return (
     <>
       <div className="h-[20.56rem] bg-[url('/level1.png')] bg-cover bg-no-repeat text-white">
-        <RoomInfo {...(stringDate ? roomDetailDataByDate : roomDetailData)} />
+        <RoomInfo
+          {...roomDetailData}
+          status={status}
+        />
       </div>
       <div className="px-[1.81rem] pb-[1.62rem] pt-[1.88rem]">
         <RoomWorkspace
-          {...(stringDate ? roomDetailDataByDate : roomDetailData)}
+          {...roomDetailData}
+          status={status}
+          serverTime={serverTime}
         />
       </div>
     </>

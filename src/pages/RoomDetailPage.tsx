@@ -20,7 +20,8 @@ const RoomDetailPage = () => {
   const { data: roomDetailData, status } = useQuery({
     ...roomOptions.detail(roomId)
   });
-  const [changedDate, setChangeDate] = useState<Date>(new Date());
+  const serverTime = new Date();
+  const [changedDate, setChangeDate] = useState<Date>(serverTime);
 
   if (status !== 'success') return <div>임시 Loading...</div>;
 
@@ -59,7 +60,10 @@ const RoomDetailPage = () => {
           }
         }}
       >
-        <RoomDetailContainer roomDetailData={roomDetailData} />
+        <RoomDetailContainer
+          roomDetailData={roomDetailData}
+          serverTime={serverTime}
+        />
       </DateRoomDetailContext.Provider>
     </div>
   );
