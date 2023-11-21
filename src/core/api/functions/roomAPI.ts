@@ -1,7 +1,7 @@
 import { RoomsRequestParams, TotalRooms } from '@/core/types';
 import { baseInstance } from '../instance';
 import { MyJoinRoom } from '@/core/types/MyJoinRoom';
-import { RoomInfo } from '@/core/types/Room';
+import { RoomInfo, RoomInfoBeforeEditing } from '@/core/types/Room';
 
 const roomAPI = {
   postRoom: async (body: {
@@ -16,7 +16,7 @@ const roomAPI = {
   },
 
   getRoomDetail: async (roomId: string) => {
-    return await baseInstance.get<RoomInfo>(`/rooms/${roomId}`);
+    return await baseInstance.get<RoomInfoBeforeEditing>(`/rooms/${roomId}`);
   },
 
   putRoom: async (params: {
