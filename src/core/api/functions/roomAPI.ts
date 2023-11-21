@@ -19,6 +19,10 @@ const roomAPI = {
     return await baseInstance.get<RoomInfoBeforeEditing>(`/rooms/${roomId}`);
   },
 
+  getRoomDetailByDate: async (roomId: string, date: string) => {
+    return await baseInstance.get<RoomInfo>(`/rooms/${roomId}/${date}`);
+  },
+
   putRoom: async (params: {
     roomId: string;
     title: string;
