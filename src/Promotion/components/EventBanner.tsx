@@ -16,6 +16,7 @@ const EventBanner = () => {
     couponCount > 0 && (
       <Link
         to="/event"
+        state={{ from: 'routines' }}
         className={clsx(
           'flex h-fit w-full items-center justify-between gap-5 p-5',
           'bg-gradient-to-l from-[#D2D68F] via-[#AEE6CF] to-[#60D4DE] shadow-nav'

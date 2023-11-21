@@ -4,7 +4,7 @@ import { ONGOING_COUPONS } from '../datas/coupons';
 
 const couponsHandlers = [
   http.post(baseURL('/coupons/search'), async () => {
-    await delay(3000);
+    await delay(1500);
     return HttpResponse.json(ONGOING_COUPONS, { status: 200 });
   }),
 
