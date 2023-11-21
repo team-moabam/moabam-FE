@@ -55,6 +55,10 @@ const roomAPI = {
   getRoomsAll: async (params?: RoomsRequestParams) => {
     const response: TotalRooms = await baseInstance.get('/rooms', { params });
     return response.rooms;
+  },
+
+  getMemberPoke: async (roomId: string | undefined, memberId: string) => {
+    return await baseInstance.get(`/rooms/${roomId}/${memberId}`);
   }
 };
 
