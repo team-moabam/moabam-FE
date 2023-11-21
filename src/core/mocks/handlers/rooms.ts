@@ -13,7 +13,7 @@ const roomsHandlers = [
 
     switch (status) {
       case 201:
-        response = { roomId: 1 };
+        response = 5;
         break;
       case 400:
         response = {
