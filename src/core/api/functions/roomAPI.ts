@@ -14,8 +14,8 @@ const roomAPI = {
     return await baseInstance.post<{ message: string }>('/rooms', body);
   },
 
-  getRoomDetail: async (roomId: string, date: string) => {
-    return await baseInstance.get<RoomInfo>(`/rooms/${roomId}/${date}`);
+  getRoomDetail: async (roomId: string) => {
+    return await baseInstance.get<RoomInfo>(`/rooms/${roomId}`);
   },
 
   putRoom: async (params: {
@@ -49,6 +49,9 @@ const roomAPI = {
     return await baseInstance.put(
       `/rooms/${roomId}/members/${memberId}/delegation`
     );
+  },
+  getRoomDetailByDate: async (roomId: string, date: string) => {
+    return await baseInstance.get<RoomInfo>(`/rooms/${roomId}/${date}`);
   }
 };
 

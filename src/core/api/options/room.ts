@@ -11,7 +11,7 @@ const roomOptions = {
   detailByDate: (roomId: string, date: string) =>
     queryOptions({
       queryKey: ['rooms', 'detail', roomId, date] as const,
-      queryFn: () => roomAPI.getRoomDetail(roomId, date)
+      queryFn: () => roomAPI.getRoomDetailByDate(roomId, date)
     }),
 
   myJoin: () =>
