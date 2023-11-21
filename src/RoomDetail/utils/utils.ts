@@ -1,17 +1,19 @@
-export const makeDays = () => {
+export const makeWeekCalendar = (serverTime: Date) => {
   const weekArray: Date[] = Array.from({ length: 7 });
-  const today = new Date();
-  const todayYear = today.getFullYear();
-  const todayMonth = today.getMonth();
-  const todayDate = today.getDate();
-  const todayDay = today.getDay();
+
+  const todayDate = serverTime.getDate();
+  const todayDay = serverTime.getDay();
 
   for (let i = 0; i < 7; i++) {
     const mondayDate = todayDate - todayDay + 1;
-    const date = mondayDate + i;
+    const newDate = new Date(serverTime);
 
-    weekArray[i] = new Date(todayYear, todayMonth, date);
+    newDate.setFullYear(newDate.getFullYear());
+    newDate.setMonth(newDate.getMonth());
+    newDate.setDate(mondayDate + i);
+
+    weekArray[i] = newDate;
   }
 
-  return { thisWeekDates: weekArray, today: today };
+  return { thisWeekTimestamp: weekArray };
 };
