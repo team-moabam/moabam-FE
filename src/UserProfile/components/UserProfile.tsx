@@ -1,6 +1,5 @@
 import { useState, ChangeEvent } from 'react';
 import { MdModeEdit, MdAdd } from 'react-icons/md';
-import { useForm } from 'react-hook-form';
 
 interface UserProfileProps {
   nickname: string;
@@ -11,19 +10,6 @@ interface UserProfileProps {
 const UserProfile = ({ nickname, intro, img }: UserProfileProps) => {
   const [isEditMode, setIsEditMode] = useState(false);
   const [newImgUrl, setNewImgUrl] = useState<string | null>(null);
-  const {
-    register,
-    watch,
-    handleSubmit,
-    formState: { errors }
-  } = useForm();
-
-  console.log(watch('nickname', errors.nickname));
-
-  const onSubmit = (data) => {
-    console.log(data);
-    console.log(data.profile_image);
-  };
 
   const handleImageSelect = (e: ChangeEvent<HTMLInputElement>) => {
     const selectedImage = e.target.files?.[0];
@@ -48,13 +34,9 @@ const UserProfile = ({ nickname, intro, img }: UserProfileProps) => {
       >
         <MdModeEdit />
       </div>
-      {!isEditMode ? (
-        <form
-          className="flex w-full flex-col items-center"
-          onSubmit={handleSubmit(onSubmit)}
-        >
+      {isEditMode ? (
+        <form className="flex w-full flex-col items-center">
           <input
-            {...register('profile_image')}
             type="file"
             id="profile_image"
             className="hidden"
@@ -94,18 +76,13 @@ const UserProfile = ({ nickname, intro, img }: UserProfileProps) => {
               className="w-full border-b border-light-gray bg-transparent p-1 focus:border-b-2
             focus:border-light-point focus:outline-none focus:ring-light-point
             dark:focus:border-dark-point dark:focus:ring-dark-point"
-              {...register('nickname', { required: true })}
             />
-            {errors.nickname && (
-              <div className="w-full text-danger">닉네임은 필수!</div>
-            )}
             <input
               type="text"
               placeholder={'한 줄 소개 (최대 20자)'}
               className="w-full border-b border-light-gray bg-transparent p-1 focus:border-b-2
             focus:border-light-point focus:outline-none focus:ring-light-point
             dark:focus:border-dark-point dark:focus:ring-dark-point"
-              {...register('intro')}
             />
           </div>
           <div className="flex w-full max-w-[16rem] gap-2">
