@@ -1,8 +1,7 @@
-import React from 'react';
 import { useSuspenseQueries } from '@tanstack/react-query';
 import couponOptions from '@/core/api/options/coupon';
-import { EventCard } from '..';
 import getDateDiff from '../utils/getDateDiff';
+import EventCard from './EventCard';
 
 const dueTypes = ['onGoing', 'notStarted', 'ended'] as const;
 

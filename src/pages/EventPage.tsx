@@ -1,6 +1,7 @@
-import React, { Suspense } from 'react';
+import { Suspense } from 'react';
 import { Header } from '@/shared/Header';
-import EventList from '@/Promotion/components/EventList';
+import { EventList, EventListFallback } from '@/Promotion';
+import { Deffered } from '@/shared/Deffered';
 
 const EventPage = () => {
   return (
@@ -9,7 +10,13 @@ const EventPage = () => {
         prev="routines"
         title="이벤트"
       />
-      <Suspense>
+      <Suspense
+        fallback={
+          <Deffered>
+            <EventListFallback />
+          </Deffered>
+        }
+      >
         <EventList />
       </Suspense>
     </div>
