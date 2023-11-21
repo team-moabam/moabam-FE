@@ -14,7 +14,7 @@ import JoinKakaoPage from '@/pages/JoinKakaoPage';
 import UserPage from '@/pages/UserPage';
 import RankPage from '@/pages/RankPage';
 import CouponPage from '@/pages/CouponPage';
-import VisitLogPage from '@/pages/VisitLogPage';
+import ParticipateLog from '@/pages/ParticipateLog';
 import OrderLogPage from '@/pages/OrderLogPage';
 import StorePage from '@/pages/StorePage';
 
@@ -100,13 +100,13 @@ const routes: Routes = {
     element: <UserPage />
   },
   myLog: {
-    path: 'user/visitLog',
+    path: 'user/participate-log',
     authRequired: true,
     navBarRequired: false,
-    element: <VisitLogPage />
+    element: <ParticipateLog />
   },
   myOrderLog: {
-    path: 'user/orderLog',
+    path: 'user/order-log',
     authRequired: true,
     navBarRequired: false,
     element: <OrderLogPage />
