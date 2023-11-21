@@ -1,8 +1,9 @@
-import React from 'react';
+import { useMutation } from '@tanstack/react-query';
 import { clsx } from 'clsx';
-import useToast from '@/shared/Toast/hooks/useToast';
-import { COUPON_MAP } from '../coustants/CouponMap';
+import couponAPI from '@/core/api/functions/couponAPI';
+import { COUPON_MAP } from '../coustants/couponInfo';
 import DisabledCover from './DisabledCover';
+import { Toast } from '@/shared/Toast';
 import { CouponType } from '../mocks/types/couponType';
 
 interface EventCardProps {
@@ -18,7 +19,7 @@ interface EventCardProps {
 }
 
 const EventCard = ({
-  couponId,
+  couponId, // TODO: 쿠폰 발급 요청을 위해 남겨둔건데, 쿠폰 이름으로 되있어서 확인 필요
   name,
   couponType,
   stock,
@@ -28,9 +29,30 @@ const EventCard = ({
   startDiff,
   endDiff
 }: EventCardProps) => {
-  const handleGetCoupon = (couponId: number) => {
-    console.log(couponId, '요청');
-    console.log('쿠폰 발급 완료!'); // TODO: 쿠폰 받기 onSuccess > 토스트
+  const { mutate, isPending } = useMutation({
+    mutationFn: couponAPI.postCouponReceive,
+    onError: ({ response }) => {
+      if (response) {
+        const { status } = response;
+        switch (status) {
+          case 400:
+            Toast.show({ status: 'info', message: '쿠폰이 마감되었어요' });
+            break;
+          case 409:
+            Toast.show({ status: 'info', message: '이미 발급된 쿠폰이에요' });
+            break;
+          default:
+            Toast.show({ status: 'danger', message: '발급이 불가능합니다' });
+        }
+      }
+    },
+    onSuccess: () => {
+      Toast.show({ status: 'confirm', message: '쿠폰 발급 완료!' });
+    }
+  });
+
+  const handleGetCoupon = (couponName: string) => {
+    mutate({ couponName });
   };
 
   return (
@@ -82,9 +104,10 @@ const EventCard = ({
             className={clsx(
               'cursor-pointer text-center font-IMHyemin-bold',
               'btn px-7 py-1 text-sm text-white',
-              COUPON_MAP[couponType].bgStyle
+              COUPON_MAP[couponType].bgStyle,
+              { 'pointer-events-none': isPending }
             )}
-            onClick={() => handleGetCoupon(couponId)}
+            onClick={() => handleGetCoupon(name)}
           >
             쿠폰 받기
           </div>
