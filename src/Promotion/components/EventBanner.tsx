@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useSuspenseQuery } from '@tanstack/react-query';
+import { clsx } from 'clsx';
 import couponOptions from '@/core/api/options/coupon';
-import { Icon } from '@/shared/Icon';
 
 const EventBanner = () => {
   const { data: couponCount } = useSuspenseQuery({
@@ -18,28 +18,24 @@ const EventBanner = () => {
 
   return (
     couponCount > 0 && (
-      <div className="flex h-fit w-full items-center justify-between gap-5 bg-warning px-5 py-4">
-        <div className="flex flex-wrap items-center gap-1 text-black">
+      <Link
+        to="/event"
+        className={clsx(
+          'flex h-fit w-full items-center justify-between gap-5 p-5',
+          'bg-gradient-to-l from-[#D2D68F] via-[#AEE6CF] to-[#60D4DE] shadow-nav'
+        )}
+      >
+        <div className="flex flex-wrap items-center gap-1 text-white">
           <div>선착순 쿠폰이</div>
           <div>
-            <span className="mr-1 font-IMHyemin-bold text-white">
-              {couponCount}
-            </span>
-            장 남았어요!
+            <span className="mr-1 font-IMHyemin-bold">{couponCount}</span>장
+            남았어요!
           </div>
         </div>
-        <Link
-          to="/event"
-          className="btn flex cursor-pointer break-keep bg-light-main text-black"
-        >
-          이벤트 보러가기
-          <Icon
-            icon="RiCoupon2Fill"
-            size="lg"
-            className="ml-2 mt-1 -rotate-45"
-          />
-        </Link>
-      </div>
+        <div className="flex cursor-pointer break-keep rounded-2xl bg-light-main px-7 py-1 text-sm text-black">
+          보러가기
+        </div>
+      </Link>
     )
   );
 };
