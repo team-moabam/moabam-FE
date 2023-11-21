@@ -3,7 +3,6 @@ import z from 'zod';
 import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import roomAPI from '@/core/api/functions/roomAPI';
-import { useMoveRoute } from '@/core/hooks';
 import {
   ANNOUNCEMENT,
   ROUTINE_NAME,
@@ -58,8 +57,6 @@ interface useRoomFormProps {
 }
 
 const useRoomForm = ({ roomId, defaultValues }: useRoomFormProps) => {
-  const moveTo = useMoveRoute();
-
   const mutation = useMutation({
     mutationFn: roomAPI.putRoom
   });
@@ -112,10 +109,6 @@ const useRoomForm = ({ roomId, defaultValues }: useRoomFormProps) => {
             setError('password', { message: password });
             setError('certifyTime', { message: certifyTime });
             setError('userCount', { message: maxUserCount });
-          }
-
-          if (error.response?.status === 401) {
-            moveTo('join');
           }
         }
       }

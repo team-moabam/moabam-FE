@@ -113,10 +113,6 @@ const useRoomForm = () => {
             setError('certifyTime', { message: certifyTime });
             setError('userCount', { message: maxUserCount });
           }
-
-          if (error.response?.status === 401) {
-            moveTo('join');
-          }
         }
       }
     );
