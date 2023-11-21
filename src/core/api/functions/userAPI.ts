@@ -1,8 +1,8 @@
 import { baseInstance } from '../instance';
 
 const userAPI = {
-  getUser: async (userId: string) => {
-    return await baseInstance.get(`/members/${userId}`);
+  getUser: async (userId = '') => {
+    return await baseInstance.get(`/members${userId ?? '/'}${userId}`);
   },
   putUser: async (body: {
     nickname?: string;

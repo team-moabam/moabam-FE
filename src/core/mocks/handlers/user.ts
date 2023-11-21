@@ -3,7 +3,7 @@ import { baseURL } from '../baseURL';
 import { myData, otherUserData } from '../datas/user';
 
 const userHandlers = [
-  http.get(baseURL('/members/'), async () => {
+  http.get(baseURL('/members'), async () => {
     await delay(1000);
     return HttpResponse.json(myData, { status: 200 });
   }),
