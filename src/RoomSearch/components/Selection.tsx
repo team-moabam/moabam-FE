@@ -7,11 +7,11 @@ interface SelectionProps {
   setRoomType: React.Dispatch<React.SetStateAction<RoomSelectType>>;
 }
 
-const TYPES = ['all', 'morning', 'night'] as const;
+const TYPES = ['ALL', 'MORNING', 'NIGHT'] as const;
 const typeMap = {
-  all: '전체',
-  morning: '아침',
-  night: '밤'
+  ALL: '전체',
+  MORNING: '아침',
+  NIGHT: '밤'
 };
 
 const Selection = ({ currentRoomType, setRoomType }: SelectionProps) => {

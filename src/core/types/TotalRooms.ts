@@ -1,6 +1,6 @@
 import { DayType } from '.';
 
-export type RoomSelectType = 'morning' | 'night' | 'all';
+export type RoomSelectType = 'ALL' | 'MORNING' | 'NIGHT';
 
 export interface Room {
   id: number;

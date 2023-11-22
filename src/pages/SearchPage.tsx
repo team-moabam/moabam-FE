@@ -8,7 +8,7 @@ import ResultListFallback from '@/RoomSearch/components/ResultListFallback';
 import { NetworkFallback } from '@/shared/ErrorBoundary';
 
 const SearchPage = () => {
-  const [roomType, setRoomType] = useState<RoomSelectType>('all');
+  const [roomType, setRoomType] = useState<RoomSelectType>('ALL');
   const [keyword, setKeyword] = useState('');
 
   return (
