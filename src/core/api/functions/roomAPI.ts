@@ -1,4 +1,8 @@
-import { RoomsRequestParams, TotalRooms } from '@/core/types';
+import {
+  RoomsAllRequestParams,
+  RoomsSearchRequestParams,
+  TotalRooms
+} from '@/core/types';
 import { baseInstance } from '../instance';
 import { MyJoinRoom } from '@/core/types/MyJoinRoom';
 import { RoomInfo, RoomInfoBeforeEditing } from '@/core/types/Room';
@@ -56,8 +60,12 @@ const roomAPI = {
     );
   },
 
-  getRoomsAll: async (params?: RoomsRequestParams) => {
+  getRoomsAll: async (params?: RoomsAllRequestParams) => {
     return await baseInstance.get<TotalRooms>('/rooms', { params });
+  },
+
+  getRoomsSearch: async (params?: RoomsSearchRequestParams) => {
+    return await baseInstance.get<TotalRooms>('/rooms/search', { params });
   }
 };
 
