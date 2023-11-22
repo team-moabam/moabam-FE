@@ -23,7 +23,7 @@ const ResultList = ({ roomType, keyword }: ResultListProps) => {
   return (
     <div className="flex flex-col gap-1">
       <AccordionGroup>
-        {data.map((rooms) =>
+        {data.map(({ rooms }) =>
           rooms.map((room) => (
             <RoomAccordion
               room={room}
