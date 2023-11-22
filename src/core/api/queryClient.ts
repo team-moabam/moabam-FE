@@ -25,14 +25,18 @@ const queryClient = new QueryClient({
         memberOptions.myInfo().queryKey
       );
 
-      if (
-        JSON.stringify(query.queryKey) ===
-        JSON.stringify(memberOptions.myInfo().queryKey)
-      ) {
-        return;
-      }
+      try {
+        if (
+          JSON.stringify(query.queryKey) ===
+          JSON.stringify(memberOptions.myInfo().queryKey)
+        ) {
+          return;
+        }
 
-      handleRedirectOnError(error);
+        handleRedirectOnError(error);
+      } catch (err) {
+        console.error(err);
+      }
     }
   }),
   mutationCache: new MutationCache({
