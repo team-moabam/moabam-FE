@@ -12,7 +12,7 @@ export const SEARCH_ROOMS: Room[] = [
     maxUserCount: 9,
     image: '',
     isPassword: true,
-    routine: [
+    routines: [
       {
         routineId: 5,
         content: '물 마시기'
@@ -34,7 +34,7 @@ export const SEARCH_ROOMS: Room[] = [
     maxUserCount: 10,
     image: '',
     isPassword: true,
-    routine: [
+    routines: [
       {
         routineId: 5,
         content: '물 마시기'
@@ -56,7 +56,7 @@ export const SEARCH_ROOMS: Room[] = [
     maxUserCount: 7,
     image: '',
     isPassword: false,
-    routine: [
+    routines: [
       {
         routineId: 5,
         content: '물먹기'
@@ -78,7 +78,7 @@ export const SEARCH_ROOMS: Room[] = [
     maxUserCount: 9,
     image: '',
     isPassword: true,
-    routine: [
+    routines: [
       {
         routineId: 5,
         content: '물 마시기'
@@ -100,7 +100,7 @@ export const SEARCH_ROOMS: Room[] = [
     maxUserCount: 10,
     image: '',
     isPassword: true,
-    routine: [
+    routines: [
       {
         routineId: 5,
         content: '물 마시기'
@@ -122,7 +122,7 @@ export const SEARCH_ROOMS: Room[] = [
     maxUserCount: 7,
     image: '',
     isPassword: false,
-    routine: [
+    routines: [
       {
         routineId: 5,
         content: '물먹기'
@@ -144,7 +144,7 @@ export const SEARCH_ROOMS: Room[] = [
     maxUserCount: 9,
     image: '',
     isPassword: true,
-    routine: [
+    routines: [
       {
         routineId: 5,
         content: '물 마시기'
@@ -166,7 +166,7 @@ export const SEARCH_ROOMS: Room[] = [
     maxUserCount: 10,
     image: '',
     isPassword: true,
-    routine: [
+    routines: [
       {
         routineId: 5,
         content: '물 마시기'
@@ -188,7 +188,7 @@ export const SEARCH_ROOMS: Room[] = [
     maxUserCount: 7,
     image: '',
     isPassword: false,
-    routine: [
+    routines: [
       {
         routineId: 5,
         content: '물먹기'
@@ -210,7 +210,7 @@ export const SEARCH_ROOMS: Room[] = [
     maxUserCount: 7,
     image: '',
     isPassword: false,
-    routine: [
+    routines: [
       {
         routineId: 5,
         content: '물먹기'
@@ -232,7 +232,7 @@ export const SEARCH_ROOMS: Room[] = [
     maxUserCount: 9,
     image: '',
     isPassword: true,
-    routine: [
+    routines: [
       {
         routineId: 5,
         content: '물 마시기'
@@ -254,7 +254,7 @@ export const SEARCH_ROOMS: Room[] = [
     maxUserCount: 10,
     image: '',
     isPassword: true,
-    routine: [
+    routines: [
       {
         routineId: 5,
         content: '물 마시기'
@@ -276,7 +276,7 @@ export const SEARCH_ROOMS: Room[] = [
     maxUserCount: 7,
     image: '',
     isPassword: false,
-    routine: [
+    routines: [
       {
         routineId: 5,
         content: '물먹기'
@@ -298,7 +298,7 @@ export const SEARCH_ROOMS: Room[] = [
     maxUserCount: 9,
     image: '',
     isPassword: true,
-    routine: [
+    routines: [
       {
         routineId: 5,
         content: '물 마시기'
@@ -320,7 +320,7 @@ export const SEARCH_ROOMS: Room[] = [
     maxUserCount: 10,
     image: '',
     isPassword: true,
-    routine: [
+    routines: [
       {
         routineId: 5,
         content: '물 마시기'
@@ -342,7 +342,7 @@ export const SEARCH_ROOMS: Room[] = [
     maxUserCount: 7,
     image: '',
     isPassword: false,
-    routine: [
+    routines: [
       {
         routineId: 5,
         content: '물먹기'
@@ -364,7 +364,7 @@ export const SEARCH_ROOMS: Room[] = [
     maxUserCount: 9,
     image: '',
     isPassword: true,
-    routine: [
+    routines: [
       {
         routineId: 5,
         content: '물 마시기'
@@ -386,7 +386,7 @@ export const SEARCH_ROOMS: Room[] = [
     maxUserCount: 10,
     image: '',
     isPassword: true,
-    routine: [
+    routines: [
       {
         routineId: 5,
         content: '물 마시기'
@@ -408,7 +408,7 @@ export const SEARCH_ROOMS: Room[] = [
     maxUserCount: 7,
     image: '',
     isPassword: false,
-    routine: [
+    routines: [
       {
         routineId: 5,
         content: '물먹기'
@@ -430,7 +430,7 @@ export const SEARCH_ROOMS: Room[] = [
     maxUserCount: 7,
     image: '',
     isPassword: false,
-    routine: [
+    routines: [
       {
         routineId: 5,
         content: '물먹기'
@@ -452,7 +452,7 @@ export const SEARCH_ROOMS: Room[] = [
     maxUserCount: 9,
     image: '',
     isPassword: true,
-    routine: [
+    routines: [
       {
         routineId: 5,
         content: '물 마시기'
@@ -474,7 +474,7 @@ export const SEARCH_ROOMS: Room[] = [
     maxUserCount: 10,
     image: '',
     isPassword: true,
-    routine: [
+    routines: [
       {
         routineId: 5,
         content: '물 마시기'
@@ -496,7 +496,7 @@ export const SEARCH_ROOMS: Room[] = [
     maxUserCount: 7,
     image: '',
     isPassword: false,
-    routine: [
+    routines: [
       {
         routineId: 5,
         content: '물먹기'
@@ -518,7 +518,7 @@ export const SEARCH_ROOMS: Room[] = [
     maxUserCount: 9,
     image: '',
     isPassword: true,
-    routine: [
+    routines: [
       {
         routineId: 5,
         content: '물 마시기'
@@ -540,7 +540,7 @@ export const SEARCH_ROOMS: Room[] = [
     maxUserCount: 10,
     image: '',
     isPassword: true,
-    routine: [
+    routines: [
       {
         routineId: 5,
         content: '물 마시기'
@@ -562,7 +562,7 @@ export const SEARCH_ROOMS: Room[] = [
     maxUserCount: 7,
     image: '',
     isPassword: false,
-    routine: [
+    routines: [
       {
         routineId: 5,
         content: '물먹기'
@@ -584,7 +584,7 @@ export const SEARCH_ROOMS: Room[] = [
     maxUserCount: 9,
     image: '',
     isPassword: true,
-    routine: [
+    routines: [
       {
         routineId: 5,
         content: '물 마시기'
@@ -606,7 +606,7 @@ export const SEARCH_ROOMS: Room[] = [
     maxUserCount: 10,
     image: '',
     isPassword: true,
-    routine: [
+    routines: [
       {
         routineId: 5,
         content: '물 마시기'
@@ -628,7 +628,7 @@ export const SEARCH_ROOMS: Room[] = [
     maxUserCount: 7,
     image: '',
     isPassword: false,
-    routine: [
+    routines: [
       {
         routineId: 5,
         content: '물먹기'
@@ -650,7 +650,7 @@ export const SEARCH_ROOMS: Room[] = [
     maxUserCount: 7,
     image: '',
     isPassword: false,
-    routine: [
+    routines: [
       {
         routineId: 5,
         content: '물먹기'

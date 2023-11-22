@@ -1,5 +1,5 @@
 import { http, HttpResponse, delay } from 'msw';
-import { Room } from '@/RoomList/mocks/types/rooms';
+import { Room } from '@/core/types';
 import { baseURL } from '../baseURL';
 import { RoomInfo, RoomInfoBeforeEditing } from '../datas/room';
 import { MY_JOIN_ROOMS } from '../datas/myJoinRoom';

@@ -13,7 +13,7 @@ export interface Room {
   certifyTime: number;
   currentUserCount: number;
   maxUserCount: number;
-  routine: {
+  routines: {
     routineId: number;
     content: string;
   }[];

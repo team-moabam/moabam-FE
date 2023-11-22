@@ -1,7 +1,7 @@
 import { clsx } from 'clsx';
 import { useMoveRoute } from '@/core/hooks';
 import useHover from '@/core/hooks/useHover';
-import { Room } from '@/RoomList/mocks/types/rooms';
+import { Room } from '@/core/types';
 import roomListStyle from '@/RoomList/styles/roomListStyle';
 import { Accordion, AccordionHeader, AccordionBody } from '@/shared/Accordion';
 import { RoomSummary } from '@/RoomSummary';
@@ -14,7 +14,7 @@ interface RoomAccordionProps {
 }
 
 const RoomAccordion = ({ room }: RoomAccordionProps) => {
-  const { routine, id } = room;
+  const { routines, id } = room;
   const moveTo = useMoveRoute();
   const [hoverRef, hovered] = useHover<HTMLDivElement>();
   const keyword = useKeyword();
@@ -48,7 +48,7 @@ const RoomAccordion = ({ room }: RoomAccordionProps) => {
       >
         <div className="p-4 pt-5">
           <RoutineList>
-            {routine.map(({ routineId, content }) => (
+            {routines.map(({ routineId, content }) => (
               <RoutineItem key={routineId}>
                 <KeywordText
                   content={content}
