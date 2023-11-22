@@ -12,9 +12,17 @@ const useLocalStorage = <T>(
   initialValue: T
 ): [T, Dispatch<SetStateAction<T>>] => {
   const [state, setState] = useState<T>(() => {
-    const storedValue = localStorage.getItem(key);
+    try {
+      const storedValue = localStorage.getItem(key);
 
-    return storedValue ? (JSON.parse(storedValue) as T) : initialValue;
+      if (storedValue) {
+        return JSON.parse(storedValue) as T;
+      }
+    } catch (err) {
+      console.error(err);
+    }
+
+    return initialValue;
   });
 
   const saveState = useCallback(
