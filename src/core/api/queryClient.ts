@@ -6,9 +6,9 @@ import { STORAGE_KEYS } from '../constants/storageKeys';
 
 const handleRedirectOnError = (error: CustomAxiosError) => {
   if (error.response?.status === 401) {
+    localStorage.removeItem(STORAGE_KEYS.MEMBER_ID);
     router.navigate('/join');
   }
-  localStorage.clearItem(STORAGE_KEYS.MEMBER_ID);
 };
 
 const queryClient = new QueryClient({
