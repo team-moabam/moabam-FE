@@ -1,29 +1,37 @@
-import { RoomsRequestParams, TotalRooms } from '@/core/types';
-import { baseInstance } from '../instance';
+import {
+  RoomsAllRequestParams,
+  RoomsSearchRequestParams,
+  TotalRooms
+} from '@/core/types';
+import { baseInstance, formDataInstance } from '../instance';
 import { MyJoinRoom } from '@/core/types/MyJoinRoom';
-import { RoomInfo } from '@/core/types/Room';
+import { RoomInfo, RoomInfoBeforeEditing } from '@/core/types/Room';
 
 const roomAPI = {
   postRoom: async (body: {
     title: string;
     password: string;
-    type: string;
-    routine: string[];
+    roomType: string;
+    routines: string[];
     certifyTime: number;
     maxUserCount: number;
   }) => {
-    return await baseInstance.post<{ message: string }>('/rooms', body);
+    return await baseInstance.post<number>('/rooms', body);
   },
 
   getRoomDetail: async (roomId: string) => {
-    return await baseInstance.get<RoomInfo>(`/rooms/${roomId}`);
+    return await baseInstance.get<RoomInfoBeforeEditing>(`/rooms/${roomId}`);
+  },
+
+  getRoomDetailByDate: async (roomId: string, date: string) => {
+    return await baseInstance.get<RoomInfo>(`/rooms/${roomId}/${date}`);
   },
 
   putRoom: async (params: {
     roomId: string;
     title: string;
     announcement: string;
-    routine: string[];
+    routines: string[];
     password: string;
     certifyTime: number;
     maxUserCount: number;
@@ -51,7 +59,7 @@ const roomAPI = {
       `/rooms/${roomId}/members/${memberId}/delegation`
     );
   },
-
+    
   getRoomsAll: async (params?: RoomsRequestParams) => {
     const response: TotalRooms = await baseInstance.get('/rooms', { params });
     return response.rooms;
@@ -59,6 +67,25 @@ const roomAPI = {
 
   getMemberPoke: async (roomId: string, memberId: string) => {
     return await baseInstance.get(`/rooms/${roomId}/${memberId}`);
+  },
+    
+  postRoutineCertificate: async (params: {
+    roomId: string;
+    body: FormData;
+  }) => {
+    const { roomId, body } = params;
+    return await formDataInstance.post<{ message: string }>(
+      `/rooms/${roomId}/certification`,
+      body
+    );
+  },
+
+  getRoomsAll: async (params?: RoomsAllRequestParams) => {
+    return await baseInstance.get<TotalRooms>('/rooms', { params });
+  },
+
+  getRoomsSearch: async (params?: RoomsSearchRequestParams) => {
+    return await baseInstance.get<TotalRooms>('/rooms/search', { params });
   }
 };
 

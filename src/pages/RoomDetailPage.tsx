@@ -1,15 +1,19 @@
 import { Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { roomOptions } from '@/core/api/options';
-import { RoomInfo, RoomNotice, RoomWorkspace } from '@/RoomDetail';
+import { RoomNotice } from '@/RoomDetail';
 import { Header } from '@/shared/Header';
 import { Icon } from '@/shared/Icon';
+import RoomDetailContainer from '@/RoomDetail/components/RoomDetailContainer';
+import RoomDetailProvider from '@/RoomDetail/components/RoomDetailProvider';
 
 const RoomDetailPage = () => {
   const roomId = '1234';
+  const serverTime = new Date();
+  const todayDate = `${serverTime.getFullYear()}-${serverTime.getMonth()}-${serverTime.getDate()}`;
 
   const { data: roomDetailData, status } = useQuery({
-    ...roomOptions.detail(roomId)
+    ...roomOptions.detailByDate(roomId, todayDate)
   });
 
   if (status !== 'success') return <div>임시 Loading...</div>;
@@ -41,12 +45,12 @@ const RoomDetailPage = () => {
         </div>
       </Header>
       <RoomNotice content={announcement} />
-      <div className="h-[20.56rem] bg-[url('/level1.png')] bg-cover bg-no-repeat text-white">
-        <RoomInfo {...roomDetailData} />
-      </div>
-      <div className="px-[1.81rem] pb-[1.62rem] pt-[1.88rem]">
-        <RoomWorkspace {...roomDetailData} />
-      </div>
+      <RoomDetailProvider serverTime={serverTime}>
+        <RoomDetailContainer
+          roomDetailData={roomDetailData}
+          serverTime={serverTime}
+        />
+      </RoomDetailProvider>
     </div>
   );
 };

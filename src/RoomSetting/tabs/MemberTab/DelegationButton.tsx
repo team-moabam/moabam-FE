@@ -4,6 +4,7 @@ import { useMoveRoute } from '@/core/hooks';
 import { ModalHeadingStyle, descriptionStyle, errorStyle } from './styles';
 import { BottomSheet, useBottomSheet } from '@/shared/BottomSheet';
 import { LoadingSpinner } from '@/shared/LoadingSpinner';
+import { Toast } from '@/shared/Toast';
 
 interface DelegationButtonProps {
   roomId: string;
@@ -30,9 +31,15 @@ const DelegationButton = ({
       {
         onSuccess: () => {
           moveTo('roomDetail');
-          // TODO: 토스트 메시지로 방장을 위임했음을 알려야 해요.
+          Toast.show({ message: '방장을 위임했어요.', status: 'confirm' });
         },
-        onError: (err) => console.error(err)
+        onError: (err) => {
+          console.error(err);
+          Toast.show({
+            message: err.response?.data.message ?? '오류가 발생했어요.',
+            status: 'danger'
+          });
+        }
       }
     );
   };

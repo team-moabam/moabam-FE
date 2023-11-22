@@ -1,7 +1,6 @@
 # 모아밤
 
 ## 개요
-
 > 열심히 사는 새가 벌레를 먹는다. 🐦🦉
 
 당신은 규칙적인 삶을 살고 계신가요? 혹시 집과 회사만을 오가는 일상에 치여 자신과의 약속을 미루고 있지는 않나요?  
@@ -15,7 +14,8 @@
 
 ## 개발 서버 실행 방법
 [➡️ 스토리북 URL](https://moabam-storybook.netlify.app/)  
-[➡️ 모아밤 배포 URL (현재 개발중!)](https://www.moabam.com/)
+[➡️ 모아밤 개발용 배포 URL (현재 개발중)](https://dev.moabam.com/)  
+[➡️ 모아밤 Production 배포 URL (준비중)](https://www.moabam.com/)  
 
 ```
 npm install

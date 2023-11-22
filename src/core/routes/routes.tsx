@@ -17,6 +17,7 @@ import CouponPage from '@/pages/CouponPage';
 import ParticipateLog from '@/pages/ParticipateLog';
 import OrderLogPage from '@/pages/OrderLogPage';
 import StorePage from '@/pages/StorePage';
+import GuidePage from '@/pages/GuidePage';
 
 interface Route {
   path: string;
@@ -61,7 +62,7 @@ const routes: Routes = {
     path: 'guide',
     authRequired: false,
     navBarRequired: false,
-    element: <div>guide</div>
+    element: <GuidePage />
   },
   join: {
     path: 'join',

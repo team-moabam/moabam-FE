@@ -2,12 +2,19 @@ import { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 import memberAPI from '@/core/api/functions/memberAPI';
-import { useMoveRoute } from '@/core/hooks';
+import { getFCMToken } from '@/core/utils/firebase';
+import notificationAPI from '@/core/api/functions/notificationAPI';
+import { useMoveRoute, useLocalStorage } from '@/core/hooks';
+import { STORAGE_KEYS } from '@/core/constants/storageKeys';
 import { LoadingSpinner } from '@/shared/LoadingSpinner';
 
 const JoinKakaoPage = () => {
   const [searchParams] = useSearchParams();
   const code = searchParams.get('code');
+  const [memberId, setMemberId] = useLocalStorage<number | null>(
+    STORAGE_KEYS.MEMBER_ID,
+    null
+  );
   const moveTo = useMoveRoute();
 
   const { mutate, isPending, isError, error } = useMutation({
@@ -18,8 +25,12 @@ const JoinKakaoPage = () => {
     mutate(
       { code: code ?? '' },
       {
-        onSuccess: ({ signUp }) => {
-          moveTo(signUp ? 'guide' : 'start');
+        onSuccess: async (data) => {
+          moveTo(data.signUp ? 'guide' : 'start');
+          setMemberId(data.id);
+
+          const fcmToken = await getFCMToken();
+          notificationAPI.postFCMToken({ fcmToken });
         }
       }
     );

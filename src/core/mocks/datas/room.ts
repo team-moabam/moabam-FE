@@ -10,7 +10,7 @@ export const RoomInfo = {
   maxUserCount: 9,
   announcement: '2번 연속 인증 안하는 사람은 추방할 예정입니다 ㅅㄱ!',
   completePercentage: 66.7,
-  certifiedDates: ['2023-03-02', '2023-03-03', '2023-03-02'],
+  certifiedDates: ['2023-11-13', '2023-11-14', '2023-11-16'],
   routine: [
     {
       routineId: 5,
@@ -34,11 +34,11 @@ export const RoomInfo = {
       certificationImage: [
         {
           routineId: 5,
-          image: 'https://picsum.photos/200'
+          image: null
         },
         {
           routineId: 9,
-          image: 'https://picsum.photos/200'
+          image: null
         }
       ]
     },
@@ -111,6 +111,40 @@ export const RoomInfo = {
       awakeImage: 'https://picsum.photos/200',
       sleepImage: 'https://picsum.photos/200',
       certificationImage: null
+    }
+  ]
+};
+
+export const RoomInfoBeforeEditing = {
+  roomId: 3,
+  title: '재맹이의 방',
+  announcement: '방의 공지사항입니다!',
+  roomType: 'MORNING',
+  certifyTime: 9,
+  maxUserCount: 10,
+  password: '1234',
+  routines: [
+    {
+      routineId: 5,
+      content: '물 마시기'
+    },
+    {
+      routineId: 9,
+      content: '아침 먹기'
+    }
+  ],
+  participants: [
+    {
+      memberId: 4,
+      nickname: '참여자1',
+      contributionPoint: 70,
+      profileImage: 'https://~'
+    },
+    {
+      memberId: 8,
+      nickname: '참여자2',
+      contributionPoint: 70,
+      profileImage: 'https://~'
     }
   ]
 };
