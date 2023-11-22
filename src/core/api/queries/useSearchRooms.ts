@@ -13,7 +13,10 @@ const useSearchRooms = ({
     queryKey: ['rooms', roomType, keyword],
 
     queryFn: ({ pageParam }) => {
-      const params: RoomsRequestParams = { roomType };
+      const params: RoomsRequestParams = {};
+      if (roomType !== 'ALL') {
+        params.roomType = roomType;
+      }
       if (pageParam > 0) {
         params.roomId = pageParam;
       }
