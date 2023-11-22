@@ -1,10 +1,10 @@
 import React from 'react';
 import { clsx } from 'clsx';
-import { SelectType } from '../types/search';
+import { RoomSelectType } from '@/core/types';
 
 interface SelectionProps {
-  currentRoomType: SelectType;
-  setRoomType: React.Dispatch<React.SetStateAction<SelectType>>;
+  currentRoomType: RoomSelectType;
+  setRoomType: React.Dispatch<React.SetStateAction<RoomSelectType>>;
 }
 
 const TYPES = ['all', 'morning', 'night'] as const;
