@@ -21,7 +21,7 @@ const RoomMembers = ({ members }: RoomMembers) => {
               nickname={nickname}
               contribution={contributionPoint}
             />
-            <button className="btn dark:btn-dark-point btn-light-point flex h-[1.875rem] w-[4.37rem] items-center rounded-s-lg p-0  px-[0.56rem] font-IMHyemin-bold text-sm">
+            <button className="btn dark:btn-dark-point btn-light-point flex h-[1.875rem] w-[4.37rem] items-center rounded-lg p-0  px-[0.56rem] font-IMHyemin-bold text-sm">
               <Icon
                 icon="BiSolidHandRight"
                 size="lg"

@@ -1,8 +1,10 @@
 import { Suspense } from 'react';
+import { ErrorBoundary } from '@suspensive/react';
 import { DAY_TYPE } from '../constants/dayType';
 import RoomData from './RoomData';
 import RoomDataFallback from './RoomDataFallback';
 import { Deffered } from '@/shared/Deffered';
+import { NetworkFallback } from '@/shared/ErrorBoundary';
 import { DayType } from '@/core/types/Room';
 
 interface RoomSlideProps {
@@ -19,15 +21,17 @@ const RoomSlide = ({ roomType }: RoomSlideProps) => {
           {START} ~ {END}시
         </div>
       </div>
-      <Suspense
-        fallback={
-          <Deffered>
-            <RoomDataFallback />
-          </Deffered>
-        }
-      >
-        <RoomData dayType={roomType} />
-      </Suspense>
+      <ErrorBoundary fallback={<NetworkFallback />}>
+        <Suspense
+          fallback={
+            <Deffered>
+              <RoomDataFallback />
+            </Deffered>
+          }
+        >
+          <RoomData dayType={roomType} />
+        </Suspense>
+      </ErrorBoundary>
     </div>
   );
 };

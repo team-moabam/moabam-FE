@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
-import { ErrorBoundary } from '@suspensive/react';
 import { useRouteData } from '@/core/hooks';
+import { QueryErrorBoundary, NetworkFallback } from '@/shared/ErrorBoundary';
 import { Header } from '@/shared/Header';
 import { Tab, TabItem } from '@/shared/Tab';
 import { RoomTab, MemberTab, RemoveTab, LoadingFallback } from '@/RoomSetting';
@@ -13,7 +13,7 @@ const RoomSettingPage = () => {
     <>
       <Header prev="roomDetail" />
 
-      <ErrorBoundary fallback={<div>Error Occured in RoomSettingPage!</div>}>
+      <QueryErrorBoundary fallback={<NetworkFallback />}>
         <Tab
           align="center"
           itemStyle="mt-10 px-8"
@@ -34,7 +34,7 @@ const RoomSettingPage = () => {
             </Suspense>
           </TabItem>
         </Tab>
-      </ErrorBoundary>
+      </QueryErrorBoundary>
     </>
   );
 };

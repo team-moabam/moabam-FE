@@ -24,6 +24,12 @@ const RoomWorkspace = ({
 }: RoomWorkspaceProps) => {
   const { bottomSheetProps, toggle, close } = useBottomSheet();
 
+  const myCertificationImage = todayCertificateRank.find(
+    ({ memberId }) => memberId === '5'
+  )?.certificationImage;
+
+  // Todo : RoomCalendar data props
+
   return (
     <>
       {
@@ -60,7 +66,10 @@ const RoomWorkspace = ({
           ) : (
             <>
               <CertificationProgress percentage={completePercentage} />
-              <RoomRoutine routines={routine} />
+              <RoomRoutine
+                routines={routine}
+                myCertificationImage={myCertificationImage}
+              />
             </>
           )}
           <button

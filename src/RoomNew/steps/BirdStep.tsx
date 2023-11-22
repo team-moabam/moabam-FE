@@ -15,7 +15,7 @@ const BirdStep = () => {
     formState: { errors }
   } = useFormContext<Inputs>();
 
-  const watchType = watch('type');
+  const watchType = watch('roomType');
 
   return (
     <>
@@ -29,20 +29,22 @@ const BirdStep = () => {
       </p>
 
       <section className="flex justify-around gap-10 pt-10 max-[320px]:flex-col">
-        {ROOM_TYPES.map((type) => (
+        {ROOM_TYPES.map((roomType) => (
           <BirdCard
-            key={type}
-            type={type}
-            active={watchType === type}
+            key={roomType}
+            type={roomType}
+            active={watchType === roomType}
             onClick={() => {
-              setValue('type', type);
-              setValue('certifyTime', TIME_RANGE[type][0]);
+              setValue('roomType', roomType);
+              setValue('certifyTime', TIME_RANGE[roomType][0]);
             }}
           />
         ))}
       </section>
 
-      {errors.type && <p className={errorStyle}>{errors.type.message}</p>}
+      {errors.roomType && (
+        <p className={errorStyle}>{errors.roomType.message}</p>
+      )}
     </>
   );
 };

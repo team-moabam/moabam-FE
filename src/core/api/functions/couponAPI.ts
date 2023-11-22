@@ -3,8 +3,11 @@ import { CouponStatus } from '@/core/types';
 import { baseInstance } from '../instance';
 
 const couponAPI = {
-  postAllCoupons: async (body: CouponStatus) => {
+  postCouponsByStatus: async (body: CouponStatus) => {
     return await baseInstance.post<Coupons>('/coupons/search', body);
+  },
+  postCouponReceive: async (params: { couponName: string }) => {
+    return await baseInstance.post('/coupons', null, { params });
   }
 };
 

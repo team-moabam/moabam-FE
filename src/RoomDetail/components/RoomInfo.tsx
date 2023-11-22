@@ -11,6 +11,7 @@ const RoomInfo = ({
   currentUserCount,
   maxUserCount,
   todayCertificateRank,
+  certifyTime,
   status
 }: RoomInfoProps) => {
   return (
@@ -18,7 +19,10 @@ const RoomInfo = ({
       {status !== 'success' ? (
         <div>임시 Loading...</div>
       ) : (
-        <RoomMemberRank todayCertificateRank={todayCertificateRank} />
+        <RoomMemberRank
+          todayCertificateRank={todayCertificateRank}
+          certifyTime={certifyTime}
+        />
       )}
       <div className="absolute inset-x-0 bottom-0">
         <div className="mb-2 flex items-end justify-between bg-inherit pl-3.5 pr-7">

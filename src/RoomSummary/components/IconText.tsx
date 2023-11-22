@@ -3,17 +3,17 @@ import { Icon } from '@/shared/Icon';
 
 interface IconTextProps {
   icon: keyof typeof iconMap;
-  text: string;
+  content: React.ReactNode;
 }
 
-const IconText = ({ icon, text }: IconTextProps) => {
+const IconText = ({ icon, content }: IconTextProps) => {
   return (
     <div className="mr-4 flex items-center">
       <Icon
         icon={icon}
         className="mr-1 text-base"
       />
-      <div>{text}</div>
+      <div>{content}</div>
     </div>
   );
 };

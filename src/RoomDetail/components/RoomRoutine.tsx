@@ -4,28 +4,16 @@ import CertificationBottomSheet from './CertificationBottomSheet';
 import { useBottomSheet } from '@/shared/BottomSheet';
 import { RoutineList, RoutineItem } from '@/shared/RoutineList';
 
-const certificationImage = [
-  {
-    routineId: 5,
-    // image: 'https://picsum.photos/200'
-    image: null
-  },
-  {
-    routineId: 9,
-    // image: 'https://picsum.photos/200'
-    image: null
-  }
-];
-
 interface RoomRoutineProps {
   routines: { routineId: number; content: string }[];
+  myCertificationImage?: { routineId: number; image: string }[];
 }
 
-const RoomRoutine = ({ routines }: RoomRoutineProps) => {
+const RoomRoutine = ({ routines, myCertificationImage }: RoomRoutineProps) => {
   const { bottomSheetProps, toggle, close } = useBottomSheet();
   const form = useForm<FormCertificationImage[]>({
     mode: 'onSubmit',
-    defaultValues: certificationImage.map(() => ({
+    defaultValues: myCertificationImage?.map(() => ({
       file: null
     }))
   });
@@ -41,6 +29,8 @@ const RoomRoutine = ({ routines }: RoomRoutineProps) => {
         <CertificationBottomSheet
           bottomSheetProps={bottomSheetProps}
           close={close}
+          myCertificationImage={myCertificationImage}
+          routines={routines}
         />
       </FormProvider>
       <div className="mb-[0.88rem] flex justify-between text-base">

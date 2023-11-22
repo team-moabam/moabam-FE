@@ -10,8 +10,8 @@ import RoomDetailProvider from '@/RoomDetail/components/RoomDetailProvider';
 const RoomDetailPage = () => {
   const roomId = '1234';
   const serverTime = new Date();
-
   const todayDate = `${serverTime.getFullYear()}-${serverTime.getMonth()}-${serverTime.getDate()}`;
+
   const { data: roomDetailData, status } = useQuery({
     ...roomOptions.detailByDate(roomId, todayDate)
   });

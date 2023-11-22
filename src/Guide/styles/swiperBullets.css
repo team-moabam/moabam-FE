@@ -1,0 +1,22 @@
+.swiper-pagination {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.bullet-custom {
+  display: block;
+  width: 1rem;
+  height: 1rem;
+  background-color: #9ca3af;
+  border-radius: 100%;
+  cursor: pointer;
+}
+
+.bullet-active-custom--light {
+  background-color: #60d4de;
+}
+
+.bullet-active-custom--dark {
+  background-color: #f9bd7d;
+}
