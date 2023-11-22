@@ -7,6 +7,7 @@ interface ReportBottomSheetProps {
   bottomSheetProps: BottomSheetProps;
   close: () => void;
   nickname: string;
+  reportedId: string;
 }
 
 const reportContent = {
@@ -20,7 +21,8 @@ const reportContent = {
 const ReportBottomSheet = ({
   bottomSheetProps,
   // close,
-  nickname = '신고당하는사람'
+  nickname,
+  reportedId
 }: ReportBottomSheetProps) => {
   const objReportContent = Object.entries(reportContent);
   const [checked, setChecked] = useState<string>('');

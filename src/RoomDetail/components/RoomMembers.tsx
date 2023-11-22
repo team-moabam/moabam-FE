@@ -12,6 +12,12 @@ interface RoomMembers {
 
 const RoomMembers = ({ members, reportStatus }: RoomMembers) => {
   const { bottomSheetProps, toggle, close } = useBottomSheet();
+  const [chooseUserInfo, setSelectUserInfo] = useState({
+    nickname: '',
+    reportedId: ''
+  });
+
+  const { nickname, reportedId } = chooseUserInfo;
 
   return (
     <>
@@ -31,6 +37,7 @@ const RoomMembers = ({ members, reportStatus }: RoomMembers) => {
               {reportStatus ? (
                 <button
                   onClick={() => {
+                    setSelectUserInfo({ nickname, reportedId: memberId });
                     toggle();
                   }}
                   className="btn btn-danger flex h-[1.875rem] w-[4.37rem] items-center rounded-lg p-0  px-[0.56rem] font-IMHyemin-bold text-sm"
@@ -54,7 +61,8 @@ const RoomMembers = ({ members, reportStatus }: RoomMembers) => {
       <ReportBottomSheet
         bottomSheetProps={bottomSheetProps}
         close={close}
-        nickname=""
+        nickname={nickname}
+        reportedId={reportedId}
       />
     </>
   );
