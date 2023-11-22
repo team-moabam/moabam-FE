@@ -57,7 +57,7 @@ const roomAPI = {
     return response.rooms;
   },
 
-  getMemberPoke: async (roomId: string | undefined, memberId: string) => {
+  getMemberPoke: async (roomId: string, memberId: string) => {
     return await baseInstance.get(`/rooms/${roomId}/${memberId}`);
   }
 };

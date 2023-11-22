@@ -15,7 +15,7 @@ const RoomMembers = ({ members }: RoomMembers) => {
   } = useRouteData();
 
   const handlePokeButtonClick = async (memberId: string, nickname: string) => {
-    const { status } = await roomAPI.getMemberPoke(roomId, memberId);
+    const { status } = await roomAPI.getMemberPoke(roomId || '', memberId);
 
     if (status === 200) {
       Toast.show({
@@ -25,6 +25,43 @@ const RoomMembers = ({ members }: RoomMembers) => {
         subText: '콕콕'
       });
     }
+  };
+
+  const buttonContent = (
+    rank: number,
+    isNotificationSent: boolean,
+    memberId: string,
+    nickname: string
+  ) => {
+    if (rank < 500) {
+      return (
+        <span className="block h-[1.875rem] w-[4.37rem] text-center text-sm text-light-point dark:text-dark-point">
+          루틴 완료!
+        </span>
+      );
+    }
+
+    if (isNotificationSent) {
+      return (
+        <button
+          className="btn dark:btn-dark-point btn-light-point flex h-[1.875rem] w-[4.37rem] items-center rounded-lg p-0  px-[0.56rem] font-IMHyemin-bold text-sm"
+          onClick={() => handlePokeButtonClick(memberId, nickname)}
+        >
+          <Icon
+            icon="BiSolidHandRight"
+            size="lg"
+            className="mr-[0.7rem]"
+          />
+          콕!
+        </button>
+      );
+    }
+
+    return (
+      <button className="btn btn-disabled h-[1.875rem] w-[4.37rem] cursor-default rounded-lg p-0 font-IMHyemin-bold text-sm">
+        내일 다시
+      </button>
+    );
   };
 
   return (
@@ -48,27 +85,7 @@ const RoomMembers = ({ members }: RoomMembers) => {
               nickname={nickname}
               contribution={contributionPoint}
             />
-            {rank < 500 ? (
-              <span className="block h-[1.875rem] w-[4.37rem] text-center text-sm text-light-point dark:text-dark-point">
-                루틴 완료!
-              </span>
-            ) : isNotificationSent ? (
-              <button
-                className="btn dark:btn-dark-point btn-light-point flex h-[1.875rem] w-[4.37rem] items-center rounded-lg p-0  px-[0.56rem] font-IMHyemin-bold text-sm"
-                onClick={() => handlePokeButtonClick(memberId, nickname)}
-              >
-                <Icon
-                  icon="BiSolidHandRight"
-                  size="lg"
-                  className="mr-[0.7rem]"
-                />
-                콕!
-              </button>
-            ) : (
-              <button className="btn btn-disabled h-[1.875rem] w-[4.37rem] cursor-default rounded-lg p-0 font-IMHyemin-bold text-sm">
-                내일 다시
-              </button>
-            )}
+            {buttonContent(rank, isNotificationSent, memberId, nickname)}
           </div>
         )
       )}
