@@ -1,11 +1,6 @@
-import { useSuspenseQueries, useSuspenseQuery } from '@tanstack/react-query';
-import { roomOptions, bugOptions } from '@/core/api/options';
-import {
-  MyJoinRoom,
-  ParticipatingRoom,
-  DayType,
-  TodayBugs
-} from '@/core/types';
+import { useSuspenseQuery } from '@tanstack/react-query';
+import { roomOptions } from '@/core/api/options';
+import { MyJoinRoom, ParticipatingRoom, DayType } from '@/core/types';
 import { DAY_TYPE } from '@/RoomSlide/constants/dayType';
 import NewRoomCard from './NewRoomCard';
 import { RoomCard } from '@/RoomList';
