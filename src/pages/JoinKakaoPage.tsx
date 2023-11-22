@@ -27,7 +27,7 @@ const JoinKakaoPage = () => {
       {
         onSuccess: async (data) => {
           moveTo(data.signUp ? 'guide' : 'start');
-          setMemberId(data.memberId);
+          setMemberId(data.id);
 
           const fcmToken = await getFCMToken();
           notificationAPI.postFCMToken({ fcmToken });

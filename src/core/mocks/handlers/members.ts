@@ -31,12 +31,12 @@ const membersHandlers = [
 
     switch (status) {
       case 200:
-        response = { signUp: false, memberId: 5 };
+        response = { signUp: false, id: 5 };
         headers.set('Set-Cookie', 'accessToken=MockedToken;');
         headers.append('Set-Cookie', 'refreshToken=MockedToken;');
         break;
       case 201:
-        response = { signUp: true, memberId: 5 };
+        response = { signUp: true, id: 5 };
         headers.set('Set-Cookie', 'accessToken=MockedToken;');
         headers.append('Set-Cookie', 'refreshToken=MockedToken;');
         break;
