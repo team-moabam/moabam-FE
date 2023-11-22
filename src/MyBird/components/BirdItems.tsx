@@ -34,7 +34,7 @@ const BirdItems = ({ itemType }: BirdItemsProps) => {
     useContextSelector(MyBirdContext, (state) => state);
   const { bottomSheetProps, open, close } = useBottomSheet();
 
-  const fetchSelectItem = useDebounce((id: string) => {
+  const fetchSelectItem = useDebounce((id: number) => {
     console.log('스킨 변경 요청 중..');
     mutation.mutate(id, {
       onSuccess: (data) => {

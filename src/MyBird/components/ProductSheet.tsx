@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { BiSolidBugAlt } from 'react-icons/bi';
 import { useContextSelector } from 'use-context-selector';
 import itemAPI from '@/core/api/functions/itemAPI';
@@ -22,7 +22,7 @@ const ProductSheet = ({ close }: ProductSheetProps) => {
   const mutation = useMutation({
     mutationFn: itemAPI.purchase
   });
-
+  const queryClient = useQueryClient();
   const { bugPrice, goldenBugPrice, level, name, type } =
     productItem as ItemType;
   const { morningBug, nightBug, goldenBug } = bugs as BugsType;
@@ -48,13 +48,14 @@ const ProductSheet = ({ close }: ProductSheetProps) => {
     }
   ];
 
-  const purchaseBird = (id: string) => {
+  const purchaseBird = (id: number) => {
     if (!purchaseOption) return;
     mutation.mutate(
       { itemId: id, bugType: purchaseOption },
       {
         onSuccess: (data) => {
           setSelectItem({ ...selectItem, [type]: productItem });
+          queryClient.invalidateQueries({ queryKey: [''] });
           close();
         },
         onError: (e) => {

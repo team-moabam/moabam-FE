@@ -1,5 +1,5 @@
 export interface ItemType {
-  id: string;
+  id: number;
   type: 'MORNING' | 'NIGHT';
   category: string;
   name: string;
