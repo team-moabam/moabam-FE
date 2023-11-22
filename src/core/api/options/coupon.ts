@@ -1,41 +1,34 @@
 import { queryOptions } from '@tanstack/react-query';
-import { CouponStatus } from '@/core/types';
 import couponAPI from '../functions/couponAPI';
 
 const couponOptions = {
-  all: (body: CouponStatus) =>
+  available: () =>
     queryOptions({
-      queryKey: ['coupons', body] as const,
-      queryFn: () => couponAPI.postCouponsByStatus(body)
-    }),
-  onGoing: () =>
-    queryOptions({
-      queryKey: ['coupons', 'onGoing'] as const,
+      queryKey: ['coupons', 'available'] as const,
       queryFn: () =>
         couponAPI.postCouponsByStatus({
-          couponOngoing: true,
-          couponEnded: false,
-          couponNotStarted: false
+          opened: false,
+          ended: false
         })
     }),
-  ended: () =>
+
+  opened: () =>
     queryOptions({
-      queryKey: ['coupons', 'ended'] as const,
+      queryKey: ['coupons', 'available', 'opened'] as const,
       queryFn: () =>
         couponAPI.postCouponsByStatus({
-          couponOngoing: false,
-          couponEnded: true,
-          couponNotStarted: false
+          opened: true,
+          ended: true
         })
     }),
-  notStarted: () =>
+
+  closed: () =>
     queryOptions({
-      queryKey: ['coupons', 'notStarted'] as const,
+      queryKey: ['coupons', 'closed'] as const,
       queryFn: () =>
         couponAPI.postCouponsByStatus({
-          couponOngoing: false,
-          couponEnded: false,
-          couponNotStarted: true
+          opened: false,
+          ended: true
         })
     })
 };

@@ -3,14 +3,14 @@ import { clsx } from 'clsx';
 import { Icon } from '@/shared/Icon';
 
 interface DisabledCoverProps {
-  dueType: 'ended' | 'notStarted';
+  dueType: 'opened' | 'closed';
   startDiff: number;
 }
 
 const DisabledCover = ({ dueType, startDiff }: DisabledCoverProps) => {
   return (
     <div className="absolute inset-0 flex justify-center bg-black bg-opacity-[0.4] text-white">
-      {dueType === 'ended' ? (
+      {dueType === 'closed' ? (
         <span
           className={clsx(
             'mt-24 h-fit rounded-full px-3 py-1 font-IMHyemin-bold',

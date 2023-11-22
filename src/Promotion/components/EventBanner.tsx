@@ -5,15 +5,15 @@ import { clsx } from 'clsx';
 import couponOptions from '@/core/api/options/coupon';
 
 const EventBanner = () => {
-  const { data: couponCount } = useSuspenseQuery({
-    ...couponOptions.onGoing(),
+  const { data } = useSuspenseQuery({
+    ...couponOptions.available(),
     select: (data): number => {
       return Object.values(data).length;
     }
   });
 
   return (
-    couponCount > 0 && (
+    data > 0 && (
       <Link
         to="/event"
         state={{ from: 'routines' }}
@@ -23,11 +23,7 @@ const EventBanner = () => {
         )}
       >
         <div className="flex flex-wrap items-center gap-1 text-white">
-          <div>선착순 쿠폰이</div>
-          <div>
-            <span className="mr-1 font-IMHyemin-bold">{couponCount}</span>장
-            남았어요!
-          </div>
+          <div className="font-IMHyemin-bold">진행 중인 이벤트가 있어요!</div>
         </div>
         <div className="flex cursor-pointer break-keep rounded-2xl bg-light-main px-7 py-1 text-sm text-black">
           보러가기

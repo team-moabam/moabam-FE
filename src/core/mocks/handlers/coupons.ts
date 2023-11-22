@@ -1,11 +1,27 @@
 import { http, HttpResponse, delay } from 'msw';
 import { baseURL } from '../baseURL';
-import { ONGOING_COUPONS } from '../datas/coupons';
+import { COUPONS } from '../datas/coupons';
 
 const couponsHandlers = [
   http.post(baseURL('/coupons/search'), async () => {
     await delay(1500);
-    return HttpResponse.json(ONGOING_COUPONS, { status: 200 });
+    return HttpResponse.json(
+      [
+        {
+          couponId: 15,
+          name: '새 멤버 환영',
+          point: 10,
+          description: '오늘의 루틴도 화이팅!',
+          couponType: 'MORNING_COUPON',
+          stock: 20,
+          openAt: new Date().toJSON(),
+          startAt: new Date().toJSON(),
+          couponAdminName: 'Moabam'
+        },
+        ...COUPONS
+      ],
+      { status: 200 }
+    );
   }),
 
   http.post(baseURL('/coupons'), async () => {
@@ -28,7 +44,7 @@ const couponsHandlers = [
         break;
     }
 
-    return HttpResponse.json(response, { status });
+    return HttpResponse.json({ response }, { status });
   })
 ];
 

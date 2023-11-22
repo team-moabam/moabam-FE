@@ -1,17 +1,23 @@
-import { useSuspenseQueries } from '@tanstack/react-query';
+import { useQuery, useSuspenseQueries } from '@tanstack/react-query';
 import couponOptions from '@/core/api/options/coupon';
+import { Coupons } from '@/core/types';
+import timeOption from '@/core/api/options/time';
 import getDateDiff from '../utils/getDateDiff';
 import EventCard from './EventCard';
 
-const dueTypes = ['onGoing', 'notStarted', 'ended'] as const;
+const dueTypes = ['opened', 'closed'] as const;
 
 const EventList = () => {
-  const today = new Date().toJSON(); // TODO: 서버시간 API 연결
+  const { data: today } = useQuery(timeOption);
   const results = useSuspenseQueries({
     queries: [
-      couponOptions.onGoing(),
-      couponOptions.notStarted(),
-      couponOptions.ended()
+      couponOptions.opened(),
+      {
+        ...couponOptions.closed(),
+        select: (data: Coupons) => {
+          return data.slice(0, 5);
+        }
+      }
     ]
   });
 
@@ -23,8 +29,10 @@ const EventList = () => {
             {...coupon}
             key={coupon.couponId}
             dueType={dueTypes[resultIndex]}
-            startDiff={getDateDiff(today, coupon.startAt)}
-            endDiff={getDateDiff(today, coupon.endAt)}
+            startDiff={getDateDiff(
+              (today || new Date()).toJSON(),
+              coupon.startAt
+            )}
           />
         ))
       )}

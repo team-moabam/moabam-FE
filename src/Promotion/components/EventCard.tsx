@@ -13,9 +13,8 @@ interface EventCardProps {
   stock: number;
   point: number;
   description: string;
-  dueType: 'onGoing' | 'notStarted' | 'ended';
+  dueType: 'opened' | 'closed';
   startDiff: number;
-  endDiff: number;
 }
 
 const EventCard = ({
@@ -26,9 +25,10 @@ const EventCard = ({
   point,
   description,
   dueType,
-  startDiff,
-  endDiff
+  startDiff
 }: EventCardProps) => {
+  const couponAvailable = startDiff === 0 && dueType === 'opened';
+
   const { mutate, isPending } = useMutation({
     mutationFn: couponAPI.postCouponReceive,
     onError: ({ response }) => {
@@ -67,7 +67,7 @@ const EventCard = ({
           className="object-cover"
           src={COUPON_MAP[couponType].imgSrc}
         ></img>
-        {dueType === 'onGoing' && (
+        {dueType === 'opened' && (
           <div
             className={clsx(
               'absolute right-3 top-3 w-fit rounded-2xl px-2 py-1',
@@ -75,7 +75,7 @@ const EventCard = ({
               'bg-black bg-opacity-[0.4]'
             )}
           >
-            {endDiff}일 뒤 종료
+            {stock}개 남음
           </div>
         )}
       </div>
@@ -98,8 +98,7 @@ const EventCard = ({
           <div className="text-xs text-dark-gray">{description}</div>
         </div>
 
-        <div className="flex items-center justify-between">
-          <div className="text-xs text-dark-gray">{stock}개 남음</div>
+        <div className="flex items-center justify-end">
           <div
             className={clsx(
               'cursor-pointer text-center font-IMHyemin-bold',
@@ -113,7 +112,7 @@ const EventCard = ({
           </div>
         </div>
       </div>
-      {dueType !== 'onGoing' && (
+      {!couponAvailable && (
         <DisabledCover
           dueType={dueType}
           startDiff={startDiff}
