@@ -1,4 +1,4 @@
-import { useEffect, useRef, useContext } from 'react';
+import { MouseEvent, useRef, useContext } from 'react';
 import clsx from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { makeWeekCalendar } from '../utils/utils';
@@ -26,16 +26,13 @@ const RoomCalendar = ({
     chooseDate.getMonth() + 1
   }-${chooseDate.getDate()}`;
 
-  useEffect(() => {
-    const handleOutsideClose = (e: MouseEvent) => {
-      if (dateRef.current && !dateRef.current?.contains(e.target as Node)) {
-        selectDate(serverTime);
-      }
-    };
-    document.addEventListener('click', handleOutsideClose);
+  const handleDateClick = (e: MouseEvent<HTMLDivElement>) => {
+    if (e.target !== dateRef.current) {
+      return;
+    }
 
-    return () => document.removeEventListener('click', handleOutsideClose);
-  }, [selectDate, serverTime]);
+    selectDate(new Date());
+  };
 
   return (
     <div className="mb-[3.19rem] mt-[1.87rem]">
@@ -43,6 +40,7 @@ const RoomCalendar = ({
       <div
         className="flex justify-between"
         ref={dateRef}
+        onClick={handleDateClick}
       >
         {thisWeekTimestamp.map((thisDate) => {
           const date = thisDate.getDate();
@@ -56,7 +54,7 @@ const RoomCalendar = ({
           const RoomCalendarStyle = {
             calendarItem: twMerge(
               clsx(
-                'relative flex h-[5.87rem] w-[3.12rem] cursor-default flex-col items-center  pt-1 text-center ',
+                'relative flex h-[5.87rem] w-[3.12rem] cursor-default flex-col items-center pt-1 text-center',
                 {
                   'text-dark-gray': serverTime.getTime() < thisDate.getTime(),
                   'text-black': serverTime.getTime() >= thisDate.getTime(),
