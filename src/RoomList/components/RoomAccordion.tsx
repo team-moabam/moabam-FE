@@ -42,7 +42,7 @@ const RoomAccordion = ({ room }: RoomAccordionProps) => {
       </AccordionHeader>
       <AccordionBody
         className={clsx(
-          'relative top-[-0.6rem] rounded-b-2xl',
+          'relative top-[-0.5rem] rounded-b-2xl',
           roomListStyle['bg-room-card']
         )}
       >
