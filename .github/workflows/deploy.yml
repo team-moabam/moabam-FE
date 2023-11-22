@@ -2,7 +2,7 @@ name: React App CI/CD
 
 on:
   push:
-    branches: ['fix/#199/json-crash']
+    branches: ['main']
 
 jobs:
   build:
