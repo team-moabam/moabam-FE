@@ -4,6 +4,7 @@ import roomsHandlers from './rooms';
 import membersHandlers from './members';
 import bugsHandlers from './bugs';
 import couponsHandlers from './coupons';
+import reportsHandlers from './reports';
 
 const handlers = [
   ...examplePostHandlers,
@@ -11,7 +12,8 @@ const handlers = [
   ...roomsHandlers,
   ...membersHandlers,
   ...bugsHandlers,
-  ...couponsHandlers
+  ...couponsHandlers,
+  ...reportsHandlers
 ];
 
 export default handlers;
