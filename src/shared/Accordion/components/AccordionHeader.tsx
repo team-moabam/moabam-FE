@@ -41,8 +41,8 @@ const AccordionHeader = ({
         })}
       >
         <Icon
-          icon="BiChevronUpCircle"
-          size="2xl"
+          icon="BiChevronDownCircle"
+          size="3xl"
         />
       </div>
     </motion.div>
