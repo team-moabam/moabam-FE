@@ -59,16 +59,11 @@ const roomAPI = {
       `/rooms/${roomId}/members/${memberId}/delegation`
     );
   },
-    
-  getRoomsAll: async (params?: RoomsRequestParams) => {
-    const response: TotalRooms = await baseInstance.get('/rooms', { params });
-    return response.rooms;
-  },
 
   getMemberPoke: async (roomId: string, memberId: string) => {
     return await baseInstance.get(`/rooms/${roomId}/${memberId}`);
   },
-    
+
   postRoutineCertificate: async (params: {
     roomId: string;
     body: FormData;

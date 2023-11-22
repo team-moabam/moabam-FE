@@ -27,36 +27,7 @@ const RoomMembers = ({ members }: RoomMembers) => {
     }
   };
 
-  return (
-    <div className="mt-[2.87rem]">
-      {members.map(
-        ({
-          memberId,
-          nickname,
-          profileImage,
-          contributionPoint,
-          rank,
-          isNotificationSent
-        }) => (
-          <div
-            key={memberId}
-            className="mb-[1.19rem] flex items-center justify-between"
-          >
-            <Avatar
-              imgUrl={profileImage}
-              userId={memberId}
-              nickname={nickname}
-              contribution={contributionPoint}
-            />
-            {ButtonContent(rank, isNotificationSent, memberId, nickname)}
-          </div>
-        )
-      )}
-    </div>
-  );
-};
-
- const ButtonContent = (
+  const ButtonContent = (
     rank: number,
     isNotificationSent: boolean,
     memberId: string,
@@ -92,5 +63,34 @@ const RoomMembers = ({ members }: RoomMembers) => {
       </button>
     );
   };
+
+  return (
+    <div className="mt-[2.87rem]">
+      {members.map(
+        ({
+          memberId,
+          nickname,
+          profileImage,
+          contributionPoint,
+          rank,
+          isNotificationSent
+        }) => (
+          <div
+            key={memberId}
+            className="mb-[1.19rem] flex items-center justify-between"
+          >
+            <Avatar
+              imgUrl={profileImage}
+              userId={memberId}
+              nickname={nickname}
+              contribution={contributionPoint}
+            />
+            {ButtonContent(rank, isNotificationSent, memberId, nickname)}
+          </div>
+        )
+      )}
+    </div>
+  );
+};
 
 export default RoomMembers;
