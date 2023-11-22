@@ -114,6 +114,7 @@ const roomsHandlers = [
     switch (status) {
       case 200:
         response = RoomInfo;
+
         break;
       case 401:
         response = { message: '존재하지 않는 유저입니다.' };
@@ -223,6 +224,25 @@ const roomsHandlers = [
     }
 
     return HttpResponse.json(response, { status });
+  }),
+
+  http.post(baseURL('/rooms/:roomId/certification'), async ({ request }) => {
+    await delay(1000);
+
+    const data = await request.formData();
+    const file = data.get('5');
+
+    if (!file) {
+      return new HttpResponse('Missing document', { status: 400 });
+    }
+
+    if (!(file instanceof File)) {
+      return new HttpResponse('Uploaded document is not a File', {
+        status: 400
+      });
+    }
+
+    return HttpResponse.json({}, { status: 200 });
   }),
 
   http.get(baseURL('/rooms'), async ({ request }) => {

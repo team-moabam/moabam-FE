@@ -3,7 +3,8 @@ import {
   RoomsSearchRequestParams,
   TotalRooms
 } from '@/core/types';
-import { baseInstance } from '../instance';
+import { baseInstance, formDataInstance } from '../instance';
+
 import { MyJoinRoom } from '@/core/types/MyJoinRoom';
 import { RoomInfo, RoomInfoBeforeEditing } from '@/core/types/Room';
 
@@ -57,6 +58,17 @@ const roomAPI = {
     const { roomId, memberId } = params;
     return await baseInstance.put(
       `/rooms/${roomId}/members/${memberId}/delegation`
+    );
+  },
+
+  postRoutineCertificate: async (params: {
+    roomId: string;
+    body: FormData;
+  }) => {
+    const { roomId, body } = params;
+    return await formDataInstance.post<{ message: string }>(
+      `/rooms/${roomId}/certification`,
+      body
     );
   },
 
