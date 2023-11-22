@@ -8,7 +8,8 @@ import {
   QueryClientProvider
 } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import router from './core/routes/router';
+import memberOptions from '@/core/api/options/member';
+import router from '@/core/routes/router';
 import { ThemeProvider } from '@/core/hooks/useTheme';
 import { CustomAxiosError } from '@/core/api/types';
 import './main.css';
@@ -38,7 +39,16 @@ const queryClient = new QueryClient({
     }
   },
   queryCache: new QueryCache({
-    onError: handleRedirectOnError
+    onError: (error, query) => {
+      if (
+        JSON.stringify(query.queryKey) ===
+        JSON.stringify(memberOptions.myInfo().queryKey)
+      ) {
+        return;
+      }
+
+      handleRedirectOnError(error);
+    }
   }),
   mutationCache: new MutationCache({
     onError: handleRedirectOnError

@@ -1,15 +1,26 @@
+import { useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import { ErrorBoundary } from '@suspensive/react';
+import { useQuery } from '@tanstack/react-query';
 import clsx from 'clsx';
-import { useRouteData, useTheme } from '@/core/hooks';
+import memberOptions from './core/api/options/member';
+import { useMoveRoute, useRouteData, useTheme } from '@/core/hooks';
 import { Navbar } from './shared/Navbar';
 import { UnknownFallback } from './shared/ErrorBoundary';
 import 'swiper/css';
 import 'swiper/css/bundle';
 
 const App = () => {
-  const { navBarRequired, path } = useRouteData();
+  const { navBarRequired, authRequired, path } = useRouteData();
+  const moveTo = useMoveRoute();
   const { theme } = useTheme();
+  const { error } = useQuery({ ...memberOptions.myInfo() });
+
+  useEffect(() => {
+    if (authRequired && error?.response?.status === 401) {
+      moveTo('join');
+    }
+  }, [authRequired, error]);
 
   return (
     <div
