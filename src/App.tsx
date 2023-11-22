@@ -15,7 +15,7 @@ import 'swiper/css/bundle';
 const App = () => {
   const { navBarRequired, path } = useRouteData();
   const { theme, setTheme } = useTheme();
-  // useCheckAuthRequired();
+  useCheckAuthRequired();
 
   const { data, isSuccess } = useQuery({
     ...timeOption,
