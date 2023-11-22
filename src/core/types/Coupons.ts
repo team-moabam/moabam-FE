@@ -31,3 +31,7 @@ export interface MyCoupon {
   description: string;
   type: 'MORNING_COUPON' | 'NIGHT_COUPON' | 'GOLDEN_COUPON';
 }
+
+export interface MyCouponsType {
+  myCouponsResponse: MyCoupon[];
+}

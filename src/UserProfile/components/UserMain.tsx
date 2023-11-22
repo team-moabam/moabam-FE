@@ -3,7 +3,6 @@ import { useSuspenseQueries } from '@tanstack/react-query';
 import userOptions from '@/core/api/options/user';
 import UserProfile from './UserProfile';
 import { ProgressBar } from '@/shared/ProgressBar';
-import { userType } from '@/core/types/User';
 
 interface UserMainProps {
   userId: string | undefined;
@@ -12,13 +11,12 @@ interface UserMainProps {
 const UserMain = ({ userId = '' }: UserMainProps) => {
   const [
     {
-      data: { nickname, intro, level, exp, birds, badges, img }
+      data: { nickname, intro, level, exp, birds, badges, profile_image }
     }
   ] = useSuspenseQueries({
     queries: [
       {
-        ...userOptions.user(userId),
-        select: (user: userType) => user
+        ...userOptions.user(userId)
       }
     ]
   });
@@ -28,7 +26,7 @@ const UserMain = ({ userId = '' }: UserMainProps) => {
       <UserProfile
         nickname={nickname}
         intro={intro}
-        img={img}
+        profile_image={profile_image}
       />
       <div className="my-2 mt-4 flex w-full items-end justify-between">
         <div className="text-xl text-light-point dark:text-dark-point">
@@ -46,7 +44,7 @@ const UserMain = ({ userId = '' }: UserMainProps) => {
           to="/mybird"
           className="cursor-pointer text-light-point dark:text-dark-point"
         >
-          변경
+          스킨 변경
         </Link>
       </div>
       <div className="flex w-full justify-center gap-4">
@@ -75,19 +73,17 @@ const UserMain = ({ userId = '' }: UserMainProps) => {
         <h1>뱃지</h1>
       </div>
       <div className="flex h-36 w-full rounded-lg  text-sm">
-        {badgeArray.map((badge) => (
+        {badges.slice(0, 3).map(({ name, Success }) => (
           <div
             className="flex h-full w-2/6 flex-col items-center justify-center gap-2 rounded-lg"
-            key={badge}
+            key={name}
           >
             <div
               className={`h-14 w-14 rounded-full ${
-                badges[badge]
-                  ? 'bg-light-point dark:bg-dark-point'
-                  : 'bg-dark-gray'
+                Success ? 'bg-light-point dark:bg-dark-point' : 'bg-dark-gray'
               }`}
             />
-            <p className="text-center">{badge}</p>
+            <p className="text-center">{name}</p>
           </div>
         ))}
       </div>
@@ -96,9 +92,3 @@ const UserMain = ({ userId = '' }: UserMainProps) => {
 };
 
 export default UserMain;
-
-const badgeArray: ('오목눈이_탄생' | '어른_오목눈이' | '어른_부엉이')[] = [
-  '오목눈이_탄생',
-  '어른_오목눈이',
-  '어른_부엉이'
-];

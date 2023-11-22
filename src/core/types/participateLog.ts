@@ -4,3 +4,7 @@ export interface ParticipateLogType {
   createdAt: string;
   deletedAt: null | string;
 }
+
+export interface ParticipateHistoryType {
+  roomHistory: ParticipateLogType[];
+}

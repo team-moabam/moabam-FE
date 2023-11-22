@@ -9,13 +9,28 @@ export const MY_DATA = {
     NIGHT_SKIN:
       'https://i.pinimg.com/564x/f4/9d/21/f49d217cae2f110e8acee4ed1f120483.jpg'
   },
-  badges: {
-    오목눈이_탄생: true,
-    어른_오목눈이: false,
-    어른_부엉이: false,
-    부엉이_탄생: true
-  },
-  img: undefined
+  badges: [
+    {
+      name: '오목눈이_탄생',
+      Success: true
+    },
+    {
+      name: '어른_오목눈이',
+      Success: false
+    },
+    {
+      name: '어른_부엉이',
+      Success: true
+    },
+    {
+      name: '부엉이_탄생',
+      Success: true
+    }
+  ],
+  profile_image: undefined,
+  golden_bug: 3,
+  morning_bug: 4,
+  night_bug: 5
 };
 
 export const OTHER_USER_DATA = {
@@ -29,11 +44,42 @@ export const OTHER_USER_DATA = {
     NIGHT_SKIN:
       'https://i.pinimg.com/564x/f4/9d/21/f49d217cae2f110e8acee4ed1f120483.jpg'
   },
-  badges: {
-    오목눈이_탄생: true,
-    어른_오목눈이: false,
-    어른_부엉이: false,
-    부엉이_탄생: true
-  },
-  img: undefined
+  badges: [
+    {
+      name: '오목눈이_탄생',
+      Success: true
+    },
+    {
+      name: '어른_오목눈이',
+      Success: false
+    },
+    {
+      name: '어른_부엉이',
+      Success: true
+    },
+    {
+      name: '부엉이_탄생',
+      Success: true
+    }
+  ],
+  profile_image: undefined
 };
+
+export interface userType {
+  nickname: string;
+  intro: string;
+  level: number;
+  exp: number;
+  birds: {
+    MORNING_SKIN: string;
+    NIGHT_SKIN: string;
+  };
+  badges: {
+    name: string;
+    Success: boolean;
+  }[];
+  profile_image: string | undefined;
+  golden_bug?: number;
+  morning_bug?: number;
+  night_bug?: number;
+}

@@ -4,21 +4,23 @@ import { FaClipboardList } from 'react-icons/fa6';
 import { IoMdCash } from 'react-icons/io';
 import { bugOptions } from '@/core/api/options';
 import { bugs } from '../mocks/Bugs';
-import { bugHistoryType } from '@/core/types/bugHistory';
 
 const OrderLogList = () => {
-  const [{ data }] = useSuspenseQueries({
+  const [
+    {
+      data: { history }
+    }
+  ] = useSuspenseQueries({
     queries: [
       {
-        ...bugOptions.history(),
-        select: ({ history }: { history: bugHistoryType[] }) => history
+        ...bugOptions.history()
       }
     ]
   });
 
   return (
     <ul>
-      {data.map(({ id, bugType, action, amount, date }) => (
+      {history.map(({ id, bugType, action, amount, date }) => (
         <li
           className="flex items-center p-5"
           key={id}

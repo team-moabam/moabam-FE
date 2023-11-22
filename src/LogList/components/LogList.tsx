@@ -2,22 +2,23 @@ import { Link } from 'react-router-dom';
 import { useSuspenseQueries } from '@tanstack/react-query';
 import { MdLogout, MdLogin } from 'react-icons/md';
 import { roomOptions } from '@/core/api/options';
-import { ParticipateLogType } from '@/core/types/participateLog';
 
 const LogList = () => {
-  const [{ data }] = useSuspenseQueries({
+  const [
+    {
+      data: { roomHistory }
+    }
+  ] = useSuspenseQueries({
     queries: [
       {
-        ...roomOptions.joinHistory(),
-        select: ({ roomHistory }: { roomHistory: ParticipateLogType[] }) =>
-          roomHistory
+        ...roomOptions.joinHistory()
       }
     ]
   });
 
   return (
     <ul>
-      {data.map(({ roomId, title, deletedAt }) => (
+      {roomHistory.map(({ roomId, title, deletedAt }) => (
         <Link
           to={roomId ? `/room/${roomId}` : ''}
           key={roomId}

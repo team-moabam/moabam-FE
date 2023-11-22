@@ -4,10 +4,10 @@ import { MdModeEdit, MdAdd } from 'react-icons/md';
 interface UserProfileProps {
   nickname: string;
   intro: string | undefined;
-  img: string | undefined;
+  profile_image: string | undefined;
 }
 
-const UserProfile = ({ nickname, intro, img }: UserProfileProps) => {
+const UserProfile = ({ nickname, intro, profile_image }: UserProfileProps) => {
   const [isEditMode, setIsEditMode] = useState(false);
   const [newImgUrl, setNewImgUrl] = useState<string | null>(null);
 
@@ -45,7 +45,7 @@ const UserProfile = ({ nickname, intro, img }: UserProfileProps) => {
           />
           <div className="relative h-24 w-24 overflow-hidden rounded-full">
             <img
-              src={img ?? 'public/assets/user.png'}
+              src={profile_image ?? '/assets/user.png'}
               className="absolute h-full w-full object-cover"
             />
             {newImgUrl && (
@@ -104,7 +104,7 @@ const UserProfile = ({ nickname, intro, img }: UserProfileProps) => {
         <div className="flex flex-col items-center gap-2">
           <div className="relative h-24 w-24 overflow-hidden rounded-full">
             <img
-              src={img ?? 'public/assets/user.png'}
+              src={profile_image ?? '/assets/user.png'}
               className="absolute h-full w-full object-cover"
             />
           </div>

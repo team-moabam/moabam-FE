@@ -8,12 +8,11 @@ export interface userType {
     NIGHT_SKIN: string;
   };
   badges: {
-    오목눈이_탄생: boolean;
-    어른_오목눈이: boolean;
-    어른_부엉이: boolean;
-    부엉이_탄생: boolean;
-  };
-  img: string | undefined;
-  participants_count?: number;
-  coupons_count?: number;
+    name: string;
+    Success: boolean;
+  }[];
+  profile_image: string | undefined;
+  golden_bug?: number;
+  morning_bug?: number;
+  night_bug?: number;
 }

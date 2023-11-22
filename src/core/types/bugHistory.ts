@@ -1,4 +1,4 @@
-export interface bugHistoryType {
+export interface BugLogType {
   id: number;
   bugType: 'MORNING_BUG' | 'NIGHT_BUG' | 'GOLDEN_BUG';
   action: '보상' | '쿠폰' | '충전';
@@ -11,4 +11,8 @@ export interface bugHistoryType {
     discount: number;
     provider: string;
   };
+}
+
+export interface BugHistoryType {
+  history: BugLogType[];
 }

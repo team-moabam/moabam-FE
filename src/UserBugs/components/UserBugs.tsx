@@ -1,17 +1,12 @@
 import { useSuspenseQueries } from '@tanstack/react-query';
 import { BiSolidBugAlt } from 'react-icons/bi';
 import { bugOptions } from '@/core/api/options';
-import { MyBugsType } from '@/core/types/myBugs';
 
 const UserBugs = () => {
   const [{ data }] = useSuspenseQueries({
     queries: [
       {
-        ...bugOptions.myBug(),
-        select: (bugs: MyBugsType) => {
-          console.log(bugs);
-          return bugs;
-        }
+        ...bugOptions.myBug()
       }
     ]
   });

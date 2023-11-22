@@ -2,6 +2,7 @@ import { RoomsRequestParams, TotalRooms } from '@/core/types';
 import { baseInstance } from '../instance';
 import { MyJoinRoom } from '@/core/types/MyJoinRoom';
 import { RoomInfo } from '@/core/types/Room';
+import { ParticipateHistoryType } from '@/core/types/participateLog';
 
 const roomAPI = {
   postRoom: async (body: {
@@ -57,7 +58,9 @@ const roomAPI = {
     return response.rooms;
   },
   roomJoinHistory: async () => {
-    return await baseInstance.get(`/rooms/join-history`);
+    return await baseInstance.get<ParticipateHistoryType>(
+      `/rooms/join-history`
+    );
   }
 };
 
