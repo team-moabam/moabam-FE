@@ -9,3 +9,4 @@ export type {
   RoomSelectType,
   RoomsRequestParams
 } from './TotalRooms';
+export type { Report } from './Reports';
