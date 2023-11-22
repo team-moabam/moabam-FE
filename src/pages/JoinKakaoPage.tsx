@@ -2,6 +2,8 @@ import { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 import memberAPI from '@/core/api/functions/memberAPI';
+import { getFCMToken } from '@/core/utils/firebase';
+import notificationAPI from '@/core/api/functions/notificationAPI';
 import { useMoveRoute, useLocalStorage } from '@/core/hooks';
 import { STORAGE_KEYS } from '@/core/constants/storageKeys';
 import { LoadingSpinner } from '@/shared/LoadingSpinner';
@@ -23,9 +25,12 @@ const JoinKakaoPage = () => {
     mutate(
       { code: code ?? '' },
       {
-        onSuccess: (data) => {
+        onSuccess: async (data) => {
           moveTo(data.signUp ? 'guide' : 'start');
           setMemberId(data.id);
+
+          const fcmToken = await getFCMToken();
+          notificationAPI.postFCMToken({ fcmToken });
         }
       }
     );
