@@ -12,7 +12,7 @@ const BirdCard = ({ active = false, type, onClick }: BirdCardProps) => {
   return (
     <div
       className={clsx(
-        'flex h-48 grow cursor-pointer select-none flex-col items-center justify-center rounded-xl border-3 bg-white text-black',
+        'flex h-48 grow cursor-pointer select-none flex-col items-center justify-center rounded-xl border-3 bg-white text-black dark:bg-dark-sub dark:text-white',
         active
           ? 'border-light-point dark:border-dark-point'
           : 'border-transparent'
