@@ -2,7 +2,12 @@ import { Suspense, useState } from 'react';
 import { ErrorBoundary } from '@suspensive/react';
 import { RoomSelectType } from '@/core/types';
 import { KeywordContext } from '@/RoomSearch';
-import { SearchBar, Selection, ResultList } from '@/RoomSearch';
+import {
+  SearchBar,
+  Selection,
+  SearchResultList,
+  AllResultList
+} from '@/RoomSearch';
 import { Deffered } from '@/shared/Deffered';
 import ResultListFallback from '@/RoomSearch/components/ResultListFallback';
 import { NetworkFallback } from '@/shared/ErrorBoundary';
@@ -32,10 +37,14 @@ const SearchPage = () => {
                 </Deffered>
               }
             >
-              <ResultList
-                roomType={roomType}
-                keyword={keyword}
-              />
+              {keyword ? (
+                <SearchResultList
+                  roomType={roomType}
+                  keyword={keyword}
+                />
+              ) : (
+                <AllResultList roomType={roomType} />
+              )}
             </Suspense>
           </ErrorBoundary>
         </div>

@@ -6,5 +6,6 @@ export type {
   TotalRooms,
   Room,
   RoomSelectType,
-  RoomsRequestParams
+  RoomsAllRequestParams,
+  RoomsSearchRequestParams
 } from './TotalRooms';
