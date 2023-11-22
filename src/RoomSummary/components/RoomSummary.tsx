@@ -1,28 +1,36 @@
+import { clsx } from 'clsx';
+import { DayType } from '@/core/types';
+import { useTheme } from '@/core/hooks';
 import IconText from './IconText';
+import { useKeyword } from '@/RoomSearch';
+import KeywordText from '@/RoomSearch/components/KeywordText';
+import { Icon } from '@/shared/Icon';
 
 interface RoomSummaryProps {
   title: string;
-  type: 'MORNING' | 'NIGHT';
+  roomType: DayType;
+  currentType?: DayType;
   certifyTime: number;
   currentUserCount: number;
   maxUserCount: number;
   managerNickname?: string;
+  isPassword?: boolean;
 }
 
 const birdByType = {
-  // 임시입니다 mockData 아닙니다!
   MORNING: {
-    containerStyle: 'h-12 w-12 rounded-full overflow-hidden shrink-0',
-    imgStyle: '',
-    bird: '오목눈이',
-    imgSrc: 'https://i.ibb.co/QkqCq9J/image-107.png'
+    containerBg: 'bg-[#F9F8CA]',
+    imgStyle: 'relative left-[0.1rem] top-1 scale-[95%]',
+    bird: 'Omok',
+    imgSrc: (isAwake?: boolean) =>
+      `/assets/skins/${isAwake ? 'awake' : 'sleep'}OmokSkin0.png`
   },
   NIGHT: {
-    containerStyle:
-      'relative h-12 w-12 rounded-full bg-[#FFF5E9] overflow-hidden shrink-0',
-    imgStyle: 'absolute left-1 top-1',
-    bird: '부엉이',
-    imgSrc: 'https://i.ibb.co/HCyhrsM/image-90.png'
+    containerBg: 'bg-[#FFF5E9]',
+    imgStyle: 'relative scale-[85%] top-1',
+    bird: 'Owl',
+    imgSrc: (isAwake?: boolean) =>
+      `/assets/skins/${isAwake ? 'awake' : 'sleep'}OwlSkin0.png`
   }
 };
 
@@ -31,39 +39,77 @@ const RoomSummary = ({
   certifyTime,
   currentUserCount,
   maxUserCount,
-  type,
-  managerNickname
+  roomType,
+  managerNickname,
+  isPassword
 }: RoomSummaryProps) => {
   const certifyTimeToString = `${
     certifyTime < 10 ? `0${certifyTime}` : certifyTime
   } : 00`;
   const userCountToString = `${currentUserCount} / ${maxUserCount}`;
+  const { theme } = useTheme();
+  const currentType = theme === 'dark' ? 'NIGHT' : 'MORNING';
+  const keyword = useKeyword();
 
   return (
     <div className="flex items-center gap-4">
-      <div className={birdByType[type].containerStyle}>
+      <div
+        className={clsx(
+          'relative h-12 w-12 shrink-0 overflow-hidden rounded-full',
+          birdByType[roomType].containerBg
+        )}
+      >
         <img
-          className={birdByType[type].imgStyle}
-          src={birdByType[type].imgSrc}
-          alt={birdByType[type].bird}
+          className={birdByType[roomType].imgStyle}
+          src={birdByType[roomType].imgSrc(roomType === currentType)}
+          alt={birdByType[roomType].bird}
         />
       </div>
+      {isPassword && (
+        <div
+          className={clsx(
+            'absolute h-6 w-6 rounded-full border-2 border-light-gray bg-dark-gray',
+            'left-10 top-12 flex items-center  justify-center'
+          )}
+        >
+          <Icon
+            icon="MdLockOutline"
+            color="white"
+            className="mb-[0.05rem]"
+          />
+        </div>
+      )}
       <div className="flex flex-col gap-[0.3rem]">
-        <div className="line-clamp-2 font-IMHyemin-bold">{title}</div>
+        <div className="line-clamp-2 font-IMHyemin-bold">
+          {keyword ? (
+            <KeywordText
+              keyword={keyword}
+              content={title}
+              className="font-IMHyemin-bold"
+            />
+          ) : (
+            title
+          )}
+        </div>
         <div className="flex flex-col gap-1 text-xs text-dark-gray">
           <IconText
             icon="LuAlarmClock"
-            text={certifyTimeToString}
+            content={certifyTimeToString}
           />
           <div className="flex flex-wrap gap-1">
             <IconText
               icon="IoPeopleCircle"
-              text={userCountToString}
+              content={userCountToString}
             />
             {managerNickname && (
               <IconText
                 icon="FaCrown"
-                text={managerNickname}
+                content={
+                  <KeywordText
+                    content={managerNickname}
+                    keyword={keyword}
+                  />
+                }
               />
             )}
           </div>

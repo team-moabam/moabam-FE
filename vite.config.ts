@@ -10,31 +10,36 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       injectRegister: 'auto',
+      strategies: 'injectManifest',
+      filename: 'firebase-messaging-sw.js',
       devOptions: {
-        enabled: true,
+        enabled: false,
         type: 'module'
       },
       manifest: {
+        name: 'Moabam: 당신의 루틴을 지켜요!',
+        short_name: 'Moabam',
+        description: '성취감과 의무감을 더하는 루틴 관리 웹 앱',
         theme_color: '#60D4DE',
         icons: [
           {
-            src: 'pwa-64x64.png',
+            src: 'pwa/pwa-64x64.png',
             sizes: '64x64',
             type: 'image/png'
           },
           {
-            src: 'pwa-192x192.png',
+            src: 'pwa/pwa-192x192.png',
             sizes: '192x192',
             type: 'image/png'
           },
           {
-            src: 'pwa-512x512.png',
+            src: 'pwa/pwa-512x512.png',
             sizes: '512x512',
             type: 'image/png',
             purpose: 'any'
           },
           {
-            src: 'maskable-icon-512x512.png',
+            src: 'pwa/maskable-icon-512x512.png',
             sizes: '512x512',
             type: 'image/png',
             purpose: 'maskable'

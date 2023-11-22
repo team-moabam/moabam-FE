@@ -10,12 +10,14 @@ import StartPage from '@/pages/StartPage';
 import EventPage from '@/pages/EventPage';
 import NotFoundPage from '@/pages/NotFoundPage';
 import JoinPage from '@/pages/JoinPage';
+import JoinKakaoPage from '@/pages/JoinKakaoPage';
 import UserPage from '@/pages/UserPage';
 import RankPage from '@/pages/RankPage';
 import CouponPage from '@/pages/CouponPage';
-import VisitLogPage from '@/pages/VisitLogPage';
+import ParticipateLog from '@/pages/ParticipateLog';
 import OrderLogPage from '@/pages/OrderLogPage';
 import StorePage from '@/pages/StorePage';
+import GuidePage from '@/pages/GuidePage';
 
 interface Route {
   path: string;
@@ -28,6 +30,7 @@ export type RouteNames =
   | 'start'
   | 'guide'
   | 'join'
+  | 'joinKakao'
   | 'routines'
   | 'search'
   | 'user'
@@ -59,13 +62,19 @@ const routes: Routes = {
     path: 'guide',
     authRequired: false,
     navBarRequired: false,
-    element: <div>guide</div>
+    element: <GuidePage />
   },
   join: {
     path: 'join',
     authRequired: false,
     navBarRequired: false,
     element: <JoinPage />
+  },
+  joinKakao: {
+    path: 'login/kakao/oauth',
+    authRequired: false,
+    navBarRequired: false,
+    element: <JoinKakaoPage />
   },
   routines: {
     path: 'routines',
@@ -92,13 +101,13 @@ const routes: Routes = {
     element: <UserPage />
   },
   myLog: {
-    path: 'user/visitLog',
+    path: 'user/participate-log',
     authRequired: true,
     navBarRequired: false,
-    element: <VisitLogPage />
+    element: <ParticipateLog />
   },
   myOrderLog: {
-    path: 'user/orderLog',
+    path: 'user/order-log',
     authRequired: true,
     navBarRequired: false,
     element: <OrderLogPage />

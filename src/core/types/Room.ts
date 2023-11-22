@@ -1,11 +1,13 @@
 import { RankMember } from './Member';
 
+export type DayType = 'MORNING' | 'NIGHT';
+
 export type RoomInfo = {
   roomId: number;
   title: string;
   managerNickname: string;
   level: number;
-  roomType: 'MORNING' | 'NIGHT';
+  roomType: DayType;
   certifyTime: number;
   currentUserCount: number;
   maxUserCount: number;
@@ -14,4 +16,21 @@ export type RoomInfo = {
   certifiedDates: string[];
   routine: { routineId: number; content: string }[];
   todayCertificateRank: RankMember[];
+};
+
+export type RoomInfoBeforeEditing = {
+  roomId: number;
+  title: string;
+  announcement: string;
+  roomType: DayType;
+  certifyTime: number;
+  maxUserCount: number;
+  password: string;
+  routines: { routineId: number; content: string }[];
+  participants: {
+    memberId: number;
+    nickname: string;
+    contributionPoint: number;
+    profileImage: string;
+  }[];
 };
