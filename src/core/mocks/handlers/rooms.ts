@@ -43,6 +43,47 @@ const roomsHandlers = [
     return HttpResponse.json(MY_JOIN_ROOMS, { status: 200 });
   }),
 
+  http.get(baseURL('/rooms/search'), async ({ request }) => {
+    await delay(2000);
+    const url = new URL(request.url);
+    const type = url.searchParams.get('roomType');
+    const keyword = url.searchParams.get('keyword');
+    const lastId = Number(url.searchParams.get('roomId'));
+
+    const searchMorningRooms = SEARCH_ROOMS.filter(
+      ({ roomType }) => roomType === 'MORNING'
+    );
+    const searchNightRooms = SEARCH_ROOMS.filter(
+      ({ roomType }) => roomType === 'NIGHT'
+    );
+
+    const cutNextPage = (rooms: Room[]) => {
+      const lastIndex = rooms.findIndex(({ id }) => id === lastId);
+      return rooms.slice(lastIndex + 1, lastIndex + 11);
+    };
+
+    let responseRooms = [];
+
+    switch (type) {
+      case 'MORNING':
+        responseRooms = cutNextPage(searchMorningRooms);
+        break;
+      case 'NIGHT':
+        responseRooms = cutNextPage(searchNightRooms);
+        break;
+      default:
+        responseRooms = cutNextPage(SEARCH_ROOMS);
+    }
+
+    return HttpResponse.json(
+      {
+        rooms: responseRooms,
+        hasNext: responseRooms.length === 10
+      },
+      { status: 200 }
+    );
+  }),
+
   http.get(baseURL('/rooms/:roomId'), async () => {
     await delay(1000);
 
@@ -208,17 +249,10 @@ const roomsHandlers = [
     await delay(2000);
     const url = new URL(request.url);
     const type = url.searchParams.get('roomType');
-    const keyword = url.searchParams.get('keyword');
     const lastId = Number(url.searchParams.get('roomId'));
 
     const morningRooms = ROOMS.filter(({ roomType }) => roomType === 'MORNING');
-    const searchMorningRooms = SEARCH_ROOMS.filter(
-      ({ roomType }) => roomType === 'MORNING'
-    );
     const nightRooms = ROOMS.filter(({ roomType }) => roomType === 'NIGHT');
-    const searchNightRooms = SEARCH_ROOMS.filter(
-      ({ roomType }) => roomType === 'NIGHT'
-    );
 
     const cutNextPage = (rooms: Room[]) => {
       const lastIndex = rooms.findIndex(({ id }) => id === lastId);
@@ -228,16 +262,14 @@ const roomsHandlers = [
     let responseRooms = [];
 
     switch (type) {
-      case 'morning':
-        responseRooms = cutNextPage(
-          keyword ? searchMorningRooms : morningRooms
-        );
+      case 'MORNING':
+        responseRooms = cutNextPage(morningRooms);
         break;
-      case 'night':
-        responseRooms = cutNextPage(keyword ? searchNightRooms : nightRooms);
+      case 'NIGHT':
+        responseRooms = cutNextPage(nightRooms);
         break;
       default:
-        responseRooms = cutNextPage(keyword ? SEARCH_ROOMS : ROOMS);
+        responseRooms = cutNextPage(ROOMS);
     }
 
     return HttpResponse.json(

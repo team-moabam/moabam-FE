@@ -1,24 +1,23 @@
-import { RoomSelectType } from '@/core/types';
-import { useSearchRooms } from '@/core/api/queries';
-import useIntersectionObserver from '../hooks/useIntersectionObserver';
+import React from 'react';
+import { TotalRooms } from '@/core/types';
 import ResultListFallback from './ResultListFallback';
+import { AccordionGroup } from '@/shared/Accordion';
 import { RoomAccordion } from '@/RoomList';
 import { Deffered } from '@/shared/Deffered';
-import { AccordionGroup } from '@/shared/Accordion';
 
+interface InfiniteScrollOptions {
+  isFetchingNextPage: boolean;
+  hasNextPage: boolean;
+  intersectionRef: React.RefObject<HTMLDivElement>;
+}
 interface ResultListProps {
-  roomType: RoomSelectType;
-  keyword: string;
+  data: TotalRooms[];
+  infiniteScrollOptions: InfiniteScrollOptions;
 }
 
-const ResultList = ({ roomType, keyword }: ResultListProps) => {
-  const { fetchNextPage, data, isFetchingNextPage, hasNextPage } =
-    useSearchRooms({ roomType, keyword });
-
-  const intersectionRef = useIntersectionObserver({
-    threshold: 0.5,
-    onObserve: fetchNextPage
-  });
+const ResultList = ({ data, infiniteScrollOptions }: ResultListProps) => {
+  const { isFetchingNextPage, hasNextPage, intersectionRef } =
+    infiniteScrollOptions;
 
   return (
     <div className="flex flex-col gap-1">
