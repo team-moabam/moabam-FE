@@ -19,12 +19,6 @@ const queryClient = new QueryClient({
   },
   queryCache: new QueryCache({
     onError: (error, query) => {
-      console.log('query.queryKey:', query.queryKey);
-      console.log(
-        'memberOptions.myInfo().queryKey:',
-        memberOptions.myInfo().queryKey
-      );
-
       try {
         if (
           JSON.stringify(query.queryKey) ===
