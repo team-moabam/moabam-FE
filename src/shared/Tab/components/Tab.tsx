@@ -7,6 +7,7 @@ interface TabProps {
   children: React.ReactNode;
   defaultIndex?: number;
   currentIndex?: number;
+  setCurrentIndex?: React.Dispatch<React.SetStateAction<number>>;
   align?: 'center' | 'start' | 'end';
   thumnailStyle?: string;
   itemStyle?: string;
@@ -16,10 +17,11 @@ interface TabProps {
 const Tab = ({
   children,
   defaultIndex = 0,
-  currentIndex,
   align = 'center',
   thumnailStyle = '',
   itemStyle = '',
+  currentIndex,
+  setCurrentIndex,
   onChange
 }: TabProps) => {
   const {
@@ -31,6 +33,8 @@ const Tab = ({
   } = useTab({
     tabChildren: children,
     defaultIndex,
+    currentIndex,
+    setCurrentIndex,
     onChange
   });
 
@@ -44,7 +48,7 @@ const Tab = ({
       <TabHeader
         align={align}
         titles={titleOfTabItems}
-        currentTabIndex={currentIndex ?? currentTabIndex}
+        currentTabIndex={currentTabIndex}
         setCurrentTabIndex={setCurrentTabIndex}
       />
       <div className={twMerge('overflow-y-auto', itemStyle)}>{currentTab}</div>
