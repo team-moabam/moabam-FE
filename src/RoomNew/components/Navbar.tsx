@@ -57,7 +57,7 @@ const Navbar = ({
     <nav className="grid grid-cols-2 text-2xl">
       {hasPrev && (
         <button
-          className="col-start-1 h-16 w-full bg-white text-dark-gray transition-all hover:bg-slate-100"
+          className="col-start-1 h-16 w-full bg-white text-dark-gray transition-all hover:bg-slate-100 dark:bg-dark-sub"
           type="button"
           onClick={toPrev}
         >
