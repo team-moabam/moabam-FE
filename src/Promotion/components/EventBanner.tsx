@@ -6,7 +6,7 @@ import couponOptions from '@/core/api/options/coupon';
 
 const EventBanner = () => {
   const { data } = useSuspenseQuery({
-    ...couponOptions.available(),
+    ...couponOptions.filter('available'),
     select: (data): number => {
       return Object.values(data).length;
     }

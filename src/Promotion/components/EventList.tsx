@@ -5,15 +5,15 @@ import timeOption from '@/core/api/options/time';
 import getDateDiff from '../utils/getDateDiff';
 import EventCard from './EventCard';
 
-const dueTypes = ['opened', 'closed'] as const;
+const dueTypes = ['opened', 'ended'] as const;
 
 const EventList = () => {
   const { data: today } = useQuery(timeOption);
   const results = useSuspenseQueries({
     queries: [
-      couponOptions.opened(),
+      couponOptions.filter('opened'),
       {
-        ...couponOptions.closed(),
+        ...couponOptions.filter('ended'),
         select: (data: Coupons) => {
           return data.slice(0, 5);
         }

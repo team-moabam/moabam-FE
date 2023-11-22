@@ -13,7 +13,7 @@ interface EventCardProps {
   stock: number;
   point: number;
   description: string;
-  dueType: 'opened' | 'closed';
+  dueType: 'opened' | 'ended';
   startDiff: number;
 }
 
