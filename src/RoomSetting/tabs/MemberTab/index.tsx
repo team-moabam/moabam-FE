@@ -16,7 +16,7 @@ const MemberTab = ({ roomId }: MemberTabProps) => {
 
   return (
     <div className="flex flex-col gap-4">
-      {room.todayCertificateRank.map((member) => (
+      {room.participants.map((member) => (
         <div
           className="flex items-center justify-between"
           key={member.memberId}
@@ -24,16 +24,18 @@ const MemberTab = ({ roomId }: MemberTabProps) => {
           <Avatar
             imgUrl={member.profileImage}
             nickname={member.nickname}
-            userId={member.memberId}
+            userId={member.memberId.toString()}
             contribution={member.contributionPoint}
           />
           <div className="flex gap-2">
             <KickButton
               {...member}
+              memberId={member.memberId.toString()}
               roomId={roomId}
             />
             <DelegationButton
               {...member}
+              memberId={member.memberId.toString()}
               roomId={roomId}
             />
           </div>

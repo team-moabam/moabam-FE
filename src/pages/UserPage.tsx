@@ -24,7 +24,7 @@ const UserPage = () => {
           <UserBugs />
           <div className="my-3 flex w-full justify-end">
             <Link
-              to={`/user/orderLog`}
+              to={`/user/order-log`}
               className="text-light-point dark:text-dark-point"
             >
               사용내역보기
