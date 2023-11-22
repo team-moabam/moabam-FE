@@ -1,5 +1,5 @@
 import { useSuspenseInfiniteQuery } from '@tanstack/react-query';
-import { RoomSelectType } from '@/core/types';
+import { RoomSelectType, RoomsRequestParams } from '@/core/types';
 import roomAPI from '../functions/roomAPI';
 
 const useSearchRooms = ({
@@ -12,8 +12,16 @@ const useSearchRooms = ({
   return useSuspenseInfiniteQuery({
     queryKey: ['rooms', roomType, keyword],
 
-    queryFn: ({ pageParam }) =>
-      roomAPI.getRoomsAll({ roomType, roomId: pageParam, keyword }),
+    queryFn: ({ pageParam }) => {
+      const params: RoomsRequestParams = { roomType };
+      if (pageParam > 0) {
+        params.roomId = pageParam;
+      }
+      if (keyword) {
+        params.keyword = keyword;
+      }
+      return roomAPI.getRoomsAll(params);
+    },
 
     initialPageParam: 0,
 

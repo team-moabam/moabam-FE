@@ -57,6 +57,7 @@ const roomAPI = {
   },
 
   getRoomsAll: async (params?: RoomsRequestParams) => {
+    console.log(params);
     return await baseInstance.get<TotalRooms>('/rooms', { params });
   }
 };
