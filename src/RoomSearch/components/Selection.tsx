@@ -3,8 +3,8 @@ import { clsx } from 'clsx';
 import { SelectType } from '../types/search';
 
 interface SelectionProps {
-  currentType: SelectType;
-  setType: React.Dispatch<React.SetStateAction<SelectType>>;
+  currentRoomType: SelectType;
+  setRoomType: React.Dispatch<React.SetStateAction<SelectType>>;
 }
 
 const TYPES = ['all', 'morning', 'night'] as const;
@@ -14,7 +14,7 @@ const typeMap = {
   night: '밤'
 };
 
-const Selection = ({ currentType, setType }: SelectionProps) => {
+const Selection = ({ currentRoomType, setRoomType }: SelectionProps) => {
   return (
     <div
       className={clsx(
@@ -30,12 +30,12 @@ const Selection = ({ currentType, setType }: SelectionProps) => {
             'transition-[background] duration-300',
             {
               'font-IMHyemin-bold text-white dark:text-black':
-                type === currentType,
+                type === currentRoomType,
               'bg-opacity-[0] hover:bg-opacity-[0.4] dark:hover:bg-opacity-[0.4] cursor-pointer dark:bg-opacity-[0]':
-                type !== currentType
+                type !== currentRoomType
             }
           )}
-          onClick={() => setType(type)}
+          onClick={() => setRoomType(type)}
           key={type}
         >
           {typeMap[type]}

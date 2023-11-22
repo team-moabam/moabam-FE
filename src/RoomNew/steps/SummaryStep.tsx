@@ -20,7 +20,7 @@ const SummaryStep = () => {
   const infos: Info[] = [
     {
       icon: 'PiBirdFill',
-      text: BIRD[getValues('type')].name
+      text: BIRD[getValues('roomType')].name
     },
     {
       icon: 'RiTimerLine',

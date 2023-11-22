@@ -1,5 +1,5 @@
 import { RoomSelectType } from '@/core/types';
-import { useInfiniteSearch } from '@/core/api/queries';
+import { useSearchRooms } from '@/core/api/queries';
 import useIntersectionObserver from '../hooks/useIntersectionObserver';
 import ResultListFallback from './ResultListFallback';
 import { RoomAccordion } from '@/RoomList';
@@ -7,16 +7,14 @@ import { Deffered } from '@/shared/Deffered';
 import { AccordionGroup } from '@/shared/Accordion';
 
 interface ResultListProps {
-  type: RoomSelectType;
-  size: number;
+  roomType: RoomSelectType;
+  keyword: string;
 }
 
-const ResultList = ({ type, size }: ResultListProps) => {
+const ResultList = ({ roomType, keyword }: ResultListProps) => {
   const { fetchNextPage, data, isFetchingNextPage, hasNextPage } =
-    useInfiniteSearch({
-      type,
-      size
-    });
+    useSearchRooms({ roomType, keyword });
+
   const intersectionRef = useIntersectionObserver({
     threshold: 0.5,
     onObserve: fetchNextPage
@@ -36,7 +34,7 @@ const ResultList = ({ type, size }: ResultListProps) => {
       </AccordionGroup>
       {isFetchingNextPage && (
         <Deffered>
-          <ResultListFallback size={size} />
+          <ResultListFallback size={10} />
         </Deffered>
       )}
       {hasNextPage ? (

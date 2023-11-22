@@ -7,9 +7,12 @@ import { Icon } from '@/shared/Icon';
 
 const RoomDetailPage = () => {
   const roomId = '1234';
+  const serverTime = new Date();
+
+  const todayDate = `${serverTime.getFullYear()}-${serverTime.getMonth()}-${serverTime.getDate()}`;
 
   const { data: roomDetailData, status } = useQuery({
-    ...roomOptions.detail(roomId)
+    ...roomOptions.detailByDate(roomId, todayDate)
   });
 
   if (status !== 'success') return <div>임시 Loading...</div>;

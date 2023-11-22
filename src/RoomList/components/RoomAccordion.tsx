@@ -6,6 +6,8 @@ import roomListStyle from '@/RoomList/styles/roomListStyle';
 import { Accordion, AccordionHeader, AccordionBody } from '@/shared/Accordion';
 import { RoomSummary } from '@/RoomSummary';
 import { RoutineItem, RoutineList } from '@/shared/RoutineList';
+import { useKeyword } from '@/RoomSearch';
+import KeywordText from '@/RoomSearch/components/KeywordText';
 
 interface RoomAccordionProps {
   room: Room;
@@ -15,6 +17,7 @@ const RoomAccordion = ({ room }: RoomAccordionProps) => {
   const { routine, id } = room;
   const moveTo = useMoveRoute();
   const [hoverRef, hovered] = useHover<HTMLDivElement>();
+  const keyword = useKeyword();
 
   return (
     <Accordion className="shrink-0">
@@ -46,10 +49,12 @@ const RoomAccordion = ({ room }: RoomAccordionProps) => {
         <div className="p-4 pt-5">
           <RoutineList>
             {routine.map(({ routineId, content }) => (
-              <RoutineItem
-                key={routineId}
-                contents={content}
-              />
+              <RoutineItem key={routineId}>
+                <KeywordText
+                  content={content}
+                  keyword={keyword}
+                />
+              </RoutineItem>
             ))}
           </RoutineList>
         </div>

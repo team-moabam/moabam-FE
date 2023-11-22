@@ -11,6 +11,7 @@ import {
   PASSWORD,
   FORM_MESSAGE
 } from '@/RoomForm/constants/literals';
+import { Toast } from '@/shared/Toast';
 
 export const formSchema = z.object({
   title: z
@@ -73,17 +74,24 @@ const useRoomForm = ({ roomId, defaultValues }: useRoomFormProps) => {
         title: data.title,
         announcement: data.announcement,
         certifyTime: data.certifyTime % 24,
-        routine: data.routines.map((r) => r.value),
+        routines: data.routines.map((r) => r.value),
         maxUserCount: data.userCount,
         password: data.password
       },
       {
-        onSuccess: (data) => console.log(data),
+        onSuccess: (data) => {
+          Toast.show({
+            message: '방 정보를 수정했어요.',
+            status: 'confirm'
+          });
+        },
         onError: (error) => {
           const { setError } = form;
 
-          // TODO: 에러 Toast 메시지를 보여줘야 해요.
-          console.log(error.response?.data?.message);
+          Toast.show({
+            message: error.response?.data?.message || '오류가 발생했어요.',
+            status: 'danger'
+          });
 
           if (error.response?.data?.validation) {
             const {
@@ -101,12 +109,6 @@ const useRoomForm = ({ roomId, defaultValues }: useRoomFormProps) => {
             setError('password', { message: password });
             setError('certifyTime', { message: certifyTime });
             setError('userCount', { message: maxUserCount });
-          }
-
-          if (error.response?.status === 401) {
-            // TODO: 로그인 페이지로 redirect 해야 해요.
-            // TODO: 혹은 전역 MutationCache에 리다이렉션 관련 로직을 작업해야 해요.
-            console.log('TODO: 로그인 페이지로 redirect');
           }
         }
       }
