@@ -1,4 +1,4 @@
-export interface UserType {
+export interface userType {
   nickname: string;
   intro: string;
   level: number;
@@ -7,13 +7,12 @@ export interface UserType {
     MORNING_SKIN: string;
     NIGHT_SKIN: string;
   };
-  badges: { [key in BadgeType]: boolean };
-  participants_count: number;
-  coupons_count: number;
+  badges: {
+    name: string;
+    Success: boolean;
+  }[];
+  profile_image: string | undefined;
+  golden_bug?: number;
+  morning_bug?: number;
+  night_bug?: number;
 }
-
-type BadgeType =
-  | '오목눈이_탄생'
-  | '어른_오목눈이'
-  | '어른_부엉이'
-  | '부엉이_탄생';
