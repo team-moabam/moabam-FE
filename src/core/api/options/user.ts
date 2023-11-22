@@ -6,11 +6,6 @@ const userOptions = {
     queryOptions({
       queryKey: ['user', userId] as const,
       queryFn: () => userAPI.getUser(userId)
-    }),
-  logout: () =>
-    queryOptions({
-      queryKey: ['user', 'logout'] as const,
-      queryFn: () => userAPI.logout()
     })
 };
 
