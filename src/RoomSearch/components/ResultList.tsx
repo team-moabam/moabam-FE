@@ -23,7 +23,7 @@ const ResultList = ({ type, size }: ResultListProps) => {
   });
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-1">
       <AccordionGroup>
         {data.map((rooms) =>
           rooms.map((room) => (
