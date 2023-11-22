@@ -1,4 +1,4 @@
-export const ROOM_INFO = {
+export const RoomInfo = {
   roomId: 32,
   title: '윤명이의 루틴방',
   managerNickname: '재영',

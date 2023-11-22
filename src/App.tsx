@@ -6,7 +6,7 @@ import clsx from 'clsx';
 import { useRouteData, useTheme } from '@/core/hooks';
 import timeOption from './core/api/options/time';
 import getTimeRange from './core/utils/getTimeRange';
-import useCheckAuthRequired from './useCheckAuthRequired';
+// import useCheckAuthRequired from './useCheckAuthRequired';
 import { Navbar } from './shared/Navbar';
 import { UnknownFallback } from './shared/ErrorBoundary';
 import 'swiper/css';
@@ -15,7 +15,7 @@ import 'swiper/css/bundle';
 const App = () => {
   const { navBarRequired, path } = useRouteData();
   const { theme, setTheme } = useTheme();
-  useCheckAuthRequired();
+  // useCheckAuthRequired();
 
   const { data, isSuccess } = useQuery({
     ...timeOption,

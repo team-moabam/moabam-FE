@@ -1,13 +1,14 @@
 import { MouseEvent } from 'react';
-import { useLocation } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
+import { useQueryClient } from '@tanstack/react-query';
 import { useFormContext } from 'react-hook-form';
 import roomAPI from '@/core/api/functions/roomAPI';
+import { roomOptions } from '@/core/api/options';
+import { useRouteData } from '@/core/hooks';
 import { FormCertificationImage } from '../types/type';
 import ImageInput from './ImageInput';
 import { BottomSheet } from '@/shared/BottomSheet';
 import { BottomSheetProps } from '@/shared/BottomSheet/components/BottomSheet';
-import { queryClient } from '@/main';
 
 interface CertificationBottomSheetProps {
   bottomSheetProps: BottomSheetProps;
@@ -19,11 +20,15 @@ interface CertificationBottomSheetProps {
 const CertificationBottomSheet = ({
   bottomSheetProps,
   myCertificationImage,
-  routines
+  routines,
+  close
 }: CertificationBottomSheetProps) => {
-  const { pathname } = useLocation();
-  const roomId = pathname.split('/')[2];
+  const {
+    params: { roomId }
+  } = useRouteData();
   const { watch, handleSubmit } = useFormContext<FormCertificationImage[]>();
+
+  const queryClient = useQueryClient();
 
   const mutation = useMutation({
     mutationFn: roomAPI.postRoutineCertificate
@@ -31,7 +36,6 @@ const CertificationBottomSheet = ({
 
   const handleFormSubmit = async (data: FormCertificationImage[]) => {
     const formData = new FormData();
-
     for (const [key, value] of Object.entries(data)) {
       if (value.file) {
         formData.append(`${routines[Number(key)].routineId}`, value.file[0]);
@@ -40,15 +44,15 @@ const CertificationBottomSheet = ({
 
     mutation.mutate(
       {
-        roomId,
+        roomId: roomId || '',
         body: formData
       },
       {
         onSuccess: () => {
-          queryClient.invalidateQueries({
-            queryKey: ['rooms', 'detail', roomId]
-          });
           close();
+          queryClient.invalidateQueries({
+            queryKey: roomOptions.detail(roomId || '').queryKey
+          });
         },
         onError: () => {
           // TODO : 에러 처리
@@ -69,11 +73,11 @@ const CertificationBottomSheet = ({
     }
     mutation.mutate(
       {
-        roomId,
+        roomId: roomId || '',
         body: formData
       },
       {
-        onSucces: () => {
+        onSuccess: () => {
           close();
         },
         onError: () => {
