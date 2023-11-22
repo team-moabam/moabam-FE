@@ -21,7 +21,7 @@ const Navbar = ({
 
   // 다음 스텝으로 넘어가기 전 각 스텝에서 수행되어야 할 유효성 검사 필드를 정의합니다.
   const validationMaps: Record<(typeof steps)[number], Array<keyof Inputs>> = {
-    BirdStep: ['type'],
+    BirdStep: ['roomType'],
     TimeStep: ['certifyTime'],
     RoutineStep: ['routines', 'title', 'userCount'],
     PasswordStep: ['password'],
