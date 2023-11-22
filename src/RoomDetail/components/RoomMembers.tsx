@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useRouteData } from '@/core/hooks';
-import roomAPI from '@/core/api/functions/roomAPI';
+import notificationAPI from '@/core/api/functions/notificationAPI';
 import ReportBottomSheet from './ReportBottomSheet';
 import { Avatar } from '@/shared/Avatar';
 import { Icon } from '@/shared/Icon';
@@ -27,18 +27,19 @@ const RoomMembers = ({ members, reportStatus }: RoomMembers) => {
   } = useRouteData();
 
   const handlePokeButtonClick = async (memberId: string, nickname: string) => {
-    const dd = await roomAPI.getMemberPoke(roomId || '', memberId);
+    const { status } = await notificationAPI.getMemberPoke(
+      roomId || '',
+      memberId
+    );
 
-    console.log(dd);
-
-    // if (status === 200) {
-    //   Toast.show({
-    //     status: 'confirm',
-    //     message: `${nickname}을 콕! 찔렀어요`,
-    //     icon: true,
-    //     subText: '콕콕'
-    //   });
-    // }
+    if (status === 200) {
+      Toast.show({
+        status: 'confirm',
+        message: `${nickname}을 콕! 찔렀어요`,
+        icon: true,
+        subText: '콕콕'
+      });
+    }
   };
 
   const ButtonContent = (
