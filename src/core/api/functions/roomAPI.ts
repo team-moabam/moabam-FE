@@ -60,6 +60,10 @@ const roomAPI = {
     );
   },
 
+  getMemberPoke: async (roomId: string, memberId: string) => {
+    return await baseInstance.get(`/rooms/${roomId}/${memberId}`);
+  },
+
   postRoutineCertificate: async (params: {
     roomId: string;
     body: FormData;
