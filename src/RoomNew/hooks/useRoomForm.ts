@@ -86,7 +86,7 @@ const useRoomForm = () => {
             status: 'confirm'
           });
 
-          moveTo('roomDetail', { roomId: data.roomId });
+          moveTo('roomDetail', { roomId: data });
         },
         onError: (error) => {
           Toast.show({
