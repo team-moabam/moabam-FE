@@ -16,7 +16,7 @@ const TimeStep = () => {
     formState: { errors }
   } = useFormContext<Inputs>();
 
-  const watchType = watch('type');
+  const watchRoomType = watch('roomType');
   const watchCertifyTime = watch('certifyTime');
 
   return (
@@ -31,13 +31,13 @@ const TimeStep = () => {
       </p>
 
       <section className="mt-10 flex w-full flex-col items-center gap-6">
-        <div>{formatHourString(TIME_RANGE[watchType][0])}</div>
+        <div>{formatHourString(TIME_RANGE[watchRoomType][0])}</div>
         <TimePicker
-          range={TIME_RANGE[watchType]}
+          range={TIME_RANGE[watchRoomType]}
           initialTime={watchCertifyTime}
           onChangeTime={(time) => setValue('certifyTime', time)}
         />
-        <div>{formatHourString(TIME_RANGE[watchType][1])}</div>
+        <div>{formatHourString(TIME_RANGE[watchRoomType][1])}</div>
       </section>
 
       {errors.certifyTime && (

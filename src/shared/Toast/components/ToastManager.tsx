@@ -50,7 +50,7 @@ const ToastManager = ({ bind }: ToastManagerProps) => {
   }, [bind, createToast]);
 
   return (
-    <div className="absolute bottom-[3.25rem] left-[50%] flex min-h-[2.75rem] w-full translate-x-[-50%] flex-col items-center">
+    <div className="absolute bottom-[3.25rem] left-[50%] flex min-h-[2.75rem] w-full translate-x-[-50%] flex-col items-center empty:hidden">
       {toasts.map(({ id, status, message, subText, icon, duration }) => (
         <ToastItem
           status={status}
