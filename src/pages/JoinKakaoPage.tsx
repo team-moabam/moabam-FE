@@ -25,7 +25,7 @@ const JoinKakaoPage = () => {
       {
         onSuccess: (data) => {
           moveTo(data.signUp ? 'guide' : 'start');
-          setMemberId(data.memberId);
+          setMemberId(data.id);
         }
       }
     );
