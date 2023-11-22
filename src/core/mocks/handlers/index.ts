@@ -5,6 +5,8 @@ import membersHandlers from './members';
 import bugsHandlers from './bugs';
 import couponsHandlers from './coupons';
 import reportsHandlers from './reports';
+import notificationsHandlers from './notifications';
+import timeHandler from './time';
 
 const handlers = [
   ...examplePostHandlers,
@@ -13,7 +15,9 @@ const handlers = [
   ...membersHandlers,
   ...bugsHandlers,
   ...couponsHandlers,
-  ...reportsHandlers
+  ...reportsHandlers,
+  ...notificationsHandlers,
+  timeHandler
 ];
 
 export default handlers;
