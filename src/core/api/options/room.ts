@@ -23,7 +23,7 @@ const roomOptions = {
 
   all: (params?: RoomsRequestParams) =>
     queryOptions({
-      queryKey: ['rooms', params?.type || 'all'] as const,
+      queryKey: ['rooms', params?.roomType || 'all'] as const,
       queryFn: () => roomAPI.getRoomsAll(params)
     })
 };
