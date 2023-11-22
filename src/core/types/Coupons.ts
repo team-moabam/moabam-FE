@@ -12,14 +12,13 @@ export interface Coupon {
   couponType: CouponType;
   stock: number;
   startAt: string;
-  endAt: string;
+  openAt: string;
   couponAdminName: string;
 }
 
 export type Coupons = Coupon[];
 
 export interface CouponStatus {
-  couponOngoing: boolean;
-  couponNotStarted: boolean;
-  couponEnded: boolean;
+  opened: boolean;
+  ended: boolean;
 }
