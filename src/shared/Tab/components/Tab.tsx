@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { twMerge } from 'tailwind-merge';
 import { useTab } from '../hooks';
 import TabHeader from './TabHeader';
@@ -6,17 +6,21 @@ import TabHeader from './TabHeader';
 interface TabProps {
   children: React.ReactNode;
   defaultIndex?: number;
+  currentIndex?: number;
   align?: 'center' | 'start' | 'end';
   thumnailStyle?: string;
   itemStyle?: string;
+  onChange?: VoidFunction;
 }
 
 const Tab = ({
   children,
   defaultIndex = 0,
+  currentIndex,
   align = 'center',
   thumnailStyle = '',
-  itemStyle = ''
+  itemStyle = '',
+  onChange
 }: TabProps) => {
   const {
     titleOfTabItems,
@@ -26,7 +30,8 @@ const Tab = ({
     currentThumnail
   } = useTab({
     tabChildren: children,
-    defaultIndex
+    defaultIndex,
+    onChange
   });
 
   return (
@@ -39,7 +44,7 @@ const Tab = ({
       <TabHeader
         align={align}
         titles={titleOfTabItems}
-        currentTabIndex={currentTabIndex}
+        currentTabIndex={currentIndex ?? currentTabIndex}
         setCurrentTabIndex={setCurrentTabIndex}
       />
       <div className={twMerge('overflow-y-auto', itemStyle)}>{currentTab}</div>
