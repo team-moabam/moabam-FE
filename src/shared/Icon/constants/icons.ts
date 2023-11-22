@@ -27,7 +27,13 @@ import {
 } from 'react-icons/fa6';
 import { HiHome } from 'react-icons/hi2';
 import { ImSearch } from 'react-icons/im';
-import { MdSupervisedUserCircle, MdEdit, MdTitle } from 'react-icons/md';
+import {
+  MdSupervisedUserCircle,
+  MdEdit,
+  MdTitle,
+  MdLockOutline
+} from 'react-icons/md';
+
 import { PiBirdFill } from 'react-icons/pi';
 import { IoPeopleCircle } from 'react-icons/io5';
 import {
@@ -85,5 +91,6 @@ export const iconMap = {
   TbConfetti,
   LuAlarmClock,
   IoPeopleCircle,
-  LuChevronUp
+  LuChevronUp,
+  MdLockOutline
 } as const;

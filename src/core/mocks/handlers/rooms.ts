@@ -1,8 +1,10 @@
 import { http, HttpResponse, delay } from 'msw';
+import { Room } from '@/RoomList/mocks/types/rooms';
 import { baseURL } from '../baseURL';
 import { RoomInfo, RoomInfoBeforeEditing } from '../datas/room';
 import { MY_JOIN_ROOMS } from '../datas/myJoinRoom';
-import { TOTAL_ROOMS } from '../datas/totalRooms';
+import { ROOMS } from '../datas/totalRooms';
+import { SEARCH_ROOMS } from '../datas/searchRooms';
 
 const roomsHandlers = [
   http.post(baseURL('/rooms'), async () => {
@@ -185,31 +187,46 @@ const roomsHandlers = [
   http.get(baseURL('/rooms'), async ({ request }) => {
     await delay(2000);
     const url = new URL(request.url);
-    const type = url.searchParams.get('type');
-    const page = Number(url.searchParams.get('page')) || 1;
-    const size = Number(url.searchParams.get('size')) || 10;
+    const type = url.searchParams.get('roomType');
+    const keyword = url.searchParams.get('keyword');
+    const lastId = Number(url.searchParams.get('roomId'));
 
-    const totalRooms = TOTAL_ROOMS.rooms;
-    const morningRooms = totalRooms.filter(
+    const morningRooms = ROOMS.filter(({ roomType }) => roomType === 'MORNING');
+    const searchMorningRooms = SEARCH_ROOMS.filter(
       ({ roomType }) => roomType === 'MORNING'
     );
-    const nightRooms = totalRooms.filter(
+    const nightRooms = ROOMS.filter(({ roomType }) => roomType === 'NIGHT');
+    const searchNightRooms = SEARCH_ROOMS.filter(
       ({ roomType }) => roomType === 'NIGHT'
     );
 
-    let rooms = [];
+    const cutNextPage = (rooms: Room[]) => {
+      const lastIndex = rooms.findIndex(({ id }) => id === lastId);
+      return rooms.slice(lastIndex + 1, lastIndex + 11);
+    };
+
+    let responseRooms = [];
+
     switch (type) {
       case 'morning':
-        rooms = morningRooms.slice(size * (page - 1), size * page);
+        responseRooms = cutNextPage(
+          keyword ? searchMorningRooms : morningRooms
+        );
         break;
       case 'night':
-        rooms = nightRooms.slice(size * (page - 1), size * page);
+        responseRooms = cutNextPage(keyword ? searchNightRooms : nightRooms);
         break;
       default:
-        rooms = totalRooms.slice(size * (page - 1), size * page);
+        responseRooms = cutNextPage(keyword ? SEARCH_ROOMS : ROOMS);
     }
 
-    return HttpResponse.json({ rooms }, { status: 200 });
+    return HttpResponse.json(
+      {
+        rooms: responseRooms,
+        hasNext: responseRooms.length === 10
+      },
+      { status: 200 }
+    );
   })
 ];
 
