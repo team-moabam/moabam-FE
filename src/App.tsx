@@ -3,32 +3,25 @@ import { Outlet } from 'react-router-dom';
 import { ErrorBoundary } from '@suspensive/react';
 import { useQuery } from '@tanstack/react-query';
 import clsx from 'clsx';
-import memberOptions from './core/api/options/member';
-import { useMoveRoute, useRouteData, useTheme } from '@/core/hooks';
+import { useRouteData, useTheme } from '@/core/hooks';
 import timeOption from './core/api/options/time';
 import getTimeRange from './core/utils/getTimeRange';
+import useCheckAuthRequired from './useCheckAuthRequired';
 import { Navbar } from './shared/Navbar';
 import { UnknownFallback } from './shared/ErrorBoundary';
 import 'swiper/css';
 import 'swiper/css/bundle';
 
 const App = () => {
-  const { navBarRequired, authRequired, path } = useRouteData();
-  const moveTo = useMoveRoute();
+  const { navBarRequired, path } = useRouteData();
   const { theme, setTheme } = useTheme();
-  const { error } = useQuery({ ...memberOptions.myInfo() });
+  useCheckAuthRequired();
 
   const { data, isSuccess } = useQuery({
     ...timeOption,
     refetchInterval: 1000 * 60 * 10,
     refetchOnWindowFocus: true
   });
-
-  useEffect(() => {
-    if (authRequired && error?.response?.status === 401) {
-      moveTo('join');
-    }
-  }, [authRequired, error]);
 
   useEffect(() => {
     const today = data || new Date();
