@@ -2,9 +2,11 @@ import { MutationCache, QueryCache, QueryClient } from '@tanstack/react-query';
 import memberOptions from '@/core/api/options/member';
 import router from '@/core/routes/router';
 import { CustomAxiosError } from '@/core/api/types';
+import { STORAGE_KEYS } from '../constants/storageKeys';
 
 const handleRedirectOnError = (error: CustomAxiosError) => {
   if (error.response?.status === 401) {
+    localStorage.removeItem(STORAGE_KEYS.MEMBER_ID);
     router.navigate('/join');
   }
 };
