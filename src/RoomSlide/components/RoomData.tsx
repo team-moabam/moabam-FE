@@ -1,4 +1,4 @@
-import { useSuspenseQueries } from '@tanstack/react-query';
+import { useSuspenseQueries, useSuspenseQuery } from '@tanstack/react-query';
 import { roomOptions, bugOptions } from '@/core/api/options';
 import {
   MyJoinRoom,
@@ -17,38 +17,42 @@ interface RoomDataProps {
 const RoomData = ({ dayType }: RoomDataProps) => {
   const { ABOUT_BUG } = DAY_TYPE[dayType];
 
-  const [{ data: rooms }, { data: bugs }] = useSuspenseQueries({
-    queries: [
-      {
-        ...roomOptions.myJoin(),
-        select: ({ participatingRooms }: MyJoinRoom): ParticipatingRoom[] =>
-          participatingRooms.filter(({ roomType }) => roomType === dayType)
-      },
-      {
-        ...bugOptions.today(),
-        select: ({ morningBug, nightBug }: TodayBugs): number =>
-          dayType === 'MORNING' ? morningBug : nightBug
-      }
-    ]
+  const { data } = useSuspenseQuery({
+    ...roomOptions.myJoin(),
+    select: ({
+      participatingRooms
+    }: MyJoinRoom): {
+      rooms: ParticipatingRoom[];
+      bugs: number;
+    } => {
+      const rooms = participatingRooms.filter(
+        ({ roomType }) => roomType === dayType
+      );
+      const bugs = rooms.reduce(
+        (total, { obtainedBugs }) => total + obtainedBugs,
+        0
+      );
+      return { rooms, bugs };
+    }
   });
 
   return (
     <>
-      {rooms && (
+      {data.rooms && (
         <div className="flex flex-col gap-2">
-          {rooms.map((room) => (
+          {data.rooms.map((room) => (
             <RoomCard
               room={room}
               key={room.roomId}
             />
           ))}
-          <NewRoomCard disabled={rooms.length >= 3} />
+          <NewRoomCard disabled={data.rooms.length >= 3} />
         </div>
       )}
       <div className="mr-1 mt-4 text-end  text-sm">
         {ABOUT_BUG} :{' '}
         <span className="font-IMHyemin-bold text-light-point-hover dark:text-dark-point-hover">
-          {bugs} 마리
+          {data.bugs} 마리
         </span>
       </div>
     </>
