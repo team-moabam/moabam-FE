@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { FormProvider, useForm } from 'react-hook-form';
 import { useRouteData } from '@/core/hooks';
 import notificationAPI from '@/core/api/functions/notificationAPI';
 import ReportBottomSheet from './ReportBottomSheet';
@@ -19,6 +20,19 @@ const RoomMembers = ({ members, reportStatus }: RoomMembers) => {
     nickname: '',
     reportedId: ''
   });
+  const form = useForm<{
+    [key: string]: boolean;
+  }>({
+    mode: 'onSubmit',
+    defaultValues: {
+      '1234': false,
+      '2345': false,
+      '3456': false,
+      '5678': false,
+      '6789': false
+    }
+  });
+  const [checked, setChecked] = useState<string>('');
 
   const { nickname, reportedId } = chooseUserInfo;
 
@@ -42,6 +56,13 @@ const RoomMembers = ({ members, reportStatus }: RoomMembers) => {
     }
   };
 
+  const handleReportButtonClick = (nickname: string, memberId: string) => {
+    form.clearErrors();
+    setChecked('');
+    setSelectUserInfo({ nickname, reportedId: memberId });
+    toggle();
+  };
+
   const ButtonContent = (
     rank: number,
     isNotificationSent: boolean,
@@ -50,7 +71,10 @@ const RoomMembers = ({ members, reportStatus }: RoomMembers) => {
   ) => {
     if (rank < 500) {
       return (
-        <span className="block h-[1.875rem] w-[4.37rem] text-center text-sm text-light-point dark:text-dark-point">
+        <span
+          key={memberId}
+          className="block h-[1.875rem] w-[4.37rem] text-center text-sm text-light-point dark:text-dark-point"
+        >
           루틴 완료!
         </span>
       );
@@ -59,6 +83,7 @@ const RoomMembers = ({ members, reportStatus }: RoomMembers) => {
     if (isNotificationSent) {
       return (
         <button
+          key={memberId}
           className="btn dark:btn-dark-point btn-light-point flex h-[1.875rem] w-[4.37rem] items-center rounded-lg p-0  px-[0.56rem] font-IMHyemin-bold text-sm"
           onClick={() => handlePokeButtonClick(memberId, nickname)}
         >
@@ -73,7 +98,10 @@ const RoomMembers = ({ members, reportStatus }: RoomMembers) => {
     }
 
     return (
-      <button className="btn btn-disabled h-[1.875rem] w-[4.37rem] cursor-default rounded-lg p-0 font-IMHyemin-bold text-sm">
+      <button
+        key={memberId}
+        className="btn btn-disabled h-[1.875rem] w-[4.37rem] cursor-default rounded-lg p-0 font-IMHyemin-bold text-sm"
+      >
         내일 다시
       </button>
     );
@@ -103,10 +131,7 @@ const RoomMembers = ({ members, reportStatus }: RoomMembers) => {
               />
               {reportStatus ? (
                 <button
-                  onClick={() => {
-                    setSelectUserInfo({ nickname, reportedId: memberId });
-                    toggle();
-                  }}
+                  onClick={() => handleReportButtonClick(nickname, memberId)}
                   className="btn btn-danger flex h-[1.875rem] w-[4.37rem] items-center rounded-lg p-0  px-[0.56rem] font-IMHyemin-bold text-sm"
                 >
                   신고하기
@@ -118,41 +143,17 @@ const RoomMembers = ({ members, reportStatus }: RoomMembers) => {
           )
         )}
       </div>
-      <ReportBottomSheet
-        bottomSheetProps={bottomSheetProps}
-        close={close}
-        nickname={nickname}
-        reportedId={reportedId}
-      />
+      <FormProvider {...form}>
+        <ReportBottomSheet
+          bottomSheetProps={bottomSheetProps}
+          close={close}
+          nickname={nickname}
+          reportedId={reportedId}
+          setChecked={setChecked}
+          checked={checked}
+        />
+      </FormProvider>
     </>
-    // const RoomMembers = ({ members }: RoomMembers) => {
-
-    //   return (
-    //     <div className="mt-[2.87rem]">
-    //       {members.map(
-    //         ({
-    //           memberId,
-    //           nickname,
-    //           profileImage,
-    //           contributionPoint,
-    //           rank,
-    //           isNotificationSent
-    //         }) => (
-    //           <div
-    //             key={memberId}
-    //             className="mb-[1.19rem] flex items-center justify-between"
-    //           >
-    //             <Avatar
-    //               imgUrl={profileImage}
-    //               userId={memberId}
-    //               nickname={nickname}
-    //               contribution={contributionPoint}
-    //             />
-    //             {ButtonContent(rank, isNotificationSent, memberId, nickname)}
-    //           </div>
-    //         )
-    //       )}
-    //     </div>
   );
 };
 
