@@ -1,8 +1,10 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import clsx from 'clsx';
+import { Icon } from '@/shared/Icon';
 
 const PWAInstallBanner = () => {
   const deferredPrompt = useRef<any>(null);
+  const [show, setShow] = useState(false);
 
   const handleInstall = async () => {
     deferredPrompt.current.prompt();
@@ -49,8 +51,21 @@ const PWAInstallBanner = () => {
           앱으로 <b>설치</b>할 수도 있어요
         </p>
         <section className="me-4 flex gap-2">
-          <button onClick={handleInstall}>설치</button>
-          <button>닫기</button>
+          <div
+            className={iconButtonStyle}
+            onClick={handleInstall}
+          >
+            <Icon
+              icon="MdFileDownload"
+              size="lg"
+            />
+          </div>
+          <div className={iconButtonStyle}>
+            <Icon
+              icon="CgClose"
+              size="lg"
+            />
+          </div>
         </section>
       </div>
     </div>
@@ -58,3 +73,6 @@ const PWAInstallBanner = () => {
 };
 
 export default PWAInstallBanner;
+
+const iconButtonStyle =
+  'flex flex-col items-center justify-center cursor-pointer rounded-2xl p-2 bg-white text-light-point hover:text-light-point-hover hover:bg-light-main';
