@@ -9,6 +9,19 @@ import { RoutineItem, RoutineList } from '@/shared/RoutineList';
 import { useKeyword } from '@/RoomSearch';
 import KeywordText from '@/RoomSearch/components/KeywordText';
 
+const isKeywordInRoutines = (
+  keyword: string,
+  routines: {
+    routineId: number;
+    content: string;
+  }[]
+) => {
+  if (keyword === '') return false;
+  return routines.some(({ content }) =>
+    content.toLowerCase().includes(keyword.toLowerCase())
+  );
+};
+
 interface RoomAccordionProps {
   room: Room;
 }
@@ -20,7 +33,10 @@ const RoomAccordion = ({ room }: RoomAccordionProps) => {
   const keyword = useKeyword();
 
   return (
-    <Accordion className="shrink-0">
+    <Accordion
+      className="shrink-0"
+      initialOpen={isKeywordInRoutines(keyword, routines)}
+    >
       <AccordionHeader
         buttonColored
         className={clsx(
