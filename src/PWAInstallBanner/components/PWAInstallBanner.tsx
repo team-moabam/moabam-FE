@@ -10,7 +10,7 @@ const PWAInstallBanner = () => {
   const { theme } = useTheme();
 
   const handleInstall = () => {
-    deferredPrompt.current.prompt();
+    deferredPrompt.current?.prompt();
   };
 
   const handleClose = () => {
