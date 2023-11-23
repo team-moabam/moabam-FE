@@ -17,7 +17,7 @@ const UserEtc = () => {
 
   return (
     <>
-      <div className="my-6 w-full overflow-hidden rounded-2xl bg-light-sub dark:bg-dark-sub">
+      <div className="mb-4 mt-8 w-full overflow-hidden rounded-2xl bg-light-sub dark:bg-dark-sub">
         {etc.map(({ icon, route, text }) => (
           <Link
             to={route}
