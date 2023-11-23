@@ -5,10 +5,7 @@ const NotFoundPage = () => {
     <div className="relative  h-screen ">
       <div className="absolute inset-x-0 top-1/3 flex flex-col items-center">
         <div className="mb-8 aspect-square w-3/5 max-w-[250px]">
-          <img
-            src="public\notFound.png"
-            alt=""
-          />
+          <img src="/notFound.png" />
         </div>
         <div className="flex flex-col items-center text-center ">
           <h1 className="mb-4 text-3xl">어라라</h1>
