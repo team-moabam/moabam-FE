@@ -81,6 +81,12 @@ const roomAPI = {
 
   getRoomsSearch: async (params?: RoomsSearchRequestParams) => {
     return await baseInstance.get<TotalRooms>('/rooms/search', { params });
+  },
+
+  roomJoinHistory: async () => {
+    return await baseInstance.get<ParticipateHistoryType>(
+      `/rooms/join-history`
+    );
   }
 };
 
