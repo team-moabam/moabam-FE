@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { roomOptions } from '@/core/api/options';
+import { useRouteData } from '@/core/hooks';
 import { RoomNotice } from '@/RoomDetail';
 import { Header } from '@/shared/Header';
 import { Icon } from '@/shared/Icon';
@@ -8,7 +9,9 @@ import RoomDetailContainer from '@/RoomDetail/components/RoomDetailContainer';
 import RoomDetailProvider from '@/RoomDetail/components/RoomDetailProvider';
 
 const RoomDetailPage = () => {
-  const roomId = '1234';
+  const {
+    params: { roomId }
+  } = useRouteData();
   const serverTime = new Date();
   const todayDate = `${serverTime.getFullYear()}-${serverTime.getMonth()}-${serverTime.getDate()}`;
 
