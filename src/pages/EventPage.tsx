@@ -8,7 +8,7 @@ import { NetworkFallback } from '@/shared/ErrorBoundary';
 
 const EventPage = () => {
   const { state } = useLocation();
-  const prevPage = state ? 'routines' : 'myPage';
+  const prevPage = state && state.from === 'routines' ? 'routines' : 'myPage';
 
   return (
     <div className="flex h-full flex-col">
