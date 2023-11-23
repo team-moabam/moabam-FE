@@ -5,6 +5,7 @@ import { RoomInfo, RoomInfoBeforeEditing } from '../datas/room';
 import { MY_JOIN_ROOMS } from '../datas/myJoinRoom';
 import { ROOMS } from '../datas/totalRooms';
 import { SEARCH_ROOMS } from '../datas/searchRooms';
+import { PARTICIPATE_HISTORY } from '../datas/participateHistory';
 
 const roomsHandlers = [
   http.post(baseURL('/rooms'), async () => {
@@ -327,6 +328,10 @@ const roomsHandlers = [
       },
       { status: 200 }
     );
+  }),
+  http.get(baseURL('/rooms/join-history'), async () => {
+    await delay(1000);
+    return HttpResponse.json(PARTICIPATE_HISTORY, { status: 200 });
   })
 ];
 

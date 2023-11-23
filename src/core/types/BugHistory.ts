@@ -6,7 +6,7 @@ export interface BugHistory {
     amount: number;
     date: string;
     paymentInfo?: {
-      id: string;
+      id: number;
       count: number;
       price: number;
       discount: number;

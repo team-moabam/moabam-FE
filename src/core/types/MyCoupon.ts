@@ -1,6 +1,6 @@
 export interface MyCoupons {
   myCouponsResponse: {
-    couponId: string;
+    couponId: number;
     name: string;
     point: number;
     description: string;

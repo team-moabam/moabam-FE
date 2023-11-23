@@ -5,7 +5,7 @@ import MyCouponListFallback from '@/MyCoupon/components/MyCouponListFallback';
 
 const CouponPage = () => {
   return (
-    <div className="h-full overflow-scroll">
+    <div className="h-full overflow-auto">
       <Header
         prev="myPage"
         title="쿠폰함"
