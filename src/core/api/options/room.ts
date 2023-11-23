@@ -1,5 +1,4 @@
 import { queryOptions } from '@tanstack/react-query';
-import { RoomsRequestParams } from '@/core/types';
 import roomAPI from '../functions/roomAPI';
 
 const roomOptions = {
@@ -9,7 +8,7 @@ const roomOptions = {
       queryFn: () => roomAPI.getRoomDetail(roomId)
     }),
 
-  detailByDate: (roomId: string, date: string) =>
+  detailByDate: (roomId: string | undefined, date: string) =>
     queryOptions({
       queryKey: ['rooms', 'detail', roomId, date] as const,
       queryFn: () => roomAPI.getRoomDetailByDate(roomId, date)
@@ -19,12 +18,6 @@ const roomOptions = {
     queryOptions({
       queryKey: ['rooms', 'myJoin'] as const,
       queryFn: () => roomAPI.getMyJoinRoom()
-    }),
-
-  all: (params?: RoomsRequestParams) =>
-    queryOptions({
-      queryKey: ['rooms', params?.type || 'all'] as const,
-      queryFn: () => roomAPI.getRoomsAll(params)
     })
 };
 

@@ -8,15 +8,17 @@ import {
 } from 'axios';
 import '@tanstack/react-query';
 
+export type CustomAxiosError = AxiosError<{
+  message?: string;
+  validation?: {
+    [key: string]: any;
+  };
+}>;
+
 // Tanstack-Query 글로벌 에러 타입 설정
 declare module '@tanstack/react-query' {
   interface Register {
-    defaultError: AxiosError<{
-      message?: string;
-      validation?: {
-        [key: string]: any;
-      };
-    }>;
+    defaultError: CustomAxiosError;
   }
 }
 

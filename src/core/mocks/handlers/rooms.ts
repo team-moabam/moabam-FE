@@ -1,8 +1,10 @@
 import { http, HttpResponse, delay } from 'msw';
+import { Room } from '@/core/types';
 import { baseURL } from '../baseURL';
 import { RoomInfo, RoomInfoBeforeEditing } from '../datas/room';
 import { MY_JOIN_ROOMS } from '../datas/myJoinRoom';
-import { TOTAL_ROOMS } from '../datas/totalRooms';
+import { ROOMS } from '../datas/totalRooms';
+import { SEARCH_ROOMS } from '../datas/searchRooms';
 
 const roomsHandlers = [
   http.post(baseURL('/rooms'), async () => {
@@ -13,7 +15,7 @@ const roomsHandlers = [
 
     switch (status) {
       case 201:
-        response = { roomId: 1 };
+        response = 5;
         break;
       case 400:
         response = {
@@ -41,6 +43,47 @@ const roomsHandlers = [
     return HttpResponse.json(MY_JOIN_ROOMS, { status: 200 });
   }),
 
+  http.get(baseURL('/rooms/search'), async ({ request }) => {
+    await delay(2000);
+    const url = new URL(request.url);
+    const type = url.searchParams.get('roomType');
+    const keyword = url.searchParams.get('keyword');
+    const lastId = Number(url.searchParams.get('roomId'));
+
+    const searchMorningRooms = SEARCH_ROOMS.filter(
+      ({ roomType }) => roomType === 'MORNING'
+    );
+    const searchNightRooms = SEARCH_ROOMS.filter(
+      ({ roomType }) => roomType === 'NIGHT'
+    );
+
+    const cutNextPage = (rooms: Room[]) => {
+      const lastIndex = rooms.findIndex(({ id }) => id === lastId);
+      return rooms.slice(lastIndex + 1, lastIndex + 11);
+    };
+
+    let responseRooms = [];
+
+    switch (type) {
+      case 'MORNING':
+        responseRooms = cutNextPage(searchMorningRooms);
+        break;
+      case 'NIGHT':
+        responseRooms = cutNextPage(searchNightRooms);
+        break;
+      default:
+        responseRooms = cutNextPage(SEARCH_ROOMS);
+    }
+
+    return HttpResponse.json(
+      {
+        rooms: responseRooms,
+        hasNext: responseRooms.length === 10
+      },
+      { status: 200 }
+    );
+  }),
+
   http.get(baseURL('/rooms/:roomId'), async () => {
     await delay(1000);
 
@@ -50,6 +93,28 @@ const roomsHandlers = [
     switch (status) {
       case 200:
         response = RoomInfoBeforeEditing;
+        break;
+      case 401:
+        response = { message: '존재하지 않는 유저입니다.' };
+        break;
+      case 404:
+        response = { message: '존재하지 않는 방입니다.' };
+        break;
+    }
+
+    return HttpResponse.json(response, { status });
+  }),
+
+  http.get(baseURL('/rooms/:roomId/:date'), async () => {
+    await delay(1000);
+
+    const status: number = 200;
+    let response = {};
+
+    switch (status) {
+      case 200:
+        response = RoomInfo;
+
         break;
       case 401:
         response = { message: '존재하지 않는 유저입니다.' };
@@ -161,6 +226,33 @@ const roomsHandlers = [
     return HttpResponse.json(response, { status });
   }),
 
+  http.get(baseURL('/rooms/:roomId/:memberId'), async () => {
+    await delay(1000);
+
+    const status: number = 200;
+    let response = {};
+
+    switch (status) {
+      case 200:
+        response = {};
+        break;
+      case 400:
+        response = {
+          message: '콕 찌르기는 각 유저마다 인증타임 당 1회 가능합니다.'
+        };
+        break;
+      case 401:
+        response = { message: '로그인 후 이용 가능합니다.' };
+        break;
+      case 404:
+        response = {
+          message: '존재하지 않는 유저입니다.'
+        };
+    }
+
+    return HttpResponse.json({ body: response, status });
+  }),
+
   http.put(baseURL('/rooms/:roomId/members/:memberId/delegation'), async () => {
     await delay(1000);
 
@@ -182,34 +274,59 @@ const roomsHandlers = [
     return HttpResponse.json(response, { status });
   }),
 
+  http.post(baseURL('/rooms/:roomId/certification'), async ({ request }) => {
+    await delay(1000);
+
+    const data = await request.formData();
+    const file = data.get('5');
+
+    if (!file) {
+      return new HttpResponse('Missing document', { status: 400 });
+    }
+
+    if (!(file instanceof File)) {
+      return new HttpResponse('Uploaded document is not a File', {
+        status: 400
+      });
+    }
+
+    return HttpResponse.json({}, { status: 200 });
+  }),
+
   http.get(baseURL('/rooms'), async ({ request }) => {
     await delay(2000);
     const url = new URL(request.url);
-    const type = url.searchParams.get('type');
-    const page = Number(url.searchParams.get('page')) || 1;
-    const size = Number(url.searchParams.get('size')) || 10;
+    const type = url.searchParams.get('roomType');
+    const lastId = Number(url.searchParams.get('roomId'));
 
-    const totalRooms = TOTAL_ROOMS.rooms;
-    const morningRooms = totalRooms.filter(
-      ({ roomType }) => roomType === 'MORNING'
-    );
-    const nightRooms = totalRooms.filter(
-      ({ roomType }) => roomType === 'NIGHT'
-    );
+    const morningRooms = ROOMS.filter(({ roomType }) => roomType === 'MORNING');
+    const nightRooms = ROOMS.filter(({ roomType }) => roomType === 'NIGHT');
 
-    let rooms = [];
+    const cutNextPage = (rooms: Room[]) => {
+      const lastIndex = rooms.findIndex(({ id }) => id === lastId);
+      return rooms.slice(lastIndex + 1, lastIndex + 11);
+    };
+
+    let responseRooms = [];
+
     switch (type) {
-      case 'morning':
-        rooms = morningRooms.slice(size * (page - 1), size * page);
+      case 'MORNING':
+        responseRooms = cutNextPage(morningRooms);
         break;
-      case 'night':
-        rooms = nightRooms.slice(size * (page - 1), size * page);
+      case 'NIGHT':
+        responseRooms = cutNextPage(nightRooms);
         break;
       default:
-        rooms = totalRooms.slice(size * (page - 1), size * page);
+        responseRooms = cutNextPage(ROOMS);
     }
 
-    return HttpResponse.json({ rooms }, { status: 200 });
+    return HttpResponse.json(
+      {
+        rooms: responseRooms,
+        hasNext: responseRooms.length === 10
+      },
+      { status: 200 }
+    );
   })
 ];
 
