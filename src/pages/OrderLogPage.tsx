@@ -1,6 +1,7 @@
 import { Suspense } from 'react';
 import { Header } from '@/shared/Header';
 import OrderLogList from '@/OrderLogList/components/OrderLogList';
+import OrderLogFallback from '@/OrderLogList/components/OrderLogFallback';
 
 const OrderLogPage = () => {
   return (
@@ -11,7 +12,7 @@ const OrderLogPage = () => {
           title="구매 내역"
           className="sticky top-0 bg-light-main dark:bg-dark-main"
         />
-        <Suspense>
+        <Suspense fallback={<OrderLogFallback />}>
           <OrderLogList />
         </Suspense>
       </div>
