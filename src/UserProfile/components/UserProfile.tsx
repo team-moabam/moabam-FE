@@ -1,5 +1,5 @@
 import { useState, ChangeEvent } from 'react';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { MdModeEdit, MdAdd } from 'react-icons/md';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import userAPI from '@/core/api/functions/userAPI';
@@ -20,6 +20,7 @@ const UserProfile = ({ nickname, intro, profileImage }: UserProfileProps) => {
   const [isEditMode, setIsEditMode] = useState(false);
   const [newImgUrl, setNewImgUrl] = useState<string | null>(null);
   const { register, handleSubmit } = useForm<Inputs>();
+  const queryClient = useQueryClient();
   const mutation = useMutation({
     mutationFn: userAPI.putUser
   });
@@ -54,8 +55,11 @@ const UserProfile = ({ nickname, intro, profileImage }: UserProfileProps) => {
     if (!data.nickname) delete data.nickname;
     if (!data.intro) delete data.intro;
     if (!data.profileImage || !newImgUrl) delete data.profileImage;
-    console.log(data);
-    mutation.mutate(data);
+    mutation.mutate(data, {
+      onSuccess: () => {
+        queryClient.invalidateQueries({ queryKey: ['user'] });
+      }
+    });
     handleChangeNormalMode();
   };
 

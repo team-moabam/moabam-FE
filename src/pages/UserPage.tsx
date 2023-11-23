@@ -12,7 +12,7 @@ const UserPage = () => {
 
   return (
     <div className="h-full overflow-auto px-5 pb-5">
-      <Suspense
+      {/* <Suspense
         fallback={
           <Deffered>
             <UserMainFallback />
@@ -44,7 +44,8 @@ const UserPage = () => {
             <UserEtc />
           </>
         )}
-      </Suspense>
+      </Suspense> */}
+      <UserMainFallback />
     </div>
   );
 };
