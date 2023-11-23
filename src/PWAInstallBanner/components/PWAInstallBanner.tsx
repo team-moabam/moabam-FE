@@ -1,12 +1,8 @@
 import { useEffect, useRef } from 'react';
-import { createPortal } from 'react-dom';
 import clsx from 'clsx';
-import { PORTALS } from '@/core/constants/portals';
-import { useTheme } from '@/core/hooks';
 
 const PWAInstallBanner = () => {
   const deferredPrompt = useRef<any>(null);
-  const { theme } = useTheme();
 
   const handleInstall = async () => {
     deferredPrompt.current.prompt();
@@ -33,14 +29,16 @@ const PWAInstallBanner = () => {
       );
   }, []);
 
-  return createPortal(
-    <div
-      className={clsx(
-        'app-container z-pwaInstallBanner',
-        theme === 'dark' && 'dark'
-      )}
-    >
-      <div className="absolute bottom-20 flex h-16 w-full items-center justify-center gap-2 bg-light-point font-bold text-black dark:text-white">
+  return (
+    <div className="flex w-full justify-center">
+      <div
+        className={clsx(
+          'absolute bottom-20 z-pwaInstallBanner h-16 w-[90%]',
+          'rounded-lg font-bold text-black shadow-lg dark:text-white',
+          'flex items-center justify-center gap-2',
+          'bg-gradient-to-r from-light-point to-light-point-hover'
+        )}
+      >
         <img
           className="ml-4"
           src="/logo.png"
@@ -55,8 +53,7 @@ const PWAInstallBanner = () => {
           <button>닫기</button>
         </section>
       </div>
-    </div>,
-    document.getElementById(PORTALS.bottomSheet)!
+    </div>
   );
 };
 
