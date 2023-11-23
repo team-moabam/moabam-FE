@@ -23,7 +23,7 @@ self.addEventListener('push', function (e) {
   const title = data.notification.title;
 
   const options = {
-    icon: data.notification.image,
+    icon: '/pwa/pwa-192x192.png',
     ...data.notification
   };
 

@@ -9,6 +9,9 @@ const couponAPI = {
   },
   myCoupon: async () => {
     return await baseInstance.get<MyCouponsType>(`/my-coupons`);
+  },
+  postCouponReceive: async (params: { couponName: string }) => {
+    return await baseInstance.post('/coupons', null, { params });
   }
 };
 

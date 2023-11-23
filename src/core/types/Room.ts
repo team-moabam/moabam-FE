@@ -17,3 +17,20 @@ export type RoomInfo = {
   routine: { routineId: number; content: string }[];
   todayCertificateRank: RankMember[];
 };
+
+export type RoomInfoBeforeEditing = {
+  roomId: number;
+  title: string;
+  announcement: string;
+  roomType: DayType;
+  certifyTime: number;
+  maxUserCount: number;
+  password: string;
+  routines: { routineId: number; content: string }[];
+  participants: {
+    memberId: number;
+    nickname: string;
+    contributionPoint: number;
+    profileImage: string;
+  }[];
+};

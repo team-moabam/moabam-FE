@@ -1,17 +1,36 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
+import { v4 } from 'uuid';
 import { AccordionContext } from '../hooks/useAccordion';
 import useAccordionGroup from '../hooks/useAccordionGroup';
 
 interface AccordionProps {
   className?: string;
+  initialOpen?: boolean;
   children: React.ReactNode;
 }
+const Accordion = ({
+  children,
+  initialOpen = false,
+  className = ''
+}: AccordionProps) => {
+  const [id] = useState(v4());
+  const { containerStyle, setOpenedId, openedId, singleOpen } =
+    useAccordionGroup();
+  const [isOpen, setIsOpen] = useState(singleOpen ? false : initialOpen);
 
-const Accordion = ({ children, className = '' }: AccordionProps) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const toggleOpen = () => setIsOpen((prev) => !prev);
-  const { containerStyle } = useAccordionGroup();
+  const toggleOpen = () => {
+    if (!singleOpen) setIsOpen((prev) => !prev);
+    setOpenedId(!isOpen ? id : '');
+  };
+
+  useEffect(() => {
+    if (singleOpen) setIsOpen(openedId === id);
+  }, [id, openedId, singleOpen]);
+
+  useEffect(() => {
+    setIsOpen(initialOpen);
+  }, [initialOpen]);
 
   return (
     <div
@@ -20,7 +39,7 @@ const Accordion = ({ children, className = '' }: AccordionProps) => {
         className
       )}
     >
-      <AccordionContext.Provider value={{ isOpen, toggleOpen }}>
+      <AccordionContext.Provider value={{ isOpen, toggleOpen, id }}>
         {children}
       </AccordionContext.Provider>
     </div>
