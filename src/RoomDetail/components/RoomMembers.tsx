@@ -47,10 +47,10 @@ const RoomMembers = ({ members, reportStatus }: RoomMembers) => {
     isNotificationSent: boolean,
     memberId: string,
     nickname: string
-  ) => {
+  )  => {
     if (rank < 500) {
       return (
-        <span className="block h-[1.875rem] w-[4.37rem] text-center text-sm text-light-point dark:text-dark-point">
+        <span key={ memberId} className="block h-[1.875rem] w-[4.37rem] text-center text-sm text-light-point dark:text-dark-point">
           루틴 완료!
         </span>
       );
@@ -58,7 +58,7 @@ const RoomMembers = ({ members, reportStatus }: RoomMembers) => {
 
     if (isNotificationSent) {
       return (
-        <button
+        <button key={ memberId}
           className="btn dark:btn-dark-point btn-light-point flex h-[1.875rem] w-[4.37rem] items-center rounded-lg p-0  px-[0.56rem] font-IMHyemin-bold text-sm"
           onClick={() => handlePokeButtonClick(memberId, nickname)}
         >
@@ -73,7 +73,7 @@ const RoomMembers = ({ members, reportStatus }: RoomMembers) => {
     }
 
     return (
-      <button className="btn btn-disabled h-[1.875rem] w-[4.37rem] cursor-default rounded-lg p-0 font-IMHyemin-bold text-sm">
+      <button key={ memberId} className="btn btn-disabled h-[1.875rem] w-[4.37rem] cursor-default rounded-lg p-0 font-IMHyemin-bold text-sm">
         내일 다시
       </button>
     );
@@ -84,7 +84,7 @@ const RoomMembers = ({ members, reportStatus }: RoomMembers) => {
     <>
       <div className="mt-[2.87rem]">
         {members.map(
-          ({ memberId, nickname, profileImage, contributionPoint }) => (
+          ({ memberId, nickname, profileImage, contributionPoint, nickname, isNotificationSent, rank }) => (
             <div
               key={memberId}
               className="mb-[1.19rem] flex items-center justify-between"
@@ -105,9 +105,7 @@ const RoomMembers = ({ members, reportStatus }: RoomMembers) => {
                 >
                   신고하기
                 </button>
-              ) : (
-                ButtonContent(rank, isNotificationSent, memberId, nickname)
-              )}
+              ) : ({ButtonContent(rank, isNotificationSent, memberId, nickname)})}
             </div>
           )
         )}
