@@ -73,8 +73,8 @@ const ReportBottomSheet = ({
           changeReportStatus(false);
           changeCheckedInput('');
           Toast.show({
-            status: 'confirm',
-            message: '신고가 완료되었습니다'
+            status: 'danger',
+            message: '신고가 접수되었습니다'
           });
         }
       }
