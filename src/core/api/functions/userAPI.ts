@@ -7,12 +7,12 @@ const userAPI = {
       `/members${userId ? '/' : ''}${userId}`
     );
   },
-  putUser: async (body: {
+  editUser: async (body: {
     nickname?: string;
     intro?: string;
     profile_image?: string;
   }) => {
-    return await baseInstance.put(`/members`, body);
+    return await baseInstance.post(`/members/modify`, body);
   },
   logout: async () => {
     return await baseInstance.get(`/members/logout`);
