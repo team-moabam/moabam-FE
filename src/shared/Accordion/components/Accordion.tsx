@@ -6,13 +6,18 @@ import useAccordionGroup from '../hooks/useAccordionGroup';
 
 interface AccordionProps {
   className?: string;
+  initialOpen?: boolean;
   children: React.ReactNode;
 }
-const Accordion = ({ children, className = '' }: AccordionProps) => {
+const Accordion = ({
+  children,
+  initialOpen = false,
+  className = ''
+}: AccordionProps) => {
   const [id] = useState(v4());
   const { containerStyle, setOpenedId, openedId, singleOpen } =
     useAccordionGroup();
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(singleOpen ? false : initialOpen);
 
   const toggleOpen = () => {
     if (!singleOpen) setIsOpen((prev) => !prev);
@@ -22,6 +27,10 @@ const Accordion = ({ children, className = '' }: AccordionProps) => {
   useEffect(() => {
     if (singleOpen) setIsOpen(openedId === id);
   }, [id, openedId, singleOpen]);
+
+  useEffect(() => {
+    setIsOpen(initialOpen);
+  }, [initialOpen]);
 
   return (
     <div
