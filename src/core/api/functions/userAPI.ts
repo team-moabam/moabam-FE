@@ -1,9 +1,9 @@
 import { baseInstance } from '../instance';
-import { UserType } from '@/core/types/User';
+import { User } from '@/core/types/User';
 
 const userAPI = {
   getUser: async (userId = '') => {
-    return await baseInstance.get<UserType>(
+    return await baseInstance.get<User>(
       `/members${userId ? '/' : ''}${userId}`
     );
   },

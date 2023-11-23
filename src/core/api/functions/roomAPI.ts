@@ -3,6 +3,7 @@ import {
   RoomsSearchRequestParams,
   TotalRooms
 } from '@/core/types';
+import { ParticipateHistory } from '@/core/types';
 import { baseInstance, formDataInstance } from '../instance';
 import { MyJoinRoom } from '@/core/types/MyJoinRoom';
 import { RoomInfo, RoomInfoBeforeEditing } from '@/core/types/Room';
@@ -84,9 +85,7 @@ const roomAPI = {
   },
 
   roomJoinHistory: async () => {
-    return await baseInstance.get<ParticipateHistoryType>(
-      `/rooms/join-history`
-    );
+    return await baseInstance.get<ParticipateHistory>(`/rooms/join-history`);
   }
 };
 
