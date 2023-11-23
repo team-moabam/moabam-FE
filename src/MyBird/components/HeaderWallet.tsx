@@ -1,37 +1,38 @@
-import { useEffect } from 'react';
-import { useContextSelector } from 'use-context-selector';
+import { useSuspenseQueries } from '@tanstack/react-query';
 import { BiSolidBugAlt } from 'react-icons/bi';
-import { MyBirdContext } from '../contexts/myBirdContext';
+import userOptions from '@/core/api/options/user';
 
 const HeaderWallet = () => {
-  const bugs = useContextSelector(MyBirdContext, (state) => state.bugs);
-
-  useEffect(() => {
-    console.log('HeaderWallet');
+  const [
+    {
+      data: { morning_bug, night_bug, golden_bug }
+    }
+  ] = useSuspenseQueries({
+    queries: [
+      {
+        ...userOptions.user()
+      }
+    ]
   });
+
   return (
     <>
       <div className="flex gap-3 rounded-full border-2 border-dark-gray bg-[rgba(1,1,1,0.5)] px-3 py-1">
-        {bugArray.map((bug) => (
-          <div
-            className={`flex items-center gap-2 ${bugColor[bug]}`}
-            key={bug}
-          >
-            <BiSolidBugAlt />
-            <h1>{bugs[bug]}</h1>
-          </div>
-        ))}
+        <div className="flex items-center gap-2 text-light-point">
+          <BiSolidBugAlt />
+          <h1>{morning_bug}</h1>
+        </div>
+        <div className="flex items-center gap-2 text-dark-point">
+          <BiSolidBugAlt />
+          <h1>{night_bug}</h1>
+        </div>
+        <div className="flex items-center gap-2 text-warning">
+          <BiSolidBugAlt />
+          <h1>{golden_bug}</h1>
+        </div>
       </div>
     </>
   );
 };
 
 export default HeaderWallet;
-
-const bugArray = ['morningBug', 'nightBug', 'goldenBug'] as const;
-
-const bugColor = {
-  morningBug: 'text-light-point',
-  nightBug: 'text-dark-point',
-  goldenBug: 'text-warning'
-};

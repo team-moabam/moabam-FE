@@ -10,16 +10,9 @@ export interface ItemType {
 }
 
 export interface ItemsType {
-  MORNING: {
-    defaultItemId: number;
-    purchasedItems: ItemType[];
-    notPurchasedItems: ItemType[];
-  };
-  NIGHT: {
-    defaultItemId: number;
-    purchasedItems: ItemType[];
-    notPurchasedItems: ItemType[];
-  };
+  defaultItemId: number;
+  purchasedItems: ItemType[];
+  notPurchasedItems: ItemType[];
 }
 
 export interface SelectItemType {

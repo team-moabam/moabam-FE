@@ -14,6 +14,7 @@ const BirdItem = ({
   birdItem
 }: BirdItemProps) => {
   const { bugPrice, image, name, type, level, goldenBugPrice } = birdItem;
+
   return (
     <>
       <div

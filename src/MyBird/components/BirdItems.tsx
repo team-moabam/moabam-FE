@@ -1,5 +1,9 @@
 import { useEffect } from 'react';
-import { useSuspenseQueries, useMutation } from '@tanstack/react-query';
+import {
+  useSuspenseQueries,
+  useMutation,
+  useQueryClient
+} from '@tanstack/react-query';
 import { useContextSelector } from 'use-context-selector';
 import useDebounce from '@/core/hooks/useDebounce';
 import itemOptions from '@/core/api/options/item';
@@ -8,13 +12,14 @@ import { MyBirdContext } from '../contexts/myBirdContext';
 import BirdItem from './BirdItem';
 import ProductSheet from './ProductSheet';
 import { useBottomSheet, BottomSheet } from '@/shared/BottomSheet';
-import { ItemsType } from '@/core/types/MyBird';
+import { ItemType } from '@/core/types/item';
 
 interface BirdItemsProps {
   itemType: 'MORNING' | 'NIGHT';
 }
 
 const BirdItems = ({ itemType }: BirdItemsProps) => {
+  const queryClient = useQueryClient();
   const [
     {
       data: { defaultItemId, notPurchasedItems, purchasedItems }
@@ -22,11 +27,11 @@ const BirdItems = ({ itemType }: BirdItemsProps) => {
   ] = useSuspenseQueries({
     queries: [
       {
-        ...itemOptions.all(itemType),
-        select: (items: ItemsType) => items[itemType]
+        ...itemOptions.all(itemType)
       }
     ]
   });
+
   const mutation = useMutation({
     mutationFn: itemAPI.select
   });
@@ -34,17 +39,20 @@ const BirdItems = ({ itemType }: BirdItemsProps) => {
     useContextSelector(MyBirdContext, (state) => state);
   const { bottomSheetProps, open, close } = useBottomSheet();
 
+  const handleSelectItem = (birdItem: ItemType) => {
+    setSelectItem({ ...selectItem, [itemType]: birdItem });
+    fetchSelectItem(birdItem.id);
+  };
+
   const fetchSelectItem = useDebounce((id: number) => {
-    console.log('스킨 변경 요청 중..');
     mutation.mutate(id, {
-      onSuccess: (data) => {
-        console.log('스킨 변경 요청 성공!');
+      onSuccess: () => {
+        queryClient.invalidateQueries({ queryKey: ['user', 'item'] });
       }
     });
   }, 1000);
 
   useEffect(() => {
-    console.log('BirdItems');
     if (selectItem[itemType]) return;
     const defaultItem = purchasedItems.find(({ id }) => id === defaultItemId);
     setSelectItem({ ...selectItem, [itemType]: defaultItem });
@@ -61,10 +69,7 @@ const BirdItems = ({ itemType }: BirdItemsProps) => {
                   <div
                     key={birdItem.id}
                     className="mb-6"
-                    onClick={() => {
-                      setSelectItem({ ...selectItem, [itemType]: birdItem });
-                      fetchSelectItem(birdItem.id);
-                    }}
+                    onClick={() => handleSelectItem(birdItem)}
                   >
                     <BirdItem
                       isSelect={selectItem[itemType]?.id === birdItem.id}

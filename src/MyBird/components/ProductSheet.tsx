@@ -1,61 +1,91 @@
-import { useEffect, useState } from 'react';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useState } from 'react';
+import {
+  useSuspenseQueries,
+  useMutation,
+  useQueryClient
+} from '@tanstack/react-query';
 import { BiSolidBugAlt } from 'react-icons/bi';
 import { useContextSelector } from 'use-context-selector';
 import itemAPI from '@/core/api/functions/itemAPI';
+import userOptions from '@/core/api/options/user';
 import { ItemType } from '../types/item';
-import { BugsType } from '../types/bugs';
 import { MyBirdContext } from '../contexts/myBirdContext';
+import { ItemsType } from '@/core/types/item';
+import { MyUserType } from '@/core/types/User';
 
 interface ProductSheetProps {
   close: () => void;
 }
 
 const ProductSheet = ({ close }: ProductSheetProps) => {
-  const {
-    level: userLevel,
-    productItem,
-    bugs,
-    selectItem,
-    setSelectItem
-  } = useContextSelector(MyBirdContext, (state) => state);
+  const [
+    {
+      data: { morning_bug, night_bug, golden_bug, level: userLevel }
+    }
+  ] = useSuspenseQueries({
+    queries: [
+      {
+        ...userOptions.user()
+      }
+    ]
+  });
+  const { productItem, selectItem, setSelectItem } = useContextSelector(
+    MyBirdContext,
+    (state) => state
+  );
   const mutation = useMutation({
     mutationFn: itemAPI.purchase
   });
   const queryClient = useQueryClient();
   const { bugPrice, goldenBugPrice, level, name, type } =
     productItem as ItemType;
-  const { morningBug, nightBug, goldenBug } = bugs as BugsType;
   const [purchaseOption, setPurchaseOption] = useState<string>();
   const isLevelEnough = userLevel >= level;
-
-  useEffect(() => {
-    console.log('ProductSheet');
-  }, []);
 
   const productOptions = [
     {
       purchaseType: 'normal',
       color: type === 'MORNING' ? 'text-light-point' : 'text-dark-point',
       price: bugPrice,
-      buyResult: (type === 'MORNING' ? morningBug : nightBug) - bugPrice
+      buyResult: (type === 'MORNING' ? morning_bug : night_bug) - bugPrice
     },
     {
       purchaseType: 'golden',
       color: 'text-warning',
       price: goldenBugPrice,
-      buyResult: goldenBug - goldenBugPrice
+      buyResult: golden_bug - goldenBugPrice
     }
   ];
 
-  const purchaseBird = (id: number) => {
-    if (!purchaseOption) return;
+  const purchaseBird = (id: number | undefined) => {
+    if (!purchaseOption || !id) return;
     mutation.mutate(
       { itemId: id, bugType: purchaseOption },
       {
-        onSuccess: (data) => {
+        onSuccess: () => {
           setSelectItem({ ...selectItem, [type]: productItem });
-          queryClient.invalidateQueries({ queryKey: [''] });
+          queryClient.setQueryData(['item'], (oldData: ItemsType) => {
+            return {
+              ...oldData,
+              defaultItemId: productItem?.id,
+              notPurchasedItems: oldData.notPurchasedItems.filter(
+                ({ id }) => id !== productItem?.id
+              ),
+              purchasedItems: [...oldData.purchasedItems, productItem]
+            };
+          });
+          queryClient.setQueryData(['user'], (oldData: MyUserType) => {
+            const PayType = purchaseOption === 'golden' ? 'GOLDEN' : type;
+            const { morning_bug, night_bug, golden_bug } = oldData;
+            return {
+              ...oldData,
+              morning_bug: morning_bug - (PayType === 'MORNING' ? bugPrice : 0),
+              night_bug: night_bug - (PayType === 'NIGHT' ? bugPrice : 0),
+              golden_bug:
+                golden_bug - (PayType === 'GOLDEN' ? goldenBugPrice : 0)
+            };
+          });
+          queryClient.invalidateQueries({ queryKey: ['user', 'item'] });
           close();
         },
         onError: (e) => {
@@ -64,7 +94,6 @@ const ProductSheet = ({ close }: ProductSheetProps) => {
       }
     );
   };
-
   return (
     <>
       <div className="p-3">
@@ -120,9 +149,7 @@ const ProductSheet = ({ close }: ProductSheetProps) => {
                   : 'btn-light-point dark:btn-dark-point'
               }`}
               disabled={!purchaseOption}
-              onClick={() => {
-                if (productItem) purchaseBird(productItem.id);
-              }}
+              onClick={() => purchaseBird(productItem?.id)}
             >
               구매
             </button>

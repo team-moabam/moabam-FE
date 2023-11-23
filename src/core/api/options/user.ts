@@ -4,7 +4,7 @@ import userAPI from '../functions/userAPI';
 const userOptions = {
   user: (userId = '') =>
     queryOptions({
-      queryKey: ['user', userId] as const,
+      queryKey: ['user'] as const,
       queryFn: () => userAPI.getUser(userId)
     })
 };

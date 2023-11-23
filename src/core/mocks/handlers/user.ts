@@ -18,7 +18,6 @@ const userHandlers = [
     } catch (err) {
       console.error(err);
     }
-
     await delay(200);
     return HttpResponse.json({ id: 101 });
   }),
