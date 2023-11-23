@@ -22,6 +22,7 @@ const RoomNavigate = () => {
   const roomToMove = pickRoomToShow(data, today);
   if (roomToMove) {
     moveTo('roomDetail', { roomId: roomToMove.roomId }, { replace: true });
+    return <></>;
   } else {
     return <NoRoom />;
   }
