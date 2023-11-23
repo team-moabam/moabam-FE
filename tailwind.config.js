@@ -68,9 +68,10 @@ export default {
         8: '8px'
       },
       zIndex: {
+        navbar: '50',
         bottomSheet: '100',
         toast: '110',
-        navbar: '50'
+        pwaInstallBanner: '120'
       }
     }
   }
