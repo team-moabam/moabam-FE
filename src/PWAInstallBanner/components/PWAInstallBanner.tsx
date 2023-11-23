@@ -1,11 +1,13 @@
 import { useEffect, useRef, useState } from 'react';
 import clsx from 'clsx';
 import { AnimatePresence, motion } from 'framer-motion';
+import { useTheme } from '@/core/hooks';
 import { Icon } from '@/shared/Icon';
 
 const PWAInstallBanner = () => {
   const deferredPrompt = useRef<any>(null);
-  const [isShow, setIsShow] = useState(false);
+  const [isShow, setIsShow] = useState(true);
+  const { theme } = useTheme();
 
   const handleInstall = () => {
     deferredPrompt.current.prompt();
@@ -15,32 +17,23 @@ const PWAInstallBanner = () => {
     setIsShow(false);
   };
 
+  const handleBeforeInstallPrompt = (e: Event) => {
+    e.preventDefault();
+    deferredPrompt.current = e;
+    setIsShow(true);
+  };
+
   useEffect(() => {
-    const handleBeforeInstallPrompt = (e: Event) => {
-      e.preventDefault();
-      deferredPrompt.current = e;
-      setIsShow(true);
-      console.log('beforeinstallprompt Event fired', e);
-    };
-
     window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+    window.addEventListener('appinstalled', handleClose);
 
-    return () =>
+    return () => {
       window.removeEventListener(
         'beforeinstallprompt',
         handleBeforeInstallPrompt
       );
-  }, []);
-
-  useEffect(() => {
-    const handleAppInstalled = () => {
-      setIsShow(false);
-      console.log('appinstalled Event fired');
+      window.removeEventListener('appinstalled', handleClose);
     };
-
-    window.addEventListener('appinstalled', handleAppInstalled);
-
-    return () => window.removeEventListener('appinstalled', handleAppInstalled);
   }, []);
 
   return (
@@ -55,14 +48,15 @@ const PWAInstallBanner = () => {
           <div
             className={clsx(
               'absolute bottom-36 z-pwaInstallBanner h-16 w-[90%]',
-              'rounded-lg font-bold text-black shadow-lg dark:text-white',
+              'rounded-lg font-bold text-white shadow-lg',
               'flex items-center justify-center gap-2',
-              'bg-gradient-to-r from-light-point to-light-point-hover'
+              'bg-gradient-to-r from-light-point to-light-point-hover',
+              'dark:from-dark-point dark:to-dark-point-hover'
             )}
           >
             <img
               className="ml-4"
-              src="/logo.png"
+              src={theme === 'dark' ? '/logo-dark.svg' : '/logo-light.svg'}
               width={50}
               height={50}
             />
@@ -99,4 +93,4 @@ const PWAInstallBanner = () => {
 export default PWAInstallBanner;
 
 const iconButtonStyle =
-  'flex flex-col items-center justify-center cursor-pointer rounded-2xl p-2 bg-white text-light-point hover:text-light-point-hover hover:bg-light-main';
+  'flex flex-col items-center justify-center cursor-pointer rounded-2xl p-2 bg-white text-light-point hover:bg-light-main hover:text-light-point-hover dark:text-dark-point dark:hover:text-dark-point-hover';
