@@ -19,6 +19,7 @@ const NoRoom = () => {
         </Link>
         <Link
           className={buttonStyle}
+          state={{ from: 'room' }}
           to="new"
         >
           루틴방 만들기
