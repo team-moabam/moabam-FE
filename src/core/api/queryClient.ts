@@ -5,7 +5,9 @@ import { CustomAxiosError } from '@/core/api/types';
 import { STORAGE_KEYS } from '../constants/storageKeys';
 
 const handleRedirectOnError = (error: CustomAxiosError) => {
+  console.log('handleRedirectOnError 1');
   if (error.response?.status === 401) {
+    console.log('handleRedirectOnError 2');
     localStorage.removeItem(STORAGE_KEYS.MEMBER_ID);
     router.navigate('/join');
   }
@@ -21,13 +23,16 @@ const queryClient = new QueryClient({
   },
   queryCache: new QueryCache({
     onError: (error, query) => {
+      console.log('onError 1');
       try {
+        console.log('onError 2');
         if (
           JSON.stringify(query.queryKey) ===
           JSON.stringify(memberOptions.myInfo().queryKey)
         ) {
           return;
         }
+        console.log('onError 3');
 
         handleRedirectOnError(error);
       } catch (err) {
