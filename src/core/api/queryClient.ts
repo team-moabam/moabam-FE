@@ -5,10 +5,7 @@ import { CustomAxiosError } from '@/core/api/types';
 import { STORAGE_KEYS } from '../constants/storageKeys';
 
 const handleRedirectOnError = (error: CustomAxiosError) => {
-  console.log('handleRedirectOnError 1');
-
   if (error.code === 'ERR_NETWORK' || error.response?.status === 401) {
-    console.log('handleRedirectOnError 2');
     localStorage.removeItem(STORAGE_KEYS.MEMBER_ID);
     router.navigate('/join');
   }

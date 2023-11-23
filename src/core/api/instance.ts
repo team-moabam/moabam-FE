@@ -18,15 +18,10 @@ export const formDataInstance: CustomAxiosInstance = axios.create({
 
 const onSucessResponse = (res: AxiosResponse) => {
   const { data } = res;
-  console.log('onSuccessResponse');
   return data;
 };
 
-const onErrorResponse = (error: any) => {
-  console.log('onErrorResponse');
-  console.log(error);
-  return Promise.reject(error);
-};
+const onErrorResponse = (error: any) => Promise.reject(error);
 
 baseInstance.interceptors.response.use(onSucessResponse, onErrorResponse);
 formDataInstance.interceptors.response.use(onSucessResponse, onErrorResponse);

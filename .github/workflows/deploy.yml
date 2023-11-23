@@ -2,7 +2,7 @@ name: React App CI/CD
 
 on:
   push:
-    branches: ['fix/#222/401-redirect']
+    branches: ['main']
 
 jobs:
   build:
