@@ -18,6 +18,7 @@ export const formDataInstance: CustomAxiosInstance = axios.create({
 
 const onSucessResponse = (res: AxiosResponse) => {
   const { data } = res;
+
   return data;
 };
 
