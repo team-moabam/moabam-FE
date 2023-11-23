@@ -3,6 +3,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { useTheme } from '@/core/hooks';
 import RoomSlide from '@/RoomSlide/components/RoomSlide';
 import { EventBanner } from '@/Promotion';
+import { PWAInstallBanner } from '@/PWAInstallBanner';
 
 const RoutinesPage = () => {
   const { theme } = useTheme();
@@ -23,11 +24,11 @@ const RoutinesPage = () => {
           </SwiperSlide>
         ))}
       </Swiper>
+      <PWAInstallBanner />
       <Suspense>
         <EventBanner />
       </Suspense>
     </div>
-    // </div>
   );
 };
 
