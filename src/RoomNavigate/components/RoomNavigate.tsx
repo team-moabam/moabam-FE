@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSuspenseQueries } from '@tanstack/react-query';
 import timeOption from '@/core/api/options/time';
 import { roomOptions } from '@/core/api/options';
@@ -19,13 +19,14 @@ const RoomNavigate = () => {
     ]
   });
 
-  const roomToMove = pickRoomToShow(data, today);
-  if (roomToMove) {
-    moveTo('roomDetail', { roomId: roomToMove.roomId }, { replace: true });
-    return <></>;
-  } else {
-    return <NoRoom />;
-  }
+  useEffect(() => {
+    const roomToMove = pickRoomToShow(data, today);
+    if (roomToMove) {
+      moveTo('roomDetail', { roomId: roomToMove.roomId }, { replace: true });
+    }
+  }, [data, moveTo, today]);
+
+  return <NoRoom />;
 };
 
 export default RoomNavigate;
