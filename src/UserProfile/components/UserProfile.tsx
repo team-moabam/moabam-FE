@@ -1,6 +1,8 @@
 import { useState, ChangeEvent } from 'react';
+import { useMutation } from '@tanstack/react-query';
 import { MdModeEdit, MdAdd } from 'react-icons/md';
 import { useForm, SubmitHandler } from 'react-hook-form';
+import userAPI from '@/core/api/functions/userAPI';
 
 interface Inputs {
   nickname?: string;
@@ -18,6 +20,9 @@ const UserProfile = ({ nickname, intro, profileImage }: UserProfileProps) => {
   const [isEditMode, setIsEditMode] = useState(false);
   const [newImgUrl, setNewImgUrl] = useState<string | null>(null);
   const { register, handleSubmit } = useForm<Inputs>();
+  const mutation = useMutation({
+    mutationFn: userAPI.putUser
+  });
 
   const handleClickFileInput = () => {
     const profile_image = document.querySelector(
@@ -40,7 +45,7 @@ const UserProfile = ({ nickname, intro, profileImage }: UserProfileProps) => {
     }
   };
 
-  const handleCancelEdit = () => {
+  const handleChangeNormalMode = () => {
     setIsEditMode(false);
     setNewImgUrl(null);
   };
@@ -50,7 +55,8 @@ const UserProfile = ({ nickname, intro, profileImage }: UserProfileProps) => {
     if (!data.intro) delete data.intro;
     if (!data.profileImage || !newImgUrl) delete data.profileImage;
     console.log(data);
-    handleCancelEdit();
+    mutation.mutate(data);
+    handleChangeNormalMode();
   };
 
   return (
@@ -121,7 +127,7 @@ const UserProfile = ({ nickname, intro, profileImage }: UserProfileProps) => {
           <div className="flex w-full max-w-[16rem] gap-2">
             <button
               className="btn grow rounded-lg border border-light-gray shadow-none hover:bg-light-gray"
-              onClick={handleCancelEdit}
+              onClick={handleChangeNormalMode}
             >
               취소
             </button>
