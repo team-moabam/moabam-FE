@@ -1,6 +1,5 @@
 import { clsx } from 'clsx';
 import { useMoveRoute } from '@/core/hooks';
-import useHover from '@/core/hooks/useHover';
 import { Room } from '@/core/types';
 import roomListStyle from '@/RoomList/styles/roomListStyle';
 import { Accordion, AccordionHeader, AccordionBody } from '@/shared/Accordion';
@@ -46,10 +45,7 @@ const RoomAccordion = ({ room }: RoomAccordionProps) => {
         )}
         headerToggle
       >
-        <div
-          className="py-3"
-          // ref={hoverRef}
-        >
+        <div className="py-3">
           <RoomSummary {...room} />
         </div>
       </AccordionHeader>
@@ -59,7 +55,7 @@ const RoomAccordion = ({ room }: RoomAccordionProps) => {
           roomListStyle['bg-room-card']
         )}
       >
-        <div className="flex items-end justify-between gap-1 p-4 pt-5">
+        <div className="flex items-end justify-between gap-1 p-4 pr-3 pt-5">
           <RoutineList>
             {routines.map(({ routineId, content }) => (
               <RoutineItem key={routineId}>
@@ -72,8 +68,8 @@ const RoomAccordion = ({ room }: RoomAccordionProps) => {
           </RoutineList>
           <button
             className={clsx(
-              'btn btn-light-point dark:btn-dark-point py-2',
-              'h-fit font-IMHyemin-bold text-xs text-light-sub dark:text-dark-sub'
+              'btn btn-light-point dark:btn-dark-point h-fit py-2',
+              'whitespace-nowrap font-IMHyemin-bold text-xs text-light-sub dark:text-dark-sub'
             )}
             onClick={() => moveTo('roomDetail', { roomId: id })}
           >
