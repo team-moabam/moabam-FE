@@ -23,8 +23,6 @@ const queryClient = new QueryClient({
   },
   queryCache: new QueryCache({
     onError: (error, query) => {
-      console.log(error);
-
       try {
         if (
           JSON.stringify(query.queryKey) ===

@@ -22,7 +22,11 @@ const onSucessResponse = (res: AxiosResponse) => {
   return data;
 };
 
-const onErrorResponse = (error: any) => Promise.reject(error);
+const onErrorResponse = (error: any) => {
+  console.log('onErrorResponse');
+  console.log(error);
+  return Promise.reject(error);
+};
 
 baseInstance.interceptors.response.use(onSucessResponse, onErrorResponse);
 formDataInstance.interceptors.response.use(onSucessResponse, onErrorResponse);
