@@ -1,31 +1,86 @@
-import { useState } from 'react';
+import { useMutation } from '@tanstack/react-query';
+import { useFormContext } from 'react-hook-form';
 import clsx from 'clsx';
+import { useLocalStorage } from '@/core/hooks';
+import reportAPI from '@/core/api/functions/reportAPI';
+import { ReportContent, FormReport } from '../types/type';
+import { REPORT_CONTENT } from '../constants/constant';
 import BottomSheet from '@/shared/BottomSheet/components/BottomSheet';
 import { BottomSheetProps } from '@/shared/BottomSheet/components/BottomSheet';
+import { Toast } from '@/shared/Toast';
 
 interface ReportBottomSheetProps {
   bottomSheetProps: BottomSheetProps;
   close: () => void;
   nickname: string;
   reportedId: string;
+  changeCheckedInput: (state: string) => void;
+  checked: string;
+  changeReportStatus: (value: boolean) => void;
 }
 
-const reportContent = {
-  '1234': '욕설 및 부적절한 단어 사용(닉네임 포함)',
-  '2345': '루틴 이외의 다른 목적의 방 개설',
-  '3456': '이유 없는 지속적인 콕 찌르기 사용',
-  '5678': '인증 여부를 알기 힘든 인증 업로드',
-  '6789': '기타'
-};
+const reportContent: ReportContent = REPORT_CONTENT;
 
 const ReportBottomSheet = ({
   bottomSheetProps,
-  // close,
+  close,
   nickname,
-  reportedId
+  reportedId,
+  changeCheckedInput,
+  checked,
+  changeReportStatus
 }: ReportBottomSheetProps) => {
+  const {
+    formState: { errors },
+    register,
+    setError,
+    handleSubmit
+  } = useFormContext<FormReport>();
+
+  const mutation = useMutation({
+    mutationFn: reportAPI.report
+  });
+
+  const [userId] = useLocalStorage('MEMBER_ID', 0);
+
   const objReportContent = Object.entries(reportContent);
-  const [checked, setChecked] = useState<string>('');
+
+  const handleFormSubmit = async (data: FormReport) => {
+    let description = null;
+
+    for (const [key, value] of Object.entries(data)) {
+      if (value) {
+        description = reportContent[key];
+      }
+    }
+
+    if (!description) {
+      setError('report', {
+        type: 'custom',
+        message: '신고 이유를 선택해주세요'
+      });
+    }
+
+    mutation.mutate(
+      {
+        reportedId,
+        memberId: `${userId}`,
+        description
+      },
+      {
+        onSuccess: () => {
+          close();
+          changeReportStatus(false);
+          changeCheckedInput('');
+          Toast.show({
+            status: 'danger',
+            message: '신고가 접수되었습니다'
+          });
+        }
+      }
+    );
+  };
+
   return (
     <BottomSheet
       {...bottomSheetProps}
@@ -43,22 +98,27 @@ const ReportBottomSheet = ({
           <span className="mb-1">해당 내용은 운영진에게 전달되며,</span>
           <span>추후 피드백이 있을 수 있습니다</span>
         </div>
-        <form className="mb-[1.94rem]">
+        <form
+          id="reportForm"
+          className="mb-[1.94rem]"
+          onSubmit={handleSubmit(handleFormSubmit)}
+        >
           {objReportContent.map(([id, content]) => (
             <div className="mb-[1.125rem] flex items-center">
               <div className="mr-[1.22rem]">
                 <input
-                  type="checkbox"
+                  type="radio"
                   className="hidden"
                   id={id}
-                  onClick={() => setChecked(id)}
+                  onClick={() => changeCheckedInput(id)}
+                  {...register(id)}
                 />
                 <label
                   htmlFor={id}
                   className={clsx(
                     'relative block h-[1.2rem] w-[1.2rem] rounded-full border-2 border-dark-gray bg-white',
                     {
-                      'after:absolute after:left-1/2 after:top-1/2 after:h-[0.75rem] after:w-[0.75rem] after:bg-danger after:rounded-full after:translate-x-[-47%] after:translate-y-[-51%]':
+                      'after:absolute after:left-1/2 after:top-1/2 after:h-[0.75rem] after:w-[0.75rem] after:bg-danger after:rounded-full after:translate-x-[-50%] after:translate-y-[-50%]':
                         checked === id
                     }
                   )}
@@ -74,7 +134,16 @@ const ReportBottomSheet = ({
             </div>
           ))}
         </form>
-        <button className="btn btn-danger w-full">신고</button>
+        <span className="font-IMHyemin-bold text-sm text-danger">
+          {errors.report?.message}
+        </span>
+        <button
+          className="btn btn-danger mt-3 w-full"
+          type="submit"
+          form="reportForm"
+        >
+          신고
+        </button>
       </div>
     </BottomSheet>
   );

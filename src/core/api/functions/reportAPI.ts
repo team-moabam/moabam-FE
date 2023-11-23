@@ -2,8 +2,20 @@ import { Report } from '@/core/types';
 import { baseInstance } from '../instance';
 
 const reportAPI = {
-  report: async (body: Report) => {
-    return await baseInstance.post<Report>(`/reports`, body);
+  report: async ({
+    reportedId,
+    memberId,
+    roomId = null,
+    certificationId = null,
+    description = null
+  }: Report) => {
+    return await baseInstance.post<Report>(`/reports`, {
+      reportedId,
+      memberId,
+      roomId,
+      certificationId,
+      description
+    });
   }
 };
 

@@ -33,6 +33,9 @@ const RoomWorkspace = ({
 
   // Todo : RoomCalendar data props
 
+  const changeReportStatus = (value) => {
+    setReportStatus(value);
+  };
 
   return (
     <>
@@ -87,6 +90,7 @@ const RoomWorkspace = ({
           <RoomMembers
             members={todayCertificateRank}
             reportStatus={reportStatus}
+            changeReportStatus={changeReportStatus}
           />
           <button
             className="mt-[1.62rem] text-sm text-black dark:text-white"
