@@ -28,7 +28,8 @@ const AccordionHeader = ({
       className={twMerge(
         clsx('flex items-center justify-between', {
           'cursor-pointer': headerToggle
-        }) + `${headerStyle}`,
+        }),
+        headerStyle,
         className
       )}
       onClick={headerToggle ? toggleOpen : () => {}}
