@@ -85,6 +85,12 @@ const roomsHandlers = [
     );
   }),
 
+  http.get(baseURL('/rooms/join-history'), async () => {
+    console.log(1);
+    await delay(1000);
+    return HttpResponse.json(PARTICIPATE_HISTORY, { status: 200 });
+  }),
+
   http.get(baseURL('/rooms/:roomId'), async () => {
     await delay(1000);
 
@@ -328,10 +334,6 @@ const roomsHandlers = [
       },
       { status: 200 }
     );
-  }),
-  http.get(baseURL('/rooms/join-history'), async () => {
-    await delay(1000);
-    return HttpResponse.json(PARTICIPATE_HISTORY, { status: 200 });
   })
 ];
 

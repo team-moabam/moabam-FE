@@ -1,6 +1,6 @@
-import { User, MyUser } from '@/core/types';
+import { MemberInfo, MyInfo } from '@/core/types';
 
-export const MY_USER_DATA: MyUser = {
+export const MY_INFO: MyInfo = {
   nickname: '자려고 사는 사람',
   intro: '너무나 졸린사람',
   level: 3,
@@ -35,7 +35,7 @@ export const MY_USER_DATA: MyUser = {
   night_bug: 5
 };
 
-export const OTHER_USER_DATA: User = {
+export const MEMBER_INFO: MemberInfo = {
   nickname: '죽으려고 사는 사람',
   intro: '으앙',
   level: 4,
