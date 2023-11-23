@@ -6,7 +6,6 @@ import { STORAGE_KEYS } from '../constants/storageKeys';
 
 const handleRedirectOnError = (error: CustomAxiosError) => {
   console.log('handleRedirectOnError 1');
-  console.log('status: ' + error.status);
   if (error.response && error.response?.status === 401) {
     console.log('handleRedirectOnError 2');
     localStorage.removeItem(STORAGE_KEYS.MEMBER_ID);
@@ -24,6 +23,8 @@ const queryClient = new QueryClient({
   },
   queryCache: new QueryCache({
     onError: (error, query) => {
+      console.log(error);
+
       try {
         if (
           JSON.stringify(query.queryKey) ===
