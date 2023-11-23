@@ -7,6 +7,7 @@ import { useRouteData, useTheme } from '@/core/hooks';
 import timeOption from './core/api/options/time';
 import getTimeRange from './core/utils/getTimeRange';
 import useCheckAuthRequired from './useCheckAuthRequired';
+import { PWAInstallBanner } from './PWAInstallBanner';
 import { Navbar } from './shared/Navbar';
 import { UnknownFallback } from './shared/ErrorBoundary';
 import 'swiper/css';
@@ -37,6 +38,7 @@ const App = () => {
     >
       <ErrorBoundary fallback={<UnknownFallback />}>
         <div className="h-full overflow-hidden bg-light-main text-black dark:bg-dark-main dark:text-white">
+          <PWAInstallBanner />
           <Outlet />
         </div>
 

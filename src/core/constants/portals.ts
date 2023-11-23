@@ -3,5 +3,6 @@
  */
 export const PORTALS = {
   bottomSheet: 'portal-bottom-sheet',
-  toast: 'portal-toast'
+  toast: 'portal-toast',
+  pwaInstallBanner: 'portal-pwa-install-banner'
 };
