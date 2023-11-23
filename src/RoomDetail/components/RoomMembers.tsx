@@ -12,9 +12,14 @@ import { RankMember } from '@/core/types/Member';
 interface RoomMembers {
   members: RankMember[];
   reportStatus: boolean;
+  changeReportStatus: (value: boolean) => void;
 }
 
-const RoomMembers = ({ members, reportStatus }: RoomMembers) => {
+const RoomMembers = ({
+  members,
+  reportStatus,
+  changeReportStatus
+}: RoomMembers) => {
   const { bottomSheetProps, toggle, close } = useBottomSheet();
   const [chooseUserInfo, setSelectUserInfo] = useState({
     nickname: '',
@@ -54,6 +59,10 @@ const RoomMembers = ({ members, reportStatus }: RoomMembers) => {
         subText: '콕콕'
       });
     }
+  };
+
+  const changeCheckedInput = (state: string) => {
+    setChecked(state);
   };
 
   const handleReportButtonClick = (nickname: string, memberId: string) => {
@@ -149,8 +158,9 @@ const RoomMembers = ({ members, reportStatus }: RoomMembers) => {
           close={close}
           nickname={nickname}
           reportedId={reportedId}
-          setChecked={setChecked}
+          changeCheckedInput={changeCheckedInput}
           checked={checked}
+          changeReportStatus={changeReportStatus}
         />
       </FormProvider>
     </>

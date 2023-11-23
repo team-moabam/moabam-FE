@@ -1,4 +1,3 @@
-import { Dispatch, SetStateAction } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import { useFormContext } from 'react-hook-form';
 import clsx from 'clsx';
@@ -15,8 +14,9 @@ interface ReportBottomSheetProps {
   close: () => void;
   nickname: string;
   reportedId: string;
-  setChecked: Dispatch<SetStateAction<string>>;
+  changeCheckedInput: (state: string) => void;
   checked: string;
+  changeReportStatus: (value: boolean) => void;
 }
 
 const reportContent: ReportContent = REPORT_CONTENT;
@@ -26,8 +26,9 @@ const ReportBottomSheet = ({
   close,
   nickname,
   reportedId,
-  setChecked,
-  checked
+  changeCheckedInput,
+  checked,
+  changeReportStatus
 }: ReportBottomSheetProps) => {
   const {
     formState: { errors },
@@ -63,13 +64,14 @@ const ReportBottomSheet = ({
     mutation.mutate(
       {
         reportedId,
-        memberId: userId,
+        memberId: `${userId}`,
         description
       },
       {
         onSuccess: () => {
           close();
-          setChecked('');
+          changeReportStatus(false);
+          changeCheckedInput('');
           Toast.show({
             status: 'confirm',
             message: '신고가 완료되었습니다'
@@ -108,7 +110,7 @@ const ReportBottomSheet = ({
                   type="radio"
                   className="hidden"
                   id={id}
-                  onClick={() => setChecked(id)}
+                  onClick={() => changeCheckedInput(id)}
                   {...register(id)}
                 />
                 <label
@@ -116,7 +118,7 @@ const ReportBottomSheet = ({
                   className={clsx(
                     'relative block h-[1.2rem] w-[1.2rem] rounded-full border-2 border-dark-gray bg-white',
                     {
-                      'after:absolute after:left-1/2 after:top-1/2 after:h-[0.75rem] after:w-[0.75rem] after:bg-danger after:rounded-full after:translate-x-[-53%] after:translate-y-[-51%]':
+                      'after:absolute after:left-1/2 after:top-1/2 after:h-[0.75rem] after:w-[0.75rem] after:bg-danger after:rounded-full after:translate-x-[-50%] after:translate-y-[-50%]':
                         checked === id
                     }
                   )}
