@@ -29,7 +29,6 @@ interface RoomAccordionProps {
 const RoomAccordion = ({ room }: RoomAccordionProps) => {
   const { routines, id } = room;
   const moveTo = useMoveRoute();
-  const [hoverRef, hovered] = useHover<HTMLDivElement>();
   const keyword = useKeyword();
 
   return (
@@ -43,15 +42,13 @@ const RoomAccordion = ({ room }: RoomAccordionProps) => {
           'relative z-10 rounded-2xl px-3',
           roomListStyle['bg-room-card'],
           roomListStyle['ring-room-card'],
-          {
-            'ring-2': hovered
-          }
+          'hover:ring-2'
         )}
+        headerToggle
       >
         <div
-          className="cursor-pointer py-3"
-          onClick={() => moveTo('roomDetail', { roomId: id })}
-          ref={hoverRef}
+          className="py-3"
+          // ref={hoverRef}
         >
           <RoomSummary {...room} />
         </div>
@@ -62,7 +59,7 @@ const RoomAccordion = ({ room }: RoomAccordionProps) => {
           roomListStyle['bg-room-card']
         )}
       >
-        <div className="p-4 pt-5">
+        <div className="flex items-end justify-between gap-1 p-4 pt-5">
           <RoutineList>
             {routines.map(({ routineId, content }) => (
               <RoutineItem key={routineId}>
@@ -73,6 +70,15 @@ const RoomAccordion = ({ room }: RoomAccordionProps) => {
               </RoutineItem>
             ))}
           </RoutineList>
+          <button
+            className={clsx(
+              'btn btn-light-point dark:btn-dark-point py-2',
+              'h-fit font-IMHyemin-bold text-xs text-light-sub dark:text-dark-sub'
+            )}
+            onClick={() => moveTo('roomDetail', { roomId: id })}
+          >
+            보러 가기
+          </button>
         </div>
       </AccordionBody>
     </Accordion>
