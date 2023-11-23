@@ -11,7 +11,7 @@ interface UserMainProps {
 const UserMain = ({ userId = '' }: UserMainProps) => {
   const [
     {
-      data: { nickname, intro, level, exp, birds, badges, profile_image }
+      data: { nickname, intro, level, exp, birds, badges, profileImage }
     }
   ] = useSuspenseQueries({
     queries: [
@@ -26,7 +26,7 @@ const UserMain = ({ userId = '' }: UserMainProps) => {
       <UserProfile
         nickname={nickname}
         intro={intro}
-        profile_image={profile_image}
+        profileImage={profileImage}
       />
       <div className="my-2 mt-4 flex w-full items-end justify-between">
         <div className="text-xl text-light-point dark:text-dark-point">
@@ -73,14 +73,14 @@ const UserMain = ({ userId = '' }: UserMainProps) => {
         <h1>뱃지</h1>
       </div>
       <div className="flex h-36 w-full rounded-lg  text-sm">
-        {badges.slice(0, 3).map(({ name, Success }) => (
+        {badges.slice(0, 3).map(({ name, unlock }) => (
           <div
             className="flex h-full w-2/6 flex-col items-center justify-center gap-2 rounded-lg"
             key={name}
           >
             <div
               className={`h-14 w-14 rounded-full ${
-                Success ? 'bg-light-point dark:bg-dark-point' : 'bg-dark-gray'
+                unlock ? 'bg-light-point dark:bg-dark-point' : 'bg-dark-gray'
               }`}
             />
             <p className="text-center">{name}</p>

@@ -1,15 +1,30 @@
 import { useState, ChangeEvent } from 'react';
 import { MdModeEdit, MdAdd } from 'react-icons/md';
+import { useForm, SubmitHandler } from 'react-hook-form';
+
+interface Inputs {
+  nickname?: string;
+  intro?: string;
+  profileImage?: File[];
+}
 
 interface UserProfileProps {
   nickname: string;
   intro: string | undefined;
-  profile_image: string | undefined;
+  profileImage: string | undefined;
 }
 
-const UserProfile = ({ nickname, intro, profile_image }: UserProfileProps) => {
+const UserProfile = ({ nickname, intro, profileImage }: UserProfileProps) => {
   const [isEditMode, setIsEditMode] = useState(false);
   const [newImgUrl, setNewImgUrl] = useState<string | null>(null);
+  const { register, handleSubmit } = useForm<Inputs>();
+
+  const handleClickFileInput = () => {
+    const profile_image = document.querySelector(
+      '#profileImage'
+    ) as HTMLInputElement;
+    profile_image?.click();
+  };
 
   const handleImageSelect = (e: ChangeEvent<HTMLInputElement>) => {
     const selectedImage = e.target.files?.[0];
@@ -19,33 +34,53 @@ const UserProfile = ({ nickname, intro, profile_image }: UserProfileProps) => {
         if (e.target) {
           const imageUrl = e.target.result as string;
           setNewImgUrl(imageUrl);
-          console.log(imageUrl);
         }
       };
       reader.readAsDataURL(selectedImage);
     }
   };
 
+  const handleCancelEdit = () => {
+    setIsEditMode(false);
+    setNewImgUrl(null);
+  };
+
+  const onSubmit: SubmitHandler<Inputs> = (data) => {
+    if (!data.nickname) delete data.nickname;
+    if (!data.intro) delete data.intro;
+    if (!data.profileImage || !newImgUrl) delete data.profileImage;
+    console.log(data);
+    handleCancelEdit();
+  };
+
   return (
     <>
-      <div
-        className="absolute right-0 cursor-pointer text-3xl text-dark-gray hover:text-black dark:hover:text-white"
-        onClick={() => setIsEditMode(!isEditMode)}
-      >
-        <MdModeEdit />
-      </div>
+      {!isEditMode && (
+        <div
+          className="absolute right-0 cursor-pointer text-3xl text-dark-gray hover:text-black dark:hover:text-white"
+          onClick={() => setIsEditMode(true)}
+        >
+          <MdModeEdit />
+        </div>
+      )}
+
       {isEditMode ? (
-        <form className="flex w-full flex-col items-center">
+        <form
+          className="flex w-full flex-col items-center"
+          onSubmit={handleSubmit(onSubmit)}
+        >
           <input
             type="file"
-            id="profile_image"
+            id="profileImage"
             className="hidden"
             accept="image/gif,image/jpeg,image/png"
-            onChange={handleImageSelect}
+            {...register('profileImage', {
+              onChange: (e) => handleImageSelect(e)
+            })}
           />
           <div className="relative h-24 w-24 overflow-hidden rounded-full">
             <img
-              src={profile_image ?? '/assets/user.png'}
+              src={profileImage ?? '/assets/user.png'}
               className="absolute h-full w-full object-cover"
             />
             {newImgUrl && (
@@ -59,36 +94,34 @@ const UserProfile = ({ nickname, intro, profile_image }: UserProfileProps) => {
             )}
             <div
               className="absolute grid h-full w-full place-content-center bg-[rgba(1,1,1,0.2)] text-4xl text-light-main transition-all hover:text-dark-gray"
-              onClick={() => {
-                const profile_image = document.querySelector(
-                  '#profile_image'
-                ) as HTMLInputElement;
-                profile_image?.click();
-              }}
+              onClick={handleClickFileInput}
             >
               <MdAdd />
             </div>
           </div>
-          <div className="my-2 flex w-full max-w-[16rem] flex-col items-center gap-2">
+          <div className="my-2 flex w-full max-w-[16rem] flex-col items-start gap-2">
             <input
-              type="text"
-              placeholder={'새 닉네임 (최대 20자)'}
+              placeholder={nickname}
               className="w-full border-b border-light-gray bg-transparent p-1 focus:border-b-2
             focus:border-light-point focus:outline-none focus:ring-light-point
             dark:focus:border-dark-point dark:focus:ring-dark-point"
+              {...register('nickname')}
             />
             <input
-              type="text"
-              placeholder={'한 줄 소개 (최대 20자)'}
+              placeholder={intro}
               className="w-full border-b border-light-gray bg-transparent p-1 focus:border-b-2
             focus:border-light-point focus:outline-none focus:ring-light-point
             dark:focus:border-dark-point dark:focus:ring-dark-point"
+              {...register('intro')}
             />
+            <span className="text-sm text-danger">
+              빈 항목은 변경되지 않습니다!
+            </span>
           </div>
           <div className="flex w-full max-w-[16rem] gap-2">
             <button
               className="btn grow rounded-lg border border-light-gray shadow-none hover:bg-light-gray"
-              onClick={() => setIsEditMode(false)}
+              onClick={handleCancelEdit}
             >
               취소
             </button>
@@ -104,7 +137,7 @@ const UserProfile = ({ nickname, intro, profile_image }: UserProfileProps) => {
         <div className="flex flex-col items-center gap-2">
           <div className="relative h-24 w-24 overflow-hidden rounded-full">
             <img
-              src={profile_image ?? '/assets/user.png'}
+              src={profileImage ?? '/assets/user.png'}
               className="absolute h-full w-full object-cover"
             />
           </div>
