@@ -65,8 +65,8 @@ const useRoomForm = () => {
       title: '',
       password: ''
     },
-    mode: 'onBlur'
-    // resolver: zodResolver(formSchema)
+    mode: 'onBlur',
+    resolver: zodResolver(formSchema)
   });
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
