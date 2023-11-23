@@ -6,9 +6,9 @@ export const MY_INFO: MyInfo = {
   level: 3,
   exp: 6,
   birds: {
-    MORNING_SKIN:
+    MORNING:
       'https://i.pinimg.com/564x/9d/1d/81/9d1d81196806e7a2829f94f67ccc3248.jpg',
-    NIGHT_SKIN:
+    NIGHT:
       'https://i.pinimg.com/564x/f4/9d/21/f49d217cae2f110e8acee4ed1f120483.jpg'
   },
   badges: [
@@ -41,9 +41,9 @@ export const MEMBER_INFO: MemberInfo = {
   level: 4,
   exp: 6,
   birds: {
-    MORNING_SKIN:
+    MORNING:
       'https://i.pinimg.com/564x/9d/1d/81/9d1d81196806e7a2829f94f67ccc3248.jpg',
-    NIGHT_SKIN:
+    NIGHT:
       'https://i.pinimg.com/564x/f4/9d/21/f49d217cae2f110e8acee4ed1f120483.jpg'
   },
   badges: [

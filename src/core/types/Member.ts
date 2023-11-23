@@ -19,8 +19,8 @@ export interface MemberInfo {
   level: number;
   exp: number;
   birds: {
-    MORNING_SKIN: string;
-    NIGHT_SKIN: string;
+    MORNING: string;
+    NIGHT: string;
   };
   badges: {
     name: string;
@@ -38,8 +38,8 @@ export interface MyInfo {
   level: number;
   exp: number;
   birds: {
-    MORNING_SKIN: string;
-    NIGHT_SKIN: string;
+    MORNING: string;
+    NIGHT: string;
   };
   badges: {
     name: string;

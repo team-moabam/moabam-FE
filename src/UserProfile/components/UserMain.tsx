@@ -79,7 +79,7 @@ const UserMain = ({ userId = '' }: UserMainProps) => {
         <div className="flex aspect-[3/4] w-1/2 flex-col items-center justify-center gap-3 rounded-lg bg-light-sub text-lg dark:bg-dark-sub">
           <div className="aspect-square w-1/2 overflow-hidden rounded-full bg-slate-400">
             <img
-              src={birds.MORNING_SKIN}
+              src={birds.MORNING}
               alt=""
               className="h-full w-full object-cover"
             />
@@ -89,7 +89,7 @@ const UserMain = ({ userId = '' }: UserMainProps) => {
         <div className="flex aspect-[3/4] w-1/2 flex-col items-center justify-center gap-3 rounded-lg bg-light-sub text-lg dark:bg-dark-sub">
           <div className="aspect-square w-1/2 overflow-hidden rounded-full bg-slate-400">
             <img
-              src={birds.NIGHT_SKIN}
+              src={birds.NIGHT}
               alt=""
               className="h-full w-full object-cover"
             />
