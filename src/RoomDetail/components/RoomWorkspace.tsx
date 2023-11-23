@@ -33,7 +33,7 @@ const RoomWorkspace = ({
 
   // Todo : RoomCalendar data props
 
-  const changeReportStatus = (value) => {
+  const changeReportStatus = (value: boolean) => {
     setReportStatus(value);
   };
 

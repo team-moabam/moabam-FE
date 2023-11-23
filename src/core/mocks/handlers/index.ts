@@ -16,7 +16,7 @@ const handlers = [
   ...bugsHandlers,
   ...couponsHandlers,
   ...reportsHandlers,
-  notificationsHandlers,
+  ...notificationsHandlers,
   timeHandler
 ];
 
