@@ -44,6 +44,11 @@ const BirdItems = ({ itemType }: BirdItemsProps) => {
     fetchSelectItem(birdItem.id);
   };
 
+  const handleOpenSheet = (birdItem: ItemType) => {
+    setProductItem(birdItem);
+    open();
+  };
+
   const fetchSelectItem = useDebounce((id: number) => {
     mutation.mutate(id, {
       onSuccess: () => {
@@ -80,10 +85,7 @@ const BirdItems = ({ itemType }: BirdItemsProps) => {
                 {notPurchasedItems.map((birdItem) => (
                   <div
                     key={birdItem.id}
-                    onClick={() => {
-                      setProductItem(birdItem);
-                      open();
-                    }}
+                    onClick={() => handleOpenSheet(birdItem)}
                     className="mb-3"
                   >
                     <BirdItem

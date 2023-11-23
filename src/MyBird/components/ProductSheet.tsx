@@ -93,6 +93,12 @@ const ProductSheet = ({ close }: ProductSheetProps) => {
       }
     );
   };
+
+  const handleSetPurchaseOption = (buyResult: number, purchaseType: string) => {
+    if (buyResult < 0) return;
+    setPurchaseOption(purchaseType);
+  };
+
   return (
     <>
       <div className="p-3">
@@ -122,10 +128,7 @@ const ProductSheet = ({ close }: ProductSheetProps) => {
                   purchaseOption === purchaseType &&
                   'border-light-point dark:border-dark-point'
                 }`}
-                onClick={() => {
-                  if (buyResult < 0) return;
-                  setPurchaseOption(purchaseType);
-                }}
+                onClick={() => handleSetPurchaseOption(buyResult, purchaseType)}
               >
                 <div className={`flex grow items-center gap-2 ${color}`}>
                   <BiSolidBugAlt size={16} />
