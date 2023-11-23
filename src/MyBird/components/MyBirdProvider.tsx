@@ -1,7 +1,7 @@
 import { useState } from 'react';
+import { SelectItemType } from '@/core/types';
+import { ItemType } from '@/core/types';
 import { MyBirdContext } from '../contexts/myBirdContext';
-import { SelectItemType } from '../types/selectItem';
-import { ItemType } from '../types/item';
 
 interface MyBirdProviderProps {
   children: React.ReactNode;

@@ -16,8 +16,8 @@ export interface ItemsType {
 }
 
 export interface SelectItemType {
-  MORNING: ItemType | undefined;
-  NIGHT: ItemType | undefined;
+  MORNING: ItemType | null;
+  NIGHT: ItemType | null;
 }
 
 export interface BugsType {

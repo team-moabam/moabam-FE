@@ -1,6 +1,6 @@
 import { FaLock } from 'react-icons/fa';
 import { BiSolidBugAlt } from 'react-icons/bi';
-import { ItemType } from '../types/item';
+import { ItemType } from '@/core/types';
 
 interface BirdItemProps {
   isLock?: boolean;

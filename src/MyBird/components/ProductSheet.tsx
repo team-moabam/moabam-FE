@@ -8,9 +8,8 @@ import { BiSolidBugAlt } from 'react-icons/bi';
 import { useContextSelector } from 'use-context-selector';
 import itemAPI from '@/core/api/functions/itemAPI';
 import userOptions from '@/core/api/options/user';
-import { ItemType } from '../types/item';
 import { MyBirdContext } from '../contexts/myBirdContext';
-import { ItemsType } from '@/core/types/item';
+import { ItemType, ItemsType } from '@/core/types/item';
 import { MyUserType } from '@/core/types/User';
 
 interface ProductSheetProps {
