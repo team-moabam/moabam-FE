@@ -9,9 +9,9 @@ export interface UserType {
   };
   badges: {
     name: string;
-    Success: boolean;
+    unlock: boolean;
   }[];
-  profile_image: string | undefined;
+  profileImage: string | undefined;
   golden_bug?: number;
   morning_bug?: number;
   night_bug?: number;
@@ -28,9 +28,9 @@ export interface MyUserType {
   };
   badges: {
     name: string;
-    Success: boolean;
+    unlock: boolean;
   }[];
-  profile_image: string | undefined;
+  profileImage: string | undefined;
   golden_bug: number;
   morning_bug: number;
   night_bug: number;

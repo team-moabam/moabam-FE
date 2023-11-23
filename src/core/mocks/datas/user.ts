@@ -12,19 +12,19 @@ export const MY_DATA = {
   badges: [
     {
       name: '오목눈이_탄생',
-      Success: true
+      unlock: true
     },
     {
       name: '어른_오목눈이',
-      Success: false
+      unlock: false
     },
     {
       name: '어른_부엉이',
-      Success: true
+      unlock: true
     },
     {
       name: '부엉이_탄생',
-      Success: true
+      unlock: true
     }
   ],
   profile_image: undefined,
@@ -47,19 +47,19 @@ export const OTHER_USER_DATA = {
   badges: [
     {
       name: '오목눈이_탄생',
-      Success: true
+      unlock: true
     },
     {
       name: '어른_오목눈이',
-      Success: false
+      unlock: false
     },
     {
       name: '어른_부엉이',
-      Success: true
+      unlock: true
     },
     {
       name: '부엉이_탄생',
-      Success: true
+      unlock: true
     }
   ],
   profile_image: undefined
