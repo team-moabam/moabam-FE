@@ -16,7 +16,7 @@ const RoutinesPage = () => {
 
   return (
     <div className="flex h-full flex-col items-center overflow-auto">
-      <div className="mb-6 mt-8 flex w-full items-center justify-between px-9">
+      <div className="mb-3 mt-8 flex w-full items-center justify-between px-9">
         <DayInfo dayType={dayType} />
         <SlideController
           control={routineSwiper}
