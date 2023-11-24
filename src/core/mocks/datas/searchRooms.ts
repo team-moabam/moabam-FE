@@ -37,11 +37,11 @@ export const SEARCH_ROOMS: Room[] = [
     routines: [
       {
         routineId: 5,
-        content: '물 마시기'
+        content: '아침 먹기'
       },
       {
         routineId: 9,
-        content: '아침 먹기'
+        content: '물 마시기 물 마시기 물 먹기'
       }
     ]
   },

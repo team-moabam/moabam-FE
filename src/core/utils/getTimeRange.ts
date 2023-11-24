@@ -1,6 +1,6 @@
-const getTimeRange = (date: Date): 'morning' | 'night' => {
+const getTimeRange = (date: Date): 'MORNING' | 'NIGHT' => {
   const hour = date.getHours();
-  return hour >= 4 && hour < 16 ? 'morning' : 'night';
+  return hour >= 4 && hour < 16 ? 'MORNING' : 'NIGHT';
 };
 
 export default getTimeRange;
