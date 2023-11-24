@@ -8,6 +8,7 @@ import { useTheme } from '@/core/hooks';
 import RoomSlide from '@/RoomSlide/components/RoomSlide';
 import { EventBanner } from '@/Promotion';
 import { PWAInstallBanner } from '@/PWAInstallBanner';
+import { SlideController } from '@/RoomSlide';
 
 const RoutinesPage = () => {
   const { theme } = useTheme();
@@ -38,37 +39,11 @@ const RoutinesPage = () => {
           </SwiperSlide>
         ))}
       </Swiper>
-      <div className="relative flex h-20 w-16 items-center overflow-hidden rounded-full">
-        <div
-          className={clsx(
-            'absolute inset-y-0 my-auto h-[0.2rem] w-full rounded-full',
-            'bg-light-point dark:bg-dark-point'
-          )}
-        ></div>
-        <Swiper
-          className="h-6 w-10 gap-0 overflow-visible"
-          modules={[Controller]}
-          controller={{ control: routineSwiper }}
-          onSwiper={setControllSwiper}
-          slidesPerView={1}
-          dir="rtl"
-        >
-          <SwiperSlide className="flex justify-end">
-            <div
-              className={clsx(
-                'relative right-[0.02rem] h-full w-3 rounded-s-full bg-white shadow-md'
-              )}
-            ></div>
-          </SwiperSlide>
-          <SwiperSlide className="flex justify-start">
-            <div
-              className={clsx(
-                'relative left-[0.02rem] h-full w-3 rounded-e-full bg-white shadow-md'
-              )}
-            ></div>
-          </SwiperSlide>
-        </Swiper>
-      </div>
+
+      <SlideController
+        control={routineSwiper}
+        onSwiper={setControllSwiper}
+      />
 
       <PWAInstallBanner />
       <Suspense>
