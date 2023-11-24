@@ -1,6 +1,8 @@
 import { useLocation } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
 import { FormProvider } from 'react-hook-form';
 import { motion } from 'framer-motion';
+import memberOptions from '@/core/api/options/member';
 import { useFunnel, Funnel } from '@/shared/Funnel';
 import { Header } from '@/shared/Header';
 import {
@@ -37,6 +39,9 @@ const RoomNewPage = () => {
 
   const { state } = useLocation();
   const prevPage = state && state.from === 'room' ? 'room' : 'routines';
+
+  // 로그인 확인
+  useQuery({ ...memberOptions.myInfo(), retry: 0 });
 
   return (
     <FormProvider {...form}>
