@@ -11,7 +11,7 @@ interface SlideControllerProps {
 
 const SlideController = ({ control, onSwiper }: SlideControllerProps) => {
   return (
-    <div className="relative flex w-11 items-center overflow-hidden rounded-full">
+    <div className="relative flex w-12 items-center overflow-hidden rounded-full">
       <div
         className={clsx(
           'absolute inset-0 m-auto h-1 w-10 rounded-full',
@@ -19,7 +19,7 @@ const SlideController = ({ control, onSwiper }: SlideControllerProps) => {
         )}
       ></div>
       <Swiper
-        className="h-5 w-6 cursor-pointer gap-0 overflow-visible"
+        className="h-5 w-7 cursor-pointer gap-0 overflow-visible"
         modules={[Controller]}
         controller={{ control }}
         onSwiper={onSwiper}

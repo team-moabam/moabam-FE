@@ -12,7 +12,7 @@ interface RoomSlideProps {
 
 const RoomSlide = ({ roomType }: RoomSlideProps) => {
   return (
-    <div className="h-full overflow-auto px-8 pt-4">
+    <div className="h-full overflow-auto px-8">
       <ErrorBoundary fallback={<NetworkFallback />}>
         <Suspense
           fallback={
