@@ -8,6 +8,7 @@ import RoomMembers from './RoomMembers';
 import { BottomSheet, useBottomSheet } from '@/shared/BottomSheet';
 import { Tab, TabItem } from '@/shared/Tab';
 import { Icon } from '@/shared/Icon';
+import { LoadingSpinner } from '@/shared/LoadingSpinner';
 import { RoomInfo } from '@/core/types/Room';
 
 interface extendedProps {
@@ -53,7 +54,9 @@ const RoomWorkspace = ({
             serverTime={serverTime}
           />
           {status !== 'success' ? (
-            <div>임시 Loading...</div>
+            <div className="flex h-[22.6rem] items-center justify-center">
+              <LoadingSpinner size="2xl" />
+            </div>
           ) : (
             <>
               <CertificationProgress
