@@ -19,8 +19,8 @@ const UserInfoFallback = ({ type }: UserInfoFallbackProps) => {
   return (
     <div className="absolute h-full w-full animate-pulse overflow-hidden text-white">
       <div className="absolute inset-y-0 m-auto flex h-fit flex-col items-center justify-center">
-        <div className="absolute inset-x-0 -top-12 left-1 mx-auto text-center">
-          {CONTENTS[type].bird} 오는 중 ..
+        <div className="absolute inset-x-0 -top-10 left-1 mx-auto text-center text-sm">
+          {CONTENTS[type].bird}가 오고 있어요
         </div>
         <div className="w-2/5 cursor-pointer">
           <img

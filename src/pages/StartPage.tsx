@@ -2,12 +2,13 @@ import { Suspense } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { useMoveRoute } from '@/core/hooks';
 import RoutinesPage from './RoutinesPage';
-import Background from '@/StartSlide/components/Background';
-import UserInfo from '@/StartSlide/components/UserInfo';
-import SwipeArrow from '@/StartSlide/components/SwipeArrow';
 import { useDayTypes } from '@/RoomSlide';
-import UserInfoFallback from '@/StartSlide/components/UserInfoFallback';
-import { Deffered } from '@/shared/Deffered';
+import {
+  UserInfoFallback,
+  SwipeArrow,
+  UserInfo,
+  Background
+} from '@/StartSlide';
 
 const StartPage = () => {
   const { dayType } = useDayTypes();
