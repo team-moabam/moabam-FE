@@ -1,20 +1,12 @@
 import { Link } from 'react-router-dom';
-import { useSuspenseQueries } from '@tanstack/react-query';
+import { useSuspenseQuery } from '@tanstack/react-query';
 import { MdLogout, MdLogin } from 'react-icons/md';
 import { roomOptions } from '@/core/api/options';
 
 const LogList = () => {
-  const [
-    {
-      data: { roomHistory }
-    }
-  ] = useSuspenseQueries({
-    queries: [
-      {
-        ...roomOptions.joinHistory()
-      }
-    ]
-  });
+  const {
+    data: { roomHistory }
+  } = useSuspenseQuery({ ...roomOptions.joinHistory() });
 
   return (
     <ul>

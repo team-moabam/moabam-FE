@@ -1,4 +1,4 @@
-import { useSuspenseQueries } from '@tanstack/react-query';
+import { useSuspenseQuery } from '@tanstack/react-query';
 import { RiCoupon2Fill } from 'react-icons/ri';
 import { FaClipboardList } from 'react-icons/fa6';
 import { IoMdCash } from 'react-icons/io';
@@ -6,17 +6,9 @@ import { bugOptions } from '@/core/api/options';
 import { bugs } from '../mocks/Bugs';
 
 const OrderLogList = () => {
-  const [
-    {
-      data: { history }
-    }
-  ] = useSuspenseQueries({
-    queries: [
-      {
-        ...bugOptions.history()
-      }
-    ]
-  });
+  const {
+    data: { history }
+  } = useSuspenseQuery({ ...bugOptions.history() });
 
   return (
     <ul>

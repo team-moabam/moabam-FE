@@ -1,18 +1,10 @@
-import { useSuspenseQueries } from '@tanstack/react-query';
+import { useSuspenseQuery } from '@tanstack/react-query';
 import couponOptions from '@/core/api/options/coupon';
 
 const MyCouponList = () => {
-  const [
-    {
-      data: { myCouponsResponse }
-    }
-  ] = useSuspenseQueries({
-    queries: [
-      {
-        ...couponOptions.my()
-      }
-    ]
-  });
+  const {
+    data: { myCouponsResponse }
+  } = useSuspenseQuery({ ...couponOptions.my() });
 
   return (
     <div className="p-5">
