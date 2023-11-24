@@ -9,6 +9,7 @@ import { getFCMToken } from '@/core/utils/firebase';
 import { ThemeProvider } from '@/core/hooks/useTheme';
 import notificationAPI from '@/core/api/functions/notificationAPI';
 import queryClient from '@/core/api/queryClient';
+import { PWAInstallBannerProvider } from '@/PWAInstallBanner/hooks/usePWAInstallBanner';
 import './main.css';
 
 const setupMSW = async () => {
@@ -55,8 +56,10 @@ setupMSW()
       <React.StrictMode>
         <QueryClientProvider client={queryClient}>
           <ThemeProvider>
-            <RouterProvider router={router} />
-            <ReactQueryDevtools initialIsOpen={false} />
+            <PWAInstallBannerProvider>
+              <RouterProvider router={router} />
+              <ReactQueryDevtools initialIsOpen={false} />
+            </PWAInstallBannerProvider>
           </ThemeProvider>
         </QueryClientProvider>
       </React.StrictMode>
