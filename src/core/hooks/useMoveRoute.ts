@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from 'react-router-dom';
+import { NavigateOptions, useLocation, useNavigate } from 'react-router-dom';
 import { routes, RouteNames, ParamNames, PARAM_NAMES } from '../routes';
 
 type Parameters = Partial<Record<ParamNames, string | number>>;
@@ -46,15 +46,18 @@ const useMoveRoute = () => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
-  const moveTo = (nextRoute: RouteNames, params: Parameters = {}) => {
+  const moveTo = (
+    nextRoute: RouteNames,
+    params: Parameters = {},
+    options?: NavigateOptions
+  ) => {
     const nextLocation = parseNextLocation({
       currentPath: pathname.substring(1),
       nextPath: routes[nextRoute].path,
       params
     });
-    navigate(nextLocation);
+    navigate(nextLocation, options);
   };
-
   return moveTo;
 };
 

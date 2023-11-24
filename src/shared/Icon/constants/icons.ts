@@ -27,15 +27,16 @@ import {
 } from 'react-icons/fa6';
 import { HiHome } from 'react-icons/hi2';
 import { ImSearch } from 'react-icons/im';
+import { IoPeopleCircle } from 'react-icons/io5';
+import { LuAlarmClock, LuChevronUp } from 'react-icons/lu';
 import {
   MdSupervisedUserCircle,
   MdEdit,
   MdTitle,
-  MdLockOutline
+  MdLockOutline,
+  MdFileDownload
 } from 'react-icons/md';
-
 import { PiBirdFill } from 'react-icons/pi';
-import { IoPeopleCircle } from 'react-icons/io5';
 import {
   RiTimerLine,
   RiUser3Fill,
@@ -44,7 +45,6 @@ import {
 } from 'react-icons/ri';
 import { RxExit, RxEnter } from 'react-icons/rx';
 import { TbListDetails, TbConfetti } from 'react-icons/tb';
-import { LuAlarmClock, LuChevronUp } from 'react-icons/lu';
 
 export const iconMap = {
   AiFillNotification,
@@ -77,9 +77,14 @@ export const iconMap = {
   FaLock,
   HiHome,
   ImSearch,
+  IoPeopleCircle,
+  LuAlarmClock,
+  LuChevronUp,
   MdSupervisedUserCircle,
   MdEdit,
   MdTitle,
+  MdLockOutline,
+  MdFileDownload,
   PiBirdFill,
   RiTimerLine,
   RiUser3Fill,
@@ -88,9 +93,5 @@ export const iconMap = {
   RxExit,
   RxEnter,
   TbListDetails,
-  TbConfetti,
-  LuAlarmClock,
-  IoPeopleCircle,
-  LuChevronUp,
-  MdLockOutline
+  TbConfetti
 } as const;
