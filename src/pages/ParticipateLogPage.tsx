@@ -1,7 +1,9 @@
+import { Suspense } from 'react';
 import { Header } from '@/shared/Header';
 import LogList from '@/LogList/components/LogList';
+import LogListFallback from '@/LogList/components/LogListFallback';
 
-const ParticipateLog = () => {
+const ParticipateLogPage = () => {
   return (
     <div className="h-full overflow-auto ">
       <Header
@@ -9,9 +11,11 @@ const ParticipateLog = () => {
         title="방 참여 기록"
         className="sticky top-0 bg-light-main dark:bg-dark-main"
       />
-      <LogList />
+      <Suspense fallback={<LogListFallback />}>
+        <LogList />
+      </Suspense>
     </div>
   );
 };
 
-export default ParticipateLog;
+export default ParticipateLogPage;

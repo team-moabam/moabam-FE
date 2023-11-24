@@ -1,20 +1,16 @@
 import { http, HttpResponse, delay } from 'msw';
 import { baseURL } from '../baseURL';
+import { MEMBER_INFO, MY_INFO } from '../datas/member';
 
 const membersHandlers = [
   http.get(baseURL('/members'), async () => {
     await delay(1000);
-
     const status: number = 200;
     let response = {};
 
     switch (status) {
       case 200:
-        response = {
-          message:
-            '현재 로그인 된 상태에요. 당신의 개인 Member 정보를 보내줄게요.'
-        };
-        break;
+        return HttpResponse.json(MY_INFO, { status: 200 });
       case 401:
         response = { message: '로그인이 필요해요.' };
         break;
@@ -49,6 +45,28 @@ const membersHandlers = [
       status,
       headers
     });
+  }),
+
+  http.get(baseURL('/members/:userId'), async () => {
+    await delay(1000);
+    return HttpResponse.json(MEMBER_INFO, { status: 200 });
+  }),
+
+  http.post(baseURL('/members/modify'), async ({ request }) => {
+    const data = await request.formData();
+    console.log(data);
+    await delay(200);
+    return HttpResponse.json({}, { status: 200 });
+  }),
+
+  http.get(baseURL('/members/logout'), async () => {
+    await delay(1000);
+    return HttpResponse.json({}, { status: 200 });
+  }),
+
+  http.delete(baseURL('/members'), async () => {
+    await delay(1000);
+    return HttpResponse.json({}, { status: 200 });
   })
 ];
 
