@@ -1,13 +1,22 @@
+import { useMutation } from '@tanstack/react-query';
 import memberAPI from '@/core/api/functions/memberAPI';
 import { useMoveRoute } from '@/core/hooks';
 
 const WithDrawal = () => {
   const moveTo = useMoveRoute();
+  const mutation = useMutation({
+    mutationFn: memberAPI.Withdrawal
+  });
 
   const handleWithDrawal = () => {
-    memberAPI.Withdrawal();
-    moveTo('join');
+    memberAPI.logout();
+    mutation.mutate(undefined, {
+      onSuccess() {
+        moveTo('join');
+      }
+    });
   };
+
   return (
     <div className="p-3">
       <h1 className="mb-1 mt-5 text-xl font-extrabold">회원탈퇴 하시겠어요?</h1>

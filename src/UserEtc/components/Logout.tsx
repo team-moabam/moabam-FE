@@ -1,12 +1,20 @@
+import { useMutation } from '@tanstack/react-query';
 import memberAPI from '@/core/api/functions/memberAPI';
 import { useMoveRoute } from '@/core/hooks';
 
 const Logout = () => {
   const moveTo = useMoveRoute();
+  const mutation = useMutation({
+    mutationFn: memberAPI.logout
+  });
 
   const handleLogout = () => {
     memberAPI.logout();
-    moveTo('join');
+    mutation.mutate(undefined, {
+      onSuccess() {
+        moveTo('join');
+      }
+    });
   };
 
   return (
