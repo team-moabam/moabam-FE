@@ -10,7 +10,7 @@ export const RoomInfo = {
   maxUserCount: 9,
   announcement: '2번 연속 인증 안하는 사람은 추방할 예정입니다 ㅅㄱ!',
   completePercentage: 66.7,
-  certifiedDates: ['2023-03-02', '2023-03-03', '2023-03-02'],
+  certifiedDates: ['2023-11-13', '2023-11-14', '2023-11-16'],
   routine: [
     {
       routineId: 5,
@@ -26,6 +26,7 @@ export const RoomInfo = {
       rank: 1,
       memberId: '5',
       nickname: '재영',
+      isNotificationSent: true,
       profileImage: 'https://picsum.photos/200',
       contributionPoint: 65,
       awakeImage: 'https://picsum.photos/200',
@@ -45,6 +46,7 @@ export const RoomInfo = {
       rank: 2,
       memberId: '1',
       nickname: '랄라랄',
+      isNotificationSent: false,
       profileImage: 'https://picsum.photos/200',
       contributionPoint: 80,
       awakeImage: 'https://picsum.photos/200',
@@ -61,9 +63,10 @@ export const RoomInfo = {
       ]
     },
     {
-      rank: 10,
+      rank: 3,
       memberId: '7',
       nickname: '하윙',
+      isNotificationSent: false,
       profileImage: 'https://picsum.photos/200',
       contributionPoint: 30,
       awakeImage: 'https://picsum.photos/200',
@@ -91,6 +94,7 @@ export const RoomInfo = {
       rank: 500,
       memberId: '9',
       nickname: '명재',
+      isNotificationSent: true,
       profileImage: 'https://picsum.photos/200',
       contributionPoint: 90,
       awakeImage: 'https://picsum.photos/200',
@@ -101,6 +105,7 @@ export const RoomInfo = {
       rank: 500,
       memberId: '4',
       nickname: '홍홍',
+      isNotificationSent: false,
       profileImage: 'https://picsum.photos/200',
       contributionPoint: 50,
       awakeImage: 'https://picsum.photos/200',

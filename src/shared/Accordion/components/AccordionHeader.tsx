@@ -10,11 +10,13 @@ export interface AccordionHeaderProps {
   children: React.ReactNode;
   buttonColored?: boolean;
   className?: string;
+  headerToggle?: boolean;
 }
 
 const AccordionHeader = ({
   children,
   buttonColored = false,
+  headerToggle,
   className = ''
 }: AccordionHeaderProps) => {
   const { isOpen, toggleOpen } = useAccordion();
@@ -24,20 +26,25 @@ const AccordionHeader = ({
   return (
     <motion.div
       className={twMerge(
-        'flex justify-between items-center ' + `${headerStyle}`,
+        clsx('flex items-center justify-between', {
+          'cursor-pointer': headerToggle
+        }),
+        headerStyle,
         className
       )}
+      onClick={headerToggle ? toggleOpen : () => {}}
     >
       <div className="flex-1">{children}</div>
       <div
-        onClick={toggleOpen}
-        className={clsx('ml-3 cursor-pointer duration-300 ease-in', {
+        onClick={headerToggle ? () => {} : toggleOpen}
+        className={clsx('ml-3 duration-300 ease-in', {
           'rotate-180': isOpen,
           'text-light-point dark:text-dark-point':
             (buttonColored || headerButtonColored) && isOpen,
           'text-black dark:text-white':
             !(buttonColored || headerButtonColored) && isOpen,
-          'text-dark-gray': !isOpen
+          'text-dark-gray': !isOpen,
+          'cursor-pointer': !headerToggle
         })}
       >
         <Icon

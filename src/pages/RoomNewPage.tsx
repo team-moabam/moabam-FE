@@ -1,3 +1,4 @@
+import { useLocation } from 'react-router-dom';
 import { FormProvider } from 'react-hook-form';
 import { motion } from 'framer-motion';
 import { useFunnel, Funnel } from '@/shared/Funnel';
@@ -34,6 +35,9 @@ const RoomNewPage = () => {
   const funnel = useFunnel(steps);
   const { form, mutation, handleSubmit } = useRoomForm();
 
+  const { state } = useLocation();
+  const prevPage = state && state.from === 'room' ? 'room' : 'routines';
+
   return (
     <FormProvider {...form}>
       <form
@@ -42,7 +46,7 @@ const RoomNewPage = () => {
       >
         <Header
           className="bg-light-main dark:bg-dark-main"
-          prev="routines"
+          prev={prevPage}
           title="방 만들기"
         />
         <main className="grow overflow-auto px-8 py-12">

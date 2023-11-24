@@ -4,7 +4,6 @@ import {
   TotalRooms
 } from '@/core/types';
 import { baseInstance, formDataInstance } from '../instance';
-
 import { MyJoinRoom } from '@/core/types/MyJoinRoom';
 import { RoomInfo, RoomInfoBeforeEditing } from '@/core/types/Room';
 
@@ -24,7 +23,7 @@ const roomAPI = {
     return await baseInstance.get<RoomInfoBeforeEditing>(`/rooms/${roomId}`);
   },
 
-  getRoomDetailByDate: async (roomId: string, date: string) => {
+  getRoomDetailByDate: async (roomId: string | undefined, date: string) => {
     return await baseInstance.get<RoomInfo>(`/rooms/${roomId}/${date}`);
   },
 
@@ -59,6 +58,10 @@ const roomAPI = {
     return await baseInstance.put(
       `/rooms/${roomId}/members/${memberId}/delegation`
     );
+  },
+
+  getMemberPoke: async (roomId: string, memberId: string) => {
+    return await baseInstance.get(`/rooms/${roomId}/${memberId}`);
   },
 
   postRoutineCertificate: async (params: {

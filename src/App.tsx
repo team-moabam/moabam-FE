@@ -25,7 +25,7 @@ const App = () => {
 
   useEffect(() => {
     const today = data || new Date();
-    setTheme(getTimeRange(today) === 'morning' ? 'light' : 'dark');
+    setTheme(getTimeRange(today) === 'MORNING' ? 'light' : 'dark');
   }, [data, isSuccess, setTheme]);
 
   return (

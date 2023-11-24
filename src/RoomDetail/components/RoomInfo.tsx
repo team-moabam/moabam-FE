@@ -2,19 +2,28 @@ import RoomMemberRank from './RoomMemberRank';
 import { ProgressBar } from '@/shared/ProgressBar';
 import { RoomInfo as RoomInfoType } from '@/core/types/Room';
 
+interface extendedProps {
+  status: 'pending' | 'error' | 'success';
+}
+type RoomInfoProps = extendedProps & RoomInfoType;
 const RoomInfo = ({
   level,
   currentUserCount,
   maxUserCount,
   todayCertificateRank,
-  certifyTime
-}: RoomInfoType) => {
+  certifyTime,
+  status
+}: RoomInfoProps) => {
   return (
-    <div className="relative flex h-[20.56rem] items-center justify-center">
-      <RoomMemberRank
-        todayCertificateRank={todayCertificateRank}
-        certifyTime={certifyTime}
-      />
+    <div className="relative h-[20.56rem]">
+      {status !== 'success' ? (
+        <div>임시 Loading...</div>
+      ) : (
+        <RoomMemberRank
+          todayCertificateRank={todayCertificateRank}
+          certifyTime={certifyTime}
+        />
+      )}
       <div className="absolute inset-x-0 bottom-0">
         <div className="mb-2 flex items-end justify-between bg-inherit pl-3.5 pr-7">
           <span className="block h-[1.93rem] w-[4.62rem] rounded-[6.25rem] bg-light-point py-[0.16rem] text-center font-IMHyemin-bold text-light-main dark:bg-dark-point">

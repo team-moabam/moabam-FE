@@ -6,11 +6,22 @@ import { BottomSheet, useBottomSheet } from '@/shared/BottomSheet';
 import { Tab, TabItem } from '@/shared/Tab';
 import { RoomInfo } from '@/core/types/Room';
 
+interface extendedProps {
+  status: 'pending' | 'error' | 'success';
+  serverTime: Date;
+}
+
+type RoomWorkspaceProps = extendedProps & RoomInfo;
+
 const RoomWorkspace = ({
   completePercentage,
   routine,
-  todayCertificateRank
-}: RoomInfo) => {
+  todayCertificateRank,
+  certifiedDates,
+  certifyTime,
+  status,
+  serverTime
+}: RoomWorkspaceProps) => {
   const { bottomSheetProps, toggle, close } = useBottomSheet();
 
   const myCertificationImage = todayCertificateRank.find(
@@ -45,12 +56,22 @@ const RoomWorkspace = ({
         defaultIndex={0}
       >
         <TabItem title="루틴">
-          <RoomCalendar />
-          <CertificationProgress percentage={completePercentage} />
-          <RoomRoutine
-            routines={routine}
-            myCertificationImage={myCertificationImage}
+          <RoomCalendar
+            certifiedDates={certifiedDates}
+            certifyTime={certifyTime}
+            serverTime={serverTime}
           />
+          {status !== 'success' ? (
+            <div>임시 Loading...</div>
+          ) : (
+            <>
+              <CertificationProgress percentage={completePercentage} />
+              <RoomRoutine
+                routines={routine}
+                myCertificationImage={myCertificationImage}
+              />
+            </>
+          )}
           <button
             className="mt-[1.19rem] text-sm text-black  dark:text-white"
             onClick={toggle}
