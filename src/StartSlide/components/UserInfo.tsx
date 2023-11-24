@@ -2,17 +2,15 @@ import { useSuspenseQuery } from '@tanstack/react-query';
 import { clsx } from 'clsx';
 import memberOptions from '@/core/api/options/member';
 import { CONTENTS } from '../constants/contents';
-import SwipeArrow from './SwipeArrow';
 import UserBird from './UserBird';
 
 interface UserInfoProps {
-  type: 'morning' | 'night';
+  type: 'MORNING' | 'NIGHT';
 }
 
 const UserInfo = ({ type }: UserInfoProps) => {
   const { data } = useSuspenseQuery(memberOptions.memberInfo());
   const { nickname, level, birds } = data;
-  const birdSkin = type === 'morning' ? birds.MORNING : birds.NIGHT;
 
   return (
     <div className="absolute h-full w-full overflow-hidden text-white">
@@ -32,11 +30,7 @@ const UserInfo = ({ type }: UserInfoProps) => {
         </div>
       </div>
       <div className="absolute inset-y-0 m-auto flex h-fit flex-col items-center justify-center">
-        <UserBird birdSkin={birdSkin} />
-      </div>
-
-      <div className={clsx('absolute inset-x-0 bottom-8 mx-auto w-fit')}>
-        <SwipeArrow />
+        <UserBird birdSkin={birds[type]} />
       </div>
     </div>
   );

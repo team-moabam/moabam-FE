@@ -1,14 +1,14 @@
+import { Suspense } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { useTheme } from '@/core/hooks';
 import { useMoveRoute } from '@/core/hooks';
 import RoutinesPage from './RoutinesPage';
 import Background from '@/StartSlide/components/Background';
 import UserInfo from '@/StartSlide/components/UserInfo';
+import SwipeArrow from '@/StartSlide/components/SwipeArrow';
+import { useDayTypes } from '@/RoomSlide';
 
 const StartPage = () => {
-  // TODO : 임시 시간대 설정 코드입니다. 수정 예정!
-  const { theme } = useTheme();
-  const dayType = theme === 'light' ? 'morning' : 'night';
+  const { dayType } = useDayTypes();
   const moveTo = useMoveRoute();
 
   return (
@@ -24,7 +24,13 @@ const StartPage = () => {
       >
         <SwiperSlide className="shadow-lg">
           <Background type={dayType} />
-          <UserInfo type={dayType} />
+          <Suspense>
+            <UserInfo type={dayType} />
+          </Suspense>
+
+          <div className="absolute inset-x-0 bottom-8 mx-auto w-fit">
+            <SwipeArrow />
+          </div>
         </SwiperSlide>
         <SwiperSlide></SwiperSlide>
       </Swiper>

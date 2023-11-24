@@ -4,7 +4,7 @@ import { MEMBER_INFO, MY_INFO } from '../datas/member';
 
 const membersHandlers = [
   http.get(baseURL('/members'), async () => {
-    await delay(1000);
+    await delay(2000);
     const status: number = 200;
     let response = {};
 

@@ -2,17 +2,17 @@ import { clsx } from 'clsx';
 import Star from './Star';
 
 interface BackgroundProps {
-  type: 'morning' | 'night';
+  type: 'MORNING' | 'NIGHT';
 }
 
 const bgStyle = {
-  morning: {
+  MORNING: {
     skyObject: '/assets/Sun.png',
     skyObjectStyle: 'absolute bottom-16 right-8 w-3/5',
     skyColor: 'bg-gradient-to-b from-[#0084c6] to-[#fea4af]',
     mountain: '/assets/MorningMountain.png'
   },
-  night: {
+  NIGHT: {
     skyObject: '/assets/Moon.png',
     skyObjectStyle: 'absolute top-24 left-2 w-1/2',
     skyColor: 'bg-gradient-to-b from-[#61298c] to-[#000f2a]',
@@ -48,6 +48,10 @@ const Background = ({ type }: BackgroundProps) => {
         />
       </div>
       <div className="absolute bottom-0 h-5 w-full bg-[#522762] dark:bg-[#031430]"></div>
+      <img
+        className="absolute bottom-0 right-0 top-36 z-10 my-auto w-3/4 dark:left-0 dark:-scale-x-100"
+        src="/assets/branch.png"
+      />
     </div>
   );
 };
