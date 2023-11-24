@@ -19,12 +19,14 @@ const Avatar = ({
   return (
     <Link
       className="flex items-center"
-      to={`user/${userId}`}
+      to={`/user/${userId}`}
     >
       <Profile imgUrl={imgUrl} />
       <div className="flex flex-col text-[14px] leading-[1.6rem]">
         <div className="flex items-center">
-          <span className="font-IMHyemin-bold text-black">{nickname}</span>
+          <span className="font-IMHyemin-bold text-black dark:text-white">
+            {nickname}
+          </span>
           {manager && (
             <div className="ml-[.5625rem] h-5 w-5 bg-[url('/icons/icon-crown.png')] bg-contain bg-center bg-no-repeat" />
           )}

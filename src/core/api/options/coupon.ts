@@ -12,7 +12,12 @@ const couponOptions = {
       queryKey: ['coupons', dueType] as const,
       queryFn: () => couponAPI.postCouponsByStatus(body)
     });
-  }
+  },
+  my: () =>
+    queryOptions({
+      queryKey: ['coupons', 'my'] as const,
+      queryFn: () => couponAPI.myCoupon()
+    })
 };
 
 export default couponOptions;

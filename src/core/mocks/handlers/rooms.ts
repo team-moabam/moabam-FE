@@ -5,6 +5,7 @@ import { RoomInfo, RoomInfoBeforeEditing } from '../datas/room';
 import { MY_JOIN_ROOMS } from '../datas/myJoinRoom';
 import { ROOMS } from '../datas/totalRooms';
 import { SEARCH_ROOMS } from '../datas/searchRooms';
+import { PARTICIPATE_HISTORY } from '../datas/participateHistory';
 
 const roomsHandlers = [
   http.post(baseURL('/rooms'), async () => {
@@ -82,6 +83,12 @@ const roomsHandlers = [
       },
       { status: 200 }
     );
+  }),
+
+  http.get(baseURL('/rooms/join-history'), async () => {
+    console.log(1);
+    await delay(1000);
+    return HttpResponse.json(PARTICIPATE_HISTORY, { status: 200 });
   }),
 
   http.get(baseURL('/rooms/:roomId'), async () => {
@@ -224,33 +231,6 @@ const roomsHandlers = [
     }
 
     return HttpResponse.json(response, { status });
-  }),
-
-  http.get(baseURL('/rooms/:roomId/:memberId'), async () => {
-    await delay(1000);
-
-    const status: number = 200;
-    let response = {};
-
-    switch (status) {
-      case 200:
-        response = {};
-        break;
-      case 400:
-        response = {
-          message: '콕 찌르기는 각 유저마다 인증타임 당 1회 가능합니다.'
-        };
-        break;
-      case 401:
-        response = { message: '로그인 후 이용 가능합니다.' };
-        break;
-      case 404:
-        response = {
-          message: '존재하지 않는 유저입니다.'
-        };
-    }
-
-    return HttpResponse.json({ body: response, status });
   }),
 
   http.put(baseURL('/rooms/:roomId/members/:memberId/delegation'), async () => {

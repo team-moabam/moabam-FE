@@ -6,6 +6,11 @@ const memberOptions = {
     queryOptions({
       queryKey: ['members', 'myInfo'] as const,
       queryFn: () => memberAPI.getMyInfo()
+    }),
+  memberInfo: (memberId = '') =>
+    queryOptions({
+      queryKey: ['members', 'memberInfo'] as const,
+      queryFn: () => memberAPI.getMemberInfo(memberId)
     })
 };
 
