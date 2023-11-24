@@ -1,4 +1,4 @@
-import { baseInstance } from '../instance';
+import { baseInstance, formDataInstance } from '../instance';
 import { MemberInfo, MyInfo } from '@/core/types/Member';
 
 const memberAPI = {
@@ -24,7 +24,7 @@ const memberAPI = {
   },
 
   editMyInfo: async (formData: FormData) => {
-    return await baseInstance.post(`/members/modify`, formData);
+    return await formDataInstance.post(`/members/modify`, formData);
   },
 
   logout: async () => {

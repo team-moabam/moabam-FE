@@ -3,7 +3,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { MdModeEdit, MdAdd } from 'react-icons/md';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import memberAPI from '@/core/api/functions/memberAPI';
-import { MyInfo } from '@/core/types';
+import memberOptions from '@/core/api/options/member';
 import { Toast } from '@/shared/Toast';
 
 interface Inputs {
@@ -75,15 +75,9 @@ const UserProfile = ({
       formData.append('profileImage', profileImage[0]);
     mutation.mutate(formData, {
       onSuccess: () => {
-        queryClient.setQueryData(['members', 'myInfo'], (oldData: MyInfo) => {
-          return {
-            ...oldData,
-            nickname: nickname ?? oldData.nickname,
-            intro: intro ?? oldData.intro,
-            profileImage: newImgUrl ?? oldData.profileImage
-          };
+        queryClient.invalidateQueries({
+          queryKey: memberOptions.myInfo().queryKey
         });
-        queryClient.invalidateQueries({ queryKey: ['members'] });
         Toast.show({
           message: '변경 성공',
           status: 'confirm'
