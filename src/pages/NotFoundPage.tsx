@@ -6,7 +6,7 @@ const NotFoundPage = () => {
       <div className="absolute inset-x-0 top-1/3 flex flex-col items-center">
         <div className="mb-8 aspect-square w-3/5 max-w-[250px]">
           <img
-            src="public\notFound.png"
+            src="/notFound.png"
             alt=""
           />
         </div>

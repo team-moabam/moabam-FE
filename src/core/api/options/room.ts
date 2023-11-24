@@ -18,6 +18,12 @@ const roomOptions = {
     queryOptions({
       queryKey: ['rooms', 'myJoin'] as const,
       queryFn: () => roomAPI.getMyJoinRoom()
+    }),
+
+  joinHistory: () =>
+    queryOptions({
+      queryKey: ['rooms', 'joinHistory'] as const,
+      queryFn: () => roomAPI.roomJoinHistory()
     })
 };
 
