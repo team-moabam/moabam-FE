@@ -1,5 +1,8 @@
+import { useLocation } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
 import { FormProvider } from 'react-hook-form';
 import { motion } from 'framer-motion';
+import memberOptions from '@/core/api/options/member';
 import { useFunnel, Funnel } from '@/shared/Funnel';
 import { Header } from '@/shared/Header';
 import {
@@ -34,6 +37,12 @@ const RoomNewPage = () => {
   const funnel = useFunnel(steps);
   const { form, mutation, handleSubmit } = useRoomForm();
 
+  const { state } = useLocation();
+  const prevPage = state && state.from === 'room' ? 'room' : 'routines';
+
+  // 로그인 확인
+  useQuery({ ...memberOptions.myInfo(), retry: 0 });
+
   return (
     <FormProvider {...form}>
       <form
@@ -42,7 +51,7 @@ const RoomNewPage = () => {
       >
         <Header
           className="bg-light-main dark:bg-dark-main"
-          prev="routines"
+          prev={prevPage}
           title="방 만들기"
         />
         <main className="grow overflow-auto px-8 py-12">

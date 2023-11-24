@@ -1,86 +1,39 @@
-import clsx from 'clsx';
-import { Icon } from '@/shared/Icon';
+import { useRef } from 'react';
+import { makeWeekCalendar } from '../utils/utils';
+import RoomCalendarDate from './RoomCalendarDate';
 
-const calendar = [
-  {
-    day: '월',
-    date: '8',
-    bug: true,
-    point: false
-  },
-  {
-    day: '화',
-    date: '9',
-    bug: true,
-    point: false
-  },
-  {
-    day: '수',
-    date: '10',
-    bug: false,
-    point: false
-  },
-  {
-    day: '목',
-    date: '11',
-    bug: true,
-    point: true
-  },
-  {
-    day: '금',
-    date: '12',
-    bug: true,
-    point: false
-  },
-  {
-    day: '토',
-    date: '13',
-    bug: false,
-    point: false
-  },
-  {
-    day: '일',
-    date: '14',
-    bug: true,
-    point: false
-  }
-];
+interface RoomCalendarProps {
+  certifiedDates: string[];
+  certifyTime: number;
+  serverTime: Date;
+}
 
-const RoomCalendar = () => {
+const RoomCalendar = ({
+  certifiedDates,
+  certifyTime,
+  serverTime
+}: RoomCalendarProps) => {
+  const dateRef = useRef<HTMLDivElement>(null);
+  const { thisWeekTimestamp } = makeWeekCalendar(serverTime);
+  const thisWeekMonth = thisWeekTimestamp[3].getMonth() + 1;
+
   return (
     <div className="mb-[3.19rem] mt-[1.87rem]">
-      <h4 className="pb-2 text-base text-black dark:text-white">2023년 10월</h4>
-      <div className="flex justify-between">
-        {calendar.map(({ day, date, point, bug }) => {
-          const RoomCalendarStyle = {
-            calendarItem: clsx(
-              'flex h-[5.87rem] w-[3.12rem] flex-col items-center rounded-[0.62rem]  pt-1 text-center ',
-              {
-                'border-light-point text-light-point dark:border-dark-point dark:text-dark-point border-[0.06rem]':
-                  point === true,
-                'text-darkGray': point === false
-              }
-            )
-          };
-
-          return (
-            <div
-              className={RoomCalendarStyle.calendarItem}
-              key={day}
-            >
-              <div className="mb-1 text-sm">{day}</div>
-              <div className="mb-2 text-2xl">{date}</div>
-              <div className="flex justify-center">
-                {bug && (
-                  <Icon
-                    icon="BiBugAlt"
-                    size="sm"
-                  />
-                )}
-              </div>
-            </div>
-          );
-        })}
+      <h4 className="pb-2 text-base text-black dark:text-white">
+        2023년 {thisWeekMonth}월
+      </h4>
+      <div
+        className="flex justify-between"
+        ref={dateRef}
+      >
+        {thisWeekTimestamp.map((thisDate) => (
+          <RoomCalendarDate
+            thisDate={thisDate}
+            certifiedDates={certifiedDates}
+            certifyTime={certifyTime}
+            serverTime={serverTime}
+          />
+        ))}
       </div>
     </div>
   );

@@ -2,10 +2,15 @@ import { queryOptions } from '@tanstack/react-query';
 import bugAPI from '../functions/bugAPI';
 
 const bugOptions = {
-  today: () =>
+  history: () =>
     queryOptions({
-      queryKey: ['bugs', 'today'] as const,
-      queryFn: () => bugAPI.getTodayBugs()
+      queryKey: ['bugs', 'history'] as const,
+      queryFn: () => bugAPI.bugHistory()
+    }),
+  myBug: () =>
+    queryOptions({
+      queryKey: ['bugs', 'myBug'] as const,
+      queryFn: () => bugAPI.myBug()
     })
 };
 

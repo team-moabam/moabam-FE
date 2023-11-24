@@ -3,9 +3,9 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { useTheme } from '@/core/hooks';
 import RoomSlide from '@/RoomSlide/components/RoomSlide';
 import { EventBanner } from '@/Promotion';
+import { PWAInstallBanner } from '@/PWAInstallBanner';
 
 const RoutinesPage = () => {
-  // TODO : 임시 시간대 설정 코드입니다. 수정 예정!
   const { theme } = useTheme();
   const DAY_TYPES =
     theme === 'dark'
@@ -24,11 +24,11 @@ const RoutinesPage = () => {
           </SwiperSlide>
         ))}
       </Swiper>
+      <PWAInstallBanner />
       <Suspense>
         <EventBanner />
       </Suspense>
     </div>
-    // </div>
   );
 };
 

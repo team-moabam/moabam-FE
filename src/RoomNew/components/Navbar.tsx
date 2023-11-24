@@ -21,7 +21,7 @@ const Navbar = ({
 
   // 다음 스텝으로 넘어가기 전 각 스텝에서 수행되어야 할 유효성 검사 필드를 정의합니다.
   const validationMaps: Record<(typeof steps)[number], Array<keyof Inputs>> = {
-    BirdStep: ['type'],
+    BirdStep: ['roomType'],
     TimeStep: ['certifyTime'],
     RoutineStep: ['routines', 'title', 'userCount'],
     PasswordStep: ['password'],
@@ -41,23 +41,19 @@ const Navbar = ({
     setTimeout(toNext, 0);
   };
 
-  const buttonContent = () => {
-    if (isPending) {
-      return <LoadingSpinner size="4xl" />;
-    }
-
-    if (!hasNext) {
-      return '방 만들기';
-    }
-
-    return '다음';
-  };
+  const buttonContent = isPending ? (
+    <LoadingSpinner size="4xl" />
+  ) : hasNext ? (
+    '다음'
+  ) : (
+    '방 만들기'
+  );
 
   return (
     <nav className="grid grid-cols-2 text-2xl">
       {hasPrev && (
         <button
-          className="col-start-1 h-16 w-full bg-white text-dark-gray transition-all hover:bg-slate-100"
+          className="col-start-1 h-16 w-full bg-white text-dark-gray transition-all hover:bg-slate-100 dark:bg-dark-sub"
           type="button"
           onClick={toPrev}
         >
@@ -67,7 +63,7 @@ const Navbar = ({
 
       <button
         className={clsx(
-          'col-start-2 flex h-16 w-full items-center justify-center',
+          'col-start-2 flex h-16 w-full select-none items-center justify-center',
           'bg-light-point text-white transition-all hover:bg-light-point-hover',
           'dark:bg-dark-point hover:dark:bg-dark-point-hover',
           isPending && 'cursor-not-allowed'
@@ -76,7 +72,7 @@ const Navbar = ({
         disabled={isPending}
         onClick={handleToNext}
       >
-        {buttonContent()}
+        {buttonContent}
       </button>
     </nav>
   );

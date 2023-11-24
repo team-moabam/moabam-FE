@@ -9,6 +9,22 @@ interface AccordionBodyProps {
   className?: string;
 }
 
+const animation = {
+  open: {
+    height: 'auto',
+    opacity: 1
+  },
+  collapse: {
+    height: 0,
+    opacity: 0
+  }
+};
+
+const childrenAnimation = {
+  open: { opacity: 1 },
+  collapse: { opacity: 0 }
+};
+
 const AccordionBody = ({ children, className = '' }: AccordionBodyProps) => {
   const { isOpen } = useAccordion();
   const { bodyStyle } = useAccordionGroup();
@@ -17,13 +33,14 @@ const AccordionBody = ({ children, className = '' }: AccordionBodyProps) => {
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          initial={{ height: 0, opacity: 0 }}
-          animate={{ height: 'auto', opacity: 1 }}
-          exit={{ height: 0, opacity: 0 }}
-          transition={{ type: 'spring', duration: 0.8, bounce: 0 }}
-          className={twMerge('box-border h-auto ' + `${bodyStyle}`, className)}
+          initial="collapse"
+          animate="open"
+          exit="collapse"
+          variants={animation}
+          transition={{ duration: 0.4, ease: 'easeInOut' }}
+          className={twMerge('box-border h-auto', bodyStyle, className)}
         >
-          <div>{children}</div>
+          <motion.div variants={childrenAnimation}>{children}</motion.div>
         </motion.div>
       )}
     </AnimatePresence>

@@ -5,6 +5,7 @@ import { ModalHeadingStyle, descriptionStyle } from './styles';
 import { Input } from '@/shared/Input';
 import { BottomSheet, useBottomSheet } from '@/shared/BottomSheet';
 import { LoadingSpinner } from '@/shared/LoadingSpinner';
+import { Toast } from '@/shared/Toast';
 
 interface KickButtonProps {
   roomId: string;
@@ -27,9 +28,18 @@ const KickButton = ({ roomId, memberId, nickname }: KickButtonProps) => {
       {
         onSuccess: () => {
           close();
-          // TODO: 토스트 메시지로 사용자를 추방했음을 알려야 해요.
+          Toast.show({
+            message: '멤버를 방에서 쫓아냈어요.',
+            status: 'danger'
+          });
         },
-        onError: (err) => console.error(err)
+        onError: (err) => {
+          console.error(err);
+          Toast.show({
+            message: err.response?.data.message ?? '오류가 발생했어요.',
+            status: 'danger'
+          });
+        }
       }
     );
   };

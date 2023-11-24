@@ -1,23 +1,32 @@
-import React from 'react';
-import { coupons } from '@/Promotion/mocks/coupons';
-import EventCard from '@/Promotion/components/EventCard';
+import { Suspense } from 'react';
+import { ErrorBoundary } from '@suspensive/react';
+import { useLocation } from 'react-router-dom';
 import { Header } from '@/shared/Header';
+import { EventList, EventListFallback } from '@/Promotion';
+import { Deffered } from '@/shared/Deffered';
+import { NetworkFallback } from '@/shared/ErrorBoundary';
 
 const EventPage = () => {
+  const { state } = useLocation();
+  const prevPage = state && state.from === 'routines' ? 'routines' : 'myPage';
+
   return (
     <div className="flex h-full flex-col">
       <Header
-        prev="routines"
+        prev={prevPage}
         title="이벤트"
       />
-      <div className="flex h-full flex-col items-center gap-6 overflow-y-auto p-6 pt-2">
-        {coupons.map((coupon) => (
-          <EventCard
-            key={coupon.couponId}
-            {...coupon}
-          />
-        ))}
-      </div>
+      <ErrorBoundary fallback={<NetworkFallback />}>
+        <Suspense
+          fallback={
+            <Deffered>
+              <EventListFallback />
+            </Deffered>
+          }
+        >
+          <EventList />
+        </Suspense>
+      </ErrorBoundary>
     </div>
   );
 };
