@@ -15,7 +15,7 @@ const RoomInfo = ({
   status
 }: RoomInfoProps) => {
   return (
-    <div className="relative h-[20.56rem]">
+    <div className="relative h-[20.56rem] overflow-hidden">
       {status !== 'success' ? (
         <div>임시 Loading...</div>
       ) : (
