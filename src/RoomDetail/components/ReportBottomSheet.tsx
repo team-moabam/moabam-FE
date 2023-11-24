@@ -45,7 +45,7 @@ const ReportBottomSheet = ({
 
   const objReportContent = Object.entries(reportContent);
 
-  const handleFormSubmit = async (data: FormReport) => {
+  const handleFormSubmit = (data: FormReport) => {
     let description = null;
 
     for (const [key, value] of Object.entries(data)) {

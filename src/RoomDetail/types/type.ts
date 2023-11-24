@@ -8,9 +8,9 @@ export type FormReport = {
 
 export type ReportContent = {
   [key: string]: string;
-  '1234': string;
-  '2345': string;
-  '3456': string;
-  '5678': string;
-  '6789': string;
+  '1': string;
+  '2': string;
+  '3': string;
+  '4': string;
+  '5': string;
 };
