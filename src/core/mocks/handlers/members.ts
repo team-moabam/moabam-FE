@@ -5,7 +5,6 @@ import { MEMBER_INFO, MY_INFO } from '../datas/member';
 const membersHandlers = [
   http.get(baseURL('/members'), async () => {
     await delay(1000);
-    console.log('마이');
     const status: number = 200;
     let response = {};
 
@@ -49,7 +48,6 @@ const membersHandlers = [
   }),
 
   http.get(baseURL('/members/:userId'), async () => {
-    console.log('딴사람');
     await delay(1000);
     return HttpResponse.json(MEMBER_INFO, { status: 200 });
   }),
