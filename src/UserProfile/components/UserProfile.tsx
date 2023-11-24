@@ -97,7 +97,7 @@ const UserProfile = ({
     <>
       {!isEditMode && !userId && (
         <div
-          className="absolute right-0 cursor-pointer text-3xl text-dark-gray hover:text-black dark:hover:text-white"
+          className="absolute right-0 z-20 cursor-pointer text-3xl text-dark-gray hover:text-black dark:hover:text-white"
           onClick={() => setIsEditMode(true)}
         >
           <MdModeEdit />
@@ -118,7 +118,7 @@ const UserProfile = ({
               onChange: (e) => handleImageSelect(e)
             })}
           />
-          <div className="relative h-24 w-24 overflow-hidden rounded-full">
+          <div className="relative z-20 h-24 w-24 overflow-hidden rounded-full">
             <img
               src={profileImage ?? '/assets/user.png'}
               className="absolute h-full w-full object-cover"
