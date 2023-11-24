@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import RoomCalendar from './RoomCalendar';
 import CertificationProgress from './CertificationProgress';
 import RoomRoutine from './RoomRoutine';
@@ -24,11 +25,17 @@ const RoomWorkspace = ({
 }: RoomWorkspaceProps) => {
   const { bottomSheetProps, toggle, close } = useBottomSheet();
 
+  const [reportStatus, setReportStatus] = useState<boolean>(false);
+
   const myCertificationImage = todayCertificateRank.find(
     ({ memberId }) => memberId === '5'
   )?.certificationImage;
 
   // Todo : RoomCalendar data props
+
+  const changeReportStatus = (value: boolean) => {
+    setReportStatus(value);
+  };
 
   return (
     <>
@@ -80,9 +87,18 @@ const RoomWorkspace = ({
           </button>
         </TabItem>
         <TabItem title="멤버">
-          <RoomMembers members={todayCertificateRank} />
-          <button className="mt-[1.62rem] text-sm text-black dark:text-white">
-            신고하기
+          <RoomMembers
+            members={todayCertificateRank}
+            reportStatus={reportStatus}
+            changeReportStatus={changeReportStatus}
+          />
+          <button
+            className="mt-[1.62rem] text-sm text-black dark:text-white"
+            onClick={() => {
+              setReportStatus((prev) => !prev);
+            }}
+          >
+            {reportStatus ? '취소하기' : '신고하기'}
           </button>
         </TabItem>
       </Tab>
