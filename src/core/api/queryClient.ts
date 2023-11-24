@@ -1,5 +1,4 @@
 import { MutationCache, QueryCache, QueryClient } from '@tanstack/react-query';
-import memberOptions from '@/core/api/options/member';
 import router from '@/core/routes/router';
 import { CustomAxiosError } from '@/core/api/types';
 import { STORAGE_KEYS } from '../constants/storageKeys';
@@ -20,20 +19,7 @@ const queryClient = new QueryClient({
     }
   },
   queryCache: new QueryCache({
-    onError: (error, query) => {
-      try {
-        if (
-          JSON.stringify(query.queryKey) ===
-          JSON.stringify(memberOptions.myInfo().queryKey)
-        ) {
-          return;
-        }
-
-        handleRedirectOnError(error);
-      } catch (err) {
-        console.error(err);
-      }
-    }
+    onError: handleRedirectOnError
   }),
   mutationCache: new MutationCache({
     onError: handleRedirectOnError
