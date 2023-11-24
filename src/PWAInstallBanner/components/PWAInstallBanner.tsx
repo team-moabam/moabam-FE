@@ -6,7 +6,7 @@ import { Icon } from '@/shared/Icon';
 
 const PWAInstallBanner = () => {
   const deferredPrompt = useRef<any>(null);
-  const [isShow, setIsShow] = useState(true);
+  const [isShow, setIsShow] = useState(false);
   const { theme } = useTheme();
 
   const handleInstall = () => {
