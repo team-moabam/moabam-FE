@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import clsx from 'clsx';
 import { RankMember } from '@/core/types/Member';
 
@@ -26,7 +27,8 @@ const RoomMemberRank = ({
               const sleepImage = '/assets/skins/sleepOmokSkin0.png';
               const time = 23;
               return (
-                <div
+                <Link
+                  to={`/user/${memberId}`}
                   key={memberId}
                   className={clsx('absolute flex w-fit flex-col items-center', {
                     'top-[11.69rem] left-[4.13rem]': rank === 1,
@@ -60,7 +62,7 @@ const RoomMemberRank = ({
                   >
                     {nickname}
                   </span>
-                </div>
+                </Link>
               );
             })}
         </>
