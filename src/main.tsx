@@ -49,19 +49,17 @@ const setupFCM = async () => {
   };
 };
 
-setupMSW()
-  .then(setupFCM)
-  .then(() => {
-    ReactDOM.createRoot(document.getElementById('root')!).render(
-      <React.StrictMode>
-        <QueryClientProvider client={queryClient}>
-          <ThemeProvider>
-            <PWAInstallBannerProvider>
-              <RouterProvider router={router} />
-              <ReactQueryDevtools initialIsOpen={false} />
-            </PWAInstallBannerProvider>
-          </ThemeProvider>
-        </QueryClientProvider>
-      </React.StrictMode>
-    );
-  });
+Promise.allSettled([setupMSW(), setupFCM()]).then(() => {
+  ReactDOM.createRoot(document.getElementById('root')!).render(
+    <React.StrictMode>
+      <QueryClientProvider client={queryClient}>
+        <ThemeProvider>
+          <PWAInstallBannerProvider>
+            <RouterProvider router={router} />
+            <ReactQueryDevtools initialIsOpen={false} />
+          </PWAInstallBannerProvider>
+        </ThemeProvider>
+      </QueryClientProvider>
+    </React.StrictMode>
+  );
+});
