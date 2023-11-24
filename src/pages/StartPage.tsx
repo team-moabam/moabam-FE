@@ -1,4 +1,5 @@
 import { Suspense } from 'react';
+import { ErrorBoundary } from '@suspensive/react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { useMoveRoute } from '@/core/hooks';
 import RoutinesPage from './RoutinesPage';
@@ -9,6 +10,7 @@ import {
   UserInfo,
   Background
 } from '@/StartSlide';
+import { NetworkFallback } from '@/shared/ErrorBoundary';
 
 const StartPage = () => {
   const { dayType } = useDayTypes();
@@ -27,9 +29,12 @@ const StartPage = () => {
       >
         <SwiperSlide className="shadow-lg">
           <Background type={dayType} />
-          <Suspense fallback={<UserInfoFallback type={dayType} />}>
-            <UserInfo type={dayType} />
-          </Suspense>
+
+          <ErrorBoundary fallback={<NetworkFallback />}>
+            <Suspense fallback={<UserInfoFallback type={dayType} />}>
+              <UserInfo type={dayType} />
+            </Suspense>
+          </ErrorBoundary>
 
           <div className="absolute inset-x-0 bottom-8 mx-auto w-fit">
             <SwipeArrow />
