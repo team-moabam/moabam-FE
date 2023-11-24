@@ -19,6 +19,7 @@ const StartPage = () => {
       <Swiper
         className="h-full"
         direction="vertical"
+        allowSlidePrev={false}
         onReachEnd={() => moveTo('routines')}
       >
         <SwiperSlide className="shadow-lg">
