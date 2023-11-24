@@ -27,8 +27,8 @@ export const MY_JOIN_ROOMS: MyJoinRoom = {
     {
       roomId: 15,
       title: '방이름이엄청나게긴루틴방이랍니다하하하하',
-      roomType: 'MORNING',
-      certifyTime: 9,
+      roomType: 'NIGHT',
+      certifyTime: 2,
       currentUserCount: 4,
       maxUserCount: 10,
       isMemberCertifiedToday: true,
