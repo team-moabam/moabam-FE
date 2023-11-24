@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Suspense } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Controller } from 'swiper/modules';
 import { SwiperClass } from 'swiper/react';
+import { clsx } from 'clsx';
 import { useTheme } from '@/core/hooks';
 import RoomSlide from '@/RoomSlide/components/RoomSlide';
 import { EventBanner } from '@/Promotion';
@@ -19,19 +20,14 @@ const RoutinesPage = () => {
   const [controllSwiper, setControllSwiper] = useState<SwiperClass | null>(
     null
   );
-  const [isFirstSlide, setIsFirstSlide] = useState(true);
 
   return (
-    <div className="flex h-full flex-col overflow-auto">
+    <div className="flex h-full flex-col items-center overflow-auto">
       <Swiper
         className="h-full w-full"
         modules={[Controller]}
         controller={{ control: controllSwiper }}
         onSwiper={setRoutineSwiper}
-        allowSlidePrev={!isFirstSlide}
-        allowSlideNext={isFirstSlide}
-        onReachEnd={() => setIsFirstSlide(false)}
-        onReachBeginning={() => setIsFirstSlide(true)}
       >
         {DAY_TYPES.map((roomType) => (
           <SwiperSlide
@@ -42,22 +38,37 @@ const RoutinesPage = () => {
           </SwiperSlide>
         ))}
       </Swiper>
-      <Swiper
-        className="h-20 w-40 gap-0 rounded-full bg-white"
-        modules={[Controller]}
-        controller={{ control: routineSwiper }}
-        onSwiper={setControllSwiper}
-        slidesPerView={1}
-        allowSlidePrev={!isFirstSlide}
-        allowSlideNext={isFirstSlide}
-      >
-        <SwiperSlide className="flex items-start">
-          <div className="h-full w-full  bg-light-point"></div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="h-full w-full bg-dark-point"></div>
-        </SwiperSlide>
-      </Swiper>
+      <div className="relative flex h-20 w-16 items-center overflow-hidden rounded-full">
+        <div
+          className={clsx(
+            'absolute inset-y-0 my-auto h-[0.2rem] w-full rounded-full',
+            'bg-light-point dark:bg-dark-point'
+          )}
+        ></div>
+        <Swiper
+          className="h-6 w-10 gap-0 overflow-visible"
+          modules={[Controller]}
+          controller={{ control: routineSwiper }}
+          onSwiper={setControllSwiper}
+          slidesPerView={1}
+          dir="rtl"
+        >
+          <SwiperSlide className="flex justify-end">
+            <div
+              className={clsx(
+                'relative right-[0.02rem] h-full w-3 rounded-s-full bg-white shadow-md'
+              )}
+            ></div>
+          </SwiperSlide>
+          <SwiperSlide className="flex justify-start">
+            <div
+              className={clsx(
+                'relative left-[0.02rem] h-full w-3 rounded-e-full bg-white shadow-md'
+              )}
+            ></div>
+          </SwiperSlide>
+        </Swiper>
+      </div>
 
       <PWAInstallBanner />
       <Suspense>
