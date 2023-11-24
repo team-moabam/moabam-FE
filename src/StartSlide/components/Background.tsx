@@ -14,7 +14,7 @@ const bgStyle = {
   },
   NIGHT: {
     skyObject: '/assets/Moon.png',
-    skyObjectStyle: 'absolute top-24 left-2 w-1/2',
+    skyObjectStyle: 'absolute top-16 left-0 w-1/2',
     skyColor: 'bg-gradient-to-b from-[#61298c] to-[#000f2a]',
     mountain: '/assets/NightMountain.png'
   }
