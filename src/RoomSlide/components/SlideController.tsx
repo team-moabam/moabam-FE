@@ -14,7 +14,7 @@ const SlideController = ({ control, onSwiper }: SlideControllerProps) => {
     <div className="relative flex w-11 items-center overflow-hidden rounded-full">
       <div
         className={clsx(
-          'absolute inset-y-0 my-auto h-1 w-11 rounded-full',
+          'absolute inset-0 m-auto h-1 w-10 rounded-full',
           'bg-light-point dark:bg-dark-point'
         )}
       ></div>
@@ -30,7 +30,7 @@ const SlideController = ({ control, onSwiper }: SlideControllerProps) => {
           <div
             className={clsx(
               'relative right-[0.02rem] h-full w-[0.625rem] rounded-s-full',
-              'border-y-1 border-r-1 bg-white'
+              'border-b-2 border-r-1 border-t-1 border-light-gray bg-white'
             )}
           ></div>
         </SwiperSlide>
@@ -38,7 +38,7 @@ const SlideController = ({ control, onSwiper }: SlideControllerProps) => {
           <div
             className={clsx(
               'relative left-[0.02rem] h-full w-[0.625rem] rounded-e-full',
-              'border-y-1 border-l-1 bg-white '
+              'border-b-2 border-l-1 border-t-1 border-light-gray bg-white'
             )}
           ></div>
         </SwiperSlide>
