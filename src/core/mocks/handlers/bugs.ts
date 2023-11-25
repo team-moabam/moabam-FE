@@ -16,7 +16,21 @@ const bugsHandlers = [
   http.get(baseURL('/bugs/products'), async () => {
     await delay(1000);
     return HttpResponse.json(PRODUCT_BUGS, { status: 200 });
-  })
+  }),
+  http.post(
+    baseURL('/bugs/products/:productId/purchase'),
+    async ({ params }) => {
+      await delay(1000);
+      return HttpResponse.json(
+        {
+          paymentId: params.productId,
+          orderName: '황금벌레 10',
+          price: 2
+        },
+        { status: 200 }
+      );
+    }
+  )
 ];
 
 export default bugsHandlers;

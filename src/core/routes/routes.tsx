@@ -18,6 +18,8 @@ import ParticipateLogPage from '@/pages/ParticipateLogPage';
 import OrderLogPage from '@/pages/OrderLogPage';
 import StorePage from '@/pages/StorePage';
 import GuidePage from '@/pages/GuidePage';
+import PurchaseSuccessPage from '@/pages/PurchaseSuccesPage';
+import PurchaseFailPage from '@/pages/PurchaseFailPage';
 
 interface Route {
   path: string;
@@ -47,7 +49,9 @@ export type RouteNames =
   | 'mybird'
   | 'notFound'
   | 'event'
-  | 'rank';
+  | 'rank'
+  | 'purchaseSuccess'
+  | 'purchaseFail';
 
 type Routes = Record<RouteNames, Route>;
 
@@ -171,6 +175,18 @@ const routes: Routes = {
     authRequired: true,
     navBarRequired: false,
     element: <EventPage />
+  },
+  purchaseSuccess: {
+    path: 'purchase-success',
+    authRequired: true,
+    navBarRequired: false,
+    element: <PurchaseSuccessPage />
+  },
+  purchaseFail: {
+    path: 'purchase-fail',
+    authRequired: true,
+    navBarRequired: false,
+    element: <PurchaseFailPage />
   },
   notFound: {
     path: '*',

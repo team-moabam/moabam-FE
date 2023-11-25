@@ -1,9 +1,11 @@
+export interface ProductBug {
+  id: string;
+  type: string;
+  name: string;
+  price: number;
+  quantity: number;
+}
+
 export interface ProductBugs {
-  products: {
-    id: string;
-    type: string;
-    name: string;
-    price: number;
-    quantity: number;
-  }[];
+  products: ProductBug[];
 }
