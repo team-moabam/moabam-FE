@@ -1,40 +1,12 @@
-import { useEffect, useRef, useState } from 'react';
 import clsx from 'clsx';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useTheme } from '@/core/hooks';
+import usePWAInstallBanner from '../hooks/usePWAInstallBanner';
 import { Icon } from '@/shared/Icon';
 
 const PWAInstallBanner = () => {
-  const deferredPrompt = useRef<any>(null);
-  const [isShow, setIsShow] = useState(true);
+  const { isShow, handleInstall, handleClose } = usePWAInstallBanner();
   const { theme } = useTheme();
-
-  const handleInstall = () => {
-    deferredPrompt.current?.prompt();
-  };
-
-  const handleClose = () => {
-    setIsShow(false);
-  };
-
-  const handleBeforeInstallPrompt = (e: Event) => {
-    e.preventDefault();
-    deferredPrompt.current = e;
-    setIsShow(true);
-  };
-
-  useEffect(() => {
-    window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
-    window.addEventListener('appinstalled', handleClose);
-
-    return () => {
-      window.removeEventListener(
-        'beforeinstallprompt',
-        handleBeforeInstallPrompt
-      );
-      window.removeEventListener('appinstalled', handleClose);
-    };
-  }, []);
 
   return (
     <AnimatePresence>
