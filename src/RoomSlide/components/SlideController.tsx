@@ -11,7 +11,7 @@ interface SlideControllerProps {
 
 const SlideController = ({ control, onSwiper }: SlideControllerProps) => {
   return (
-    <div className="relative flex w-12 items-center overflow-hidden rounded-full">
+    <div className="relative flex h-10 w-14 items-center overflow-hidden rounded-full">
       <div
         className={clsx(
           'absolute inset-0 m-auto h-1 w-10 rounded-full',
@@ -19,7 +19,7 @@ const SlideController = ({ control, onSwiper }: SlideControllerProps) => {
         )}
       ></div>
       <Swiper
-        className="h-5 w-7 cursor-pointer gap-0 overflow-visible"
+        className="h-5 w-8 cursor-pointer gap-0 overflow-visible"
         modules={[Controller]}
         controller={{ control }}
         onSwiper={onSwiper}
@@ -27,20 +27,14 @@ const SlideController = ({ control, onSwiper }: SlideControllerProps) => {
         dir="rtl"
       >
         <SwiperSlide className="flex justify-end">
-          <div
-            className={clsx(
-              'relative right-[0.02rem] h-full w-[0.625rem] rounded-s-full',
-              'border-b-2 border-r-1 border-t-1 border-light-gray bg-white'
-            )}
-          ></div>
+          <div className={clsx('relative h-full w-[0.625rem]')}>
+            <div className="absolute right-0 h-full w-5 rounded-full bg-white drop-shadow"></div>
+          </div>
         </SwiperSlide>
         <SwiperSlide className="flex justify-start">
-          <div
-            className={clsx(
-              'relative left-[0.02rem] h-full w-[0.625rem] rounded-e-full',
-              'border-b-2 border-l-1 border-t-1 border-light-gray bg-white'
-            )}
-          ></div>
+          <div className={clsx('relative h-full w-[0.625rem]')}>
+            <div className="absolute left-0 h-full w-5 rounded-full bg-white drop-shadow"></div>
+          </div>
         </SwiperSlide>
       </Swiper>
     </div>
