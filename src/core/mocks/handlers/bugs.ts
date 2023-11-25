@@ -25,7 +25,7 @@ const bugsHandlers = [
         {
           paymentId: params.productId,
           orderName: '황금벌레 10',
-          price: 2
+          price: 2000
         },
         { status: 200 }
       );

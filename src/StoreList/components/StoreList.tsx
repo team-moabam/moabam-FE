@@ -9,6 +9,7 @@ import { nanoid } from 'nanoid';
 import { bugOptions, couponOptions } from '@/core/api/options';
 import { ProductBug, MyCoupon, PurchaseRes } from '@/core/types';
 import bugAPI from '@/core/api/functions/bugAPI';
+import paymentAPI from '@/core/api/functions/payment';
 import { BottomSheet, useBottomSheet } from '@/shared/BottomSheet';
 
 const StoreList = () => {
@@ -76,13 +77,16 @@ const StoreList = () => {
   };
 
   const handle결제 = async () => {
+    if (!purchaseRes) return;
+    console.log(purchaseRes);
+    const orderId = nanoid();
     try {
+      await paymentAPI.payment(purchaseRes.paymentId, { orderId });
       await paymentWidgetRef.current?.requestPayment({
-        orderId: nanoid(),
-        orderName: 'tlqkf',
+        orderId,
         successUrl: `${window.location.origin}/purchase-success`,
-        failUrl: `${window.location.origin}/purchase-fail`
-        // ...purchaseRes
+        failUrl: `${window.location.origin}/purchase-fail`,
+        ...purchaseRes
       });
     } catch (err) {
       console.log(err);
