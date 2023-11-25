@@ -40,7 +40,19 @@ const StoreList = () => {
   const paymentWidgetRef = useRef<PaymentWidgetInstance | null>(null);
   const [purchaseRes, setPurchaseRes] = useState<PurchaseRes>();
 
-  const handleProduct = () => {
+  const handleOpenSheet = (product: ProductBug) => {
+    open();
+    setSelectProduct(product);
+  };
+
+  const handleSelectCoupon = (event: ChangeEvent<HTMLSelectElement>) => {
+    const targetId = event.target.value;
+    setSelectCoupon(
+      myCouponsResponse.find(({ couponId }) => couponId.toString() === targetId)
+    );
+  };
+
+  const handleWidget = () => {
     if (!selectProduct) return;
     mutation.mutate(
       {
@@ -64,21 +76,10 @@ const StoreList = () => {
     setIsCheckoutMode(true);
   };
 
-  const handleSelectCoupon = (event: ChangeEvent<HTMLSelectElement>) => {
-    const targetId = event.target.value;
-    setSelectCoupon(
-      myCouponsResponse.find(({ couponId }) => couponId.toString() === targetId)
-    );
-  };
-
-  const handleOpenBottomSheet = (product: ProductBug) => {
-    open();
-    setSelectProduct(product);
-  };
-
-  const handle결제 = async () => {
+  const handlePurchase = async () => {
     if (!purchaseRes) return;
     console.log(purchaseRes);
+    console.log(paymentWidgetRef.current);
     const orderId = nanoid();
     try {
       await paymentAPI.payment(purchaseRes.paymentId, { orderId });
@@ -100,7 +101,7 @@ const StoreList = () => {
           <li
             className="flex cursor-pointer items-center gap-2 rounded-lg bg-light-sub p-3 font-extrabold dark:bg-dark-sub"
             key={product.id}
-            onClick={() => handleOpenBottomSheet(product)}
+            onClick={() => handleOpenSheet(product)}
           >
             <div className="text-lg text-warning">
               <BiSolidBugAlt />
@@ -154,7 +155,7 @@ const StoreList = () => {
               </div>
               <button
                 className="btn btn-light-point dark:btn-dark-point mt-2"
-                onClick={() => handleProduct()}
+                onClick={handleWidget}
               >
                 구매
               </button>
@@ -174,7 +175,7 @@ const StoreList = () => {
               <div className="w-full p-5">
                 <button
                   className="btn btn-light-point w-full"
-                  onClick={handle결제}
+                  onClick={handlePurchase}
                 >
                   결제하기
                 </button>

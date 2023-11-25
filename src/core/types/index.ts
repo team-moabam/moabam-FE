@@ -17,3 +17,4 @@ export type { MyCoupons, MyCoupon } from './MyCoupon';
 export type { Report } from './Reports';
 export type { ProductBugs, ProductBug } from './ProductBugs';
 export type { PurchaseRes } from './PurchaseBugs';
+export type { Confirm } from './Confirm';
