@@ -4,7 +4,7 @@ import { iconMap } from '../constants/icons';
 import Icon from './Icon';
 
 const meta = {
-  title: 'Components/Icon',
+  title: 'Shared/Icon',
   tags: ['autodocs'],
   parameters: {
     docs: {
