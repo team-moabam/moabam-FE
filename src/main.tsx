@@ -9,6 +9,7 @@ import { getFCMToken } from '@/core/utils/firebase';
 import { ThemeProvider } from '@/core/hooks/useTheme';
 import notificationAPI from '@/core/api/functions/notificationAPI';
 import queryClient from '@/core/api/queryClient';
+import { PWAInstallBannerProvider } from '@/PWAInstallBanner/hooks/usePWAInstallBanner';
 import './main.css';
 
 const setupMSW = async () => {
@@ -48,17 +49,17 @@ const setupFCM = async () => {
   };
 };
 
-setupMSW()
-  .then(setupFCM)
-  .then(() => {
-    ReactDOM.createRoot(document.getElementById('root')!).render(
-      <React.StrictMode>
-        <QueryClientProvider client={queryClient}>
-          <ThemeProvider>
+Promise.allSettled([setupMSW(), setupFCM()]).then(() => {
+  ReactDOM.createRoot(document.getElementById('root')!).render(
+    <React.StrictMode>
+      <QueryClientProvider client={queryClient}>
+        <ThemeProvider>
+          <PWAInstallBannerProvider>
             <RouterProvider router={router} />
             <ReactQueryDevtools initialIsOpen={false} />
-          </ThemeProvider>
-        </QueryClientProvider>
-      </React.StrictMode>
-    );
-  });
+          </PWAInstallBannerProvider>
+        </ThemeProvider>
+      </QueryClientProvider>
+    </React.StrictMode>
+  );
+});

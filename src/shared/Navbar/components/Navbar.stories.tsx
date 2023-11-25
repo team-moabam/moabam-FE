@@ -3,7 +3,7 @@ import { withRouter } from 'storybook-addon-react-router-v6';
 import { Navbar } from '..';
 
 const meta = {
-  title: 'Components/Navbar',
+  title: 'Shared/Navbar',
   component: Navbar,
   decorators: [withRouter],
   argTypes: {

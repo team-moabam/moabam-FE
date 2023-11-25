@@ -3,7 +3,7 @@ import { withRouter } from 'storybook-addon-react-router-v6';
 import Avatar from './Avatar';
 
 const meta = {
-  title: 'Components/Avatar',
+  title: 'Shared/Avatar',
   component: Avatar,
   argTypes: {
     imgUrl: { control: 'string' },
