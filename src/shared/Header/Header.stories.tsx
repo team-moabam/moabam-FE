@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { withRouter } from 'storybook-addon-react-router-v6';
 import { Header } from '.';
 import { Icon } from '../Icon';
 
@@ -7,7 +6,6 @@ const meta = {
   title: 'Shared/Header',
   tags: ['autodocs'],
   component: Header,
-  decorators: [withRouter],
   argTypes: {
     titleSize: {
       control: 'radio',
