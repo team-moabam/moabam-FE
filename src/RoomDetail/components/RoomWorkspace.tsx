@@ -1,7 +1,11 @@
+import { useMutation } from '@tanstack/react-query';
+import roomAPI from '@/core/api/functions/roomAPI';
+import { useMoveRoute } from '@/core/hooks';
 import RoomCalendar from './RoomCalendar';
 import CertificationProgress from './CertificationProgress';
 import RoomRoutine from './RoomRoutine';
 import RoomMembers from './RoomMembers';
+import { Toast } from '@/shared/Toast';
 import { BottomSheet, useBottomSheet } from '@/shared/BottomSheet';
 import { Tab, TabItem } from '@/shared/Tab';
 import { RoomInfo } from '@/core/types/Room';
@@ -20,15 +24,36 @@ const RoomWorkspace = ({
   certifiedDates,
   certifyTime,
   status,
-  serverTime
+  serverTime,
+  roomId
 }: RoomWorkspaceProps) => {
   const { bottomSheetProps, toggle, close } = useBottomSheet();
+  const moveTo = useMoveRoute();
 
   const myCertificationImage = todayCertificateRank.find(
     ({ memberId }) => memberId === '5'
   )?.certificationImage;
 
-  // Todo : RoomCalendar data props
+  const { mutate } = useMutation({
+    mutationFn: roomAPI.deleteRoom
+  });
+
+  const handleRoomLeave = () => {
+    mutate(`${roomId}`, {
+      onSuccess: () => {
+        close();
+        moveTo('routines');
+        Toast.show({ message: '방을 나갔습니다', status: 'confirm' });
+      },
+      onError: (err) => {
+        console.error(err);
+        Toast.show({
+          message: err.response?.data.message ?? '오류가 발생했어요.',
+          status: 'danger'
+        });
+      }
+    });
+  };
 
   return (
     <>
@@ -44,7 +69,7 @@ const RoomWorkspace = ({
             </span>
             <button
               className="btn btn-transition btn-danger w-full"
-              onClick={close}
+              onClick={handleRoomLeave}
             >
               나가기
             </button>
