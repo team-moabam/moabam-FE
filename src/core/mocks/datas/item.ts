@@ -1,6 +1,6 @@
-import { ItemsType } from '@/core/types';
+import { Items } from '@/core/types';
 
-export const MORNING_ITEM: ItemsType = {
+export const MORNING_ITEM: Items = {
   defaultItemId: 1,
   purchasedItems: [
     {
@@ -48,7 +48,7 @@ export const MORNING_ITEM: ItemsType = {
   ]
 };
 
-export const NIGHT_ITEM: ItemsType = {
+export const NIGHT_ITEM: Items = {
   defaultItemId: 5,
   purchasedItems: [
     {
