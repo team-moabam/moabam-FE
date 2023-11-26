@@ -8,6 +8,7 @@ import itemAPI from '@/core/api/functions/itemAPI';
 import memberOptions from '@/core/api/options/member';
 import { MyBirdContext } from './MyBirdProvider';
 import { Icon } from '@/shared/Icon';
+import { Toast } from '@/shared/Toast';
 import { Item } from '@/core/types/item';
 
 interface ProductSheetProps {
@@ -58,11 +59,20 @@ const ProductSheet = ({ close }: ProductSheetProps) => {
       {
         onSuccess: () => {
           setSelectItem({ ...selectItem, [type]: productItem });
-          queryClient.invalidateQueries({ queryKey: ['user', 'item'] });
+          queryClient.invalidateQueries({ queryKey: ['item', type] });
+          queryClient.invalidateQueries({ queryKey: ['members'] });
+          Toast.show({
+            message: '구매 성공!',
+            status: 'confirm'
+          });
           close();
         },
         onError: (e) => {
           console.log('무언가 잘못 되었습니다..' + e);
+          Toast.show({
+            message: '뭔가 잘못되었습니다..',
+            status: 'danger'
+          });
         }
       }
     );
