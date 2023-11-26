@@ -106,7 +106,7 @@ const CertificationBottomSheet = ({
               <ImageInput
                 key={routineId}
                 content={content}
-                image={myCertificationImage && myCertificationImage[idx].image}
+                image={myCertificationImage && myCertificationImage[idx]?.image}
                 idx={idx}
               />
             );
