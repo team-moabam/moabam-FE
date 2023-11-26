@@ -2,15 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Funnel, useFunnel } from '.';
 
 const meta = {
-  title: 'Shared/Funnel',
-  tags: ['autodocs'],
-  parameters: {
-    docs: {
-      description: {
-        component: '순차적인 화면을 보여주는 데 도움을 주는 컴포넌트입니다.'
-      }
-    }
-  }
+  title: 'Shared/Funnel'
 } satisfies Meta<typeof Funnel>;
 
 export default meta;
@@ -18,26 +10,6 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  parameters: {
-    docs: {
-      description: {
-        story:
-          '**퍼널 컴포넌트 사용 방법**<br/>' +
-          '**1. steps 정의** <br/>' +
-          '`const steps = ["방선택", "인증시간", "루틴정보", "비밀번호", "마무리"] as const;`<br/><br/>' +
-          '**2. useFunnel 훅 사용**<br/>' +
-          '`const funnel = useFunnel(steps, <최초로 보여줄 스텝>);`<br/><br/>' +
-          '**3. Funnel 컴포넌트 사용**<br/>' +
-          '`<Funnel {...funnel}>`<br/><br/>' +
-          '**4. Funnel.Step 컴포넌트 사용**<br/>' +
-          '`<Funnel.Step<typeof steps> name="방선택">방선택 페이지</Funnel.Step>`<br/>' +
-          '`<Funnel.Step<typeof steps> name="인증시간">인증시간 페이지</Funnel.Step>`<br/>' +
-          '`<Funnel.Step<typeof steps> name="루틴정보">루틴정보 페이지</Funnel.Step>`<br/>' +
-          '`<Funnel.Step<typeof steps> name="비밀번호">비밀번호 페이지</Funnel.Step>`<br/>' +
-          '`<Funnel.Step<typeof steps> name="마무리">마무리 페이지</Funnel.Step>`<br/>'
-      }
-    }
-  },
   render: () => <DefaultPage />
 };
 
