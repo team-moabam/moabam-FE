@@ -23,6 +23,7 @@
     "clsx": "^2.0.0",
     "firebase": "^10.6.0",
     "framer-motion": "^10.16.4",
+    "msw-storybook-addon": "^2.0.0--canary.122.b3ed3b1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.47.0",
