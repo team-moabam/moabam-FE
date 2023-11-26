@@ -41,17 +41,13 @@ const Navbar = ({
     setTimeout(toNext, 0);
   };
 
-  const buttonContent = () => {
-    if (isPending) {
-      return <LoadingSpinner size="4xl" />;
-    }
-
-    if (!hasNext) {
-      return '방 만들기';
-    }
-
-    return '다음';
-  };
+  const buttonContent = isPending ? (
+    <LoadingSpinner size="4xl" />
+  ) : hasNext ? (
+    '다음'
+  ) : (
+    '방 만들기'
+  );
 
   return (
     <nav className="grid grid-cols-2 text-2xl">
@@ -67,7 +63,7 @@ const Navbar = ({
 
       <button
         className={clsx(
-          'col-start-2 flex h-16 w-full items-center justify-center',
+          'col-start-2 flex h-16 w-full select-none items-center justify-center',
           'bg-light-point text-white transition-all hover:bg-light-point-hover',
           'dark:bg-dark-point hover:dark:bg-dark-point-hover',
           isPending && 'cursor-not-allowed'
@@ -76,7 +72,7 @@ const Navbar = ({
         disabled={isPending}
         onClick={handleToNext}
       >
-        {buttonContent()}
+        {buttonContent}
       </button>
     </nav>
   );

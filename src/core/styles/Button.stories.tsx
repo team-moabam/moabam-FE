@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { withRouter } from 'storybook-addon-react-router-v6';
 
 const meta = {
-  title: 'Examples/Button',
+  title: 'Styles/Button',
   tags: ['autodocs'],
   decorators: [withRouter],
   parameters: {

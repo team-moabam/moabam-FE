@@ -18,14 +18,16 @@ const EventBanner = () => {
         to="/event"
         state={{ from: 'routines' }}
         className={clsx(
-          'flex h-fit w-full items-center justify-between gap-5 p-5',
+          'flex h-fit w-full items-center justify-between gap-4 p-5 ',
           'bg-gradient-to-l from-[#D2D68F] via-[#AEE6CF] to-[#60D4DE] shadow-nav'
         )}
       >
         <div className="flex flex-wrap items-center gap-1 text-white">
-          <div className="font-IMHyemin-bold">진행 중인 이벤트가 있어요!</div>
+          <div className="break-keep font-IMHyemin-bold">
+            진행 중인 이벤트가 있어요!
+          </div>
         </div>
-        <div className="flex cursor-pointer break-keep rounded-2xl bg-light-main px-7 py-1 text-sm text-black">
+        <div className="flex cursor-pointer break-keep rounded-2xl bg-light-main px-6 py-1 text-sm text-black max-[336px]:px-4">
           보러가기
         </div>
       </Link>

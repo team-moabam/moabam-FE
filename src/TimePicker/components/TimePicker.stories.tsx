@@ -3,7 +3,7 @@ import TimePicker from './TimePicker';
 import '../styles/TimePicker.css';
 
 const meta = {
-  title: 'Components/TimePicker',
+  title: 'Domains/TimePicker',
   tags: ['autodocs'],
   component: TimePicker,
   parameters: {

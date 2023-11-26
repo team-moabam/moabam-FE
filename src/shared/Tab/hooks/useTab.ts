@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { childrenToArray } from '../utils/childrenToArray';
 import TabItem, { TabItemProps } from '../components/TabItem';
@@ -7,9 +7,18 @@ import TabThumnail, { TabThumbnailProps } from '../components/TabThumbnail';
 interface useTabProps {
   tabChildren: React.ReactNode;
   defaultIndex: number;
+  onChange?: VoidFunction;
+  currentIndex?: number;
+  setCurrentIndex?: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const useTab = ({ tabChildren, defaultIndex }: useTabProps) => {
+const useTab = ({
+  tabChildren,
+  defaultIndex,
+  onChange,
+  currentIndex,
+  setCurrentIndex
+}: useTabProps) => {
   const tabItems = childrenToArray<TabItemProps>(tabChildren, TabItem);
   const tabThumnails = childrenToArray<TabThumbnailProps>(
     tabChildren,
@@ -23,12 +32,24 @@ const useTab = ({ tabChildren, defaultIndex }: useTabProps) => {
 
   const [currentTabIndex, setCurrentTabIndex] = useState(defaultIndex);
 
+  useEffect(() => {
+    if (currentIndex !== undefined) {
+      setCurrentTabIndex(currentIndex);
+    }
+  }, [currentIndex]);
+
+  useEffect(() => {
+    const onSelect = tabItems[currentIndex ?? currentTabIndex].props.onSelect;
+    onSelect && onSelect();
+    onChange && onChange();
+  }, [currentIndex, currentTabIndex, onChange, tabItems]);
+
   return {
     titleOfTabItems,
-    currentTabIndex,
-    setCurrentTabIndex,
-    currentTab: tabItems[currentTabIndex],
-    currentThumnail: tabThumnails[currentTabIndex]
+    currentTabIndex: currentIndex ?? currentTabIndex,
+    setCurrentTabIndex: setCurrentIndex ?? setCurrentTabIndex,
+    currentTab: tabItems[currentIndex ?? currentTabIndex],
+    currentThumnail: tabThumnails[currentIndex ?? currentTabIndex]
   };
 };
 

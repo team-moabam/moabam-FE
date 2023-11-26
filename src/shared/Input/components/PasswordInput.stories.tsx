@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import PasswordInput from './PasswordInput';
 
 const meta = {
-  title: 'Components/PasswordInput',
+  title: 'Shared/Input/PasswordInput',
   component: PasswordInput,
   argTypes: { size: { control: 'radio', options: ['sm', 'base', 'lg'] } }
 } satisfies Meta<typeof PasswordInput>;

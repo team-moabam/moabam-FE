@@ -1,11 +1,15 @@
+import { useSuspenseQuery } from '@tanstack/react-query';
 import { RiCoupon2Fill } from 'react-icons/ri';
 import { FaClipboardList } from 'react-icons/fa6';
 import { IoMdCash } from 'react-icons/io';
-import { data } from '../mocks/bugsHistory';
+import { bugOptions } from '@/core/api/options';
 import { bugs } from '../mocks/Bugs';
 
 const OrderLogList = () => {
-  const { history } = data;
+  const {
+    data: { history }
+  } = useSuspenseQuery({ ...bugOptions.history() });
+
   return (
     <ul>
       {history.map(({ id, bugType, action, amount, date }) => (
@@ -29,7 +33,7 @@ const OrderLogList = () => {
 export default OrderLogList;
 
 const actionsIcon = {
-  보상: <RiCoupon2Fill />,
-  쿠폰: <FaClipboardList />,
+  보상: <FaClipboardList />,
+  쿠폰: <RiCoupon2Fill />,
   충전: <IoMdCash />
 };

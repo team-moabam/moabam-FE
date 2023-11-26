@@ -53,7 +53,8 @@ export default {
         'IMHyemin-regular': ['IM_Hyemin-Regular']
       },
       boxShadow: {
-        nav: '0px -1px 4px 0px rgba(0, 0, 0, 0.25)'
+        nav: '0px -1px 4px 0px rgba(0, 0, 0, 0.25)',
+        bottom: '0px 1px 0px 0px #d1d5db'
       },
       borderWidth: {
         DEFAULT: '1px',
@@ -68,9 +69,10 @@ export default {
         8: '8px'
       },
       zIndex: {
+        navbar: '50',
         bottomSheet: '100',
         toast: '110',
-        navbar: '50'
+        pwaInstallBanner: '120'
       }
     }
   }
