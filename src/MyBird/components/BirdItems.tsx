@@ -15,16 +15,15 @@ import { useBottomSheet, BottomSheet } from '@/shared/BottomSheet';
 import { ItemType } from '@/core/types/item';
 
 interface BirdItemsProps {
-  itemType: 'MORNING' | 'NIGHT';
+  type: 'MORNING' | 'NIGHT';
 }
 
-const BirdItems = ({ itemType }: BirdItemsProps) => {
+const BirdItems = ({ type }: BirdItemsProps) => {
   const queryClient = useQueryClient();
   const {
-    data: { defaultItemId, notPurchasedItems, purchasedItems },
-    isSuccess
+    data: { defaultItemId, notPurchasedItems, purchasedItems }
   } = useSuspenseQuery({
-    ...itemOptions.all(itemType)
+    ...itemOptions.all(type)
   });
   const mutation = useMutation({
     mutationFn: itemAPI.select
@@ -35,7 +34,7 @@ const BirdItems = ({ itemType }: BirdItemsProps) => {
   const { bottomSheetProps, open, close } = useBottomSheet();
 
   const handleSelectItem = (birdItem: ItemType) => {
-    setSelectItem({ ...selectItem, [itemType]: birdItem });
+    setSelectItem({ ...selectItem, [type]: birdItem });
     fetchSelectItem(birdItem.id);
   };
 
@@ -53,14 +52,14 @@ const BirdItems = ({ itemType }: BirdItemsProps) => {
   }, 1000);
 
   useEffect(() => {
-    if (selectItem[itemType]) return;
+    if (selectItem[type]) return;
     const defaultItem = purchasedItems.find(({ id }) => id === defaultItemId);
-    setSelectItem({ ...selectItem, [itemType]: defaultItem });
+    setSelectItem({ ...selectItem, [type]: defaultItem });
   }, []);
 
   return (
     <>
-      {selectItem[itemType] && (
+      {selectItem[type] && (
         <>
           <div className="grid grid-cols-3 gap-3 p-3">
             {
@@ -72,7 +71,7 @@ const BirdItems = ({ itemType }: BirdItemsProps) => {
                     onClick={() => handleSelectItem(birdItem)}
                   >
                     <BirdItem
-                      isSelect={selectItem[itemType]?.id === birdItem.id}
+                      isSelect={selectItem[type]?.id === birdItem.id}
                       birdItem={birdItem}
                     />
                   </div>

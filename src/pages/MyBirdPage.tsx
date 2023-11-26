@@ -1,4 +1,5 @@
 import { Suspense } from 'react';
+import { useLocation } from 'react-router-dom';
 import BirdItems from '@/MyBird/components/BirdItems';
 import MyBirdThumbnail from '@/MyBird/components/MyBirdThumbnail';
 import MyBirdProvider from '@/MyBird/components/MyBirdProvider';
@@ -7,17 +8,24 @@ import HeaderWallet from '@/MyBird/components/HeaderWallet';
 import { Tab, TabItem, TabThumbnail } from '@/shared/Tab';
 
 const MyBirdPage = () => {
+  const { state } = useLocation();
+  const type: 'MORNING' | 'NIGHT' = state ? state.type : 'MORNING';
+  const defaultIndex = { MORNING: 0, NIGHT: 1 }[type] ?? 0;
+
   return (
     <MyBirdProvider>
       <Header
         prev="myPage"
-        className="absolute z-10 text-white"
+        className="absolute z-10 text-light-sub"
       >
         <Suspense>
           <HeaderWallet />
         </Suspense>
       </Header>
-      <Tab itemStyle="flex-1">
+      <Tab
+        itemStyle="flex-1"
+        defaultIndex={defaultIndex}
+      >
         {myBirdTabOption.thumbnail.map(({ type, bgImage }) => (
           <TabThumbnail key={type}>
             <MyBirdThumbnail
@@ -32,7 +40,7 @@ const MyBirdPage = () => {
             key={type}
           >
             <Suspense>
-              <BirdItems itemType={type} />
+              <BirdItems type={type} />
             </Suspense>
           </TabItem>
         ))}
@@ -56,11 +64,11 @@ const myBirdTabOption: {
   thumbnail: [
     {
       type: 'MORNING',
-      bgImage: 'public/assets/morningShop.png'
+      bgImage: '/assets/morningShop.png'
     },
     {
       type: 'NIGHT',
-      bgImage: 'public/assets/nightShop.png'
+      bgImage: '/assets/nightShop.png'
     }
   ],
   item: [
