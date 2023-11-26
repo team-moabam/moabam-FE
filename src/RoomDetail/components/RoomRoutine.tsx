@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { FormCertificationImage } from '../types/type';
 import makeTodayCertifyTime from '../utils/makeTodayCertifyTime';
-import checkCertifyTime from '../utils/checkCertifyTIme';
+import checkCertifyTime from '../utils/checkCertifyTime';
 import {
   CERTIFICATE_END_MINUTES,
   CERTIFICATE_START_MINUTES
