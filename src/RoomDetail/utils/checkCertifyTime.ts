@@ -1,18 +1,21 @@
 const checkCertifyTime = ({
   nowTime,
-  certificateEndTime,
-  certificateStartTime
+  certificateTodayEndTime,
+  certificateTodayStartTime
 }: {
   nowTime: number;
-  certificateEndTime: number;
-  certificateStartTime: number;
+  certificateTodayEndTime: number;
+  certificateTodayStartTime: number;
 }) => {
-  if (nowTime < certificateStartTime) {
-    return 'beforeCertifyTime';
-  } else if (nowTime < certificateEndTime && nowTime >= certificateStartTime) {
-    return 'nowCertifyTime';
+  if (nowTime < certificateTodayStartTime) {
+    return 'beforeTodayCertifyTime';
+  } else if (
+    nowTime < certificateTodayEndTime &&
+    nowTime >= certificateTodayStartTime
+  ) {
+    return 'nowTodayCertifyTime';
   } else {
-    return 'afterCertifyTime';
+    return 'afterTodayCertifyTime';
   }
 };
 

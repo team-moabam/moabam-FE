@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { twMerge } from 'tailwind-merge';
 import clsx from 'clsx';
 import { DAY_OF_THE_WEEK } from '../constants/constant';
-import makeCertifyTime from '../utils/makeCertifyTime';
+import makeTodayCertifyTime from '../utils/makeTodayCertifyTime';
 import { DateRoomDetailContext } from './RoomDetailProvider';
 import { Icon } from '@/shared/Icon';
 import { Toast } from '@/shared/Toast';
@@ -21,20 +21,20 @@ const RoomCalendarDate = ({
   const { selectDate, chooseDate, serverTime } = useContext(
     DateRoomDetailContext
   );
-  const chooseDateString = `${chooseDate.getFullYear()}-${
-    chooseDate.getMonth() + 1
-  }-${chooseDate.getDate()}`;
+  const { nowTime } = makeTodayCertifyTime(certifyTime, serverTime);
 
   const thisDateDate = thisDate.getDate();
   const thisDateTime = thisDate.getTime();
   const thisDateDay = thisDate.getDay();
-  const thisDateString = `${thisDate.getFullYear()}-${
-    thisDate.getMonth() + 1
-  }-${thisDateDate}`;
   const langKoDay = DAY_OF_THE_WEEK[thisDateDay];
   const bug = certifiedDates.find((el) => el === thisDateString);
 
-  const { nowTime } = makeCertifyTime(certifyTime, serverTime);
+  const chooseDateString = `${chooseDate.getFullYear()}-${
+    chooseDate.getMonth() + 1
+  }-${chooseDate.getDate()}`;
+  const thisDateString = `${thisDate.getFullYear()}-${
+    thisDate.getMonth() + 1
+  }-${thisDateDate}`;
 
   const handleDateClick = (thisDate: Date) => {
     if (nowTime >= thisDateTime) {

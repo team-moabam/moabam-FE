@@ -1,30 +1,28 @@
 import { useContext } from 'react';
-import makeCertifyTime from '../utils/makeCertifyTime';
+import makeTodayCertifyTime from '../utils/makeTodayCertifyTime';
 import { DateRoomDetailContext } from './RoomDetailProvider';
 import { ProgressBar } from '@/shared/ProgressBar';
 
 interface CertificationProgressProps {
   percentage: number;
-  chooseDate: Date;
   certifyTime: number;
 }
 
 const CertificationProgress = ({
   percentage,
-  chooseDate,
   certifyTime
 }: CertificationProgressProps) => {
-  const { serverTime } = useContext(DateRoomDetailContext);
-  const isTodayRoom = chooseDate.getDate() === serverTime.getDate();
-  const { nowTime, certificateStartTime } = makeCertifyTime(
+  const { serverTime, chooseDate } = useContext(DateRoomDetailContext);
+  const { nowTime, certificateTodayStartTime } = makeTodayCertifyTime(
     certifyTime,
     serverTime
   );
+  const isTodayRoom = chooseDate.getDate() === serverTime.getDate();
 
   const chooseMonthText = chooseDate.getMonth() + 1;
   const chooseDateText = chooseDate.getDate();
   const certificateProgress =
-    isTodayRoom && nowTime < certificateStartTime ? 0 : percentage;
+    isTodayRoom && nowTime < certificateTodayStartTime ? 0 : percentage;
 
   return (
     <div className="mb-[0.75rem]">

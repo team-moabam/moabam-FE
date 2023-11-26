@@ -1,6 +1,7 @@
 import { useState, useContext, MouseEvent } from 'react';
 import { Link } from 'react-router-dom';
-import makeCertifyTime from '../utils/makeCertifyTime';
+import { useLocalStorage } from '@/core/hooks';
+import makeTodayCertifyTime from '../utils/makeTodayCertifyTime';
 import { DateRoomDetailContext } from './RoomDetailProvider';
 import RoomCalendar from './RoomCalendar';
 import CertificationProgress from './CertificationProgress';
@@ -29,15 +30,19 @@ const RoomWorkspace = ({
 }: RoomWorkspaceProps) => {
   const { bottomSheetProps, toggle, close } = useBottomSheet();
   const [reportStatus, setReportStatus] = useState<boolean>(false);
+  const [userId] = useLocalStorage('MEMBER_ID', '0');
 
   const { chooseDate, serverTime } = useContext(DateRoomDetailContext);
   const chooseDateText = `${chooseDate.getFullYear()}${
     chooseDate.getMonth() + 1
   }${chooseDate.getDate()}`;
-  const { certificateStartTime } = makeCertifyTime(certifyTime, serverTime);
+  const { certificateTodayStartTime } = makeTodayCertifyTime(
+    certifyTime,
+    serverTime
+  );
 
   const myCertificationImage = todayCertificateRank.find(
-    ({ memberId }) => memberId === '5'
+    ({ memberId }) => memberId === userId
   )?.certificationImage;
 
   const changeReportStatus = (value: boolean) => {
@@ -46,7 +51,7 @@ const RoomWorkspace = ({
 
   const handleLogLinkClick = (e: MouseEvent) => {
     if (
-      chooseDate.getTime() < certificateStartTime &&
+      chooseDate.getTime() < certificateTodayStartTime &&
       chooseDate.getDate() === serverTime.getDate()
     ) {
       e.preventDefault();
@@ -79,7 +84,6 @@ const RoomWorkspace = ({
             <>
               <CertificationProgress
                 percentage={completePercentage}
-                chooseDate={chooseDate}
                 certifyTime={certifyTime}
               />
               {

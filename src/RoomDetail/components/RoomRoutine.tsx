@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { FormCertificationImage } from '../types/type';
-import makeCertifyTime from '../utils/makeCertifyTime';
+import makeTodayCertifyTime from '../utils/makeTodayCertifyTime';
 import checkCertifyTime from '../utils/checkCertifyTIme';
 import {
   CERTIFICATE_END_MINUTES,
@@ -34,16 +34,16 @@ const RoomRoutine = ({
   const isTodayRoom = chooseDate.getDate() === serverTime.getDate();
 
   const {
-    certificateEndTime,
-    certificateStartTime,
+    certificateTodayEndTime,
+    certificateTodayStartTime,
     nowTime,
-    certificateEndTimeDate,
-    certificateStartTimeDate
-  } = makeCertifyTime(certifyTime, serverTime);
+    certificateTodayEndTimeDate,
+    certificateTodayStartTimeDate
+  } = makeTodayCertifyTime(certifyTime, serverTime);
   const checkedCertifyTime = checkCertifyTime({
     nowTime,
-    certificateEndTime,
-    certificateStartTime
+    certificateTodayEndTime,
+    certificateTodayStartTime
   });
   const isCertificatedRoutine =
     routines.length === myCertificationImage?.length;
@@ -51,7 +51,7 @@ const RoomRoutine = ({
   const certificateTimeText = `${
     certifyTime < 12 ? certifyTime : certifyTime - 12
   }:00${certifyTime < 12 ? 'AM' : 'PM'}`;
-  const certificateDurationTimeText = `${certificateStartTimeDate.getHours()}:${CERTIFICATE_START_MINUTES} ~ ${certificateEndTimeDate.getHours()}:${CERTIFICATE_END_MINUTES}`;
+  const certificateDurationTimeText = `${certificateTodayStartTimeDate.getHours()}:${CERTIFICATE_START_MINUTES} ~ ${certificateTodayEndTimeDate.getHours()}:${CERTIFICATE_END_MINUTES}`;
 
   const handleToggle = () => {
     form.clearErrors();
@@ -71,10 +71,10 @@ const RoomRoutine = ({
       <div className="mb-[0.88rem] flex justify-between text-base">
         <h4 className="text-black dark:text-white">개인 인증</h4>
 
-        {isTodayRoom && checkedCertifyTime === 'beforeCertifyTime' ? (
+        {isTodayRoom && checkedCertifyTime === 'beforeTodayCertifyTime' ? (
           <span className="text-dark-gray">인증 전</span>
         ) : isTodayRoom &&
-          checkedCertifyTime === 'nowCertifyTime' &&
+          checkedCertifyTime === 'nowTodayCertifyTime' &&
           !isCertificatedRoutine ? (
           <span className="text-dark-gray">인증 중</span>
         ) : isCertificatedRoutine ? (
@@ -97,19 +97,19 @@ const RoomRoutine = ({
               key={routineId}
               contents={content}
               completed={
-                (checkedCertifyTime === 'nowCertifyTime' ||
-                  checkedCertifyTime === 'afterCertifyTime') &&
+                (checkedCertifyTime === 'nowTodayCertifyTime' ||
+                  checkedCertifyTime === 'afterTodayCertifyTime') &&
                 isCertificatedRoutine
               }
             />
           ))}
         </RoutineList>
-        {isTodayRoom && checkedCertifyTime === 'beforeCertifyTime' ? (
+        {isTodayRoom && checkedCertifyTime === 'beforeTodayCertifyTime' ? (
           <button className="btn btn-disabled w-full cursor-default rounded-lg text-base">
             인증 시간 전입니다
           </button>
         ) : isTodayRoom &&
-          checkedCertifyTime === 'nowCertifyTime' &&
+          checkedCertifyTime === 'nowTodayCertifyTime' &&
           isCertificatedRoutine ? (
           <button
             className="btn btn-light-point dark:btn-dark-point w-full rounded-lg text-base"
@@ -118,7 +118,7 @@ const RoomRoutine = ({
             인증 수정하기!
           </button>
         ) : isTodayRoom &&
-          checkedCertifyTime === 'nowCertifyTime' &&
+          checkedCertifyTime === 'nowTodayCertifyTime' &&
           !isCertificatedRoutine ? (
           <button
             className="btn btn-light-point dark:btn-dark-point w-full rounded-lg text-base"

@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import clsx from 'clsx';
-import makeCertifyTime from '../utils/makeCertifyTime';
+import makeTodayCertifyTime from '../utils/makeTodayCertifyTime';
 import isMorning from '../utils/isMorning';
 import { DateRoomDetailContext } from './RoomDetailProvider';
 import { RankMember } from '@/core/types/Member';
@@ -16,14 +16,13 @@ const RoomMemberRank = ({
   certifyTime
 }: RoomMemberRankProps) => {
   const { serverTime } = useContext(DateRoomDetailContext);
-  const { certificateEndTime, certificateStartTime, nowTime } = makeCertifyTime(
-    certifyTime,
-    serverTime
-  );
+  const { certificateTodayEndTime, certificateTodayStartTime, nowTime } =
+    makeTodayCertifyTime(certifyTime, serverTime);
 
   return (
     <>
-      {nowTime >= certificateStartTime && nowTime <= certificateEndTime ? (
+      {nowTime >= certificateTodayStartTime &&
+      nowTime <= certificateTodayEndTime ? (
         <div className="absolute left-1/2 top-[56%] w-[16.1rem] translate-x-[-50%] rounded-[6.25rem] bg-[rgba(0,0,0,0.3)] px-[1.68rem] py-[0.25rem] font-IMHyemin-bold text-white">
           지금은 루틴 "인증시간" 입니다
         </div>
