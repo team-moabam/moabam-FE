@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import {
-  useSuspenseQueries,
   useMutation,
-  useQueryClient
+  useQueryClient,
+  useSuspenseQuery
 } from '@tanstack/react-query';
 import { useContextSelector } from 'use-context-selector';
 import useDebounce from '@/core/hooks/useDebounce';
@@ -20,21 +20,16 @@ interface BirdItemsProps {
 
 const BirdItems = ({ itemType }: BirdItemsProps) => {
   const queryClient = useQueryClient();
-  const [
-    {
-      data: { defaultItemId, notPurchasedItems, purchasedItems }
-    }
-  ] = useSuspenseQueries({
-    queries: [
-      {
-        ...itemOptions.all(itemType)
-      }
-    ]
+  const {
+    data: { defaultItemId, notPurchasedItems, purchasedItems },
+    isSuccess
+  } = useSuspenseQuery({
+    ...itemOptions.all(itemType)
   });
-
   const mutation = useMutation({
     mutationFn: itemAPI.select
   });
+
   const { selectItem, productItem, setSelectItem, setProductItem } =
     useContextSelector(MyBirdContext, (state) => state);
   const { bottomSheetProps, open, close } = useBottomSheet();
