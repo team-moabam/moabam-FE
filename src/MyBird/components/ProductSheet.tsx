@@ -4,13 +4,12 @@ import {
   useMutation,
   useQueryClient
 } from '@tanstack/react-query';
-import { BiSolidBugAlt } from 'react-icons/bi';
 import { useContextSelector } from 'use-context-selector';
 import itemAPI from '@/core/api/functions/itemAPI';
 import memberOptions from '@/core/api/options/member';
 import { MyBirdContext } from '../contexts/myBirdContext';
+import { Icon } from '@/shared/Icon';
 import { Item } from '@/core/types/item';
-
 interface ProductSheetProps {
   close: () => void;
 }
@@ -108,7 +107,10 @@ const ProductSheet = ({ close }: ProductSheetProps) => {
                 onClick={() => handleSetPurchaseOption(buyResult, purchaseType)}
               >
                 <div className={`flex grow items-center gap-2 ${color}`}>
-                  <BiSolidBugAlt size={16} />
+                  <Icon
+                    icon="BiSolidBugAlt"
+                    size="lg"
+                  />
                   <h1 className="font-extrabold">{price}</h1>
                 </div>
                 {buyResult < 0 ? (

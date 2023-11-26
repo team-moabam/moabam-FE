@@ -1,6 +1,6 @@
 import { FaLock } from 'react-icons/fa';
-import { BiSolidBugAlt } from 'react-icons/bi';
 import { Item } from '@/core/types';
+import { Icon } from '@/shared/Icon';
 
 interface BirdItemProps {
   isLock?: boolean;
@@ -40,13 +40,13 @@ const BirdItem = ({
                     type === 'MORNING' ? 'text-light-point' : 'text-dark-point'
                   }`}
                 >
-                  <BiSolidBugAlt />
+                  <Icon icon="BiSolidBugAlt" />
                   <h1>{bugPrice}</h1>
                 </div>
               )}
               {goldenBugPrice !== 0 && (
                 <div className="flex items-center gap-1 font-extrabold text-warning">
-                  <BiSolidBugAlt />
+                  <Icon icon="BiSolidBugAlt" />
                   <h1>{goldenBugPrice}</h1>
                 </div>
               )}
