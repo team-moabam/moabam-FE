@@ -1,5 +1,9 @@
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import clsx from 'clsx';
+import makeCertifyTime from '../utils/makeCertifyTime';
+import isMorning from '../utils/isMorning';
+import { DateRoomDetailContext } from './RoomDetailProvider';
 import { RankMember } from '@/core/types/Member';
 
 interface RoomMemberRankProps {
@@ -11,10 +15,16 @@ const RoomMemberRank = ({
   todayCertificateRank,
   certifyTime
 }: RoomMemberRankProps) => {
+  const { serverTime } = useContext(DateRoomDetailContext);
+  const { certificateEndTime, certificateStartTime, nowTime } = makeCertifyTime(
+    certifyTime,
+    serverTime
+  );
+
   return (
     <>
-      {certifyTime === 8 ? (
-        <div className="rounded-[6.25rem] bg-[rgba(0,0,0,0.3)] px-[1.68rem] py-[0.25rem] font-IMHyemin-bold text-white">
+      {nowTime >= certificateStartTime && nowTime <= certificateEndTime ? (
+        <div className="absolute left-1/2 top-[56%] w-[16.1rem] translate-x-[-50%] rounded-[6.25rem] bg-[rgba(0,0,0,0.3)] px-[1.68rem] py-[0.25rem] font-IMHyemin-bold text-white">
           지금은 루틴 "인증시간" 입니다
         </div>
       ) : (
@@ -25,7 +35,6 @@ const RoomMemberRank = ({
               const { memberId, nickname, rank } = el;
               const awakeImage = '/assets/skins/awakeOmokSkin0.png';
               const sleepImage = '/assets/skins/sleepOmokSkin0.png';
-              const time = 23;
               return (
                 <Link
                   to={`/user/${memberId}`}
@@ -41,12 +50,12 @@ const RoomMemberRank = ({
                       'relative mb-[0.22rem] h-[2.88rem] w-[3.25rem] bg-contain bg-no-repeat ',
                       {
                         "after:absolute after:right-[-14px] after:top-[-10px] after:block after:content-['zzz'] after:origin-center after:rotate-[-16deg]":
-                          time > 16
+                          isMorning(serverTime)
                       }
                     )}
                     style={{
                       backgroundImage: `url(${
-                        time > 16 ? sleepImage : awakeImage
+                        isMorning(serverTime) ? sleepImage : awakeImage
                       })`
                     }}
                   />
