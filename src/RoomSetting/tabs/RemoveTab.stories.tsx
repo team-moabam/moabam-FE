@@ -31,7 +31,7 @@ const meta = {
             case '1':
               return HttpResponse.json({
                 ...RoomInfoBeforeEditing,
-                participants: RoomInfoBeforeEditing.participants[0]
+                participants: RoomInfoBeforeEditing.participants.slice(0, 1)
               });
             default:
               return HttpResponse.json(RoomInfoBeforeEditing);
