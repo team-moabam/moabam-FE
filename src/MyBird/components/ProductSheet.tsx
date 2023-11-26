@@ -1,15 +1,15 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import {
   useSuspenseQueries,
   useMutation,
   useQueryClient
 } from '@tanstack/react-query';
-import { useContextSelector } from 'use-context-selector';
 import itemAPI from '@/core/api/functions/itemAPI';
 import memberOptions from '@/core/api/options/member';
-import { MyBirdContext } from '../contexts/myBirdContext';
+import { MyBirdContext } from './MyBirdProvider';
 import { Icon } from '@/shared/Icon';
 import { Item } from '@/core/types/item';
+
 interface ProductSheetProps {
   close: () => void;
 }
@@ -26,10 +26,8 @@ const ProductSheet = ({ close }: ProductSheetProps) => {
       }
     ]
   });
-  const { productItem, selectItem, setSelectItem } = useContextSelector(
-    MyBirdContext,
-    (state) => state
-  );
+  const { selectItem, setSelectItem, productItem } = useContext(MyBirdContext);
+
   const mutation = useMutation({
     mutationFn: itemAPI.purchase
   });

@@ -1,5 +1,5 @@
-import { useContextSelector } from 'use-context-selector';
-import { MyBirdContext } from '../contexts/myBirdContext';
+import { useContext } from 'react';
+import { MyBirdContext } from './MyBirdProvider';
 
 interface MyBirdThumbnailProps {
   type: 'MORNING' | 'NIGHT';
@@ -7,7 +7,7 @@ interface MyBirdThumbnailProps {
 }
 
 const MyBirdThumbnail = ({ type, bgImage }: MyBirdThumbnailProps) => {
-  const { selectItem } = useContextSelector(MyBirdContext, (state) => state);
+  const { selectItem } = useContext(MyBirdContext);
 
   return (
     <div className="relative mb-5 aspect-video w-full overflow-hidden">

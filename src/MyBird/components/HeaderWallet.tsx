@@ -1,5 +1,4 @@
 import { useSuspenseQueries } from '@tanstack/react-query';
-import { BiSolidBugAlt } from 'react-icons/bi';
 import memberOptions from '@/core/api/options/member';
 import { Icon } from '@/shared/Icon';
 

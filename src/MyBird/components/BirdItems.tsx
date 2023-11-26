@@ -1,14 +1,13 @@
-import { useEffect } from 'react';
+import { useEffect, useContext } from 'react';
 import {
   useMutation,
   useQueryClient,
   useSuspenseQuery
 } from '@tanstack/react-query';
-import { useContextSelector } from 'use-context-selector';
 import useDebounce from '@/core/hooks/useDebounce';
 import itemOptions from '@/core/api/options/item';
 import itemAPI from '@/core/api/functions/itemAPI';
-import { MyBirdContext } from '../contexts/myBirdContext';
+import { MyBirdContext } from './MyBirdProvider';
 import BirdItem from './BirdItem';
 import ProductSheet from './ProductSheet';
 import { useBottomSheet, BottomSheet } from '@/shared/BottomSheet';
@@ -28,9 +27,8 @@ const BirdItems = ({ type }: BirdItemsProps) => {
   const { mutate } = useMutation({
     mutationFn: itemAPI.select
   });
-
-  const { selectItem, productItem, setSelectItem, setProductItem } =
-    useContextSelector(MyBirdContext, (state) => state);
+  const { selectItem, setSelectItem, productItem, setProductItem } =
+    useContext(MyBirdContext);
   const { bottomSheetProps, open, close } = useBottomSheet();
 
   const handleSelectItem = (birdItem: Item) => {
