@@ -1,12 +1,11 @@
 import { createContext } from 'use-context-selector';
-import { SelectItemType } from '../types/selectItem';
-import { ItemType } from '../types/item';
+import { SelectItem, Item } from '@/core/types';
 
 interface MyBirdContextType {
-  selectItem: SelectItemType;
-  setSelectItem: React.Dispatch<React.SetStateAction<SelectItemType>>;
-  productItem: ItemType | null;
-  setProductItem: React.Dispatch<React.SetStateAction<ItemType | null>>;
+  selectItem: SelectItem;
+  setSelectItem: React.Dispatch<React.SetStateAction<SelectItem>>;
+  productItem: Item | null;
+  setProductItem: React.Dispatch<React.SetStateAction<Item | null>>;
 }
 
 export const MyBirdContext = createContext<MyBirdContextType>({

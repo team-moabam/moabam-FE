@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import { SelectItemType } from '@/core/types';
-import { ItemType } from '@/core/types';
+import { SelectItem, Item } from '@/core/types';
 import { MyBirdContext } from '../contexts/myBirdContext';
 
 interface MyBirdProviderProps {
@@ -8,11 +7,11 @@ interface MyBirdProviderProps {
 }
 
 const MyBirdProvider = ({ children }: MyBirdProviderProps) => {
-  const [selectItem, setSelectItem] = useState<SelectItemType>({
+  const [selectItem, setSelectItem] = useState<SelectItem>({
     MORNING: null,
     NIGHT: null
   });
-  const [productItem, setProductItem] = useState<ItemType | null>(null);
+  const [productItem, setProductItem] = useState<Item | null>(null);
 
   return (
     <MyBirdContext.Provider

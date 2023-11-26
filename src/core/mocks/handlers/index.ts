@@ -5,7 +5,6 @@ import membersHandlers from './members';
 import bugsHandlers from './bugs';
 import couponsHandlers from './coupons';
 import itemHandlers from './item';
-import userHandlers from './user';
 import reportsHandlers from './reports';
 import notificationsHandlers from './notifications';
 import timeHandler from './time';
@@ -18,7 +17,6 @@ const handlers = [
   ...bugsHandlers,
   ...couponsHandlers,
   ...itemHandlers,
-  ...userHandlers,
   ...reportsHandlers,
   ...notificationsHandlers,
   timeHandler

@@ -1,11 +1,11 @@
 import { FaLock } from 'react-icons/fa';
 import { BiSolidBugAlt } from 'react-icons/bi';
-import { ItemType } from '@/core/types';
+import { Item } from '@/core/types';
 
 interface BirdItemProps {
   isLock?: boolean;
   isSelect?: boolean;
-  birdItem: ItemType;
+  birdItem: Item;
 }
 
 const BirdItem = ({

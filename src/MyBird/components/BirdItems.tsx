@@ -12,7 +12,7 @@ import { MyBirdContext } from '../contexts/myBirdContext';
 import BirdItem from './BirdItem';
 import ProductSheet from './ProductSheet';
 import { useBottomSheet, BottomSheet } from '@/shared/BottomSheet';
-import { ItemType } from '@/core/types/item';
+import { Item } from '@/core/types/item';
 
 interface BirdItemsProps {
   type: 'MORNING' | 'NIGHT';
@@ -25,7 +25,7 @@ const BirdItems = ({ type }: BirdItemsProps) => {
   } = useSuspenseQuery({
     ...itemOptions.all(type)
   });
-  const mutation = useMutation({
+  const { mutate } = useMutation({
     mutationFn: itemAPI.select
   });
 
@@ -33,18 +33,18 @@ const BirdItems = ({ type }: BirdItemsProps) => {
     useContextSelector(MyBirdContext, (state) => state);
   const { bottomSheetProps, open, close } = useBottomSheet();
 
-  const handleSelectItem = (birdItem: ItemType) => {
+  const handleSelectItem = (birdItem: Item) => {
     setSelectItem({ ...selectItem, [type]: birdItem });
     fetchSelectItem(birdItem.id);
   };
 
-  const handleOpenSheet = (birdItem: ItemType) => {
+  const handleOpenSheet = (birdItem: Item) => {
     setProductItem(birdItem);
     open();
   };
 
   const fetchSelectItem = useDebounce((id: number) => {
-    mutation.mutate(id, {
+    mutate(id, {
       onSuccess: () => {
         queryClient.invalidateQueries({ queryKey: ['user', 'item'] });
       }

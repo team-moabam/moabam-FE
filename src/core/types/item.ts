@@ -1,4 +1,4 @@
-export interface ItemType {
+export interface Item {
   id: number;
   type: 'MORNING' | 'NIGHT';
   category: string;
@@ -9,19 +9,13 @@ export interface ItemType {
   goldenBugPrice: number;
 }
 
-export interface ItemsType {
+export interface Items {
   defaultItemId: number;
-  purchasedItems: ItemType[];
-  notPurchasedItems: ItemType[];
+  purchasedItems: Item[];
+  notPurchasedItems: Item[];
 }
 
-export interface SelectItemType {
-  MORNING: ItemType | null;
-  NIGHT: ItemType | null;
-}
-
-export interface BugsType {
-  morningBug: number;
-  nightBug: number;
-  goldenBug: number;
+export interface SelectItem {
+  MORNING: Item | null;
+  NIGHT: Item | null;
 }

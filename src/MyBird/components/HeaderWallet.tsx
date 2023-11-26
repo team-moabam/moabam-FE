@@ -1,6 +1,6 @@
 import { useSuspenseQueries } from '@tanstack/react-query';
 import { BiSolidBugAlt } from 'react-icons/bi';
-import userOptions from '@/core/api/options/user';
+import memberOptions from '@/core/api/options/member';
 
 const HeaderWallet = () => {
   const [
@@ -10,7 +10,7 @@ const HeaderWallet = () => {
   ] = useSuspenseQueries({
     queries: [
       {
-        ...userOptions.user()
+        ...memberOptions.myInfo()
       }
     ]
   });

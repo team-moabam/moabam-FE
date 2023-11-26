@@ -7,10 +7,9 @@ import {
 import { BiSolidBugAlt } from 'react-icons/bi';
 import { useContextSelector } from 'use-context-selector';
 import itemAPI from '@/core/api/functions/itemAPI';
-import userOptions from '@/core/api/options/user';
+import memberOptions from '@/core/api/options/member';
 import { MyBirdContext } from '../contexts/myBirdContext';
-import { ItemType, ItemsType } from '@/core/types/item';
-import { MyUserType } from '@/core/types/User';
+import { Item } from '@/core/types/item';
 
 interface ProductSheetProps {
   close: () => void;
@@ -24,7 +23,7 @@ const ProductSheet = ({ close }: ProductSheetProps) => {
   ] = useSuspenseQueries({
     queries: [
       {
-        ...userOptions.user()
+        ...memberOptions.myInfo()
       }
     ]
   });
@@ -36,8 +35,7 @@ const ProductSheet = ({ close }: ProductSheetProps) => {
     mutationFn: itemAPI.purchase
   });
   const queryClient = useQueryClient();
-  const { bugPrice, goldenBugPrice, level, name, type } =
-    productItem as ItemType;
+  const { bugPrice, goldenBugPrice, level, name, type } = productItem as Item;
   const [purchaseOption, setPurchaseOption] = useState<string>();
   const isLevelEnough = userLevel >= level;
 
@@ -63,27 +61,6 @@ const ProductSheet = ({ close }: ProductSheetProps) => {
       {
         onSuccess: () => {
           setSelectItem({ ...selectItem, [type]: productItem });
-          queryClient.setQueryData(['item'], (oldData: ItemsType) => {
-            return {
-              ...oldData,
-              defaultItemId: productItem?.id,
-              notPurchasedItems: oldData.notPurchasedItems.filter(
-                ({ id }) => id !== productItem?.id
-              ),
-              purchasedItems: [...oldData.purchasedItems, productItem]
-            };
-          });
-          queryClient.setQueryData(['user'], (oldData: MyUserType) => {
-            const PayType = purchaseOption === 'golden' ? 'GOLDEN' : type;
-            const { morning_bug, night_bug, golden_bug } = oldData;
-            return {
-              ...oldData,
-              morning_bug: morning_bug - (PayType === 'MORNING' ? bugPrice : 0),
-              night_bug: night_bug - (PayType === 'NIGHT' ? bugPrice : 0),
-              golden_bug:
-                golden_bug - (PayType === 'GOLDEN' ? goldenBugPrice : 0)
-            };
-          });
           queryClient.invalidateQueries({ queryKey: ['user', 'item'] });
           close();
         },

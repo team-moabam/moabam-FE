@@ -1,9 +1,9 @@
-import { ItemsType } from '@/core/types';
+import { Items } from '@/core/types';
 import { baseInstance } from '../instance';
 
 const itemAPI = {
   all: async (type: string) => {
-    return await baseInstance.get<ItemsType>(`/items?type=${type}`);
+    return await baseInstance.get<Items>(`/items?type=${type}`);
   },
   purchase: async (data: { itemId: number; bugType: string }) => {
     return await baseInstance.post(
