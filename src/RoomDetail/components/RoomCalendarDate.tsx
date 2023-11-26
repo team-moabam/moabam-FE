@@ -21,18 +21,18 @@ const RoomCalendarDate = ({
   const { selectDate, chooseDate, serverTime } = useContext(
     DateRoomDetailContext
   );
-  const chooseDateTimestamp = `${chooseDate.getFullYear()}-${
+  const chooseDateString = `${chooseDate.getFullYear()}-${
     chooseDate.getMonth() + 1
   }-${chooseDate.getDate()}`;
 
   const thisDateDate = thisDate.getDate();
   const thisDateTime = thisDate.getTime();
   const thisDateDay = thisDate.getDay();
-  const thisDateTimestamp = `${thisDate.getFullYear()}-${
+  const thisDateString = `${thisDate.getFullYear()}-${
     thisDate.getMonth() + 1
   }-${thisDateDate}`;
   const langKoDay = DAY_OF_THE_WEEK[thisDateDay];
-  const bug = certifiedDates.find((el) => el === thisDateTimestamp);
+  const bug = certifiedDates.find((el) => el === thisDateString);
 
   const { nowTime } = makeCertifyTime(certifyTime, serverTime);
 
@@ -59,7 +59,7 @@ const RoomCalendarDate = ({
           'text-black dark:text-white':
             serverTime.getTime() >= thisDate.getTime(),
           'rounded-[0.62rem] border-light-point text-light-point dark:border-dark-point dark:text-dark-point border-[0.06rem]':
-            thisDateTimestamp === chooseDateTimestamp
+            thisDateString === chooseDateString
         }
       )
     )
