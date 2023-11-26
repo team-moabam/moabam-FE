@@ -16,12 +16,14 @@ const meta = {
   component: Icon,
   argTypes: {
     icon: {
+      description: '적용할 아이콘 이름<br/>',
       control: {
         type: 'select',
         options: Object.keys(iconMap)
       }
     },
     size: {
+      description: '아이콘 크기<br/>',
       control: {
         type: 'select',
         options: [
@@ -47,25 +49,6 @@ const meta = {
 export default meta;
 
 type Story = StoryObj<typeof meta>;
-
-const ProviderPage = () => {
-  return (
-    <IconContext.Provider value={{ className: 'text-green-500 text-[5rem]' }}>
-      <Icon
-        icon="HiHome"
-        size="md"
-      />
-      <Icon
-        icon="BiChevronDown"
-        size="md"
-      />
-      <Icon
-        icon="BiBugAlt"
-        size="md"
-      />
-    </IconContext.Provider>
-  );
-};
 
 export const Default: Story = {
   args: {
@@ -117,9 +100,22 @@ export const Provider: Story = {
       }
     }
   },
-  render: () => {
-    return <ProviderPage />;
-  }
+  render: (args) => (
+    <IconContext.Provider value={{ className: 'text-green-500 text-[5rem]' }}>
+      <Icon
+        icon="HiHome"
+        size="md"
+      />
+      <Icon
+        icon="BiChevronDown"
+        size="md"
+      />
+      <Icon
+        icon="BiBugAlt"
+        size="md"
+      />
+    </IconContext.Provider>
+  )
 };
 
 export const AllIcons: Story = {
@@ -133,19 +129,17 @@ export const AllIcons: Story = {
       }
     }
   },
-  render: () => {
-    return (
-      <div className="flex gap-2">
-        {Object.keys(iconMap).map((icon) => {
-          return (
-            <Icon
-              key={icon}
-              size="5xl"
-              icon={icon as keyof typeof iconMap}
-            />
-          );
-        })}
-      </div>
-    );
-  }
+  render: (args) => (
+    <div className="flex gap-2">
+      {Object.keys(iconMap).map((icon) => {
+        return (
+          <Icon
+            key={icon}
+            size="5xl"
+            icon={icon as keyof typeof iconMap}
+          />
+        );
+      })}
+    </div>
+  )
 };
