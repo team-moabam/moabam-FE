@@ -6,10 +6,11 @@ interface AboutMoabamProps {
 
 const AboutMoabam = ({ theme }: AboutMoabamProps) => {
   return (
-    <div className="flex h-full flex-col items-start justify-center">
+    <div className="flex h-full flex-col items-start justify-end gap-24 text-black dark:text-white">
+      {/* 모두의 아침과 밤 사람들을 모아밤! MoaBam */}
       <div className="flex flex-wrap items-end gap-4">
         <div className="text-3xl text-dark-gray dark:text-light-gray">
-          <div className="mb-1 font-IMHyemin-bold">
+          <div className="mb-2 font-IMHyemin-bold">
             <span className="font-IMHyemin-bold text-confirm">모</span>두의{' '}
             <span className="font-IMHyemin-bold text-light-point-hover">
               아
@@ -26,9 +27,61 @@ const AboutMoabam = ({ theme }: AboutMoabamProps) => {
           </div>
         </div>
         <img
-          className="mb-1 ml-1 w-48"
+          className="mb-1 ml-1 w-52"
           src={`/assets/typologo/typologo-${theme}.svg`}
         />
+      </div>
+
+      {/* 모아밤 소개 텍스트 */}
+      <div className="flex flex-col gap-8 text-xl max-2xl:text-lg max-xl:text-base">
+        <div className="flex items-center gap-6">
+          <div className="h-5 w-5 rounded-full bg-light-point dark:bg-dark-point"></div>
+          <div className="font-IMHyemin-bold">매일 매일 나만의 루틴 지키기</div>
+        </div>
+        <div className="flex items-center gap-6">
+          <div className="h-5 w-5 rounded-full bg-light-point dark:bg-dark-point"></div>
+          <div>
+            <span className="bg-light-point bg-opacity-[0.2] dark:bg-dark-point dark:bg-opacity-[0.3]">
+              같이 루틴을 하고 싶은 사람들
+            </span>
+            과 함께
+          </div>
+        </div>
+        <div className="flex items-center gap-6">
+          <div className="h-5 w-5 rounded-full bg-light-point dark:bg-dark-point"></div>
+          <div>
+            <span className="bg-light-point bg-opacity-[0.2] dark:bg-dark-point dark:bg-opacity-[0.3]">
+              귀여운 새 친구들
+            </span>
+            과 함께 하면 어떨 까요?
+          </div>
+        </div>
+      </div>
+
+      {/* 링크 바로가기 */}
+      <div className="relative -bottom-12 flex justify-start gap-4">
+        <div className="flex flex-col items-center gap-8">
+          <div className="btn btn-light-point dark:btn-dark-point cursor-pointer text-lg dark:text-dark-main max-xl:text-base">
+            깃허브 구경하기
+          </div>
+          <div>
+            <img
+              src="/assets/skins/sleepOmokSkin1.png"
+              className="w-full max-w-[8rem]"
+            />
+          </div>
+        </div>
+        <div className="flex flex-col items-center gap-8">
+          <div className="btn btn-light-point dark:btn-dark-point cursor-pointer text-lg dark:text-dark-main max-xl:text-base">
+            기획 스토리 보기
+          </div>
+          <div>
+            <img
+              src="/assets/skins/awakeOwlSkin2.png"
+              className="w-full max-w-[8rem]"
+            />
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -39,7 +39,7 @@ body {
 .app-container {
   @apply absolute inset-0 m-auto h-full w-full max-w-md;
   @media screen and (min-width: 1024px) {
-    right: 30%;
+    right: 40%;
     height: 90%;
     border-radius: 2rem;
     border: 0.5rem solid white;
@@ -53,7 +53,7 @@ body {
 }
 
 .app-info {
-  @apply absolute m-auto w-[30%] h-full right-[10%];
+  @apply absolute m-auto w-[30%] h-full right-[16%] overflow-hidden;
   @media screen and (max-width: 1023px) {
     display: none;
   }
