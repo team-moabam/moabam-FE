@@ -16,7 +16,7 @@ const RoomDetailPage = () => {
 
   const { data: serverTime } = useSuspenseQuery({
     ...timeOption,
-    refetchInterval: 1000 * 60 * 10,
+    refetchInterval: 1000 * 60,
     refetchOnWindowFocus: true
   });
 
@@ -37,10 +37,7 @@ const RoomDetailPage = () => {
         <RoomHeader title={title} />
         <RoomNotice content={announcement} />
         <RoomDetailProvider serverTime={serverTime}>
-          <RoomDetailContainer
-            roomDetailData={roomDetailData}
-            serverTime={serverTime}
-          />
+          <RoomDetailContainer roomDetailData={roomDetailData} />
         </RoomDetailProvider>
       </div>
     </>
