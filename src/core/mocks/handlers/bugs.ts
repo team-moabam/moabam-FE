@@ -19,13 +19,14 @@ const bugsHandlers = [
   }),
   http.post(
     baseURL('/bugs/products/:productId/purchase'),
-    async ({ params }) => {
+    async ({ params: { productId } }) => {
       await delay(1000);
+      const target = PRODUCT_BUGS.products.find(({ id }) => productId === id);
       return HttpResponse.json(
         {
-          paymentId: params.productId,
-          orderName: '황금벌레 10',
-          price: 2000
+          paymentId: target?.id,
+          orderName: target?.name,
+          price: target?.price
         },
         { status: 200 }
       );
