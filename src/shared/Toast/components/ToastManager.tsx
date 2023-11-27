@@ -1,5 +1,6 @@
 import { useCallback, useState, useEffect } from 'react';
 import { v4 } from 'uuid';
+import { clsx } from 'clsx';
 import ToastItem from './ToastItem';
 
 interface ToastManagerProps {
@@ -50,7 +51,12 @@ const ToastManager = ({ bind }: ToastManagerProps) => {
   }, [bind, createToast]);
 
   return (
-    <div className="absolute bottom-[3.25rem] left-[50%] flex min-h-[2.75rem] w-full translate-x-[-50%] flex-col items-center empty:hidden">
+    <div
+      className={clsx(
+        'absolute bottom-[3.25rem] left-[50%] flex min-h-[2.75rem] w-full translate-x-[-50%] flex-col items-center empty:hidden',
+        'lg:bottom-[calc(5%+3.25rem)] lg:left-auto lg:right-[40%] lg:translate-x-[20%]'
+      )}
+    >
       {toasts.map(({ id, status, message, subText, icon, duration }) => (
         <ToastItem
           status={status}
