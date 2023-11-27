@@ -1,0 +1,42 @@
+import { Canvas, Meta } from '@storybook/blocks';
+
+import * as FunnelStories from './Funnel.stories';
+
+<Meta of={FunnelStories} />
+
+# Funnel
+
+순차적인 화면을 보여주는 데 도움을 주는 컴포넌트입니다.
+
+## **사용 방법**
+
+### 1. steps 정의
+
+```tsx
+const steps = ["방선택", "인증시간", "루틴정보", "비밀번호", "마무리"] as const;
+```
+
+### 2. useFunnel 훅 선언
+
+```tsx
+const funnel = useFunnel(steps, <최초로 보여줄 스텝>);
+```
+
+### 3. Funnel, Step 컴포넌트 사용
+
+```tsx
+<Funnel {...funnel}>
+  <Funnel.Step<typeof steps> name="마무리">마무리 페이지</Funnel.Step>
+  <Funnel.Step<typeof steps> name="방선택">방선택 페이지</Funnel.Step>
+  <Funnel.Step<typeof steps> name="인증시간">인증시간 페이지</Funnel.Step>
+  <Funnel.Step<typeof steps> name="루틴정보">루틴정보 페이지</Funnel.Step>
+  <Funnel.Step<typeof steps> name="비밀번호">비밀번호 페이지</Funnel.Step>
+  <div>Step 컴포넌트가 아닌 요소는 렌더링에서 무시돼요.</div>
+  <div>
+    children에 순서를 뒤죽박죽으로 등록해도 steps 배열에 들어가있는
+    순서로 스텝을 보여줘요.
+  </div>
+</Funnel>
+```
+
+<Canvas of={FunnelStories.Default} />

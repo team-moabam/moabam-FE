@@ -17,6 +17,7 @@ import CouponPage from '@/pages/CouponPage';
 import ParticipateLogPage from '@/pages/ParticipateLogPage';
 import OrderLogPage from '@/pages/OrderLogPage';
 import StorePage from '@/pages/StorePage';
+import MyBirdPage from '@/pages/MyBirdPage';
 import GuidePage from '@/pages/GuidePage';
 
 interface Route {
@@ -164,7 +165,7 @@ const routes: Routes = {
     path: 'mybird',
     authRequired: true,
     navBarRequired: false,
-    element: <div>mybird</div>
+    element: <MyBirdPage />
   },
   event: {
     path: 'event',

@@ -9,13 +9,9 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
-      injectRegister: 'auto',
+      injectRegister: null,
       strategies: 'injectManifest',
       filename: 'firebase-messaging-sw.js',
-      devOptions: {
-        enabled: false,
-        type: 'module'
-      },
       manifest: {
         name: 'Moabam: 당신의 루틴을 지켜요!',
         short_name: 'Moabam',
