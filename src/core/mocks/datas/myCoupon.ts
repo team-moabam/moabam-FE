@@ -22,6 +22,20 @@ export const MY_COUPON: MyCoupons = {
       point: 1777,
       description: '행운의 주인공!',
       type: 'GOLDEN_COUPON'
+    },
+    {
+      couponId: 21,
+      name: '결제할인',
+      point: 10,
+      description: '흑흑!',
+      type: 'DISCOUNT_COUPON'
+    },
+    {
+      couponId: 26,
+      name: '결제할인',
+      point: 99,
+      description: '엉엉',
+      type: 'DISCOUNT_COUPON'
     }
   ]
 };

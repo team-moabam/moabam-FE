@@ -1,3 +1,4 @@
+import paymentHandler from './payment';
 import examplePostHandlers from './examplePosts';
 import exampleCommentHandlers from './exampleComments';
 import roomsHandlers from './rooms';
@@ -19,6 +20,7 @@ const handlers = [
   ...itemHandlers,
   ...reportsHandlers,
   ...notificationsHandlers,
+  ...paymentHandler,
   timeHandler
 ];
 
