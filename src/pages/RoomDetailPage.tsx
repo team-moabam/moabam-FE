@@ -20,7 +20,9 @@ const RoomDetailPage = () => {
     refetchOnWindowFocus: true
   });
 
-  const todayDate = `${serverTime.getFullYear()}-${serverTime.getMonth()}-${serverTime.getDate()}`;
+  const todayDate = `${serverTime.getFullYear()}-${
+    serverTime.getMonth() + 1
+  }-${serverTime.getDate()}`;
 
   const { data: roomDetailData, status } = useQuery({
     ...roomOptions.detailByDate(roomId, todayDate),
