@@ -30,7 +30,7 @@ const CertificationBottomSheet = ({
 
   const queryClient = useQueryClient();
 
-  const mutation = useMutation({
+  const { mutate } = useMutation({
     mutationFn: roomAPI.postRoutineCertificate
   });
 
@@ -42,7 +42,7 @@ const CertificationBottomSheet = ({
       }
     }
 
-    mutation.mutate(
+    mutate(
       {
         roomId: roomId || '',
         body: formData
@@ -71,7 +71,7 @@ const CertificationBottomSheet = ({
         formData.append(`${routines[Number(key)].routineId}`, value.file[0]);
       }
     }
-    mutation.mutate(
+    mutate(
       {
         roomId: roomId || '',
         body: formData

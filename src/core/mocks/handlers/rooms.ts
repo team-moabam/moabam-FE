@@ -212,6 +212,30 @@ const roomsHandlers = [
     return HttpResponse.json(response, { status });
   }),
 
+  http.post(baseURL('/rooms/:roomId'), async () => {
+    await delay(1000);
+
+    const status: number = 200;
+    let response = {};
+
+    switch (status) {
+      case 200:
+        response = {};
+        break;
+      case 400:
+        response = {
+          message:
+            '올바른 비밀번호가 아닙니다. 또는 방의 인원수가 가득 찼습니다. 또는 참여할 수 있는 방의 횟수를 초과했습니다.'
+        };
+        break;
+      case 401:
+        response = { message: '존재하지 않는 유저입니다.' };
+        break;
+    }
+
+    return HttpResponse.json(response, { status });
+  }),
+
   http.delete(baseURL('/rooms/:roomId/members/:memberId'), async () => {
     await delay(1000);
 

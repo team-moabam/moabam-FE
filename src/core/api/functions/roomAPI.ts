@@ -86,6 +86,17 @@ const roomAPI = {
 
   roomJoinHistory: async () => {
     return await baseInstance.get<ParticipateHistory>(`/rooms/join-history`);
+  },
+
+  postRoomJoin: async (params: {
+    roomId: string;
+    body: { password: string };
+  }) => {
+    const { roomId, body } = params;
+    return await baseInstance.post<{ message: string }>(
+      `/rooms/${roomId}`,
+      body
+    );
   }
 };
 

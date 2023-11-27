@@ -1,10 +1,13 @@
 import { useContext } from 'react';
 import { useQuery } from '@tanstack/react-query';
+
 import { roomOptions } from '@/core/api/options';
 import { useRouteData } from '@/core/hooks';
 import { DateRoomDetailContext } from './RoomDetailProvider';
-import { RoomInfo, RoomWorkspace } from '@/RoomDetail';
+import RoomDetailPreview from './RoomDetailPreview';
+import { RoomInfo } from '@/RoomDetail';
 import { RoomInfo as RoomInfoType } from '@/core/types/Room';
+
 interface RoomDetailContainerProps {
   roomDetailData: RoomInfoType;
   serverTime: Date;
@@ -15,6 +18,7 @@ const RoomDetailContainer = ({
   serverTime
 }: RoomDetailContainerProps) => {
   const { date } = useContext(DateRoomDetailContext);
+
   const {
     params: { roomId }
   } = useRouteData();
@@ -37,11 +41,12 @@ const RoomDetailContainer = ({
         />
       </div>
       <div className="px-[1.81rem] pb-[1.62rem] pt-[1.88rem]">
-        <RoomWorkspace
+        {/* <RoomWorkspace
           {...roomDetailData}
           status={status}
-          serverTime={serverTime}
-        />
+        serverTime={serverTime}
+        /> */}
+        <RoomDetailPreview {...roomDetailData} />
       </div>
     </>
   );
