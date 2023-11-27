@@ -2,10 +2,10 @@ export const makeWeekCalendar = (serverTime: Date) => {
   const weekArray: Date[] = Array.from({ length: 7 });
 
   const todayDate = serverTime.getDate();
-  const todayDay = serverTime.getDay();
+  const todayDay = serverTime.getDay() === 0 ? 8 : serverTime.getDay();
 
   for (let i = 0; i < 7; i++) {
-    const mondayDate = todayDate - todayDay + 1;
+    const mondayDate = todayDate - todayDay + 2;
     const newDate = new Date(serverTime);
 
     newDate.setFullYear(newDate.getFullYear());
@@ -15,5 +15,5 @@ export const makeWeekCalendar = (serverTime: Date) => {
     weekArray[i] = newDate;
   }
 
-  return { thisWeekTimestamp: weekArray };
+  return { thisWeekDateObjectArray: weekArray };
 };
