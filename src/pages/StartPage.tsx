@@ -1,9 +1,9 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { useTheme } from '@/core/hooks';
 import { useMoveRoute } from '@/core/hooks';
-import RoutinesPage from './RoutinesPage';
 import Background from '@/StartSlide/components/Background';
 import UserInfo from '@/StartSlide/components/UserInfo';
+import RoutinesPage from './RoutinesPage';
 
 const StartPage = () => {
   // TODO : 임시 시간대 설정 코드입니다. 수정 예정!

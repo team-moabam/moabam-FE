@@ -1,8 +1,8 @@
 import clsx from 'clsx';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useTheme } from '@/core/hooks';
-import usePWAInstallBanner from '../hooks/usePWAInstallBanner';
 import { Icon } from '@/shared/Icon';
+import usePWAInstallBanner from '../hooks/usePWAInstallBanner';
 
 const PWAInstallBanner = () => {
   const { isShow, handleInstall, handleClose } = usePWAInstallBanner();

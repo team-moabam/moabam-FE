@@ -1,6 +1,9 @@
 import { Suspense, useState } from 'react';
 import { ErrorBoundary } from '@suspensive/react';
 import { RoomSelectType } from '@/core/types';
+import { Deffered } from '@/shared/Deffered';
+import { NetworkFallback } from '@/shared/ErrorBoundary';
+import ResultListFallback from '@/RoomSearch/components/ResultListFallback';
 import { KeywordContext } from '@/RoomSearch';
 import {
   SearchBar,
@@ -8,9 +11,6 @@ import {
   SearchResultList,
   AllResultList
 } from '@/RoomSearch';
-import { Deffered } from '@/shared/Deffered';
-import ResultListFallback from '@/RoomSearch/components/ResultListFallback';
-import { NetworkFallback } from '@/shared/ErrorBoundary';
 
 const SearchPage = () => {
   const [roomType, setRoomType] = useState<RoomSelectType>('ALL');

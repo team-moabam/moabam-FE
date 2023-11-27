@@ -1,9 +1,9 @@
 import React from 'react';
 import { TotalRooms } from '@/core/types';
-import ResultListFallback from './ResultListFallback';
 import { AccordionGroup } from '@/shared/Accordion';
-import { RoomAccordion } from '@/RoomList';
 import { Deffered } from '@/shared/Deffered';
+import { RoomAccordion } from '@/RoomList';
+import ResultListFallback from './ResultListFallback';
 
 interface InfiniteScrollOptions {
   isFetchingNextPage: boolean;

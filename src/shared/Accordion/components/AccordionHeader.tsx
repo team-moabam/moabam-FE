@@ -2,9 +2,9 @@ import React from 'react';
 import { twMerge } from 'tailwind-merge';
 import { clsx } from 'clsx';
 import { motion } from 'framer-motion';
+import { Icon } from '@/shared/Icon';
 import useAccordion from '../hooks/useAccordion';
 import useAccordionGroup from '../hooks/useAccordionGroup';
-import { Icon } from '@/shared/Icon';
 
 export interface AccordionHeaderProps {
   children: React.ReactNode;

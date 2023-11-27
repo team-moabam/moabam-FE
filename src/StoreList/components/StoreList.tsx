@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { BiSolidBugAlt, BiChevronRight } from 'react-icons/bi';
-import { data } from '../mocks/products';
 import { BottomSheet, useBottomSheet } from '@/shared/BottomSheet';
+import { data } from '../mocks/products';
 import { Product } from '../mocks/types/product';
 
 const StoreList = () => {

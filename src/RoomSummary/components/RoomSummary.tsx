@@ -1,10 +1,10 @@
 import { clsx } from 'clsx';
 import { DayType } from '@/core/types';
 import { useTheme } from '@/core/hooks';
-import IconText from './IconText';
-import { useKeyword } from '@/RoomSearch';
-import KeywordText from '@/RoomSearch/components/KeywordText';
 import { Icon } from '@/shared/Icon';
+import KeywordText from '@/RoomSearch/components/KeywordText';
+import { useKeyword } from '@/RoomSearch';
+import IconText from './IconText';
 
 interface RoomSummaryProps {
   title: string;

@@ -1,9 +1,9 @@
 import { useCallback } from 'react';
 import { useFieldArray, useFormContext } from 'react-hook-form';
-import { ROUTINE_COUNT, ROUTINE_NAME } from '../constants/literals';
-import { errorStyle, iconButtonStyle } from '../constants/styles';
 import { InnerTextInput } from '@/shared/Input';
 import { Icon } from '@/shared/Icon';
+import { ROUTINE_COUNT, ROUTINE_NAME } from '../constants/literals';
+import { errorStyle, iconButtonStyle } from '../constants/styles';
 
 const Routines = () => {
   const {

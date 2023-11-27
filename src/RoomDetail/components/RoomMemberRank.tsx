@@ -1,10 +1,10 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import clsx from 'clsx';
+import { RankMember } from '@/core/types/Member';
 import makeTodayCertifyTime from '../utils/makeTodayCertifyTime';
 import isMorning from '../utils/isMorning';
 import { DateRoomDetailContext } from './RoomDetailProvider';
-import { RankMember } from '@/core/types/Member';
 
 interface RoomMemberRankProps {
   todayCertificateRank: RankMember[];

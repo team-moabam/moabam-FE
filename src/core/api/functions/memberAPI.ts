@@ -1,5 +1,5 @@
-import { baseInstance, formDataInstance } from '../instance';
 import { MemberInfo, MyInfo } from '@/core/types/Member';
+import { baseInstance, formDataInstance } from '../instance';
 
 const memberAPI = {
   getMyInfo: async () => {

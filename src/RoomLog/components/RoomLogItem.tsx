@@ -1,6 +1,6 @@
+import { RankMember } from '@/core/types/Member';
 import { Avatar } from '@/shared/Avatar';
 import { Accordion, AccordionHeader, AccordionBody } from '@/shared/Accordion';
-import { RankMember } from '@/core/types/Member';
 
 type extendedProps = {
   routine: { routineId: number; content: string }[];

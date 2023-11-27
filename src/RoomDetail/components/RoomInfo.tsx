@@ -1,7 +1,7 @@
-import RoomMemberRank from './RoomMemberRank';
+import { RoomInfo as RoomInfoType } from '@/core/types/Room';
 import { ProgressBar } from '@/shared/ProgressBar';
 import { LoadingSpinner } from '@/shared/LoadingSpinner';
-import { RoomInfo as RoomInfoType } from '@/core/types/Room';
+import RoomMemberRank from './RoomMemberRank';
 
 interface extendedProps {
   status: 'pending' | 'error' | 'success';

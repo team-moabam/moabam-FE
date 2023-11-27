@@ -2,8 +2,8 @@ import { useSuspenseQuery } from '@tanstack/react-query';
 import { roomOptions } from '@/core/api/options';
 import { MyJoinRoom, ParticipatingRoom, DayType } from '@/core/types';
 import { DAY_TYPE } from '@/RoomSlide/constants/dayType';
-import NewRoomCard from './NewRoomCard';
 import { RoomCard } from '@/RoomList';
+import NewRoomCard from './NewRoomCard';
 
 interface RoomDataProps {
   dayType: DayType;

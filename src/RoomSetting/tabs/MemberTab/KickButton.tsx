@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import roomAPI from '@/core/api/functions/roomAPI';
-import { ModalHeadingStyle, descriptionStyle } from './styles';
 import { Input } from '@/shared/Input';
 import { BottomSheet, useBottomSheet } from '@/shared/BottomSheet';
 import { LoadingSpinner } from '@/shared/LoadingSpinner';
 import { Toast } from '@/shared/Toast';
+import { ModalHeadingStyle, descriptionStyle } from './styles';
 
 interface KickButtonProps {
   roomId: string;

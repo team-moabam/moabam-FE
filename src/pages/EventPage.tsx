@@ -2,9 +2,9 @@ import { Suspense } from 'react';
 import { ErrorBoundary } from '@suspensive/react';
 import { useLocation } from 'react-router-dom';
 import { Header } from '@/shared/Header';
-import { EventList, EventListFallback } from '@/Promotion';
 import { Deffered } from '@/shared/Deffered';
 import { NetworkFallback } from '@/shared/ErrorBoundary';
+import { EventList, EventListFallback } from '@/Promotion';
 
 const EventPage = () => {
   const { state } = useLocation();
