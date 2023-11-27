@@ -1,6 +1,6 @@
 import { Coupons } from '@/core/types';
 import { CouponStatus } from '@/core/types';
-import { MyCoupons } from '@/core/types';
+import { MyCoupon } from '@/core/types';
 import { baseInstance } from '../instance';
 
 const couponAPI = {
@@ -11,7 +11,7 @@ const couponAPI = {
     return await baseInstance.post('/coupons', null, { params });
   },
   myCoupon: async () => {
-    return await baseInstance.get<MyCoupons>(`/my-coupons`);
+    return await baseInstance.get<MyCoupon[]>(`/my-coupons`);
   }
 };
 

@@ -2,16 +2,16 @@ import { useSuspenseQuery } from '@tanstack/react-query';
 import couponOptions from '@/core/api/options/coupon';
 
 const MyCouponList = () => {
-  const {
-    data: { myCouponsResponse }
-  } = useSuspenseQuery({ ...couponOptions.my() });
+  const { data } = useSuspenseQuery({
+    ...couponOptions.my()
+  });
 
   return (
     <div className="p-5">
-      <div className="mb-5">쿠폰 ({myCouponsResponse.length})</div>
+      <div className="mb-5">쿠폰 ({data.length})</div>
       <ul>
-        {myCouponsResponse.map(
-          ({ couponId, description, name, point, type }) => (
+        {data &&
+          data.map(({ couponId, description, name, point, type }) => (
             <li
               className="mb-2 flex rounded-lg bg-light-sub pr-0 shadow-lg dark:bg-dark-sub"
               key={couponId}
@@ -29,8 +29,7 @@ const MyCouponList = () => {
                 <div className="rotate-90 text-dark-gray">coupon</div>
               </div>
             </li>
-          )
-        )}
+          ))}
       </ul>
     </div>
   );

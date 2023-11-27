@@ -1,4 +1,5 @@
 import { baseInstance, formDataInstance } from '../instance';
+import { ModifyMemberRequest } from '@/UserProfile/components/UserProfile';
 import { MemberInfo, MyInfo } from '@/core/types/Member';
 
 const memberAPI = {
@@ -23,8 +24,12 @@ const memberAPI = {
     );
   },
 
-  editMyInfo: async (formData: FormData) => {
-    return await formDataInstance.post(`/members/modify`, formData);
+  editMyInfo: async (ModifyMemberRequest: ModifyMemberRequest) => {
+    console.log({ ModifyMemberRequest });
+    return await formDataInstance.post(
+      `/members/modify`,
+      JSON.stringify({ ModifyMemberRequest })
+    );
   },
 
   logout: async () => {

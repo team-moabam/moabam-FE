@@ -52,9 +52,7 @@ const membersHandlers = [
     return HttpResponse.json(MEMBER_INFO, { status: 200 });
   }),
 
-  http.post(baseURL('/members/modify'), async ({ request }) => {
-    const data = await request.formData();
-    console.log(data);
+  http.post(baseURL('/members/modify'), async () => {
     await delay(200);
     return HttpResponse.json({}, { status: 200 });
   }),

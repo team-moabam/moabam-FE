@@ -12,6 +12,12 @@ interface Inputs {
   profileImage?: File[];
 }
 
+export interface ModifyMemberRequest {
+  nickname?: string;
+  intro?: string;
+  profileImage?: File;
+}
+
 interface UserProfileProps {
   nickname: string;
   intro: string | undefined;
@@ -67,13 +73,11 @@ const UserProfile = ({
     intro,
     profileImage
   }) => {
-    const formData = new FormData();
-    nickname && formData.append('nickname', nickname);
-    intro && formData.append('intro', intro);
-    profileImage &&
-      profileImage[0] &&
-      formData.append('profileImage', profileImage[0]);
-    mutation.mutate(formData, {
+    const modifyMemberRequest: ModifyMemberRequest = {};
+    if (nickname) modifyMemberRequest['nickname'] = nickname;
+    if (intro) modifyMemberRequest['intro'] = intro;
+    if (profileImage) modifyMemberRequest['profileImage'] = profileImage[0];
+    mutation.mutate(modifyMemberRequest, {
       onSuccess: () => {
         queryClient.invalidateQueries({
           queryKey: memberOptions.myInfo().queryKey
