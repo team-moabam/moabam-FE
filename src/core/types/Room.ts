@@ -7,6 +7,7 @@ export type RoomInfo = {
   title: string;
   managerNickname: string;
   level: number;
+  exp: number;
   roomType: DayType;
   certifyTime: number;
   currentUserCount: number;
@@ -16,6 +17,22 @@ export type RoomInfo = {
   certifiedDates: string[];
   routine: { routineId: number; content: string }[];
   todayCertificateRank: RankMember[];
+};
+
+export type RoomSemiInfo = {
+  roomId: number;
+  isPassword: boolean;
+  title: string;
+  managerNickname: string;
+  level: number;
+  exp: number;
+  roomType: DayType;
+  certifyTime: number;
+  currentUserCount: number;
+  maxUserCount: number;
+  announcement: string;
+  routine: { routineId: number; content: string }[];
+  certificateRank: RankMember[];
 };
 
 export type RoomInfoBeforeEditing = {
