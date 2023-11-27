@@ -18,7 +18,7 @@ const CommonMeta = ({ pageName }: CommonMetaProps) => {
       />
       <meta
         property="og:image"
-        content="https://i.ibb.co/gTrKrDv/meta-Image.png"
+        content="https://i.ibb.co/x8FGk2H/og-Img-moabam.png"
       />
       <meta
         property="og:description"

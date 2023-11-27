@@ -18,11 +18,11 @@ const RoomDetailMeta = ({ roomTitle }: RoomDetailMetaProps) => {
       />
       <meta
         property="og:image"
-        content="https://i.ibb.co/gTrKrDv/meta-Image.png"
+        content="https://i.ibb.co/x8FGk2H/og-Img-moabam.png"
       />
       <meta
         property="og:description"
-        content="귀여운 새와 함께 루틴을 실천해요!"
+        content="귀여운 새와 다함께 루틴을 실천해요!"
       />
       <meta
         property="og:site_name"
