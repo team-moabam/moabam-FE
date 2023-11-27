@@ -18,7 +18,9 @@ const RoomDetailContainer = ({
   const {
     params: { roomId }
   } = useRouteData();
-  const chooseDate = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
+  const chooseDate = `${date.getFullYear()}-${
+    date.getMonth() + 1
+  }-${date.getDate()}`;
 
   const { data: roomDetailDataByDate, status } = useQuery({
     ...roomOptions.detailByDate(roomId, chooseDate)
