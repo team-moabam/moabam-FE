@@ -2,8 +2,8 @@ import { ChangeEvent, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { twMerge } from 'tailwind-merge';
 import clsx from 'clsx';
-import { FormCertificationImage } from '../types/type';
 import { Icon } from '@/shared/Icon';
+import { FormCertificationImage } from '../types/type';
 
 interface ImageInputProps {
   content: string;

@@ -1,8 +1,8 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { roomOptions } from '@/core/api/options';
+import { Avatar } from '@/shared/Avatar';
 import KickButton from './KickButton';
 import DelegationButton from './DelegationButton';
-import { Avatar } from '@/shared/Avatar';
 
 interface MemberTabProps {
   roomId: string;

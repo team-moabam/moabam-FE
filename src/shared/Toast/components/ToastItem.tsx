@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import clsx from 'clsx';
 import { twMerge } from 'tailwind-merge';
-import useTimeout from '../hooks/useTimeout';
 import { Icon } from '@/shared/Icon';
+import useTimeout from '../hooks/useTimeout';
 
 interface ToastItemProps {
   status: string;

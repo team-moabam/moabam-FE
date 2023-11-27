@@ -1,10 +1,10 @@
 import { clsx } from 'clsx';
 import { useMoveRoute } from '@/core/hooks';
 import { ParticipatingRoom } from '@/core/types';
+import { RoomSummary } from '@/RoomSummary';
 import roomListStyle from '../styles/roomListStyle';
 import CertifyButton from './CertifyButton';
 import BugInfo from './BugInfo';
-import { RoomSummary } from '@/RoomSummary';
 
 interface RoomCardProps {
   room: ParticipatingRoom;

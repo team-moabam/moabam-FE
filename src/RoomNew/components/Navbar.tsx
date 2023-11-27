@@ -1,9 +1,9 @@
 import { useFormContext } from 'react-hook-form';
 import clsx from 'clsx';
 import { FunnelHook } from '@/shared/Funnel/hooks/useFunnel';
-import { Inputs } from '../hooks/useRoomForm';
 import { LoadingSpinner } from '@/shared/LoadingSpinner';
 import { steps } from '@/pages/RoomNewPage';
+import { Inputs } from '../hooks/useRoomForm';
 
 interface NavbarProps extends FunnelHook<typeof steps> {
   isPending: boolean;

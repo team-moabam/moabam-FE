@@ -2,10 +2,10 @@ import { useContext } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { roomOptions } from '@/core/api/options';
 import { useRouteData } from '@/core/hooks';
+import { RoomInfo as RoomInfoType } from '@/core/types/Room';
+import { RoomInfo } from '@/RoomDetail';
 import { DateRoomDetailContext } from './RoomDetailProvider';
 import RoomDetailPreview from './RoomDetailPreview';
-import { RoomInfo } from '@/RoomDetail';
-import { RoomInfo as RoomInfoType } from '@/core/types/Room';
 
 interface RoomDetailContainerProps {
   roomDetailData: RoomInfoType;
@@ -21,7 +21,9 @@ const RoomDetailContainer = ({
   const {
     params: { roomId }
   } = useRouteData();
-  const chooseDateString = `${chooseDate.getFullYear()}-${chooseDate.getMonth()}-${chooseDate.getDate()}`;
+  const chooseDateString = `${chooseDate.getFullYear()}-${
+    chooseDate.getMonth() + 1
+  }-${chooseDate.getDate()}`;
 
   const { data: roomDetailDataByDate, status } = useQuery({
     ...roomOptions.detailByDate(roomId, chooseDateString)

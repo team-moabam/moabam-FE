@@ -1,14 +1,19 @@
+import { Suspense } from 'react';
+import { ErrorBoundary } from '@suspensive/react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { useTheme } from '@/core/hooks';
 import { useMoveRoute } from '@/core/hooks';
+import { NetworkFallback } from '@/shared/ErrorBoundary';
+import { useDayTypes } from '@/RoomSlide';
+import {
+  UserInfoFallback,
+  SwipeArrow,
+  UserInfo,
+  Background
+} from '@/StartSlide';
 import RoutinesPage from './RoutinesPage';
-import Background from '@/StartSlide/components/Background';
-import UserInfo from '@/StartSlide/components/UserInfo';
 
 const StartPage = () => {
-  // TODO : 임시 시간대 설정 코드입니다. 수정 예정!
-  const { theme } = useTheme();
-  const dayType = theme === 'light' ? 'morning' : 'night';
+  const { dayType } = useDayTypes();
   const moveTo = useMoveRoute();
 
   return (
@@ -19,11 +24,21 @@ const StartPage = () => {
       <Swiper
         className="h-full"
         direction="vertical"
+        allowSlidePrev={false}
         onReachEnd={() => moveTo('routines')}
       >
         <SwiperSlide className="shadow-lg">
           <Background type={dayType} />
-          <UserInfo type={dayType} />
+
+          <ErrorBoundary fallback={<NetworkFallback />}>
+            <Suspense fallback={<UserInfoFallback type={dayType} />}>
+              <UserInfo type={dayType} />
+            </Suspense>
+          </ErrorBoundary>
+
+          <div className="absolute inset-x-0 bottom-8 mx-auto w-fit">
+            <SwipeArrow />
+          </div>
         </SwiperSlide>
         <SwiperSlide></SwiperSlide>
       </Swiper>

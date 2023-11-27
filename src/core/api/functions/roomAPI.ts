@@ -4,9 +4,9 @@ import {
   TotalRooms
 } from '@/core/types';
 import { ParticipateHistory } from '@/core/types';
-import { baseInstance, formDataInstance } from '../instance';
 import { MyJoinRoom } from '@/core/types/MyJoinRoom';
 import { RoomInfo, RoomInfoBeforeEditing } from '@/core/types/Room';
+import { baseInstance, formDataInstance } from '../instance';
 
 const roomAPI = {
   postRoom: async (body: {

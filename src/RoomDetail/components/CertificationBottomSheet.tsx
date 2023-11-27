@@ -5,10 +5,10 @@ import { useFormContext } from 'react-hook-form';
 import roomAPI from '@/core/api/functions/roomAPI';
 import { roomOptions } from '@/core/api/options';
 import { useRouteData } from '@/core/hooks';
-import { FormCertificationImage } from '../types/type';
-import ImageInput from './ImageInput';
 import { BottomSheet } from '@/shared/BottomSheet';
 import { BottomSheetProps } from '@/shared/BottomSheet/components/BottomSheet';
+import { FormCertificationImage } from '../types/type';
+import ImageInput from './ImageInput';
 
 interface CertificationBottomSheetProps {
   bottomSheetProps: BottomSheetProps;

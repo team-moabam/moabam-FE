@@ -20,10 +20,6 @@ const UserBird = ({ birdSkin }: UserBirdProps) => {
           {message}
         </motion.div>
       )}
-      <img
-        className="absolute bottom-0 right-0 top-36 z-10 my-auto w-3/4 dark:left-0 dark:-scale-x-100"
-        src="/assets/branch.png"
-      />
       <motion.div
         onClick={() => changeMessage()}
         className="w-2/5 cursor-pointer"
