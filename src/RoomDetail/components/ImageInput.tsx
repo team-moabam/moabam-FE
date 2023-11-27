@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { twMerge } from 'tailwind-merge';
 import clsx from 'clsx';
@@ -24,14 +24,22 @@ const ImageInput = ({ content, image, idx }: ImageInputProps) => {
     setImgSrc(fileUrl);
   };
 
+  const handleImageInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      saveFileImage(e.target.files[0]);
+      clearErrors(`${idx}.file`);
+    }
+  };
+
   return (
     <div>
       <div
         className={twMerge(
           clsx(
-            'relative mb-1 h-0 w-full overflow-hidden rounded-2xl border border-dark-gray pb-[100%] shadow-[0_1px_4px_0px_rgba(0,0,0,0.2)]',
+            'relative mb-1 h-0 w-full overflow-hidden rounded-2xl border border-dark-gray pb-[100%] shadow-[0_1px_4px_0px_rgba(0,0,0,0.2)] dark:border-black',
             {
-              'border-danger border-2': errors[idx]?.file?.message
+              'border-danger border-2 dark:border-danger dark:border-2':
+                errors[idx]?.file?.message
             }
           )
         )}
@@ -43,12 +51,7 @@ const ImageInput = ({ content, image, idx }: ImageInputProps) => {
             required: '이미지를 넣어주세요'
           })}
           className="absolute left-0 top-0 h-full w-full before:block before:h-full before:w-full before:bg-white before:content-[''] after:absolute"
-          onChange={(e) => {
-            if (e.target.files) {
-              saveFileImage(e.target.files[0]);
-              clearErrors(`${idx}.file`);
-            }
-          }}
+          onChange={handleImageInputChange}
         />
         <label
           htmlFor={content}

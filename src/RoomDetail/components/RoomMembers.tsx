@@ -21,7 +21,7 @@ const RoomMembers = ({
   changeReportStatus
 }: RoomMembers) => {
   const { bottomSheetProps, toggle, close } = useBottomSheet();
-  const [chooseUserInfo, setSelectUserInfo] = useState({
+  const [{ nickname, reportedId }, setSelectUserInfo] = useState({
     nickname: '',
     reportedId: ''
   });
@@ -38,8 +38,6 @@ const RoomMembers = ({
     }
   });
   const [checked, setChecked] = useState('');
-
-  const { nickname, reportedId } = chooseUserInfo;
 
   const {
     params: { roomId }
