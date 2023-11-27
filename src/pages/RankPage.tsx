@@ -2,7 +2,7 @@ import { Header } from '@/shared/Header';
 
 const RankPage = () => {
   return (
-    <div className="flex h-screen w-full max-w-md flex-col">
+    <div className="flex h-full w-full max-w-md flex-col">
       <div>
         <Header
           prev="myPage"
