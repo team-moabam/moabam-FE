@@ -3,19 +3,14 @@ import { useQuery } from '@tanstack/react-query';
 import { roomOptions } from '@/core/api/options';
 import { useRouteData } from '@/core/hooks';
 import { RoomInfo as RoomInfoType } from '@/core/types/Room';
-import { RoomInfo } from '@/RoomDetail';
+import { RoomInfo, RoomWorkspace } from '@/RoomDetail';
 import { DateRoomDetailContext } from './RoomDetailProvider';
-import RoomDetailPreview from './RoomDetailPreview';
 
 interface RoomDetailContainerProps {
   roomDetailData: RoomInfoType;
-  serverTime: Date;
 }
 
-const RoomDetailContainer = ({
-  roomDetailData,
-  serverTime
-}: RoomDetailContainerProps) => {
+const RoomDetailContainer = ({ roomDetailData }: RoomDetailContainerProps) => {
   const { chooseDate } = useContext(DateRoomDetailContext);
 
   const {
@@ -42,12 +37,10 @@ const RoomDetailContainer = ({
         />
       </div>
       <div className="px-[1.81rem] pb-[1.62rem] pt-[1.88rem]">
-        {/* <RoomWorkspace
+        <RoomWorkspace
           {...roomDetailData}
           status={status}
-        serverTime={serverTime}
-        /> */}
-        <RoomDetailPreview {...roomDetailData} />
+        />
       </div>
     </>
   );

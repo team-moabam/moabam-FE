@@ -130,6 +130,24 @@ const roomsHandlers = [
     return HttpResponse.json(response, { status });
   }),
 
+  http.get(baseURL('/rooms/:roomId/un-joined'), async () => {
+    await delay(1000);
+
+    const status: number = 200;
+    let response = {};
+
+    switch (status) {
+      case 200:
+        response = RoomSemiInfo;
+        break;
+      case 401:
+        response = { message: '존재하지 않는 유저입니다.' };
+        break;
+    }
+
+    return HttpResponse.json(response, { status });
+  }),
+
   http.get(baseURL('/rooms/:roomId/:date'), async () => {
     await delay(1000);
 
@@ -145,24 +163,6 @@ const roomsHandlers = [
         break;
       case 404:
         response = { message: '존재하지 않는 방입니다.' };
-        break;
-    }
-
-    return HttpResponse.json(response, { status });
-  }),
-
-  http.get(baseURL('/rooms/:roomId/un-joined'), async () => {
-    await delay(1000);
-
-    const status: number = 200;
-    let response = {};
-
-    switch (status) {
-      case 200:
-        response = RoomSemiInfo;
-        break;
-      case 401:
-        response = { message: '존재하지 않는 유저입니다.' };
         break;
     }
 
@@ -185,7 +185,7 @@ const roomsHandlers = [
           validation: {
             title: 'Title Error',
             announcement: 'Announcement Error',
-            routine: 'Routine Error',
+            routines: 'routines Error',
             password: 'Password Error',
             certifyTime: 'CertifyTime Error',
             maxUserCount: 'MaxUserCount Error'
