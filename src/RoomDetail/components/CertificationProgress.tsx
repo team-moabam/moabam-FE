@@ -1,32 +1,43 @@
+import { useContext } from 'react';
+import makeTodayCertifyTime from '../utils/makeTodayCertifyTime';
+import { DateRoomDetailContext } from './RoomDetailProvider';
 import { ProgressBar } from '@/shared/ProgressBar';
 
 interface CertificationProgressProps {
   percentage: number;
-  chooseDate: Date;
-  serverTime: Date;
+  certifyTime: number;
 }
 
 const CertificationProgress = ({
   percentage,
-  chooseDate,
-  serverTime
+  certifyTime
 }: CertificationProgressProps) => {
+  const { serverTime, chooseDate } = useContext(DateRoomDetailContext);
+  const { nowTime, certificateTodayStartTime } = makeTodayCertifyTime(
+    certifyTime,
+    serverTime
+  );
+  const isTodayRoom = chooseDate.getDate() === serverTime.getDate();
+
+  const chooseMonthText = chooseDate.getMonth() + 1;
+  const chooseDateText = chooseDate.getDate();
+  const certificateProgress =
+    isTodayRoom && nowTime < certificateTodayStartTime ? 0 : percentage;
+
   return (
     <div className="mb-[0.75rem]">
       <div className="flex items-end  justify-between pb-2">
         <h4 className="text-base text-black dark:text-white">
-          {chooseDate.getDate() === serverTime.getDate()
+          {isTodayRoom
             ? '오늘의 방 인증율'
-            : `${
-                chooseDate.getMonth() + 1
-              }월 ${chooseDate.getDate()}일 방 인증율`}
+            : `${chooseMonthText}월 ${chooseDateText}일 방 인증율`}
         </h4>
         <span className="text-2xl text-light-point dark:text-dark-point">
-          {percentage}%
+          {certificateProgress}%
         </span>
       </div>
       <ProgressBar
-        progress={percentage}
+        progress={certificateProgress}
         className="rounded-full"
       />
     </div>
