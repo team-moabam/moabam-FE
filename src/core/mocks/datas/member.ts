@@ -6,10 +6,8 @@ export const MY_INFO: MyInfo = {
   level: 3,
   exp: 6,
   birds: {
-    MORNING:
-      'https://i.pinimg.com/564x/9d/1d/81/9d1d81196806e7a2829f94f67ccc3248.jpg',
-    NIGHT:
-      'https://i.pinimg.com/564x/f4/9d/21/f49d217cae2f110e8acee4ed1f120483.jpg'
+    MORNING: '/assets/skins/awakeOmokSkin1.png',
+    NIGHT: '/assets/skins/awakeOwlSkin1.png'
   },
   badges: [
     {
