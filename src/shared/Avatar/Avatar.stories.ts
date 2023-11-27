@@ -1,16 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { withRouter } from 'storybook-addon-react-router-v6';
 import Avatar from './Avatar';
 
 const meta = {
-  title: 'Components/Avatar',
+  title: 'Shared/Avatar',
   component: Avatar,
   argTypes: {
     imgUrl: { control: 'string' },
     nickname: { control: 'string' },
     contribution: { control: 'number' }
-  },
-  decorators: [withRouter]
+  }
 } satisfies Meta<typeof Avatar>;
 
 export default meta;

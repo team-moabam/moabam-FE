@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { twMerge } from 'tailwind-merge';
 import { useTab } from '../hooks';
 import TabHeader from './TabHeader';
@@ -6,9 +6,12 @@ import TabHeader from './TabHeader';
 interface TabProps {
   children: React.ReactNode;
   defaultIndex?: number;
+  currentIndex?: number;
+  setCurrentIndex?: React.Dispatch<React.SetStateAction<number>>;
   align?: 'center' | 'start' | 'end';
   thumnailStyle?: string;
   itemStyle?: string;
+  onChange?: VoidFunction;
 }
 
 const Tab = ({
@@ -16,7 +19,10 @@ const Tab = ({
   defaultIndex = 0,
   align = 'center',
   thumnailStyle = '',
-  itemStyle = ''
+  itemStyle = '',
+  currentIndex,
+  setCurrentIndex,
+  onChange
 }: TabProps) => {
   const {
     titleOfTabItems,
@@ -26,7 +32,10 @@ const Tab = ({
     currentThumnail
   } = useTab({
     tabChildren: children,
-    defaultIndex
+    defaultIndex,
+    currentIndex,
+    setCurrentIndex,
+    onChange
   });
 
   return (

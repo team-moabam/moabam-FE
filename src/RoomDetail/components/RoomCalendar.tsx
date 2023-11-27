@@ -1,37 +1,37 @@
 import { useRef } from 'react';
-import { makeWeekCalendar } from '../utils/utils';
+import { useContext } from 'react';
+import { makeWeekCalendar } from '../utils/makeWeekCalendar';
 import RoomCalendarDate from './RoomCalendarDate';
-
+import { DateRoomDetailContext } from './RoomDetailProvider';
 interface RoomCalendarProps {
   certifiedDates: string[];
   certifyTime: number;
-  serverTime: Date;
 }
 
-const RoomCalendar = ({
-  certifiedDates,
-  certifyTime,
-  serverTime
-}: RoomCalendarProps) => {
+const RoomCalendar = ({ certifiedDates, certifyTime }: RoomCalendarProps) => {
   const dateRef = useRef<HTMLDivElement>(null);
-  const { thisWeekTimestamp } = makeWeekCalendar(serverTime);
-  const thisWeekMonth = thisWeekTimestamp[3].getMonth() + 1;
+
+  const { serverTime } = useContext(DateRoomDetailContext);
+  const { thisWeekDateObjectArray } = makeWeekCalendar(serverTime);
+
+  const thisWeekYearText = serverTime.getFullYear();
+  const thisWeekMonthText = serverTime.getMonth() + 1;
 
   return (
     <div className="mb-[3.19rem] mt-[1.87rem]">
       <h4 className="pb-2 text-base text-black dark:text-white">
-        2023년 {thisWeekMonth}월
+        {thisWeekYearText}년 {thisWeekMonthText}월
       </h4>
       <div
         className="flex justify-between"
         ref={dateRef}
       >
-        {thisWeekTimestamp.map((thisDate) => (
+        {thisWeekDateObjectArray.map((thisDate) => (
           <RoomCalendarDate
+            key={thisDate.getDate()}
             thisDate={thisDate}
             certifiedDates={certifiedDates}
             certifyTime={certifyTime}
-            serverTime={serverTime}
           />
         ))}
       </div>
