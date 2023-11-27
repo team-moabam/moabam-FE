@@ -22,6 +22,22 @@ const setupMSW = async () => {
   return worker.start();
 };
 
+const setupSW = async () => {
+  if (import.meta.env.VITE_MSW === 'true') {
+    return;
+  }
+
+  if (!('serviceWorker' in navigator)) {
+    return;
+  }
+
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/firebase-messaging-sw.js', {
+      scope: '/'
+    });
+  });
+};
+
 const setupFCM = async () => {
   const debounce = new Debounce();
 
@@ -49,7 +65,7 @@ const setupFCM = async () => {
   };
 };
 
-Promise.allSettled([setupMSW(), setupFCM()]).then(() => {
+Promise.allSettled([setupMSW(), setupFCM(), setupSW()]).then(() => {
   ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
       <QueryClientProvider client={queryClient}>
