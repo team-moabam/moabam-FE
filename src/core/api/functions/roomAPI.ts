@@ -5,7 +5,11 @@ import {
 } from '@/core/types';
 import { ParticipateHistory } from '@/core/types';
 import { MyJoinRoom } from '@/core/types/MyJoinRoom';
-import { RoomInfo, RoomInfoBeforeEditing } from '@/core/types/Room';
+import {
+  RoomInfo,
+  RoomInfoBeforeEditing,
+  RoomSemiInfo
+} from '@/core/types/Room';
 import { baseInstance, formDataInstance } from '../instance';
 
 const roomAPI = {
@@ -97,6 +101,14 @@ const roomAPI = {
       `/rooms/${roomId}`,
       body
     );
+  },
+
+  getCheckRoomJoin: async (roomId?: string) => {
+    return await baseInstance.get(`/rooms/${roomId}/check`);
+  },
+
+  getRoomSemiDetail: async (roomId?: string) => {
+    return await baseInstance.get<RoomSemiInfo>(`/rooms/${roomId}/un-joined`);
   }
 };
 
