@@ -1,0 +1,27 @@
+import { Canvas, Meta, Title, Controls } from '@storybook/blocks';
+import * as useThemeStories from './useTheme.stories';
+
+<Meta of={useThemeStories} />
+
+<Title />
+
+`light | black` 테마를 전역에서 관리하는 Context 훅입니다.
+
+<Controls />
+
+### Default
+
+기본적으로 main.tsx 에서 `ThemeProvider` 로 감싸져 있습니다.  
+또한 App 컴포넌트에서 최상위의 요소의 `className` 에 테마에 따른 다크모드 설정을 부여했습니다.  
+따라서 기본적으로는 다크 모드에 대한 스타일을 지정하기 위해 `useTheme()` 훅을 사용할 필요가 없습니다.  
+
+대신 className으로 `dark:` 를 부여해서 사용할 수 있습니다.
+
+<Canvas of={useThemeStories.Default} />
+
+### Portal
+
+다만 `createPortal()` 로 DOM 트리상의 다른 노드에 컴포넌트를 렌더링하는 경우에는  
+최상위 요소의 `className` 에 테마에 따른 다크모드 설정을 부여하는 과정이 필요합니다.
+
+이는 `useTheme()` 훅을 통해 얻은 `theme` 을 활용해서 수행할 수 있습니다.

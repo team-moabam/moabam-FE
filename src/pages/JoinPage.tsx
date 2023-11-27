@@ -11,7 +11,7 @@ const KAKAO_LOGIN_URL =
 
 const JoinPage = () => {
   return (
-    <div className="relative h-screen">
+    <div className="relative h-full">
       <div className="absolute inset-x-0 top-1/3 flex flex-col items-center">
         <div className="mb-8 aspect-square w-3/5 max-w-[200px]">
           <img

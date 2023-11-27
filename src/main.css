@@ -33,9 +33,9 @@
 
 body {
   width: 100vw;
-  height: 100vh;
+  height: 100%;
 }
 
 .app-container {
-  @apply absolute inset-x-0 m-auto h-screen w-full max-w-md;
+  @apply absolute inset-x-0 m-auto h-full w-full max-w-md;
 }

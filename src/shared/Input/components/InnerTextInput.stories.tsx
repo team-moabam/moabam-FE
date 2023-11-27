@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import InnerTextInput from './InnerTextInput';
 
 const meta = {
-  title: 'Components/InnerTextInput',
+  title: 'Shared/Input/InnerTextInput',
   argTypes: {
     size: { control: 'radio', options: ['sm', 'base', 'lg'] },
     children: { control: 'text' }

@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useLocalStorage, useMoveRoute, useRouteData } from '@/core/hooks';
+import { useMoveRoute, useRouteData } from '@/core/hooks';
 import { STORAGE_KEYS } from '@/core/constants/storageKeys';
 
 /**
@@ -7,17 +7,14 @@ import { STORAGE_KEYS } from '@/core/constants/storageKeys';
  */
 const useCheckAuthRequired = () => {
   const { authRequired } = useRouteData();
-  const [memberId, setMemberId] = useLocalStorage<number | null>(
-    STORAGE_KEYS.MEMBER_ID,
-    null
-  );
+  const memberId = localStorage.getItem(STORAGE_KEYS.MEMBER_ID);
   const moveTo = useMoveRoute();
 
   useEffect(() => {
     if (authRequired && !memberId) {
       moveTo('join');
     }
-  }, [memberId]);
+  }, [authRequired, memberId]);
 };
 
 export default useCheckAuthRequired;
