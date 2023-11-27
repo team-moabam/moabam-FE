@@ -19,7 +19,9 @@ const MyCouponList = () => {
               <div className="flex-1 p-5">
                 <p className="text-sm text-dark-gray">{description}</p>
                 <h1 className="mb-5 mt-1 text-xl">
-                  {bugType[type]}벌레 {point}마리
+                  {type === 'DISCOUNT_COUPON'
+                    ? `${point}원 결제 할인`
+                    : `${bugType[type]}벌레 ${point}마리`}
                 </h1>
                 <p className="text-sm text-dark-gray">{name}</p>
               </div>

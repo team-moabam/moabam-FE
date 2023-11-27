@@ -7,3 +7,10 @@ export const REPORT_CONTENT = {
   '4': '인증 여부를 알기 힘든 인증 업로드',
   '5': '기타'
 };
+
+export const CERTIFICATE_START_MINUTES = 40;
+export const CERTIFICATE_START_SECONDS = 0;
+export const CERTIFICATE_START_MICROSECONDS = 0;
+export const CERTIFICATE_END_MINUTES = 10;
+export const CERTIFICATE_END_SECONDS = 0;
+export const CERTIFICATE_END_MICROSECONDS = 0;

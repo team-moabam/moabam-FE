@@ -7,21 +7,19 @@ import { RoomInfo, RoomWorkspace } from '@/RoomDetail';
 import { RoomInfo as RoomInfoType } from '@/core/types/Room';
 interface RoomDetailContainerProps {
   roomDetailData: RoomInfoType;
-  serverTime: Date;
 }
 
-const RoomDetailContainer = ({
-  roomDetailData,
-  serverTime
-}: RoomDetailContainerProps) => {
-  const { date } = useContext(DateRoomDetailContext);
+const RoomDetailContainer = ({ roomDetailData }: RoomDetailContainerProps) => {
+  const { chooseDate } = useContext(DateRoomDetailContext);
   const {
     params: { roomId }
   } = useRouteData();
-  const chooseDate = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
+  const chooseDateString = `${chooseDate.getFullYear()}-${
+    chooseDate.getMonth() + 1
+  }-${chooseDate.getDate()}`;
 
   const { data: roomDetailDataByDate, status } = useQuery({
-    ...roomOptions.detailByDate(roomId, chooseDate)
+    ...roomOptions.detailByDate(roomId, chooseDateString)
   });
 
   if (roomDetailDataByDate) {
@@ -40,7 +38,6 @@ const RoomDetailContainer = ({
         <RoomWorkspace
           {...roomDetailData}
           status={status}
-          serverTime={serverTime}
         />
       </div>
     </>
