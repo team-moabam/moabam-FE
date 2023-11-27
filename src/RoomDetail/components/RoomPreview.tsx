@@ -4,12 +4,12 @@ import clsx from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { useForm } from 'react-hook-form';
 import roomAPI from '@/core/api/functions/roomAPI';
-import RoomRoutineList from './RoomRoutineList';
+import { RoomInfo } from '@/core/types/Room';
 import { PasswordInput } from '@/shared/Input';
 import { Toast } from '@/shared/Toast';
-import { RoomInfo } from '@/core/types/Room';
+import RoomRoutineList from './RoomRoutineList';
 
-const RoomDetailPreview = ({
+const RoomPreview = ({
   routine,
   certifyTime,
   roomId,
@@ -25,8 +25,6 @@ const RoomDetailPreview = ({
   const { mutate } = useMutation({
     mutationFn: roomAPI.postRoomJoin
   });
-
-  // const queryClient = useQueryClient();
 
   const joinTheRoom = (data: { password: string }) => {
     mutate(
@@ -85,4 +83,4 @@ const RoomDetailPreview = ({
   );
 };
 
-export default RoomDetailPreview;
+export default RoomPreview;
