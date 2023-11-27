@@ -7,6 +7,7 @@ import RoomDetailContainer from '@/RoomDetail/components/RoomDetailContainer';
 import RoomDetailProvider from '@/RoomDetail/components/RoomDetailProvider';
 import RoomDetailFallback from '@/RoomDetail/components/RoomDetailFallback';
 import { RoomNotice } from '@/RoomDetail';
+import { RoomDetailMeta } from '@/Meta';
 import RoomHeader from '../RoomDetail/components/RoomHeader';
 
 const RoomDetailPage = () => {
@@ -35,6 +36,7 @@ const RoomDetailPage = () => {
 
   return (
     <>
+      <RoomDetailMeta roomTitle={title} />
       <div className="relative h-full overflow-y-scroll">
         <RoomHeader title={title} />
         <RoomNotice content={announcement} />
