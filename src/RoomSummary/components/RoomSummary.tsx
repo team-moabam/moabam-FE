@@ -19,14 +19,14 @@ interface RoomSummaryProps {
 
 const birdByType = {
   MORNING: {
-    containerBg: 'bg-[#F9F8CA]',
+    containerBg: 'bg-yellow-50',
     imgStyle: 'relative left-[0.1rem] top-1 scale-[95%]',
     bird: 'Omok',
     imgSrc: (isAwake?: boolean) =>
       `/assets/skins/${isAwake ? 'awake' : 'sleep'}OmokSkin0.png`
   },
   NIGHT: {
-    containerBg: 'bg-[#FFF5E9]',
+    containerBg: 'bg-purple-50',
     imgStyle: 'relative scale-[85%] top-1',
     bird: 'Owl',
     imgSrc: (isAwake?: boolean) =>
