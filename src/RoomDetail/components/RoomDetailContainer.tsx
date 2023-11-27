@@ -1,6 +1,5 @@
 import { useContext } from 'react';
 import { useQuery } from '@tanstack/react-query';
-
 import { roomOptions } from '@/core/api/options';
 import { useRouteData } from '@/core/hooks';
 import { DateRoomDetailContext } from './RoomDetailProvider';
@@ -17,15 +16,15 @@ const RoomDetailContainer = ({
   roomDetailData,
   serverTime
 }: RoomDetailContainerProps) => {
-  const { date } = useContext(DateRoomDetailContext);
+  const { chooseDate } = useContext(DateRoomDetailContext);
 
   const {
     params: { roomId }
   } = useRouteData();
-  const chooseDate = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
+  const chooseDateString = `${chooseDate.getFullYear()}-${chooseDate.getMonth()}-${chooseDate.getDate()}`;
 
   const { data: roomDetailDataByDate, status } = useQuery({
-    ...roomOptions.detailByDate(roomId, chooseDate)
+    ...roomOptions.detailByDate(roomId, chooseDateString)
   });
 
   if (roomDetailDataByDate) {

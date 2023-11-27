@@ -36,6 +36,7 @@ const CertificationBottomSheet = ({
 
   const handleFormSubmit = async (data: FormCertificationImage[]) => {
     const formData = new FormData();
+
     for (const [key, value] of Object.entries(data)) {
       if (value.file) {
         formData.append(`${routines[Number(key)].routineId}`, value.file[0]);
@@ -106,7 +107,7 @@ const CertificationBottomSheet = ({
               <ImageInput
                 key={routineId}
                 content={content}
-                image={myCertificationImage && myCertificationImage[idx].image}
+                image={myCertificationImage && myCertificationImage[idx]?.image}
                 idx={idx}
               />
             );

@@ -1,22 +1,24 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, MouseEvent } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 import roomAPI from '@/core/api/functions/roomAPI';
 import { useMoveRoute } from '@/core/hooks';
+import { useLocalStorage } from '@/core/hooks';
+import makeTodayCertifyTime from '../utils/makeTodayCertifyTime';
 import { DateRoomDetailContext } from './RoomDetailProvider';
 import RoomCalendar from './RoomCalendar';
 import CertificationProgress from './CertificationProgress';
 import RoomRoutine from './RoomRoutine';
 import RoomMembers from './RoomMembers';
-import { Toast } from '@/shared/Toast';
 import { BottomSheet, useBottomSheet } from '@/shared/BottomSheet';
 import { Tab, TabItem } from '@/shared/Tab';
 import { Icon } from '@/shared/Icon';
+import { LoadingSpinner } from '@/shared/LoadingSpinner';
+import { Toast } from '@/shared/Toast';
 import { RoomInfo } from '@/core/types/Room';
 
 interface extendedProps {
   status: 'pending' | 'error' | 'success';
-  serverTime: Date;
 }
 
 type RoomWorkspaceProps = extendedProps & RoomInfo;
@@ -28,18 +30,25 @@ const RoomWorkspace = ({
   certifiedDates,
   certifyTime,
   status,
-  serverTime,
   roomId
 }: RoomWorkspaceProps) => {
   const moveTo = useMoveRoute();
-
   const [reportStatus, setReportStatus] = useState<boolean>(false);
-  const { date: chooseDate } = useContext(DateRoomDetailContext);
-  const myCertificationImage = todayCertificateRank.find(
-    ({ memberId }) => memberId === '5'
-  )?.certificationImage;
-
   const { bottomSheetProps, toggle, close } = useBottomSheet();
+  const [userId] = useLocalStorage('MEMBER_ID', '0');
+
+  const { chooseDate, serverTime } = useContext(DateRoomDetailContext);
+  const chooseDateText = `${chooseDate.getFullYear()}${
+    chooseDate.getMonth() + 1
+  }${chooseDate.getDate()}`;
+  const { certificateTodayStartTime } = makeTodayCertifyTime(
+    certifyTime,
+    serverTime
+  );
+
+  const myCertificationImage = todayCertificateRank.find(
+    ({ memberId }) => memberId === userId
+  )?.certificationImage;
 
   const { mutate } = useMutation({
     mutationFn: roomAPI.deleteRoom
@@ -66,6 +75,22 @@ const RoomWorkspace = ({
     setReportStatus(value);
   };
 
+  const handleLogLinkClick = (e: MouseEvent) => {
+    if (
+      chooseDate.getTime() < certificateTodayStartTime &&
+      chooseDate.getDate() === serverTime.getDate()
+    ) {
+      e.preventDefault();
+      Toast.show(
+        {
+          message: '인증 시간 이후 확인 가능합니다',
+          status: 'info'
+        },
+        2000
+      );
+    }
+  };
+
   return (
     <>
       <Tab
@@ -76,35 +101,37 @@ const RoomWorkspace = ({
           <RoomCalendar
             certifiedDates={certifiedDates}
             certifyTime={certifyTime}
-            serverTime={serverTime}
           />
           {status !== 'success' ? (
-            <div>임시 Loading...</div>
+            <div className="flex h-[22.6rem] items-center justify-center">
+              <LoadingSpinner size="2xl" />
+            </div>
           ) : (
             <>
               <CertificationProgress
                 percentage={completePercentage}
-                chooseDate={chooseDate}
-                serverTime={serverTime}
+                certifyTime={certifyTime}
               />
-              <div className="flex justify-end">
-                <Link
-                  to={`log/${chooseDate.getFullYear()}${
-                    chooseDate.getMonth() + 1
-                  }${chooseDate.getDate()}`}
-                  className="mb-[2.13rem] flex w-fit items-center text-sm text-light-point dark:text-dark-point"
-                  state={{ todayCertificateRank, routine, chooseDate }}
-                >
-                  인증사진 보러가기
-                  <Icon
-                    size="2xl"
-                    icon="BiChevronRight"
-                  />
-                </Link>
-              </div>
+              {
+                <div className="flex justify-end">
+                  <Link
+                    to={`log/${chooseDateText}`}
+                    className="mb-[2.13rem] flex w-fit items-center text-sm text-light-point dark:text-dark-point"
+                    state={{ todayCertificateRank, routine, chooseDate }}
+                    onClick={handleLogLinkClick}
+                  >
+                    인증사진 보러가기
+                    <Icon
+                      size="2xl"
+                      icon="BiChevronRight"
+                    />
+                  </Link>
+                </div>
+              }
               <RoomRoutine
                 routines={routine}
                 myCertificationImage={myCertificationImage}
+                certifyTime={certifyTime}
               />
             </>
           )}

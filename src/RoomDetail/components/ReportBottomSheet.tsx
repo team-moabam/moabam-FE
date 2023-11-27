@@ -104,7 +104,10 @@ const ReportBottomSheet = ({
           onSubmit={handleSubmit(handleFormSubmit)}
         >
           {objReportContent.map(([id, content]) => (
-            <div className="mb-[1.125rem] flex items-center">
+            <div
+              className="mb-[1.125rem] flex items-center"
+              key={id}
+            >
               <div className="mr-[1.22rem]">
                 <input
                   type="radio"

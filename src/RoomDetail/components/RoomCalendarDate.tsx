@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import { twMerge } from 'tailwind-merge';
 import clsx from 'clsx';
 import { DAY_OF_THE_WEEK } from '../constants/constant';
+import makeTodayCertifyTime from '../utils/makeTodayCertifyTime';
 import { DateRoomDetailContext } from './RoomDetailProvider';
 import { Icon } from '@/shared/Icon';
 import { Toast } from '@/shared/Toast';
@@ -9,49 +10,35 @@ import { Toast } from '@/shared/Toast';
 interface RoomCalendarDateProps {
   thisDate: Date;
   certifiedDates: string[];
-  serverTime: Date;
   certifyTime: number;
 }
 
 const RoomCalendarDate = ({
   thisDate,
   certifiedDates,
-  serverTime,
   certifyTime
 }: RoomCalendarDateProps) => {
-  const { selectDate, date: chooseDate } = useContext(DateRoomDetailContext);
-  const chooseDateTimestamp = `${chooseDate.getFullYear()}-${
+  const { selectDate, chooseDate, serverTime } = useContext(
+    DateRoomDetailContext
+  );
+  const { nowTime } = makeTodayCertifyTime(certifyTime, serverTime);
+
+  const thisDateDate = thisDate.getDate();
+  const thisDateTime = thisDate.getTime();
+  const thisDateDay = thisDate.getDay();
+  const langKoDay = DAY_OF_THE_WEEK[thisDateDay];
+  const bug = certifiedDates.find((el) => el === thisDateString);
+
+  const chooseDateString = `${chooseDate.getFullYear()}-${
     chooseDate.getMonth() + 1
   }-${chooseDate.getDate()}`;
-
-  const date = thisDate.getDate();
-  const day = thisDate.getDay();
-  const thisDateTimestamp = `${thisDate.getFullYear()}-${
+  const thisDateString = `${thisDate.getFullYear()}-${
     thisDate.getMonth() + 1
-  }-${date}`;
-  const langKoDay = DAY_OF_THE_WEEK[day];
-  const bug = certifiedDates.find((el) => el === thisDateTimestamp);
+  }-${thisDateDate}`;
 
   const handleDateClick = (thisDate: Date) => {
-    const routineLimitTime = new Date(serverTime);
-    routineLimitTime.setHours(certifyTime);
-    routineLimitTime.setMinutes(50);
-
-    if (serverTime.getTime() >= thisDate.getTime()) {
+    if (nowTime >= thisDateTime) {
       selectDate(thisDate);
-
-      if (
-        thisDate.getDate() === routineLimitTime.getDate() &&
-        serverTime.getTime() < routineLimitTime.getTime()
-      ) {
-        Toast.show(
-          {
-            message: '인증 시간 이후 확인 가능합니다',
-            status: 'info'
-          },
-          2000
-        );
-      }
     } else {
       Toast.show(
         {
@@ -72,7 +59,7 @@ const RoomCalendarDate = ({
           'text-black dark:text-white':
             serverTime.getTime() >= thisDate.getTime(),
           'rounded-[0.62rem] border-light-point text-light-point dark:border-dark-point dark:text-dark-point border-[0.06rem]':
-            thisDateTimestamp === chooseDateTimestamp
+            thisDateString === chooseDateString
         }
       )
     )
@@ -81,11 +68,11 @@ const RoomCalendarDate = ({
   return (
     <div
       className={RoomCalendarStyle.calendarItem}
-      key={day}
+      key={thisDateDay}
       onClick={() => handleDateClick(thisDate)}
     >
       <div className="mb-1 text-sm">{langKoDay}</div>
-      <div className="mb-2 text-2xl">{date}</div>
+      <div className="mb-2 text-2xl">{thisDateDate}</div>
       <div className="flex justify-center">
         {bug && (
           <Icon
