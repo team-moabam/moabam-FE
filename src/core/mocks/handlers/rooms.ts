@@ -1,7 +1,7 @@
 import { http, HttpResponse, delay } from 'msw';
 import { Room } from '@/core/types';
 import { baseURL } from '../baseURL';
-import { RoomInfo, RoomInfoBeforeEditing } from '../datas/room';
+import { RoomInfo, RoomInfoBeforeEditing, RoomSemiInfo } from '../datas/room';
 import { MY_JOIN_ROOMS } from '../datas/myJoinRoom';
 import { ROOMS } from '../datas/totalRooms';
 import { SEARCH_ROOMS } from '../datas/searchRooms';
@@ -33,6 +33,24 @@ const roomsHandlers = [
         break;
       case 401:
         response = { message: '로그인이 필요합니다.' };
+        break;
+    }
+
+    return HttpResponse.json(response, { status });
+  }),
+
+  http.get(baseURL('/rooms/:roomId/check'), async () => {
+    await delay(1000);
+
+    const status: number = 200;
+    let response: boolean | { message: string } = true;
+
+    switch (status) {
+      case 200:
+        response = false;
+        break;
+      case 401:
+        response = { message: '존재하지 않는 유저입니다.' };
         break;
     }
 
@@ -121,7 +139,6 @@ const roomsHandlers = [
     switch (status) {
       case 200:
         response = RoomInfo;
-
         break;
       case 401:
         response = { message: '존재하지 않는 유저입니다.' };
@@ -134,7 +151,7 @@ const roomsHandlers = [
     return HttpResponse.json(response, { status });
   }),
 
-  http.get(baseURL('/rooms/:roomId/:date'), async () => {
+  http.get(baseURL('/rooms/:roomId/un-joined'), async () => {
     await delay(1000);
 
     const status: number = 200;
@@ -142,13 +159,10 @@ const roomsHandlers = [
 
     switch (status) {
       case 200:
-        response = RoomInfo;
+        response = RoomSemiInfo;
         break;
       case 401:
         response = { message: '존재하지 않는 유저입니다.' };
-        break;
-      case 404:
-        response = { message: '존재하지 않는 방입니다.' };
         break;
     }
 

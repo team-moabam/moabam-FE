@@ -4,6 +4,7 @@ export const RoomInfo = {
   managerNickname: '재영',
   roomImage: 'https://picsum.photos/200',
   level: 5,
+  exp: 4,
   roomType: 'MORNING',
   certifyTime: 9,
   currentUserCount: 5,
@@ -137,6 +138,46 @@ export const RoomInfoBeforeEditing = {
       nickname: '참여자2',
       contributionPoint: 70,
       profileImage: 'https://~'
+    }
+  ]
+};
+
+export const RoomSemiInfo = {
+  roomId: 3,
+  isPassword: true,
+  title: '하윙 방',
+  roomImage: 'https://~',
+  level: 3,
+  exp: 6,
+  roomType: 'MORNING',
+  certifyTime: 7,
+  currentUserCount: 6,
+  maxUserCount: 10,
+  announcement: '얼른 인증하셈',
+  routines: [
+    {
+      routineId: 5,
+      content: '물 마시기'
+    },
+    {
+      routineId: 9,
+      content: '아침 먹기'
+    }
+  ],
+  certifiedRanks: [
+    {
+      rank: 1,
+      memberId: 3,
+      nickname: '오목이123',
+      awakeImage: 'https://~',
+      sleepImage: 'https://~'
+    },
+    {
+      rank: 2,
+      memberId: 6,
+      nickname: '오목이83838',
+      awakeImage: 'https://~',
+      sleepImage: 'https://~'
     }
   ]
 };
