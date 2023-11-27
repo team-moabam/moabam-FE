@@ -32,16 +32,11 @@ const App = () => {
   return (
     <div
       className={clsx('h-screen w-screen', {
-        'min-[1024px]:bg-dark-main': theme === 'dark',
+        'dark min-[1024px]:bg-dark-main': theme === 'dark',
         'min-[1024px]:bg-light-main': theme !== 'dark'
       })}
     >
-      <div
-        className={clsx('app-container flex flex-col', {
-          'dark bg-dark-main': theme === 'dark',
-          'bg-light-main': theme !== 'dark'
-        })}
-      >
+      <div className="app-container flex flex-col bg-light-main dark:bg-dark-main">
         <ErrorBoundary fallback={<UnknownFallback />}>
           <div className="h-full overflow-hidden bg-light-main text-black dark:bg-dark-main dark:text-white">
             <Outlet />
@@ -50,12 +45,7 @@ const App = () => {
           {navBarRequired && <Navbar currentPath={`/${path}`} />}
         </ErrorBoundary>
       </div>
-      <div
-        className={clsx('app-info', {
-          dark: theme === 'dark',
-          light: theme !== 'dark'
-        })}
-      >
+      <div className="app-info">
         <AboutMoabam theme={theme} />
       </div>
     </div>

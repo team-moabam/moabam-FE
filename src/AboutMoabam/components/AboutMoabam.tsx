@@ -1,4 +1,7 @@
 import React from 'react';
+import IntroText from './IntroText';
+import Mark from './Mark';
+import BirdButton from './BirdButton';
 
 interface AboutMoabamProps {
   theme: string;
@@ -34,54 +37,27 @@ const AboutMoabam = ({ theme }: AboutMoabamProps) => {
 
       {/* 모아밤 소개 텍스트 */}
       <div className="flex flex-col gap-8 text-xl max-2xl:text-lg max-xl:text-base">
-        <div className="flex items-center gap-6">
-          <div className="h-5 w-5 rounded-full bg-light-point dark:bg-dark-point"></div>
-          <div className="font-IMHyemin-bold">매일 매일 나만의 루틴 지키기</div>
-        </div>
-        <div className="flex items-center gap-6">
-          <div className="h-5 w-5 rounded-full bg-light-point dark:bg-dark-point"></div>
-          <div>
-            <span className="bg-light-point bg-opacity-[0.2] dark:bg-dark-point dark:bg-opacity-[0.3]">
-              같이 루틴을 하고 싶은 사람들
-            </span>
-            과 함께
-          </div>
-        </div>
-        <div className="flex items-center gap-6">
-          <div className="h-5 w-5 rounded-full bg-light-point dark:bg-dark-point"></div>
-          <div>
-            <span className="bg-light-point bg-opacity-[0.2] dark:bg-dark-point dark:bg-opacity-[0.3]">
-              귀여운 새 친구들
-            </span>
-            과 함께 하면 어떨 까요?
-          </div>
-        </div>
+        <IntroText className="font-IMHyemin-bold">
+          매일 매일 나만의 루틴 지키기
+        </IntroText>
+        <IntroText>
+          <Mark>같이 루틴을 하고 싶은 사람들</Mark>과 함께
+        </IntroText>
+        <IntroText>
+          <Mark>귀여운 새 친구들</Mark>과 함께 하면 어떨까요?
+        </IntroText>
       </div>
 
       {/* 링크 바로가기 */}
       <div className="relative -bottom-12 flex justify-start gap-4">
-        <div className="flex flex-col items-center gap-8">
-          <div className="btn btn-light-point dark:btn-dark-point cursor-pointer text-lg dark:text-dark-main max-xl:text-base">
-            깃허브 구경하기
-          </div>
-          <div>
-            <img
-              src="/assets/skins/sleepOmokSkin1.png"
-              className="w-full max-w-[8rem]"
-            />
-          </div>
-        </div>
-        <div className="flex flex-col items-center gap-8">
-          <div className="btn btn-light-point dark:btn-dark-point cursor-pointer text-lg dark:text-dark-main max-xl:text-base">
-            기획 스토리 보기
-          </div>
-          <div>
-            <img
-              src="/assets/skins/awakeOwlSkin2.png"
-              className="w-full max-w-[8rem]"
-            />
-          </div>
-        </div>
+        <BirdButton
+          text="깃허브 구경하기"
+          birdImage="/assets/skins/sleepOmokSkin1.png"
+        />
+        <BirdButton
+          text="기획스토리 보기"
+          birdImage="/assets/skins/awakeOwlSkin2.png"
+        />
       </div>
     </div>
   );
