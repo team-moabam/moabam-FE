@@ -12,6 +12,9 @@ const couponAPI = {
   },
   myCoupon: async () => {
     return await baseInstance.get<MyCoupon[]>(`/my-coupons`);
+  },
+  useCoupon: async (couponWalletId: number) => {
+    return await baseInstance.post(`/my-coupons/${couponWalletId}`);
   }
 };
 

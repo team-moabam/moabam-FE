@@ -51,6 +51,15 @@ const couponsHandlers = [
   http.get(baseURL('/my-coupons'), async () => {
     await delay(1000);
     return HttpResponse.json(MY_COUPONS, { status: 200 });
+  }),
+  http.get(baseURL('/my-coupons'), async () => {
+    await delay(1000);
+    return HttpResponse.json(MY_COUPONS, { status: 200 });
+  }),
+  http.post(baseURL('/my-coupons/:couponWalletId'), async () => {
+    console.log(1);
+    await delay(1000);
+    return HttpResponse.json({}, { status: 200 });
   })
 ];
 

@@ -17,6 +17,11 @@ const couponOptions = {
     queryOptions({
       queryKey: ['coupons', 'my'] as const,
       queryFn: () => couponAPI.myCoupon()
+    }),
+  useCoupon: (couponWalletId: number) =>
+    queryOptions({
+      queryKey: ['coupons', 'useCoupon'] as const,
+      queryFn: () => couponAPI.useCoupon(couponWalletId)
     })
 };
 
