@@ -44,7 +44,7 @@ const BirdItems = ({ type }: BirdItemsProps) => {
   const fetchSelectItem = useDebounce((id: number) => {
     mutate(id, {
       onSuccess: () => {
-        queryClient.invalidateQueries({ queryKey: ['user', 'item'] });
+        queryClient.invalidateQueries({ queryKey: ['item', type] });
       }
     });
   }, 1000);
