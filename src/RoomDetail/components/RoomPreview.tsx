@@ -4,18 +4,18 @@ import clsx from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { useForm } from 'react-hook-form';
 import roomAPI from '@/core/api/functions/roomAPI';
-import { RoomInfo } from '@/core/types/Room';
+import { RoomSemiInfo } from '@/core/types/Room';
 import { PasswordInput } from '@/shared/Input';
 import { Toast } from '@/shared/Toast';
 import RoomRoutineList from './RoomRoutineList';
 
 const RoomPreview = ({
-  routine,
+  routines,
   certifyTime,
   roomId,
   maxUserCount,
   currentUserCount
-}: RoomInfo) => {
+}: RoomSemiInfo) => {
   const canJoin = maxUserCount - currentUserCount >= 1;
   const { handleSubmit, register } = useForm<{ password: string }>({
     mode: 'onSubmit',
@@ -26,13 +26,16 @@ const RoomPreview = ({
     mutationFn: roomAPI.postRoomJoin
   });
 
+  const queryClient = useQueryClient();
+
   const joinTheRoom = (data: { password: string }) => {
     mutate(
       { roomId: `${roomId}`, body: data },
       {
         onSuccess: () => {
           Toast.show({ status: 'confirm', message: '방에 참가하였습니다' });
-          // 상세페이지 이동
+          ['rooms', 'checkRoomJoin'] as const,
+            queryClient.invalidateQueries({ queryKey: ['room'] });
         }
       }
     );
@@ -41,7 +44,7 @@ const RoomPreview = ({
   return (
     <>
       <RoomRoutineList
-        routine={routine}
+        routines={routines}
         certifyTime={certifyTime}
       />
       <div className="mt-[2.56rem] flex-col">

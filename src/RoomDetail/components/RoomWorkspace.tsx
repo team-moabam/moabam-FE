@@ -25,7 +25,7 @@ type RoomWorkspaceProps = extendedProps & RoomInfo;
 
 const RoomWorkspace = ({
   completePercentage,
-  routine,
+  routines,
   todayCertificateRank,
   certifiedDates,
   certifyTime,
@@ -117,7 +117,7 @@ const RoomWorkspace = ({
                   <Link
                     to={`log/${chooseDateText}`}
                     className="mb-[2.13rem] flex w-fit items-center text-sm text-light-point dark:text-dark-point"
-                    state={{ todayCertificateRank, routine, chooseDate }}
+                    state={{ todayCertificateRank, routines, chooseDate }}
                     onClick={handleLogLinkClick}
                   >
                     인증사진 보러가기
@@ -129,7 +129,7 @@ const RoomWorkspace = ({
                 </div>
               }
               <RoomRoutine
-                routines={routine}
+                routines={routines}
                 myCertificationImage={myCertificationImage}
                 certifyTime={certifyTime}
               />

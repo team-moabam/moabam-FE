@@ -12,7 +12,7 @@ export const RoomInfo = {
   announcement: '2번 연속 인증 안하는 사람은 추방할 예정입니다 ㅅㄱ!',
   completePercentage: 66.7,
   certifiedDates: ['2023-11-13', '2023-11-14', '2023-11-16'],
-  routine: [
+  routines: [
     {
       routineId: 5,
       content: '물 마시기'

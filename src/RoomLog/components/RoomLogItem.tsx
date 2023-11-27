@@ -3,7 +3,7 @@ import { Avatar } from '@/shared/Avatar';
 import { Accordion, AccordionHeader, AccordionBody } from '@/shared/Accordion';
 
 type extendedProps = {
-  routine: { routineId: number; content: string }[];
+  routines: { routineId: number; content: string }[];
 };
 
 type RoomLogItemProps = extendedProps & RankMember;
@@ -14,7 +14,7 @@ const RoomLogItem = ({
   memberId,
   nickname,
   certificationImage,
-  routine
+  routines
 }: RoomLogItemProps) => {
   return (
     <div className="mb-[1.19rem] flex w-full items-center justify-between peer-invalid:visible">
@@ -31,7 +31,7 @@ const RoomLogItem = ({
           <div className="grid grid-cols-2 gap-x-3 gap-y-[1.32rem] px-[1.19rem] py-7">
             {certificationImage ? (
               certificationImage.map(({ routineId: checkRoutineId, image }) => {
-                const routineData = routine.find(
+                const routineData = routines.find(
                   ({ routineId }) => routineId === checkRoutineId
                 );
                 return (

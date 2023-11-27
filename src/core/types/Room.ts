@@ -1,4 +1,4 @@
-import { RankMember } from './Member';
+import { RankMember, RankMemberSemi } from './Member';
 
 export type DayType = 'MORNING' | 'NIGHT';
 
@@ -15,7 +15,7 @@ export type RoomInfo = {
   announcement: string;
   completePercentage: number;
   certifiedDates: string[];
-  routine: { routineId: number; content: string }[];
+  routines: { routineId: number; content: string }[];
   todayCertificateRank: RankMember[];
 };
 
@@ -31,8 +31,8 @@ export type RoomSemiInfo = {
   currentUserCount: number;
   maxUserCount: number;
   announcement: string;
-  routine: { routineId: number; content: string }[];
-  certificateRank: RankMember[];
+  routines: { routineId: number; content: string }[];
+  certifiedRanks: RankMemberSemi[];
 };
 
 export type RoomInfoBeforeEditing = {
