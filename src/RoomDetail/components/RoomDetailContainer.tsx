@@ -2,9 +2,9 @@ import { useContext } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { roomOptions } from '@/core/api/options';
 import { useRouteData } from '@/core/hooks';
-import { DateRoomDetailContext } from './RoomDetailProvider';
-import { RoomInfo, RoomWorkspace } from '@/RoomDetail';
 import { RoomInfo as RoomInfoType } from '@/core/types/Room';
+import { RoomInfo, RoomWorkspace } from '@/RoomDetail';
+import { DateRoomDetailContext } from './RoomDetailProvider';
 interface RoomDetailContainerProps {
   roomDetailData: RoomInfoType;
 }

@@ -1,10 +1,10 @@
 import { Suspense } from 'react';
 import { ErrorBoundary } from '@suspensive/react';
-import RoomData from './RoomData';
-import RoomDataFallback from './RoomDataFallback';
+import { DayType } from '@/core/types/Room';
 import { Deffered } from '@/shared/Deffered';
 import { NetworkFallback } from '@/shared/ErrorBoundary';
-import { DayType } from '@/core/types/Room';
+import RoomData from './RoomData';
+import RoomDataFallback from './RoomDataFallback';
 
 interface RoomSlideProps {
   roomType: DayType;

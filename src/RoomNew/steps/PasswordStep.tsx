@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { PASSWORD } from '@/RoomForm/constants/literals';
-import { headingStyle, descriptionStyle } from '../constants/styles';
 import { Password } from '@/RoomForm';
+import { headingStyle, descriptionStyle } from '../constants/styles';
 
 const PasswordStep = () => {
   return (

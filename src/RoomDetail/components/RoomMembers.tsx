@@ -2,12 +2,12 @@ import { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useRouteData } from '@/core/hooks';
 import notificationAPI from '@/core/api/functions/notificationAPI';
-import ReportBottomSheet from './ReportBottomSheet';
+import { RankMember } from '@/core/types/Member';
 import { Avatar } from '@/shared/Avatar';
 import { Icon } from '@/shared/Icon';
 import { useBottomSheet } from '@/shared/BottomSheet';
 import { Toast } from '@/shared/Toast';
-import { RankMember } from '@/core/types/Member';
+import ReportBottomSheet from './ReportBottomSheet';
 
 interface RoomMembers {
   members: RankMember[];

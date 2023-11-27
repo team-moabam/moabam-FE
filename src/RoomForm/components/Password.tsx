@@ -1,8 +1,8 @@
 import { useCallback } from 'react';
 import { useFormContext } from 'react-hook-form';
+import { PasswordInput } from '@/shared/Input';
 import { PASSWORD } from '@/RoomForm/constants/literals';
 import { errorStyle } from '../constants/styles';
-import { PasswordInput } from '@/shared/Input';
 
 interface PasswordProps {
   placeholder: string;

@@ -2,7 +2,7 @@ import { Suspense } from 'react';
 import { ErrorBoundary } from '@suspensive/react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { useMoveRoute } from '@/core/hooks';
-import RoutinesPage from './RoutinesPage';
+import { NetworkFallback } from '@/shared/ErrorBoundary';
 import { useDayTypes } from '@/RoomSlide';
 import {
   UserInfoFallback,
@@ -10,7 +10,7 @@ import {
   UserInfo,
   Background
 } from '@/StartSlide';
-import { NetworkFallback } from '@/shared/ErrorBoundary';
+import RoutinesPage from './RoutinesPage';
 
 const StartPage = () => {
   const { dayType } = useDayTypes();

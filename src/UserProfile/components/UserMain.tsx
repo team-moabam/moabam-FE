@@ -2,8 +2,8 @@ import { Link } from 'react-router-dom';
 import { useSuspenseQueries } from '@tanstack/react-query';
 import { BiSolidBugAlt } from 'react-icons/bi';
 import memberOptions from '@/core/api/options/member';
-import UserProfile from './UserProfile';
 import { ProgressBar } from '@/shared/ProgressBar';
+import UserProfile from './UserProfile';
 
 interface UserMainProps {
   userId: string | undefined;

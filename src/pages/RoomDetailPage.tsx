@@ -3,11 +3,11 @@ import { useSuspenseQuery } from '@tanstack/react-query';
 import { roomOptions } from '@/core/api/options';
 import { useRouteData } from '@/core/hooks';
 import timeOption from '@/core/api/options/time';
-import RoomHeader from '../RoomDetail/components/RoomHeader';
-import { RoomNotice } from '@/RoomDetail';
 import RoomDetailContainer from '@/RoomDetail/components/RoomDetailContainer';
 import RoomDetailProvider from '@/RoomDetail/components/RoomDetailProvider';
 import RoomDetailFallback from '@/RoomDetail/components/RoomDetailFallback';
+import { RoomNotice } from '@/RoomDetail';
+import RoomHeader from '../RoomDetail/components/RoomHeader';
 
 const RoomDetailPage = () => {
   const {
