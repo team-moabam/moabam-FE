@@ -76,7 +76,11 @@ const UserMain = ({ userId = '' }: UserMainProps) => {
         </Link>
       </div>
       <div className="flex w-full justify-center gap-4">
-        <div className="flex aspect-[3/4] w-1/2 flex-col items-center justify-center gap-3 rounded-lg bg-light-sub text-lg dark:bg-dark-sub">
+        <Link
+          to="/mybird"
+          state={{ type: 'MORNING' }}
+          className="flex aspect-[3/4] w-1/2 flex-col items-center justify-center gap-3 rounded-lg bg-light-sub text-lg dark:bg-dark-sub"
+        >
           <div className="aspect-square w-1/2 overflow-hidden rounded-full bg-slate-400">
             <img
               src={birds.MORNING}
@@ -85,8 +89,12 @@ const UserMain = ({ userId = '' }: UserMainProps) => {
             />
           </div>
           <div>오목눈이</div>
-        </div>
-        <div className="flex aspect-[3/4] w-1/2 flex-col items-center justify-center gap-3 rounded-lg bg-light-sub text-lg dark:bg-dark-sub">
+        </Link>
+        <Link
+          to="/mybird"
+          state={{ type: 'NIGHT' }}
+          className="flex aspect-[3/4] w-1/2 flex-col items-center justify-center gap-3 rounded-lg bg-light-sub text-lg dark:bg-dark-sub"
+        >
           <div className="aspect-square w-1/2 overflow-hidden rounded-full bg-slate-400">
             <img
               src={birds.NIGHT}
@@ -95,7 +103,7 @@ const UserMain = ({ userId = '' }: UserMainProps) => {
             />
           </div>
           <div>부엉이</div>
-        </div>
+        </Link>
       </div>
       <div className="mb-3 mt-8 flex w-full justify-between">
         <h1>뱃지</h1>

@@ -11,6 +11,7 @@ import { UnknownFallback } from './shared/ErrorBoundary';
 import useCheckAuthRequired from './useCheckAuthRequired';
 import 'swiper/css';
 import 'swiper/css/bundle';
+import AboutMoabam from './AboutMoabam/components/AboutMoabam';
 
 const App = () => {
   const { navBarRequired, path } = useRouteData();
@@ -30,18 +31,23 @@ const App = () => {
 
   return (
     <div
-      className={clsx('app-container flex flex-col', {
-        'dark bg-dark-main': theme === 'dark',
-        'bg-light-main': theme !== 'dark'
+      className={clsx('h-screen w-screen', {
+        'dark min-[1024px]:bg-dark-main': theme === 'dark',
+        'min-[1024px]:bg-light-main': theme !== 'dark'
       })}
     >
-      <ErrorBoundary fallback={<UnknownFallback />}>
-        <div className="h-full overflow-hidden bg-light-main text-black dark:bg-dark-main dark:text-white">
-          <Outlet />
-        </div>
+      <div className="app-container flex flex-col bg-light-main dark:bg-dark-main">
+        <ErrorBoundary fallback={<UnknownFallback />}>
+          <div className="h-full overflow-hidden bg-light-main text-black dark:bg-dark-main dark:text-white">
+            <Outlet />
+          </div>
 
-        {navBarRequired && <Navbar currentPath={`/${path}`} />}
-      </ErrorBoundary>
+          {navBarRequired && <Navbar currentPath={`/${path}`} />}
+        </ErrorBoundary>
+      </div>
+      <div className="app-info">
+        <AboutMoabam theme={theme} />
+      </div>
     </div>
   );
 };

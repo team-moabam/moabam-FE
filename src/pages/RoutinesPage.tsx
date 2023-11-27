@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Suspense } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
 import { Controller } from 'swiper/modules';
 import { SwiperClass } from 'swiper/react';
 import { EventBanner } from '@/Promotion';
@@ -14,6 +14,14 @@ const RoutinesPage = () => {
     null
   );
 
+  const handleClickController = () => {
+    if (dayType === DAY_TYPES[0]) {
+      routineSwiper?.slideNext();
+    } else {
+      routineSwiper?.slidePrev();
+    }
+  };
+
   return (
     <div className="flex h-full flex-col items-center overflow-auto">
       <div className="mb-4 mt-8 flex w-full items-center justify-between px-10 pr-8">
@@ -21,6 +29,7 @@ const RoutinesPage = () => {
         <SlideController
           control={routineSwiper}
           onSwiper={setControllSwiper}
+          onClick={handleClickController}
         />
       </div>
 

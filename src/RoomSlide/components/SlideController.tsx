@@ -7,9 +7,14 @@ import { Controller } from 'swiper/modules';
 interface SlideControllerProps {
   control: SwiperClass | null;
   onSwiper: React.Dispatch<React.SetStateAction<SwiperClass | null>>;
+  onClick: VoidFunction;
 }
 
-const SlideController = ({ control, onSwiper }: SlideControllerProps) => {
+const SlideController = ({
+  control,
+  onSwiper,
+  onClick
+}: SlideControllerProps) => {
   return (
     <div className="relative flex h-10 w-14 items-center overflow-hidden rounded-full">
       <div
@@ -25,6 +30,7 @@ const SlideController = ({ control, onSwiper }: SlideControllerProps) => {
         onSwiper={onSwiper}
         slidesPerView={1}
         dir="rtl"
+        onClick={onClick}
       >
         <SwiperSlide className="flex justify-end">
           <div className={clsx('relative h-full w-[0.625rem]')}>

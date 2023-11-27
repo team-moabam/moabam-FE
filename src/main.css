@@ -37,5 +37,24 @@ body {
 }
 
 .app-container {
-  @apply absolute inset-x-0 m-auto h-full w-full max-w-md;
+  @apply absolute inset-0 m-auto h-full w-full max-w-md;
+  @media screen and (min-width: 1024px) {
+    right: 40%;
+    height: 90%;
+    border-radius: 2rem;
+    border: 0.5rem solid white;
+    overflow: hidden;
+    box-sizing: content-box;
+    max-width: 24rem;
+    box-shadow:
+      0px 10px 10px -5px rgba(0, 0, 0, 0.04),
+      0px 20px 25px -5px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.app-info {
+  @apply absolute m-auto w-[30%] h-full right-[16%] overflow-hidden;
+  @media screen and (max-width: 1023px) {
+    display: none;
+  }
 }
