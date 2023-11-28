@@ -53,8 +53,8 @@ const ToastManager = ({ bind }: ToastManagerProps) => {
   return (
     <div
       className={clsx(
-        'absolute bottom-[3.25rem] left-[50%] flex min-h-[2.75rem] w-full translate-x-[-50%] flex-col items-center empty:hidden',
-        'lg:bottom-[calc(5%+3.25rem)] lg:left-auto lg:right-[40%] lg:translate-x-[20%]'
+        'absolute bottom-[4.25rem] left-[50%] flex min-h-[2.75rem] w-full translate-x-[-50%] flex-col items-center empty:hidden',
+        'lg:bottom-[calc(5%+4.25rem)] lg:left-auto lg:right-[40%] lg:translate-x-[20%]'
       )}
     >
       {toasts.map(({ id, status, message, subText, icon, duration }) => (
