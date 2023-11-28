@@ -25,8 +25,8 @@ const StoreList = () => {
       },
       {
         ...couponOptions.my(),
-        select: ({ myCouponsResponse }: { myCouponsResponse: MyCoupon[] }) =>
-          myCouponsResponse.filter(({ type }) => type === 'DISCOUNT_COUPON')
+        select: (coupons: MyCoupon[]) =>
+          coupons.filter(({ type }) => type === 'DISCOUNT_COUPON')
       }
     ]
   });
