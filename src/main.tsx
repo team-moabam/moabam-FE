@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { RouterProvider } from 'react-router-dom';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { HelmetProvider } from 'react-helmet-async';
 import router from '@/core/routes/router';
 import Debounce from '@/core/utils/debounce';
 import { getFCMToken } from '@/core/utils/firebase';
@@ -68,14 +69,16 @@ const setupFCM = async () => {
 Promise.allSettled([setupMSW(), setupFCM(), setupSW()]).then(() => {
   ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
-      <QueryClientProvider client={queryClient}>
-        <ThemeProvider>
-          <PWAInstallBannerProvider>
-            <RouterProvider router={router} />
-            <ReactQueryDevtools initialIsOpen={false} />
-          </PWAInstallBannerProvider>
-        </ThemeProvider>
-      </QueryClientProvider>
+      <HelmetProvider>
+        <QueryClientProvider client={queryClient}>
+          <ThemeProvider>
+            <PWAInstallBannerProvider>
+              <RouterProvider router={router} />
+              <ReactQueryDevtools initialIsOpen={false} />
+            </PWAInstallBannerProvider>
+          </ThemeProvider>
+        </QueryClientProvider>
+      </HelmetProvider>
     </React.StrictMode>
   );
 });

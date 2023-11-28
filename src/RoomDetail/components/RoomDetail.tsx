@@ -3,6 +3,7 @@ import { useSuspenseQuery } from '@tanstack/react-query';
 import { roomOptions } from '@/core/api/options';
 import RoomDetailContainer from '@/RoomDetail/components/RoomDetailContainer';
 import { RoomNotice } from '@/RoomDetail';
+import { RoomDetailMeta } from '@/Meta';
 import RoomHeader from './RoomHeader';
 import { DateRoomDetailContext } from './RoomDetailProvider';
 
@@ -24,6 +25,7 @@ const RoomDetail = ({ roomId }: RoomDetailProps) => {
 
   return (
     <>
+      <RoomDetailMeta roomTitle={title} />
       <RoomHeader title={title} />
       <RoomNotice content={announcement} />
       <RoomDetailContainer roomDetailData={roomDetailData} />

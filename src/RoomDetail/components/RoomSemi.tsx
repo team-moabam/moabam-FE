@@ -2,6 +2,7 @@ import { useSuspenseQuery } from '@tanstack/react-query';
 import clsx from 'clsx';
 import { roomOptions } from '@/core/api/options';
 import { ProgressBar } from '@/shared/ProgressBar';
+import { RoomDetailMeta } from '@/Meta';
 import { RoomNotice } from '..';
 import isMorning from '../utils/isMorning';
 import RoomHeader from './RoomHeader';
@@ -31,6 +32,7 @@ const RoomSemi = ({ roomId, serverTime }: RoomSemiProps) => {
 
   return (
     <>
+      <RoomDetailMeta roomTitle={title} />
       <RoomHeader title={title} />
       <RoomNotice content={announcement} />
       <div className="h-[20.56rem] bg-[url('/level1.png')] bg-cover bg-no-repeat text-white">

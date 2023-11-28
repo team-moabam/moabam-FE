@@ -27,6 +27,7 @@ interface Route {
   authRequired: boolean;
   navBarRequired: boolean;
   element: React.ReactNode;
+  pageName?: string;
 }
 
 export type RouteNames =
@@ -67,79 +68,92 @@ const routes: Routes = {
     path: 'guide',
     authRequired: false,
     navBarRequired: false,
-    element: <GuidePage />
+    element: <GuidePage />,
+    pageName: '환영해요'
   },
   join: {
     path: 'join',
     authRequired: false,
     navBarRequired: false,
-    element: <JoinPage />
+    element: <JoinPage />,
+    pageName: '시작하기'
   },
   joinKakao: {
     path: 'login/kakao/oauth',
     authRequired: false,
     navBarRequired: false,
-    element: <JoinKakaoPage />
+    element: <JoinKakaoPage />,
+    pageName: '시작하기'
   },
   routines: {
     path: 'routines',
     authRequired: true,
     navBarRequired: true,
-    element: <RoutinesPage />
+    element: <RoutinesPage />,
+    pageName: '나의 루틴'
   },
   search: {
     path: 'search',
     authRequired: true,
     navBarRequired: true,
-    element: <SearchPage />
+    element: <SearchPage />,
+    pageName: '루틴방 조회'
   },
   myPage: {
     path: 'user',
     authRequired: true,
     navBarRequired: true,
-    element: <UserPage />
+    element: <UserPage />,
+    pageName: '내 정보'
   },
   user: {
     path: 'user/:userId',
     authRequired: true,
     navBarRequired: true,
-    element: <UserPage />
+    element: <UserPage />,
+    pageName: '유저 정보'
   },
   myLog: {
     path: 'user/participate-log',
     authRequired: true,
     navBarRequired: false,
-    element: <ParticipateLogPage />
+    element: <ParticipateLogPage />,
+    pageName: '방 참여기록'
   },
   myOrderLog: {
     path: 'user/order-log',
     authRequired: true,
     navBarRequired: false,
-    element: <OrderLogPage />
+    element: <OrderLogPage />,
+    pageName: '구매 내역'
   },
   myCoupon: {
     path: 'user/coupon',
     authRequired: true,
     navBarRequired: false,
-    element: <CouponPage />
+    element: <CouponPage />,
+    pageName: '쿠폰함'
   },
   store: {
     path: 'store',
     authRequired: true,
     navBarRequired: false,
-    element: <StorePage />
+    element: <StorePage />,
+    pageName: '상점'
   },
   rank: {
     path: 'rank',
     authRequired: false,
     navBarRequired: false,
-    element: <RankPage />
+    element: <RankPage />,
+    pageName: '랭킹'
   },
   createRoom: {
     path: 'room/new',
     authRequired: true,
     navBarRequired: false,
-    element: <RoomNewPage />
+    element: <RoomNewPage />,
+    pageName: '방 생성'
   },
   room: {
     path: 'room',
@@ -151,43 +165,50 @@ const routes: Routes = {
     path: 'room/:roomId',
     authRequired: true,
     navBarRequired: true,
-    element: <RoomDetailPage />
+    element: <RoomDetailPage />,
+    pageName: '루틴방'
   },
   roomLog: {
     path: 'room/:roomId/log/:logId',
     authRequired: true,
     navBarRequired: false,
-    element: <RoomLogPage />
+    element: <RoomLogPage />,
+    pageName: '인증 기록'
   },
   roomSetting: {
     path: 'room/:roomId/setting',
     authRequired: true,
     navBarRequired: false,
-    element: <RoomSettingPage />
+    element: <RoomSettingPage />,
+    pageName: '방 설정'
   },
   mybird: {
     path: 'mybird',
     authRequired: true,
     navBarRequired: false,
-    element: <MyBirdPage />
+    element: <MyBirdPage />,
+    pageName: '새 커스텀'
   },
   event: {
     path: 'event',
     authRequired: true,
     navBarRequired: false,
-    element: <EventPage />
+    element: <EventPage />,
+    pageName: '이벤트/쿠폰'
   },
   purchaseSuccess: {
     path: 'purchase-success',
     authRequired: true,
     navBarRequired: false,
-    element: <PurchaseSuccessPage />
+    element: <PurchaseSuccessPage />,
+    pageName: '결제'
   },
   purchaseFail: {
     path: 'purchase-fail',
     authRequired: true,
     navBarRequired: false,
-    element: <PurchaseFailPage />
+    element: <PurchaseFailPage />,
+    pageName: '결제'
   },
   notFound: {
     path: '*',
