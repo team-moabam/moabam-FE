@@ -9,8 +9,6 @@ import RoomDetail from '@/RoomDetail/components/RoomDetail';
 import RoomSemi from '@/RoomDetail/components/RoomSemi';
 import RoomDetailProvider from '@/RoomDetail/components/RoomDetailProvider';
 import RoomDetailFallback from '@/RoomDetail/components/RoomDetailFallback';
-import { RoomNotice } from '@/RoomDetail';
-import { RoomDetailMeta } from '@/Meta';
 
 const RoomDetailPage = () => {
   const {
@@ -31,7 +29,6 @@ const RoomDetailPage = () => {
 
   return (
     <>
-      <RoomDetailMeta roomTitle={title} />
       <div className="relative h-full overflow-y-scroll">
         <ErrorBoundary fallback={<NetworkFallback />}>
           <Suspense fallback={<RoomDetailFallback />}>
