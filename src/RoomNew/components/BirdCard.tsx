@@ -19,10 +19,12 @@ const BirdCard = ({ active = false, type, onClick }: BirdCardProps) => {
       )}
       onClick={onClick}
     >
-      <img
-        src={BIRD[type].image}
-        className="w-20"
-      />
+      <div className={clsx('w-24 rounded-full', BIRD[type].bg)}>
+        <img
+          src={BIRD[type].image}
+          className="p-4"
+        />
+      </div>
       <div className="pt-2 text-center leading-8">
         <b>{BIRD[type].name}</b>
         <p className="text-sm text-dark-gray">

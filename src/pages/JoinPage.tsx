@@ -11,38 +11,37 @@ const KAKAO_LOGIN_URL =
 
 const JoinPage = () => {
   return (
-    <div className="relative h-full">
-      <div className="absolute inset-x-0 top-1/3 flex flex-col items-center">
-        <div className="mb-8 aspect-square w-3/5 max-w-[200px]">
+    <main className="flex h-full flex-col items-center justify-center p-2">
+      <section className="flex grow flex-col items-center justify-center text-center">
+        <div className="w-48 rounded-full bg-yellow-50">
           <img
-            src="/assets/Omok.png"
-            alt=""
-            className="w-full rounded-full"
+            src="assets/skins/defaultOmok.png"
+            className="p-4"
           />
         </div>
-        <div className="flex flex-col items-center text-center">
-          <h1 className="mb-4 text-3xl">안녕하세요!</h1>
-          <h3 className="text-lg text-dark-gray">
+        <div className="mt-10">
+          <h1 className="text-3xl">안녕하세요!</h1>
+          <p className="mt-4 text-lg text-dark-gray">
             다른 사람들과 같은 곳을 바라보면서 <br /> 루틴에 활기를 찾아봐요
-          </h3>
+          </p>
         </div>
-      </div>
-      <div className="absolute inset-x-0 bottom-5 mx-5 overflow-hidden rounded-full">
+      </section>
+      <section className="w-full justify-self-end p-4">
         <a
-          className="relative block w-full cursor-pointer select-none bg-[#FFEB06] p-3 text-center font-extrabold text-[#6A2346]"
+          className="relative flex w-full cursor-pointer select-none rounded-2xl bg-[#FFEB06] p-3"
           href={KAKAO_LOGIN_URL}
         >
-          <div className="absolute inset-y-0 left-5 grid place-content-center">
-            <img
-              src="/kakaoTalk.png"
-              alt=""
-              className="h-7"
-            />
-          </div>
-          <h1>카카오톡으로 로그인하기</h1>
+          <img
+            className="absolute top-1/2 h-7 -translate-y-1/2"
+            src="/kakaoTalk.png"
+            alt=""
+          />
+          <p className="w-full text-center font-extrabold text-[#6A2346]">
+            카카오 계정 로그인
+          </p>
         </a>
-      </div>
-    </div>
+      </section>
+    </main>
   );
 };
 
