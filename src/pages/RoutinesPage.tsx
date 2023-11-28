@@ -50,7 +50,7 @@ const RoutinesPage = () => {
         ))}
       </Swiper>
 
-      <PWAInstallBanner />
+      <PWAInstallBanner bannerStyle="mb-5" />
       <Suspense>
         <EventBanner />
       </Suspense>

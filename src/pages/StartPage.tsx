@@ -10,6 +10,7 @@ import {
   UserInfo,
   Background
 } from '@/StartSlide';
+import { PWAInstallBanner } from '@/PWAInstallBanner';
 import RoutinesPage from './RoutinesPage';
 
 const StartPage = () => {
@@ -36,8 +37,11 @@ const StartPage = () => {
             </Suspense>
           </ErrorBoundary>
 
-          <div className="absolute inset-x-0 bottom-8 mx-auto w-fit">
-            <SwipeArrow />
+          <div className="absolute bottom-8 w-full">
+            <PWAInstallBanner />
+            <div className="inset-x-0 mx-auto w-fit">
+              <SwipeArrow />
+            </div>
           </div>
         </SwiperSlide>
         <SwiperSlide></SwiperSlide>
