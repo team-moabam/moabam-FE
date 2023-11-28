@@ -7,9 +7,6 @@ import {
 import { Inputs } from '../hooks/useRoomForm';
 import BirdCardSection from '../components/BirdCardSection';
 
-// useSuspenseQuery는 BirdStep에서 쓰고
-// 네비바에서도 추가로 useQuery의 isPending을 써서 로딩중에 못넘어가게 하자.
-
 const BirdStep = () => {
   const {
     formState: { errors }
