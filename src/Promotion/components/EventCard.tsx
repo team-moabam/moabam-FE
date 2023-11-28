@@ -36,10 +36,10 @@ const EventCard = ({
         const { status } = response;
         switch (status) {
           case 400:
-            Toast.show({ status: 'info', message: '쿠폰이 마감되었어요' });
-            break;
-          case 409:
-            Toast.show({ status: 'info', message: '이미 발급된 쿠폰이에요' });
+            Toast.show({
+              status: 'info',
+              message: '오늘의 이벤트가 아니에요!'
+            });
             break;
           default:
             Toast.show({ status: 'danger', message: '발급이 불가능합니다' });
@@ -47,7 +47,10 @@ const EventCard = ({
       }
     },
     onSuccess: () => {
-      Toast.show({ status: 'confirm', message: '쿠폰 발급 완료!' });
+      Toast.show({
+        status: 'confirm',
+        message: '도전 완료! 결과를 기다려주세요'
+      });
     }
   });
 
