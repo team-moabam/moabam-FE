@@ -1,11 +1,10 @@
 import React from 'react';
-import { RouteObject } from 'react-router-dom';
 
 interface Route {
   path: string;
   authRequired: boolean;
   navBarRequired: boolean;
-  element: Promise<{ default: React.ComponentType<RouteObject> }>;
+  element: React.ReactNode;
   pageName?: string;
 }
 
@@ -36,164 +35,191 @@ export type RouteNames =
 
 type Routes = Record<RouteNames, Route>;
 
+const Room = React.lazy(() => import('@/pages/Room'));
+const RoomDetailPage = React.lazy(() => import('@/pages/RoomDetailPage'));
+const RoomLogPage = React.lazy(() => import('@/pages/RoomLogPage'));
+const RoutinesPage = React.lazy(() => import('@/pages/RoutinesPage'));
+const SearchPage = React.lazy(() => import('@/pages/SearchPage'));
+const RoomNewPage = React.lazy(() => import('@/pages/RoomNewPage'));
+const RoomSettingPage = React.lazy(() => import('@/pages/RoomSettingPage'));
+const StartPage = React.lazy(() => import('@/pages/StartPage'));
+const EventPage = React.lazy(() => import('@/pages/EventPage'));
+const NotFoundPage = React.lazy(() => import('@/pages/NotFoundPage'));
+const JoinPage = React.lazy(() => import('@/pages/JoinPage'));
+const JoinKakaoPage = React.lazy(() => import('@/pages/JoinKakaoPage'));
+const UserPage = React.lazy(() => import('@/pages/UserPage'));
+const RankPage = React.lazy(() => import('@/pages/RankPage'));
+const CouponPage = React.lazy(() => import('@/pages/CouponPage'));
+const ParticipateLogPage = React.lazy(
+  () => import('@/pages/ParticipateLogPage')
+);
+const OrderLogPage = React.lazy(() => import('@/pages/OrderLogPage'));
+const StorePage = React.lazy(() => import('@/pages/StorePage'));
+const MyBirdPage = React.lazy(() => import('@/pages/MyBirdPage'));
+const GuidePage = React.lazy(() => import('@/pages/GuidePage'));
+const PurchaseSuccessPage = React.lazy(
+  () => import('@/pages/PurchaseSuccesPage')
+);
+const PurchaseFailPage = React.lazy(() => import('@/pages/PurchaseFailPage'));
+
 const routes: Routes = {
   start: {
     path: '',
     authRequired: true,
     navBarRequired: false,
-    element: import('@/pages/StartPage')
+    element: <StartPage />
   },
   guide: {
     path: 'guide',
     authRequired: false,
     navBarRequired: false,
-    element: import('@/pages/GuidePage'),
+    element: <GuidePage />,
     pageName: '환영해요'
   },
   join: {
     path: 'join',
     authRequired: false,
     navBarRequired: false,
-    element: import('@/pages/JoinPage'),
+    element: <JoinPage />,
     pageName: '시작하기'
   },
   joinKakao: {
     path: 'login/kakao/oauth',
     authRequired: false,
     navBarRequired: false,
-    element: import('@/pages/JoinKakaoPage'),
+    element: <JoinKakaoPage />,
     pageName: '시작하기'
   },
   routines: {
     path: 'routines',
     authRequired: true,
     navBarRequired: true,
-    element: import('@/pages/RoutinesPage'),
+    element: <RoutinesPage />,
     pageName: '나의 루틴'
   },
   search: {
     path: 'search',
     authRequired: true,
     navBarRequired: true,
-    element: import('@/pages/SearchPage'),
+    element: <SearchPage />,
     pageName: '루틴방 조회'
   },
   myPage: {
     path: 'user',
     authRequired: true,
     navBarRequired: true,
-    element: import('@/pages/UserPage'),
+    element: <UserPage />,
     pageName: '내 정보'
   },
   user: {
     path: 'user/:userId',
     authRequired: true,
     navBarRequired: true,
-    element: import('@/pages/UserPage'),
+    element: <UserPage />,
     pageName: '유저 정보'
   },
   myLog: {
     path: 'user/participate-log',
     authRequired: true,
     navBarRequired: false,
-    element: import('@/pages/ParticipateLogPage'),
+    element: <ParticipateLogPage />,
     pageName: '방 참여기록'
   },
   myOrderLog: {
     path: 'user/order-log',
     authRequired: true,
     navBarRequired: false,
-    element: import('@/pages/OrderLogPage'),
+    element: <OrderLogPage />,
     pageName: '구매 내역'
   },
   myCoupon: {
     path: 'user/coupon',
     authRequired: true,
     navBarRequired: false,
-    element: import('@/pages/CouponPage'),
+    element: <CouponPage />,
     pageName: '쿠폰함'
   },
   store: {
     path: 'store',
     authRequired: true,
     navBarRequired: false,
-    element: import('@/pages/StorePage'),
+    element: <StorePage />,
     pageName: '상점'
   },
   rank: {
     path: 'rank',
     authRequired: false,
     navBarRequired: false,
-    element: import('@/pages/RankPage'),
+    element: <RankPage />,
     pageName: '랭킹'
   },
   createRoom: {
     path: 'room/new',
     authRequired: true,
     navBarRequired: false,
-    element: import('@/pages/RoomNewPage'),
+    element: <RoomNewPage />,
     pageName: '방 생성'
   },
   room: {
     path: 'room',
     authRequired: true,
     navBarRequired: true,
-    element: import('@/pages/Room')
+    element: <Room />
   },
   roomDetail: {
     path: 'room/:roomId',
     authRequired: true,
     navBarRequired: true,
-    element: import('@/pages/RoomDetailPage'),
+    element: <RoomDetailPage />,
     pageName: '루틴방'
   },
   roomLog: {
     path: 'room/:roomId/log/:logId',
     authRequired: true,
     navBarRequired: false,
-    element: import('@/pages/RoomLogPage'),
+    element: <RoomLogPage />,
     pageName: '인증 기록'
   },
   roomSetting: {
     path: 'room/:roomId/setting',
     authRequired: true,
     navBarRequired: false,
-    element: import('@/pages/RoomSettingPage'),
+    element: <RoomSettingPage />,
     pageName: '방 설정'
   },
   mybird: {
     path: 'mybird',
     authRequired: true,
     navBarRequired: false,
-    element: import('@/pages/MyBirdPage'),
+    element: <MyBirdPage />,
     pageName: '새 커스텀'
   },
   event: {
     path: 'event',
     authRequired: true,
     navBarRequired: false,
-    element: import('@/pages/EventPage'),
+    element: <EventPage />,
     pageName: '이벤트/쿠폰'
   },
   purchaseSuccess: {
     path: 'purchase-success',
     authRequired: true,
     navBarRequired: false,
-    element: import('@/pages/PurchaseSuccesPage'),
+    element: <PurchaseSuccessPage />,
     pageName: '결제'
   },
   purchaseFail: {
     path: 'purchase-fail',
     authRequired: true,
     navBarRequired: false,
-    element: import('@/pages/PurchaseFailPage'),
+    element: <PurchaseFailPage />,
     pageName: '결제'
   },
   notFound: {
     path: '*',
     authRequired: false,
     navBarRequired: false,
-    element: import('@/pages/NotFoundPage')
+    element: <NotFoundPage />
   }
 } as const;
 

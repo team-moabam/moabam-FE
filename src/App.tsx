@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { Suspense, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import { ErrorBoundary } from '@suspensive/react';
 import { useQuery } from '@tanstack/react-query';
@@ -9,10 +9,10 @@ import getTimeRange from './core/utils/getTimeRange';
 import { Navbar } from './shared/Navbar';
 import { UnknownFallback } from './shared/ErrorBoundary';
 import useCheckAuthRequired from './useCheckAuthRequired';
-import 'swiper/css';
-import 'swiper/css/bundle';
 import { AboutMoabam } from './AboutMoabam';
 import { CommonMeta } from './Meta';
+import 'swiper/css';
+import 'swiper/css/bundle';
 
 const App = () => {
   const { navBarRequired, path, pageName } = useRouteData();
@@ -42,7 +42,9 @@ const App = () => {
         <div className="app-container flex flex-col bg-light-main dark:bg-dark-main">
           <ErrorBoundary fallback={<UnknownFallback />}>
             <div className="h-full overflow-hidden bg-light-main text-black dark:bg-dark-main dark:text-white">
-              <Outlet />
+              <Suspense>
+                <Outlet />
+              </Suspense>
             </div>
 
             {navBarRequired && <Navbar currentPath={`/${path}`} />}

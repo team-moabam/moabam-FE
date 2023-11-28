@@ -8,10 +8,7 @@ const router = createBrowserRouter([
     element: <App />,
     children: Object.values(routes).map(({ path, element }) => ({
       path,
-      async lazy() {
-        const page = await element;
-        return { Component: page.default };
-      }
+      element
     }))
   }
 ]);
