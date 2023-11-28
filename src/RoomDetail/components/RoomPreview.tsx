@@ -5,6 +5,7 @@ import { twMerge } from 'tailwind-merge';
 import { useForm } from 'react-hook-form';
 import roomAPI from '@/core/api/functions/roomAPI';
 import { RoomSemiInfo } from '@/core/types/Room';
+import { roomOptions } from '@/core/api/options';
 import { PasswordInput } from '@/shared/Input';
 import { Toast } from '@/shared/Toast';
 import RoomRoutineList from './RoomRoutineList';
@@ -35,10 +36,9 @@ const RoomPreview = ({
       {
         onSuccess: () => {
           Toast.show({ status: 'confirm', message: '방에 참가하였습니다' });
-          ['rooms', 'checkRoomJoin'] as const,
-            queryClient.invalidateQueries({
-              queryKey: ['room', 'checkRoomJoin']
-            });
+          queryClient.invalidateQueries({
+            queryKey: roomOptions.checkRoomJoin().queryKey
+          });
         }
       }
     );
@@ -46,8 +46,9 @@ const RoomPreview = ({
 
   const joinTheRoomNonPassword = () => {
     Toast.show({ status: 'confirm', message: '방에 참가하였습니다' });
-    ['rooms', 'checkRoomJoin'] as const,
-      queryClient.invalidateQueries({ queryKey: ['room', 'checkRoomJoin'] });
+    queryClient.invalidateQueries({
+      queryKey: roomOptions.checkRoomJoin().queryKey
+    });
   };
 
   return (
