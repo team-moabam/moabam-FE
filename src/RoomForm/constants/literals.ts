@@ -72,6 +72,7 @@ export const ANNOUNCEMENT = {
 
 // 폼 유효성 검사 메시지
 export const FORM_MESSAGE = {
+  ROOM_TYPE: `방 종류를 선택해주세요.`,
   ANNOUNCEMENT: `공지사항은 ${ANNOUNCEMENT.min}글자에서 ${ANNOUNCEMENT.max}글자 사이여야 해요.`,
   ROUTINE_NAME: `루틴 내용은 ${ROUTINE_NAME.min}글자에서 ${ROUTINE_NAME.max}글자 사이여야 해요.`,
   ROOM_NAME: `방 제목은 ${ROOM_NAME.min}글자에서 ${ROOM_NAME.max}글자 사이여야 해요.`,
