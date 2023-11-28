@@ -16,7 +16,9 @@ import {
 } from '@/RoomForm/constants/literals';
 
 export const formSchema = z.object({
-  roomType: z.enum(ROOM_TYPES),
+  roomType: z.enum(ROOM_TYPES, {
+    required_error: FORM_MESSAGE.ROOM_TYPE
+  }),
   certifyTime: z.number(),
   routines: z.array(
     z.object({
@@ -58,7 +60,7 @@ const useRoomForm = () => {
 
   const form = useForm<Inputs>({
     defaultValues: {
-      roomType: 'MORNING',
+      roomType: undefined,
       certifyTime: TIME_RANGE['MORNING'][0],
       routines: [{ value: '' }],
       userCount: 5,

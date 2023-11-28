@@ -16,12 +16,6 @@ const RoutineStep = () => {
     <>
       <section className={sectionStyle}>
         <h2 className={headingStyle}>
-          같이 <b>어떤 루틴</b>을 해볼까요?
-        </h2>
-        <Routines />
-      </section>
-      <section className={sectionStyle}>
-        <h2 className={headingStyle}>
           <b>방 이름</b>을 지어주세요.
         </h2>
         <Input
@@ -30,6 +24,12 @@ const RoutineStep = () => {
           placeholder="짧고 명확하게!"
         />
         {errors.title && <p className={errorStyle}>{errors.title.message}</p>}
+      </section>
+      <section className={sectionStyle}>
+        <h2 className={headingStyle}>
+          같이 <b>어떤 루틴</b>을 해볼까요?
+        </h2>
+        <Routines />
       </section>
       <section className={sectionStyle}>
         <h2 className={headingStyle}>

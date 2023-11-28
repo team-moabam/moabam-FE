@@ -40,9 +40,6 @@ const RoomNewPage = () => {
   const { state } = useLocation();
   const prevPage = state && state.from === 'room' ? 'room' : 'routines';
 
-  // 로그인 확인
-  useQuery({ ...memberOptions.myInfo(), retry: 0 });
-
   return (
     <FormProvider {...form}>
       <form
