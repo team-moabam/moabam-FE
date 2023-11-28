@@ -15,7 +15,7 @@ import { AboutMoabam } from './AboutMoabam';
 import { CommonMeta } from './Meta';
 
 const App = () => {
-  const { navBarRequired, path, pageName } = useRouteData();
+  const { navBarRequired, path, pageName, location } = useRouteData();
   const { theme, setTheme } = useTheme();
   useCheckAuthRequired();
 

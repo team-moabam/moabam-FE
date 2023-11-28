@@ -17,6 +17,10 @@ const RoomDetailMeta = ({ roomTitle }: RoomDetailMetaProps) => {
         content={`'${roomTitle}' 에 초대합니다!`}
       />
       <meta
+        property="og:url"
+        content={`${location}`}
+      />
+      <meta
         property="og:image"
         content="https://i.ibb.co/x8FGk2H/og-Img-moabam.png"
       />
