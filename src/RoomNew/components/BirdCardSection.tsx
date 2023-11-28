@@ -1,7 +1,8 @@
-import { withAsyncBoundary } from '@suspensive/react';
+import { Suspense } from 'react';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { useFormContext } from 'react-hook-form';
 import { roomOptions } from '@/core/api/options';
+import { QueryErrorBoundary, NetworkFallback } from '@/shared/ErrorBoundary';
 import {
   ROOM_COUNT,
   ROOM_TYPES,
@@ -58,14 +59,21 @@ const BirdCardSectionComponent = () => {
   );
 };
 
-const BirdCardSection = withAsyncBoundary(BirdCardSectionComponent, {
-  pendingFallback: (
-    <>
-      <BirdCardFallback />
-      <BirdCardFallback />
-    </>
-  ),
-  rejectedFallback: <div>에러가 발생했습니다.</div>
-});
+const BirdCardSection = () => {
+  return (
+    <QueryErrorBoundary fallback={<NetworkFallback />}>
+      <Suspense
+        fallback={
+          <>
+            <BirdCardFallback />
+            <BirdCardFallback />
+          </>
+        }
+      >
+        <BirdCardSectionComponent />
+      </Suspense>
+    </QueryErrorBoundary>
+  );
+};
 
 export default BirdCardSection;
