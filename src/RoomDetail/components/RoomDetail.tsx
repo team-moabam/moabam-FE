@@ -9,9 +9,10 @@ import { DateRoomDetailContext } from './RoomDetailProvider';
 
 interface RoomDetailProps {
   roomId?: string;
+  checkedRoomJoin: boolean;
 }
 
-const RoomDetail = ({ roomId }: RoomDetailProps) => {
+const RoomDetail = ({ roomId, checkedRoomJoin }: RoomDetailProps) => {
   const { serverTime } = useContext(DateRoomDetailContext);
   const todayDate = `${(serverTime || new Date()).getFullYear()}-${
     (serverTime || new Date()).getMonth() + 1
@@ -26,7 +27,10 @@ const RoomDetail = ({ roomId }: RoomDetailProps) => {
   return (
     <>
       <RoomDetailMeta roomTitle={title} />
-      <RoomHeader title={title} />
+      <RoomHeader
+        title={title}
+        checkedRoomJoin={checkedRoomJoin}
+      />
       <RoomNotice content={announcement} />
       <RoomDetailContainer roomDetailData={roomDetailData} />
     </>
