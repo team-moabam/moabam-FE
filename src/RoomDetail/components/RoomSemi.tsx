@@ -11,9 +11,10 @@ import RoomPreview from './RoomPreview';
 interface RoomSemiProps {
   roomId?: string;
   serverTime: Date;
+  checkedRoomJoin: boolean;
 }
 
-const RoomSemi = ({ roomId, serverTime }: RoomSemiProps) => {
+const RoomSemi = ({ roomId, serverTime, checkedRoomJoin }: RoomSemiProps) => {
   const { data: roomSemiData } = useSuspenseQuery({
     ...roomOptions.semiDetail(roomId)
   });
@@ -33,14 +34,16 @@ const RoomSemi = ({ roomId, serverTime }: RoomSemiProps) => {
   return (
     <>
       <RoomDetailMeta roomTitle={title} />
-      <RoomHeader title={title} />
+      <RoomHeader
+        title={title}
+        checkedRoomJoin={checkedRoomJoin}
+      />
       <RoomNotice content={announcement} />
       <div className="h-[20.56rem] bg-[url('/level1.png')] bg-cover bg-no-repeat text-white">
         <div className="relative h-[20.56rem] overflow-hidden">
           {certifiedRanks.map((el) => {
-            const { memberId, nickname, rank } = el;
-            const awakeImage = '/assets/skins/awakeOmokSkin0.png';
-            const sleepImage = '/assets/skins/sleepOmokSkin0.png';
+            const { memberId, nickname, rank, awakeImage, sleepImage } = el;
+
             return (
               <span
                 key={memberId}
