@@ -4,10 +4,12 @@ import { ErrorBoundary } from '@suspensive/react';
 import { useQuery } from '@tanstack/react-query';
 import clsx from 'clsx';
 import { useRouteData, useTheme } from '@/core/hooks';
-import timeOption from './core/api/options/time';
-import getTimeRange from './core/utils/getTimeRange';
-import { Navbar } from './shared/Navbar';
-import { UnknownFallback } from './shared/ErrorBoundary';
+import timeOption from '@/core/api/options/time';
+import getTimeRange from '@/core/utils/getTimeRange';
+import { Navbar } from '@/shared/Navbar';
+import { UnknownFallback } from '@/shared/ErrorBoundary';
+import { LoadingSpinner } from '@/shared/LoadingSpinner';
+import { Deffered } from '@/shared/Deffered';
 import useCheckAuthRequired from './useCheckAuthRequired';
 import { AboutMoabam } from './AboutMoabam';
 import { CommonMeta } from './Meta';
@@ -42,7 +44,18 @@ const App = () => {
         <div className="app-container flex flex-col bg-light-main dark:bg-dark-main">
           <ErrorBoundary fallback={<UnknownFallback />}>
             <div className="h-full overflow-hidden bg-light-main text-black dark:bg-dark-main dark:text-white">
-              <Suspense>
+              <Suspense
+                fallback={
+                  <Deffered defferTime={500}>
+                    <div className="flex h-full items-center justify-center">
+                      <LoadingSpinner
+                        colorStyle="text-light-point dark:text-dark-point"
+                        size="7xl"
+                      />
+                    </div>
+                  </Deffered>
+                }
+              >
                 <Outlet />
               </Suspense>
             </div>
