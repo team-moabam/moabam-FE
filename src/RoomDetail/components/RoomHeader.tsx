@@ -6,9 +6,10 @@ import { Toast } from '@/shared/Toast';
 
 interface RoomHeaderProps {
   title: string;
+  checkedRoomJoin: boolean;
 }
 
-const RoomHeader = ({ title }: RoomHeaderProps) => {
+const RoomHeader = ({ title, checkedRoomJoin }: RoomHeaderProps) => {
   const { location } = useRouteData();
   const sharePath = `${import.meta.env.VITE_LOCALHOST}${location}`;
 
@@ -27,15 +28,17 @@ const RoomHeader = ({ title }: RoomHeaderProps) => {
       className="absolute z-[1] text-white"
     >
       <div className="flex">
-        <Link
-          to="setting"
-          className="mr-[1.06rem]"
-        >
-          <Icon
-            icon="MdEdit"
-            size="xl"
-          />
-        </Link>
+        {checkedRoomJoin && (
+          <Link
+            to="setting"
+            className="mr-[1.06rem]"
+          >
+            <Icon
+              icon="MdEdit"
+              size="xl"
+            />
+          </Link>
+        )}
         <button onClick={handleShareButtonClick}>
           <Icon
             icon="BiSolidShareAlt"
