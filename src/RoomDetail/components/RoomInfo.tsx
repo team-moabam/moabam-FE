@@ -13,7 +13,8 @@ const RoomInfo = ({
   maxUserCount,
   todayCertificateRank,
   certifyTime,
-  status
+  status,
+  exp
 }: RoomInfoProps) => {
   return (
     <div className="relative h-[20.56rem] overflow-hidden">
@@ -42,7 +43,7 @@ const RoomInfo = ({
             </span>
           </div>
         </div>
-        <ProgressBar progress={40}></ProgressBar>
+        <ProgressBar progress={(exp / 10) * 100}></ProgressBar>
       </div>
     </div>
   );
