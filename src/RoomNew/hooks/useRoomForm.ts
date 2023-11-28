@@ -58,7 +58,7 @@ const useRoomForm = () => {
 
   const form = useForm<Inputs>({
     defaultValues: {
-      roomType: 'MORNING',
+      roomType: undefined,
       certifyTime: TIME_RANGE['MORNING'][0],
       routines: [{ value: '' }],
       userCount: 5,
