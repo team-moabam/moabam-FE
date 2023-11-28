@@ -1,8 +1,8 @@
 import { twMerge } from 'tailwind-merge';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useTheme } from '@/core/hooks';
-import { Icon } from '@/shared/Icon';
 import usePWAInstallBanner from '../hooks/usePWAInstallBanner';
+import IconButton from './IconButton';
 
 interface PWAInstallBannerProps {
   bannerStyle?: string;
@@ -41,24 +41,14 @@ const PWAInstallBanner = ({ bannerStyle }: PWAInstallBannerProps) => {
               앱으로 <b>설치</b>할 수도 있어요
             </p>
             <section className="me-4 flex gap-2">
-              <div
-                className={iconButtonStyle}
+              <IconButton
+                icon="MdFileDownload"
                 onClick={handleInstall}
-              >
-                <Icon
-                  icon="MdFileDownload"
-                  size="lg"
-                />
-              </div>
-              <div
-                className={iconButtonStyle}
+              />
+              <IconButton
+                icon="CgClose"
                 onClick={handleClose}
-              >
-                <Icon
-                  icon="CgClose"
-                  size="lg"
-                />
-              </div>
+              />
             </section>
           </div>
         </motion.div>
@@ -68,6 +58,3 @@ const PWAInstallBanner = ({ bannerStyle }: PWAInstallBannerProps) => {
 };
 
 export default PWAInstallBanner;
-
-const iconButtonStyle =
-  'flex flex-col items-center justify-center cursor-pointer rounded-2xl p-2 bg-white text-light-point hover:bg-light-main hover:text-light-point-hover dark:text-dark-point dark:hover:text-dark-point-hover';
