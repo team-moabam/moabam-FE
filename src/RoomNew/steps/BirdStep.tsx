@@ -30,15 +30,23 @@ const BirdStep = () => {
 
       <section className="flex justify-around gap-10 pt-10 max-[320px]:flex-col">
         {ROOM_TYPES.map((roomType) => (
-          <BirdCard
-            key={roomType}
-            type={roomType}
-            active={watchType === roomType}
-            onClick={() => {
-              setValue('roomType', roomType);
-              setValue('certifyTime', TIME_RANGE[roomType][0]);
-            }}
-          />
+          <div className="w-full">
+            <BirdCard
+              key={roomType}
+              type={roomType}
+              active={watchType === roomType}
+              disabled={roomType === 'MORNING'}
+              onClick={() => {
+                setValue('roomType', roomType);
+                setValue('certifyTime', TIME_RANGE[roomType][0]);
+              }}
+            />
+            {roomType === 'MORNING' && (
+              <p className="mt-2 text-center text-sm text-red-500">
+                루틴방이 꽉 찼어요!
+              </p>
+            )}
+          </div>
         ))}
       </section>
 
