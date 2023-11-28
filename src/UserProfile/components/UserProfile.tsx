@@ -2,6 +2,7 @@ import { useState, ChangeEvent } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { MdModeEdit, MdAdd } from 'react-icons/md';
 import { useForm, SubmitHandler } from 'react-hook-form';
+import { blob } from 'stream/consumers';
 import memberAPI from '@/core/api/functions/memberAPI';
 import memberOptions from '@/core/api/options/member';
 import { Toast } from '@/shared/Toast';
@@ -76,8 +77,14 @@ const UserProfile = ({
     const modifyMemberRequest: ModifyMemberRequest = {};
     if (nickname) modifyMemberRequest['nickname'] = nickname;
     if (intro) modifyMemberRequest['intro'] = intro;
-    formData.append('modifyMemberRequest', JSON.stringify(modifyMemberRequest));
-    if (profileImage) formData.append('profileImage', profileImage[0]);
+    formData.append(
+      'modifyMemberRequest',
+      new Blob([JSON.stringify(modifyMemberRequest)], {
+        type: 'application/json'
+      })
+    );
+    if (profileImage && profileImage[0])
+      formData.append('profileImage', profileImage[0]);
     mutation.mutate(formData, {
       onSuccess: () => {
         queryClient.invalidateQueries({
