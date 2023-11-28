@@ -94,7 +94,7 @@ const roomAPI = {
 
   postRoomJoin: async (params: {
     roomId: string;
-    body: { password: string };
+    body: { password: string | null };
   }) => {
     const { roomId, body } = params;
     return await baseInstance.post<{ message: string }>(

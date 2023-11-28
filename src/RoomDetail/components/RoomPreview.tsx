@@ -46,9 +46,18 @@ const RoomPreview = ({
 
   const joinTheRoomNonPassword = () => {
     Toast.show({ status: 'confirm', message: '방에 참가하였습니다' });
-    queryClient.invalidateQueries({
-      queryKey: roomOptions.checkRoomJoin().queryKey
-    });
+
+    mutate(
+      { roomId: `${roomId}`, body: { password: null } },
+      {
+        onSuccess: () => {
+          Toast.show({ status: 'confirm', message: '방에 참가하였습니다' });
+          queryClient.invalidateQueries({
+            queryKey: roomOptions.checkRoomJoin().queryKey
+          });
+        }
+      }
+    );
   };
 
   return (
