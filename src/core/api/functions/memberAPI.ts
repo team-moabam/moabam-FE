@@ -1,6 +1,6 @@
 import { baseInstance, formDataInstance } from '../instance';
-// import { ModifyMemberRequest } from '@/UserProfile/components/UserProfile';
 import { MemberInfo, MyInfo } from '@/core/types/Member';
+import { baseInstance, formDataInstance } from '../instance';
 
 const memberAPI = {
   getMyInfo: async () => {

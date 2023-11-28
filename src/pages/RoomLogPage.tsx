@@ -1,11 +1,11 @@
 import { useLocation } from 'react-router-dom';
-import RoomLogItem from '../RoomLog/components/RoomLogItem';
-import { Header } from '@/shared/Header';
 import { RankMember } from '@/core/types/Member';
+import { Header } from '@/shared/Header';
+import RoomLogItem from '../RoomLog/components/RoomLogItem';
 
 const RoomLogPage = () => {
   const {
-    state: { todayCertificateRank, routine, chooseDate }
+    state: { todayCertificateRank, routines, chooseDate }
   } = useLocation();
 
   return (
@@ -24,7 +24,7 @@ const RoomLogPage = () => {
           <RoomLogItem
             key={data.memberId}
             {...data}
-            routine={routine}
+            routines={routines}
           />
         ))}
       </div>

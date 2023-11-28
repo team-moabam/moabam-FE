@@ -11,6 +11,8 @@ import { ProductBug, MyCoupon, PurchaseRes } from '@/core/types';
 import bugAPI from '@/core/api/functions/bugAPI';
 import paymentAPI from '@/core/api/functions/payment';
 import { BottomSheet, useBottomSheet } from '@/shared/BottomSheet';
+import { Product } from '../mocks/types/product';
+import { data } from '../mocks/products';
 
 const StoreList = () => {
   const [

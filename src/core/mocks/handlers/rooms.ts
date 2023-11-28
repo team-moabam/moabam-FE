@@ -1,7 +1,7 @@
 import { http, HttpResponse, delay } from 'msw';
 import { Room } from '@/core/types';
 import { baseURL } from '../baseURL';
-import { RoomInfo, RoomInfoBeforeEditing } from '../datas/room';
+import { RoomInfo, RoomInfoBeforeEditing, RoomSemiInfo } from '../datas/room';
 import { MY_JOIN_ROOMS } from '../datas/myJoinRoom';
 import { ROOMS } from '../datas/totalRooms';
 import { SEARCH_ROOMS } from '../datas/searchRooms';
@@ -33,6 +33,24 @@ const roomsHandlers = [
         break;
       case 401:
         response = { message: '로그인이 필요합니다.' };
+        break;
+    }
+
+    return HttpResponse.json(response, { status });
+  }),
+
+  http.get(baseURL('/rooms/:roomId/check'), async () => {
+    await delay(1000);
+
+    const status: number = 200;
+    let response: boolean | { message: string } = true;
+
+    switch (status) {
+      case 200:
+        response = false;
+        break;
+      case 401:
+        response = { message: '존재하지 않는 유저입니다.' };
         break;
     }
 
@@ -112,7 +130,7 @@ const roomsHandlers = [
     return HttpResponse.json(response, { status });
   }),
 
-  http.get(baseURL('/rooms/:roomId/:date'), async () => {
+  http.get(baseURL('/rooms/:roomId/un-joined'), async () => {
     await delay(1000);
 
     const status: number = 200;
@@ -120,14 +138,10 @@ const roomsHandlers = [
 
     switch (status) {
       case 200:
-        response = RoomInfo;
-
+        response = RoomSemiInfo;
         break;
       case 401:
         response = { message: '존재하지 않는 유저입니다.' };
-        break;
-      case 404:
-        response = { message: '존재하지 않는 방입니다.' };
         break;
     }
 
@@ -171,7 +185,7 @@ const roomsHandlers = [
           validation: {
             title: 'Title Error',
             announcement: 'Announcement Error',
-            routine: 'Routine Error',
+            routines: 'routines Error',
             password: 'Password Error',
             certifyTime: 'CertifyTime Error',
             maxUserCount: 'MaxUserCount Error'
@@ -202,6 +216,30 @@ const roomsHandlers = [
       case 400:
         response = {
           message: '방장은 나가려면 위임 하거나 혼자 남아있어야 합니다.'
+        };
+        break;
+      case 401:
+        response = { message: '존재하지 않는 유저입니다.' };
+        break;
+    }
+
+    return HttpResponse.json(response, { status });
+  }),
+
+  http.post(baseURL('/rooms/:roomId'), async () => {
+    await delay(1000);
+
+    const status: number = 200;
+    let response = {};
+
+    switch (status) {
+      case 200:
+        response = {};
+        break;
+      case 400:
+        response = {
+          message:
+            '올바른 비밀번호가 아닙니다. 또는 방의 인원수가 가득 찼습니다. 또는 참여할 수 있는 방의 횟수를 초과했습니다.'
         };
         break;
       case 401:

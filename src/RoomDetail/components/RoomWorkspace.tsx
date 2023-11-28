@@ -1,18 +1,21 @@
 import { useState, useContext, MouseEvent } from 'react';
 import { Link } from 'react-router-dom';
+import { useMutation } from '@tanstack/react-query';
+import roomAPI from '@/core/api/functions/roomAPI';
+import { useMoveRoute } from '@/core/hooks';
 import { useLocalStorage } from '@/core/hooks';
+import { RoomInfo } from '@/core/types/Room';
+import { BottomSheet, useBottomSheet } from '@/shared/BottomSheet';
+import { Tab, TabItem } from '@/shared/Tab';
+import { Icon } from '@/shared/Icon';
+import { LoadingSpinner } from '@/shared/LoadingSpinner';
+import { Toast } from '@/shared/Toast';
 import makeTodayCertifyTime from '../utils/makeTodayCertifyTime';
 import { DateRoomDetailContext } from './RoomDetailProvider';
 import RoomCalendar from './RoomCalendar';
 import CertificationProgress from './CertificationProgress';
 import RoomRoutine from './RoomRoutine';
 import RoomMembers from './RoomMembers';
-import { BottomSheet, useBottomSheet } from '@/shared/BottomSheet';
-import { Tab, TabItem } from '@/shared/Tab';
-import { Icon } from '@/shared/Icon';
-import { LoadingSpinner } from '@/shared/LoadingSpinner';
-import { Toast } from '@/shared/Toast';
-import { RoomInfo } from '@/core/types/Room';
 
 interface extendedProps {
   status: 'pending' | 'error' | 'success';
@@ -22,14 +25,16 @@ type RoomWorkspaceProps = extendedProps & RoomInfo;
 
 const RoomWorkspace = ({
   completePercentage,
-  routine,
+  routines,
   todayCertificateRank,
   certifiedDates,
   certifyTime,
-  status
+  status,
+  roomId
 }: RoomWorkspaceProps) => {
-  const { bottomSheetProps, toggle, close } = useBottomSheet();
+  const moveTo = useMoveRoute();
   const [reportStatus, setReportStatus] = useState<boolean>(false);
+  const { bottomSheetProps, toggle, close } = useBottomSheet();
   const [userId] = useLocalStorage('MEMBER_ID', '0');
 
   const { chooseDate, serverTime } = useContext(DateRoomDetailContext);
@@ -44,6 +49,27 @@ const RoomWorkspace = ({
   const myCertificationImage = todayCertificateRank.find(
     ({ memberId }) => memberId === userId
   )?.certificationImage;
+
+  const { mutate } = useMutation({
+    mutationFn: roomAPI.deleteRoom
+  });
+
+  const handleRoomLeave = () => {
+    mutate(`${roomId}`, {
+      onSuccess: () => {
+        close();
+        moveTo('routines');
+        Toast.show({ message: '방을 나갔습니다', status: 'confirm' });
+      },
+      onError: (err) => {
+        console.error(err);
+        Toast.show({
+          message: err.response?.data.message ?? '오류가 발생했어요.',
+          status: 'danger'
+        });
+      }
+    });
+  };
 
   const changeReportStatus = (value: boolean) => {
     setReportStatus(value);
@@ -91,7 +117,7 @@ const RoomWorkspace = ({
                   <Link
                     to={`log/${chooseDateText}`}
                     className="mb-[2.13rem] flex w-fit items-center text-sm text-light-point dark:text-dark-point"
-                    state={{ todayCertificateRank, routine, chooseDate }}
+                    state={{ todayCertificateRank, routines, chooseDate }}
                     onClick={handleLogLinkClick}
                   >
                     인증사진 보러가기
@@ -103,7 +129,7 @@ const RoomWorkspace = ({
                 </div>
               }
               <RoomRoutine
-                routines={routine}
+                routines={routines}
                 myCertificationImage={myCertificationImage}
                 certifyTime={certifyTime}
               />
@@ -143,7 +169,7 @@ const RoomWorkspace = ({
           </span>
           <button
             className="btn btn-transition btn-danger w-full"
-            onClick={close}
+            onClick={handleRoomLeave}
           >
             나가기
           </button>

@@ -1,12 +1,12 @@
 import { clsx } from 'clsx';
 import { useMoveRoute } from '@/core/hooks';
 import { Room } from '@/core/types';
-import roomListStyle from '@/RoomList/styles/roomListStyle';
 import { Accordion, AccordionHeader, AccordionBody } from '@/shared/Accordion';
-import { RoomSummary } from '@/RoomSummary';
 import { RoutineItem, RoutineList } from '@/shared/RoutineList';
-import { useKeyword } from '@/RoomSearch';
+import roomListStyle from '@/RoomList/styles/roomListStyle';
 import KeywordText from '@/RoomSearch/components/KeywordText';
+import { RoomSummary } from '@/RoomSummary';
+import { useKeyword } from '@/RoomSearch';
 
 const isKeywordInRoutines = (
   keyword: string,
