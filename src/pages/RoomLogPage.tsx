@@ -5,7 +5,7 @@ import RoomLogItem from '../RoomLog/components/RoomLogItem';
 
 const RoomLogPage = () => {
   const {
-    state: { todayCertificateRank, routine, chooseDate }
+    state: { todayCertificateRank, routines, chooseDate }
   } = useLocation();
 
   return (
@@ -24,7 +24,7 @@ const RoomLogPage = () => {
           <RoomLogItem
             key={data.memberId}
             {...data}
-            routine={routine}
+            routines={routines}
           />
         ))}
       </div>

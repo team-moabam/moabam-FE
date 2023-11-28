@@ -1,46 +1,49 @@
+import { Suspense } from 'react';
+import { ErrorBoundary } from '@suspensive/react';
 import { useQuery } from '@tanstack/react-query';
-import { useSuspenseQuery } from '@tanstack/react-query';
 import { roomOptions } from '@/core/api/options';
 import { useRouteData } from '@/core/hooks';
 import timeOption from '@/core/api/options/time';
-import RoomDetailContainer from '@/RoomDetail/components/RoomDetailContainer';
+import { NetworkFallback } from '@/shared/ErrorBoundary';
+import RoomDetail from '@/RoomDetail/components/RoomDetail';
+import RoomSemi from '@/RoomDetail/components/RoomSemi';
 import RoomDetailProvider from '@/RoomDetail/components/RoomDetailProvider';
 import RoomDetailFallback from '@/RoomDetail/components/RoomDetailFallback';
-import { RoomNotice } from '@/RoomDetail';
-import RoomHeader from '../RoomDetail/components/RoomHeader';
 
 const RoomDetailPage = () => {
   const {
     params: { roomId }
   } = useRouteData();
 
-  const { data: serverTime } = useSuspenseQuery({
+  const { data: serverTime } = useQuery({
     ...timeOption,
     refetchInterval: 1000 * 60,
     refetchOnWindowFocus: true
   });
 
-  const todayDate = `${serverTime.getFullYear()}-${
-    serverTime.getMonth() + 1
-  }-${serverTime.getDate()}`;
-
-  const { data: roomDetailData, status } = useQuery({
-    ...roomOptions.detailByDate(roomId, todayDate),
-    enabled: !!serverTime
+  const { data: checkedRoomJoin, status } = useQuery({
+    ...roomOptions.checkRoomJoin(roomId)
   });
 
   if (status !== 'success') return <RoomDetailFallback />;
 
-  const { title, announcement } = roomDetailData;
-
   return (
     <>
       <div className="relative h-full overflow-y-scroll">
-        <RoomHeader title={title} />
-        <RoomNotice content={announcement} />
-        <RoomDetailProvider serverTime={serverTime}>
-          <RoomDetailContainer roomDetailData={roomDetailData} />
-        </RoomDetailProvider>
+        <ErrorBoundary fallback={<NetworkFallback />}>
+          <Suspense fallback={<RoomDetailFallback />}>
+            {checkedRoomJoin ? (
+              <RoomDetailProvider serverTime={serverTime || new Date()}>
+                <RoomDetail roomId={roomId} />
+              </RoomDetailProvider>
+            ) : (
+              <RoomSemi
+                roomId={roomId}
+                serverTime={serverTime || new Date()}
+              />
+            )}
+          </Suspense>
+        </ErrorBoundary>
       </div>
     </>
   );

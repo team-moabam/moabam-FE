@@ -13,6 +13,14 @@ export interface RankMember extends Member {
   rank: number;
 }
 
+export interface RankMemberSemi {
+  rank: number;
+  memberId: number;
+  nickname: string;
+  awakeImage: string;
+  sleepImage: string;
+}
+
 export interface MemberInfo {
   nickname: string;
   intro: string;
