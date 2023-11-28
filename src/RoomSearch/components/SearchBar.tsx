@@ -1,5 +1,5 @@
-import useDebounceSearch from '../hooks/useDebounceSearch';
 import { Input } from '@/shared/Input';
+import useDebounceSearch from '../hooks/useDebounceSearch';
 
 interface SearchBarProps {
   onSearch: (input: string) => void;

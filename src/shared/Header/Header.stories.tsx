@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Header } from '.';
 import { Icon } from '../Icon';
+import { Header } from '.';
 
 const meta = {
   title: 'Shared/Header',

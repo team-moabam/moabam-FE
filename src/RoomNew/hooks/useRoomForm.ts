@@ -4,6 +4,7 @@ import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
 import z from 'zod';
 import roomAPI from '@/core/api/functions/roomAPI';
 import { useMoveRoute } from '@/core/hooks';
+import { Toast } from '@/shared/Toast';
 import {
   FORM_MESSAGE,
   ROOM_TYPES,
@@ -13,7 +14,6 @@ import {
   USER_COUNT,
   PASSWORD
 } from '@/RoomForm/constants/literals';
-import { Toast } from '@/shared/Toast';
 
 export const formSchema = z.object({
   roomType: z.enum(ROOM_TYPES),

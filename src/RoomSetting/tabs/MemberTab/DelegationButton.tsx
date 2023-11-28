@@ -1,10 +1,10 @@
 import { useMutation } from '@tanstack/react-query';
 import roomAPI from '@/core/api/functions/roomAPI';
 import { useMoveRoute } from '@/core/hooks';
-import { ModalHeadingStyle, descriptionStyle, errorStyle } from './styles';
 import { BottomSheet, useBottomSheet } from '@/shared/BottomSheet';
 import { LoadingSpinner } from '@/shared/LoadingSpinner';
 import { Toast } from '@/shared/Toast';
+import { ModalHeadingStyle, descriptionStyle, errorStyle } from './styles';
 
 interface DelegationButtonProps {
   roomId: string;

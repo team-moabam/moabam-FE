@@ -1,10 +1,10 @@
 import { Suspense } from 'react';
 import { useParams } from 'react-router-dom';
+import { Deffered } from '@/shared/Deffered';
+import { Header } from '@/shared/Header';
 import UserMain from '@/UserProfile/components/UserMain';
 import UserEtc from '@/UserEtc/components/UserEtc';
-import { Deffered } from '@/shared/Deffered';
 import UserMainFallback from '@/UserProfile/components/UserMainFallback';
-import { Header } from '@/shared/Header';
 
 const UserPage = () => {
   const { userId } = useParams();

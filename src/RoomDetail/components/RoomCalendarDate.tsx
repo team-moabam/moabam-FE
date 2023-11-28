@@ -1,11 +1,11 @@
 import { useContext } from 'react';
 import { twMerge } from 'tailwind-merge';
 import clsx from 'clsx';
+import { Icon } from '@/shared/Icon';
+import { Toast } from '@/shared/Toast';
 import { DAY_OF_THE_WEEK } from '../constants/constant';
 import makeTodayCertifyTime from '../utils/makeTodayCertifyTime';
 import { DateRoomDetailContext } from './RoomDetailProvider';
-import { Icon } from '@/shared/Icon';
-import { Toast } from '@/shared/Toast';
 
 interface RoomCalendarDateProps {
   thisDate: Date;
@@ -27,7 +27,6 @@ const RoomCalendarDate = ({
   const thisDateTime = thisDate.getTime();
   const thisDateDay = thisDate.getDay();
   const langKoDay = DAY_OF_THE_WEEK[thisDateDay];
-  const bug = certifiedDates.find((el) => el === thisDateString);
 
   const chooseDateString = `${chooseDate.getFullYear()}-${
     chooseDate.getMonth() + 1
@@ -35,6 +34,8 @@ const RoomCalendarDate = ({
   const thisDateString = `${thisDate.getFullYear()}-${
     thisDate.getMonth() + 1
   }-${thisDateDate}`;
+
+  const bug = certifiedDates.find((el) => el === thisDateString);
 
   const handleDateClick = (thisDate: Date) => {
     if (nowTime >= thisDateTime) {

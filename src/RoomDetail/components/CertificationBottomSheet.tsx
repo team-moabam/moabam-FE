@@ -5,10 +5,10 @@ import { useFormContext } from 'react-hook-form';
 import roomAPI from '@/core/api/functions/roomAPI';
 import { roomOptions } from '@/core/api/options';
 import { useRouteData } from '@/core/hooks';
-import { FormCertificationImage } from '../types/type';
-import ImageInput from './ImageInput';
 import { BottomSheet } from '@/shared/BottomSheet';
 import { BottomSheetProps } from '@/shared/BottomSheet/components/BottomSheet';
+import { FormCertificationImage } from '../types/type';
+import ImageInput from './ImageInput';
 
 interface CertificationBottomSheetProps {
   bottomSheetProps: BottomSheetProps;
@@ -30,7 +30,7 @@ const CertificationBottomSheet = ({
 
   const queryClient = useQueryClient();
 
-  const mutation = useMutation({
+  const { mutate } = useMutation({
     mutationFn: roomAPI.postRoutineCertificate
   });
 
@@ -43,7 +43,7 @@ const CertificationBottomSheet = ({
       }
     }
 
-    mutation.mutate(
+    mutate(
       {
         roomId: roomId || '',
         body: formData
@@ -72,7 +72,7 @@ const CertificationBottomSheet = ({
         formData.append(`${routines[Number(key)].routineId}`, value.file[0]);
       }
     }
-    mutation.mutate(
+    mutate(
       {
         roomId: roomId || '',
         body: formData
