@@ -36,7 +36,9 @@ const RoomPreview = ({
         onSuccess: () => {
           Toast.show({ status: 'confirm', message: '방에 참가하였습니다' });
           ['rooms', 'checkRoomJoin'] as const,
-            queryClient.invalidateQueries({ queryKey: ['room'] });
+            queryClient.invalidateQueries({
+              queryKey: ['room', 'checkRoomJoin']
+            });
         }
       }
     );
@@ -45,7 +47,7 @@ const RoomPreview = ({
   const joinTheRoomNonPassword = () => {
     Toast.show({ status: 'confirm', message: '방에 참가하였습니다' });
     ['rooms', 'checkRoomJoin'] as const,
-      queryClient.invalidateQueries({ queryKey: ['room'] });
+      queryClient.invalidateQueries({ queryKey: ['room', 'checkRoomJoin'] });
   };
 
   return (
