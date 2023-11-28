@@ -22,7 +22,8 @@ const RoomDetail = ({ roomId, checkedRoomJoin }: RoomDetailProps) => {
     ...roomOptions.detailByDate(roomId, todayDate)
   });
 
-  const { title, announcement } = roomDetailData;
+  const { title, announcement, managerNickname, todayCertificateRank } =
+    roomDetailData;
 
   return (
     <>
@@ -30,6 +31,8 @@ const RoomDetail = ({ roomId, checkedRoomJoin }: RoomDetailProps) => {
       <RoomHeader
         title={title}
         checkedRoomJoin={checkedRoomJoin}
+        managerNickname={managerNickname}
+        todayCertificateRank={todayCertificateRank}
       />
       <RoomNotice content={announcement} />
       <RoomDetailContainer roomDetailData={roomDetailData} />
