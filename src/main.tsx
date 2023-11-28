@@ -25,6 +25,7 @@ const setupMSW = async () => {
       const excludedUrls = [
         '/assets/',
         '/node_modules/',
+        '/src/',
         'chrome-extension://',
         'fonts.googleapis.com/css2',
         'cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2106@1.1'
