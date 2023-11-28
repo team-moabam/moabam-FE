@@ -1,3 +1,4 @@
+import { withAsyncBoundary } from '@suspensive/react';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { useFormContext } from 'react-hook-form';
 import { roomOptions } from '@/core/api/options';
@@ -14,15 +15,10 @@ import {
 import { Inputs } from '../hooks/useRoomForm';
 import BirdCard from '../components/BirdCard';
 
-// 데이터 패칭을 Page에서 할지, BirdStep에서 할지
-// 스켈레톤 UI는 BirdStep에서 보여줘야 할텐데..
-// 스켈레톤은 BirdStep에서 보여줄꺼지만, 패칭중에 네비바가 작동하면 안된다.
-// 어떡하지
-
 // useSuspenseQuery는 BirdStep에서 쓰고
 // 네비바에서도 추가로 useQuery의 isPending을 써서 로딩중에 못넘어가게 하자.
 
-const BirdStep = () => {
+const BirdStepComponent = () => {
   const {
     setValue,
     watch,
@@ -85,5 +81,10 @@ const BirdStep = () => {
     </>
   );
 };
+
+const BirdStep = withAsyncBoundary(BirdStepComponent, {
+  pendingFallback: <div>로딩중...</div>,
+  rejectedFallback: <div>에러가 발생했습니다.</div>
+});
 
 export default BirdStep;
