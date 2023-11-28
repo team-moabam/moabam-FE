@@ -2,6 +2,7 @@ import { useState, ChangeEvent } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { MdModeEdit, MdAdd } from 'react-icons/md';
 import { useForm, SubmitHandler } from 'react-hook-form';
+import { blob } from 'stream/consumers';
 import memberAPI from '@/core/api/functions/memberAPI';
 import memberOptions from '@/core/api/options/member';
 import { Toast } from '@/shared/Toast';
@@ -17,6 +18,11 @@ interface UserProfileProps {
   intro: string | undefined;
   profileImage: string | undefined;
   userId: string;
+}
+
+export interface ModifyMemberRequest {
+  nickname?: string;
+  intro?: string;
 }
 
 const inputStyle = `w-full border-b border-light-gray bg-transparent p-1 focus:border-b-2focus:border-light-point focus:outline-none focus:ring-light-poin dark:focus:border-dark-point dark:focus:ring-dark-point`;
@@ -68,10 +74,16 @@ const UserProfile = ({
     profileImage
   }) => {
     const formData = new FormData();
-    nickname && formData.append('nickname', nickname);
-    intro && formData.append('intro', intro);
-    profileImage &&
-      profileImage[0] &&
+    const modifyMemberRequest: ModifyMemberRequest = {};
+    if (nickname) modifyMemberRequest['nickname'] = nickname;
+    if (intro) modifyMemberRequest['intro'] = intro;
+    formData.append(
+      'modifyMemberRequest',
+      new Blob([JSON.stringify(modifyMemberRequest)], {
+        type: 'application/json'
+      })
+    );
+    if (profileImage && profileImage[0])
       formData.append('profileImage', profileImage[0]);
     mutation.mutate(formData, {
       onSuccess: () => {

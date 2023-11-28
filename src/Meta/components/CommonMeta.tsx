@@ -17,6 +17,10 @@ const CommonMeta = ({ pageName }: CommonMetaProps) => {
         content="Moabam : 그룹 루틴 서비스"
       />
       <meta
+        property="og:url"
+        content={`${location}`}
+      />
+      <meta
         property="og:image"
         content="https://i.ibb.co/x8FGk2H/og-Img-moabam.png"
       />

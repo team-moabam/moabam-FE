@@ -31,9 +31,8 @@ const RoomMemberRank = ({
           {todayCertificateRank
             .filter((el) => el.rank <= 3)
             .map((el) => {
-              const { memberId, nickname, rank } = el;
-              const awakeImage = '/assets/skins/awakeOmokSkin0.png';
-              const sleepImage = '/assets/skins/sleepOmokSkin0.png';
+              const { memberId, nickname, rank, awakeImage, sleepImage } = el;
+
               return (
                 <Link
                   to={`/user/${memberId}`}

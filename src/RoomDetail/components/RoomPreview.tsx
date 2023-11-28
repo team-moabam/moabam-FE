@@ -5,6 +5,7 @@ import { twMerge } from 'tailwind-merge';
 import { useForm } from 'react-hook-form';
 import roomAPI from '@/core/api/functions/roomAPI';
 import { RoomSemiInfo } from '@/core/types/Room';
+import { roomOptions } from '@/core/api/options';
 import { PasswordInput } from '@/shared/Input';
 import { Toast } from '@/shared/Toast';
 import RoomRoutineList from './RoomRoutineList';
@@ -14,9 +15,10 @@ const RoomPreview = ({
   certifyTime,
   roomId,
   maxUserCount,
-  currentUserCount
+  currentUserCount,
+  isPassword
 }: RoomSemiInfo) => {
-  const canJoin = maxUserCount - currentUserCount >= 1;
+  const canNotJoin = maxUserCount - currentUserCount < 1;
   const { handleSubmit, register } = useForm<{ password: string }>({
     mode: 'onSubmit',
     defaultValues: { password: '' }
@@ -28,14 +30,31 @@ const RoomPreview = ({
 
   const queryClient = useQueryClient();
 
-  const joinTheRoom = (data: { password: string }) => {
+  const joinTheRoomWithPassword = (data: { password: string }) => {
     mutate(
       { roomId: `${roomId}`, body: data },
       {
         onSuccess: () => {
           Toast.show({ status: 'confirm', message: '방에 참가하였습니다' });
-          ['rooms', 'checkRoomJoin'] as const,
-            queryClient.invalidateQueries({ queryKey: ['room'] });
+          queryClient.invalidateQueries({
+            queryKey: roomOptions.checkRoomJoin().queryKey
+          });
+        }
+      }
+    );
+  };
+
+  const joinTheRoomNonPassword = () => {
+    Toast.show({ status: 'confirm', message: '방에 참가하였습니다' });
+
+    mutate(
+      { roomId: `${roomId}`, body: { password: null } },
+      {
+        onSuccess: () => {
+          Toast.show({ status: 'confirm', message: '방에 참가하였습니다' });
+          queryClient.invalidateQueries({
+            queryKey: roomOptions.checkRoomJoin().queryKey
+          });
         }
       }
     );
@@ -55,16 +74,18 @@ const RoomPreview = ({
           <span
             className={twMerge(
               clsx('font-IMHyemin-bold text-[0.625rem]', {
-                'text-light-point dark:text-dark-point': canJoin,
-                'text-danger': !canJoin
+                'text-light-point dark:text-dark-point': !canNotJoin,
+                'text-danger': canNotJoin
               })
             )}
           >
-            {canJoin ? '참가 가능!' : '꽉찼어요...'}
+            {canNotJoin ? '꽉찼어요...' : '참가 가능!'}
           </span>
         </div>
-        {canJoin ? (
-          <form onSubmit={handleSubmit(joinTheRoom)}>
+        {canNotJoin ? (
+          <button className="btn btn-disabled w-full">다음 기회에...</button>
+        ) : isPassword ? (
+          <form onSubmit={handleSubmit(joinTheRoomWithPassword)}>
             <div className="mb-[1.06rem]">
               <PasswordInput
                 placeholder="비밀번호"
@@ -79,7 +100,12 @@ const RoomPreview = ({
             </button>
           </form>
         ) : (
-          <button className="btn btn-disabled w-full">다음 기회에...</button>
+          <button
+            onClick={joinTheRoomNonPassword}
+            className="btn btn-light-point dark:btn-dark-point w-full"
+          >
+            가입
+          </button>
         )}
       </div>
     </>

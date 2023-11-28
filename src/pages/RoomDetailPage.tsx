@@ -34,12 +34,16 @@ const RoomDetailPage = () => {
           <Suspense fallback={<RoomDetailFallback />}>
             {checkedRoomJoin ? (
               <RoomDetailProvider serverTime={serverTime || new Date()}>
-                <RoomDetail roomId={roomId} />
+                <RoomDetail
+                  roomId={roomId}
+                  checkedRoomJoin={checkedRoomJoin}
+                />
               </RoomDetailProvider>
             ) : (
               <RoomSemi
                 roomId={roomId}
                 serverTime={serverTime || new Date()}
+                checkedRoomJoin={checkedRoomJoin}
               />
             )}
           </Suspense>

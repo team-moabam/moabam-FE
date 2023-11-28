@@ -1,16 +1,26 @@
 import { Link } from 'react-router-dom';
-import { useRouteData } from '@/core/hooks';
+import { useLocalStorage, useRouteData } from '@/core/hooks';
+import { RankMember } from '@/core/types/Member';
 import { Header } from '@/shared/Header';
 import { Icon } from '@/shared/Icon';
 import { Toast } from '@/shared/Toast';
 
 interface RoomHeaderProps {
   title: string;
+  checkedRoomJoin: boolean;
+  managerNickname?: string;
+  todayCertificateRank?: RankMember[];
 }
 
-const RoomHeader = ({ title }: RoomHeaderProps) => {
+const RoomHeader = ({
+  title,
+  checkedRoomJoin,
+  managerNickname,
+  todayCertificateRank
+}: RoomHeaderProps) => {
   const { location } = useRouteData();
   const sharePath = `${import.meta.env.VITE_LOCALHOST}${location}`;
+  const [myUserId] = useLocalStorage('MEMBER_ID', '');
 
   const handleShareButtonClick = () => {
     navigator.clipboard.writeText(sharePath);
@@ -21,21 +31,27 @@ const RoomHeader = ({ title }: RoomHeaderProps) => {
     });
   };
 
+  const checkManagerNickname = todayCertificateRank?.find(
+    (el) => el.memberId === myUserId
+  )?.nickname;
+
   return (
     <Header
       title={title}
       className="absolute z-[1] text-white"
     >
       <div className="flex">
-        <Link
-          to="setting"
-          className="mr-[1.06rem]"
-        >
-          <Icon
-            icon="MdEdit"
-            size="xl"
-          />
-        </Link>
+        {checkedRoomJoin && checkManagerNickname === managerNickname && (
+          <Link
+            to="setting"
+            className="mr-[1.06rem]"
+          >
+            <Icon
+              icon="MdEdit"
+              size="xl"
+            />
+          </Link>
+        )}
         <button onClick={handleShareButtonClick}>
           <Icon
             icon="BiSolidShareAlt"
