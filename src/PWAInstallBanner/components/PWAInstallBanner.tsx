@@ -15,7 +15,7 @@ const PWAInstallBanner = ({ bannerStyle }: PWAInstallBannerProps) => {
   return (
     <AnimatePresence>
       {isShow && (
-        <motion.div
+        <motion.article
           className="flex w-full justify-center"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -24,7 +24,7 @@ const PWAInstallBanner = ({ bannerStyle }: PWAInstallBannerProps) => {
           <div
             className={twMerge(
               'h-16 w-[90%]',
-              'rounded-lg font-bold text-white shadow-lg',
+              'rounded-lg font-bold text-white shadow-lg text-center',
               'flex items-center justify-center gap-2',
               'bg-gradient-to-r from-light-point to-light-point-hover',
               'dark:from-dark-point dark:to-dark-point-hover',
@@ -37,7 +37,7 @@ const PWAInstallBanner = ({ bannerStyle }: PWAInstallBannerProps) => {
               width={50}
               height={50}
             />
-            <p className="grow">
+            <p className="grow break-keep">
               앱으로 <b>설치</b>할 수도 있어요
             </p>
             <section className="me-4 flex gap-2">
@@ -51,7 +51,7 @@ const PWAInstallBanner = ({ bannerStyle }: PWAInstallBannerProps) => {
               />
             </section>
           </div>
-        </motion.div>
+        </motion.article>
       )}
     </AnimatePresence>
   );
