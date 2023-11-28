@@ -27,7 +27,7 @@ const BirdCard = ({
   return (
     <div
       className={twMerge(
-        'flex min-h-48 p-4 grow cursor-pointer select-none flex-col items-center justify-center rounded-xl border-3 bg-white text-black dark:bg-dark-sub dark:text-white',
+        'flex p-4 grow cursor-pointer select-none flex-col items-center justify-center rounded-xl border-3 bg-white text-black dark:bg-dark-sub dark:text-white',
         active
           ? 'border-light-point dark:border-dark-point'
           : 'border-transparent',
