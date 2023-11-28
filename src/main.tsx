@@ -20,7 +20,23 @@ const setupMSW = async () => {
 
   const { worker } = await import('@/core/mocks/browser');
 
-  return worker.start();
+  return worker.start({
+    onUnhandledRequest(request, print) {
+      const excludedUrls = [
+        '/assets/',
+        '/node_modules/',
+        'chrome-extension://',
+        'fonts.googleapis.com/css2',
+        'cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2106@1.1'
+      ];
+
+      if (excludedUrls.some((url) => request.url.includes(url))) {
+        return;
+      }
+
+      print.warning();
+    }
+  });
 };
 
 const setupSW = async () => {

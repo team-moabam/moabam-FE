@@ -1,5 +1,7 @@
+import { useQuery } from '@tanstack/react-query';
 import { useFormContext } from 'react-hook-form';
 import clsx from 'clsx';
+import { roomOptions } from '@/core/api/options';
 import { FunnelHook } from '@/shared/Funnel/hooks/useFunnel';
 import { LoadingSpinner } from '@/shared/LoadingSpinner';
 import { steps } from '@/pages/RoomNewPage';
@@ -19,6 +21,9 @@ const Navbar = ({
 }: NavbarProps) => {
   const { trigger } = useFormContext<Inputs>();
 
+  // 참여 중인 방 정보를 가져오는 동안 다음 스텝으로 넘어가지 못하도록 합니다.
+  const { isSuccess } = useQuery({ ...roomOptions.myJoin() });
+
   // 다음 스텝으로 넘어가기 전 각 스텝에서 수행되어야 할 유효성 검사 필드를 정의합니다.
   const validationMaps: Record<(typeof steps)[number], Array<keyof Inputs>> = {
     BirdStep: ['roomType'],
@@ -29,6 +34,10 @@ const Navbar = ({
   };
 
   const handleToNext = async () => {
+    if (!isSuccess) {
+      return;
+    }
+
     const isCompleted = await trigger(validationMaps[current], {
       shouldFocus: true
     });

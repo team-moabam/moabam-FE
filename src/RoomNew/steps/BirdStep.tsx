@@ -1,21 +1,16 @@
 import { useFormContext } from 'react-hook-form';
-import { TIME_RANGE, ROOM_TYPES } from '@/RoomForm/constants/literals';
 import {
   headingStyle,
   descriptionStyle,
   errorStyle
 } from '../constants/styles';
 import { Inputs } from '../hooks/useRoomForm';
-import BirdCard from '../components/BirdCard';
+import BirdCardSection from '../components/BirdCardSection';
 
 const BirdStep = () => {
   const {
-    setValue,
-    watch,
     formState: { errors }
   } = useFormContext<Inputs>();
-
-  const watchType = watch('roomType');
 
   return (
     <>
@@ -29,17 +24,7 @@ const BirdStep = () => {
       </p>
 
       <section className="flex justify-around gap-10 pt-10 max-[320px]:flex-col">
-        {ROOM_TYPES.map((roomType) => (
-          <BirdCard
-            key={roomType}
-            type={roomType}
-            active={watchType === roomType}
-            onClick={() => {
-              setValue('roomType', roomType);
-              setValue('certifyTime', TIME_RANGE[roomType][0]);
-            }}
-          />
-        ))}
+        <BirdCardSection />
       </section>
 
       {errors.roomType && (
