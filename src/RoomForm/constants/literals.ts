@@ -30,6 +30,11 @@ export const TIME_RANGE: Record<RoomInfo['roomType'], [number, number]> = {
   NIGHT: [20, 26]
 };
 
+// 참여할 수 있는 최대 방 수
+export const ROOM_COUNT = {
+  max: 3
+};
+
 // 등록할 수 있는 최대 루틴 수
 export const ROUTINE_COUNT = {
   max: 4
