@@ -46,7 +46,7 @@ const App = () => {
             <div className="h-full overflow-hidden bg-light-main text-black dark:bg-dark-main dark:text-white">
               <Suspense
                 fallback={
-                  <Deffered defferTime={500}>
+                  <Deffered defferTime={2000}>
                     <div className="flex h-full items-center justify-center">
                       <LoadingSpinner
                         colorStyle="text-light-point dark:text-dark-point"
