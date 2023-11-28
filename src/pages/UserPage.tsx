@@ -12,7 +12,7 @@ const UserPage = () => {
   return (
     <div className="h-full overflow-auto px-5 pb-5">
       <Header
-        prev="join"
+        prev={-1}
         className="absolute left-0 top-0 z-10"
       />
       <Suspense

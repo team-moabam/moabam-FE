@@ -1,5 +1,5 @@
 import { baseInstance, formDataInstance } from '../instance';
-import { ModifyMemberRequest } from '@/UserProfile/components/UserProfile';
+// import { ModifyMemberRequest } from '@/UserProfile/components/UserProfile';
 import { MemberInfo, MyInfo } from '@/core/types/Member';
 
 const memberAPI = {
@@ -24,12 +24,11 @@ const memberAPI = {
     );
   },
 
-  editMyInfo: async (ModifyMemberRequest: ModifyMemberRequest) => {
-    console.log({ ModifyMemberRequest });
-    return await formDataInstance.post(
-      `/members/modify`,
-      JSON.stringify({ ModifyMemberRequest })
-    );
+  editMyInfo: async (formData: FormData) => {
+    for (const key of formData.keys()) {
+      console.log(key, ':', formData.get(key));
+    }
+    return await formDataInstance.post(`/members/modify`, formData);
   },
 
   logout: async () => {
