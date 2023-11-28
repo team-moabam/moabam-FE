@@ -27,7 +27,6 @@ const RoomCalendarDate = ({
   const thisDateTime = thisDate.getTime();
   const thisDateDay = thisDate.getDay();
   const langKoDay = DAY_OF_THE_WEEK[thisDateDay];
-  const bug = certifiedDates.find((el) => el === thisDateString);
 
   const chooseDateString = `${chooseDate.getFullYear()}-${
     chooseDate.getMonth() + 1
@@ -35,6 +34,8 @@ const RoomCalendarDate = ({
   const thisDateString = `${thisDate.getFullYear()}-${
     thisDate.getMonth() + 1
   }-${thisDateDate}`;
+
+  const bug = certifiedDates.find((el) => el === thisDateString);
 
   const handleDateClick = (thisDate: Date) => {
     if (nowTime >= thisDateTime) {
