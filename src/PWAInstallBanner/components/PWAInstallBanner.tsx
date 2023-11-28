@@ -1,10 +1,14 @@
-import clsx from 'clsx';
+import { twMerge } from 'tailwind-merge';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useTheme } from '@/core/hooks';
 import { Icon } from '@/shared/Icon';
 import usePWAInstallBanner from '../hooks/usePWAInstallBanner';
 
-const PWAInstallBanner = () => {
+interface PWAInstallBannerProps {
+  bannerStyle?: string;
+}
+
+const PWAInstallBanner = ({ bannerStyle }: PWAInstallBannerProps) => {
   const { isShow, handleInstall, handleClose } = usePWAInstallBanner();
   const { theme } = useTheme();
 
@@ -18,12 +22,13 @@ const PWAInstallBanner = () => {
           exit={{ opacity: 0 }}
         >
           <div
-            className={clsx(
-              'absolute bottom-36 z-pwaInstallBanner h-16 w-[90%]',
+            className={twMerge(
+              'h-16 w-[90%]',
               'rounded-lg font-bold text-white shadow-lg',
               'flex items-center justify-center gap-2',
               'bg-gradient-to-r from-light-point to-light-point-hover',
-              'dark:from-dark-point dark:to-dark-point-hover'
+              'dark:from-dark-point dark:to-dark-point-hover',
+              bannerStyle
             )}
           >
             <img

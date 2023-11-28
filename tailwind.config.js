@@ -71,8 +71,7 @@ export default {
       zIndex: {
         navbar: '50',
         bottomSheet: '100',
-        toast: '110',
-        pwaInstallBanner: '120'
+        toast: '110'
       }
     }
   }
