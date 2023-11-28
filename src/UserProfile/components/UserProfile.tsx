@@ -19,6 +19,11 @@ interface UserProfileProps {
   userId: string;
 }
 
+export interface ModifyMemberRequest {
+  nickname?: string;
+  intro?: string;
+}
+
 const inputStyle = `w-full border-b border-light-gray bg-transparent p-1 focus:border-b-2focus:border-light-point focus:outline-none focus:ring-light-poin dark:focus:border-dark-point dark:focus:ring-dark-point`;
 
 const UserProfile = ({
@@ -68,11 +73,11 @@ const UserProfile = ({
     profileImage
   }) => {
     const formData = new FormData();
-    nickname && formData.append('nickname', nickname);
-    intro && formData.append('intro', intro);
-    profileImage &&
-      profileImage[0] &&
-      formData.append('profileImage', profileImage[0]);
+    const modifyMemberRequest: ModifyMemberRequest = {};
+    if (nickname) modifyMemberRequest['nickname'] = nickname;
+    if (intro) modifyMemberRequest['intro'] = intro;
+    formData.append('modifyMemberRequest', JSON.stringify(modifyMemberRequest));
+    if (profileImage) formData.append('profileImage', profileImage[0]);
     mutation.mutate(formData, {
       onSuccess: () => {
         queryClient.invalidateQueries({

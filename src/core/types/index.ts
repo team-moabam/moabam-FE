@@ -14,7 +14,7 @@ export type { MyBugs } from './MyBug';
 export type { BugHistory } from './BugHistory';
 export type { ParticipateHistory } from './ParticipateHistory';
 export type { MemberInfo, MyInfo } from './Member';
-export type { MyCoupons, MyCoupon } from './MyCoupon';
+export type { MyCoupon } from './MyCoupon';
 export type { Report } from './Reports';
 export type { ProductBugs, ProductBug } from './ProductBugs';
 export type { PurchaseRes } from './PurchaseBugs';

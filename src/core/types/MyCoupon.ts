@@ -5,7 +5,3 @@ export interface MyCoupon {
   description: string;
   type: 'MORNING_COUPON' | 'NIGHT_COUPON' | 'GOLDEN_COUPON' | 'DISCOUNT_COUPON';
 }
-
-export interface MyCoupons {
-  myCouponsResponse: MyCoupon[];
-}
