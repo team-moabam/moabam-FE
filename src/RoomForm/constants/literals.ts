@@ -9,15 +9,18 @@ export const BIRD: Record<
   {
     name: string;
     image: string;
+    bg: string;
   }
 > = {
   MORNING: {
     name: '오목눈이',
-    image: '/assets/Omok.png'
+    image: '/assets/skins/defaultOmok.png',
+    bg: 'bg-yellow-50'
   },
   NIGHT: {
     name: '부엉이',
-    image: '/assets/Owl.png'
+    image: '/assets/skins/awakeOwlSkin0.png',
+    bg: 'bg-violet-50'
   }
 } as const;
 

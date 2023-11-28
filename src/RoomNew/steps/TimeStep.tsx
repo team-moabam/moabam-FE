@@ -1,13 +1,13 @@
 import { useFormContext } from 'react-hook-form';
 import { formatHourString } from '@/TimePicker/utils/hour';
 import { TIME_RANGE } from '@/RoomForm/constants/literals';
+import { TimePicker } from '@/TimePicker';
 import {
   headingStyle,
   descriptionStyle,
   errorStyle
 } from '../constants/styles';
 import { Inputs } from '../hooks/useRoomForm';
-import { TimePicker } from '@/TimePicker';
 
 const TimeStep = () => {
   const {

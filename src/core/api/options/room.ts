@@ -14,6 +14,12 @@ const roomOptions = {
       queryFn: () => roomAPI.getRoomDetailByDate(roomId, date)
     }),
 
+  semiDetail: (roomId?: string) =>
+    queryOptions({
+      queryKey: ['rooms', 'semiDetail', roomId] as const,
+      queryFn: () => roomAPI.getRoomSemiDetail(roomId)
+    }),
+
   myJoin: () =>
     queryOptions({
       queryKey: ['rooms', 'myJoin'] as const,
@@ -24,6 +30,12 @@ const roomOptions = {
     queryOptions({
       queryKey: ['rooms', 'joinHistory'] as const,
       queryFn: () => roomAPI.roomJoinHistory()
+    }),
+
+  checkRoomJoin: (roomId?: string) =>
+    queryOptions({
+      queryKey: ['rooms', 'checkRoomJoin'] as const,
+      queryFn: () => roomAPI.getCheckRoomJoin(roomId)
     })
 };
 

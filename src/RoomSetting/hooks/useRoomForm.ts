@@ -3,6 +3,7 @@ import z from 'zod';
 import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import roomAPI from '@/core/api/functions/roomAPI';
+import { Toast } from '@/shared/Toast';
 import {
   ANNOUNCEMENT,
   ROUTINE_NAME,
@@ -11,7 +12,6 @@ import {
   PASSWORD,
   FORM_MESSAGE
 } from '@/RoomForm/constants/literals';
-import { Toast } from '@/shared/Toast';
 
 export const formSchema = z.object({
   title: z

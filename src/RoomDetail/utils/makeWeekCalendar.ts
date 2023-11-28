@@ -5,7 +5,12 @@ export const makeWeekCalendar = (serverTime: Date) => {
   const todayDay = serverTime.getDay() === 0 ? 8 : serverTime.getDay();
 
   for (let i = 0; i < 7; i++) {
-    const mondayDate = todayDate - todayDay + 2;
+    let mondayDate = todayDate - todayDay + 1;
+
+    if (todayDay === 0) {
+      mondayDate = todayDate - 6;
+    }
+
     const newDate = new Date(serverTime);
 
     newDate.setFullYear(newDate.getFullYear());

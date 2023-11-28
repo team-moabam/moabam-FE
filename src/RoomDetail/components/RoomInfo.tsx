@@ -1,7 +1,7 @@
-import RoomMemberRank from './RoomMemberRank';
+import { RoomInfo as RoomInfoType } from '@/core/types/Room';
 import { ProgressBar } from '@/shared/ProgressBar';
 import { LoadingSpinner } from '@/shared/LoadingSpinner';
-import { RoomInfo as RoomInfoType } from '@/core/types/Room';
+import RoomMemberRank from './RoomMemberRank';
 
 interface extendedProps {
   status: 'pending' | 'error' | 'success';
@@ -13,7 +13,8 @@ const RoomInfo = ({
   maxUserCount,
   todayCertificateRank,
   certifyTime,
-  status
+  status,
+  exp
 }: RoomInfoProps) => {
   return (
     <div className="relative h-[20.56rem] overflow-hidden">
@@ -42,7 +43,7 @@ const RoomInfo = ({
             </span>
           </div>
         </div>
-        <ProgressBar progress={40}></ProgressBar>
+        <ProgressBar progress={(exp / 10) * 100}></ProgressBar>
       </div>
     </div>
   );

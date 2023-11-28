@@ -7,9 +7,9 @@ import {
   MdLineWeight,
   MdOutlineLogout
 } from 'react-icons/md';
+import { useBottomSheet, BottomSheet } from '@/shared/BottomSheet';
 import Logout from './Logout';
 import WithDrawal from './WithDrawal';
-import { useBottomSheet, BottomSheet } from '@/shared/BottomSheet';
 
 const UserEtc = () => {
   const { bottomSheetProps, open } = useBottomSheet();

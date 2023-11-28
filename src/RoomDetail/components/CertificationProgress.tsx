@@ -1,7 +1,7 @@
 import { useContext } from 'react';
+import { ProgressBar } from '@/shared/ProgressBar';
 import makeTodayCertifyTime from '../utils/makeTodayCertifyTime';
 import { DateRoomDetailContext } from './RoomDetailProvider';
-import { ProgressBar } from '@/shared/ProgressBar';
 
 interface CertificationProgressProps {
   percentage: number;
