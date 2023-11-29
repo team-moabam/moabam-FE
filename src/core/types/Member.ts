@@ -31,13 +31,13 @@ export interface MemberInfo {
     NIGHT: string;
   };
   badges: {
-    name: string;
+    badge: string;
     unlock: boolean;
   }[];
   profileImage: string | undefined;
-  golden_bug?: number;
-  morning_bug?: number;
-  night_bug?: number;
+  goldenBug?: number;
+  morningBug?: number;
+  nightBug?: number;
 }
 
 export interface MyInfo {
@@ -50,11 +50,11 @@ export interface MyInfo {
     NIGHT: string;
   };
   badges: {
-    name: string;
+    badge: string;
     unlock: boolean;
   }[];
   profileImage: string | undefined;
-  golden_bug: number;
-  morning_bug: number;
-  night_bug: number;
+  goldenBug: number;
+  morningBug: number;
+  nightBug: number;
 }

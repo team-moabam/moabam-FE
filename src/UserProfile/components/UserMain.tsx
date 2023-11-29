@@ -20,9 +20,9 @@ const UserMain = ({ userId = '' }: UserMainProps) => {
         birds,
         badges,
         profileImage,
-        morning_bug,
-        night_bug,
-        golden_bug
+        morningBug,
+        nightBug,
+        goldenBug
       }
     }
   ] = useSuspenseQueries({
@@ -35,15 +35,15 @@ const UserMain = ({ userId = '' }: UserMainProps) => {
 
   const WalletData = [
     {
-      value: morning_bug ? morning_bug : 0,
+      value: morningBug,
       color: 'text-light-point'
     },
     {
-      value: night_bug ? night_bug : 0,
+      value: nightBug,
       color: 'text-dark-point'
     },
     {
-      value: golden_bug ? golden_bug : 0,
+      value: goldenBug,
       color: 'text-warning'
     }
   ];
@@ -81,11 +81,10 @@ const UserMain = ({ userId = '' }: UserMainProps) => {
           state={{ type: 'MORNING' }}
           className="flex aspect-[3/4] w-1/2 flex-col items-center justify-center gap-3 rounded-lg bg-light-sub text-lg dark:bg-dark-sub"
         >
-          <div className="aspect-square w-1/2 overflow-hidden rounded-full bg-slate-400">
+          <div className="aspect-square w-1/2 overflow-hidden rounded-full bg-yellow-50">
             <img
               src={birds.MORNING}
-              alt=""
-              className="h-full w-full object-cover"
+              className="object-cover p-4"
             />
           </div>
           <div>오목눈이</div>
@@ -95,11 +94,10 @@ const UserMain = ({ userId = '' }: UserMainProps) => {
           state={{ type: 'NIGHT' }}
           className="flex aspect-[3/4] w-1/2 flex-col items-center justify-center gap-3 rounded-lg bg-light-sub text-lg dark:bg-dark-sub"
         >
-          <div className="aspect-square w-1/2 overflow-hidden rounded-full bg-slate-400">
+          <div className="aspect-square w-1/2 overflow-hidden rounded-full bg-purple-50">
             <img
               src={birds.NIGHT}
-              alt=""
-              className="h-full w-full object-cover"
+              className="object-cover p-4"
             />
           </div>
           <div>부엉이</div>
@@ -109,17 +107,17 @@ const UserMain = ({ userId = '' }: UserMainProps) => {
         <h1>뱃지</h1>
       </div>
       <div className="flex h-36 w-full rounded-lg  text-sm">
-        {badges.slice(0, 3).map(({ name, unlock }) => (
+        {badges.slice(0, 3).map(({ badge, unlock }) => (
           <div
             className="flex h-full w-2/6 flex-col items-center justify-center gap-2 rounded-lg"
-            key={name}
+            key={badge}
           >
             <div
               className={`h-14 w-14 rounded-full ${
                 unlock ? 'bg-light-point dark:bg-dark-point' : 'bg-dark-gray'
               }`}
             />
-            <p className="text-center">{name}</p>
+            <p className="text-center">{badge}</p>
           </div>
         ))}
       </div>
