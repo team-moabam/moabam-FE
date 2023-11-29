@@ -1,8 +1,6 @@
 import { useLocation } from 'react-router-dom';
-import { useQuery } from '@tanstack/react-query';
 import { FormProvider } from 'react-hook-form';
 import { motion } from 'framer-motion';
-import memberOptions from '@/core/api/options/member';
 import { useFunnel, Funnel } from '@/shared/Funnel';
 import { Header } from '@/shared/Header';
 import {

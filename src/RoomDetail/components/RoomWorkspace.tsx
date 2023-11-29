@@ -62,7 +62,6 @@ const RoomWorkspace = ({
         Toast.show({ message: '방을 나갔습니다', status: 'confirm' });
       },
       onError: (err) => {
-        console.error(err);
         Toast.show({
           message: err.response?.data.message ?? '오류가 발생했어요.',
           status: 'danger'
@@ -148,14 +147,16 @@ const RoomWorkspace = ({
             reportStatus={reportStatus}
             changeReportStatus={changeReportStatus}
           />
-          <button
-            className="mt-[1.62rem] text-sm text-black dark:text-white"
-            onClick={() => {
-              setReportStatus((prev) => !prev);
-            }}
-          >
-            {reportStatus ? '취소하기' : '신고하기'}
-          </button>
+          {todayCertificateRank.length > 1 && (
+            <button
+              className="mt-[1.62rem] text-sm text-black dark:text-white"
+              onClick={() => {
+                setReportStatus((prev) => !prev);
+              }}
+            >
+              {reportStatus ? '취소하기' : '신고하기'}
+            </button>
+          )}
         </TabItem>
       </Tab>
       <BottomSheet {...bottomSheetProps}>
