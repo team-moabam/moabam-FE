@@ -1,7 +1,7 @@
 export const RoomInfo = {
   roomId: 32,
   title: '윤명이의 루틴방',
-  managerNickname: '재영',
+  managerNickName: '재영',
   roomImage: 'https://picsum.photos/200',
   level: 5,
   exp: 4,
