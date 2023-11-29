@@ -9,6 +9,8 @@ const RoomSettingPage = () => {
   const { params } = useRouteData();
   const roomId = params.roomId || '';
 
+  console.log('원인 분석중');
+
   return (
     <>
       <Header prev="roomDetail" />
@@ -19,9 +21,9 @@ const RoomSettingPage = () => {
           itemStyle="mt-10 px-8"
         >
           <TabItem title="방 관리">
-            <Suspense fallback={<LoadingFallback />}>
+            {/* <Suspense fallback={<LoadingFallback />}>
               <RoomTab roomId={roomId} />
-            </Suspense>
+            </Suspense> */}
           </TabItem>
           <TabItem title="멤버 관리">
             {/* <Suspense fallback={<LoadingFallback />}>
