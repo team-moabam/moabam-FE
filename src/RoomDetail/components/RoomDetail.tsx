@@ -26,7 +26,7 @@ const RoomDetail = ({ roomId, checkedRoomJoin }: RoomDetailProps) => {
 
   if (status !== 'success') return <RoomDetailFallback />;
 
-  const { title, announcement, managerNickname, todayCertificateRank } =
+  const { title, announcement, managerNickName, todayCertificateRank } =
     roomDetailData;
 
   return (
@@ -35,7 +35,7 @@ const RoomDetail = ({ roomId, checkedRoomJoin }: RoomDetailProps) => {
       <RoomHeader
         title={title}
         checkedRoomJoin={checkedRoomJoin}
-        managerNickname={managerNickname}
+        managerNickName={managerNickName}
         todayCertificateRank={todayCertificateRank}
       />
       <RoomNotice content={announcement} />

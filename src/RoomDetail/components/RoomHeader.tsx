@@ -8,14 +8,14 @@ import { Toast } from '@/shared/Toast';
 interface RoomHeaderProps {
   title: string;
   checkedRoomJoin: boolean;
-  managerNickname?: string;
+  managerNickName?: string;
   todayCertificateRank?: RankMember[];
 }
 
 const RoomHeader = ({
   title,
   checkedRoomJoin,
-  managerNickname,
+  managerNickName,
   todayCertificateRank
 }: RoomHeaderProps) => {
   const { location } = useRouteData();
@@ -31,13 +31,9 @@ const RoomHeader = ({
     });
   };
 
-  const checkManagerNickname = todayCertificateRank?.find(
+  const checkManagerNickName = todayCertificateRank?.find(
     (el) => el.memberId === myUserId
   )?.nickname;
-
-  console.log(checkManagerNickname);
-  console.log(myUserId);
-  console.log(managerNickname);
 
   return (
     <Header
@@ -45,7 +41,7 @@ const RoomHeader = ({
       className="absolute z-[1] text-white"
     >
       <div className="flex">
-        {checkedRoomJoin && checkManagerNickname === managerNickname && (
+        {checkedRoomJoin && checkManagerNickName === managerNickName && (
           <Link
             to="setting"
             className="mr-[1.06rem]"

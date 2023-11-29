@@ -5,7 +5,7 @@ export type DayType = 'MORNING' | 'NIGHT';
 export type RoomInfo = {
   roomId: number;
   title: string;
-  managerNickname: string;
+  managerNickName: string;
   level: number;
   exp: number;
   roomType: DayType;
@@ -23,7 +23,7 @@ export type RoomSemiInfo = {
   roomId: number;
   isPassword: boolean;
   title: string;
-  managerNickname: string;
+  managerNickName: string;
   level: number;
   exp: number;
   roomType: DayType;
