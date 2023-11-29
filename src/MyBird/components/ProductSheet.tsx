@@ -18,7 +18,7 @@ interface ProductSheetProps {
 const ProductSheet = ({ close }: ProductSheetProps) => {
   const [
     {
-      data: { morning_bug, night_bug, golden_bug, level: userLevel }
+      data: { level: userLevel, morningBug, nightBug, goldenBug }
     }
   ] = useSuspenseQueries({
     queries: [
@@ -42,13 +42,13 @@ const ProductSheet = ({ close }: ProductSheetProps) => {
       purchaseType: 'normal',
       color: type === 'MORNING' ? 'text-light-point' : 'text-dark-point',
       price: bugPrice,
-      buyResult: (type === 'MORNING' ? morning_bug : night_bug) - bugPrice
+      buyResult: (type === 'MORNING' ? morningBug : nightBug) - bugPrice
     },
     {
       purchaseType: 'golden',
       color: 'text-warning',
       price: goldenBugPrice,
-      buyResult: golden_bug - goldenBugPrice
+      buyResult: goldenBug - goldenBugPrice
     }
   ];
 
