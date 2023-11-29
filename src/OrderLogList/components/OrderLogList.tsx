@@ -10,6 +10,18 @@ const OrderLogList = () => {
     data: { history }
   } = useSuspenseQuery({ ...bugOptions.history() });
 
+  if (!history)
+    return (
+      <div className="mt-5 text-center text-dark-gray">요청 오류입니다</div>
+    );
+
+  if (history.length === 0)
+    return (
+      <div className="mt-5 text-center text-dark-gray">
+        사용 내역이 없습니다
+      </div>
+    );
+
   return (
     <ul>
       {history.map(({ id, bugType, actionType, amount, date }) => (

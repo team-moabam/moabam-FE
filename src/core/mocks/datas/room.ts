@@ -126,11 +126,18 @@ export const RoomInfoBeforeEditing = {
       content: '아침 먹기'
     }
   ],
+  managerId: 6,
   participants: [
     {
       memberId: 4,
       nickname: '참여자1',
       contributionPoint: 70,
+      profileImage: 'https://~'
+    },
+    {
+      memberId: 6,
+      nickname: '방장',
+      contributionPoint: 99,
       profileImage: 'https://~'
     },
     {

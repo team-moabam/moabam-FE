@@ -1,8 +1,9 @@
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import z from 'zod';
 import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import roomAPI from '@/core/api/functions/roomAPI';
+import { roomOptions } from '@/core/api/options';
 import { Toast } from '@/shared/Toast';
 import {
   ANNOUNCEMENT,
@@ -60,6 +61,7 @@ const useRoomForm = ({ roomId, defaultValues }: useRoomFormProps) => {
   const mutation = useMutation({
     mutationFn: roomAPI.putRoom
   });
+  const queryClient = useQueryClient();
 
   const form = useForm<Inputs>({
     defaultValues,
@@ -80,6 +82,10 @@ const useRoomForm = ({ roomId, defaultValues }: useRoomFormProps) => {
       },
       {
         onSuccess: (data) => {
+          queryClient.invalidateQueries({
+            queryKey: roomOptions.detail(roomId).queryKey
+          });
+
           Toast.show({
             message: '방 정보를 수정했어요.',
             status: 'confirm'

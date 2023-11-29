@@ -50,7 +50,7 @@ const roomsHandlers = [
     switch (status) {
       case 200:
         // response = value();
-        response = false;
+        response = true;
         break;
       case 401:
         response = { message: '존재하지 않는 유저입니다.' };
@@ -273,7 +273,7 @@ const roomsHandlers = [
     return HttpResponse.json(response, { status });
   }),
 
-  http.put(baseURL('/rooms/:roomId/members/:memberId/delegation'), async () => {
+  http.put(baseURL('/rooms/:roomId/members/:memberId/mandate'), async () => {
     await delay(1000);
 
     const status: number = 200;
