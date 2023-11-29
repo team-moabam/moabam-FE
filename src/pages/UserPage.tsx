@@ -10,11 +10,8 @@ const UserPage = () => {
   const { userId } = useParams();
 
   return (
-    <div className="h-full overflow-auto px-5 pb-5">
-      <Header
-        prev="join"
-        className="absolute left-0 top-0 z-10"
-      />
+    <div className="relative h-full overflow-auto px-5 pb-5">
+      <Header className="absolute left-0 top-0 z-10" />
       <Suspense
         fallback={
           <Deffered>
