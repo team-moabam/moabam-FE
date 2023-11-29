@@ -63,6 +63,12 @@ const RoomPreview = ({
           queryClient.invalidateQueries({
             queryKey: roomOptions.checkRoomJoin().queryKey
           });
+        },
+        onError: (error) => {
+          Toast.show({
+            message: error.response?.data?.message ?? '오류가 발생했어요.',
+            status: 'danger'
+          });
         }
       }
     );
