@@ -29,6 +29,8 @@ jobs:
           echo "VITE_FIREBASE_APP_ID=${{ secrets.VITE_FIREBASE_APP_ID }}" >> .env
           echo "VITE_FIREBASE_MEASUREMENT_ID=${{ secrets.VITE_FIREBASE_MEASUREMENT_ID }}" >> .env
           echo "VITE_FIREBASE_VAPID_PUBLIC_KEY=${{ secrets.VITE_FIREBASE_VAPID_PUBLIC_KEY }}" >> .env
+          echo "VITE_TOSS_CLIENT_KET=${{ secrets.VITE_TOSS_CLIENT_KET }}" >> .env
+          echo "VITE_TOSS_CUSTOMER_KEY=${{ secrets.VITE_TOSS_CUSTOMER_KEY }}" >> .env
 
       - run: cat .env
 
