@@ -48,9 +48,10 @@ const CertificationBottomSheet = ({
         formData.append(
           'multipartFiles',
           new Blob([JSON.stringify(multipartData)], {
-            type: 'application/json'
+            type: 'image/jpeg'
           })
         );
+        // formData.append('multipartFiles', value.file[0]);
       }
     }
 
