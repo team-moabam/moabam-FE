@@ -26,7 +26,7 @@ const RoomNotice = ({ content }: RoomNoticeProps) => {
 
   return (
     <>
-      {content !== '' && (
+      {content && (
         <div className={InfoStyle.container}>
           <button className={`mr-3.5 ${InfoStyle.button}`}>
             <Icon
