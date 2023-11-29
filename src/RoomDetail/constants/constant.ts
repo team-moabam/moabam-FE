@@ -8,7 +8,7 @@ export const REPORT_CONTENT = {
   '5': '기타'
 };
 
-export const CERTIFICATE_START_MINUTES = 40;
+export const CERTIFICATE_START_MINUTES = 50;
 export const CERTIFICATE_START_SECONDS = 0;
 export const CERTIFICATE_START_MICROSECONDS = 0;
 export const CERTIFICATE_END_MINUTES = 10;

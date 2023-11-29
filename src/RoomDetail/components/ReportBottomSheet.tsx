@@ -63,8 +63,8 @@ const ReportBottomSheet = ({
 
     mutation.mutate(
       {
-        reportedId,
-        memberId: userId,
+        reportedId: reportedId?.toString(),
+        memberId: userId.toString(),
         description
       },
       {
