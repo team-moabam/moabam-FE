@@ -1,5 +1,7 @@
-import { Outlet, createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter } from 'react-router-dom';
 import App from '@/App';
+import PrivateRoute from '@/PrivateRoute';
+import PublicRoute from '@/PublicRoute';
 import publicRoutes, { notFoundRoute } from './publicRoutes';
 import privateRoutes from './privateRoutes';
 
@@ -9,7 +11,7 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       {
-        element: <Outlet />,
+        element: <PrivateRoute />,
         children: Object.values(privateRoutes).map(({ path, element }) => ({
           path,
           element
@@ -17,7 +19,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'join',
-        element: <Outlet />,
+        element: <PublicRoute />,
         children: Object.values(publicRoutes).map(({ path, element }) => ({
           path,
           element

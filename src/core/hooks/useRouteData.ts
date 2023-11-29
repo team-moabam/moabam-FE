@@ -37,8 +37,7 @@ const useRouteData = () => {
         ...route,
         location: pathname,
         params,
-        search: parseQueryString(search),
-        authRequired: true
+        search: parseQueryString(search)
       };
     }
   }
@@ -49,8 +48,7 @@ const useRouteData = () => {
         ...route,
         location: pathname,
         params,
-        search: parseQueryString(search),
-        authRequired: false
+        search: parseQueryString(search)
       };
     }
   }
@@ -59,8 +57,7 @@ const useRouteData = () => {
     ...notFoundRoute,
     location: pathname,
     params: {},
-    search: {},
-    authRequired: false
+    search: {}
   };
 };
 
