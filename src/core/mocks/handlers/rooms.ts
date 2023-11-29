@@ -50,7 +50,7 @@ const roomsHandlers = [
     switch (status) {
       case 200:
         // response = value();
-        response = false;
+        response = true;
         break;
       case 401:
         response = { message: '존재하지 않는 유저입니다.' };
