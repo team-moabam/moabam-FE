@@ -19,7 +19,7 @@ const StartPage = () => {
   const moveTo = useMoveRoute();
 
   return (
-    <Deffered defferTime={100}>
+    <Deffered>
       <motion.div
         className="h-full"
         initial={{ opacity: 0 }}
