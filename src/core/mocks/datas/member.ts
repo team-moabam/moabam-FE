@@ -11,26 +11,26 @@ export const MY_INFO: MyInfo = {
   },
   badges: [
     {
-      name: '오목눈이_탄생',
+      badge: '오목눈이_탄생',
       unlock: true
     },
     {
-      name: '어른_오목눈이',
+      badge: '어른_오목눈이',
       unlock: false
     },
     {
-      name: '어른_부엉이',
+      badge: '어른_부엉이',
       unlock: true
     },
     {
-      name: '부엉이_탄생',
+      badge: '부엉이_탄생',
       unlock: true
     }
   ],
   profileImage: undefined,
-  golden_bug: 3,
-  morning_bug: 4,
-  night_bug: 5
+  goldenBug: 3,
+  morningBug: 4,
+  nightBug: 5
 };
 
 export const MEMBER_INFO: MemberInfo = {
@@ -46,19 +46,19 @@ export const MEMBER_INFO: MemberInfo = {
   },
   badges: [
     {
-      name: '오목눈이_탄생',
+      badge: '오목눈이_탄생',
       unlock: true
     },
     {
-      name: '어른_오목눈이',
+      badge: '어른_오목눈이',
       unlock: false
     },
     {
-      name: '어른_부엉이',
+      badge: '어른_부엉이',
       unlock: true
     },
     {
-      name: '부엉이_탄생',
+      badge: '부엉이_탄생',
       unlock: true
     }
   ],

@@ -12,16 +12,16 @@ const OrderLogList = () => {
 
   return (
     <ul>
-      {history.map(({ id, bugType, action, amount, date }) => (
+      {history.map(({ id, bugType, actionType, amount, date }) => (
         <li
           className="flex items-center p-5"
           key={id}
         >
           <div className="flex flex-1 items-center gap-5">
             <div className={`text-xl ${bugs[bugType].color} `}>
-              {actionsIcon[action]}
+              {actionsIcon[actionType]}
             </div>
-            <div>{`${action}으로 ${bugs[bugType].name} ${amount}마리 획득!`}</div>
+            <div>{`${actionType}으로 ${bugs[bugType].name} ${amount}마리 획득!`}</div>
           </div>
           <div className="text-sm text-dark-gray">{date.slice(0, 10)}</div>
         </li>

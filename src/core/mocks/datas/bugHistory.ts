@@ -5,21 +5,21 @@ export const BUG_HISTORY: BugHistory = {
     {
       id: 3,
       bugType: 'MORNING_BUG',
-      action: '보상',
+      actionType: '보상',
       amount: 2,
       date: '2023.11.01 23:50'
     },
     {
       id: 2,
       bugType: 'NIGHT_BUG',
-      action: '쿠폰',
+      actionType: '쿠폰',
       amount: 5,
       date: '2023.10.25 23:50'
     },
     {
       id: 1,
       bugType: 'GOLDEN_BUG',
-      action: '충전',
+      actionType: '충전',
       amount: 10,
       date: '2023.10.19 23:50',
       paymentInfo: {
