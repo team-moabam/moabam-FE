@@ -2,7 +2,7 @@ name: React App CI/CD
 
 on:
   push:
-    branches: ['fix/#336/room-setting-null']
+    branches: ['main']
 
 jobs:
   build:
