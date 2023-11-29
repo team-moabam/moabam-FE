@@ -31,7 +31,7 @@ export interface MemberInfo {
     NIGHT: string;
   };
   badges: {
-    name: string;
+    badge: string;
     unlock: boolean;
   }[];
   profileImage: string | undefined;
@@ -50,7 +50,7 @@ export interface MyInfo {
     NIGHT: string;
   };
   badges: {
-    name: string;
+    badge: string;
     unlock: boolean;
   }[];
   profileImage: string | undefined;
