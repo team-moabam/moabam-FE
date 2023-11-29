@@ -81,7 +81,7 @@ const UserMain = ({ userId = '' }: UserMainProps) => {
           state={{ type: 'MORNING' }}
           className="flex aspect-[3/4] w-1/2 flex-col items-center justify-center gap-3 rounded-lg bg-light-sub text-lg dark:bg-dark-sub"
         >
-          <div className="aspect-square w-1/2 overflow-hidden rounded-full bg-slate-400">
+          <div className="aspect-square w-1/2 overflow-hidden rounded-full bg-yellow-50">
             <img
               src={birds.MORNING}
               className="object-cover p-4"
@@ -94,7 +94,7 @@ const UserMain = ({ userId = '' }: UserMainProps) => {
           state={{ type: 'NIGHT' }}
           className="flex aspect-[3/4] w-1/2 flex-col items-center justify-center gap-3 rounded-lg bg-light-sub text-lg dark:bg-dark-sub"
         >
-          <div className="aspect-square w-1/2 overflow-hidden rounded-full bg-slate-400">
+          <div className="aspect-square w-1/2 overflow-hidden rounded-full bg-purple-50">
             <img
               src={birds.NIGHT}
               className="object-cover p-4"
