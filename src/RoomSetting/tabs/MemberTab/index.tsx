@@ -24,18 +24,18 @@ const MemberTab = ({ roomId }: MemberTabProps) => {
           <Avatar
             imgUrl={member.profileImage}
             nickname={member.nickname}
-            userId={member.memberId.toString()}
+            userId={member.memberId}
             contribution={member.contributionPoint}
           />
           <div className="flex gap-2">
             <KickButton
               {...member}
-              memberId={member.memberId.toString()}
+              memberId={member.memberId}
               roomId={roomId}
             />
             <DelegationButton
               {...member}
-              memberId={member.memberId.toString()}
+              memberId={member.memberId}
               roomId={roomId}
             />
           </div>

@@ -53,19 +53,19 @@ const roomAPI = {
     return await baseInstance.delete(`/rooms/${roomId}`);
   },
 
-  deleteKickUser: async (params: { roomId: string; memberId: string }) => {
+  deleteKickUser: async (params: { roomId: string; memberId: number }) => {
     const { roomId, memberId } = params;
     return await baseInstance.delete(`/rooms/${roomId}/members/${memberId}`);
   },
 
-  putDelegateMaster: async (params: { roomId: string; memberId: string }) => {
+  putDelegateMaster: async (params: { roomId: string; memberId: number }) => {
     const { roomId, memberId } = params;
     return await baseInstance.put(
       `/rooms/${roomId}/members/${memberId}/delegation`
     );
   },
 
-  getMemberPoke: async (roomId: string, memberId: string) => {
+  getMemberPoke: async (roomId: string, memberId: number) => {
     return await baseInstance.get(`/rooms/${roomId}/${memberId}`);
   },
 

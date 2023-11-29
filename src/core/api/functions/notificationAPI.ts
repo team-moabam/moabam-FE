@@ -6,7 +6,7 @@ const notificationAPI = {
       params
     });
   },
-  getMemberPoke: async (roomId: string, memberId: string) => {
+  getMemberPoke: async (roomId: string, memberId: number) => {
     return await baseInstance.get(
       `/notifications/rooms/${roomId}/members/${memberId}`
     );

@@ -1,5 +1,5 @@
 export type Member = {
-  memberId: string;
+  memberId: number;
   nickname: string;
   profileImage: string;
   isNotificationSent: boolean;

@@ -18,7 +18,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     imgUrl: 'https://picsum.photos/200',
-    userId: '123',
+    userId: 123,
     nickname: '볼록눈이',
     contribution: 65
   }
@@ -27,7 +27,7 @@ export const Default: Story = {
 export const Manager: Story = {
   args: {
     imgUrl: 'https://picsum.photos/200',
-    userId: '123',
+    userId: 123,
     nickname: '볼록눈이',
     contribution: 65,
     manager: true
@@ -37,7 +37,7 @@ export const Manager: Story = {
 export const Rank: Story = {
   args: {
     imgUrl: 'https://picsum.photos/200',
-    userId: '123',
+    userId: 123,
     nickname: '볼록눈이',
     manager: false
   }

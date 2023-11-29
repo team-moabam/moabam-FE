@@ -13,7 +13,7 @@ interface ReportBottomSheetProps {
   bottomSheetProps: BottomSheetProps;
   close: () => void;
   nickname: string;
-  reportedId: string;
+  reportedId: number | null;
   changeCheckedInput: (state: string) => void;
   checked: string;
   changeReportStatus: (value: boolean) => void;
@@ -64,7 +64,7 @@ const ReportBottomSheet = ({
     mutation.mutate(
       {
         reportedId,
-        memberId: `${userId}`,
+        memberId: userId,
         description
       },
       {

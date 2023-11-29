@@ -1,6 +1,6 @@
 export type Report = {
-  reportedId: string;
-  memberId: string;
+  reportedId: number | null;
+  memberId: number;
   roomId?: string | null;
   certificationId?: string | null;
   description?: string | null;
