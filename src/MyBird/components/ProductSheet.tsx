@@ -54,8 +54,9 @@ const ProductSheet = ({ close }: ProductSheetProps) => {
 
   const purchaseBird = (id: number | undefined) => {
     if (!purchaseOption || !id) return;
+    const bugType = purchaseOption === 'golden' ? 'GOLDEN' : type;
     mutation.mutate(
-      { itemId: id, bugType: purchaseOption },
+      { itemId: id, bugType },
       {
         onSuccess: () => {
           setSelectItem({ ...selectItem, [type]: productItem });
