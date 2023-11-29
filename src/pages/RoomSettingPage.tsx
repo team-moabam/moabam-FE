@@ -5,7 +5,7 @@ import { useRouteData } from '@/core/hooks';
 import { QueryErrorBoundary, NetworkFallback } from '@/shared/ErrorBoundary';
 import { Header } from '@/shared/Header';
 import { Tab, TabItem } from '@/shared/Tab';
-import { RoomTab, MemberTab, RemoveTab, LoadingFallback } from '@/RoomSetting';
+import { RoomTab, MemberTab, LoadingFallback } from '@/RoomSetting';
 import NotFoundPage from './NotFoundPage';
 
 const RoomSettingPage = () => {
@@ -40,11 +40,12 @@ const RoomSettingPage = () => {
                 <MemberTab roomId={roomId} />
               </Suspense>
             </TabItem>
-            <TabItem title="방 삭제">
+            {/* TODO: 앞으로 사용되지 않을 가능성이 높습니다. */}
+            {/* <TabItem title="방 삭제">
               <Suspense fallback={<LoadingFallback />}>
                 <RemoveTab roomId={roomId} />
               </Suspense>
-            </TabItem>
+            </TabItem> */}
           </Tab>
         </ErrorBoundary>
       </QueryErrorBoundary>

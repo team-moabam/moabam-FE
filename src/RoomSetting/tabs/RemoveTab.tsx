@@ -1,5 +1,9 @@
 import { useState } from 'react';
-import { useMutation, useSuspenseQuery } from '@tanstack/react-query';
+import {
+  useMutation,
+  useQueryClient,
+  useSuspenseQuery
+} from '@tanstack/react-query';
 import { roomOptions } from '@/core/api/options';
 import roomAPI from '@/core/api/functions/roomAPI';
 import { useMoveRoute } from '@/core/hooks';
@@ -13,6 +17,7 @@ interface RemoveTabProps {
 
 const RemoveTab = ({ roomId }: RemoveTabProps) => {
   const [confirmInput, setConfirmInput] = useState('');
+  const queryClient = useQueryClient();
   const moveTo = useMoveRoute();
 
   const { data: room } = useSuspenseQuery({
@@ -27,11 +32,17 @@ const RemoveTab = ({ roomId }: RemoveTabProps) => {
   const handleRemove = () => {
     mutate(roomId, {
       onSuccess: () => {
-        moveTo('routines');
+        queryClient.removeQueries({
+          queryKey: roomOptions.detail(roomId).queryKey
+        });
+
         Toast.show({ message: '방을 삭제했어요.', status: 'confirm' });
+
+        moveTo('routines');
       },
       onError: (err) => {
         console.error(err);
+
         Toast.show({
           message: err.response?.data.message ?? '오류가 발생했어요.',
           status: 'danger'
