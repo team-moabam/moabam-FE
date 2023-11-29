@@ -1,7 +1,7 @@
 export interface BugHistory {
   history: {
     id: number;
-    bugType: 'MORNING_BUG' | 'NIGHT_BUG' | 'GOLDEN_BUG';
+    bugType: 'MORNING' | 'NIGHT' | 'GOLDEN';
     actionType: '보상' | '쿠폰' | '충전';
     amount: number;
     date: string;

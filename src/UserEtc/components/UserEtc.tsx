@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { RiCoupon2Fill } from 'react-icons/ri';
 import {
+  MdLocalGroceryStore,
   MdOutlineEmojiEvents,
   MdGrade,
   MdLineWeight,
@@ -79,5 +80,10 @@ const etc = [
     icon: <MdLineWeight />,
     text: '방 참여기록',
     route: 'participate-log'
+  },
+  {
+    icon: <MdLocalGroceryStore />,
+    text: '상점',
+    route: '/store'
   }
 ];
