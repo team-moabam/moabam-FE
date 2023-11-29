@@ -1,11 +1,12 @@
 import { useContext } from 'react';
-import { useSuspenseQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import { roomOptions } from '@/core/api/options';
 import RoomDetailContainer from '@/RoomDetail/components/RoomDetailContainer';
 import { RoomNotice } from '@/RoomDetail';
 import { RoomDetailMeta } from '@/Meta';
 import RoomHeader from './RoomHeader';
 import { DateRoomDetailContext } from './RoomDetailProvider';
+import RoomDetailFallback from './RoomDetailFallback';
 
 interface RoomDetailProps {
   roomId?: string;
@@ -18,9 +19,12 @@ const RoomDetail = ({ roomId, checkedRoomJoin }: RoomDetailProps) => {
     (serverTime || new Date()).getMonth() + 1
   }-${(serverTime || new Date()).getDate()}`;
 
-  const { data: roomDetailData } = useSuspenseQuery({
-    ...roomOptions.detailByDate(roomId, todayDate)
+  const { data: roomDetailData, status } = useQuery({
+    ...roomOptions.detailByDate(roomId, todayDate),
+    enabled: checkedRoomJoin
   });
+
+  if (status !== 'success') return <RoomDetailFallback />;
 
   const { title, announcement, managerNickname, todayCertificateRank } =
     roomDetailData;
