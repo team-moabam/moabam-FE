@@ -62,7 +62,6 @@ const RoomWorkspace = ({
         Toast.show({ message: '방을 나갔습니다', status: 'confirm' });
       },
       onError: (err) => {
-        console.error(err);
         Toast.show({
           message: err.response?.data.message ?? '오류가 발생했어요.',
           status: 'danger'
