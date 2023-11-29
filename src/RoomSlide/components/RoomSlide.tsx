@@ -14,13 +14,7 @@ const RoomSlide = ({ roomType }: RoomSlideProps) => {
   return (
     <div className="h-full overflow-auto px-8 pt-1">
       <ErrorBoundary fallback={<NetworkFallback />}>
-        <Suspense
-          fallback={
-            <Deffered>
-              <RoomDataFallback />
-            </Deffered>
-          }
-        >
+        <Suspense fallback={<RoomDataFallback />}>
           <RoomData dayType={roomType} />
         </Suspense>
       </ErrorBoundary>

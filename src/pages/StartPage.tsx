@@ -10,9 +10,9 @@ import {
   UserInfoFallback,
   SwipeArrow,
   UserInfo,
-  Background
+  Background,
+  FakeRoutinesPage
 } from '@/StartSlide';
-import RoutinesPage from './RoutinesPage';
 
 const StartPage = () => {
   const { dayType } = useDayTypes();
@@ -27,7 +27,7 @@ const StartPage = () => {
         transition={{ duration: 0.5 }}
       >
         <div className="absolute h-full w-full">
-          <RoutinesPage />
+          <FakeRoutinesPage dayType={dayType} />
         </div>
         <Swiper
           className="h-full"
