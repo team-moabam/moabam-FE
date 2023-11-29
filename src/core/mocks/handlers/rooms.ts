@@ -273,7 +273,7 @@ const roomsHandlers = [
     return HttpResponse.json(response, { status });
   }),
 
-  http.put(baseURL('/rooms/:roomId/members/:memberId/delegation'), async () => {
+  http.put(baseURL('/rooms/:roomId/members/:memberId/mandate'), async () => {
     await delay(1000);
 
     const status: number = 200;

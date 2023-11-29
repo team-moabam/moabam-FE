@@ -1,6 +1,7 @@
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import roomAPI from '@/core/api/functions/roomAPI';
 import { useMoveRoute } from '@/core/hooks';
+import { roomOptions } from '@/core/api/options';
 import { BottomSheet, useBottomSheet } from '@/shared/BottomSheet';
 import { LoadingSpinner } from '@/shared/LoadingSpinner';
 import { Toast } from '@/shared/Toast';
@@ -18,9 +19,10 @@ const DelegationButton = ({
   nickname
 }: DelegationButtonProps) => {
   const { bottomSheetProps, open } = useBottomSheet();
+  const queryClient = useQueryClient();
 
   const { mutate, isPending, error } = useMutation({
-    mutationFn: roomAPI.putDelegateMaster
+    mutationFn: roomAPI.putMandateMaster
   });
 
   const moveTo = useMoveRoute();
@@ -30,11 +32,16 @@ const DelegationButton = ({
       { roomId, memberId },
       {
         onSuccess: () => {
-          moveTo('roomDetail');
+          queryClient.invalidateQueries({
+            queryKey: roomOptions.detail(roomId).queryKey
+          });
+
           Toast.show({ message: '방장을 위임했어요.', status: 'confirm' });
+          moveTo('roomDetail');
         },
         onError: (err) => {
           console.error(err);
+
           Toast.show({
             message: err.response?.data.message ?? '오류가 발생했어요.',
             status: 'danger'

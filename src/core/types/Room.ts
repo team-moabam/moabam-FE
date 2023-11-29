@@ -44,6 +44,7 @@ export type RoomInfoBeforeEditing = {
   maxUserCount: number;
   password: string;
   routines: { routineId: number; content: string }[];
+  managerId: number;
   participants: {
     memberId: number;
     nickname: string;
