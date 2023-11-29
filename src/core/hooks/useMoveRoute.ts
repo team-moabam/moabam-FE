@@ -17,6 +17,10 @@ const isValidParamName = (paramName: string): paramName is ParamNames =>
 const isPublicRoute = (routeName: RouteNames): routeName is PublicRouteNames =>
   PUBLIC_ROUTES.some((name) => name === routeName);
 
+/* 
+  현재 주소, 이동할 주소, params 객체을 받아서
+  url에 존재하는 기존의 parameter 값을 참조하여 이동할 주소를 반환하는 함수
+*/
 const parseNextLocation = ({
   currentPath,
   nextPath,

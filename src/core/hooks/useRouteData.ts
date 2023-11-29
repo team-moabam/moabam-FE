@@ -27,6 +27,12 @@ const parseQueryString = (queryString: string) => {
     }, {});
 };
 
+/*
+ 현재 페이지에 대한 라우트 정보들을 반환
+ 반환하는 정보
+  location(ex. /room/123), params, search(쿼리스트링), path(ex. room/:roomId),
+  navBarRequired, element, pageName
+ */
 const useRouteData = () => {
   const params = useParams();
   const { pathname, search } = useLocation();
