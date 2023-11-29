@@ -20,7 +20,7 @@ const DelegationButton = ({
   const { bottomSheetProps, open } = useBottomSheet();
 
   const { mutate, isPending, error } = useMutation({
-    mutationFn: roomAPI.putDelegateMaster
+    mutationFn: roomAPI.putMandateMaster
   });
 
   const moveTo = useMoveRoute();
