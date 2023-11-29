@@ -45,8 +45,11 @@ const roomsHandlers = [
     const status: number = 200;
     let response: boolean | { message: string } = true;
 
+    const value = () => Math.random() >= 0.5;
+
     switch (status) {
       case 200:
+        // response = value();
         response = false;
         break;
       case 401:
@@ -238,8 +241,7 @@ const roomsHandlers = [
         break;
       case 400:
         response = {
-          message:
-            '올바른 비밀번호가 아닙니다. 또는 방의 인원수가 가득 찼습니다. 또는 참여할 수 있는 방의 횟수를 초과했습니다.'
+          message: '올바른 비밀번호가 아닙니다. '
         };
         break;
       case 401:

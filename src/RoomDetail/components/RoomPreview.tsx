@@ -19,7 +19,11 @@ const RoomPreview = ({
   isPassword
 }: RoomSemiInfo) => {
   const canNotJoin = maxUserCount - currentUserCount < 1;
-  const { handleSubmit, register } = useForm<{ password: string }>({
+  const {
+    handleSubmit,
+    register,
+    formState: { errors }
+  } = useForm<{ password: string }>({
     mode: 'onSubmit',
     defaultValues: { password: '' }
   });
@@ -39,14 +43,18 @@ const RoomPreview = ({
           queryClient.invalidateQueries({
             queryKey: roomOptions.checkRoomJoin().queryKey
           });
+        },
+        onError: (error) => {
+          Toast.show({
+            message: error.response?.data?.message ?? '오류가 발생했어요.',
+            status: 'danger'
+          });
         }
       }
     );
   };
 
   const joinTheRoomNonPassword = () => {
-    Toast.show({ status: 'confirm', message: '방에 참가하였습니다' });
-
     mutate(
       { roomId: `${roomId}`, body: { password: null } },
       {
@@ -90,9 +98,16 @@ const RoomPreview = ({
               <PasswordInput
                 placeholder="비밀번호"
                 {...register('password', {
-                  required: true
+                  required: '비밀번호를 입력해주세요'
+                })}
+                className={clsx({
+                  'ring-1 border-danger ring-danger focus:border-danger focus:ring-danger dark:focus:border-danger  dark:focus:ring-danger':
+                    errors?.password?.message
                 })}
               />
+              <span className="mt-3 block text-sm text-danger">
+                {errors?.password?.message}
+              </span>
             </div>
 
             <button className="btn btn-light-point dark:btn-dark-point w-full">
@@ -102,6 +117,7 @@ const RoomPreview = ({
         ) : (
           <button
             onClick={joinTheRoomNonPassword}
+            type="button"
             className="btn btn-light-point dark:btn-dark-point w-full"
           >
             가입
