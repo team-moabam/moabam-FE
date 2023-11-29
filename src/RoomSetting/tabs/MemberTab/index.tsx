@@ -11,6 +11,12 @@ interface MemberTabProps {
 const MemberTab = ({ roomId }: MemberTabProps) => {
   const { data: room } = useSuspenseQuery({
     ...roomOptions.detail(roomId),
+    select: (data) => ({
+      ...data,
+      participants: data.participants.sort((a, b) =>
+        a.memberId === data.managerId ? -1 : 1
+      )
+    }),
     staleTime: Infinity
   });
 
@@ -27,18 +33,20 @@ const MemberTab = ({ roomId }: MemberTabProps) => {
             userId={member.memberId}
             contribution={member.contributionPoint}
           />
-          <div className="flex gap-2">
-            <KickButton
-              {...member}
-              memberId={member.memberId}
-              roomId={roomId}
-            />
-            <DelegationButton
-              {...member}
-              memberId={member.memberId}
-              roomId={roomId}
-            />
-          </div>
+          {member.memberId !== room.managerId && (
+            <div className="flex gap-2">
+              <KickButton
+                {...member}
+                memberId={member.memberId}
+                roomId={roomId}
+              />
+              <DelegationButton
+                {...member}
+                memberId={member.memberId}
+                roomId={roomId}
+              />
+            </div>
+          )}
         </div>
       ))}
     </div>
