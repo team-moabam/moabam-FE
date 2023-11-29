@@ -37,6 +37,7 @@ const RoomHeader = ({
 
   console.log(checkManagerNickname);
   console.log(myUserId);
+  console.log(managerNickname);
 
   return (
     <Header
