@@ -1,9 +1,12 @@
 import { Suspense } from 'react';
+import { ErrorBoundary } from '@suspensive/react';
+import { isAxiosError } from 'axios';
 import { useRouteData } from '@/core/hooks';
 import { QueryErrorBoundary, NetworkFallback } from '@/shared/ErrorBoundary';
 import { Header } from '@/shared/Header';
 import { Tab, TabItem } from '@/shared/Tab';
 import { RoomTab, MemberTab, RemoveTab, LoadingFallback } from '@/RoomSetting';
+import NotFoundPage from './NotFoundPage';
 
 const RoomSettingPage = () => {
   const { params } = useRouteData();
@@ -11,29 +14,39 @@ const RoomSettingPage = () => {
 
   return (
     <>
-      <Header prev="roomDetail" />
-
       <QueryErrorBoundary fallback={<NetworkFallback />}>
-        <Tab
-          align="center"
-          itemStyle="mt-10 px-8"
+        <ErrorBoundary
+          fallback={<NotFoundPage />}
+          onError={(err) => {
+            if (isAxiosError(err) && err.response?.status === 404) {
+              return;
+            }
+
+            throw err;
+          }}
         >
-          <TabItem title="방 관리">
-            <Suspense fallback={<LoadingFallback />}>
-              <RoomTab roomId={roomId} />
-            </Suspense>
-          </TabItem>
-          <TabItem title="멤버 관리">
-            <Suspense fallback={<LoadingFallback />}>
-              <MemberTab roomId={roomId} />
-            </Suspense>
-          </TabItem>
-          <TabItem title="방 삭제">
-            <Suspense fallback={<LoadingFallback />}>
-              <RemoveTab roomId={roomId} />
-            </Suspense>
-          </TabItem>
-        </Tab>
+          <Header prev="roomDetail" />
+          <Tab
+            align="center"
+            itemStyle="mt-10 px-8"
+          >
+            <TabItem title="방 관리">
+              <Suspense fallback={<LoadingFallback />}>
+                <RoomTab roomId={roomId} />
+              </Suspense>
+            </TabItem>
+            <TabItem title="멤버 관리">
+              <Suspense fallback={<LoadingFallback />}>
+                <MemberTab roomId={roomId} />
+              </Suspense>
+            </TabItem>
+            <TabItem title="방 삭제">
+              <Suspense fallback={<LoadingFallback />}>
+                <RemoveTab roomId={roomId} />
+              </Suspense>
+            </TabItem>
+          </Tab>
+        </ErrorBoundary>
       </QueryErrorBoundary>
     </>
   );

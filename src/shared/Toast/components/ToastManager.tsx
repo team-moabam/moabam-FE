@@ -53,7 +53,7 @@ const ToastManager = ({ bind }: ToastManagerProps) => {
   return (
     <div
       className={clsx(
-        'absolute bottom-[4.25rem] left-[50%] flex min-h-[2.75rem] w-full translate-x-[-50%] flex-col items-center empty:hidden',
+        'absolute bottom-[4.25rem] left-[50%] z-toast flex min-h-[2.75rem] w-full translate-x-[-50%] flex-col items-center empty:hidden',
         'lg:bottom-[calc(5%+4.25rem)] lg:left-auto lg:right-[40%] lg:translate-x-[20%]'
       )}
     >

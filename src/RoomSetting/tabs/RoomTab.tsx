@@ -29,7 +29,7 @@ const RoomTab = ({ roomId }: RoomTabProps) => {
     roomId,
     defaultValues: {
       title: room.title,
-      announcement: room.announcement,
+      announcement: room.announcement ?? '',
       certifyTime: room.certifyTime,
       routines: room.routines.map((r) => ({ value: r.content })),
       userCount: room.maxUserCount,
@@ -44,7 +44,7 @@ const RoomTab = ({ roomId }: RoomTabProps) => {
     formState: { errors }
   } = form;
 
-  const watchAnnouncement = watch('announcement') as string | null;
+  const watchAnnouncement = watch('announcement');
 
   return (
     <FormProvider {...form}>
@@ -73,7 +73,7 @@ const RoomTab = ({ roomId }: RoomTabProps) => {
           >
             <b>공지사항</b>
             <p className="text-xs text-gray-400">
-              {watchAnnouncement?.length} / {ANNOUNCEMENT.max}
+              {watchAnnouncement.length} / {ANNOUNCEMENT.max}
             </p>
           </label>
           <ReactTextareaAutosize

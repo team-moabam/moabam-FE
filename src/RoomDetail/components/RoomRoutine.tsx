@@ -127,10 +127,7 @@ const RoomRoutine = ({
             인증 하기!
           </button>
         ) : (
-          <button
-            className="btn btn-disabled w-full rounded-lg text-base"
-            onClick={handleToggle}
-          >
+          <button className="btn btn-disabled w-full cursor-default rounded-lg text-base">
             인증 시간이 끝났습니다
           </button>
         )}
