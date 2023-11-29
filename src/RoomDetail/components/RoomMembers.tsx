@@ -8,7 +8,7 @@ import RoomMember from './RoomMember';
 interface RoomMembers {
   members: RankMember[];
   reportStatus: boolean;
-  changeReportStatus: () => void;
+  changeReportStatus: (value: boolean) => void;
 }
 
 const RoomMembers = ({
