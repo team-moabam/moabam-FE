@@ -44,6 +44,7 @@ const CertificationBottomSheet = ({
           'file[file' + routines[Number(key)].routineId + ']',
           value.file[0]
         );
+        // formData.append('multipartFiles', value.file[0]);
       }
     }
 
