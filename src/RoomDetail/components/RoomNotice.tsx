@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import clsx from 'clsx';
 import { Icon } from '@/shared/Icon';
 
@@ -8,6 +8,7 @@ interface RoomNoticeProps {
 
 const RoomNotice = ({ content }: RoomNoticeProps) => {
   const [show, setShow] = useState(true);
+  const paraRef = useRef<HTMLParagraphElement>(null);
 
   const InfoStyle = {
     container: clsx(
@@ -24,31 +25,42 @@ const RoomNotice = ({ content }: RoomNoticeProps) => {
   };
 
   return (
-    <div className={InfoStyle.container}>
-      <button className={`mr-3.5 ${InfoStyle.button}`}>
-        <Icon
-          icon="AiFillNotification"
-          size="sm"
-        />
-      </button>
-      <p
-        className={InfoStyle.para}
-        onClick={() => setShow(false)}
-      >
-        {content}
-      </p>
-      {!show && (
-        <button
-          className={InfoStyle.button}
-          onClick={() => setShow(true)}
-        >
-          <Icon
-            icon="CgClose"
-            size="sm"
-          />
-        </button>
+    <>
+      {content && (
+        <div className={InfoStyle.container}>
+          <button className={`mr-3.5 ${InfoStyle.button}`}>
+            <Icon
+              icon="AiFillNotification"
+              size="sm"
+            />
+          </button>
+          <p
+            ref={paraRef}
+            className={InfoStyle.para}
+            onClick={() => {
+              if (
+                paraRef.current?.clientWidth &&
+                paraRef.current?.clientWidth > 365
+              )
+                setShow(false);
+            }}
+          >
+            {content}
+          </p>
+          {!show && (
+            <button
+              className={InfoStyle.button}
+              onClick={() => setShow(true)}
+            >
+              <Icon
+                icon="CgClose"
+                size="sm"
+              />
+            </button>
+          )}
+        </div>
       )}
-    </div>
+    </>
   );
 };
 
