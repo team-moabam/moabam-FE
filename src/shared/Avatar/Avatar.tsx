@@ -31,7 +31,7 @@ const Avatar = ({
             <div className="ml-[.5625rem] h-5 w-5 bg-[url('/icons/icon-crown.png')] bg-contain bg-center bg-no-repeat" />
           )}
         </div>
-        {contribution && (
+        {contribution !== undefined && (
           <span className="text-dark-gray">기여도 : {contribution}점</span>
         )}
       </div>

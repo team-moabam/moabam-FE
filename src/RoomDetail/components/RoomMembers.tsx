@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
-import { useRouteData } from '@/core/hooks';
+import { useLocalStorage, useRouteData } from '@/core/hooks';
 import notificationAPI from '@/core/api/functions/notificationAPI';
 import { RankMember } from '@/core/types/Member';
 import { Avatar } from '@/shared/Avatar';
@@ -38,6 +38,7 @@ const RoomMembers = ({
     }
   });
   const [checked, setChecked] = useState('');
+  const [myUserId] = useLocalStorage('MEMBER_ID', '');
 
   const {
     params: { roomId }
@@ -92,40 +93,46 @@ const RoomMembers = ({
                 nickname={nickname}
                 contribution={contributionPoint}
               />
-              {reportStatus ? (
-                <button
-                  onClick={() => handleReportButtonClick(nickname, memberId)}
-                  className="btn btn-danger flex h-[1.875rem] w-[4.37rem] items-center rounded-lg p-0  px-[0.56rem] font-IMHyemin-bold text-sm"
-                >
-                  신고하기
-                </button>
-              ) : rank < 500 ? (
-                <span
-                  key={memberId}
-                  className="block h-[1.875rem] w-[4.37rem] text-center text-sm text-light-point dark:text-dark-point"
-                >
-                  루틴 완료!
-                </span>
-              ) : isNotificationSent ? (
-                <button
-                  key={memberId}
-                  className="btn dark:btn-dark-point btn-light-point flex h-[1.875rem] w-[4.37rem] items-center rounded-lg p-0  px-[0.56rem] font-IMHyemin-bold text-sm"
-                  onClick={() => handlePokeButtonClick(memberId, nickname)}
-                >
-                  <Icon
-                    icon="BiSolidHandRight"
-                    size="lg"
-                    className="mr-[0.7rem]"
-                  />
-                  콕!
-                </button>
-              ) : (
-                <button
-                  key={memberId}
-                  className="btn btn-disabled h-[1.875rem] w-[4.37rem] cursor-default rounded-lg p-0 font-IMHyemin-bold text-sm"
-                >
-                  내일 다시
-                </button>
+              {myUserId !== memberId && (
+                <>
+                  {reportStatus ? (
+                    <button
+                      onClick={() =>
+                        handleReportButtonClick(nickname, memberId)
+                      }
+                      className="btn btn-danger flex h-[1.875rem] w-[4.37rem] items-center rounded-lg p-0  px-[0.56rem] font-IMHyemin-bold text-sm"
+                    >
+                      신고하기
+                    </button>
+                  ) : rank < 500 ? (
+                    <span
+                      key={memberId}
+                      className="block h-[1.875rem] w-[4.37rem] text-center text-sm text-light-point dark:text-dark-point"
+                    >
+                      루틴 완료!
+                    </span>
+                  ) : isNotificationSent ? (
+                    <button
+                      key={memberId}
+                      className="btn btn-disabled h-[1.875rem] w-[4.37rem] cursor-default rounded-lg p-0 font-IMHyemin-bold text-sm"
+                    >
+                      내일 다시
+                    </button>
+                  ) : (
+                    <button
+                      key={memberId}
+                      className="btn dark:btn-dark-point btn-light-point flex h-[1.875rem] w-[4.37rem] items-center rounded-lg p-0  px-[0.56rem] font-IMHyemin-bold text-sm"
+                      onClick={() => handlePokeButtonClick(memberId, nickname)}
+                    >
+                      <Icon
+                        icon="BiSolidHandRight"
+                        size="lg"
+                        className="mr-[0.7rem]"
+                      />
+                      콕!
+                    </button>
+                  )}
+                </>
               )}
             </div>
           )

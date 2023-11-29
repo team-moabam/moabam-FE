@@ -1,4 +1,3 @@
-import { Suspense } from 'react';
 import { ErrorBoundary } from '@suspensive/react';
 import { useQuery } from '@tanstack/react-query';
 import { roomOptions } from '@/core/api/options';
@@ -31,22 +30,20 @@ const RoomDetailPage = () => {
     <>
       <div className="relative h-full overflow-y-scroll">
         <ErrorBoundary fallback={<NetworkFallback />}>
-          <Suspense fallback={<RoomDetailFallback />}>
-            {checkedRoomJoin ? (
-              <RoomDetailProvider serverTime={serverTime || new Date()}>
-                <RoomDetail
-                  roomId={roomId}
-                  checkedRoomJoin={checkedRoomJoin}
-                />
-              </RoomDetailProvider>
-            ) : (
-              <RoomSemi
+          {checkedRoomJoin ? (
+            <RoomDetailProvider serverTime={serverTime || new Date()}>
+              <RoomDetail
                 roomId={roomId}
-                serverTime={serverTime || new Date()}
                 checkedRoomJoin={checkedRoomJoin}
               />
-            )}
-          </Suspense>
+            </RoomDetailProvider>
+          ) : (
+            <RoomSemi
+              roomId={roomId}
+              serverTime={serverTime || new Date()}
+              checkedRoomJoin={checkedRoomJoin}
+            />
+          )}
         </ErrorBoundary>
       </div>
     </>
