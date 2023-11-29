@@ -13,7 +13,7 @@ interface ReportBottomSheetProps {
   bottomSheetProps: BottomSheetProps;
   close: () => void;
   nickname: string;
-  reportedId: number;
+  reportedId: number | null;
   changeCheckedInput: (state: string) => void;
   checked: string;
   changeReportStatus: (value: boolean) => void;

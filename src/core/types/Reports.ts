@@ -1,5 +1,5 @@
 export type Report = {
-  reportedId: number;
+  reportedId: number | null;
   memberId: number;
   roomId?: string | null;
   certificationId?: string | null;
