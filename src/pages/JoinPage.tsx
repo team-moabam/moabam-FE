@@ -7,7 +7,7 @@ const KAKAO_LOGIN_URL =
   `response_type=code&` +
   `client_id=${import.meta.env.VITE_KAKAO_LOGIN_CLIENT_ID}&` +
   `redirect_uri=${baseURI}` +
-  `/login/kakao/oauth`;
+  `/join/kakao/oauth`;
 
 const JoinPage = () => {
   return (
@@ -15,7 +15,7 @@ const JoinPage = () => {
       <section className="flex grow flex-col items-center justify-center text-center">
         <div className="w-48 rounded-full bg-yellow-50">
           <img
-            src="assets/skins/defaultOmok.png"
+            src="/assets/skins/defaultOmok.png"
             className="p-4"
           />
         </div>
