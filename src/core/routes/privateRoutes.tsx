@@ -1,3 +1,4 @@
+import GuidePage from '@/pages/GuidePage';
 import Room from '@/pages/Room';
 import RoomDetailPage from '@/pages/RoomDetailPage';
 import RoomLogPage from '@/pages/RoomLogPage';
@@ -19,6 +20,7 @@ import PurchaseFailPage from '@/pages/PurchaseFailPage';
 import { Route } from './types/route';
 
 export const PRIVATE_ROUTES = [
+  'guide',
   'start',
   'routines',
   'search',
@@ -44,6 +46,12 @@ export type PrivateRouteNames = (typeof PRIVATE_ROUTES)[number];
 type PrivateRoutes = Record<PrivateRouteNames, Route>;
 
 const privateRoutes: PrivateRoutes = {
+  guide: {
+    path: 'guide',
+    navBarRequired: false,
+    element: <GuidePage />,
+    pageName: '환영해요'
+  },
   start: {
     path: '',
     navBarRequired: false,

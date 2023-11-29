@@ -1,21 +1,14 @@
 import NotFoundPage from '@/pages/NotFoundPage';
 import JoinPage from '@/pages/JoinPage';
 import JoinKakaoPage from '@/pages/JoinKakaoPage';
-import GuidePage from '@/pages/GuidePage';
 import { Route } from './types/route';
 
-export const PUBLIC_ROUTES = ['guide', 'join', 'joinKakao'] as const;
+export const PUBLIC_ROUTES = ['join', 'joinKakao'] as const;
 export type PublicRouteNames = (typeof PUBLIC_ROUTES)[number];
 
 type PublicRoutes = Record<PublicRouteNames, Route>;
 
 const publicRoutes: PublicRoutes = {
-  guide: {
-    path: 'guide',
-    navBarRequired: false,
-    element: <GuidePage />,
-    pageName: '환영해요'
-  },
   join: {
     path: '',
     navBarRequired: false,
