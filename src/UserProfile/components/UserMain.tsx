@@ -20,9 +20,9 @@ const UserMain = ({ userId = '' }: UserMainProps) => {
         birds,
         badges,
         profileImage,
-        morning_bug,
-        night_bug,
-        golden_bug
+        morningBug,
+        nightBug,
+        goldenBug
       }
     }
   ] = useSuspenseQueries({
@@ -35,15 +35,15 @@ const UserMain = ({ userId = '' }: UserMainProps) => {
 
   const WalletData = [
     {
-      value: morning_bug ? morning_bug : 0,
+      value: morningBug,
       color: 'text-light-point'
     },
     {
-      value: night_bug ? night_bug : 0,
+      value: nightBug,
       color: 'text-dark-point'
     },
     {
-      value: golden_bug ? golden_bug : 0,
+      value: goldenBug,
       color: 'text-warning'
     }
   ];

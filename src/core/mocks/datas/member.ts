@@ -28,9 +28,9 @@ export const MY_INFO: MyInfo = {
     }
   ],
   profileImage: undefined,
-  golden_bug: 3,
-  morning_bug: 4,
-  night_bug: 5
+  goldenBug: 3,
+  morningBug: 4,
+  nightBug: 5
 };
 
 export const MEMBER_INFO: MemberInfo = {
