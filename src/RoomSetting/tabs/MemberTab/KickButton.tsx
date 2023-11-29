@@ -9,7 +9,7 @@ import { ModalHeadingStyle, descriptionStyle } from './styles';
 
 interface KickButtonProps {
   roomId: string;
-  memberId: string;
+  memberId: number;
   nickname: string;
 }
 

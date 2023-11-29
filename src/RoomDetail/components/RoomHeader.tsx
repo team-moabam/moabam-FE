@@ -20,7 +20,7 @@ const RoomHeader = ({
 }: RoomHeaderProps) => {
   const { location } = useRouteData();
   const sharePath = `${import.meta.env.VITE_LOCALHOST}${location}`;
-  const [myUserId] = useLocalStorage('MEMBER_ID', '');
+  const [myUserId] = useLocalStorage('MEMBER_ID', null);
 
   const handleShareButtonClick = () => {
     navigator.clipboard.writeText(sharePath);

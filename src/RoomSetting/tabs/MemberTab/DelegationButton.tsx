@@ -8,7 +8,7 @@ import { ModalHeadingStyle, descriptionStyle, errorStyle } from './styles';
 
 interface DelegationButtonProps {
   roomId: string;
-  memberId: string;
+  memberId: number;
   nickname: string;
 }
 

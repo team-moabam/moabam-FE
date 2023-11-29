@@ -21,9 +21,12 @@ const RoomMembers = ({
   changeReportStatus
 }: RoomMembers) => {
   const { bottomSheetProps, toggle, close } = useBottomSheet();
-  const [{ nickname, reportedId }, setSelectUserInfo] = useState({
+  const [{ nickname, reportedId }, setSelectUserInfo] = useState<{
+    nickname: string;
+    reportedId: null | number;
+  }>({
     nickname: '',
-    reportedId: ''
+    reportedId: null
   });
   const form = useForm<{
     [key: string]: boolean;
@@ -38,13 +41,13 @@ const RoomMembers = ({
     }
   });
   const [checked, setChecked] = useState('');
-  const [myUserId] = useLocalStorage('MEMBER_ID', '');
+  const [myUserId] = useLocalStorage('MEMBER_ID', null);
 
   const {
     params: { roomId }
   } = useRouteData();
 
-  const handlePokeButtonClick = async (memberId: string, nickname: string) => {
+  const handlePokeButtonClick = async (memberId: number, nickname: string) => {
     const { status } = await notificationAPI.getMemberPoke(
       roomId || '',
       memberId
@@ -64,7 +67,10 @@ const RoomMembers = ({
     setChecked(state);
   };
 
-  const handleReportButtonClick = (nickname: string, memberId: string) => {
+  const handleReportButtonClick = (
+    nickname: string,
+    memberId: number | null
+  ) => {
     form.clearErrors();
     setChecked('');
     setSelectUserInfo({ nickname, reportedId: memberId });

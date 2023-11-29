@@ -3,7 +3,7 @@ import Profile from './Profile';
 
 interface AvatarProps {
   imgUrl: string;
-  userId: string;
+  userId: number;
   nickname: string;
   manager?: boolean;
   contribution?: number;

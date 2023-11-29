@@ -35,7 +35,7 @@ const RoomWorkspace = ({
   const moveTo = useMoveRoute();
   const [reportStatus, setReportStatus] = useState<boolean>(false);
   const { bottomSheetProps, toggle, close } = useBottomSheet();
-  const [userId] = useLocalStorage('MEMBER_ID', '0');
+  const [userId] = useLocalStorage('MEMBER_ID', null);
 
   const { chooseDate, serverTime } = useContext(DateRoomDetailContext);
   const chooseDateText = `${chooseDate.getFullYear()}${
