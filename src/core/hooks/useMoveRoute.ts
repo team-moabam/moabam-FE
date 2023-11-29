@@ -1,10 +1,21 @@
 import { NavigateOptions, useLocation, useNavigate } from 'react-router-dom';
-import { routes, RouteNames, ParamNames, PARAM_NAMES } from '../routes';
+import {
+  publicRoutes,
+  privateRoutes,
+  PublicRouteNames,
+  PrivateRouteNames,
+  ParamNames,
+  PARAM_NAMES,
+  PUBLIC_ROUTES
+} from '@/core/routes';
 
 type Parameters = Partial<Record<ParamNames, string | number>>;
+type RouteNames = PrivateRouteNames | PublicRouteNames;
 
 const isValidParamName = (paramName: string): paramName is ParamNames =>
   PARAM_NAMES.some((name) => name === paramName);
+const isPublicRoute = (routeName: RouteNames): routeName is PublicRouteNames =>
+  PUBLIC_ROUTES.some((name) => name === routeName);
 
 const parseNextLocation = ({
   currentPath,
@@ -53,7 +64,9 @@ const useMoveRoute = () => {
   ) => {
     const nextLocation = parseNextLocation({
       currentPath: pathname.substring(1),
-      nextPath: routes[nextRoute].path,
+      nextPath: isPublicRoute(nextRoute)
+        ? `join/${publicRoutes[nextRoute].path}`
+        : privateRoutes[nextRoute].path,
       params
     });
     navigate(nextLocation, options);

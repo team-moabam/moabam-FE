@@ -1,13 +1,13 @@
 import { useLocation, useParams } from 'react-router-dom';
-import { routes as routeMap } from '../routes';
+import { publicRoutes, privateRoutes, notFoundRoute } from '@/core/routes';
 
 const isParameterSegment = (segment: string) => segment[0] === ':';
 
-const isMatchPath = (path: string, target: string) => {
-  if (path === target) return true;
+const isCurrentPath = (path: string, currentPath: string) => {
+  if (path === currentPath) return true;
 
   const pathSegments = path.split('/');
-  const targetSegments = target.split('/');
+  const targetSegments = currentPath.split('/');
   if (pathSegments.length !== targetSegments.length) return false;
 
   return pathSegments.every(
@@ -28,22 +28,40 @@ const parseQueryString = (queryString: string) => {
 };
 
 const useRouteData = () => {
-  const routes = Object.values(routeMap);
   const params = useParams();
   const { pathname, search } = useLocation();
 
-  for (const route of routes) {
-    if (isMatchPath(`/${route.path}`, pathname)) {
+  for (const route of Object.values(privateRoutes)) {
+    if (isCurrentPath(`/${route.path}`, pathname)) {
       return {
         ...route,
         location: pathname,
         params,
-        search: parseQueryString(search)
+        search: parseQueryString(search),
+        authRequired: true
       };
     }
   }
 
-  return { ...routeMap.notFound, location: pathname, params: {}, search: {} };
+  for (const route of Object.values(publicRoutes)) {
+    if (isCurrentPath(`/join/${route.path}`, pathname)) {
+      return {
+        ...route,
+        location: pathname,
+        params,
+        search: parseQueryString(search),
+        authRequired: false
+      };
+    }
+  }
+
+  return {
+    ...notFoundRoute,
+    location: pathname,
+    params: {},
+    search: {},
+    authRequired: false
+  };
 };
 
 export default useRouteData;
