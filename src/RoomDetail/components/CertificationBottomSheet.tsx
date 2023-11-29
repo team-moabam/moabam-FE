@@ -37,16 +37,14 @@ const CertificationBottomSheet = ({
 
   const handleFormSubmit = async (data: FormCertificationImage[]) => {
     const formData = new FormData();
+    const dataObjectArray = Object.entries(data);
 
-    for (const [key, value] of Object.entries(data)) {
+    dataObjectArray.forEach(([key, value], idx) => {
       if (value.file && value.file.length > 0) {
-        formData.append(
-          'file[file' + routines[Number(key)].routineId + ']',
-          value.file[0]
-        );
-        // formData.append('multipartFiles', value.file[0]);
+        formData.append(`certifyRoomsRequest[${idx}]`, value.file[0]);
+        formData.append(`certifyRoomsRequest[${idx}]`, key);
       }
-    }
+    });
 
     mutate(
       {
