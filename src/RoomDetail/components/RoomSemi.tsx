@@ -1,4 +1,4 @@
-import { useSuspenseQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import clsx from 'clsx';
 import { roomOptions } from '@/core/api/options';
 import { ProgressBar } from '@/shared/ProgressBar';
@@ -7,6 +7,7 @@ import { RoomNotice } from '..';
 import isMorning from '../utils/isMorning';
 import RoomHeader from './RoomHeader';
 import RoomPreview from './RoomPreview';
+import RoomDetailFallback from './RoomDetailFallback';
 
 interface RoomSemiProps {
   roomId?: string;
@@ -15,11 +16,12 @@ interface RoomSemiProps {
 }
 
 const RoomSemi = ({ roomId, serverTime, checkedRoomJoin }: RoomSemiProps) => {
-  const { data: roomSemiData } = useSuspenseQuery({
-    ...roomOptions.semiDetail(roomId)
+  const { data: roomSemiData, status } = useQuery({
+    ...roomOptions.semiDetail(roomId),
+    enabled: !checkedRoomJoin
   });
 
-  if (!roomSemiData) return;
+  if (status !== 'success') return <RoomDetailFallback />;
 
   const {
     title,
