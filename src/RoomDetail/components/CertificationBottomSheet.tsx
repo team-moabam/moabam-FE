@@ -37,7 +37,7 @@ const CertificationBottomSheet = ({
 
   const handleFormSubmit = async (data: FormCertificationImage[]) => {
     const formData = new FormData();
-    const multipartData: { [key: string]: File }[] = [];
+    const multipartData = [];
 
     for (const [key, value] of Object.entries(data)) {
       if (value.file && value.file.length > 0) {
@@ -45,7 +45,12 @@ const CertificationBottomSheet = ({
           [`${routines[Number(key)].routineId}`]: value.file[0]
         });
 
-        formData.append('multipartFiles', JSON.stringify(multipartData));
+        formData.append(
+          'multipartFiles',
+          new Blob([JSON.stringify(multipartData)], {
+            type: 'application/json'
+          })
+        );
       }
     }
 
