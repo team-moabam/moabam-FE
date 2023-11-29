@@ -35,6 +35,10 @@ const RoomHeader = ({
     (el) => el.memberId === myUserId
   )?.nickname;
 
+  console.log(checkManagerNickname);
+  console.log(myUserId);
+  console.log(managerNickname);
+
   return (
     <Header
       title={title}
