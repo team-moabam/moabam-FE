@@ -1,7 +1,9 @@
 import { useState } from 'react';
+import { useQueryClient } from '@tanstack/react-query';
 import { useLocalStorage, useRouteData } from '@/core/hooks';
 import notificationAPI from '@/core/api/functions/notificationAPI';
 import { RankMember } from '@/core/types/Member';
+import { roomOptions } from '@/core/api/options';
 import { Avatar } from '@/shared/Avatar';
 import { Icon } from '@/shared/Icon';
 import { Toast } from '@/shared/Toast';
@@ -28,14 +30,14 @@ const RoomMember = ({
   const [myUserId] = useLocalStorage('MEMBER_ID', null);
   const [noticeSent, setNoticeSent] = useState(isNotificationSent);
 
+  const queryClient = useQueryClient();
+
   const {
     params: { roomId }
   } = useRouteData();
 
   const handlePokeButtonClick = async (memberId: number, nickname: string) => {
-    const value = await notificationAPI.getMemberPoke(roomId || '', memberId);
-
-    console.log(value);
+    await notificationAPI.getMemberPoke(roomId || '', memberId);
 
     setNoticeSent(true);
     Toast.show({
@@ -43,6 +45,10 @@ const RoomMember = ({
       message: `${nickname}을 콕! 찔렀어요`,
       icon: true,
       subText: '콕콕'
+    });
+
+    queryClient.invalidateQueries({
+      queryKey: roomOptions.detail(roomId || '').queryKey
     });
   };
 

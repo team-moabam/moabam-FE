@@ -4,7 +4,7 @@ interface Bug {
 }
 
 export interface Bugs {
-  MORNING_BUG: Bug;
-  NIGHT_BUG: Bug;
-  GOLDEN_BUG: Bug;
+  MORNING: Bug;
+  NIGHT: Bug;
+  GOLDEN: Bug;
 }

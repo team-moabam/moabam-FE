@@ -131,7 +131,10 @@ const UserMain = ({ userId = '' }: UserMainProps) => {
               </span>
             </h1>
           </div>
-          <div className="flex h-28 w-full rounded-2xl bg-light-sub dark:bg-dark-sub">
+          <Link
+            className="flex h-28 w-full rounded-2xl bg-light-sub dark:bg-dark-sub"
+            to={`/store`}
+          >
             {WalletData.map(({ value, color }) => (
               <div
                 className="flex h-full w-2/6 flex-col items-center justify-center gap-3 rounded-lg"
@@ -143,7 +146,7 @@ const UserMain = ({ userId = '' }: UserMainProps) => {
                 </div>
               </div>
             ))}
-          </div>
+          </Link>
           <div className="my-3 flex w-full justify-end">
             <Link
               to={`/user/order-log`}
