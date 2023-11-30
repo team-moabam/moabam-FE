@@ -8,7 +8,6 @@ import timeOption from './core/api/options/time';
 import getTimeRange from './core/utils/getTimeRange';
 import { Navbar } from './shared/Navbar';
 import { UnknownFallback } from './shared/ErrorBoundary';
-import useCheckAuthRequired from './useCheckAuthRequired';
 import 'swiper/css';
 import 'swiper/css/bundle';
 import { AboutMoabam } from './AboutMoabam';
@@ -17,7 +16,6 @@ import { CommonMeta } from './Meta';
 const App = () => {
   const { navBarRequired, path, pageName } = useRouteData();
   const { theme, setTheme } = useTheme();
-  useCheckAuthRequired();
 
   const { data, isSuccess } = useQuery({
     ...timeOption,

@@ -1,13 +1,13 @@
 import { useLocation, useParams } from 'react-router-dom';
-import { routes as routeMap } from '../routes';
+import { publicRoutes, privateRoutes, notFoundRoute } from '@/core/routes';
 
 const isParameterSegment = (segment: string) => segment[0] === ':';
 
-const isMatchPath = (path: string, target: string) => {
-  if (path === target) return true;
+const isCurrentPath = (path: string, currentPath: string) => {
+  if (path === currentPath) return true;
 
   const pathSegments = path.split('/');
-  const targetSegments = target.split('/');
+  const targetSegments = currentPath.split('/');
   if (pathSegments.length !== targetSegments.length) return false;
 
   return pathSegments.every(
@@ -27,13 +27,21 @@ const parseQueryString = (queryString: string) => {
     }, {});
 };
 
+/*
+ 현재 페이지에 대한 라우트 정보들을 반환
+ 반환하는 정보
+  location(ex. /room/123), params, search(쿼리스트링), path(ex. room/:roomId),
+  navBarRequired, element, pageName
+ */
 const useRouteData = () => {
-  const routes = Object.values(routeMap);
   const params = useParams();
   const { pathname, search } = useLocation();
 
-  for (const route of routes) {
-    if (isMatchPath(`/${route.path}`, pathname)) {
+  for (const route of [
+    ...Object.values(privateRoutes),
+    ...Object.values(publicRoutes)
+  ]) {
+    if (isCurrentPath(`/${route.path}`, pathname)) {
       return {
         ...route,
         location: pathname,
@@ -43,7 +51,12 @@ const useRouteData = () => {
     }
   }
 
-  return { ...routeMap.notFound, location: pathname, params: {}, search: {} };
+  return {
+    ...notFoundRoute,
+    location: pathname,
+    params: {},
+    search: {}
+  };
 };
 
 export default useRouteData;

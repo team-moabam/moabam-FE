@@ -1,5 +1,6 @@
 import { Suspense } from 'react';
 import { Header } from '@/shared/Header';
+import { Deffered } from '@/shared/Deffered';
 import OrderLogList from '@/OrderLogList/components/OrderLogList';
 import OrderLogListFallback from '@/OrderLogList/components/OrderLogListFallback';
 
@@ -12,7 +13,13 @@ const OrderLogPage = () => {
           title="사용 내역"
           className="sticky top-0 bg-light-main dark:bg-dark-main"
         />
-        <Suspense fallback={<OrderLogListFallback />}>
+        <Suspense
+          fallback={
+            <Deffered>
+              <OrderLogListFallback />
+            </Deffered>
+          }
+        >
           <OrderLogList />
         </Suspense>
       </div>
