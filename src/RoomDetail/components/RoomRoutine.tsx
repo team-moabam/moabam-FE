@@ -104,13 +104,9 @@ const RoomRoutine = ({
             />
           ))}
         </RoutineList>
-        {/* {isTodayRoom && checkedCertifyTime === 'beforeTodayCertifyTime' ? (
-          <button className="btn btn-disabled w-full cursor-default rounded-lg text-base">
-            인증 시간 전입니다
-          </button>
-        ) : isTodayRoom &&
-          checkedCertifyTime === 'nowTodayCertifyTime' &&
-          isCertificatedRoutine ? (
+        {isTodayRoom &&
+        checkedCertifyTime === 'nowTodayCertifyTime' &&
+        isCertificatedRoutine ? (
           <button
             className="btn btn-light-point dark:btn-dark-point w-full rounded-lg text-base"
             onClick={handleToggle}
@@ -119,18 +115,18 @@ const RoomRoutine = ({
           </button>
         ) : isTodayRoom &&
           checkedCertifyTime === 'nowTodayCertifyTime' &&
-          !isCertificatedRoutine ? ( */}
-        <button
-          className="btn btn-light-point dark:btn-dark-point w-full rounded-lg text-base"
-          onClick={handleToggle}
-        >
-          인증 하기!
-        </button>
-        {/* ) : (
-          <button className="btn btn-disabled w-full cursor-default rounded-lg text-base">
-            인증 시간이 끝났습니다
+          !isCertificatedRoutine ? (
+          <button
+            className="btn btn-light-point dark:btn-dark-point w-full rounded-lg text-base"
+            onClick={handleToggle}
+          >
+            인증 하기!
           </button>
-        )} */}
+        ) : (
+          <button className="btn btn-disabled w-full cursor-default rounded-lg text-base">
+            인증 시간이 아닙니다
+          </button>
+        )}
       </div>
     </>
   );
