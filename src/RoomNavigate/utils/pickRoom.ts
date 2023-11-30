@@ -15,9 +15,10 @@ const pickRoom = (data: ParticipatingRoom[], today?: Date) => {
   const currentDate = today ?? new Date();
   const currentTimeRange = getTimeRange(currentDate);
 
-  const certifyingRoom = data.find(({ certifyTime }) => {
-    calculateTimeDiff(certifyTime, currentDate) < 20 * 6 * 1000;
-  })?.roomId;
+  const certifyingRoom = data.find(
+    ({ certifyTime }) =>
+      calculateTimeDiff(certifyTime, currentDate) <= 20 * 60 * 1000
+  )?.roomId;
 
   const latestRoom =
     sessionStorage.getItem(STORAGE_KEYS.VISITED_ROOM) ?? undefined;
