@@ -37,19 +37,11 @@ const useRouteData = () => {
   const params = useParams();
   const { pathname, search } = useLocation();
 
-  for (const route of Object.values(privateRoutes)) {
+  for (const route of [
+    ...Object.values(privateRoutes),
+    ...Object.values(publicRoutes)
+  ]) {
     if (isCurrentPath(`/${route.path}`, pathname)) {
-      return {
-        ...route,
-        location: pathname,
-        params,
-        search: parseQueryString(search)
-      };
-    }
-  }
-
-  for (const route of Object.values(publicRoutes)) {
-    if (isCurrentPath(`/join/${route.path}`, pathname)) {
       return {
         ...route,
         location: pathname,

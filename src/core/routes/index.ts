@@ -7,6 +7,6 @@ export {
 export {
   default as publicRoutes,
   type PublicRouteNames,
-  PUBLIC_ROUTES,
-  notFoundRoute
+  PUBLIC_ROUTES
 } from './publicRoutes';
+export { notFoundRoute } from './router';

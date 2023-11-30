@@ -7,7 +7,7 @@ const KAKAO_LOGIN_URL =
   `response_type=code&` +
   `client_id=${import.meta.env.VITE_KAKAO_LOGIN_CLIENT_ID}&` +
   `redirect_uri=${baseURI}` +
-  `/join/kakao/oauth`;
+  `/login/kakao/oauth`;
 
 const JoinPage = () => {
   return (

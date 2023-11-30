@@ -14,8 +14,6 @@ type RouteNames = PrivateRouteNames | PublicRouteNames;
 
 const isValidParamName = (paramName: string): paramName is ParamNames =>
   PARAM_NAMES.some((name) => name === paramName);
-const isPublicRoute = (routeName: RouteNames): routeName is PublicRouteNames =>
-  PUBLIC_ROUTES.some((name) => name === routeName);
 
 /* 
   현재 주소, 이동할 주소, params 객체을 받아서
@@ -68,9 +66,7 @@ const useMoveRoute = () => {
   ) => {
     const nextLocation = parseNextLocation({
       currentPath: pathname.substring(1),
-      nextPath: isPublicRoute(nextRoute)
-        ? `join/${publicRoutes[nextRoute].path}`
-        : privateRoutes[nextRoute].path,
+      nextPath: { ...publicRoutes, ...privateRoutes }[nextRoute].path,
       params
     });
     navigate(nextLocation, options);

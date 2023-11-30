@@ -1,9 +1,17 @@
 import { createBrowserRouter } from 'react-router-dom';
+import NotFoundPage from '@/pages/NotFoundPage';
 import App from '@/App';
 import PrivateRoute from '@/PrivateRoute';
 import PublicRoute from '@/PublicRoute';
-import publicRoutes, { notFoundRoute } from './publicRoutes';
+import publicRoutes from './publicRoutes';
 import privateRoutes from './privateRoutes';
+import { Route } from './types/route';
+
+export const notFoundRoute: Route = {
+  path: '*',
+  navBarRequired: false,
+  element: <NotFoundPage />
+} as const;
 
 const router = createBrowserRouter([
   {
@@ -18,7 +26,6 @@ const router = createBrowserRouter([
         }))
       },
       {
-        path: 'join',
         element: <PublicRoute />,
         children: Object.values(publicRoutes).map(({ path, element }) => ({
           path,
