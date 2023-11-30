@@ -70,17 +70,6 @@ const EventCard = ({
           className="object-cover"
           src={COUPON_MAP[type].imgSrc}
         ></img>
-        {dueType === 'opened' && (
-          <div
-            className={clsx(
-              'absolute right-3 top-3 w-fit rounded-2xl px-2 py-1',
-              'border border-light-gray text-xs text-light-gray',
-              'bg-black bg-opacity-[0.4]'
-            )}
-          >
-            선착순 {maxCount}명
-          </div>
-        )}
       </div>
 
       <div className="flex flex-col gap-3 px-3 py-4">
@@ -101,7 +90,14 @@ const EventCard = ({
           <div className="text-xs text-dark-gray">{description}</div>
         </div>
 
-        <div className="flex items-center justify-end">
+        <div className="flex items-end justify-between">
+          {dueType === 'opened' && (
+            <div
+              className={clsx('w-fit rounded-2xl', 'text-xs text-light-gray')}
+            >
+              선착순 {maxCount}명
+            </div>
+          )}
           <div
             className={clsx(
               'cursor-pointer text-center font-IMHyemin-bold',

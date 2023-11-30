@@ -9,7 +9,7 @@ export const COUPONS: Coupons = [
     type: 'MORNING',
     maxCount: 10,
     openAt: '2023-11-14T00:00',
-    startAt: '2023-11-15T00:00',
+    startAt: '2023-11-10T00:00',
     adminName: 'Parksey'
   },
 
@@ -21,7 +21,7 @@ export const COUPONS: Coupons = [
     type: 'NIGHT',
     maxCount: 77,
     openAt: '2023-11-15T00:00',
-    startAt: '2023-12-01T02:00',
+    startAt: '2023-12-10T02:00',
     adminName: 'Parksey'
   },
 
@@ -33,7 +33,7 @@ export const COUPONS: Coupons = [
     type: 'GOLDEN',
     maxCount: 7,
     openAt: '2023-11-14T00:00',
-    startAt: '2023-12-01T02:00',
+    startAt: '2023-12-10T02:00',
     adminName: 'Parksey'
   },
 
@@ -45,7 +45,7 @@ export const COUPONS: Coupons = [
     type: 'DISCOUNT',
     maxCount: 7,
     openAt: '2023-11-15T00:20',
-    startAt: '2023-12-03T00:00',
+    startAt: '2023-12-10T00:00',
     adminName: 'Parksey'
   }
 ];
