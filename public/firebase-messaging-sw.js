@@ -29,3 +29,20 @@ self.addEventListener('push', function (e) {
 
   self.registration.showNotification(title, options);
 });
+
+self.addEventListener('notificationclick', function (e) {
+  const title = e.notification?.title;
+  const roomId = Number(title);
+
+  let url = '/';
+
+  // 타이틀로 방 번호를 받으면 방 상세 페이지로 이동
+  if (!isNaN(roomId)) {
+    url = `/rooms/${roomId}`;
+  }
+
+  e.notification.close();
+
+  // eslint-disable-next-line no-undef
+  e.waitUntil(clients.openWindow(url));
+});
