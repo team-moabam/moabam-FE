@@ -1,9 +1,9 @@
 import { useMutation } from '@tanstack/react-query';
 import { clsx } from 'clsx';
 import couponAPI from '@/core/api/functions/couponAPI';
+import { CouponType } from '@/core/types/Coupons';
 import { Toast } from '@/shared/Toast';
 import { COUPON_MAP } from '../coustants/couponInfo';
-import { CouponType } from '../mocks/types/couponType';
 import DisabledCover from './DisabledCover';
 
 interface EventCardProps {
