@@ -30,22 +30,17 @@ const RoomInfo = ({
         />
       )}
       <div className="absolute inset-x-0 bottom-0">
-        <div className="mb-2 flex items-end justify-between bg-inherit px-3.5">
+        <div className="mb-2 flex items-center justify-between bg-inherit px-3.5">
           <span className="block h-[1.93rem] w-[4.62rem] rounded-[6.25rem] bg-light-point py-[0.16rem] text-center font-IMHyemin-bold text-light-main dark:bg-dark-point">
             Lv {level}
           </span>
           <div className="flex items-center font-IMHyemin-bold text-base text-light-gray">
-            <Icon
-              icon="FaRegUser"
-              size="xs"
-              className="relative bottom-[-0.07rem] mr-2"
-            />
-            <span className="font-IMHyemin-bold">{currentUserCount}</span>
+            <span className="font-IMHyemin-bold">{exp}</span>
             <span
-              className="flex font-IMHyemin-bold before:mx-[0.4rem] before:block 
+              className="flex font-IMHyemin-bold before:ml-[0.4rem] before:mr-[0.2rem] before:block 
            before:font-IMHyemin-bold before:text-base before:content-['/']"
             >
-              {maxUserCount}
+              10
             </span>
           </div>
         </div>
