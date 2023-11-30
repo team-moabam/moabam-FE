@@ -11,8 +11,13 @@ const GuideContent = ({ text, subText, image }: GuideContentProps) => {
     <div className="flex w-full flex-col items-center gap-16">
       <div>
         <div className="mb-5">
-          {text.map((line) => (
-            <div className="mb-2 font-IMHyemin-bold text-3xl">{line}</div>
+          {text.map((line, index) => (
+            <div
+              className="mb-2 font-IMHyemin-bold text-3xl"
+              key={index}
+            >
+              {line}
+            </div>
           ))}
         </div>
         <div className="min-h-[2rem] font-IMHyemin-bold text-dark-gray">

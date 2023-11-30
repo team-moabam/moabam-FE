@@ -1,31 +1,35 @@
 import { useState, useContext } from 'react';
 import {
-  useSuspenseQueries,
   useMutation,
-  useQueryClient
+  useQueryClient,
+  useSuspenseQuery
 } from '@tanstack/react-query';
 import itemAPI from '@/core/api/functions/itemAPI';
 import memberOptions from '@/core/api/options/member';
 import { Item } from '@/core/types/item';
+import itemOptions from '@/core/api/options/item';
 import { Icon } from '@/shared/Icon';
 import { Toast } from '@/shared/Toast';
 import { MyBirdContext } from './MyBirdProvider';
+
+type BugTypes = 'MORNING' | 'NIGHT' | 'GOLDEN';
 
 interface ProductSheetProps {
   close: () => void;
 }
 
+interface ProductOption {
+  purchaseType: BugTypes;
+  color: string;
+  price: number;
+  buyResult: number;
+}
+
 const ProductSheet = ({ close }: ProductSheetProps) => {
-  const [
-    {
-      data: { level: userLevel, morningBug, nightBug, goldenBug }
-    }
-  ] = useSuspenseQueries({
-    queries: [
-      {
-        ...memberOptions.myInfo()
-      }
-    ]
+  const {
+    data: { level: userLevel, morningBug, nightBug, goldenBug }
+  } = useSuspenseQuery({
+    ...memberOptions.myInfo()
   });
   const { selectItem, setSelectItem, productItem } = useContext(MyBirdContext);
 
@@ -34,18 +38,18 @@ const ProductSheet = ({ close }: ProductSheetProps) => {
   });
   const queryClient = useQueryClient();
   const { bugPrice, goldenBugPrice, level, name, type } = productItem as Item;
-  const [purchaseOption, setPurchaseOption] = useState<string>();
+  const [purchaseOption, setPurchaseOption] = useState<BugTypes>();
   const isLevelEnough = userLevel >= level;
 
-  const productOptions = [
+  const productOptions: ProductOption[] = [
     {
-      purchaseType: 'normal',
+      purchaseType: type,
       color: type === 'MORNING' ? 'text-light-point' : 'text-dark-point',
       price: bugPrice,
       buyResult: (type === 'MORNING' ? morningBug : nightBug) - bugPrice
     },
     {
-      purchaseType: 'golden',
+      purchaseType: 'GOLDEN',
       color: 'text-warning',
       price: goldenBugPrice,
       buyResult: goldenBug - goldenBugPrice
@@ -54,14 +58,18 @@ const ProductSheet = ({ close }: ProductSheetProps) => {
 
   const purchaseBird = (id: number | undefined) => {
     if (!purchaseOption || !id) return;
-    const bugType = purchaseOption === 'golden' ? 'GOLDEN' : type;
     mutation.mutate(
-      { itemId: id, bugType },
+      { itemId: id, bugType: purchaseOption },
       {
         onSuccess: () => {
           setSelectItem({ ...selectItem, [type]: productItem });
-          queryClient.invalidateQueries({ queryKey: ['item', type] });
-          queryClient.invalidateQueries({ queryKey: ['members'] });
+          queryClient.invalidateQueries({
+            queryKey: itemOptions.all(type).queryKey
+          });
+          queryClient.invalidateQueries({
+            queryKey: memberOptions.myInfo().queryKey
+          });
+
           Toast.show({
             message: '구매 성공!',
             status: 'confirm'
@@ -79,7 +87,10 @@ const ProductSheet = ({ close }: ProductSheetProps) => {
     );
   };
 
-  const handleSetPurchaseOption = (buyResult: number, purchaseType: string) => {
+  const handleSetPurchaseOption = (
+    buyResult: number,
+    purchaseType: BugTypes
+  ) => {
     if (buyResult < 0) return;
     setPurchaseOption(purchaseType);
   };

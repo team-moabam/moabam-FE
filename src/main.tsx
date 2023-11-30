@@ -13,6 +13,7 @@ import queryClient from '@/core/api/queryClient';
 import { PWAInstallBannerProvider } from '@/PWAInstallBanner/hooks/usePWAInstallBanner';
 import './main.css';
 
+// MSW 서비스 워커 등록
 const setupMSW = async () => {
   if (import.meta.env.VITE_MSW !== 'true') {
     return;
@@ -39,6 +40,7 @@ const setupMSW = async () => {
   });
 };
 
+// FCM 서비스 워커 등록
 const setupSW = async () => {
   if (import.meta.env.VITE_MSW === 'true') {
     return;
@@ -55,6 +57,7 @@ const setupSW = async () => {
   });
 };
 
+// 알림 권한 허용 여부에 따라 FCM 토큰을 API 서버에 전송하는 이벤트 핸들러 등록
 const setupFCM = async () => {
   const debounce = new Debounce();
 
