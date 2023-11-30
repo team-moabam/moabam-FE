@@ -51,6 +51,7 @@ const RoomNotice = ({ content }: RoomNoticeProps) => {
             <button
               className={InfoStyle.button}
               onClick={() => setShow(true)}
+              onTouchStart={() => setShow(true)}
             >
               <Icon
                 icon="CgClose"
