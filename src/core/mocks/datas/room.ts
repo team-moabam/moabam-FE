@@ -31,8 +31,74 @@ export const RoomInfo = {
       profileImage:
         'https://image.moabam.com/moabam/default/member-profile.png',
       contributionPoint: 100,
-      awakeImage: 'https://image.moabam.com/moabam/skins/owl/default/egg.png',
-      sleepImage: 'https://image.moabam.com/moabam/skins/owl/default/egg.png',
+      awakeImage:
+        'https://image.moabam.com/moabam/skins/owl/default/eyes-opened.png',
+      sleepImage:
+        'https://image.moabam.com/moabam/skins/owl/default/eyes-opened.png',
+      certificationImage: {
+        images: [
+          {
+            routineId: 8,
+            image:
+              'https://image.moabam.com/certifications/2023-11-30/8_e15719e3-83f8-4cdc-b4a6-5511290d8a4a.png'
+          },
+          {
+            routineId: 9,
+            image:
+              'https://image.moabam.com/certifications/2023-11-30/9_a78ddf52-854c-4a89-af6b-96b1ff418997.png'
+          },
+          {
+            routineId: 10,
+            image:
+              'https://image.moabam.com/certifications/2023-11-30/10_0c0046d4-76e2-43cb-8e2e-0e4adafd45bf.png'
+          }
+        ]
+      }
+    },
+    {
+      rank: 2,
+      memberId: 6,
+      nickname: '오목눈이#U8WN6I',
+      isNotificationSent: false,
+      profileImage:
+        'https://image.moabam.com/moabam/default/member-profile.png',
+      contributionPoint: 100,
+      awakeImage:
+        'https://image.moabam.com/moabam/skins/owl/santa/eyes-opened.png',
+      sleepImage:
+        'https://image.moabam.com/moabam/skins/owl/santa/eyes-opened.png',
+      certificationImage: {
+        images: [
+          {
+            routineId: 8,
+            image:
+              'https://image.moabam.com/certifications/2023-11-30/8_e15719e3-83f8-4cdc-b4a6-5511290d8a4a.png'
+          },
+          {
+            routineId: 9,
+            image:
+              'https://image.moabam.com/certifications/2023-11-30/9_a78ddf52-854c-4a89-af6b-96b1ff418997.png'
+          },
+          {
+            routineId: 10,
+            image:
+              'https://image.moabam.com/certifications/2023-11-30/10_0c0046d4-76e2-43cb-8e2e-0e4adafd45bf.png'
+          }
+        ]
+      }
+    },
+    {
+      rank: 3,
+      memberId: 10,
+      nickname: '오목눈이#U8WN6I',
+      isNotificationSent: false,
+      profileImage:
+        'https://image.moabam.com/moabam/default/member-profile.png',
+      contributionPoint: 100,
+      awakeImage:
+        'https://image.moabam.com/moabam/skins/owl/santa/eyes-opened.png',
+      sleepImage:
+        'https://image.moabam.com/moabam/skins/owl/santa/eyes-opened.png',
       certificationImage: {
         images: [
           {
