@@ -30,24 +30,26 @@ const RoomLogItem = ({
         <AccordionBody>
           <div className="grid grid-cols-2 gap-x-3 gap-y-[1.32rem] px-[1.19rem] py-7">
             {certificationImage ? (
-              certificationImage.map(({ routineId: checkRoutineId, image }) => {
-                const routineData = routines.find(
-                  ({ routineId }) => routineId === checkRoutineId
-                );
-                return (
-                  <div key={checkRoutineId}>
-                    <div>
-                      <img
-                        src={image}
-                        className="rounded-2xl"
-                      />
+              certificationImage.images.map(
+                ({ routineId: checkRoutineId, image }) => {
+                  const routineData = routines.find(
+                    ({ routineId }) => routineId === checkRoutineId
+                  );
+                  return (
+                    <div key={checkRoutineId}>
+                      <div>
+                        <img
+                          src={image}
+                          className="rounded-2xl"
+                        />
+                      </div>
+                      <span>{routineData?.content}</span>
                     </div>
-                    <span>{routineData?.content}</span>
-                  </div>
-                );
-              })
+                  );
+                }
+              )
             ) : (
-              <div className="text-center">인증하지 않았어요..</div>
+              <div className="text-center">인증하지 않았어요!</div>
             )}
           </div>
         </AccordionBody>

@@ -25,85 +25,33 @@ export const RoomInfo = {
   todayCertificateRank: [
     {
       rank: 1,
-      memberId: '5',
-      nickname: '재영',
-      isNotificationSent: true,
-      profileImage: 'https://picsum.photos/200',
-      contributionPoint: 65,
-      awakeImage: 'https://picsum.photos/200',
-      sleepImage: 'https://picsum.photos/200',
-      certificationImage: [
-        {
-          routineId: 5,
-          image: 'https://picsum.photos/200'
-        },
-        {
-          routineId: 9,
-          image: 'https://picsum.photos/200'
-        }
-      ]
-    },
-    {
-      rank: 2,
-      memberId: '1',
-      nickname: '랄라랄',
+      memberId: 5,
+      nickname: '오목눈이#U8WN6I',
       isNotificationSent: false,
-      profileImage: 'https://picsum.photos/200',
-      contributionPoint: 80,
-      awakeImage: 'https://picsum.photos/200',
-      sleepImage: 'https://picsum.photos/200',
-      certificationImage: [
-        {
-          routineId: 5,
-          image: 'https://picsum.photos/200'
-        },
-        {
-          routineId: 9,
-          image: 'https://picsum.photos/200'
-        }
-      ]
-    },
-    {
-      rank: 3,
-      memberId: '7',
-      nickname: '하윙',
-      isNotificationSent: false,
-      profileImage: 'https://picsum.photos/200',
-      contributionPoint: 30,
-      awakeImage: 'https://picsum.photos/200',
-      sleepImage: 'https://picsum.photos/200',
-      certificationImage: [
-        {
-          routineId: 5,
-          image: 'https://picsum.photos/200'
-        },
-        {
-          routineId: 9,
-          image: 'https://picsum.photos/200'
-        }
-      ]
-    },
-    {
-      rank: 500,
-      memberId: '9',
-      nickname: '명재',
-      isNotificationSent: true,
-      profileImage: 'https://picsum.photos/200',
-      contributionPoint: 90,
-      awakeImage: 'https://picsum.photos/200',
-      sleepImage: 'https://picsum.photos/200',
-      certificationImage: null
-    },
-    {
-      rank: 500,
-      memberId: '4',
-      nickname: '홍홍',
-      isNotificationSent: false,
-      profileImage: 'https://picsum.photos/200',
-      contributionPoint: 50,
-      awakeImage: 'https://picsum.photos/200',
-      sleepImage: 'https://picsum.photos/200',
-      certificationImage: null
+      profileImage:
+        'https://image.moabam.com/moabam/default/member-profile.png',
+      contributionPoint: 100,
+      awakeImage: 'https://image.moabam.com/moabam/skins/owl/default/egg.png',
+      sleepImage: 'https://image.moabam.com/moabam/skins/owl/default/egg.png',
+      certificationImage: {
+        images: [
+          {
+            routineId: 8,
+            image:
+              'https://image.moabam.com/certifications/2023-11-30/8_e15719e3-83f8-4cdc-b4a6-5511290d8a4a.png'
+          },
+          {
+            routineId: 9,
+            image:
+              'https://image.moabam.com/certifications/2023-11-30/9_a78ddf52-854c-4a89-af6b-96b1ff418997.png'
+          },
+          {
+            routineId: 10,
+            image:
+              'https://image.moabam.com/certifications/2023-11-30/10_0c0046d4-76e2-43cb-8e2e-0e4adafd45bf.png'
+          }
+        ]
+      }
     }
   ]
 };
