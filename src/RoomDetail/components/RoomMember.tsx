@@ -55,6 +55,7 @@ const RoomMember = ({
       .catch((err) => {
         console.log(err);
         console.log(err.response);
+        console.log(err.message);
         Toast.show({
           status: 'danger',
           message: err.response.message
