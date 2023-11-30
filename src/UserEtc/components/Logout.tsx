@@ -1,6 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
 import memberAPI from '@/core/api/functions/memberAPI';
 import { useMoveRoute } from '@/core/hooks';
+import { STORAGE_KEYS } from '@/core/constants/storageKeys';
 
 const Logout = () => {
   const moveTo = useMoveRoute();
@@ -12,6 +13,7 @@ const Logout = () => {
     memberAPI.logout();
     mutation.mutate(undefined, {
       onSuccess() {
+        localStorage.removeItem(STORAGE_KEYS.MEMBER_ID);
         moveTo('join');
       }
     });

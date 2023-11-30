@@ -2,12 +2,12 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
-import { RouteNames } from '@/core/routes';
+import { PublicRouteNames, PrivateRouteNames } from '@/core/routes';
 import { useMoveRoute } from '@/core/hooks';
 import { Icon } from '@/shared/Icon';
 
 interface HeaderProps {
-  prev?: RouteNames | -1;
+  prev?: PublicRouteNames | PrivateRouteNames | -1;
   title?: React.ReactNode;
   titleSize?: 'md' | 'xl';
   children?: React.ReactNode;
