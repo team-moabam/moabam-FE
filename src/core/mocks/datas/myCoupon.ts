@@ -2,6 +2,7 @@ import { MyCoupon } from '@/core/types';
 
 export const MY_COUPON: MyCoupon[] = [
   {
+    walletId: 1,
     id: 1,
     name: '아침쿠폰',
     point: 10,
@@ -9,6 +10,7 @@ export const MY_COUPON: MyCoupon[] = [
     type: 'MORNING'
   },
   {
+    walletId: 1123,
     id: 2,
     name: '밤쿠폰',
     point: 1,
@@ -16,6 +18,7 @@ export const MY_COUPON: MyCoupon[] = [
     type: 'NIGHT'
   },
   {
+    walletId: 1221,
     id: 5,
     name: '돈이 체고야',
     point: 1777,
@@ -23,6 +26,7 @@ export const MY_COUPON: MyCoupon[] = [
     type: 'GOLDEN'
   },
   {
+    walletId: 1523,
     id: 21,
     name: '결제할인',
     point: 10,
@@ -30,6 +34,7 @@ export const MY_COUPON: MyCoupon[] = [
     type: 'DISCOUNT'
   },
   {
+    walletId: 1666,
     id: 26,
     name: '결제할인',
     point: 99,

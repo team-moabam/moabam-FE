@@ -44,6 +44,26 @@ export const MORNING_ITEM: Items = {
       level: 0,
       bugPrice: 50,
       goldenBugPrice: 30
+    },
+    {
+      id: 7,
+      type: 'MORNING',
+      category: 'SKIN',
+      name: '골드 오목눈이',
+      image: 'public/assets/skins/awakeOmokSkin3.png',
+      level: 0,
+      bugPrice: 5550,
+      goldenBugPrice: 1
+    },
+    {
+      id: 2423,
+      type: 'MORNING',
+      category: 'SKIN',
+      name: '모닝 오목눈이',
+      image: 'public/assets/skins/awakeOmokSkin3.png',
+      level: 0,
+      bugPrice: 1,
+      goldenBugPrice: 5550
     }
   ]
 };
