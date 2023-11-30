@@ -1,104 +1,58 @@
+import { Link } from 'react-router-dom';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import rankOptions from '@/core/api/options/rank';
+import RankThumbnailItem from './RankThumbnailItem';
 
 const RankList = () => {
-  const { data } = useSuspenseQuery({
+  const {
+    data: { myRanking, topRankings }
+  } = useSuspenseQuery({
     ...rankOptions.rank()
   });
-  console.log(data);
-  // if (!data)
-  //   return (
-  //     <div className="mt-5 text-center text-dark-gray">요청 오류입니다</div>
-  //   );
-
-  // if (data.length === 0)
-  //   return (
-  //     <div className="mt-5 text-center text-dark-gray">쿠폰함이 비었습니다</div>
-  //   );
 
   return (
     <>
       <div>
         <div className="flex items-end bg-light-sub p-5 shadow-md dark:bg-dark-sub">
-          <div className="flex h-full flex-1 flex-col justify-end ">
-            <div className="grid place-items-center">
-              <div className="relative mb-5  h-16 w-16">
-                <img
-                  src="https://thumbnail.10x10.co.kr/webimage/image/basic600/515/B005159997.jpg?cmd=thumb&w=400&h=400&fit=true&ws=false"
-                  alt=""
-                  className="absolute rounded-full"
-                />
-                <div className="absolute -bottom-1 -right-1 z-10 grid h-6 w-6 place-content-center rounded-full bg-light-gray font-extrabold text-light-sub">
-                  <h1>2</h1>
-                </div>
-              </div>
-              <div className="text-sm">볼록눈이</div>
-              <div className="mt-2 font-extrabold text-light-point dark:text-dark-point">
-                Lv 137
-              </div>
-            </div>
-          </div>
-          <div className="flex h-full flex-1 flex-col justify-end pt-5 ">
-            <div className="grid place-items-center">
-              <div className="relative mb-5  h-24 w-24">
-                <img
-                  src="https://thumbnail.10x10.co.kr/webimage/image/basic600/515/B005159997.jpg?cmd=thumb&w=400&h=400&fit=true&ws=false"
-                  alt=""
-                  className="absolute rounded-full"
-                />
-                <div className="absolute -bottom-1 -right-1 z-10 grid h-6 w-6 place-content-center rounded-full bg-warning font-extrabold text-light-sub">
-                  <h1>1</h1>
-                </div>
-              </div>
-              <div className="text-sm">볼록눈이</div>
-              <div className="mt-2 font-extrabold text-light-point dark:text-dark-point">
-                Lv 137
-              </div>
-            </div>
-          </div>
-          <div className="flex h-full flex-1 flex-col justify-end ">
-            <div className="grid place-items-center">
-              <div className="relative mb-5  h-16 w-16">
-                <img
-                  src="https://thumbnail.10x10.co.kr/webimage/image/basic600/515/B005159997.jpg?cmd=thumb&w=400&h=400&fit=true&ws=false"
-                  alt=""
-                  className="absolute rounded-full"
-                />
-                <div className="absolute -bottom-1 -right-1 z-10 grid h-6 w-6 place-content-center rounded-full bg-bronze font-extrabold text-light-sub">
-                  <h1>3</h1>
-                </div>
-              </div>
-              <div className="text-sm">볼록눈이</div>
-              <div className="mt-2 font-extrabold text-light-point dark:text-dark-point">
-                Lv 137
-              </div>
-            </div>
-          </div>
+          <RankThumbnailItem rankData={topRankings[1]} />
+          <RankThumbnailItem
+            rankData={topRankings[0]}
+            center={true}
+          />
+          <RankThumbnailItem rankData={topRankings[2]} />
         </div>
       </div>
       <div className="mt-5 h-full overflow-auto bg-light-main text-black dark:bg-dark-main dark:text-white">
-        {/* 1~10등 */}
         <ul>
-          <li className="flex h-16 items-center p-3">
-            <div className="w-10  text-center text-xl">1</div>
-            <div className="mx-2 h-11 w-11 rounded-full bg-slate-600"></div>
-            <div className="flex-1">볼록눈이</div>
-            <div>Lv 890</div>
-          </li>
-          <li className="flex h-16 items-center p-3">
-            <div className="w-10  text-center text-xl">2</div>
-            <div className="mx-2 h-11 w-11 rounded-full bg-slate-600"></div>
-            <div className="flex-1">감자칩</div>
-            <div>Lv 870</div>
-          </li>
+          {topRankings.map(({ rank, memberId, nickname, image, score }) => (
+            <Link
+              to={`/user/${memberId}`}
+              className="flex h-16 items-center p-3"
+              key={memberId}
+            >
+              <div className="w-10  text-center text-xl">{rank}</div>
+              <div className="mx-2 h-11 w-11 overflow-hidden rounded-full">
+                <img
+                  src={image}
+                  className="h-full w-full object-cover"
+                />
+              </div>
+              <div className="flex-1">{nickname}</div>
+              <div>Lv {score}</div>
+            </Link>
+          ))}
         </ul>
       </div>
-      {/* 나 */}
       <div className="flex h-16 items-center bg-light-sub p-3 dark:bg-dark-sub">
-        <div className="w-10  text-center text-xl">2</div>
-        <div className="mx-2 h-11 w-11 rounded-full bg-slate-600"></div>
-        <div className="flex-1">감자칩</div>
-        <div>Lv 870</div>
+        <div className="w-10  text-center text-xl">{myRanking.rank}</div>
+        <div className="mx-2 h-11 w-11 overflow-hidden rounded-full">
+          <img
+            src={myRanking.image}
+            className="h-full w-full object-cover"
+          />
+        </div>
+        <div className="flex-1">{myRanking.nickname}</div>
+        <div>Lv {myRanking.score}</div>
       </div>
     </>
   );

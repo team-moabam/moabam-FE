@@ -1,4 +1,4 @@
-export interface rank {
+export interface Rank {
   rank: number;
   memberId: number;
   score: number;
@@ -6,7 +6,7 @@ export interface rank {
   image: string;
 }
 
-export interface ranking {
-  topRankings: rank[];
-  myRanking: rank;
+export interface Ranking {
+  topRankings: Rank[];
+  myRanking: Rank;
 }
