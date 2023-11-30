@@ -35,7 +35,7 @@ const EventList = () => {
         data.map((coupon) => (
           <EventCard
             {...coupon}
-            key={coupon.couponId}
+            key={coupon.id}
             dueType={dueTypes[resultIndex]}
             startDiff={getDateDiff(
               (today || new Date()).toJSON(),
