@@ -6,7 +6,9 @@ export type Member = {
   contributionPoint: number;
   awakeImage: string;
   sleepImage: string;
-  certificationImage: { routineId: number; image: string }[];
+  certificationImage: {
+    images: { routineId: number; image: string }[];
+  };
 };
 
 export interface RankMember extends Member {

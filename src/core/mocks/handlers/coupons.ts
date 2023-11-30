@@ -13,7 +13,7 @@ const couponsHandlers = [
           name: '새 멤버 환영',
           point: 10,
           description: '오늘의 루틴도 화이팅!',
-          couponType: 'MORNING_COUPON',
+          couponType: 'MORNING',
           stock: 20,
           openAt: new Date().toJSON(),
           startAt: new Date().toJSON(),
