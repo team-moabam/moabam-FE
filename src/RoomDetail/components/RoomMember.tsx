@@ -37,19 +37,27 @@ const RoomMember = ({
   } = useRouteData();
 
   const handlePokeButtonClick = async (memberId: number, nickname: string) => {
-    await notificationAPI.getMemberPoke(roomId || '', memberId);
+    await notificationAPI
+      .getMemberPoke(roomId || '', memberId)
+      .then(() => {
+        setNoticeSent(true);
+        Toast.show({
+          status: 'confirm',
+          message: `${nickname}을 콕! 찔렀어요`,
+          icon: true,
+          subText: '콕콕'
+        });
 
-    setNoticeSent(true);
-    Toast.show({
-      status: 'confirm',
-      message: `${nickname}을 콕! 찔렀어요`,
-      icon: true,
-      subText: '콕콕'
-    });
-
-    queryClient.invalidateQueries({
-      queryKey: roomOptions.detail(roomId || '').queryKey
-    });
+        queryClient.invalidateQueries({
+          queryKey: roomOptions.detail(roomId || '').queryKey
+        });
+      })
+      .catch((err) => {
+        Toast.show({
+          status: 'danger',
+          message: err.message
+        });
+      });
   };
 
   return (

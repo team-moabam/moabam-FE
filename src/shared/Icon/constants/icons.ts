@@ -18,7 +18,7 @@ import {
 import { BsFillEyeFill, BsFillEyeSlashFill } from 'react-icons/bs';
 import { CgClose } from 'react-icons/cg';
 import { FaPlus, FaMinus, FaPlusCircle, FaMinusCircle } from 'react-icons/fa';
-import { FaCrown } from 'react-icons/fa6';
+import { FaCrown, FaRegUser } from 'react-icons/fa6';
 import {
   FaRankingStar,
   FaUser,
@@ -75,6 +75,7 @@ export const iconMap = {
   FaUser,
   FaClipboardList,
   FaLock,
+  FaRegUser,
   HiHome,
   ImSearch,
   IoPeopleCircle,
