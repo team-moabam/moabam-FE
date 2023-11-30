@@ -1,4 +1,5 @@
 export interface MyCoupon {
+  walletId: number;
   couponId: number;
   name: string;
   point: number;
