@@ -54,12 +54,12 @@ const RoomCalendarDate = ({
   const RoomCalendarStyle = {
     calendarItem: twMerge(
       clsx(
-        'relative flex h-[5.87rem] w-[3.12rem] cursor-default flex-col items-center pt-1 text-center',
+        'relative flex h-[5.87rem] w-[3.12rem] cursor-default flex-col items-center rounded-[0.62rem] border-[0.06rem] border-transparent pt-1 text-center',
         {
           'text-dark-gray': serverTime.getTime() < thisDate.getTime(),
           'text-black dark:text-white':
             serverTime.getTime() >= thisDate.getTime(),
-          'rounded-[0.62rem] border-light-point text-light-point dark:border-dark-point dark:text-dark-point border-[0.06rem]':
+          'border-light-point text-light-point dark:border-dark-point dark:text-dark-point ':
             thisDateString === chooseDateString
         }
       )
