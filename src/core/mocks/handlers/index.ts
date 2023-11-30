@@ -7,6 +7,7 @@ import itemHandlers from './item';
 import reportsHandlers from './reports';
 import notificationsHandlers from './notifications';
 import timeHandler from './time';
+import rankHandler from './rank';
 
 const handlers = [
   ...roomsHandlers,
@@ -17,6 +18,7 @@ const handlers = [
   ...reportsHandlers,
   ...notificationsHandlers,
   ...paymentHandler,
+  ...rankHandler,
   timeHandler
 ];
 
