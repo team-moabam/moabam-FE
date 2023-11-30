@@ -1,5 +1,6 @@
 import { Suspense } from 'react';
 import { Header } from '@/shared/Header';
+import { Deffered } from '@/shared/Deffered';
 import MyCouponList from '@/MyCoupon/components/MyCouponList';
 import MyCouponListFallback from '@/MyCoupon/components/MyCouponListFallback';
 
@@ -10,7 +11,13 @@ const CouponPage = () => {
         prev="myPage"
         title="쿠폰함"
       />
-      <Suspense fallback={<MyCouponListFallback />}>
+      <Suspense
+        fallback={
+          <Deffered>
+            <MyCouponListFallback />
+          </Deffered>
+        }
+      >
         <MyCouponList />
       </Suspense>
     </div>

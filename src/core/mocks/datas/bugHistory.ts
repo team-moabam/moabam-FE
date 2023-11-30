@@ -3,32 +3,38 @@ import { BugHistory } from '@/core/types';
 export const BUG_HISTORY: BugHistory = {
   history: [
     {
-      id: 3,
+      id: 31222,
       bugType: 'MORNING',
-      actionType: '보상',
-      amount: 2,
+      actionType: 'REWARD',
+      quantity: 2,
       date: '2023.11.01 23:50'
     },
     {
-      id: 2,
+      id: 2334,
       bugType: 'NIGHT',
-      actionType: '쿠폰',
-      amount: 5,
+      actionType: 'COUPON',
+      quantity: 5,
       date: '2023.10.25 23:50'
     },
     {
-      id: 1,
+      id: 6,
       bugType: 'GOLDEN',
-      actionType: '충전',
-      amount: 10,
+      actionType: 'CHARGE',
+      quantity: 10,
       date: '2023.10.19 23:50',
       paymentInfo: {
-        id: 1,
-        count: 10,
-        price: 3000,
-        discount: 1000,
-        provider: '...'
+        id: 1231,
+        orderName: '황금벌레 10',
+        discountAmount: 1000,
+        totalAmount: 2000
       }
+    },
+    {
+      id: 16464,
+      bugType: 'GOLDEN',
+      actionType: 'USE',
+      quantity: 10,
+      date: '2023.10.19 23:50'
     }
   ]
 };
