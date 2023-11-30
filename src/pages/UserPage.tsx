@@ -11,7 +11,10 @@ const UserPage = () => {
 
   return (
     <div className="relative h-full overflow-auto px-5 pb-5">
-      <Header className="absolute left-0 top-0 z-10" />
+      <Header
+        className="absolute left-0 top-0 z-10"
+        prev={-1}
+      />
       <Suspense
         fallback={
           <Deffered>
