@@ -46,6 +46,7 @@ const ImageInput = ({ content, image, idx }: ImageInputProps) => {
       >
         <input
           type="file"
+          accept="image/gif,image/jpeg,image/png"
           id={content}
           {...register(`${idx}.file`, {
             required: '이미지를 넣어주세요'
