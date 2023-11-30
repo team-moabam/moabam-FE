@@ -25,8 +25,15 @@ const JoinKakaoPage = () => {
           moveTo(data.signUp ? 'guide' : 'start');
           localStorage.setItem(STORAGE_KEYS.MEMBER_ID, JSON.stringify(data.id));
 
-          const fcmToken = await getFCMToken();
-          notificationAPI.postFCMToken({ fcmToken });
+          if (Notification && Notification.permission === 'granted') {
+            // 알림 권한 허용된 상태면 FCM 토큰을 API 서버에 전송
+            const fcmToken = await getFCMToken();
+            notificationAPI.postFCMToken({ fcmToken });
+          } else {
+            // 알림 권한 허용되지 않은 상태면 알림 권한 요청
+            // (권한 승인시 자동으로 FCM 토큰을 API 서버에 전송)
+            Notification.requestPermission();
+          }
         }
       }
     );
