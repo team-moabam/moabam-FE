@@ -2,7 +2,6 @@ import { ParticipatingRoom } from '@/core/types';
 import getTimeRange from '@/core/utils/getTimeRange';
 
 const calculateTimeDiff = (certifyTime: number, currentDate: Date) => {
-  currentDate.setHours(0);
   const certifyDate = new Date(currentDate);
   certifyDate.setHours(certifyTime, 0, 0, 0);
 
@@ -11,11 +10,17 @@ const calculateTimeDiff = (certifyTime: number, currentDate: Date) => {
   return Math.abs(timeDiff);
 };
 
-const pickRoomToShow = (data: ParticipatingRoom[], today?: Date) => {
+const pickRoom = (data: ParticipatingRoom[], today?: Date) => {
   const currentDate = today ?? new Date();
   const currentTimeRange = getTimeRange(currentDate);
 
-  const result = data.sort((roomA, roomB) => {
+  const certifyingRoom = data.find(({ certifyTime }) => {
+    calculateTimeDiff(certifyTime, currentDate) < 20 * 6 * 1000;
+  })?.roomId;
+
+  const latestRoom = sessionStorage.getItem('VISITED_ROOM') ?? undefined;
+
+  const closestRoom = data.sort((roomA, roomB) => {
     const roomADiff = calculateTimeDiff(roomA.certifyTime, currentDate);
     const roomBDiff = calculateTimeDiff(roomB.certifyTime, currentDate);
     if (roomADiff === roomBDiff) {
@@ -23,9 +28,13 @@ const pickRoomToShow = (data: ParticipatingRoom[], today?: Date) => {
       return 1;
     }
     return roomADiff - roomBDiff;
-  });
+  })[0].roomId;
 
-  return result[0];
+  return {
+    certifyingRoom,
+    closestRoom,
+    latestRoom
+  };
 };
 
-export default pickRoomToShow;
+export default pickRoom;
