@@ -53,9 +53,11 @@ const RoomMember = ({
         });
       })
       .catch((err) => {
+        console.log(err);
+        console.log(err.response);
         Toast.show({
           status: 'danger',
-          message: err.response.data
+          message: err.response.message
         });
       });
   };
