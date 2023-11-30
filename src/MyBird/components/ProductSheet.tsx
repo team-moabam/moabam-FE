@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import {
   useMutation,
   useQueryClient,
@@ -56,6 +56,15 @@ const ProductSheet = ({ close }: ProductSheetProps) => {
     }
   ];
 
+  useEffect(() => {
+    if (purchaseOption) return;
+    for (const Option of productOptions) {
+      if (Option.buyResult >= 0) {
+        return setPurchaseOption(Option.purchaseType);
+      }
+    }
+  }, []);
+
   const purchaseBird = (id: number | undefined) => {
     if (!purchaseOption || !id) return;
     mutation.mutate(
@@ -69,7 +78,6 @@ const ProductSheet = ({ close }: ProductSheetProps) => {
           queryClient.invalidateQueries({
             queryKey: memberOptions.myInfo().queryKey
           });
-
           Toast.show({
             message: '구매 성공!',
             status: 'confirm'
@@ -85,14 +93,6 @@ const ProductSheet = ({ close }: ProductSheetProps) => {
         }
       }
     );
-  };
-
-  const handleSetPurchaseOption = (
-    buyResult: number,
-    purchaseType: BugTypes
-  ) => {
-    if (buyResult < 0) return;
-    setPurchaseOption(purchaseType);
   };
 
   return (
@@ -123,8 +123,8 @@ const ProductSheet = ({ close }: ProductSheetProps) => {
                 className={`mb-3 flex items-center gap-3 rounded-2xl border-2 border-dark-gray bg-light-main p-2 px-3 text-sm transition-all dark:bg-dark-main ${
                   purchaseOption === purchaseType &&
                   'border-light-point dark:border-dark-point'
-                }`}
-                onClick={() => handleSetPurchaseOption(buyResult, purchaseType)}
+                } ${buyResult < 0 ? 'cursor-not-allowed' : 'cursor-pointer'}`}
+                onClick={() => setPurchaseOption(purchaseType)}
               >
                 <div className={`flex grow items-center gap-2 ${color}`}>
                   <Icon

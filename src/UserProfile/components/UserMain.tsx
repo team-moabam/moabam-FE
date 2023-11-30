@@ -10,6 +10,7 @@ interface UserMainProps {
 }
 
 const UserMain = ({ userId = '' }: UserMainProps) => {
+  const isMyPage = !userId;
   const [
     {
       data: {
@@ -28,7 +29,9 @@ const UserMain = ({ userId = '' }: UserMainProps) => {
   ] = useSuspenseQueries({
     queries: [
       {
-        ...(userId ? memberOptions.memberInfo(userId) : memberOptions.myInfo())
+        ...(isMyPage
+          ? memberOptions.myInfo()
+          : memberOptions.memberInfo(userId))
       }
     ]
   });
@@ -68,16 +71,18 @@ const UserMain = ({ userId = '' }: UserMainProps) => {
       />
       <div className="mb-3 mt-8 flex w-full justify-between">
         <h1>대표 새</h1>
-        <Link
-          to="/mybird"
-          className="cursor-pointer text-light-point dark:text-dark-point"
-        >
-          스킨 변경
-        </Link>
+        {isMyPage && (
+          <Link
+            to="/mybird"
+            className="cursor-pointer text-light-point dark:text-dark-point"
+          >
+            스킨 변경
+          </Link>
+        )}
       </div>
       <div className="flex w-full justify-center gap-4">
         <Link
-          to="/mybird"
+          to={isMyPage ? '/mybird' : '#'}
           state={{ type: 'MORNING' }}
           className="flex aspect-[3/4] w-1/2 flex-col items-center justify-center gap-3 rounded-lg bg-light-sub text-lg dark:bg-dark-sub"
         >
@@ -90,7 +95,7 @@ const UserMain = ({ userId = '' }: UserMainProps) => {
           <div>오목눈이</div>
         </Link>
         <Link
-          to="/mybird"
+          to={isMyPage ? '/mybird' : '#'}
           state={{ type: 'NIGHT' }}
           className="flex aspect-[3/4] w-1/2 flex-col items-center justify-center gap-3 rounded-lg bg-light-sub text-lg dark:bg-dark-sub"
         >
@@ -121,7 +126,7 @@ const UserMain = ({ userId = '' }: UserMainProps) => {
           </div>
         ))}
       </div>
-      {!userId && (
+      {isMyPage && (
         <>
           <div className="mb-3 mt-8 flex w-full justify-between">
             <h1>
