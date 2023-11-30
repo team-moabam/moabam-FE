@@ -78,7 +78,6 @@ const ProductSheet = ({ close }: ProductSheetProps) => {
           queryClient.invalidateQueries({
             queryKey: memberOptions.myInfo().queryKey
           });
-
           Toast.show({
             message: '구매 성공!',
             status: 'confirm'
@@ -94,14 +93,6 @@ const ProductSheet = ({ close }: ProductSheetProps) => {
         }
       }
     );
-  };
-
-  const handleSetPurchaseOption = (
-    buyResult: number,
-    purchaseType: BugTypes
-  ) => {
-    if (buyResult < 0) return;
-    setPurchaseOption(purchaseType);
   };
 
   return (
@@ -129,11 +120,11 @@ const ProductSheet = ({ close }: ProductSheetProps) => {
             {productOptions.map(({ buyResult, color, price, purchaseType }) => (
               <div
                 key={purchaseType}
-                className={`mb-3 flex cursor-pointer items-center gap-3 rounded-2xl border-2 border-dark-gray bg-light-main p-2 px-3 text-sm transition-all dark:bg-dark-main ${
+                className={`mb-3 flex items-center gap-3 rounded-2xl border-2 border-dark-gray bg-light-main p-2 px-3 text-sm transition-all dark:bg-dark-main ${
                   purchaseOption === purchaseType &&
                   'border-light-point dark:border-dark-point'
-                }`}
-                onClick={() => handleSetPurchaseOption(buyResult, purchaseType)}
+                } ${buyResult < 0 ? 'cursor-not-allowed' : 'cursor-pointer'}`}
+                onClick={() => setPurchaseOption(purchaseType)}
               >
                 <div className={`flex grow items-center gap-2 ${color}`}>
                   <Icon
