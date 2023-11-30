@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import {
   useMutation,
   useQueryClient,
@@ -55,6 +55,15 @@ const ProductSheet = ({ close }: ProductSheetProps) => {
       buyResult: goldenBug - goldenBugPrice
     }
   ];
+
+  useEffect(() => {
+    if (purchaseOption) return;
+    for (const Option of productOptions) {
+      if (Option.buyResult >= 0) {
+        return setPurchaseOption(Option.purchaseType);
+      }
+    }
+  }, []);
 
   const purchaseBird = (id: number | undefined) => {
     if (!purchaseOption || !id) return;
@@ -120,7 +129,7 @@ const ProductSheet = ({ close }: ProductSheetProps) => {
             {productOptions.map(({ buyResult, color, price, purchaseType }) => (
               <div
                 key={purchaseType}
-                className={`mb-3 flex items-center gap-3 rounded-2xl border-2 border-dark-gray bg-light-main p-2 px-3 text-sm transition-all dark:bg-dark-main ${
+                className={`mb-3 flex cursor-pointer items-center gap-3 rounded-2xl border-2 border-dark-gray bg-light-main p-2 px-3 text-sm transition-all dark:bg-dark-main ${
                   purchaseOption === purchaseType &&
                   'border-light-point dark:border-dark-point'
                 }`}
