@@ -58,10 +58,10 @@ const roomAPI = {
     return await baseInstance.delete(`/rooms/${roomId}/members/${memberId}`);
   },
 
-  putDelegateMaster: async (params: { roomId: string; memberId: number }) => {
+  putMandateMaster: async (params: { roomId: string; memberId: number }) => {
     const { roomId, memberId } = params;
     return await baseInstance.put(
-      `/rooms/${roomId}/members/${memberId}/delegation`
+      `/rooms/${roomId}/members/${memberId}/mandate`
     );
   },
 

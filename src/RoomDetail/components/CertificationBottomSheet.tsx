@@ -7,6 +7,7 @@ import { roomOptions } from '@/core/api/options';
 import { useRouteData } from '@/core/hooks';
 import { BottomSheet } from '@/shared/BottomSheet';
 import { BottomSheetProps } from '@/shared/BottomSheet/components/BottomSheet';
+import { Toast } from '@/shared/Toast';
 import { FormCertificationImage } from '../types/type';
 import ImageInput from './ImageInput';
 
@@ -36,12 +37,14 @@ const CertificationBottomSheet = ({
 
   const handleFormSubmit = async (data: FormCertificationImage[]) => {
     const formData = new FormData();
+    const dataObjectArray = Object.entries(data);
 
-    for (const [key, value] of Object.entries(data)) {
-      if (value.file) {
-        formData.append(`${routines[Number(key)].routineId}`, value.file[0]);
+    dataObjectArray.forEach(([key, value], idx) => {
+      if (value.file && value.file.length > 0) {
+        formData.append(`certifyRoomsRequest[${idx}]`, value.file[0]);
+        formData.append(`certifyRoomsRequest[${idx}]`, key);
       }
-    }
+    });
 
     mutate(
       {
@@ -55,8 +58,11 @@ const CertificationBottomSheet = ({
             queryKey: roomOptions.detail(roomId || '').queryKey
           });
         },
-        onError: () => {
-          // TODO : 에러 처리
+        onError: (error) => {
+          Toast.show({
+            message: error.response?.data?.message ?? '오류가 발생했어요.',
+            status: 'danger'
+          });
         }
       }
     );

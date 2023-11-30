@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import roomAPI from '@/core/api/functions/roomAPI';
+import { roomOptions } from '@/core/api/options';
 import { Input } from '@/shared/Input';
 import { BottomSheet, useBottomSheet } from '@/shared/BottomSheet';
 import { LoadingSpinner } from '@/shared/LoadingSpinner';
@@ -15,8 +16,8 @@ interface KickButtonProps {
 
 const KickButton = ({ roomId, memberId, nickname }: KickButtonProps) => {
   const [confirmInput, setConfirmInput] = useState('');
-
   const { bottomSheetProps, open, close } = useBottomSheet();
+  const queryClient = useQueryClient();
 
   const { mutate, isPending, error } = useMutation({
     mutationFn: roomAPI.deleteKickUser
@@ -27,14 +28,20 @@ const KickButton = ({ roomId, memberId, nickname }: KickButtonProps) => {
       { roomId, memberId },
       {
         onSuccess: () => {
-          close();
+          queryClient.invalidateQueries({
+            queryKey: roomOptions.detail(roomId).queryKey
+          });
+
           Toast.show({
             message: '멤버를 방에서 쫓아냈어요.',
             status: 'danger'
           });
+
+          close();
         },
         onError: (err) => {
           console.error(err);
+
           Toast.show({
             message: err.response?.data.message ?? '오류가 발생했어요.',
             status: 'danger'
