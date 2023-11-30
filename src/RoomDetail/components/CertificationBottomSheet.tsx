@@ -41,8 +41,11 @@ const CertificationBottomSheet = ({
 
     dataObjectArray.forEach(([key, value], idx) => {
       if (value.file && value.file.length > 0) {
-        formData.append(`certifyRoomsRequest[${idx}]`, value.file[0]);
-        formData.append(`certifyRoomsRequest[${idx}]`, key);
+        formData.append(`certifyRoomsRequest[${idx}].image`, value.file[0]);
+        formData.append(
+          `certifyRoomsRequest[${idx}].routineId`,
+          `${routines[Number(key)].routineId}`
+        );
       }
     });
 
