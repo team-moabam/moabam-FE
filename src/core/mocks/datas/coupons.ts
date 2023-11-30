@@ -2,7 +2,7 @@ import { Coupons } from '@/core/types';
 
 export const COUPONS: Coupons = [
   {
-    id: 1,
+    id: 11,
     name: '아침쿠폰',
     point: 10,
     description: '누가 나를 깨웠는가!',
@@ -14,7 +14,7 @@ export const COUPONS: Coupons = [
   },
 
   {
-    id: 2,
+    id: 12,
     name: '밤쿠폰',
     point: 1,
     description: '누가 나를 재웠는가!',
@@ -26,7 +26,7 @@ export const COUPONS: Coupons = [
   },
 
   {
-    id: 3,
+    id: 13,
     name: '돈이 체고야',
     point: 10,
     description: '행운의 주인공!',
@@ -38,7 +38,7 @@ export const COUPONS: Coupons = [
   },
 
   {
-    id: 4,
+    id: 14,
     name: '돈이 체고야',
     point: 1000,
     description: '행운의 주인공!',
