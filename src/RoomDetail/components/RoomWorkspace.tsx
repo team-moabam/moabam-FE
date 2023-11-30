@@ -48,7 +48,7 @@ const RoomWorkspace = ({
 
   const myCertificationImage = todayCertificateRank.find(
     ({ memberId }) => memberId === userId
-  )?.certificationImage.images;
+  )?.certificationImage?.images;
 
   const { mutate } = useMutation({
     mutationFn: roomAPI.deleteRoom
