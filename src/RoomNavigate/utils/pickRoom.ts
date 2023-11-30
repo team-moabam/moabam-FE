@@ -1,3 +1,4 @@
+import { STORAGE_KEYS } from '@/core/constants/storageKeys';
 import { ParticipatingRoom } from '@/core/types';
 import getTimeRange from '@/core/utils/getTimeRange';
 
@@ -18,7 +19,8 @@ const pickRoom = (data: ParticipatingRoom[], today?: Date) => {
     calculateTimeDiff(certifyTime, currentDate) < 20 * 6 * 1000;
   })?.roomId;
 
-  const latestRoom = sessionStorage.getItem('VISITED_ROOM') ?? undefined;
+  const latestRoom =
+    sessionStorage.getItem(STORAGE_KEYS.VISITED_ROOM) ?? undefined;
 
   const closestRoom = data.sort((roomA, roomB) => {
     const roomADiff = calculateTimeDiff(roomA.certifyTime, currentDate);
