@@ -14,7 +14,7 @@ const couponsHandlers = [
           point: 10,
           description: '오늘의 루틴도 화이팅!',
           couponType: 'MORNING',
-          stock: 20,
+          maxCount: 20,
           openAt: new Date().toJSON(),
           startAt: new Date().toJSON(),
           couponAdminName: 'Moabam'

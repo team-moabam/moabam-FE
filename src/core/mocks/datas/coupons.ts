@@ -7,7 +7,7 @@ export const COUPONS: Coupons = [
     point: 10,
     description: '누가 나를 깨웠는가!',
     type: 'MORNING',
-    stock: 10,
+    maxCount: 10,
     openAt: '2023-11-14T00:00',
     startAt: '2023-11-15T00:00',
     adminName: 'Parksey'
@@ -19,7 +19,7 @@ export const COUPONS: Coupons = [
     point: 1,
     description: '누가 나를 재웠는가!',
     type: 'NIGHT',
-    stock: 77,
+    maxCount: 77,
     openAt: '2023-11-15T00:00',
     startAt: '2023-12-01T02:00',
     adminName: 'Parksey'
@@ -31,7 +31,7 @@ export const COUPONS: Coupons = [
     point: 10,
     description: '행운의 주인공!',
     type: 'GOLDEN',
-    stock: 7,
+    maxCount: 7,
     openAt: '2023-11-14T00:00',
     startAt: '2023-12-01T02:00',
     adminName: 'Parksey'
@@ -43,7 +43,7 @@ export const COUPONS: Coupons = [
     point: 1000,
     description: '행운의 주인공!',
     type: 'DISCOUNT',
-    stock: 7,
+    maxCount: 7,
     openAt: '2023-11-15T00:20',
     startAt: '2023-12-03T00:00',
     adminName: 'Parksey'

@@ -10,7 +10,7 @@ interface EventCardProps {
   id: number;
   name: string;
   type: CouponType;
-  stock: number;
+  maxCount: number;
   point: number;
   description: string;
   dueType: 'opened' | 'ended';
@@ -21,7 +21,7 @@ const EventCard = ({
   id, // TODO: 쿠폰 발급 요청을 위해 남겨둔건데, 쿠폰 이름으로 되있어서 확인 필요
   name,
   type,
-  stock,
+  maxCount,
   point,
   description,
   dueType,
@@ -78,7 +78,7 @@ const EventCard = ({
               'bg-black bg-opacity-[0.4]'
             )}
           >
-            {stock}개 남음
+            선착순 {maxCount}명
           </div>
         )}
       </div>
