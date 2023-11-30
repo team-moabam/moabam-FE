@@ -1,11 +1,24 @@
 import { NavigateOptions, useLocation, useNavigate } from 'react-router-dom';
-import { routes, RouteNames, ParamNames, PARAM_NAMES } from '../routes';
+import {
+  publicRoutes,
+  privateRoutes,
+  PublicRouteNames,
+  PrivateRouteNames,
+  ParamNames,
+  PARAM_NAMES,
+  PUBLIC_ROUTES
+} from '@/core/routes';
 
 type Parameters = Partial<Record<ParamNames, string | number>>;
+type RouteNames = PrivateRouteNames | PublicRouteNames;
 
 const isValidParamName = (paramName: string): paramName is ParamNames =>
   PARAM_NAMES.some((name) => name === paramName);
 
+/* 
+  현재 주소, 이동할 주소, params 객체을 받아서
+  url에 존재하는 기존의 parameter 값을 참조하여 이동할 주소를 반환하는 함수
+*/
 const parseNextLocation = ({
   currentPath,
   nextPath,
@@ -53,7 +66,7 @@ const useMoveRoute = () => {
   ) => {
     const nextLocation = parseNextLocation({
       currentPath: pathname.substring(1),
-      nextPath: routes[nextRoute].path,
+      nextPath: { ...publicRoutes, ...privateRoutes }[nextRoute].path,
       params
     });
     navigate(nextLocation, options);

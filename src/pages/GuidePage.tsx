@@ -29,8 +29,8 @@ const GuidePage = () => {
           }}
           onReachEnd={() => setGuideEnd(true)}
         >
-          {GUIDE_CONTENTS.map((guide) => (
-            <SwiperSlide>
+          {GUIDE_CONTENTS.map((guide, index) => (
+            <SwiperSlide key={index}>
               <GuideContent {...guide} />
             </SwiperSlide>
           ))}
