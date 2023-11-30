@@ -38,7 +38,7 @@ self.addEventListener('notificationclick', function (e) {
 
   // 타이틀로 방 번호를 받으면 방 상세 페이지로 이동
   if (!isNaN(roomId)) {
-    url = `/rooms/${roomId}`;
+    url = `/room/${roomId}`;
   }
 
   e.notification.close();

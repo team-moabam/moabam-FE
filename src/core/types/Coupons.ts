@@ -1,19 +1,15 @@
-export type CouponType =
-  | 'MORNING_COUPON'
-  | 'NIGHT_COUPON'
-  | 'GOLDEN_COUPON'
-  | 'DISCOUNT_COUPON';
+export type CouponType = 'MORNING' | 'NIGHT' | 'GOLDEN' | 'DISCOUNT';
 
 export interface Coupon {
-  couponId: number;
+  id: number;
   name: string;
   point: number;
   description: string;
-  couponType: CouponType;
+  type: CouponType;
   stock: number;
   startAt: string;
   openAt: string;
-  couponAdminName: string;
+  adminName: string;
 }
 
 export type Coupons = Coupon[];

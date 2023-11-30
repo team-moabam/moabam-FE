@@ -17,7 +17,9 @@ const RoomDetail = ({ roomId, checkedRoomJoin }: RoomDetailProps) => {
   const { serverTime } = useContext(DateRoomDetailContext);
   const todayDate = `${(serverTime || new Date()).getFullYear()}-${
     (serverTime || new Date()).getMonth() + 1
-  }-${(serverTime || new Date()).getDate()}`;
+  }-${(serverTime || new Date()).getDate() < 10 ? 0 : ''}${(
+    serverTime || new Date()
+  ).getDate()}`;
 
   const { data: roomDetailData, status } = useQuery({
     ...roomOptions.detailByDate(roomId, todayDate),

@@ -4,14 +4,15 @@ import {
   useQueryClient,
   useSuspenseQuery
 } from '@tanstack/react-query';
-import useDebounce from '@/core/hooks/useDebounce';
 import itemOptions from '@/core/api/options/item';
 import itemAPI from '@/core/api/functions/itemAPI';
 import { Item } from '@/core/types/item';
 import { useBottomSheet, BottomSheet } from '@/shared/BottomSheet';
+import { Toast } from '@/shared/Toast';
 import { MyBirdContext } from './MyBirdProvider';
 import BirdItem from './BirdItem';
 import ProductSheet from './ProductSheet';
+import ItemLoader from './ItemLoader';
 
 interface BirdItemsProps {
   type: 'MORNING' | 'NIGHT';
@@ -24,7 +25,7 @@ const BirdItems = ({ type }: BirdItemsProps) => {
   } = useSuspenseQuery({
     ...itemOptions.all(type)
   });
-  const { mutate } = useMutation({
+  const { mutate, isPending } = useMutation({
     mutationFn: itemAPI.select
   });
   const { selectItem, setSelectItem, productItem, setProductItem } =
@@ -32,22 +33,31 @@ const BirdItems = ({ type }: BirdItemsProps) => {
   const { bottomSheetProps, open, close } = useBottomSheet();
 
   const handleSelectItem = (birdItem: Item) => {
-    setSelectItem({ ...selectItem, [type]: birdItem });
-    fetchSelectItem(birdItem.id);
+    mutate(birdItem.id, {
+      onSuccess: () => {
+        Toast.show({
+          message: '갈아입기 성공',
+          status: 'confirm'
+        });
+        setSelectItem({ ...selectItem, [type]: birdItem });
+        queryClient.invalidateQueries({
+          queryKey: itemOptions.all(type).queryKey
+        });
+      },
+      onError: (e) => {
+        console.log(e);
+        Toast.show({
+          message: '뭔가 잘 못 되었습니다..',
+          status: 'danger'
+        });
+      }
+    });
   };
 
   const handleOpenSheet = (birdItem: Item) => {
     setProductItem(birdItem);
     open();
   };
-
-  const fetchSelectItem = useDebounce((id: number) => {
-    mutate(id, {
-      onSuccess: () => {
-        queryClient.invalidateQueries({ queryKey: ['item', type] });
-      }
-    });
-  }, 1000);
 
   useEffect(() => {
     if (selectItem[type]) return;
@@ -57,6 +67,7 @@ const BirdItems = ({ type }: BirdItemsProps) => {
 
   return (
     <>
+      {isPending && <ItemLoader />}
       {selectItem[type] && (
         <>
           <div className="grid grid-cols-3 gap-3 p-3">
@@ -66,7 +77,9 @@ const BirdItems = ({ type }: BirdItemsProps) => {
                   <div
                     key={birdItem.id}
                     className="mb-6"
-                    onClick={() => handleSelectItem(birdItem)}
+                    onClick={() => {
+                      !isPending && handleSelectItem(birdItem);
+                    }}
                   >
                     <BirdItem
                       isSelect={selectItem[type]?.id === birdItem.id}

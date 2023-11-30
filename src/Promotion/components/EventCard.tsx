@@ -1,15 +1,15 @@
 import { useMutation } from '@tanstack/react-query';
 import { clsx } from 'clsx';
 import couponAPI from '@/core/api/functions/couponAPI';
+import { CouponType } from '@/core/types/Coupons';
 import { Toast } from '@/shared/Toast';
 import { COUPON_MAP } from '../coustants/couponInfo';
-import { CouponType } from '../mocks/types/couponType';
 import DisabledCover from './DisabledCover';
 
 interface EventCardProps {
-  couponId: number;
+  id: number;
   name: string;
-  couponType: CouponType;
+  type: CouponType;
   stock: number;
   point: number;
   description: string;
@@ -18,9 +18,9 @@ interface EventCardProps {
 }
 
 const EventCard = ({
-  couponId, // TODO: 쿠폰 발급 요청을 위해 남겨둔건데, 쿠폰 이름으로 되있어서 확인 필요
+  id, // TODO: 쿠폰 발급 요청을 위해 남겨둔건데, 쿠폰 이름으로 되있어서 확인 필요
   name,
-  couponType,
+  type,
   stock,
   point,
   description,
@@ -68,7 +68,7 @@ const EventCard = ({
       <div className="relative flex h-48">
         <img
           className="object-cover"
-          src={COUPON_MAP[couponType].imgSrc}
+          src={COUPON_MAP[type].imgSrc}
         ></img>
         {dueType === 'opened' && (
           <div
@@ -90,13 +90,13 @@ const EventCard = ({
             <span
               className={clsx(
                 'ml-2 font-IMHyemin-bold',
-                COUPON_MAP[couponType].textStyle
+                COUPON_MAP[type].textStyle
               )}
             >
-              {COUPON_MAP[couponType].prefix}
+              {COUPON_MAP[type].prefix}
             </span>{' '}
             {point}
-            {COUPON_MAP[couponType].unit}
+            {COUPON_MAP[type].unit}
           </div>
           <div className="text-xs text-dark-gray">{description}</div>
         </div>
@@ -106,7 +106,7 @@ const EventCard = ({
             className={clsx(
               'cursor-pointer text-center font-IMHyemin-bold',
               'btn px-7 py-1 text-sm text-white',
-              COUPON_MAP[couponType].bgStyle,
+              COUPON_MAP[type].bgStyle,
               { 'pointer-events-none': isPending }
             )}
             onClick={() => handleGetCoupon(name)}
