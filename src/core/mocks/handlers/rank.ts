@@ -4,7 +4,7 @@ import { RANKING } from '../datas/rank';
 
 const rankHandler = [
   http.get(baseURL('/rankings'), async () => {
-    delay(3000);
+    delay(1000);
     return HttpResponse.json(RANKING, { status: 200 });
   })
 ];

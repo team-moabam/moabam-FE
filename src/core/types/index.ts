@@ -19,4 +19,4 @@ export type { Report } from './Reports';
 export type { ProductBugs, ProductBug } from './ProductBugs';
 export type { PurchaseRes } from './PurchaseBugs';
 export type { Confirm } from './Confirm';
-export type { Rank, Ranking } from './rank';
+export type { Rank, Ranking } from './Rank';
