@@ -1,4 +1,6 @@
-export const RANKING = {
+import { Ranking } from '@/core/types';
+
+export const RANKING: Ranking = {
   topRankings: [
     {
       rank: 1,
