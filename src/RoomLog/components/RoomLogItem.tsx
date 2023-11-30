@@ -28,7 +28,7 @@ const RoomLogItem = ({
           />
         </AccordionHeader>
         <AccordionBody>
-          <div className="grid grid-cols-2 gap-x-3 gap-y-[1.32rem] px-[1.19rem] py-7">
+          <div className="grid auto-rows-[12rem] grid-cols-[10rem_10rem] gap-x-3 gap-y-[1.32rem] px-[1.19rem] py-7">
             {certificationImage ? (
               certificationImage.images.map(
                 ({ routineId: checkRoutineId, image }) => {
@@ -40,7 +40,7 @@ const RoomLogItem = ({
                       <div>
                         <img
                           src={image}
-                          className="rounded-2xl"
+                          className="h-[10rem] rounded-2xl"
                         />
                       </div>
                       <span>{routineData?.content}</span>
