@@ -1,8 +1,4 @@
-export type CouponType =
-  | 'MORNING_COUPON'
-  | 'NIGHT_COUPON'
-  | 'GOLDEN_COUPON'
-  | 'DISCOUNT_COUPON';
+export type CouponType = 'MORNING' | 'NIGHT' | 'GOLDEN' | 'DISCOUNT';
 
 export interface Coupon {
   couponId: number;
