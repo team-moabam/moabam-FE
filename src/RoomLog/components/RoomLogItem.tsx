@@ -4,6 +4,7 @@ import { Accordion, AccordionHeader, AccordionBody } from '@/shared/Accordion';
 
 type extendedProps = {
   routines: { routineId: number; content: string }[];
+  managerNickName: string;
 };
 
 type RoomLogItemProps = extendedProps & RankMember;
@@ -14,7 +15,8 @@ const RoomLogItem = ({
   memberId,
   nickname,
   certificationImage,
-  routines
+  routines,
+  managerNickName
 }: RoomLogItemProps) => {
   return (
     <div className="mb-[1.19rem] flex w-full items-center justify-between peer-invalid:visible">
@@ -25,6 +27,7 @@ const RoomLogItem = ({
             userId={memberId}
             nickname={nickname}
             contribution={contributionPoint}
+            manager={managerNickName === nickname}
           />
         </AccordionHeader>
         <AccordionBody className="flex justify-center bg-white p-7 py-[1.125rem] dark:bg-dark-sub">

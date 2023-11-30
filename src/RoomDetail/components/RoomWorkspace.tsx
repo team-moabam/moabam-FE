@@ -30,7 +30,8 @@ const RoomWorkspace = ({
   certifiedDates,
   certifyTime,
   status,
-  roomId
+  roomId,
+  managerNickName
 }: RoomWorkspaceProps) => {
   const moveTo = useMoveRoute();
   const [reportStatus, setReportStatus] = useState<boolean>(false);
@@ -116,7 +117,12 @@ const RoomWorkspace = ({
                   <Link
                     to={`log/${chooseDateText}`}
                     className="mb-[2.13rem] flex w-fit items-center text-sm text-light-point dark:text-dark-point"
-                    state={{ todayCertificateRank, routines, chooseDate }}
+                    state={{
+                      todayCertificateRank,
+                      routines,
+                      chooseDate,
+                      managerNickName
+                    }}
                     onClick={handleLogLinkClick}
                   >
                     인증사진 보러가기
@@ -146,6 +152,7 @@ const RoomWorkspace = ({
             members={todayCertificateRank}
             reportStatus={reportStatus}
             changeReportStatus={changeReportStatus}
+            managerNickName={managerNickName}
           />
           {todayCertificateRank.length > 1 && (
             <button
