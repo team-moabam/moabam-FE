@@ -10,7 +10,7 @@ const RoomLogPage = () => {
 
   return (
     <>
-      <div className="dark:bg-dark-sub">
+      <div className="bg-light-main dark:bg-dark-main">
         <Header
           className="sticky text-black"
           prev="roomDetail"
@@ -19,7 +19,7 @@ const RoomLogPage = () => {
           }월 ${chooseDate.getDate()}일`}
         />
       </div>
-      <div className="h-full overflow-y-scroll px-7 py-[2.13rem]">
+      <div className="h-full overflow-y-scroll py-[2.13rem]">
         {todayCertificateRank.map((data: RankMember) => (
           <RoomLogItem
             key={data.memberId}
