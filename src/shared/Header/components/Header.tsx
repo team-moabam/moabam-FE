@@ -26,7 +26,16 @@ const Header = ({
 
   const goPrev = () => {
     if (!prev) return;
-    prev === -1 ? navigate(-1) : moveTo(prev);
+
+    if (prev === -1) {
+      if (history.state.idx === 0) {
+        return navigate('/');
+      } else {
+        return navigate(-1);
+      }
+    }
+
+    moveTo(prev);
   };
 
   return (
