@@ -41,7 +41,7 @@ const RoomWorkspace = ({
   const { chooseDate, serverTime } = useContext(DateRoomDetailContext);
   const chooseDateText = `${chooseDate.getFullYear()}${
     chooseDate.getMonth() + 1
-  }${chooseDate.getDate()}`;
+  }${chooseDate.getDate() < 10 ? 0 : ''}${chooseDate.getDate()}`;
   const { certificateTodayStartTime } = makeTodayCertifyTime(
     certifyTime,
     serverTime

@@ -19,9 +19,9 @@ const RoomLogItem = ({
   managerNickName
 }: RoomLogItemProps) => {
   return (
-    <div className="mb-[1.19rem] flex w-full items-center justify-between peer-invalid:visible">
+    <div className="flex w-full items-center justify-between peer-invalid:visible">
       <Accordion className="p-0">
-        <AccordionHeader className="mb-5 w-full px-7">
+        <AccordionHeader className="mb-5 mt-[1.19rem] w-full px-7">
           <Avatar
             imgUrl={profileImage}
             userId={memberId}

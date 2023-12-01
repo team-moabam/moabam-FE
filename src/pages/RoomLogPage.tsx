@@ -9,7 +9,7 @@ const RoomLogPage = () => {
   } = useLocation();
 
   return (
-    <>
+    <div className="h-full overflow-y-scroll">
       <div className="bg-light-main dark:bg-dark-main">
         <Header
           className="sticky text-black"
@@ -19,7 +19,7 @@ const RoomLogPage = () => {
           }월 ${chooseDate.getDate()}일`}
         />
       </div>
-      <div className="h-full overflow-y-scroll py-[2.13rem]">
+      <div className="mb-[1.23rem]">
         {todayCertificateRank.map((data: RankMember) => (
           <RoomLogItem
             key={data.memberId}
@@ -29,7 +29,7 @@ const RoomLogPage = () => {
           />
         ))}
       </div>
-    </>
+    </div>
   );
 };
 
