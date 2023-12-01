@@ -22,6 +22,14 @@ interface RoomTabProps {
 const RoomTab = ({ roomId }: RoomTabProps) => {
   const { data: room } = useSuspenseQuery({
     ...roomOptions.detail(roomId),
+    select: (data) => ({
+      ...data,
+      // 24시를 초과한다면 TimePicker가 인식할 수 있도록 +24를 해줍니다.
+      certifyTime:
+        data.certifyTime < TIME_RANGE['MORNING'][0]
+          ? data.certifyTime + 24
+          : data.certifyTime
+    }),
     staleTime: Infinity
   });
 
@@ -114,10 +122,11 @@ const RoomTab = ({ roomId }: RoomTabProps) => {
           )}
         </section>
 
-        <section className={sectionStyle}>
+        {/* // TODO: 루틴 수정을 제한하는 요구사항 발생 */}
+        {/* <section className={sectionStyle}>
           <label className={labelStyle}>루틴 목록</label>
           <Routines />
-        </section>
+        </section> */}
 
         <section className={sectionStyle}>
           <label className={labelStyle}>인원</label>

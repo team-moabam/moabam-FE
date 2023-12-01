@@ -1,62 +1,59 @@
+import { useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import { clsx } from 'clsx';
 import couponAPI from '@/core/api/functions/couponAPI';
-import { CouponType } from '@/core/types/Coupons';
+import { CouponType } from '@/core/types';
 import { Toast } from '@/shared/Toast';
 import { COUPON_MAP } from '../coustants/couponInfo';
+import { COUPON_TOAST } from '../coustants/couponToast';
 import DisabledCover from './DisabledCover';
+import CouponButton from './CouponButton';
 
 interface EventCardProps {
-  id: number;
   name: string;
   type: CouponType;
-  stock: number;
+  maxCount: number;
   point: number;
   description: string;
   dueType: 'opened' | 'ended';
   startDiff: number;
+  isOwn: boolean;
 }
 
 const EventCard = ({
-  id, // TODO: 쿠폰 발급 요청을 위해 남겨둔건데, 쿠폰 이름으로 되있어서 확인 필요
   name,
   type,
-  stock,
+  maxCount,
   point,
   description,
   dueType,
-  startDiff
+  startDiff,
+  isOwn
 }: EventCardProps) => {
   const couponAvailable = startDiff === 0 && dueType === 'opened';
+  const [received, setReceived] = useState(isOwn);
+  const [failed, setFailed] = useState(dueType === 'ended');
 
   const { mutate, isPending } = useMutation({
     mutationFn: couponAPI.postCouponReceive,
     onError: ({ response }) => {
       if (response) {
         const { status } = response;
-        switch (status) {
-          case 400:
-            Toast.show({
-              status: 'info',
-              message: '오늘의 이벤트가 아니에요!'
-            });
-            break;
-          default:
-            Toast.show({ status: 'danger', message: '발급이 불가능합니다' });
+        if (status === 400 || status === 409) {
+          Toast.show(COUPON_TOAST[status]);
+          setFailed(status === 400);
+          setReceived(status === 409);
+        } else {
+          status !== 401 && Toast.show(COUPON_TOAST.error);
+          setFailed(true);
         }
       }
     },
     onSuccess: () => {
-      Toast.show({
-        status: 'confirm',
-        message: '도전 완료! 결과를 기다려주세요'
-      });
+      Toast.show(COUPON_TOAST.success);
+      setReceived(true);
     }
   });
-
-  const handleGetCoupon = (couponName: string) => {
-    mutate({ couponName });
-  };
 
   return (
     <div
@@ -70,17 +67,6 @@ const EventCard = ({
           className="object-cover"
           src={COUPON_MAP[type].imgSrc}
         ></img>
-        {dueType === 'opened' && (
-          <div
-            className={clsx(
-              'absolute right-3 top-3 w-fit rounded-2xl px-2 py-1',
-              'border border-light-gray text-xs text-light-gray',
-              'bg-black bg-opacity-[0.4]'
-            )}
-          >
-            {stock}개 남음
-          </div>
-        )}
       </div>
 
       <div className="flex flex-col gap-3 px-3 py-4">
@@ -101,18 +87,15 @@ const EventCard = ({
           <div className="text-xs text-dark-gray">{description}</div>
         </div>
 
-        <div className="flex items-center justify-end">
-          <div
-            className={clsx(
-              'cursor-pointer text-center font-IMHyemin-bold',
-              'btn px-7 py-1 text-sm text-white',
-              COUPON_MAP[type].bgStyle,
-              { 'pointer-events-none': isPending }
-            )}
-            onClick={() => handleGetCoupon(name)}
-          >
-            쿠폰 받기
-          </div>
+        <div className="flex items-end justify-between">
+          <div className="w-fit rounded-2xl text-xs">선착순 {maxCount}명</div>
+          <CouponButton
+            onClick={() => mutate({ couponName: name })}
+            received={received}
+            failed={failed}
+            type={type}
+            isPending={isPending}
+          />
         </div>
       </div>
       {!couponAvailable && (

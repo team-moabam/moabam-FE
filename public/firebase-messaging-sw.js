@@ -9,6 +9,8 @@ self.addEventListener('install', function (e) {
 
 self.addEventListener('activate', function (e) {
   console.log('[FCM] Service Worker Activated.');
+  // eslint-disable-next-line no-undef
+  e.waitUntil(clients.claim());
 });
 
 self.addEventListener('push', function (e) {
@@ -43,6 +45,18 @@ self.addEventListener('notificationclick', function (e) {
 
   e.notification.close();
 
-  // eslint-disable-next-line no-undef
-  e.waitUntil(clients.openWindow(url));
+  /* eslint-disable */
+  e.waitUntil(
+    clients.matchAll({ includeUncontrolled: true }).then((windowClients) => {
+      if (windowClients.length > 0) {
+        const client = windowClients[0];
+
+        client.focus();
+        client.postMessage(url);
+      } else {
+        clients.openWindow(url);
+      }
+    })
+  );
+  /* eslint-enable */
 });
