@@ -9,9 +9,8 @@ const dueTypes = ['opened', 'ended'] as const;
 
 const EventList = () => {
   const { data: today } = useQuery(timeOption);
-  const [{ data: myCoupons }, ...results] = useSuspenseQueries({
+  const results = useSuspenseQueries({
     queries: [
-      couponOptions.my(),
       couponOptions.filter('opened'),
       {
         ...couponOptions.filter('ended'),
@@ -42,7 +41,6 @@ const EventList = () => {
               (today || new Date()).toJSON(),
               coupon.startAt
             )}
-            isOwn={myCoupons.some(({ id }) => id === coupon.id) ?? false}
           />
         ))
       )}

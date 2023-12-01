@@ -17,7 +17,6 @@ interface EventCardProps {
   description: string;
   dueType: 'opened' | 'ended';
   startDiff: number;
-  isOwn: boolean;
 }
 
 const EventCard = ({
@@ -27,11 +26,10 @@ const EventCard = ({
   point,
   description,
   dueType,
-  startDiff,
-  isOwn
+  startDiff
 }: EventCardProps) => {
   const couponAvailable = startDiff === 0 && dueType === 'opened';
-  const [received, setReceived] = useState(isOwn);
+  const [received, setReceived] = useState(false);
   const [failed, setFailed] = useState(dueType === 'ended');
 
   const { mutate, isPending } = useMutation({
