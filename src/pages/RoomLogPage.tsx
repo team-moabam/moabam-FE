@@ -5,12 +5,12 @@ import RoomLogItem from '../RoomLog/components/RoomLogItem';
 
 const RoomLogPage = () => {
   const {
-    state: { todayCertificateRank, routines, chooseDate }
+    state: { todayCertificateRank, routines, chooseDate, managerNickName }
   } = useLocation();
 
   return (
-    <>
-      <div className="dark:bg-dark-sub">
+    <div className="h-full overflow-y-scroll">
+      <div className="bg-light-main dark:bg-dark-main">
         <Header
           className="sticky text-black"
           prev="roomDetail"
@@ -19,16 +19,17 @@ const RoomLogPage = () => {
           }월 ${chooseDate.getDate()}일`}
         />
       </div>
-      <div className="h-full overflow-y-scroll px-7 py-[2.13rem]">
+      <div className="mb-[1.23rem]">
         {todayCertificateRank.map((data: RankMember) => (
           <RoomLogItem
             key={data.memberId}
             {...data}
             routines={routines}
+            managerNickName={managerNickName}
           />
         ))}
       </div>
-    </>
+    </div>
   );
 };
 
