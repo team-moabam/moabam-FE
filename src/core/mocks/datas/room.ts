@@ -1,5 +1,6 @@
 export const RoomInfo = {
   roomId: 32,
+  roomCreatedAt: '2023-12-01T13:36:49.783842',
   title: '윤명이의 루틴방',
   managerNickName: '오목눈이#U8WN6I',
   roomImage: 'https://picsum.photos/200',

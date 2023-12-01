@@ -4,6 +4,7 @@ export type DayType = 'MORNING' | 'NIGHT';
 
 export type RoomInfo = {
   roomId: number;
+  roomCreatedAt: string;
   title: string;
   managerNickName: string;
   level: number;
