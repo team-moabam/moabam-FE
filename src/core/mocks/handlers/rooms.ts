@@ -1,7 +1,12 @@
 import { http, HttpResponse, delay } from 'msw';
 import { Room } from '@/core/types';
 import { baseURL } from '../baseURL';
-import { RoomInfo, RoomInfoBeforeEditing, RoomSemiInfo } from '../datas/room';
+import {
+  RoomInfo,
+  RoomInfoBeforeEditing,
+  RoomInfoBeforeEditing2,
+  RoomSemiInfo
+} from '../datas/room';
 import { MY_JOIN_ROOMS } from '../datas/myJoinRoom';
 import { ROOMS } from '../datas/totalRooms';
 import { SEARCH_ROOMS } from '../datas/searchRooms';
