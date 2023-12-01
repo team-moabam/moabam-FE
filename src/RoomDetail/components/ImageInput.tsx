@@ -51,7 +51,7 @@ const ImageInput = ({ content, image, idx }: ImageInputProps) => {
           {...register(`${idx}.file`, {
             required: '이미지를 넣어주세요'
           })}
-          className="absolute left-0 top-0 h-full w-full before:block before:h-full before:w-full before:bg-white before:content-[''] after:absolute"
+          className="absolute left-0 top-0 h-full w-full cursor-pointer before:block before:h-full before:w-full before:bg-white before:content-[''] after:absolute"
           onChange={handleImageInputChange}
         />
         <label

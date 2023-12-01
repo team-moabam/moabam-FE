@@ -12,12 +12,14 @@ interface RoomMemberProps {
   member: RankMember;
   reportStatus: boolean;
   handleReportButtonClick: (nickname: string, memberId: number | null) => void;
+  managerNickName: string;
 }
 
 const RoomMember = ({
   member,
   reportStatus,
-  handleReportButtonClick
+  handleReportButtonClick,
+  managerNickName
 }: RoomMemberProps) => {
   const {
     memberId,
@@ -70,6 +72,7 @@ const RoomMember = ({
         userId={memberId}
         nickname={nickname}
         contribution={contributionPoint}
+        manager={managerNickName === nickname}
       />
       {myUserId !== memberId && (
         <>

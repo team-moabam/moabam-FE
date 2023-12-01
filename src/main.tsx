@@ -51,9 +51,16 @@ const setupSW = async () => {
   }
 
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/firebase-messaging-sw.js', {
-      scope: '/'
-    });
+    navigator.serviceWorker
+      .register('/firebase-messaging-sw.js', {
+        scope: '/'
+      })
+      .then(() => {
+        navigator.serviceWorker.onmessage = (e) => {
+          const url = e.data;
+          location.href = url;
+        };
+      });
   });
 };
 
