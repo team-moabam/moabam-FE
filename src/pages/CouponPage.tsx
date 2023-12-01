@@ -8,7 +8,7 @@ const CouponPage = () => {
   return (
     <div className="h-full overflow-auto">
       <Header
-        prev="myPage"
+        prev={-1}
         title="쿠폰함"
       />
       <Suspense

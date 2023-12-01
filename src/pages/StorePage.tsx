@@ -7,7 +7,7 @@ const StorePage = () => {
   return (
     <div className="relative h-full overflow-auto ">
       <Header
-        prev="myPage"
+        prev={-1}
         title="상점"
         className="sticky top-0 bg-light-main dark:bg-dark-main"
       />

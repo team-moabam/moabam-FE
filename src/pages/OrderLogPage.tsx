@@ -9,7 +9,7 @@ const OrderLogPage = () => {
     <>
       <div className="h-full overflow-auto">
         <Header
-          prev="myPage"
+          prev={-1}
           title="사용 내역"
           className="sticky top-0 bg-light-main dark:bg-dark-main"
         />
