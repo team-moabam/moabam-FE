@@ -114,7 +114,52 @@ export const RoomInfoBeforeEditing = {
   title: '재맹이의 방',
   announcement: '방의 공지사항입니다!',
   roomType: 'MORNING',
-  certifyTime: 9,
+  certifyTime: 5,
+  maxUserCount: 10,
+  password: '1234',
+  routines: [
+    {
+      routineId: 8,
+      content: '물 마시기'
+    },
+    {
+      routineId: 9,
+      content: '아침 먹기'
+    },
+    {
+      routineId: 9,
+      content: '일찍 일어나기'
+    }
+  ],
+  managerId: 6,
+  participants: [
+    {
+      memberId: 4,
+      nickname: '참여자1',
+      contributionPoint: 70,
+      profileImage: 'https://~'
+    },
+    {
+      memberId: 6,
+      nickname: '방장',
+      contributionPoint: 99,
+      profileImage: 'https://~'
+    },
+    {
+      memberId: 8,
+      nickname: '참여자2',
+      contributionPoint: 70,
+      profileImage: 'https://~'
+    }
+  ]
+};
+
+export const RoomInfoBeforeEditing2 = {
+  roomId: 5,
+  title: '후니의 방',
+  announcement: '방의 공지사항입니다!',
+  roomType: 'NIGHT',
+  certifyTime: 0,
   maxUserCount: 10,
   password: '1234',
   routines: [
