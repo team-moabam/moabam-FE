@@ -4,6 +4,7 @@ import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import roomAPI from '@/core/api/functions/roomAPI';
 import { roomOptions } from '@/core/api/options';
+import { useMoveRoute } from '@/core/hooks';
 import { Toast } from '@/shared/Toast';
 import {
   ANNOUNCEMENT,
@@ -63,6 +64,8 @@ const useRoomForm = ({ roomId, defaultValues }: useRoomFormProps) => {
   });
   const queryClient = useQueryClient();
 
+  const moveTo = useMoveRoute();
+
   const form = useForm<Inputs>({
     defaultValues,
     mode: 'onBlur',
@@ -91,6 +94,8 @@ const useRoomForm = ({ roomId, defaultValues }: useRoomFormProps) => {
             message: '방 정보를 수정했어요.',
             status: 'confirm'
           });
+
+          moveTo('roomDetail', { roomId });
         },
         onError: (error) => {
           const { setError } = form;
