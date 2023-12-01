@@ -76,7 +76,8 @@ const useRoomForm = ({ roomId, defaultValues }: useRoomFormProps) => {
         title: data.title,
         announcement: data.announcement,
         certifyTime: data.certifyTime % 24,
-        routines: data.routines.map((r) => r.value),
+        // TODO: 루틴 수정을 제한하는 요구사항 발생
+        // routines: data.routines.map((r) => r.value),
         maxUserCount: data.userCount,
         password: data.password
       },
@@ -111,7 +112,8 @@ const useRoomForm = ({ roomId, defaultValues }: useRoomFormProps) => {
 
             setError('title', { message: title });
             setError('announcement', { message: announcement });
-            setError('routines', { message: routine });
+            // TODO: 루틴 수정을 제한하는 요구사항 발생
+            // setError('routines', { message: routine });
             setError('password', { message: password });
             setError('certifyTime', { message: certifyTime });
             setError('userCount', { message: maxUserCount });

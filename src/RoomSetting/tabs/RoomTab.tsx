@@ -114,10 +114,11 @@ const RoomTab = ({ roomId }: RoomTabProps) => {
           )}
         </section>
 
-        <section className={sectionStyle}>
+        {/* // TODO: 루틴 수정을 제한하는 요구사항 발생 */}
+        {/* <section className={sectionStyle}>
           <label className={labelStyle}>루틴 목록</label>
           <Routines />
-        </section>
+        </section> */}
 
         <section className={sectionStyle}>
           <label className={labelStyle}>인원</label>
