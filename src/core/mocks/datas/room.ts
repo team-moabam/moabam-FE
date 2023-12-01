@@ -1,7 +1,7 @@
 export const RoomInfo = {
   roomId: 32,
   title: '윤명이의 루틴방',
-  managerNickName: '재영',
+  managerNickName: '오목눈이#U8WN6I',
   roomImage: 'https://picsum.photos/200',
   level: 5,
   exp: 4,
@@ -22,7 +22,7 @@ export const RoomInfo = {
       content: '아침 먹기'
     },
     {
-      routineId: 9,
+      routineId: 10,
       content: '일찍 일어나기'
     }
   ],
@@ -44,7 +44,7 @@ export const RoomInfo = {
     {
       rank: 2,
       memberId: 6,
-      nickname: '오목눈이#U8WN6I',
+      nickname: '오목눈이#U8WN6H',
       isNotificationSent: false,
       profileImage:
         'https://image.moabam.com/moabam/default/member-profile.png',
@@ -76,7 +76,7 @@ export const RoomInfo = {
     {
       rank: 3,
       memberId: 10,
-      nickname: '오목눈이#U8WN6I',
+      nickname: '오목눈이#U8WN6J',
       isNotificationSent: false,
       profileImage:
         'https://image.moabam.com/moabam/default/member-profile.png',
@@ -175,7 +175,7 @@ export const RoomSemiInfo = {
       content: '아침 먹기'
     },
     {
-      routineId: 9,
+      routineId: 10,
       content: '일찍 일어나기'
     }
   ],

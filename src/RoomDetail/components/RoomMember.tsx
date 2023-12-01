@@ -72,7 +72,7 @@ const RoomMember = ({
         userId={memberId}
         nickname={nickname}
         contribution={contributionPoint}
-        manager={managerNickName !== nickname}
+        manager={managerNickName === nickname}
       />
       {myUserId !== memberId && (
         <>
