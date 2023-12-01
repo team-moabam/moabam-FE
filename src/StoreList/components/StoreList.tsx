@@ -11,8 +11,6 @@ import { ProductBug, MyCoupon, PurchaseRes } from '@/core/types';
 import bugAPI from '@/core/api/functions/bugAPI';
 import paymentAPI from '@/core/api/functions/payment';
 import { BottomSheet, useBottomSheet } from '@/shared/BottomSheet';
-import { Product } from '../mocks/types/product';
-import { data } from '../mocks/products';
 
 const StoreList = () => {
   const [
@@ -28,7 +26,7 @@ const StoreList = () => {
       {
         ...couponOptions.my(),
         select: (coupons: MyCoupon[]) =>
-          coupons.filter(({ type }) => type === 'DISCOUNT_COUPON')
+          coupons.filter(({ type }) => type === 'DISCOUNT')
       }
     ]
   });
@@ -50,7 +48,7 @@ const StoreList = () => {
   const handleSelectCoupon = (event: ChangeEvent<HTMLSelectElement>) => {
     const targetId = event.target.value;
     setSelectCoupon(
-      myCouponsResponse.find(({ couponId }) => couponId.toString() === targetId)
+      myCouponsResponse.find(({ id }) => id.toString() === targetId)
     );
   };
 
@@ -59,7 +57,7 @@ const StoreList = () => {
     mutation.mutate(
       {
         productId: selectProduct.id,
-        couponWalletId: selectCoupon?.couponId
+        couponWalletId: selectCoupon?.id
       },
       {
         onSuccess: async (data) => {
@@ -127,10 +125,10 @@ const StoreList = () => {
             <select
               className="w-full rounded-md border-2 p-1 dark:text-black"
               onChange={handleSelectCoupon}
-              value={selectCoupon?.couponId ?? ''}
+              value={selectCoupon?.id ?? ''}
             >
               <option value="">선택안함</option>
-              {myCouponsResponse.map(({ couponId: id, point }) => (
+              {myCouponsResponse.map(({ id, point }) => (
                 <option
                   value={id}
                   key={id}
