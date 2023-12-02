@@ -47,9 +47,8 @@ const RoomMember = ({
           status: 'confirm',
           message: `${nickname}을 콕! 찔렀어요`,
           icon: true,
-          subText: '콕콕'
+          subText: '(12시간 후 다시 콕찌르기 가능)'
         });
-
         queryClient.invalidateQueries({
           queryKey: roomOptions.detail(roomId || '').queryKey
         });
@@ -57,7 +56,7 @@ const RoomMember = ({
       .catch((err) => {
         Toast.show({
           status: 'danger',
-          message: err.response.data.message
+          message: err.response?.data.message ?? '오류가 발생했어요.'
         });
       });
   };
