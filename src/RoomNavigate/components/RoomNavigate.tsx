@@ -18,25 +18,25 @@ const RoomNavigate = () => {
   });
 
   const { certifyingRoom, latestRoom, closestRoom } = pickRoom(data, today);
-  const roomParam: { roomId: string | number } = { roomId: '' };
+  let roomId: string | number = '';
 
   if (certifyingRoom) {
-    roomParam.roomId = certifyingRoom;
+    roomId = certifyingRoom;
   } else if (latestRoom) {
-    roomParam.roomId = latestRoom;
+    roomId = latestRoom;
   } else {
-    roomParam.roomId = closestRoom;
+    roomId = closestRoom;
   }
 
-  if (roomParam.roomId === '') {
-    return <NoRoom />;
-  } else {
+  if (roomId) {
     return (
       <Navigate
-        to={`/room/${roomParam.roomId}`}
+        to={`/room/${roomId}`}
         replace={true}
       />
     );
+  } else {
+    return <NoRoom />;
   }
 };
 

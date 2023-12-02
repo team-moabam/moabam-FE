@@ -21,18 +21,18 @@ const membersHandlers = [
   http.post(baseURL('/members/login/kakao/oauth'), async () => {
     await delay(1000);
 
-    const status: number = 200;
+    const status: number = 201;
     let response = {};
     const headers = new Headers();
 
     switch (status) {
       case 200:
-        response = { signUp: false, id: 5 };
+        response = { isSignUp: false, id: 5 };
         headers.set('Set-Cookie', 'accessToken=MockedToken;');
         headers.append('Set-Cookie', 'refreshToken=MockedToken;');
         break;
       case 201:
-        response = { signUp: true, id: 5 };
+        response = { isSignUp: true, id: 5 };
         headers.set('Set-Cookie', 'accessToken=MockedToken;');
         headers.append('Set-Cookie', 'refreshToken=MockedToken;');
         break;
