@@ -30,7 +30,7 @@ const StartPage = () => {
 
   const StartPageContent = () => (
     <motion.div
-      className="h-full"
+      className="h-full select-none"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: slided ? 0 : 0.5 }}

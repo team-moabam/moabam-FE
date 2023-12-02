@@ -22,10 +22,10 @@ const SlideDown = ({
     setIsDragging(true);
     setStartY(e.clientY);
   };
-  const handleTouchStart = (e: React.TouchEvent) => {
-    setIsDragging(true);
-    setStartY(e.changedTouches[0].pageY);
-  };
+  // const handleTouchStart = (e: React.TouchEvent) => {
+  //   setIsDragging(true);
+  //   setStartY(e.changedTouches[0].pageY);
+  // };
 
   const handleMouseMove = (e: React.MouseEvent) => {
     if (isDragging && startY !== null && slideRef.current) {
@@ -34,13 +34,13 @@ const SlideDown = ({
       setCurrentY((movedY / fullHeight) * 100);
     }
   };
-  const handleTouchMove = (e: React.TouchEvent) => {
-    if (isDragging && startY !== null && slideRef.current) {
-      const movedY = e.changedTouches[0].pageY - startY;
-      const fullHeight = slideRef.current.parentElement?.clientHeight || 0;
-      setCurrentY((movedY / fullHeight) * 100);
-    }
-  };
+  // const handleTouchMove = (e: React.TouchEvent) => {
+  //   if (isDragging && startY !== null && slideRef.current) {
+  //     const movedY = e.changedTouches[0].pageY - startY;
+  //     const fullHeight = slideRef.current.parentElement?.clientHeight || 0;
+  //     setCurrentY((movedY / fullHeight) * 100);
+  //   }
+  // };
 
   const handleSlideEnd = () => {
     if (isDragging) {
@@ -66,16 +66,17 @@ const SlideDown = ({
         transform: `translateY(${
           currentY > fullPercentage ? fullPercentage : currentY
         }%)`,
-        transition: isDragging ? 'none' : 'transform 0.3s'
+        transition: isDragging ? 'none' : 'transform 0.5s'
       }}
       onMouseDown={handleMouseDown}
       onMouseMove={handleMouseMove}
       onMouseUp={handleSlideEnd}
       onMouseLeave={handleSlideEnd}
-      onTouchStart={handleTouchStart}
-      onTouchMove={handleTouchMove}
-      onTouchEnd={handleSlideEnd}
-      onTouchCancel={handleSlideEnd}
+      // onTouchStart={handleTouchStart}
+      // onTouchMove={handleTouchMove}
+      // onTouchEnd={handleSlideEnd}
+      // onTouchCancel={handleSlideEnd}
+      onDoubleClick={() => setCurrentY(fullPercentage)}
       className={className}
     >
       {children}

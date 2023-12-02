@@ -28,7 +28,7 @@ const RoutinesPage = () => {
 
   return (
     <>
-      <div className="flex h-full flex-col items-center overflow-auto">
+      <div className="flex h-full select-none flex-col items-center overflow-auto">
         <div className="mb-4 mt-8 flex w-full items-center justify-between px-10 pr-8">
           <DayInfo dayType={dayType} />
           <SlideController
@@ -61,7 +61,7 @@ const RoutinesPage = () => {
         </Suspense>
       </div>
       <SlideDown
-        className="absolute top-[-100%] z-[100] h-full w-full bg-yellow-200"
+        className="absolute top-[-100%] z-[100] h-full w-full cursor-grabbing"
         fullPercentage={100}
         onSlideDown={() => moveTo('start', {}, { state: 'slide-down' })}
       >
