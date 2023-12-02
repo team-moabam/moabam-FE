@@ -6,7 +6,7 @@ export interface Coupon {
   point: number;
   description: string;
   type: CouponType;
-  stock: number;
+  maxCount: number;
   startAt: string;
   openAt: string;
   adminName: string;

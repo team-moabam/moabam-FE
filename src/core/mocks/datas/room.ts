@@ -1,7 +1,8 @@
 export const RoomInfo = {
   roomId: 32,
+  roomCreatedAt: '2023-12-01T13:36:49.783842',
   title: '윤명이의 루틴방',
-  managerNickName: '재영',
+  managerNickName: '오목눈이#U8WN6I',
   roomImage: 'https://picsum.photos/200',
   level: 5,
   exp: 4,
@@ -14,12 +15,16 @@ export const RoomInfo = {
   certifiedDates: ['2023-11-13', '2023-11-14', '2023-11-16'],
   routines: [
     {
-      routineId: 5,
+      routineId: 8,
       content: '물 마시기'
     },
     {
       routineId: 9,
       content: '아침 먹기'
+    },
+    {
+      routineId: 10,
+      content: '일찍 일어나기'
     }
   ],
   todayCertificateRank: [
@@ -35,30 +40,12 @@ export const RoomInfo = {
         'https://image.moabam.com/moabam/skins/owl/default/eyes-opened.png',
       sleepImage:
         'https://image.moabam.com/moabam/skins/owl/default/eyes-opened.png',
-      certificationImage: {
-        images: [
-          {
-            routineId: 8,
-            image:
-              'https://image.moabam.com/certifications/2023-11-30/8_e15719e3-83f8-4cdc-b4a6-5511290d8a4a.png'
-          },
-          {
-            routineId: 9,
-            image:
-              'https://image.moabam.com/certifications/2023-11-30/9_a78ddf52-854c-4a89-af6b-96b1ff418997.png'
-          },
-          {
-            routineId: 10,
-            image:
-              'https://image.moabam.com/certifications/2023-11-30/10_0c0046d4-76e2-43cb-8e2e-0e4adafd45bf.png'
-          }
-        ]
-      }
+      certificationImage: null
     },
     {
       rank: 2,
       memberId: 6,
-      nickname: '오목눈이#U8WN6I',
+      nickname: '오목눈이#U8WN6H',
       isNotificationSent: false,
       profileImage:
         'https://image.moabam.com/moabam/default/member-profile.png',
@@ -90,7 +77,7 @@ export const RoomInfo = {
     {
       rank: 3,
       memberId: 10,
-      nickname: '오목눈이#U8WN6I',
+      nickname: '오목눈이#U8WN6J',
       isNotificationSent: false,
       profileImage:
         'https://image.moabam.com/moabam/default/member-profile.png',
@@ -127,17 +114,66 @@ export const RoomInfoBeforeEditing = {
   title: '재맹이의 방',
   announcement: '방의 공지사항입니다!',
   roomType: 'MORNING',
-  certifyTime: 9,
+  certifyTime: 5,
   maxUserCount: 10,
   password: '1234',
   routines: [
     {
-      routineId: 5,
+      routineId: 8,
       content: '물 마시기'
     },
     {
       routineId: 9,
       content: '아침 먹기'
+    },
+    {
+      routineId: 9,
+      content: '일찍 일어나기'
+    }
+  ],
+  managerId: 6,
+  participants: [
+    {
+      memberId: 4,
+      nickname: '참여자1',
+      contributionPoint: 70,
+      profileImage: 'https://~'
+    },
+    {
+      memberId: 6,
+      nickname: '방장',
+      contributionPoint: 99,
+      profileImage: 'https://~'
+    },
+    {
+      memberId: 8,
+      nickname: '참여자2',
+      contributionPoint: 70,
+      profileImage: 'https://~'
+    }
+  ]
+};
+
+export const RoomInfoBeforeEditing2 = {
+  roomId: 5,
+  title: '후니의 방',
+  announcement: '방의 공지사항입니다!',
+  roomType: 'NIGHT',
+  certifyTime: 0,
+  maxUserCount: 10,
+  password: '1234',
+  routines: [
+    {
+      routineId: 8,
+      content: '물 마시기'
+    },
+    {
+      routineId: 9,
+      content: '아침 먹기'
+    },
+    {
+      routineId: 9,
+      content: '일찍 일어나기'
     }
   ],
   managerId: 6,
@@ -177,12 +213,16 @@ export const RoomSemiInfo = {
   announcement: '얼른 인증하셈',
   routines: [
     {
-      routineId: 5,
+      routineId: 8,
       content: '물 마시기'
     },
     {
       routineId: 9,
       content: '아침 먹기'
+    },
+    {
+      routineId: 10,
+      content: '일찍 일어나기'
     }
   ],
   certifiedRanks: [

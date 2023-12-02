@@ -6,7 +6,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { HelmetProvider } from 'react-helmet-async';
 import router from '@/core/routes/router';
 import Debounce from '@/core/utils/debounce';
-import { getFCMToken } from '@/core/utils/firebase';
+import { initializeFirebase, getFCMToken } from '@/core/utils/firebase';
 import { ThemeProvider } from '@/core/hooks/useTheme';
 import notificationAPI from '@/core/api/functions/notificationAPI';
 import queryClient from '@/core/api/queryClient';
@@ -51,19 +51,27 @@ const setupSW = async () => {
   }
 
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/firebase-messaging-sw.js', {
-      scope: '/'
-    });
+    navigator.serviceWorker
+      .register('/firebase-messaging-sw.js', {
+        scope: '/'
+      })
+      .then(() => {
+        navigator.serviceWorker.onmessage = (e) => {
+          const url = e.data;
+          location.href = url;
+        };
+      });
   });
 };
 
 // 알림 권한 허용 여부에 따라 FCM 토큰을 API 서버에 전송하는 이벤트 핸들러 등록
 const setupFCM = async () => {
-  const debounce = new Debounce();
-
   if (!('permissions' in navigator)) {
     return;
   }
+
+  const debounce = new Debounce();
+  initializeFirebase();
 
   const permission = await navigator.permissions.query({
     name: 'notifications'

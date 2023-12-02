@@ -9,12 +9,14 @@ interface RoomMembers {
   members: RankMember[];
   reportStatus: boolean;
   changeReportStatus: (value: boolean) => void;
+  managerNickName: string;
 }
 
 const RoomMembers = ({
   members,
   reportStatus,
-  changeReportStatus
+  changeReportStatus,
+  managerNickName
 }: RoomMembers) => {
   const { bottomSheetProps, toggle, close } = useBottomSheet();
   const [{ nickname, reportedId }, setSelectUserInfo] = useState<{
@@ -61,6 +63,7 @@ const RoomMembers = ({
             key={member.memberId}
             reportStatus={reportStatus}
             handleReportButtonClick={handleReportButtonClick}
+            managerNickName={managerNickName}
           />
         ))}
       </div>

@@ -3,6 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { roomOptions } from '@/core/api/options';
 import { useRouteData } from '@/core/hooks';
 import timeOption from '@/core/api/options/time';
+import { STORAGE_KEYS } from '@/core/constants/storageKeys';
 import { NetworkFallback } from '@/shared/ErrorBoundary';
 import RoomDetail from '@/RoomDetail/components/RoomDetail';
 import RoomSemi from '@/RoomDetail/components/RoomSemi';
@@ -25,6 +26,9 @@ const RoomDetailPage = () => {
   });
 
   if (status !== 'success') return <RoomDetailFallback />;
+  else if (roomId && checkedRoomJoin) {
+    sessionStorage.setItem(STORAGE_KEYS.VISITED_ROOM, roomId);
+  }
 
   return (
     <>

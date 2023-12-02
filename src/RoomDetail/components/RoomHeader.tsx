@@ -19,7 +19,7 @@ const RoomHeader = ({
   todayCertificateRank
 }: RoomHeaderProps) => {
   const { location } = useRouteData();
-  const sharePath = `${import.meta.env.VITE_LOCALHOST}${location}`;
+  const sharePath = `${import.meta.env.VITE_DEPLOY_ENDPOINT}${location}`;
   const [myUserId] = useLocalStorage('MEMBER_ID', null);
 
   const handleShareButtonClick = () => {
