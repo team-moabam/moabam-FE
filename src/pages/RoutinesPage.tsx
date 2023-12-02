@@ -1,4 +1,4 @@
-import { useState, useRef, Suspense } from 'react';
+import { useState, Suspense } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Controller } from 'swiper/modules';
 import { SwiperClass } from 'swiper/react';
@@ -8,7 +8,6 @@ import FakeStartPage from '@/StartSlide/components/FakeStartPage';
 import { EventBanner } from '@/Promotion';
 import { PWAInstallBanner } from '@/PWAInstallBanner';
 import { SlideController, useDayTypes, RoomSlide, DayInfo } from '@/RoomSlide';
-import { FakeRoutinesPage } from '@/StartSlide';
 
 const RoutinesPage = () => {
   const { DAY_TYPES, toggleDayType, dayType } = useDayTypes();
@@ -64,7 +63,7 @@ const RoutinesPage = () => {
       <SlideDown
         className="absolute top-[-96%] z-[100] h-full w-full bg-yellow-200"
         fullPercentage={96}
-        onSlideDown={() => moveTo('start')}
+        onSlideDown={() => moveTo('start', {}, { state: 'slide-down' })}
       >
         <FakeStartPage dayType={DAY_TYPES[0]} />
       </SlideDown>
