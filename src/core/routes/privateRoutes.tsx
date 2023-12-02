@@ -15,7 +15,7 @@ import ParticipateLogPage from '@/pages/ParticipateLogPage';
 import OrderLogPage from '@/pages/OrderLogPage';
 import StorePage from '@/pages/StorePage';
 import MyBirdPage from '@/pages/MyBirdPage';
-import PurchaseSuccessPage from '@/pages/PurchaseSuccesPage';
+import PurchaseSuccessPage from '@/pages/PurchaseSuccessPage';
 import PurchaseFailPage from '@/pages/PurchaseFailPage';
 import { Route } from './types/route';
 
