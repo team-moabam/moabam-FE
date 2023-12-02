@@ -4,22 +4,26 @@ export const DateRoomDetailContext = createContext<{
   chooseDate: Date;
   selectDate: (value: Date) => void;
   serverTime: Date;
+  roomCreatedDate: Date;
 }>({
   chooseDate: new Date(),
   selectDate: (value: Date) => {
     return value;
   },
-  serverTime: new Date()
+  serverTime: new Date(),
+  roomCreatedDate: new Date()
 });
 
 interface RoomDetailProviderProps {
   children: ReactNode;
   serverTime: Date;
+  roomCreatedAt: string;
 }
 
 const RoomDetailProvider = ({
   children,
-  serverTime
+  serverTime,
+  roomCreatedAt
 }: RoomDetailProviderProps) => {
   const [changedDate, setChangeDate] = useState<Date>(serverTime);
 
@@ -30,7 +34,8 @@ const RoomDetailProvider = ({
         selectDate: (dateValue: Date) => {
           setChangeDate(dateValue);
         },
-        serverTime
+        serverTime,
+        roomCreatedDate: new Date(roomCreatedAt)
       }}
     >
       {children}

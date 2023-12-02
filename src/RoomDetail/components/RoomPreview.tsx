@@ -8,7 +8,7 @@ import { RoomSemiInfo } from '@/core/types/Room';
 import { roomOptions } from '@/core/api/options';
 import { PasswordInput } from '@/shared/Input';
 import { Toast } from '@/shared/Toast';
-import RoomRoutineList from './RoomRoutineList';
+import RoomPreviewRoutine from './RoomPreviewRoutine';
 
 const RoomPreview = ({
   routines,
@@ -76,7 +76,7 @@ const RoomPreview = ({
 
   return (
     <>
-      <RoomRoutineList
+      <RoomPreviewRoutine
         routines={routines}
         certifyTime={certifyTime}
       />

@@ -1,6 +1,6 @@
 import { RoutineList, RoutineItem } from '@/shared/RoutineList';
 
-interface RoomRoutineListProps {
+interface RoomPreviewRoutineProps {
   routines: {
     routineId: number;
     content: string;
@@ -8,7 +8,10 @@ interface RoomRoutineListProps {
   certifyTime: number;
 }
 
-const RoomRoutineList = ({ routines, certifyTime }: RoomRoutineListProps) => {
+const RoomPreviewRoutine = ({
+  routines,
+  certifyTime
+}: RoomPreviewRoutineProps) => {
   return (
     <div className="rounded-lg bg-light-sub px-[1.31rem] py-4 shadow-[0px_4px_6px_-2px_rgba(0,0,0,0.05)] dark:bg-dark-sub ">
       <span className="mb-[1.31rem] block text-dark-gray">
@@ -26,4 +29,4 @@ const RoomRoutineList = ({ routines, certifyTime }: RoomRoutineListProps) => {
   );
 };
 
-export default RoomRoutineList;
+export default RoomPreviewRoutine;

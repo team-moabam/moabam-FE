@@ -7,7 +7,6 @@ import { STORAGE_KEYS } from '@/core/constants/storageKeys';
 import { NetworkFallback } from '@/shared/ErrorBoundary';
 import RoomDetail from '@/RoomDetail/components/RoomDetail';
 import RoomSemi from '@/RoomDetail/components/RoomSemi';
-import RoomDetailProvider from '@/RoomDetail/components/RoomDetailProvider';
 import RoomDetailFallback from '@/RoomDetail/components/RoomDetailFallback';
 
 const RoomDetailPage = () => {
@@ -41,12 +40,11 @@ const RoomDetailPage = () => {
       <div className="relative h-full overflow-y-scroll">
         <ErrorBoundary fallback={<NetworkFallback />}>
           {checkedRoomJoin ? (
-            <RoomDetailProvider serverTime={serverTime || new Date()}>
-              <RoomDetail
-                roomId={roomId}
-                checkedRoomJoin={checkedRoomJoin}
-              />
-            </RoomDetailProvider>
+            <RoomDetail
+              serverTime={serverTime || new Date()}
+              roomId={roomId}
+              checkedRoomJoin={checkedRoomJoin}
+            />
           ) : (
             <RoomSemi
               roomId={roomId}

@@ -18,7 +18,7 @@ const RoomCalendarDate = ({
   certifiedDates,
   certifyTime
 }: RoomCalendarDateProps) => {
-  const { selectDate, chooseDate, serverTime } = useContext(
+  const { selectDate, chooseDate, serverTime, roomCreatedDate } = useContext(
     DateRoomDetailContext
   );
   const { nowTime } = makeTodayCertifyTime(certifyTime, serverTime);
@@ -27,6 +27,7 @@ const RoomCalendarDate = ({
   const thisDateTime = thisDate.getTime();
   const thisDateDay = thisDate.getDay();
   const langKoDay = DAY_OF_THE_WEEK[thisDateDay];
+  const roomCreateDateTime = new Date(roomCreatedDate).getTime();
 
   const chooseDateString = `${chooseDate.getFullYear()}-${
     chooseDate.getMonth() + 1
@@ -38,8 +39,16 @@ const RoomCalendarDate = ({
   const bug = certifiedDates.find((el) => el === thisDateString);
 
   const handleDateClick = (thisDate: Date) => {
-    if (nowTime >= thisDateTime) {
+    if (nowTime >= thisDateTime && thisDateTime >= roomCreateDateTime) {
       selectDate(thisDate);
+    } else if (thisDateTime < roomCreateDateTime) {
+      Toast.show(
+        {
+          message: '기록이 없습니다',
+          status: 'info'
+        },
+        2000
+      );
     } else {
       Toast.show(
         {
@@ -56,9 +65,12 @@ const RoomCalendarDate = ({
       clsx(
         'relative flex h-[5.87rem] w-[3.12rem] cursor-default flex-col items-center rounded-[0.62rem] border-[0.06rem] border-transparent pt-1 text-center',
         {
-          'text-dark-gray': serverTime.getTime() < thisDate.getTime(),
+          'text-dark-gray':
+            serverTime.getTime() < thisDate.getTime() ||
+            thisDateTime < roomCreateDateTime,
           'text-black dark:text-white':
-            serverTime.getTime() >= thisDate.getTime(),
+            serverTime.getTime() >= thisDate.getTime() &&
+            thisDateTime >= roomCreateDateTime,
           'border-light-point text-light-point dark:border-dark-point dark:text-dark-point ':
             thisDateString === chooseDateString
         }
