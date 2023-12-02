@@ -11,7 +11,7 @@ const RoomNotice = ({ content }: RoomNoticeProps) => {
 
   const InfoStyle = {
     container: clsx(
-      'absolute top-16 z-[1] flex w-full items-start gap-2 bg-[rgba(0,0,0,0.3)] px-[0.69rem] text-white'
+      'absolute top-16 z-[1] flex w-full cursor-default items-start gap-2 bg-[rgba(0,0,0,0.3)] px-[0.69rem] text-white'
     ),
     button: 'flex w-4 items-center justify-center mt-[0.1rem]',
     para: clsx('w-full overflow-hidden font-IMHyemin-bold text-xs', {

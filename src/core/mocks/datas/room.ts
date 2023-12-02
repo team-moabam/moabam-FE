@@ -85,8 +85,7 @@ export const RoomInfo = {
       contributionPoint: 100,
       awakeImage:
         'https://image.moabam.com/moabam/skins/owl/santa/eyes-opened.png',
-      sleepImage:
-        'https://image.moabam.com/moabam/skins/owl/santa/eyes-closed.png',
+      sleepImage: 'https://image.moabam.com/moabam/skins/owl/default/egg.png',
       certificationImage: {
         images: [
           {

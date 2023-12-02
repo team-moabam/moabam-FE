@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import clsx from 'clsx';
+import { twMerge } from 'tailwind-merge';
 import { RankMember } from '@/core/types/Member';
 import makeTodayCertifyTime from '../utils/makeTodayCertifyTime';
 import isMorning from '../utils/isMorning';
@@ -33,6 +34,9 @@ const RoomMemberRank = ({
             .map((el) => {
               const { memberId, nickname, rank, awakeImage, sleepImage } = el;
 
+              const sleepImageTitle = sleepImage.replace(/^.*\//, '');
+              const awakeImageTitle = awakeImage.replace(/^.*\//, '');
+
               return (
                 <span
                   key={memberId}
@@ -43,12 +47,17 @@ const RoomMemberRank = ({
                   })}
                 >
                   <div
-                    className={clsx(
-                      'relative mb-[0.22rem] h-[3.9rem] w-[3.25rem] bg-contain bg-bottom bg-no-repeat',
-                      {
-                        "after:absolute after:right-[-14px] after:top-[-10px] after:block after:content-['zzz'] after:origin-center after:rotate-[-16deg]":
-                          isMorning(serverTime)
-                      }
+                    className={twMerge(
+                      clsx(
+                        'relative mb-[0.22rem] h-[3.9rem] w-[3.25rem] bg-contain bg-bottom bg-no-repeat',
+                        {
+                          "after:absolute after:right-[-14px] after:top-[-10px] after:block after:content-['zzz'] after:origin-center after:rotate-[-16deg]":
+                            isMorning(serverTime),
+                          'h-[2.88rem] w-[3.25rem]':
+                            awakeImageTitle === 'egg.png' ||
+                            sleepImageTitle === 'egg.png'
+                        }
+                      )
                     )}
                     style={{
                       backgroundImage: `url(${
