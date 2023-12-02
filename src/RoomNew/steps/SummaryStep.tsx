@@ -51,9 +51,10 @@ const SummaryStep = () => {
         <strong>준비 끝 !</strong>
       </h1>
 
-      <p className={clsx(descriptionStyle, 'mb-10')}>
-        책임감을 가지고 루틴을 지켜주세요!
-      </p>
+      <div className={clsx(descriptionStyle, 'mb-10')}>
+        <p>책임감을 가지고 루틴을 지켜주세요!</p>
+        <p>그룹 인원의 75%가 루틴을 지켜야 벌레를 받을 수 있어요.</p>
+      </div>
 
       <ul className="flex flex-col gap-4">
         {infos.map((info, i) => (

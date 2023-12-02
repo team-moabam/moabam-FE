@@ -15,7 +15,7 @@ const memberAPI = {
   postMemberKakaoAuth: async (params: { code: string }) => {
     const { code } = params;
 
-    return await baseInstance.post<{ signUp: boolean; id: number }>(
+    return await baseInstance.post<{ isSignUp: boolean; id: number }>(
       `/members/login/kakao/oauth`,
       {
         code

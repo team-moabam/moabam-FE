@@ -37,12 +37,12 @@ export const MY_JOIN_ROOMS: MyJoinRoom = {
     },
     {
       roomId: 12,
-      title: '프롱이 루틴 방입니다',
+      title: '벌레는 4개지만 난 인증안했음',
       roomType: 'MORNING',
       certifyTime: 10,
       currentUserCount: 4,
       maxUserCount: 6,
-      isMemberCertifiedToday: true,
+      isMemberCertifiedToday: false,
       isRoomCertifiedToday: true,
       obtainedBugs: 4
     },

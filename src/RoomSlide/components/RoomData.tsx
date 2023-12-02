@@ -24,7 +24,8 @@ const RoomData = ({ dayType }: RoomDataProps) => {
         ({ roomType }) => roomType === dayType
       );
       const bugs = rooms.reduce(
-        (total, { obtainedBugs }) => total + obtainedBugs,
+        (total, { obtainedBugs, isMemberCertifiedToday }) =>
+          total + (isMemberCertifiedToday ? obtainedBugs : 0),
         0
       );
       return { rooms, bugs };
