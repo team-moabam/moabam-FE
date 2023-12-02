@@ -42,7 +42,6 @@ const TimePicker = ({
     <Swiper
       className={clsx(
         'time-picker flex h-44 w-40 cursor-pointer select-none items-center rounded-2xl shadow-md',
-        // 'border-1 dark:border-dark-gray',
         'border-y-1 border-dark-gray',
         className
       )}
