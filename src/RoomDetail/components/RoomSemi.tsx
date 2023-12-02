@@ -70,7 +70,7 @@ const RoomSemi = ({ roomId, serverTime, checkedRoomJoin }: RoomSemiProps) => {
                 <div
                   className={twMerge(
                     clsx(
-                      'relative mb-[0.22rem] h-[3.9rem] w-[3.25rem] bg-contain bg-no-repeat ',
+                      'relative mb-[0.22rem] h-[3.9rem] w-[3.25rem] bg-contain bg-bottom bg-no-repeat',
                       {
                         "after:absolute after:right-[-14px] after:top-[-10px] after:block after:content-['zzz'] after:origin-center after:rotate-[-16deg]":
                           isBirdSleep,
