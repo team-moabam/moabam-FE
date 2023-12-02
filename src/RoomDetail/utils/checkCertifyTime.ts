@@ -1,21 +1,22 @@
-const checkCertifyTime = ({
-  nowTime,
-  certificateTodayEndTime,
-  certificateTodayStartTime
-}: {
-  nowTime: number;
-  certificateTodayEndTime: number;
-  certificateTodayStartTime: number;
-}) => {
-  if (nowTime < certificateTodayStartTime) {
-    return 'beforeTodayCertifyTime';
-  } else if (
-    nowTime < certificateTodayEndTime &&
-    nowTime >= certificateTodayStartTime
+const checkCertifyTime = (certifyTime: number, serverTime: Date) => {
+  const certifyStart = new Date(serverTime);
+  certifyStart.setHours(certifyTime);
+  certifyStart.setMinutes(0);
+  certifyStart.setSeconds(0);
+  certifyStart.setMilliseconds(0);
+  const certifyEnd = new Date(serverTime);
+  certifyEnd.setHours(certifyTime);
+  certifyEnd.setMinutes(10);
+  certifyEnd.setSeconds(0);
+  certifyEnd.setMilliseconds(0);
+
+  if (
+    certifyStart.getTime() <= serverTime.getTime() &&
+    serverTime.getTime() < certifyEnd.getTime()
   ) {
-    return 'nowTodayCertifyTime';
+    return true;
   } else {
-    return 'afterTodayCertifyTime';
+    return false;
   }
 };
 

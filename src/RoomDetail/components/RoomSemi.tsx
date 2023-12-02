@@ -1,11 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
+import { twMerge } from 'tailwind-merge';
 import clsx from 'clsx';
 import { roomOptions } from '@/core/api/options';
 import getTimeRange from '@/core/utils/getTimeRange';
 import { ProgressBar } from '@/shared/ProgressBar';
 import { RoomDetailMeta } from '@/Meta';
 import { RoomNotice } from '..';
-import isMorning from '../utils/isMorning';
 import RoomHeader from './RoomHeader';
 import RoomPreview from './RoomPreview';
 import RoomDetailFallback from './RoomDetailFallback';
@@ -55,6 +55,9 @@ const RoomSemi = ({ roomId, serverTime, checkedRoomJoin }: RoomSemiProps) => {
           {certifiedRanks.map((el) => {
             const { memberId, nickname, rank, awakeImage, sleepImage } = el;
 
+            const sleepImageTitle = sleepImage.replace(/^.*\//, '');
+            const awakeImageTitle = awakeImage.replace(/^.*\//, '');
+
             return (
               <span
                 key={memberId}
@@ -65,12 +68,17 @@ const RoomSemi = ({ roomId, serverTime, checkedRoomJoin }: RoomSemiProps) => {
                 })}
               >
                 <div
-                  className={clsx(
-                    'relative mb-[0.22rem] h-[2.88rem] w-[3.25rem] bg-contain bg-no-repeat ',
-                    {
-                      "after:absolute after:right-[-14px] after:top-[-10px] after:block after:content-['zzz'] after:origin-center after:rotate-[-16deg]":
-                        isBirdSleep
-                    }
+                  className={twMerge(
+                    clsx(
+                      'relative mb-[0.22rem] h-[2.88rem] w-[3.25rem] bg-contain bg-no-repeat ',
+                      {
+                        "after:absolute after:right-[-14px] after:top-[-10px] after:block after:content-['zzz'] after:origin-center after:rotate-[-16deg]":
+                          isBirdSleep,
+                        'h-[2.88rem] w-[3.25rem]':
+                          awakeImageTitle === 'egg.png' ||
+                          sleepImageTitle === 'egg.png'
+                      }
+                    )
                   )}
                   style={{
                     backgroundImage: `url(${

@@ -1,9 +1,10 @@
 import { useContext } from 'react';
 import clsx from 'clsx';
+import { twMerge } from 'tailwind-merge';
 import { RankMember } from '@/core/types/Member';
 import getTimeRange from '@/core/utils/getTimeRange';
 import { DayType } from '@/core/types';
-import makeTodayCertifyTime from '../utils/makeTodayCertifyTime';
+import checkCertifyTime from '../utils/checkCertifyTime';
 import { DateRoomDetailContext } from './RoomDetailProvider';
 
 interface RoomMemberRankProps {
@@ -17,15 +18,13 @@ const RoomMemberRank = ({
   certifyTime,
   roomType
 }: RoomMemberRankProps) => {
-  const { serverTime } = useContext(DateRoomDetailContext);
-  const { certificateTodayEndTime, certificateTodayStartTime, nowTime } =
-    makeTodayCertifyTime(certifyTime, serverTime);
+  const { serverTime, chooseDate } = useContext(DateRoomDetailContext);
 
   const isBirdSleep = getTimeRange(serverTime) !== roomType;
   return (
     <>
-      {nowTime >= certificateTodayStartTime &&
-      nowTime <= certificateTodayEndTime ? (
+      {checkCertifyTime(certifyTime, serverTime) &&
+      serverTime.getDate() === chooseDate.getDate() ? (
         <div className="absolute left-1/2 top-[56%] w-[16.1rem] translate-x-[-50%] rounded-[6.25rem] bg-[rgba(0,0,0,0.3)] px-[1.68rem] py-[0.25rem] font-IMHyemin-bold text-white">
           지금은 루틴 "인증시간" 입니다
         </div>
@@ -35,6 +34,9 @@ const RoomMemberRank = ({
             .filter((el) => el.rank <= 3)
             .map((el) => {
               const { memberId, nickname, rank, awakeImage, sleepImage } = el;
+
+              const sleepImageTitle = sleepImage.replace(/^.*\//, '');
+              const awakeImageTitle = awakeImage.replace(/^.*\//, '');
 
               return (
                 <span
@@ -46,12 +48,17 @@ const RoomMemberRank = ({
                   })}
                 >
                   <div
-                    className={clsx(
-                      'relative mb-[0.22rem] h-[3.9rem] w-[3.25rem] bg-contain bg-bottom bg-no-repeat',
-                      {
-                        "after:absolute after:right-[-14px] after:top-[-10px] after:block after:content-['zzz'] after:origin-center after:rotate-[-16deg]":
-                          isBirdSleep
-                      }
+                    className={twMerge(
+                      clsx(
+                        'relative mb-[0.22rem] h-[3.9rem] w-[3.25rem] bg-contain bg-bottom bg-no-repeat',
+                        {
+                          "after:absolute after:right-[-14px] after:top-[-10px] after:block after:content-['zzz'] after:origin-center after:rotate-[-16deg]":
+                            isBirdSleep,
+                          'h-[2.88rem] w-[3.25rem]':
+                            awakeImageTitle === 'egg.png' ||
+                            sleepImageTitle === 'egg.png'
+                        }
+                      )
                     )}
                     style={{
                       backgroundImage: `url(${

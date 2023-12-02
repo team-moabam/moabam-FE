@@ -16,7 +16,7 @@ export default defineConfig({
         name: 'Moabam: 당신의 루틴을 지켜요!',
         short_name: 'Moabam',
         description: '성취감과 의무감을 더하는 루틴 관리 웹 앱',
-        theme_color: '#60D4DE',
+        theme_color: '#f8f8f8',
         icons: [
           {
             src: 'pwa/pwa-64x64.png',
