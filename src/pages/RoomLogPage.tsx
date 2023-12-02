@@ -13,7 +13,7 @@ const RoomLogPage = () => {
       <div className="bg-light-main dark:bg-dark-main">
         <Header
           className="sticky text-black"
-          prev={-1}
+          prev
           title={`${chooseDate.getFullYear()}년 ${
             chooseDate.getMonth() + 1
           }월 ${chooseDate.getDate()}일`}

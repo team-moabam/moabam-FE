@@ -42,7 +42,7 @@ const RoomNewPage = () => {
       >
         <Header
           className="bg-light-main dark:bg-dark-main"
-          prev={-1}
+          prev
           title="방 만들기"
         />
         <main className="grow overflow-auto px-8 py-12">

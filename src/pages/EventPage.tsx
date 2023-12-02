@@ -9,7 +9,7 @@ const EventPage = () => {
   return (
     <div className="flex h-full flex-col">
       <Header
-        prev={-1}
+        prev
         title="이벤트"
       />
       <ErrorBoundary fallback={<NetworkFallback />}>

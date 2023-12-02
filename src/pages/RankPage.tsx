@@ -8,7 +8,7 @@ const RankPage = () => {
   return (
     <div className="flex h-full w-full max-w-md flex-col">
       <Header
-        prev={-1}
+        prev
         className="bg-light-sub dark:bg-dark-sub"
         title="랭킹"
       />

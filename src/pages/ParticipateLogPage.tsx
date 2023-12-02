@@ -8,7 +8,7 @@ const ParticipateLogPage = () => {
   return (
     <div className="h-full overflow-auto ">
       <Header
-        prev={-1}
+        prev
         title="방 참여 기록"
         className="sticky top-0 bg-light-main dark:bg-dark-main"
       />
