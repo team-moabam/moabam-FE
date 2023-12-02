@@ -32,7 +32,7 @@ const App = () => {
     <>
       <CommonMeta pageName={pageName} />
       <div
-        className={clsx('h-screen w-screen', {
+        className={clsx('h-full w-screen min-[1024px]:h-screen', {
           'dark min-[1024px]:bg-dark-main': theme === 'dark',
           'min-[1024px]:bg-light-main': theme !== 'dark'
         })}
