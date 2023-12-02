@@ -81,7 +81,7 @@ const RoomWorkspace = ({
   ) => {
     const certifyEndTime = new Date(serverTime);
     certifyEndTime.setHours(certifyTime);
-    certifyEndTime.setMinutes(0);
+    certifyEndTime.setMinutes(10);
     certifyEndTime.setSeconds(0);
     certifyEndTime.setMilliseconds(0);
 
@@ -93,7 +93,7 @@ const RoomWorkspace = ({
 
     if (
       chooseDate.getDate() === serverTime.getDate() &&
-      certifyEndTime.getTime() < serverTime.getTime()
+      certifyEndTime.getTime() > serverTime.getTime()
     ) {
       e.preventDefault();
       Toast.show(

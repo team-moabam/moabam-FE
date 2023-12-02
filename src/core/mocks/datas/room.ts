@@ -7,7 +7,7 @@ export const RoomInfo = {
   level: 5,
   exp: 4,
   roomType: 'MORNING',
-  certifyTime: 9,
+  certifyTime: 0,
   currentUserCount: 5,
   maxUserCount: 9,
   announcement:

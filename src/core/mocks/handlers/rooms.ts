@@ -1,12 +1,7 @@
 import { http, HttpResponse, delay } from 'msw';
 import { Room } from '@/core/types';
 import { baseURL } from '../baseURL';
-import {
-  RoomInfo,
-  RoomInfoBeforeEditing,
-  RoomInfoBeforeEditing2,
-  RoomSemiInfo
-} from '../datas/room';
+import { RoomInfo, RoomInfoBeforeEditing, RoomSemiInfo } from '../datas/room';
 import { MY_JOIN_ROOMS } from '../datas/myJoinRoom';
 import { ROOMS } from '../datas/totalRooms';
 import { SEARCH_ROOMS } from '../datas/searchRooms';
@@ -54,8 +49,8 @@ const roomsHandlers = [
 
     switch (status) {
       case 200:
-        // response = value();
-        response = true;
+        response = value();
+        // response = true;
         break;
       case 401:
         response = { message: '존재하지 않는 유저입니다.' };
