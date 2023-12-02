@@ -30,7 +30,8 @@ const RoomSemi = ({ roomId, serverTime, checkedRoomJoin }: RoomSemiProps) => {
     level,
     currentUserCount,
     maxUserCount,
-    exp
+    exp,
+    roomImage
   } = roomSemiData;
 
   return (
@@ -41,7 +42,10 @@ const RoomSemi = ({ roomId, serverTime, checkedRoomJoin }: RoomSemiProps) => {
         checkedRoomJoin={checkedRoomJoin}
       />
       <RoomNotice content={announcement} />
-      <div className="h-[20.56rem] bg-[url('/level1.png')] bg-cover bg-no-repeat text-white">
+      <div
+        className="h-[20.56rem] bg-cover bg-no-repeat text-white"
+        style={{ backgroundImage: `url(${roomImage})` }}
+      >
         <div className="relative h-[20.56rem] overflow-hidden">
           {certifiedRanks.map((el) => {
             const { memberId, nickname, rank, awakeImage, sleepImage } = el;

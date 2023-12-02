@@ -26,8 +26,14 @@ const RoomDetailPage = () => {
   });
 
   if (status !== 'success') return <RoomDetailFallback />;
-  else if (roomId && checkedRoomJoin) {
-    sessionStorage.setItem(STORAGE_KEYS.VISITED_ROOM, roomId);
+
+  const currentVisitedRoom = sessionStorage.getItem(STORAGE_KEYS.VISITED_ROOM);
+  if (checkedRoomJoin) {
+    if (roomId) {
+      sessionStorage.setItem(STORAGE_KEYS.VISITED_ROOM, roomId);
+    }
+  } else if (roomId === currentVisitedRoom) {
+    sessionStorage.removeItem(STORAGE_KEYS.VISITED_ROOM);
   }
 
   return (

@@ -7,7 +7,8 @@ const meta = {
   argTypes: {
     imgUrl: { control: 'string' },
     nickname: { control: 'string' },
-    contribution: { control: 'number' }
+    contribution: { control: 'number' },
+    certified: { control: 'boolean' }
   }
 } satisfies Meta<typeof Avatar>;
 
@@ -30,7 +31,8 @@ export const Manager: Story = {
     userId: 123,
     nickname: '볼록눈이',
     contribution: 65,
-    manager: true
+    manager: true,
+    certified: true
   }
 };
 

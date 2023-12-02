@@ -34,13 +34,12 @@ const RoomMemberRank = ({
               const { memberId, nickname, rank, awakeImage, sleepImage } = el;
 
               return (
-                <Link
-                  to={`/user/${memberId}`}
+                <span
                   key={memberId}
                   className={clsx('absolute flex w-fit flex-col items-center', {
-                    'top-[9.69rem] left-[4.13rem]': rank === 1,
-                    'top-[11.63rem] left-[12.19rem]': rank === 2,
-                    'top-[10.75rem] right-[0.69rem]': rank === 3
+                    'top-[39%] left-[37%]': rank === 1,
+                    'top-[51%] left-[14%]': rank === 2,
+                    'top-[57%] right-[8%]': rank === 3
                   })}
                 >
                   <div
@@ -69,7 +68,7 @@ const RoomMemberRank = ({
                   >
                     {nickname}
                   </span>
-                </Link>
+                </span>
               );
             })}
         </>
