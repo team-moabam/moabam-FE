@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import clsx from 'clsx';
 import { Icon } from '@/shared/Icon';
 
@@ -8,6 +8,7 @@ interface RoomNoticeProps {
 
 const RoomNotice = ({ content }: RoomNoticeProps) => {
   const [open, setOpen] = useState(false);
+  const paraRef = useRef<HTMLParagraphElement>(null);
 
   const InfoStyle = {
     container: clsx(
@@ -26,7 +27,16 @@ const RoomNotice = ({ content }: RoomNoticeProps) => {
         <div className={InfoStyle.container}>
           <div
             className="flex w-full gap-2 py-[0.56rem]"
-            onClick={() => setOpen((prev) => !prev)}
+            onClick={() =>
+              setOpen((prev) => {
+                if (
+                  paraRef.current &&
+                  paraRef.current?.clientWidth >= paraRef.current?.scrollWidth
+                )
+                  return false;
+                return !prev;
+              })
+            }
           >
             <Icon
               className={InfoStyle.button}
@@ -34,7 +44,12 @@ const RoomNotice = ({ content }: RoomNoticeProps) => {
               size="sm"
             />
 
-            <p className={InfoStyle.para}>{content}</p>
+            <p
+              ref={paraRef}
+              className={InfoStyle.para}
+            >
+              {content}
+            </p>
           </div>
           {open && (
             <button

@@ -2,10 +2,10 @@ import { useQuery } from '@tanstack/react-query';
 import { twMerge } from 'tailwind-merge';
 import clsx from 'clsx';
 import { roomOptions } from '@/core/api/options';
+import getTimeRange from '@/core/utils/getTimeRange';
 import { ProgressBar } from '@/shared/ProgressBar';
 import { RoomDetailMeta } from '@/Meta';
 import { RoomNotice } from '..';
-import isMorning from '../utils/isMorning';
 import RoomHeader from './RoomHeader';
 import RoomPreview from './RoomPreview';
 import RoomDetailFallback from './RoomDetailFallback';
@@ -32,8 +32,11 @@ const RoomSemi = ({ roomId, serverTime, checkedRoomJoin }: RoomSemiProps) => {
     currentUserCount,
     maxUserCount,
     exp,
-    roomImage
+    roomImage,
+    roomType
   } = roomSemiData;
+
+  const isBirdSleep = getTimeRange(serverTime) !== roomType;
 
   return (
     <>
@@ -43,10 +46,11 @@ const RoomSemi = ({ roomId, serverTime, checkedRoomJoin }: RoomSemiProps) => {
         checkedRoomJoin={checkedRoomJoin}
       />
       <RoomNotice content={announcement} />
-      <div
-        className="h-[20.56rem] bg-cover bg-no-repeat text-white"
-        style={{ backgroundImage: `url(${roomImage})` }}
-      >
+      <div className="h-[20.56rem] text-white">
+        <img
+          className="absolute h-[20.56rem] w-full dark:brightness-[70%] dark:sepia-[0.2]"
+          src={roomImage}
+        ></img>
         <div className="relative h-[20.56rem] overflow-hidden">
           {certifiedRanks.map((el) => {
             const { memberId, nickname, rank, awakeImage, sleepImage } = el;
@@ -59,7 +63,7 @@ const RoomSemi = ({ roomId, serverTime, checkedRoomJoin }: RoomSemiProps) => {
                 key={memberId}
                 className={clsx('absolute flex w-fit flex-col items-center', {
                   'top-[39%] left-[37%]': rank === 1,
-                  'top-[51%] left-[14%]': rank === 2,
+                  'top-[51%] left-[10%]': rank === 2,
                   'top-[57%] right-[8%]': rank === 3
                 })}
               >
@@ -69,7 +73,7 @@ const RoomSemi = ({ roomId, serverTime, checkedRoomJoin }: RoomSemiProps) => {
                       'relative mb-[0.22rem] h-[3.9rem] w-[3.25rem] bg-contain bg-bottom bg-no-repeat',
                       {
                         "after:absolute after:right-[-14px] after:top-[-10px] after:block after:content-['zzz'] after:origin-center after:rotate-[-16deg]":
-                          isMorning(serverTime),
+                          isBirdSleep,
                         'h-[2.88rem] w-[3.25rem]':
                           awakeImageTitle === 'egg.png' ||
                           sleepImageTitle === 'egg.png'
@@ -78,7 +82,7 @@ const RoomSemi = ({ roomId, serverTime, checkedRoomJoin }: RoomSemiProps) => {
                   )}
                   style={{
                     backgroundImage: `url(${
-                      isMorning(serverTime) ? sleepImage : awakeImage
+                      isBirdSleep ? sleepImage : awakeImage
                     })`
                   }}
                 />

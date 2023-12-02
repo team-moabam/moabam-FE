@@ -16,7 +16,12 @@ const JoinPage = () => {
   const memberId = localStorage.getItem(STORAGE_KEYS.MEMBER_ID);
 
   if (memberId) {
-    return <Navigate to="/" />;
+    return (
+      <Navigate
+        to="/"
+        replace={true}
+      />
+    );
   }
 
   return (
