@@ -57,6 +57,11 @@ const CertificationBottomSheet = ({
       {
         onSuccess: () => {
           close();
+          Toast.show({
+            message: '인증이 완료되었습니다',
+            status: 'confirm',
+            subText: '인증사진 보러가기에서 확인 가능해요!'
+          });
           queryClient.invalidateQueries({
             queryKey: roomOptions.detail(roomId || '').queryKey
           });
@@ -72,6 +77,7 @@ const CertificationBottomSheet = ({
   };
 
   const handleEditButtonClick = (e: MouseEvent<HTMLButtonElement>) => {
+    // TODO : 인증 사진 수정 로직
     e.preventDefault();
     const files = watch();
     const formData = new FormData();
@@ -90,8 +96,11 @@ const CertificationBottomSheet = ({
         onSuccess: () => {
           close();
         },
-        onError: () => {
-          // TODO : 에러 처리
+        onError: (error) => {
+          Toast.show({
+            message: error.response?.data?.message ?? '오류가 발생했어요.',
+            status: 'danger'
+          });
         }
       }
     );
@@ -125,25 +134,13 @@ const CertificationBottomSheet = ({
         <span className="mb-[1rem] block font-IMHyemin-bold text-xs text-dark-gray">
           다른 새들이 알아볼 수 있게 찍어주세요!
         </span>
-        {myCertificationImage?.filter((el) => el.image).length ===
-        routines.length ? (
-          <button
-            type="button"
-            className="btn dark:btn-dark-point btn-light-point w-full"
-            onClick={handleEditButtonClick}
-            form="certificationForm"
-          >
-            수정
-          </button>
-        ) : (
-          <button
-            className="btn dark:btn-dark-point btn-light-point w-full"
-            type="submit"
-            form="certificationForm"
-          >
-            인증!
-          </button>
-        )}
+        <button
+          className="btn dark:btn-dark-point btn-light-point w-full"
+          type="submit"
+          form="certificationForm"
+        >
+          인증!
+        </button>
       </div>
     </BottomSheet>
   );

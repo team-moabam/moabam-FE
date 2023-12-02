@@ -10,7 +10,7 @@ import { Tab, TabItem } from '@/shared/Tab';
 import { Icon } from '@/shared/Icon';
 import { LoadingSpinner } from '@/shared/LoadingSpinner';
 import { Toast } from '@/shared/Toast';
-import makeTodayCertifyTime from '../utils/makeTodayCertifyTime';
+import checkCertifyTime from '../utils/checkCertifyTime';
 import { DateRoomDetailContext } from './RoomDetailProvider';
 import RoomCalendar from './RoomCalendar';
 import CertificationProgress from './CertificationProgress';
@@ -38,14 +38,12 @@ const RoomWorkspace = ({
   const { bottomSheetProps, toggle, close } = useBottomSheet();
   const [userId] = useLocalStorage('MEMBER_ID', null);
 
-  const { chooseDate, serverTime } = useContext(DateRoomDetailContext);
-  const chooseDateText = `${chooseDate.getFullYear()}${
+  const { chooseDate, serverTime, roomCreatedDate } = useContext(
+    DateRoomDetailContext
+  );
+  const chooseDateString = `${chooseDate.getFullYear()}${
     chooseDate.getMonth() + 1
   }${chooseDate.getDate() < 10 ? 0 : ''}${chooseDate.getDate()}`;
-  const { certificateTodayStartTime } = makeTodayCertifyTime(
-    certifyTime,
-    serverTime
-  );
 
   const myCertificationImage = todayCertificateRank.find(
     ({ memberId }) => memberId === userId
@@ -75,10 +73,42 @@ const RoomWorkspace = ({
     setReportStatus(value);
   };
 
-  const handleLogLinkClick = (e: MouseEvent) => {
+  const handleLogLinkClick = (
+    e: MouseEvent,
+    serverTime: Date,
+    certifyTime: number
+  ) => {
+    const certifyEndTime = new Date(serverTime);
+    certifyEndTime.setHours(certifyTime);
+    certifyEndTime.setMinutes(0);
+    certifyEndTime.setSeconds(0);
+    certifyEndTime.setMilliseconds(0);
+
+    const roomCreatedCertifyEndTime = new Date(roomCreatedDate);
+    roomCreatedCertifyEndTime.setHours(certifyTime);
+    roomCreatedCertifyEndTime.setMinutes(10);
+    roomCreatedCertifyEndTime.setSeconds(0);
+    roomCreatedCertifyEndTime.setMilliseconds(0);
+
+    // if (
+    //   roomCreatedDate.getDate() === chooseDate.getDate() &&
+    //   roomCreatedCertifyEndTime.getTime() < roomCreatedDate.getTime()
+    // ) {
+    //   e.preventDefault();
+    //   Toast.show(
+    //     {
+    //       message: '인증 기록이 없습니다',
+    //       status: 'info'
+    //     },
+    //     2000
+    //   );
+    //   return;
+    // }
+    // TODO : 방 생성 전에 인증 타임인 경우 - 인증 기록이 없습니다 vs 그냥 보여주기
+
     if (
-      chooseDate.getTime() < certificateTodayStartTime &&
-      chooseDate.getDate() === serverTime.getDate()
+      chooseDate.getDate() === serverTime.getDate() &&
+      certifyEndTime.getTime() < serverTime.getTime()
     ) {
       e.preventDefault();
       Toast.show(
@@ -88,6 +118,7 @@ const RoomWorkspace = ({
         },
         2000
       );
+      return;
     }
   };
 
@@ -115,7 +146,7 @@ const RoomWorkspace = ({
               {
                 <div className="flex justify-end">
                   <Link
-                    to={`log/${chooseDateText}`}
+                    to={`log/${chooseDateString}`}
                     className="mb-[2.13rem] flex w-fit items-center text-sm text-light-point dark:text-dark-point"
                     state={{
                       todayCertificateRank,
@@ -123,7 +154,9 @@ const RoomWorkspace = ({
                       chooseDate,
                       managerNickName
                     }}
-                    onClick={handleLogLinkClick}
+                    onClick={(e: MouseEvent) => {
+                      handleLogLinkClick(e, serverTime, certifyTime);
+                    }}
                   >
                     인증사진 보러가기
                     <Icon
@@ -136,6 +169,7 @@ const RoomWorkspace = ({
               <RoomRoutine
                 routines={routines}
                 myCertificationImage={myCertificationImage}
+                certifiedDates={certifiedDates}
                 certifyTime={certifyTime}
               />
             </>

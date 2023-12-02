@@ -1,6 +1,6 @@
 export const RoomInfo = {
   roomId: 32,
-  roomCreatedAt: '2023-12-01T13:36:49.783842',
+  roomCreatedAt: '2023-11-28T13:36:49.783842',
   title: '윤명이의 루틴방',
   managerNickName: '오목눈이#U8WN6I',
   roomImage: 'https://picsum.photos/200',
@@ -12,7 +12,7 @@ export const RoomInfo = {
   maxUserCount: 9,
   announcement: '2번 연속 인증 안하는 사람은 추방할 예정입니다 ㅅㄱ!',
   completePercentage: 66.7,
-  certifiedDates: ['2023-11-13', '2023-11-14', '2023-11-16'],
+  certifiedDates: ['2023-11-28', '2023-11-29', '2023-11-30'],
   routines: [
     {
       routineId: 8,
