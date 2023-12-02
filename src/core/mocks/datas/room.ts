@@ -31,7 +31,7 @@ export const RoomInfo = {
   todayCertificateRank: [
     {
       rank: 1,
-      memberId: 5,
+      memberId: 19,
       nickname: '오목눈이#U8WN6I',
       isNotificationSent: false,
       profileImage:
@@ -45,7 +45,7 @@ export const RoomInfo = {
     },
     {
       rank: 2,
-      memberId: 6,
+      memberId: 109,
       nickname: '오목눈이#U8WN6H',
       isNotificationSent: true,
       profileImage:
@@ -77,7 +77,7 @@ export const RoomInfo = {
     },
     {
       rank: 3,
-      memberId: 10,
+      memberId: 5,
       nickname: '오목눈이#U8WN6J',
       isNotificationSent: false,
       profileImage:

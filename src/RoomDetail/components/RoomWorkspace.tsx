@@ -49,9 +49,12 @@ const RoomWorkspace = ({
     serverTime
   );
 
-  const myCertificationImage = todayCertificateRank.find(
-    ({ memberId }) => memberId === userId
-  )?.certificationImage?.images;
+  const myCertificationImage = todayCertificateRank.find(({ memberId }) => {
+    console.log(memberId, userId);
+    return memberId === userId;
+  })?.certificationImage?.images;
+
+  console.log(myCertificationImage);
 
   const { mutate } = useMutation({
     mutationFn: roomAPI.deleteRoom
@@ -146,12 +149,12 @@ const RoomWorkspace = ({
             className="mt-[1.19rem] text-sm text-black  dark:text-white"
             onClick={() => {
               if (myCertificationImage && myCertificationImage.length > 0) {
-                toggle();
-              } else {
                 Toast.show({
                   status: 'danger',
                   message: '인증한 날은 방을 나갈 수 없어요..'
                 });
+              } else {
+                toggle();
               }
             }}
           >
