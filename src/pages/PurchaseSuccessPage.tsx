@@ -23,11 +23,11 @@ const PurchaseSuccessPage = () => {
         <h1 className="mb-2 text-3xl font-semibold">결제 성공!</h1>
       </div>
       <Link
-        to="/store"
+        to="/user"
         replace={true}
       >
         <button className="btn btn-light-point dark:btn-dark-point rounded-lg font-semibold">
-          상점으로 돌아가기
+          마이페이지로 이동
         </button>
       </Link>
     </div>

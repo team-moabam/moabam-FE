@@ -11,11 +11,11 @@ const PurchaseFailPage = () => {
         <h3 className="text-lg text-dark-gray">무언가 잘못 되었습니다..</h3>
       </div>
       <Link
-        to="store"
+        to="/user"
         replace={true}
       >
         <button className="btn btn-light-point dark:btn-dark-point rounded-lg font-semibold">
-          상점으로 돌아가기
+          마이페이지로 이동
         </button>
       </Link>
     </div>
