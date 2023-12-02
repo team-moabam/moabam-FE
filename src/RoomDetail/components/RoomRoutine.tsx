@@ -78,12 +78,22 @@ const RoomRoutine = ({
           ))}
         </RoutineList>
 
-        {checkCertifyTime(certifyTime, serverTime) ? (
+        {checkCertifyTime(certifyTime, serverTime) &&
+        myCertificationImage &&
+        myCertificationImage.length > 0 ? (
           <button
             className="btn btn-light-point dark:btn-dark-point w-full rounded-lg text-base"
             onClick={handleToggle}
           >
             인증 하기!
+          </button>
+        ) : checkCertifyTime(certifyTime, serverTime) &&
+          !myCertificationImage ? (
+          <button
+            className="btn btn-light-point dark:btn-dark-point w-full rounded-lg text-base"
+            onClick={handleToggle}
+          >
+            인증 완료
           </button>
         ) : (
           <button className="btn btn-disabled w-full cursor-default rounded-lg text-base">
