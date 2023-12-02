@@ -51,10 +51,8 @@ export const RoomInfo = {
       profileImage:
         'https://image.moabam.com/moabam/default/member-profile.png',
       contributionPoint: 100,
-      awakeImage:
-        'https://image.moabam.com/moabam/skins/omok/santa/eyes-opened.png',
-      sleepImage:
-        'https://image.moabam.com/moabam/skins/omok/santa/eyes-closed.png',
+      awakeImage: 'https://image.moabam.com/moabam/skins/omok/default/egg.png',
+      sleepImage: 'https://image.moabam.com/moabam/skins/omok/default/egg.png',
       certificationImage: {
         images: [
           {
