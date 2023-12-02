@@ -31,7 +31,7 @@ const pickRoom = (data: ParticipatingRoom[], today?: Date) => {
       return 1;
     }
     return roomADiff - roomBDiff;
-  })[0].roomId;
+  })[0]?.roomId;
 
   return {
     certifyingRoom,
