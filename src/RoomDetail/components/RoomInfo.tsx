@@ -12,6 +12,7 @@ const RoomInfo = ({
   todayCertificateRank,
   certifyTime,
   status,
+  roomType,
   exp
 }: RoomInfoProps) => {
   return (
@@ -24,6 +25,7 @@ const RoomInfo = ({
         <RoomMemberRank
           todayCertificateRank={todayCertificateRank}
           certifyTime={certifyTime}
+          roomType={roomType}
         />
       )}
       <div className="absolute inset-x-0 bottom-0">

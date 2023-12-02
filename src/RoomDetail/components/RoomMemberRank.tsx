@@ -1,24 +1,27 @@
 import { useContext } from 'react';
-import { Link } from 'react-router-dom';
 import clsx from 'clsx';
 import { RankMember } from '@/core/types/Member';
+import getTimeRange from '@/core/utils/getTimeRange';
+import { DayType } from '@/core/types';
 import makeTodayCertifyTime from '../utils/makeTodayCertifyTime';
-import isMorning from '../utils/isMorning';
 import { DateRoomDetailContext } from './RoomDetailProvider';
 
 interface RoomMemberRankProps {
   todayCertificateRank: RankMember[];
   certifyTime: number;
+  roomType: DayType;
 }
 
 const RoomMemberRank = ({
   todayCertificateRank,
-  certifyTime
+  certifyTime,
+  roomType
 }: RoomMemberRankProps) => {
   const { serverTime } = useContext(DateRoomDetailContext);
   const { certificateTodayEndTime, certificateTodayStartTime, nowTime } =
     makeTodayCertifyTime(certifyTime, serverTime);
 
+  const isBirdSleep = getTimeRange(serverTime) !== roomType;
   return (
     <>
       {nowTime >= certificateTodayStartTime &&
@@ -47,12 +50,12 @@ const RoomMemberRank = ({
                       'relative mb-[0.22rem] h-[3.9rem] w-[3.25rem] bg-contain bg-bottom bg-no-repeat',
                       {
                         "after:absolute after:right-[-14px] after:top-[-10px] after:block after:content-['zzz'] after:origin-center after:rotate-[-16deg]":
-                          isMorning(serverTime)
+                          isBirdSleep
                       }
                     )}
                     style={{
                       backgroundImage: `url(${
-                        isMorning(serverTime) ? sleepImage : awakeImage
+                        isBirdSleep ? sleepImage : awakeImage
                       })`
                     }}
                   />
