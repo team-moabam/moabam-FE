@@ -1,9 +1,7 @@
-import { Navigate, Outlet } from 'react-router-dom';
-import { STORAGE_KEYS } from './core/constants/storageKeys';
+import { Outlet } from 'react-router-dom';
 
 const PublicRoute = () => {
-  const memberId = localStorage.getItem(STORAGE_KEYS.MEMBER_ID);
-  return memberId ? <Navigate to="/" /> : <Outlet />;
+  return <Outlet />;
 };
 
 export default PublicRoute;
