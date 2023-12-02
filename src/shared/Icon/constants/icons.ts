@@ -29,7 +29,7 @@ import {
 import { HiHome } from 'react-icons/hi2';
 import { ImSearch } from 'react-icons/im';
 import { IoPeopleCircle } from 'react-icons/io5';
-import { LuAlarmClock, LuChevronUp } from 'react-icons/lu';
+import { LuAlarmClock, LuChevronUp, LuUsers } from 'react-icons/lu';
 import {
   MdSupervisedUserCircle,
   MdEdit,
@@ -83,6 +83,7 @@ export const iconMap = {
   IoPeopleCircle,
   LuAlarmClock,
   LuChevronUp,
+  LuUsers,
   MdSupervisedUserCircle,
   MdEdit,
   MdTitle,

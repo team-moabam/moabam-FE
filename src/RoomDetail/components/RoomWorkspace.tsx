@@ -31,7 +31,9 @@ const RoomWorkspace = ({
   certifyTime,
   status,
   roomId,
-  managerNickName
+  managerNickName,
+  maxUserCount,
+  currentUserCount
 }: RoomWorkspaceProps) => {
   const moveTo = useMoveRoute();
   const [reportStatus, setReportStatus] = useState<boolean>(false);
@@ -153,6 +155,8 @@ const RoomWorkspace = ({
             reportStatus={reportStatus}
             changeReportStatus={changeReportStatus}
             managerNickName={managerNickName}
+            maxUserCount={maxUserCount}
+            currentUserCount={currentUserCount}
           />
           {todayCertificateRank.length > 1 && (
             <button

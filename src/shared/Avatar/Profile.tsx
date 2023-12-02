@@ -17,7 +17,7 @@ const Profile = ({ imgUrl, certified = false }: ProfileProps) => {
           <Icon
             icon="FaCheck"
             size="xs"
-            className="text-[0.8rem] text-white"
+            className="relative top-[1px] text-[0.8rem] text-white"
           />
         </div>
       ) : null}

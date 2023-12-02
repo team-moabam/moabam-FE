@@ -27,7 +27,7 @@ const RoomMember = ({
     isNotificationSent,
     profileImage,
     contributionPoint,
-    rank
+    certificationImage
   } = member;
   const [myUserId] = useLocalStorage('MEMBER_ID', null);
   const [noticeSent, setNoticeSent] = useState(isNotificationSent);
@@ -73,6 +73,7 @@ const RoomMember = ({
         nickname={nickname}
         contribution={contributionPoint}
         manager={managerNickName === nickname}
+        certified={certificationImage?.images.length > 0}
       />
       {myUserId !== memberId && (
         <>
@@ -83,19 +84,12 @@ const RoomMember = ({
             >
               신고하기
             </button>
-          ) : rank < 500 ? (
-            <span
-              key={memberId}
-              className="block h-[1.875rem] w-[4.37rem] text-center text-sm text-light-point dark:text-dark-point"
-            >
-              루틴 완료!
-            </span>
           ) : noticeSent ? (
             <button
               key={memberId}
               className="btn btn-disabled h-[1.875rem] w-[4.37rem] cursor-default rounded-lg p-0 font-IMHyemin-bold text-sm"
             >
-              내일 다시
+              콕! 완료
             </button>
           ) : (
             <button

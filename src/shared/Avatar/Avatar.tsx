@@ -3,7 +3,7 @@ import Profile from './Profile';
 
 interface AvatarProps {
   imgUrl: string;
-  userId: number;
+  userId?: number;
   nickname: string;
   manager?: boolean;
   contribution?: number;
@@ -17,7 +17,6 @@ const Avatar = ({
   nickname,
   manager,
   contribution,
-  isLink,
   certified
 }: AvatarProps) => {
   const navigate = useNavigate();
@@ -26,7 +25,7 @@ const Avatar = ({
     <span
       className="flex cursor-pointer items-center"
       onClick={() => {
-        if (isLink) navigate(`/user/${userId}`);
+        if (userId) navigate(`/user/${userId}`);
       }}
     >
       <Profile
