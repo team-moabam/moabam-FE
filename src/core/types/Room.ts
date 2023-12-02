@@ -3,20 +3,22 @@ import { RankMember, RankMemberSemi } from './Member';
 export type DayType = 'MORNING' | 'NIGHT';
 
 export type RoomInfo = {
-  roomId: number;
-  roomCreatedAt: string;
-  title: string;
-  managerNickName: string;
-  level: number;
-  exp: number;
-  roomType: DayType;
-  certifyTime: number;
-  currentUserCount: number;
-  maxUserCount: number;
   announcement: string;
-  completePercentage: number;
   certifiedDates: string[];
+  certifyTime: number;
+  completePercentage: number;
+  currentUserCount: number;
+  exp: number;
+  level: number;
+  managerNickName: string;
+  maxUserCount: number;
+  myMemberId: number;
+  roomCreatedAt: string;
+  roomId: number;
+  roomImage: string;
+  roomType: DayType;
   routines: { routineId: number; content: string }[];
+  title: string;
   todayCertificateRank: RankMember[];
 };
 
@@ -24,16 +26,16 @@ export type RoomSemiInfo = {
   roomId: number;
   isPassword: boolean;
   title: string;
-  managerNickName: string;
-  level: number;
-  exp: number;
-  roomType: DayType;
+  announcement: string;
+  certifiedRanks: RankMemberSemi[];
   certifyTime: number;
   currentUserCount: number;
+  exp: number;
+  level: number;
   maxUserCount: number;
-  announcement: string;
+  roomImage: 'https://image.moabam.com/moabam/default/room-level-00.png';
+  roomType: DayType;
   routines: { routineId: number; content: string }[];
-  certifiedRanks: RankMemberSemi[];
 };
 
 export type RoomInfoBeforeEditing = {

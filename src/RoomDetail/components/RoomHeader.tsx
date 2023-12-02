@@ -38,7 +38,7 @@ const RoomHeader = ({
   return (
     <Header
       title={title}
-      className="absolute z-[1] text-white"
+      className="absolute z-[1] bg-[rgba(0,0,0,0.2)] text-white"
     >
       <div className="flex">
         {checkedRoomJoin && checkManagerNickName === managerNickName && (
