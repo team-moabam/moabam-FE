@@ -30,32 +30,34 @@ const RoomLogItem = ({
             manager={managerNickName === nickname}
           />
         </AccordionHeader>
-        <AccordionBody className="flex justify-center bg-white p-7 py-[1.125rem] dark:bg-dark-sub">
-          {certificationImage ? (
-            <div className="grid auto-rows-[12rem] grid-cols-[10rem_10rem] gap-x-3 gap-y-[2rem]">
-              {certificationImage.images.map(
-                ({ routineId: checkRoutineId, image }) => {
-                  const routineData = routines.find(
-                    ({ routineId }) => routineId === checkRoutineId
-                  );
+        <AccordionBody>
+          <div className="flex justify-center bg-white p-7 py-[1.125rem] dark:bg-dark-sub">
+            {certificationImage ? (
+              <div className="grid auto-rows-[12rem] grid-cols-[10rem_10rem] gap-x-3 gap-y-[2rem]">
+                {certificationImage.images.map(
+                  ({ routineId: checkRoutineId, image }) => {
+                    const routineData = routines.find(
+                      ({ routineId }) => routineId === checkRoutineId
+                    );
 
-                  return (
-                    <div key={checkRoutineId}>
-                      <div>
-                        <img
-                          src={image}
-                          className="mb-[0.62rem] h-[10rem] rounded-2xl"
-                        />
+                    return (
+                      <div key={checkRoutineId}>
+                        <div>
+                          <img
+                            src={image}
+                            className="mb-[0.62rem] h-[10rem] rounded-2xl"
+                          />
+                        </div>
+                        <span className="text-sm">{routineData?.content}</span>
                       </div>
-                      <span className="text-sm">{routineData?.content}</span>
-                    </div>
-                  );
-                }
-              )}
-            </div>
-          ) : (
-            <div className="w-[20.75rem]">인증하지 않았어요!</div>
-          )}
+                    );
+                  }
+                )}
+              </div>
+            ) : (
+              <div className="w-[20.75rem]">인증하지 않았어요!</div>
+            )}
+          </div>
         </AccordionBody>
       </Accordion>
     </div>
