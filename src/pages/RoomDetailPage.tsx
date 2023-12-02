@@ -16,7 +16,7 @@ const RoomDetailPage = () => {
 
   const { data: serverTime } = useQuery({
     ...timeOption,
-    refetchInterval: 1000 * 60,
+    refetchInterval: 1000 * 60 * 10,
     refetchOnWindowFocus: true
   });
 
