@@ -25,7 +25,7 @@ const RoomSettingPage = () => {
             throw err;
           }}
         >
-          <Header prev="roomDetail" />
+          <Header prev />
           <Tab
             align="center"
             itemStyle="mt-10 px-8"

@@ -11,19 +11,19 @@ export const MY_INFO: MyInfo = {
   },
   badges: [
     {
-      badge: '오목눈이_탄생',
+      badge: '오목눈이 탄생',
       unlock: true
     },
     {
-      badge: '어른_오목눈이',
+      badge: '어른 오목눈이',
       unlock: false
     },
     {
-      badge: '어른_부엉이',
+      badge: '어른 부엉이',
       unlock: true
     },
     {
-      badge: '부엉이_탄생',
+      badge: '부엉이 탄생',
       unlock: true
     }
   ],

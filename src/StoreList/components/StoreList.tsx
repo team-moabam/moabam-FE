@@ -48,7 +48,7 @@ const StoreList = () => {
   const handleSelectCoupon = (event: ChangeEvent<HTMLSelectElement>) => {
     const targetId = event.target.value;
     setSelectCoupon(
-      myCouponsResponse.find(({ id }) => id.toString() === targetId)
+      myCouponsResponse.find(({ walletId }) => walletId.toString() === targetId)
     );
   };
 
@@ -57,11 +57,10 @@ const StoreList = () => {
     mutation.mutate(
       {
         productId: selectProduct.id,
-        couponWalletId: selectCoupon?.id
+        couponWalletId: selectCoupon?.walletId
       },
       {
         onSuccess: async (data) => {
-          console.log(data);
           setPurchaseRes(data);
           const paymentWidget = await loadPaymentWidget(
             import.meta.env.VITE_TOSS_CLIENT_KET,
@@ -125,13 +124,13 @@ const StoreList = () => {
             <select
               className="w-full rounded-md border-2 p-1 dark:text-black"
               onChange={handleSelectCoupon}
-              value={selectCoupon?.id ?? ''}
+              value={selectCoupon?.walletId ?? ''}
             >
               <option value="">선택안함</option>
-              {myCouponsResponse.map(({ id, point }) => (
+              {myCouponsResponse.map(({ point, walletId }) => (
                 <option
-                  value={id}
-                  key={id}
+                  value={walletId}
+                  key={walletId}
                 >
                   {point}원 할인 쿠폰
                 </option>
@@ -187,86 +186,3 @@ const StoreList = () => {
 };
 
 export default StoreList;
-
-// import { useEffect, useRef, useState } from 'react';
-// import { loadPaymentWidget } from '@tosspayments/payment-widget-sdk';
-// import { nanoid } from 'nanoid';
-
-// const selector = '#payment-widget';
-// const clientKey = 'test_gck_docs_Ovk5rk1EwkEbP0W43n07xlzm';
-// const customerKey = 'YbX2HuSlsC9uVJW6NMRMj';
-
-// const StoreList = () => {
-//   const paymentWidgetRef = useRef(null);
-//   const paymentMethodsWidgetRef = useRef(null);
-//   const [price, setPrice] = useState(50_000);
-
-//   useEffect(() => {
-//     (async () => {
-//       const paymentWidget = await loadPaymentWidget(clientKey, customerKey);
-
-//       const paymentMethodsWidget = paymentWidget.renderPaymentMethods(
-//         selector,
-//         { value: price },
-//         { variantKey: 'DEFAULT' }
-//       );
-
-//       paymentWidgetRef.current = paymentWidget;
-//       paymentMethodsWidgetRef.current = paymentMethodsWidget;
-//     })();
-//   }, []);
-
-//   useEffect(() => {
-//     const paymentMethodsWidget = paymentMethodsWidgetRef.current;
-
-//     if (paymentMethodsWidget == null) {
-//       return;
-//     }
-
-//     paymentMethodsWidget.updateAmount(price);
-//   }, [price]);
-
-//   return (
-//     <div>
-//       <h1>주문서</h1>
-//       <span>{`${price.toLocaleString()}원`}</span>
-//       <div>
-//         <label>
-//           <input
-//             type="checkbox"
-//             onChange={(event) => {
-//               setPrice(event.target.checked ? price - 5_000 : price + 5_000);
-//             }}
-//           />
-//           5,000원 할인 쿠폰 적용
-//         </label>
-//       </div>
-//       <div id="payment-widget" />
-//       <button
-//         onClick={async () => {
-//           const paymentWidget = paymentWidgetRef.current;
-
-//           try {
-//             // ## Q. 결제 요청 후 계속 로딩 중인 화면이 보인다면?
-//             // 아직 결제 요청 중이에요. 이어서 요청 결과를 확인한 뒤, 결제 승인 API 호출까지 해야 결제가 완료돼요.
-//             // 코드샌드박스 환경에선 요청 결과 페이지(`successUrl`, `failUrl`)로 이동할 수가 없으니 유의하세요.
-//             await paymentWidget?.requestPayment({
-//               orderId: nanoid(),
-//               orderName: '토스 티셔츠 외 2건',
-//               customerName: '김토스',
-//               customerEmail: 'customer123@gmail.com',
-//               successUrl: `${window.location.origin}/success`,
-//               failUrl: `${window.location.origin}/fail`
-//             });
-//           } catch (error) {
-//             // handle error
-//           }
-//         }}
-//       >
-//         결제하기
-//       </button>
-//     </div>
-//   );
-// };
-
-// export default StoreList;
