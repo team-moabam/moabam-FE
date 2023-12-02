@@ -4,14 +4,14 @@ import { ErrorBoundary } from '@suspensive/react';
 import { useQuery } from '@tanstack/react-query';
 import clsx from 'clsx';
 import { useRouteData, useTheme } from '@/core/hooks';
-import timeOption from './core/api/options/time';
-import getTimeRange from './core/utils/getTimeRange';
-import { Navbar } from './shared/Navbar';
-import { UnknownFallback } from './shared/ErrorBoundary';
+import timeOption from '@/core/api/options/time';
+import getTimeRange from '@/core/utils/getTimeRange';
+import { Navbar } from '@/shared/Navbar';
+import { UnknownFallback } from '@/shared/ErrorBoundary';
+import { AboutMoabam } from '@/AboutMoabam';
+import { CommonMeta } from '@/Meta';
 import 'swiper/css';
 import 'swiper/css/bundle';
-import { AboutMoabam } from './AboutMoabam';
-import { CommonMeta } from './Meta';
 
 const App = () => {
   const { navBarRequired, path, pageName } = useRouteData();
