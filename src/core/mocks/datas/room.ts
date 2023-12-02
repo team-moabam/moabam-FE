@@ -3,7 +3,7 @@ export const RoomInfo = {
   roomCreatedAt: '2023-11-28T13:36:49.783842',
   title: '윤명이의 루틴방',
   managerNickName: '오목눈이#U8WN6I',
-  roomImage: 'https://picsum.photos/200',
+  roomImage: 'https://image.moabam.com/moabam/default/room-level-00.png',
   level: 5,
   exp: 4,
   roomType: 'MORNING',
@@ -31,7 +31,7 @@ export const RoomInfo = {
   todayCertificateRank: [
     {
       rank: 1,
-      memberId: 5,
+      memberId: 19,
       nickname: '오목눈이#U8WN6I',
       isNotificationSent: false,
       profileImage:
@@ -40,21 +40,21 @@ export const RoomInfo = {
       awakeImage:
         'https://image.moabam.com/moabam/skins/owl/default/eyes-opened.png',
       sleepImage:
-        'https://image.moabam.com/moabam/skins/owl/default/eyes-opened.png',
+        'https://image.moabam.com/moabam/skins/owl/default/eyes-closed.png',
       certificationImage: null
     },
     {
       rank: 2,
-      memberId: 6,
+      memberId: 109,
       nickname: '오목눈이#U8WN6H',
-      isNotificationSent: false,
+      isNotificationSent: true,
       profileImage:
         'https://image.moabam.com/moabam/default/member-profile.png',
       contributionPoint: 100,
       awakeImage:
         'https://image.moabam.com/moabam/skins/owl/santa/eyes-opened.png',
       sleepImage:
-        'https://image.moabam.com/moabam/skins/owl/santa/eyes-opened.png',
+        'https://image.moabam.com/moabam/skins/owl/santa/eyes-closed.png',
       certificationImage: {
         images: [
           {
@@ -77,7 +77,7 @@ export const RoomInfo = {
     },
     {
       rank: 3,
-      memberId: 10,
+      memberId: 5,
       nickname: '오목눈이#U8WN6J',
       isNotificationSent: false,
       profileImage:
@@ -85,8 +85,7 @@ export const RoomInfo = {
       contributionPoint: 100,
       awakeImage:
         'https://image.moabam.com/moabam/skins/owl/santa/eyes-opened.png',
-      sleepImage:
-        'https://image.moabam.com/moabam/skins/owl/santa/eyes-opened.png',
+      sleepImage: 'https://image.moabam.com/moabam/skins/owl/default/egg.png',
       certificationImage: {
         images: [
           {

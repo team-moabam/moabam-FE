@@ -1,7 +1,6 @@
 import { RoomInfo as RoomInfoType } from '@/core/types/Room';
 import { ProgressBar } from '@/shared/ProgressBar';
 import { LoadingSpinner } from '@/shared/LoadingSpinner';
-import { Icon } from '@/shared/Icon';
 import RoomMemberRank from './RoomMemberRank';
 
 interface extendedProps {

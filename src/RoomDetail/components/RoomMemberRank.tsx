@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import clsx from 'clsx';
+import { twMerge } from 'tailwind-merge';
 import { RankMember } from '@/core/types/Member';
 import checkCertifyTime from '../utils/checkCertifyTime';
 import isMorning from '../utils/isMorning';
@@ -31,23 +32,30 @@ const RoomMemberRank = ({
             .map((el) => {
               const { memberId, nickname, rank, awakeImage, sleepImage } = el;
 
+              const sleepImageTitle = sleepImage.replace(/^.*\//, '');
+              const awakeImageTitle = awakeImage.replace(/^.*\//, '');
+
               return (
-                <Link
-                  to={`/user/${memberId}`}
+                <span
                   key={memberId}
                   className={clsx('absolute flex w-fit flex-col items-center', {
-                    'top-[9.69rem] left-[4.13rem]': rank === 1,
-                    'top-[11.63rem] left-[12.19rem]': rank === 2,
-                    'top-[10.75rem] right-[0.69rem]': rank === 3
+                    'top-[39%] left-[37%]': rank === 1,
+                    'top-[51%] left-[14%]': rank === 2,
+                    'top-[57%] right-[8%]': rank === 3
                   })}
                 >
                   <div
-                    className={clsx(
-                      'relative mb-[0.22rem] h-[3.9rem] w-[3.25rem] bg-contain bg-bottom bg-no-repeat',
-                      {
-                        "after:absolute after:right-[-14px] after:top-[-10px] after:block after:content-['zzz'] after:origin-center after:rotate-[-16deg]":
-                          isMorning(serverTime)
-                      }
+                    className={twMerge(
+                      clsx(
+                        'relative mb-[0.22rem] h-[3.9rem] w-[3.25rem] bg-contain bg-bottom bg-no-repeat',
+                        {
+                          "after:absolute after:right-[-14px] after:top-[-10px] after:block after:content-['zzz'] after:origin-center after:rotate-[-16deg]":
+                            isMorning(serverTime),
+                          'h-[2.88rem] w-[3.25rem]':
+                            awakeImageTitle === 'egg.png' ||
+                            sleepImageTitle === 'egg.png'
+                        }
+                      )
                     )}
                     style={{
                       backgroundImage: `url(${
@@ -67,7 +75,7 @@ const RoomMemberRank = ({
                   >
                     {nickname}
                   </span>
-                </Link>
+                </span>
               );
             })}
         </>

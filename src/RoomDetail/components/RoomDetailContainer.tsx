@@ -28,9 +28,14 @@ const RoomDetailContainer = ({ roomDetailData }: RoomDetailContainerProps) => {
     roomDetailData = roomDetailDataByDate;
   }
 
+  const { roomImage } = roomDetailData;
+
   return (
     <>
-      <div className="h-[20.56rem] bg-[url('/level1.png')] bg-cover bg-no-repeat text-white">
+      <div
+        className="h-[20.56rem] bg-cover bg-no-repeat text-white"
+        style={{ backgroundImage: `url(${roomImage})` }}
+      >
         <RoomInfo
           {...roomDetailData}
           status={status}

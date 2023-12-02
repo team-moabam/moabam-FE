@@ -1,0 +1,22 @@
+*::-webkit-scrollbar {
+  width: 0.5rem;
+  height: 0.5rem;
+}
+
+*::-webkit-scrollbar-thumb {
+  height: 30%;
+  border-radius: 0.75rem;
+  background-color: theme(colors.light.point.DEFAULT);
+}
+
+*::-webkit-scrollbar-track {
+  background-color: theme(colors.light.sub);
+}
+
+.dark *::-webkit-scrollbar-thumb {
+  background-color: theme(colors.dark.point.DEFAULT);
+}
+
+.dark *::-webkit-scrollbar-track {
+  background-color: theme(colors.dark.sub);
+}

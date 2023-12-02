@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
+import { twMerge } from 'tailwind-merge';
 import clsx from 'clsx';
 import { roomOptions } from '@/core/api/options';
 import { ProgressBar } from '@/shared/ProgressBar';
@@ -30,7 +31,8 @@ const RoomSemi = ({ roomId, serverTime, checkedRoomJoin }: RoomSemiProps) => {
     level,
     currentUserCount,
     maxUserCount,
-    exp
+    exp,
+    roomImage
   } = roomSemiData;
 
   return (
@@ -41,10 +43,16 @@ const RoomSemi = ({ roomId, serverTime, checkedRoomJoin }: RoomSemiProps) => {
         checkedRoomJoin={checkedRoomJoin}
       />
       <RoomNotice content={announcement} />
-      <div className="h-[20.56rem] bg-[url('/level1.png')] bg-cover bg-no-repeat text-white">
+      <div
+        className="h-[20.56rem] bg-cover bg-no-repeat text-white"
+        style={{ backgroundImage: `url(${roomImage})` }}
+      >
         <div className="relative h-[20.56rem] overflow-hidden">
           {certifiedRanks.map((el) => {
             const { memberId, nickname, rank, awakeImage, sleepImage } = el;
+
+            const sleepImageTitle = sleepImage.replace(/^.*\//, '');
+            const awakeImageTitle = awakeImage.replace(/^.*\//, '');
 
             return (
               <span
@@ -56,12 +64,17 @@ const RoomSemi = ({ roomId, serverTime, checkedRoomJoin }: RoomSemiProps) => {
                 })}
               >
                 <div
-                  className={clsx(
-                    'relative mb-[0.22rem] h-[2.88rem] w-[3.25rem] bg-contain bg-no-repeat ',
-                    {
-                      "after:absolute after:right-[-14px] after:top-[-10px] after:block after:content-['zzz'] after:origin-center after:rotate-[-16deg]":
-                        isMorning(serverTime)
-                    }
+                  className={twMerge(
+                    clsx(
+                      'relative mb-[0.22rem] h-[3.9rem] w-[3.25rem] bg-contain bg-bottom bg-no-repeat',
+                      {
+                        "after:absolute after:right-[-14px] after:top-[-10px] after:block after:content-['zzz'] after:origin-center after:rotate-[-16deg]":
+                          isMorning(serverTime),
+                        'h-[2.88rem] w-[3.25rem]':
+                          awakeImageTitle === 'egg.png' ||
+                          sleepImageTitle === 'egg.png'
+                      }
+                    )
                   )}
                   style={{
                     backgroundImage: `url(${

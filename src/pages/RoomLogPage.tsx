@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { RankMember } from '@/core/types/Member';
 import { Header } from '@/shared/Header';
@@ -7,6 +8,7 @@ const RoomLogPage = () => {
   const {
     state: { todayCertificateRank, routines, chooseDate, managerNickName }
   } = useLocation();
+  const [chooseLog, setSelectLog] = useState<number>(-1);
 
   return (
     <div className="h-full overflow-y-scroll">
@@ -26,6 +28,8 @@ const RoomLogPage = () => {
             {...data}
             routines={routines}
             managerNickName={managerNickName}
+            chooseLog={chooseLog}
+            setSelectLog={setSelectLog}
           />
         ))}
       </div>

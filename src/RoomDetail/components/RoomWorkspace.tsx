@@ -30,7 +30,9 @@ const RoomWorkspace = ({
   certifyTime,
   status,
   roomId,
-  managerNickName
+  managerNickName,
+  maxUserCount,
+  currentUserCount
 }: RoomWorkspaceProps) => {
   const moveTo = useMoveRoute();
   const [reportStatus, setReportStatus] = useState<boolean>(false);
@@ -44,9 +46,9 @@ const RoomWorkspace = ({
     chooseDate.getMonth() + 1
   }${chooseDate.getDate() < 10 ? 0 : ''}${chooseDate.getDate()}`;
 
-  const myCertificationImage = todayCertificateRank.find(
-    ({ memberId }) => memberId === userId
-  )?.certificationImage?.images;
+  const myCertificationImage = todayCertificateRank.find(({ memberId }) => {
+    return memberId === userId;
+  })?.certificationImage?.images;
 
   const { mutate } = useMutation({
     mutationFn: roomAPI.deleteRoom
@@ -159,7 +161,16 @@ const RoomWorkspace = ({
           )}
           <button
             className="mt-[1.19rem] text-sm text-black  dark:text-white"
-            onClick={toggle}
+            onClick={() => {
+              if (myCertificationImage && myCertificationImage.length > 0) {
+                Toast.show({
+                  status: 'danger',
+                  message: '인증한 날은 방을 나갈 수 없어요..'
+                });
+              } else {
+                toggle();
+              }
+            }}
           >
             방 나가기
           </button>
@@ -170,6 +181,8 @@ const RoomWorkspace = ({
             reportStatus={reportStatus}
             changeReportStatus={changeReportStatus}
             managerNickName={managerNickName}
+            maxUserCount={maxUserCount}
+            currentUserCount={currentUserCount}
           />
           {todayCertificateRank.length > 1 && (
             <button
