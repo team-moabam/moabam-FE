@@ -22,7 +22,7 @@ const JoinKakaoPage = () => {
       { code: code ?? '' },
       {
         onSuccess: async (data) => {
-          moveTo(data.isSignUp ? 'guide' : 'start');
+          moveTo(data.isSignUp ? 'guide' : 'start', {}, { replace: true });
           localStorage.setItem(STORAGE_KEYS.MEMBER_ID, JSON.stringify(data.id));
 
           if (Notification && Notification.permission === 'granted') {
