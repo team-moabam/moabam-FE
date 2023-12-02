@@ -61,11 +61,12 @@ const RoutinesPage = () => {
         </Suspense>
       </div>
       <SlideDown
-        className="absolute top-[-96%] z-[100] h-full w-full bg-yellow-200"
-        fullPercentage={96}
+        className="absolute top-[-100%] z-[100] h-full w-full bg-yellow-200"
+        fullPercentage={100}
         onSlideDown={() => moveTo('start', {}, { state: 'slide-down' })}
       >
         <FakeStartPage dayType={DAY_TYPES[0]} />
+        <div className="h-10 bg-transparent"></div>
       </SlideDown>
     </>
   );
