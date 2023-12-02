@@ -3,7 +3,7 @@ export const RoomInfo = {
   roomCreatedAt: '2023-12-01T13:36:49.783842',
   title: '윤명이의 루틴방',
   managerNickName: '오목눈이#U8WN6I',
-  roomImage: 'https://picsum.photos/200',
+  roomImage: 'https://image.moabam.com/moabam/default/room-level-00.png',
   level: 5,
   exp: 4,
   roomType: 'MORNING',
