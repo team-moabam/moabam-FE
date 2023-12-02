@@ -26,7 +26,7 @@ const RoomDetailPage = () => {
   });
 
   if (status !== 'success') return <RoomDetailFallback />;
-  else if (roomId && checkedRoomJoin) {
+  else if (roomId && checkedRoomJoin === true) {
     sessionStorage.setItem(STORAGE_KEYS.VISITED_ROOM, roomId);
   }
 
