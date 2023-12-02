@@ -15,7 +15,7 @@ const MyBirdPage = () => {
   return (
     <MyBirdProvider>
       <Header
-        prev="myPage"
+        prev
         className="absolute z-10 text-light-sub"
       >
         <Suspense>

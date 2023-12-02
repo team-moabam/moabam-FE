@@ -1,5 +1,5 @@
-import { initializeApp } from 'firebase/app';
-import { getMessaging, getToken } from 'firebase/messaging';
+import { initializeApp, type FirebaseApp } from 'firebase/app';
+import { getMessaging, getToken, type Messaging } from 'firebase/messaging';
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -11,8 +11,23 @@ const firebaseConfig = {
   measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
 };
 
-const firebase = initializeApp(firebaseConfig);
-const messaging = getMessaging(firebase);
+let firebase: FirebaseApp;
+let messaging: Messaging;
+
+/**
+ * Firebase 앱을 초기화합니다.
+ * (아이폰 외부 애플리케이션의 브라우저를 통해서 접속할 때
+ * 모듈에서 바로 초기화하면 에러가 발생해서 하얀 화면이 뜨는 문제가 있었습니다.
+ * 그래서 모듈에서 바로 초기화하지 않고, 함수를 통해 초기화하도록 했습니다.)
+ */
+const initializeFirebase = () => {
+  try {
+    firebase = initializeApp(firebaseConfig);
+    messaging = getMessaging(firebase);
+  } catch (err) {
+    console.error(err);
+  }
+};
 
 /**
  * Firebase 서버에 FCM 토큰 발급을 요청합니다.
@@ -24,4 +39,4 @@ const getFCMToken = async () => {
   });
 };
 
-export { firebase, messaging, getFCMToken };
+export { initializeFirebase, getFCMToken };
