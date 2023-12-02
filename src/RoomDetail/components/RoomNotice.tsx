@@ -26,7 +26,7 @@ const RoomNotice = ({ content }: RoomNoticeProps) => {
         <div className={InfoStyle.container}>
           <div
             className="flex w-full gap-2 py-[0.56rem]"
-            onClick={() => setOpen(true)}
+            onClick={() => setOpen((prev) => !prev)}
           >
             <Icon
               className={InfoStyle.button}
