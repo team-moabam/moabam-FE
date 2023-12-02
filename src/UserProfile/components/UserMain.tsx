@@ -118,10 +118,16 @@ const UserMain = ({ userId = '' }: UserMainProps) => {
             key={badge}
           >
             <div
-              className={`h-14 w-14 rounded-full ${
+              className={`h-16 w-16 rounded-full p-3 ${
                 unlock ? 'bg-light-point dark:bg-dark-point' : 'bg-dark-gray'
               }`}
-            />
+            >
+              <img
+                src={
+                  unlock ? badgeImage[badge] ?? '' : '/assets/badge/lock.png'
+                }
+              />
+            </div>
             <p className="text-center">{badge}</p>
           </div>
         ))}
@@ -167,3 +173,12 @@ const UserMain = ({ userId = '' }: UserMainProps) => {
 };
 
 export default UserMain;
+
+const badgeImage: {
+  [key: string]: string;
+} = {
+  '오목눈이 탄생': '/assets/badge/birthOmok.png',
+  '부엉이 탄생': '/assets/badge/birthOmok.png',
+  '어른 오목눈이': '/assets/badge/growOmok.png',
+  '어른 부엉이': '/assets/badge/growOwl.png'
+};
