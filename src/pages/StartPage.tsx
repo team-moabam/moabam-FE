@@ -43,6 +43,7 @@ const StartPage = () => {
         direction="vertical"
         allowSlidePrev={false}
         onReachEnd={() => moveTo('routines')}
+        threshold={50}
       >
         <SwiperSlide className="shadow-lg">
           <Background type={dayType} />
