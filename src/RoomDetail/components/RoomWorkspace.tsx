@@ -144,7 +144,16 @@ const RoomWorkspace = ({
           )}
           <button
             className="mt-[1.19rem] text-sm text-black  dark:text-white"
-            onClick={toggle}
+            onClick={() => {
+              if (myCertificationImage && myCertificationImage.length > 0) {
+                toggle();
+              } else {
+                Toast.show({
+                  status: 'danger',
+                  message: '인증한 날은 방을 나갈 수 없어요..'
+                });
+              }
+            }}
           >
             방 나가기
           </button>
