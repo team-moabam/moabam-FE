@@ -32,10 +32,11 @@ const RoomDetailContainer = ({ roomDetailData }: RoomDetailContainerProps) => {
 
   return (
     <>
-      <div
-        className="h-[20.56rem] bg-cover bg-no-repeat text-white"
-        style={{ backgroundImage: `url(${roomImage})` }}
-      >
+      <div className="h-[20.56rem] text-white">
+        <img
+          className="absolute h-[20.56rem] w-full dark:brightness-[70%] dark:sepia-[0.2]"
+          src={roomImage}
+        ></img>
         <RoomInfo
           {...roomDetailData}
           status={status}

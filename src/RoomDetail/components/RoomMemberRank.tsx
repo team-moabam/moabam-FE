@@ -1,23 +1,26 @@
 import { useContext } from 'react';
-import { Link } from 'react-router-dom';
 import clsx from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { RankMember } from '@/core/types/Member';
+import getTimeRange from '@/core/utils/getTimeRange';
+import { DayType } from '@/core/types';
 import checkCertifyTime from '../utils/checkCertifyTime';
-import isMorning from '../utils/isMorning';
 import { DateRoomDetailContext } from './RoomDetailProvider';
 
 interface RoomMemberRankProps {
   todayCertificateRank: RankMember[];
   certifyTime: number;
+  roomType: DayType;
 }
 
 const RoomMemberRank = ({
   todayCertificateRank,
-  certifyTime
+  certifyTime,
+  roomType
 }: RoomMemberRankProps) => {
   const { serverTime, chooseDate } = useContext(DateRoomDetailContext);
 
+  const isBirdSleep = getTimeRange(serverTime) !== roomType;
   return (
     <>
       {checkCertifyTime(certifyTime, serverTime) &&
@@ -40,7 +43,7 @@ const RoomMemberRank = ({
                   key={memberId}
                   className={clsx('absolute flex w-fit flex-col items-center', {
                     'top-[39%] left-[37%]': rank === 1,
-                    'top-[51%] left-[14%]': rank === 2,
+                    'top-[51%] left-[10%]': rank === 2,
                     'top-[57%] right-[8%]': rank === 3
                   })}
                 >
@@ -50,7 +53,7 @@ const RoomMemberRank = ({
                         'relative mb-[0.22rem] h-[3.9rem] w-[3.25rem] bg-contain bg-bottom bg-no-repeat',
                         {
                           "after:absolute after:right-[-14px] after:top-[-10px] after:block after:content-['zzz'] after:origin-center after:rotate-[-16deg]":
-                            isMorning(serverTime),
+                            isBirdSleep,
                           'h-[2.88rem] w-[3.25rem]':
                             awakeImageTitle === 'egg.png' ||
                             sleepImageTitle === 'egg.png'
@@ -59,7 +62,7 @@ const RoomMemberRank = ({
                     )}
                     style={{
                       backgroundImage: `url(${
-                        isMorning(serverTime) ? sleepImage : awakeImage
+                        isBirdSleep ? sleepImage : awakeImage
                       })`
                     }}
                   />

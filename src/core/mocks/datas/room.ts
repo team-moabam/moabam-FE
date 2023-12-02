@@ -38,9 +38,9 @@ export const RoomInfo = {
         'https://image.moabam.com/moabam/default/member-profile.png',
       contributionPoint: 100,
       awakeImage:
-        'https://image.moabam.com/moabam/skins/owl/default/eyes-opened.png',
+        'https://image.moabam.com/moabam/skins/omok/default/eyes-opened.png',
       sleepImage:
-        'https://image.moabam.com/moabam/skins/owl/default/eyes-closed.png',
+        'https://image.moabam.com/moabam/skins/omok/default/eyes-closed.png',
       certificationImage: null
     },
     {
@@ -51,10 +51,8 @@ export const RoomInfo = {
       profileImage:
         'https://image.moabam.com/moabam/default/member-profile.png',
       contributionPoint: 100,
-      awakeImage:
-        'https://image.moabam.com/moabam/skins/owl/santa/eyes-opened.png',
-      sleepImage:
-        'https://image.moabam.com/moabam/skins/owl/santa/eyes-closed.png',
+      awakeImage: 'https://image.moabam.com/moabam/skins/omok/default/egg.png',
+      sleepImage: 'https://image.moabam.com/moabam/skins/omok/default/egg.png',
       certificationImage: {
         images: [
           {
@@ -84,8 +82,9 @@ export const RoomInfo = {
         'https://image.moabam.com/moabam/default/member-profile.png',
       contributionPoint: 100,
       awakeImage:
-        'https://image.moabam.com/moabam/skins/owl/santa/eyes-opened.png',
-      sleepImage: 'https://image.moabam.com/moabam/skins/owl/default/egg.png',
+        'https://image.moabam.com/moabam/skins/omok/santa/eyes-opened.png',
+      sleepImage:
+        'https://image.moabam.com/moabam/skins/omok/santa/eyes-closed.png',
       certificationImage: {
         images: [
           {
