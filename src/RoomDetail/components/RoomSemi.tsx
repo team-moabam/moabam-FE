@@ -62,9 +62,9 @@ const RoomSemi = ({ roomId, serverTime, checkedRoomJoin }: RoomSemiProps) => {
               <span
                 key={memberId}
                 className={clsx('absolute flex w-fit flex-col items-center', {
-                  'top-[11.69rem] left-[4.13rem]': rank === 1,
-                  'top-[13.63rem] left-[12.19rem]': rank === 2,
-                  'top-[12.75rem] right-[0.69rem]': rank === 3
+                  'top-[39%] left-[37%]': rank === 1,
+                  'top-[51%] left-[10%]': rank === 2,
+                  'top-[57%] right-[8%]': rank === 3
                 })}
               >
                 <div

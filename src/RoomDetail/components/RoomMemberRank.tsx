@@ -43,7 +43,7 @@ const RoomMemberRank = ({
                   key={memberId}
                   className={clsx('absolute flex w-fit flex-col items-center', {
                     'top-[39%] left-[37%]': rank === 1,
-                    'top-[51%] left-[14%]': rank === 2,
+                    'top-[51%] left-[10%]': rank === 2,
                     'top-[57%] right-[8%]': rank === 3
                   })}
                 >
