@@ -40,21 +40,21 @@ export const RoomInfo = {
       awakeImage:
         'https://image.moabam.com/moabam/skins/owl/default/eyes-opened.png',
       sleepImage:
-        'https://image.moabam.com/moabam/skins/owl/default/eyes-opened.png',
+        'https://image.moabam.com/moabam/skins/owl/default/eyes-closed.png',
       certificationImage: null
     },
     {
       rank: 2,
       memberId: 6,
       nickname: '오목눈이#U8WN6H',
-      isNotificationSent: false,
+      isNotificationSent: true,
       profileImage:
         'https://image.moabam.com/moabam/default/member-profile.png',
       contributionPoint: 100,
       awakeImage:
         'https://image.moabam.com/moabam/skins/owl/santa/eyes-opened.png',
       sleepImage:
-        'https://image.moabam.com/moabam/skins/owl/santa/eyes-opened.png',
+        'https://image.moabam.com/moabam/skins/owl/santa/eyes-closed.png',
       certificationImage: {
         images: [
           {
@@ -86,7 +86,7 @@ export const RoomInfo = {
       awakeImage:
         'https://image.moabam.com/moabam/skins/owl/santa/eyes-opened.png',
       sleepImage:
-        'https://image.moabam.com/moabam/skins/owl/santa/eyes-opened.png',
+        'https://image.moabam.com/moabam/skins/owl/santa/eyes-closed.png',
       certificationImage: {
         images: [
           {

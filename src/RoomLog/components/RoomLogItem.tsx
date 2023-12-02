@@ -1,3 +1,4 @@
+import { Dispatch, SetStateAction } from 'react';
 import { RankMember } from '@/core/types/Member';
 import { Avatar } from '@/shared/Avatar';
 import { Accordion, AccordionHeader, AccordionBody } from '@/shared/Accordion';
@@ -5,6 +6,8 @@ import { Accordion, AccordionHeader, AccordionBody } from '@/shared/Accordion';
 type extendedProps = {
   routines: { routineId: number; content: string }[];
   managerNickName: string;
+  chooseLog: number;
+  setSelectLog: Dispatch<SetStateAction<number>>;
 };
 
 type RoomLogItemProps = extendedProps & RankMember;
@@ -12,19 +15,29 @@ type RoomLogItemProps = extendedProps & RankMember;
 const RoomLogItem = ({
   contributionPoint,
   profileImage,
-  memberId,
   nickname,
   certificationImage,
   routines,
-  managerNickName
+  managerNickName,
+  memberId,
+  chooseLog,
+  setSelectLog
 }: RoomLogItemProps) => {
   return (
-    <div className="flex w-full items-center justify-between peer-invalid:visible">
-      <Accordion className="p-0">
-        <AccordionHeader className="mb-5 mt-[1.19rem] w-full px-7">
+    <div
+      className="flex w-full items-center justify-between peer-invalid:visible"
+      onClick={() => setSelectLog(memberId)}
+    >
+      <Accordion
+        className="p-0"
+        initialOpen={memberId === chooseLog}
+      >
+        <AccordionHeader
+          className="mb-5 mt-[1.19rem] w-full px-7"
+          headerToggle={true}
+        >
           <Avatar
             imgUrl={profileImage}
-            userId={memberId}
             nickname={nickname}
             contribution={contributionPoint}
             manager={managerNickName === nickname}
