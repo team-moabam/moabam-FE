@@ -26,7 +26,7 @@ const RoomCard = ({ room }: RoomCardProps) => {
     >
       <RoomSummary {...room} />
       <div className="flex shrink-0 flex-col justify-between">
-        <BugInfo bug={obtainedBugs} />
+        <BugInfo bug={isMemberCertifiedToday ? obtainedBugs : 0} />
         <CertifyButton isCertifiedToday={isMemberCertifiedToday} />
       </div>
     </div>
