@@ -10,7 +10,6 @@ import { Tab, TabItem } from '@/shared/Tab';
 import { Icon } from '@/shared/Icon';
 import { LoadingSpinner } from '@/shared/LoadingSpinner';
 import { Toast } from '@/shared/Toast';
-import checkCertifyTime from '../utils/checkCertifyTime';
 import { DateRoomDetailContext } from './RoomDetailProvider';
 import RoomCalendar from './RoomCalendar';
 import CertificationProgress from './CertificationProgress';
@@ -89,22 +88,6 @@ const RoomWorkspace = ({
     roomCreatedCertifyEndTime.setMinutes(10);
     roomCreatedCertifyEndTime.setSeconds(0);
     roomCreatedCertifyEndTime.setMilliseconds(0);
-
-    // if (
-    //   roomCreatedDate.getDate() === chooseDate.getDate() &&
-    //   roomCreatedCertifyEndTime.getTime() < roomCreatedDate.getTime()
-    // ) {
-    //   e.preventDefault();
-    //   Toast.show(
-    //     {
-    //       message: '인증 기록이 없습니다',
-    //       status: 'info'
-    //     },
-    //     2000
-    //   );
-    //   return;
-    // }
-    // TODO : 방 생성 전에 인증 타임인 경우 - 인증 기록이 없습니다 vs 그냥 보여주기
 
     if (
       chooseDate.getDate() === serverTime.getDate() &&

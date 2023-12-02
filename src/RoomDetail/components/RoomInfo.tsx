@@ -10,8 +10,6 @@ interface extendedProps {
 type RoomInfoProps = extendedProps & RoomInfoType;
 const RoomInfo = ({
   level,
-  currentUserCount,
-  maxUserCount,
   todayCertificateRank,
   certifyTime,
   status,

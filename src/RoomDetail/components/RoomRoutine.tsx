@@ -51,8 +51,7 @@ const RoomRoutine = ({
       </FormProvider>
       <div className="mb-[0.88rem] flex justify-between text-base">
         <h4 className="text-black dark:text-white">개인 인증</h4>
-        {certifiedDates.includes(chooseDateString) &&
-        chooseDate.getDate() !== serverTime.getDate() ? (
+        {certifiedDates.includes(chooseDateString) ? (
           <span className="text-light-point dark:text-dark-point">
             인증 성공
           </span>
@@ -66,8 +65,7 @@ const RoomRoutine = ({
             {certifyTime}:00{certifyTime > 12 ? 'AM' : 'PM'}
           </span>
           <span>
-            ({certifyTime < 1 ? certifyTime + 23 : certifyTime - 1}:50 ~
-            {certifyTime}:10)
+            ({certifyTime}:00 ~ {certifyTime}:10)
           </span>
         </div>
         <RoutineList className="mb-8">
