@@ -15,7 +15,6 @@ export const makeWeekCalendar = (serverTime: Date) => {
   for (let i = 0; i < 7; i++) {
     const newDate = new Date(serverTime);
     newDate.setDate(mondayDate + i);
-    console.log(newDate);
     weekArray[i] = newDate;
   }
 
