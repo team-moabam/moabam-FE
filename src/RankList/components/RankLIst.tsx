@@ -27,7 +27,10 @@ const RankList = () => {
           <RankThumbnailItem rankData={topRankings[2]} />
         </div>
       </div>
-      <div className="mt-5 h-full overflow-auto bg-light-main text-black dark:bg-dark-main dark:text-white">
+      <div className="h-full overflow-auto bg-light-main text-black dark:bg-dark-main dark:text-white">
+        <div className="p-4 text-dark-gray">
+          정시 기준 15분 마다 업데이트 됩니다!
+        </div>
         <ul>
           {topRankings.map(({ rank, memberId, nickname, image, score }) => (
             <Link
