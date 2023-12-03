@@ -74,18 +74,6 @@ const ProductSheet = ({ close }: ProductSheetProps) => {
       { itemId: id, bugType: purchaseOption },
       {
         onSuccess: () => {
-          setSelectItem({ ...selectItem, [type]: productItem });
-          queryClient.invalidateQueries({
-            queryKey: itemOptions.all(type).queryKey
-          });
-          queryClient.invalidateQueries({
-            queryKey: memberOptions.myInfo().queryKey
-          });
-          Toast.show({
-            message: '구매 성공!',
-            status: 'confirm'
-          });
-          close();
           selectMutation.mutate(id, {
             onSuccess: () => {
               setSelectItem({ ...selectItem, [type]: productItem });
