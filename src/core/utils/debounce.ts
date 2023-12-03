@@ -1,13 +1,20 @@
-class Debounce {
-  private timer: NodeJS.Timeout | null = null;
+export const debounce = <Callback extends (...args: any[]) => any>(
+  callback: Callback,
+  delay: number = 300
+) => {
+  let timeout: NodeJS.Timeout;
 
-  public run(callback: VoidFunction, timeout: number = 300) {
-    if (this.timer) {
-      clearTimeout(this.timer);
+  return (...args: Parameters<Callback>): ReturnType<Callback> => {
+    let result: any;
+
+    if (timeout) {
+      clearTimeout(timeout);
     }
 
-    this.timer = setTimeout(callback, timeout);
-  }
-}
+    timeout = setTimeout(() => {
+      result = callback.apply(this, args);
+    }, delay);
 
-export default Debounce;
+    return result;
+  };
+};
