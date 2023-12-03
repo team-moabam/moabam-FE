@@ -81,11 +81,11 @@ const RoomWorkspace = ({
     serverTime: Date,
     certifyTime: number
   ) => {
-    const certifyEndTime = new Date(serverTime);
-    certifyEndTime.setHours(certifyTime);
-    certifyEndTime.setMinutes(10);
-    certifyEndTime.setSeconds(0);
-    certifyEndTime.setMilliseconds(0);
+    const certifyStartTime = new Date(serverTime);
+    certifyStartTime.setHours(certifyTime);
+    certifyStartTime.setMinutes(0);
+    certifyStartTime.setSeconds(0);
+    certifyStartTime.setMilliseconds(0);
 
     const roomCreatedCertifyEndTime = new Date(roomCreatedDate);
     roomCreatedCertifyEndTime.setHours(certifyTime);
@@ -95,7 +95,7 @@ const RoomWorkspace = ({
 
     if (
       chooseDate.getDate() === serverTime.getDate() &&
-      certifyEndTime.getTime() > serverTime.getTime()
+      certifyStartTime.getTime() > serverTime.getTime()
     ) {
       e.preventDefault();
       Toast.show(
