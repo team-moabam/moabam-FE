@@ -178,7 +178,7 @@ export default UserMain;
 const badgeImage: {
   [key: string]: string;
 } = {
-  '탄생 축하 뱃지': '/assets/badge/birthOmok.png',
-  '10레벨 뱃지': '/assets/badge/birthOmok.png',
-  '50레벨 뱃지': '/assets/badge/growOmok.png'
+  '탄생 축하 뱃지': '/assets/badge/birth.png',
+  '10레벨 뱃지': '/assets/badge/10.png',
+  '50레벨 뱃지': '/assets/badge/50.png'
 };
