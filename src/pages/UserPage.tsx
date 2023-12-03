@@ -8,7 +8,7 @@ import UserMainFallback from '@/UserProfile/components/UserMainFallback';
 
 const UserPage = () => {
   const { userId } = useParams();
-  //test
+
   return (
     <div className="relative h-full overflow-auto px-5 pb-5">
       <Header
