@@ -8,7 +8,7 @@ interface FakeStartPageProps {
 
 const FakeStartPage = ({ dayType }: FakeStartPageProps) => {
   return (
-    <div className="h-full">
+    <div className="h-full select-none">
       <Background type={dayType} />
       <UserInfoFallback type={dayType} />
       <div className="absolute inset-x-0 bottom-8 mx-auto w-fit">
