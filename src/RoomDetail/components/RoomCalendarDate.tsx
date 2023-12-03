@@ -42,7 +42,7 @@ const RoomCalendarDate = ({
     } else if (thisDateTime < roomCreateDateTime) {
       Toast.show(
         {
-          message: '기록이 없습니다',
+          message: '방 생성 전 날짜입니다',
           status: 'info'
         },
         2000
