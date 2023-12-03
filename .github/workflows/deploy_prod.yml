@@ -18,8 +18,12 @@ jobs:
 
       - name: Setup .env
         run: |
-          echo "VITE_BACKEND_API_ENDPOINT=${{ secrets.VITE_BACKEND_API_ENDPOINT }}" >> .env
-          echo "VITE_DEPLOY_ENDPOINT=${{ secrets.VITE_DEPLOY_ENDPOINT }}" >> .env
+          echo "VITE_DEPLOY_TARGET"=production >> .env
+          echo "VITE_DEV_BACKEND_API_ENDPOINT=${{ secrets.VITE_DEV_BACKEND_API_ENDPOINT }}" >> .env
+          echo "VITE_PROD_BACKEND_API_ENDPOINT=${{ secrets.VITE_PROD_BACKEND_API_ENDPOINT }}" >> .env
+          echo "VITE_DEV_DEPLOY_ENDPOINT=${{ secrets.VITE_DEV_DEPLOY_ENDPOINT }}" >> .env
+          echo "VITE_PROD_DEPLOY_ENDPOINT=${{ secrets.VITE_PROD_DEPLOY_ENDPOINT }}" >> .env
+
           echo "VITE_KAKAO_LOGIN_CLIENT_ID=${{ secrets.VITE_KAKAO_LOGIN_CLIENT_ID }}" >> .env
           echo "VITE_FIREBASE_API_KEY=${{ secrets.VITE_FIREBASE_API_KEY }}" >> .env
           echo "VITE_FIREBASE_AUTH_DOMAIN=${{ secrets.VITE_FIREBASE_AUTH_DOMAIN }}" >> .env
