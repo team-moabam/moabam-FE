@@ -31,7 +31,6 @@ const RoomCalendar = ({ certifiedDates, certifyTime }: RoomCalendarProps) => {
             key={thisDate.getDate()}
             thisDate={thisDate}
             certifiedDates={certifiedDates}
-            certifyTime={certifyTime}
           />
         ))}
       </div>

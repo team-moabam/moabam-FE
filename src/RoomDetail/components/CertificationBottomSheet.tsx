@@ -9,7 +9,7 @@ import { BottomSheet } from '@/shared/BottomSheet';
 import { BottomSheetProps } from '@/shared/BottomSheet/components/BottomSheet';
 import { Toast } from '@/shared/Toast';
 import { FormCertificationImage } from '../types/type';
-import ImageInput from './ImageInput';
+import RoomDetailImageInput from './RoomDetailImageInput';
 
 interface CertificationBottomSheetProps {
   bottomSheetProps: BottomSheetProps;
@@ -122,7 +122,7 @@ const CertificationBottomSheet = ({
         >
           {routines.map(({ routineId, content }, idx) => {
             return (
-              <ImageInput
+              <RoomDetailImageInput
                 key={routineId}
                 content={content}
                 image={myCertificationImage && myCertificationImage[idx]?.image}
