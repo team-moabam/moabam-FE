@@ -57,7 +57,7 @@ const RankList = () => {
           />
         </div>
         <div className="flex-1">{myRanking.nickname}</div>
-        <div>Lv {myRanking.score}</div>
+        <div>{myRanking.score} p</div>
       </div>
     </>
   );
