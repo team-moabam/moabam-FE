@@ -10,6 +10,11 @@ const RankList = () => {
     ...rankOptions.rank()
   });
 
+  if (topRankings.length < 3)
+    return (
+      <div className="flex justify-center p-5">유저가 너무 적습니다..흑흑</div>
+    );
+
   return (
     <>
       <div>
@@ -38,7 +43,7 @@ const RankList = () => {
                 />
               </div>
               <div className="flex-1">{nickname}</div>
-              <div>Lv {score}</div>
+              <div>{score} p</div>
             </Link>
           ))}
         </ul>

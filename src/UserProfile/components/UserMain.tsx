@@ -178,8 +178,7 @@ export default UserMain;
 const badgeImage: {
   [key: string]: string;
 } = {
-  '오목눈이 탄생': '/assets/badge/birthOmok.png',
-  '부엉이 탄생': '/assets/badge/birthOmok.png',
-  '어른 오목눈이': '/assets/badge/growOmok.png',
-  '어른 부엉이': '/assets/badge/growOwl.png'
+  '탄생 축하 뱃지': '/assets/badge/birthOmok.png',
+  '10레벨 뱃지': '/assets/badge/birthOmok.png',
+  '50레벨 뱃지': '/assets/badge/growOmok.png'
 };

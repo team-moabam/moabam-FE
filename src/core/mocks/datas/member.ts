@@ -11,19 +11,15 @@ export const MY_INFO: MyInfo = {
   },
   badges: [
     {
-      badge: '오목눈이 탄생',
+      badge: '탄생 축하 뱃지',
       unlock: true
     },
     {
-      badge: '어른 오목눈이',
+      badge: '10레벨 뱃지',
       unlock: false
     },
     {
-      badge: '어른 부엉이',
-      unlock: true
-    },
-    {
-      badge: '부엉이 탄생',
+      badge: '50레벨 뱃지',
       unlock: true
     }
   ],
@@ -46,19 +42,15 @@ export const MEMBER_INFO: MemberInfo = {
   },
   badges: [
     {
-      badge: '오목눈이_탄생',
+      badge: '탄생 축하 뱃지',
       unlock: true
     },
     {
-      badge: '어른_오목눈이',
+      badge: '10레벨 뱃지',
       unlock: false
     },
     {
-      badge: '어른_부엉이',
-      unlock: true
-    },
-    {
-      badge: '부엉이_탄생',
+      badge: '50레벨 뱃지',
       unlock: true
     }
   ],
