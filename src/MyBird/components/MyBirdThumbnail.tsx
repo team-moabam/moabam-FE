@@ -15,7 +15,7 @@ const MyBirdThumbnail = ({ type, bgImage }: MyBirdThumbnailProps) => {
           className="absolute w-full object-cover"
         />
         {selectItem && (
-          <div className="absolute bottom-[15%] left-[15%] h-20 w-20">
+          <div className="absolute bottom-[15%] left-[35%] h-14 w-14">
             <img src={selectItem[type]?.image} />
           </div>
         )}
