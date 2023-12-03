@@ -30,6 +30,14 @@ const RoomRoutine = ({
 
   const { chooseDate, serverTime } = useContext(DateRoomDetailContext);
 
+  const certifyEndTime = new Date(serverTime);
+  certifyEndTime.setHours(certifyTime);
+  certifyEndTime.setMinutes(0);
+  certifyEndTime.setSeconds(0);
+  certifyEndTime.setMilliseconds(0);
+
+  const isTodayRoom = chooseDate.getDate() === serverTime.getDate();
+
   const chooseDateString = `${chooseDate.getFullYear()}-${
     chooseDate.getMonth() + 1
   }-${chooseDate.getDate() < 10 ? 0 : ''}${chooseDate.getDate()}`;
@@ -50,13 +58,15 @@ const RoomRoutine = ({
         />
       </FormProvider>
       <div className="mb-[0.88rem] flex justify-between text-base">
-        <h4 className="text-black dark:text-white">개인 인증</h4>
+        <h4 className="text-black dark:text-white">나의 인증</h4>
         {certifiedDates.includes(chooseDateString) ? (
           <span className="text-light-point dark:text-dark-point">
             인증 성공
           </span>
-        ) : (
+        ) : isTodayRoom && serverTime.getTime() < certifyEndTime.getTime() ? (
           <></>
+        ) : (
+          <span className="text-danger">인증 실패</span>
         )}
       </div>
       <div className="rounded-lg bg-light-sub px-[1.31rem] py-4 shadow-[0px_4px_6px_-2px_rgba(0,0,0,0.05)] dark:bg-dark-sub ">
@@ -78,16 +88,12 @@ const RoomRoutine = ({
           ))}
         </RoutineList>
 
-        {checkCertifyTime(certifyTime, serverTime) && !myCertificationImage ? (
-          <button
-            className="btn btn-light-point dark:btn-dark-point w-full rounded-lg text-base"
-            onClick={handleToggle}
-          >
+        {checkCertifyTime(certifyTime, serverTime) && myCertificationImage ? (
+          <button className="btn btn-disabled w-full rounded-lg text-base">
             인증 완료
           </button>
         ) : checkCertifyTime(certifyTime, serverTime) &&
-          myCertificationImage &&
-          myCertificationImage.length > 0 ? (
+          !myCertificationImage ? (
           <button
             className="btn btn-light-point dark:btn-dark-point w-full rounded-lg text-base"
             onClick={handleToggle}
