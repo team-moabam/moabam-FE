@@ -74,7 +74,7 @@ const MyCouponList = () => {
         <ul>
           {data.map(({ walletId, id, description, name, point, type }) => (
             <li
-              className="mb-2 flex rounded-lg bg-light-sub pr-0 shadow-lg dark:bg-dark-sub"
+              className="mb-2 flex rounded-lg bg-light-sub pr-0 shadow-lg transition-all hover:bg-slate-100 dark:bg-dark-sub dark:hover:bg-[#0D122D]"
               key={id}
               onClick={() =>
                 handleSelectCoupon({
