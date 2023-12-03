@@ -96,7 +96,7 @@ const StoreList = () => {
       <ul className="flex flex-col gap-2 p-5">
         {products.map((product) => (
           <li
-            className="flex cursor-pointer items-center gap-2 rounded-lg bg-light-sub p-3 font-extrabold dark:bg-dark-sub"
+            className="flex cursor-pointer items-center gap-2 rounded-lg bg-light-sub p-3 font-extrabold transition-all hover:bg-slate-100 dark:bg-dark-sub dark:hover:bg-[#0D122D]"
             key={product.id}
             onClick={() => handleOpenSheet(product)}
           >

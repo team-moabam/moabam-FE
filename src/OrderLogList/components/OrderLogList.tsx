@@ -28,7 +28,7 @@ const OrderLogList = () => {
         const { icon, StartText, ResultText } = historyOptions[actionType];
         return (
           <li
-            className="flex items-center p-5"
+            className="flex items-center p-5 transition-all hover:bg-slate-100 dark:hover:bg-[#0D122D]"
             key={id}
           >
             <div className="flex flex-1 items-center gap-5">
