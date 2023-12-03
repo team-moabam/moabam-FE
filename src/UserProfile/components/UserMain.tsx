@@ -74,7 +74,7 @@ const UserMain = ({ userId = '' }: UserMainProps) => {
         {isMyPage && (
           <Link
             to="/mybird"
-            className="cursor-pointer text-light-point dark:text-dark-point"
+            className="cursor-pointer text-light-point hover:text-light-point-hover dark:text-dark-point dark:hover:text-dark-point-hover"
           >
             스킨 변경
           </Link>
@@ -84,7 +84,7 @@ const UserMain = ({ userId = '' }: UserMainProps) => {
         <Link
           to={isMyPage ? '/mybird' : '#'}
           state={{ type: 'MORNING' }}
-          className="flex aspect-[3/4] w-1/2 flex-col items-center justify-center gap-3 rounded-lg bg-light-sub text-lg dark:bg-dark-sub"
+          className="flex aspect-[3/4] w-1/2 flex-col items-center justify-center gap-3 rounded-lg bg-light-sub text-lg hover:bg-slate-100 dark:bg-dark-sub dark:hover:bg-[#0D122D] "
         >
           <div className="aspect-square w-3/5  overflow-hidden rounded-full bg-yellow-50">
             <img
@@ -97,7 +97,8 @@ const UserMain = ({ userId = '' }: UserMainProps) => {
         <Link
           to={isMyPage ? '/mybird' : '#'}
           state={{ type: 'NIGHT' }}
-          className="flex aspect-[3/4] w-1/2 flex-col items-center justify-center gap-3 rounded-lg bg-light-sub text-lg dark:bg-dark-sub"
+          className="flex aspect-[3/4] w-1/2 flex-col items-center justify-center gap-3 rounded-lg bg-light-sub text-lg transition-all hover:bg-slate-100 dark:bg-dark-sub dark:hover:bg-[#0D122D]
+          "
         >
           <div className="aspect-square w-3/5 overflow-hidden rounded-full bg-purple-50">
             <img
@@ -143,7 +144,7 @@ const UserMain = ({ userId = '' }: UserMainProps) => {
             </h1>
           </div>
           <Link
-            className="flex h-28 w-full rounded-2xl bg-light-sub dark:bg-dark-sub"
+            className="flex h-28 w-full rounded-2xl bg-light-sub transition-all hover:bg-slate-100 dark:bg-dark-sub dark:hover:bg-[#0D122D]"
             to={`/store`}
           >
             {WalletData.map(({ value, color }) => (

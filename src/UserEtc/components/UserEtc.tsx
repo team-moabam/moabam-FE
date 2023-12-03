@@ -22,7 +22,7 @@ const UserEtc = () => {
         {etc.map(({ icon, route, text }) => (
           <Link
             to={route}
-            className="flex items-center gap-3 p-5 transition-all"
+            className="flex items-center gap-3 p-5 transition-all hover:bg-slate-100 dark:hover:bg-[#0D122D]"
             key={route}
           >
             {icon}
@@ -30,7 +30,7 @@ const UserEtc = () => {
           </Link>
         ))}
         <div
-          className="flex cursor-pointer items-center gap-3 p-5 transition-all"
+          className="flex cursor-pointer items-center gap-3 p-5 transition-all hover:bg-slate-100 dark:hover:bg-[#0D122D]"
           onClick={() => {
             open();
             setSheetContent('로그아웃');

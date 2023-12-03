@@ -2,7 +2,7 @@ name: React App CI/CD
 
 on:
   push:
-    branches: ['main']
+    branches: ['dev']
 
 jobs:
   build:
@@ -18,8 +18,12 @@ jobs:
 
       - name: Setup .env
         run: |
-          echo "VITE_BACKEND_API_ENDPOINT=${{ secrets.VITE_BACKEND_API_ENDPOINT }}" >> .env
-          echo "VITE_DEPLOY_ENDPOINT=${{ secrets.VITE_DEPLOY_ENDPOINT }}" >> .env
+          echo "VITE_DEPLOY_TARGET"=development >> .env
+          echo "VITE_DEV_BACKEND_API_ENDPOINT=${{ secrets.VITE_DEV_BACKEND_API_ENDPOINT }}" >> .env
+          echo "VITE_PROD_BACKEND_API_ENDPOINT=${{ secrets.VITE_PROD_BACKEND_API_ENDPOINT }}" >> .env
+          echo "VITE_DEV_DEPLOY_ENDPOINT=${{ secrets.VITE_DEV_DEPLOY_ENDPOINT }}" >> .env
+          echo "VITE_PROD_DEPLOY_ENDPOINT=${{ secrets.VITE_PROD_DEPLOY_ENDPOINT }}" >> .env
+
           echo "VITE_KAKAO_LOGIN_CLIENT_ID=${{ secrets.VITE_KAKAO_LOGIN_CLIENT_ID }}" >> .env
           echo "VITE_FIREBASE_API_KEY=${{ secrets.VITE_FIREBASE_API_KEY }}" >> .env
           echo "VITE_FIREBASE_AUTH_DOMAIN=${{ secrets.VITE_FIREBASE_AUTH_DOMAIN }}" >> .env
@@ -47,12 +51,3 @@ jobs:
           AWS_S3_BUCKET: ${{ secrets.AWS_S3_DEV_WEB_HOST }}
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-
-      # - name: Invalidate CloudFront
-      #   uses: chetan/invalidate-cloudfront-action@v2
-      #   env:
-      #     DISTRIBUTION: ${{ secrets.AWS_CLOUDFRONT_WEB_HOST_ID }}
-      #     PATHS: '/*'
-      #     AWS_REGION: 'ap-northeast-2'
-      #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
