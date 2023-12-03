@@ -4,24 +4,22 @@ import clsx from 'clsx';
 import { Icon } from '@/shared/Icon';
 import { Toast } from '@/shared/Toast';
 import { DAY_OF_THE_WEEK } from '../constants/constant';
-import makeTodayCertifyTime from '../utils/makeTodayCertifyTime';
 import { DateRoomDetailContext } from './RoomDetailProvider';
 
 interface RoomCalendarDateProps {
   thisDate: Date;
   certifiedDates: string[];
-  certifyTime: number;
 }
 
 const RoomCalendarDate = ({
   thisDate,
-  certifiedDates,
-  certifyTime
+  certifiedDates
 }: RoomCalendarDateProps) => {
   const { selectDate, chooseDate, serverTime, roomCreatedDate } = useContext(
     DateRoomDetailContext
   );
-  const { nowTime } = makeTodayCertifyTime(certifyTime, serverTime);
+
+  const nowTime = serverTime.getTime();
 
   const thisDateDate = thisDate.getDate();
   const thisDateTime = thisDate.getTime();
@@ -44,7 +42,7 @@ const RoomCalendarDate = ({
     } else if (thisDateTime < roomCreateDateTime) {
       Toast.show(
         {
-          message: '기록이 없습니다',
+          message: '방 생성 전 날짜입니다',
           status: 'info'
         },
         2000

@@ -8,7 +8,8 @@ export type RoomInfo = {
   certifyTime: number;
   completePercentage: number;
   currentUserCount: number;
-  exp: number;
+  currentExp: number;
+  totalExp: number;
   level: number;
   managerNickName: string;
   maxUserCount: number;
@@ -30,10 +31,11 @@ export type RoomSemiInfo = {
   certifiedRanks: RankMemberSemi[];
   certifyTime: number;
   currentUserCount: number;
-  exp: number;
+  currentExp: number;
+  totalExp: number;
   level: number;
   maxUserCount: number;
-  roomImage: 'https://image.moabam.com/moabam/default/room-level-00.png';
+  roomImage: string;
   roomType: DayType;
   routines: { routineId: number; content: string }[];
 };

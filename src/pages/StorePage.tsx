@@ -3,6 +3,7 @@ import { Header } from '@/shared/Header';
 import { Deffered } from '@/shared/Deffered';
 import StoreList from '@/StoreList/components/StoreList';
 import StoreListFallback from '@/StoreList/components/StoreListFallback';
+
 const StorePage = () => {
   return (
     <div className="relative h-full overflow-auto ">

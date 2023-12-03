@@ -29,14 +29,15 @@ const RoomSemi = ({ roomId, serverTime, checkedRoomJoin }: RoomSemiProps) => {
     announcement,
     certifiedRanks,
     level,
-    currentUserCount,
-    maxUserCount,
-    exp,
+    currentExp,
+    totalExp,
     roomImage,
     roomType
   } = roomSemiData;
 
   const isBirdSleep = getTimeRange(serverTime) !== roomType;
+
+  const roomProgress = parseInt(`${(currentExp / totalExp) * 100}`);
 
   return (
     <>
@@ -108,16 +109,16 @@ const RoomSemi = ({ roomId, serverTime, checkedRoomJoin }: RoomSemiProps) => {
                 Lv {level}
               </span>
               <div className="flex font-IMHyemin-bold text-base text-light-gray">
-                <span className="font-IMHyemin-bold">{currentUserCount}</span>
+                <span className="font-IMHyemin-bold">{currentExp}</span>
                 <span
                   className="flex font-IMHyemin-bold before:mx-[0.4rem] before:block 
            before:font-IMHyemin-bold before:text-base before:content-['/']"
                 >
-                  {maxUserCount}
+                  {totalExp}
                 </span>
               </div>
             </div>
-            <ProgressBar progress={(exp / 10) * 100}></ProgressBar>
+            <ProgressBar progress={roomProgress}></ProgressBar>
           </div>
         </div>
       </div>
