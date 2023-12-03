@@ -82,10 +82,10 @@ const RoomWorkspace = ({
     certifyTime: number
   ) => {
     const certifyStartTime = new Date(serverTime);
-    certifyEndTime.setHours(certifyTime);
-    certifyEndTime.setMinutes(0);
-    certifyEndTime.setSeconds(0);
-    certifyEndTime.setMilliseconds(0);
+    certifyStartTime.setHours(certifyTime);
+    certifyStartTime.setMinutes(0);
+    certifyStartTime.setSeconds(0);
+    certifyStartTime.setMilliseconds(0);
 
     const roomCreatedCertifyEndTime = new Date(roomCreatedDate);
     roomCreatedCertifyEndTime.setHours(certifyTime);
