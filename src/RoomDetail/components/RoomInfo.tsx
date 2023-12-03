@@ -13,8 +13,11 @@ const RoomInfo = ({
   certifyTime,
   status,
   roomType,
-  exp
+  totalExp,
+  currentExp
 }: RoomInfoProps) => {
+  const roomProgress = parseInt(`${(currentExp / totalExp) * 100}`);
+
   return (
     <div className="relative h-[20.56rem] overflow-hidden">
       {status !== 'success' ? (
@@ -34,16 +37,16 @@ const RoomInfo = ({
             Lv {level}
           </span>
           <div className="flex items-center font-IMHyemin-bold text-base text-light-gray">
-            <span className="font-IMHyemin-bold">{exp}</span>
+            <span className="font-IMHyemin-bold">{currentExp}</span>
             <span
               className="flex font-IMHyemin-bold before:ml-[0.4rem] before:mr-[0.2rem] before:block 
            before:font-IMHyemin-bold before:text-base before:content-['/']"
             >
-              10
+              {totalExp}
             </span>
           </div>
         </div>
-        <ProgressBar progress={(exp / 10) * 100}></ProgressBar>
+        <ProgressBar progress={roomProgress}></ProgressBar>
       </div>
     </div>
   );
