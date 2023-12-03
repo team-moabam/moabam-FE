@@ -36,7 +36,7 @@ const RankThumbnailItem = ({
         </div>
         <div className="text-sm">{nickname}</div>
         <div className="mt-2 font-extrabold text-light-point dark:text-dark-point">
-          Lv {score}
+          {score} p
         </div>
       </div>
     </Link>
