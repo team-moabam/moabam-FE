@@ -32,7 +32,7 @@ const RoomRoutine = ({
 
   const certifyEndTime = new Date(serverTime);
   certifyEndTime.setHours(certifyTime);
-  certifyEndTime.setMinutes(0);
+  certifyEndTime.setMinutes(10);
   certifyEndTime.setSeconds(0);
   certifyEndTime.setMilliseconds(0);
 
@@ -59,7 +59,7 @@ const RoomRoutine = ({
       </FormProvider>
       <div className="mb-[0.88rem] flex justify-between text-base">
         <h4 className="text-black dark:text-white">나의 인증</h4>
-        {certifiedDates.includes(chooseDateString) ? (
+        {certifiedDates.includes(chooseDateString) || myCertificationImage ? (
           <span className="text-light-point dark:text-dark-point">
             인증 성공
           </span>
