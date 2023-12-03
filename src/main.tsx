@@ -5,7 +5,7 @@ import { QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { HelmetProvider } from 'react-helmet-async';
 import router from '@/core/routes/router';
-import Debounce from '@/core/utils/debounce';
+import { debounce } from '@/core/utils/debounce';
 import { initializeFirebase, getFCMToken } from '@/core/utils/firebase';
 import { ThemeProvider } from '@/core/hooks/useTheme';
 import notificationAPI from '@/core/api/functions/notificationAPI';
@@ -70,7 +70,6 @@ const setupFCM = async () => {
     return;
   }
 
-  const debounce = new Debounce();
   initializeFirebase();
 
   const permission = await navigator.permissions.query({
@@ -82,15 +81,17 @@ const setupFCM = async () => {
       return;
     }
 
-    debounce.run(async () => {
-      try {
-        const fcmToken = await getFCMToken();
-        notificationAPI.postFCMToken({ fcmToken });
-      } catch (err) {
-        console.error(err);
-      }
-    }, 1000);
+    handlePostFCMToken();
   };
+
+  const handlePostFCMToken = debounce(async () => {
+    try {
+      const fcmToken = await getFCMToken();
+      notificationAPI.postFCMToken({ fcmToken });
+    } catch (err) {
+      console.error(err);
+    }
+  }, 1000);
 };
 
 Promise.allSettled([setupMSW(), setupFCM(), setupSW()]).then(() => {
