@@ -33,8 +33,11 @@ const ProductSheet = ({ close }: ProductSheetProps) => {
   });
   const { selectItem, setSelectItem, productItem } = useContext(MyBirdContext);
 
-  const mutation = useMutation({
+  const purchaseMutation = useMutation({
     mutationFn: itemAPI.purchase
+  });
+  const selectMutation = useMutation({
+    mutationFn: itemAPI.select
   });
   const queryClient = useQueryClient();
   const { bugPrice, goldenBugPrice, level, name, type } = productItem as Item;
@@ -67,7 +70,7 @@ const ProductSheet = ({ close }: ProductSheetProps) => {
 
   const purchaseBird = (id: number | undefined) => {
     if (!purchaseOption || !id) return;
-    mutation.mutate(
+    purchaseMutation.mutate(
       { itemId: id, bugType: purchaseOption },
       {
         onSuccess: () => {
@@ -83,6 +86,29 @@ const ProductSheet = ({ close }: ProductSheetProps) => {
             status: 'confirm'
           });
           close();
+          selectMutation.mutate(id, {
+            onSuccess: () => {
+              setSelectItem({ ...selectItem, [type]: productItem });
+              queryClient.invalidateQueries({
+                queryKey: itemOptions.all(type).queryKey
+              });
+              queryClient.invalidateQueries({
+                queryKey: memberOptions.myInfo().queryKey
+              });
+              Toast.show({
+                message: '구매 성공!',
+                status: 'confirm'
+              });
+              close();
+            },
+            onError: (e) => {
+              console.log(e);
+              Toast.show({
+                message: '뭔가 잘 못 되었습니다..',
+                status: 'danger'
+              });
+            }
+          });
         },
         onError: (e) => {
           console.log('무언가 잘못 되었습니다..' + e);

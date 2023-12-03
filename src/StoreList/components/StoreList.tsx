@@ -139,7 +139,7 @@ const StoreList = () => {
             <div className="mt-8 flex flex-col gap-2 text-dark-gray">
               <div className="flex">
                 <h1 className="grow">상품가격</h1>
-                <h1>{selectProduct.price} </h1>
+                <h1>{selectProduct.price} 원</h1>
               </div>
               <div className="flex">
                 <h1 className="grow">할인</h1>
@@ -148,7 +148,12 @@ const StoreList = () => {
               <hr />
               <div className="flex font-extrabold text-light-point dark:text-dark-point">
                 <h1 className="grow">총 결제 금액</h1>
-                <h1>{selectProduct.price - (selectCoupon?.point ?? 0)}</h1>
+                <h1>
+                  {selectProduct.price - (selectCoupon?.point ?? 0) < 0
+                    ? 0
+                    : selectProduct.price - (selectCoupon?.point ?? 0)}{' '}
+                  원
+                </h1>
               </div>
               <button
                 className="btn btn-light-point dark:btn-dark-point mt-2"
