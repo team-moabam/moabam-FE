@@ -1,15 +1,12 @@
 import { Navigate } from 'react-router-dom';
 import { STORAGE_KEYS } from '@/core/constants/storageKeys';
-
-const baseURI = import.meta.env.PROD
-  ? import.meta.env.VITE_DEPLOY_ENDPOINT
-  : import.meta.env.VITE_LOCALHOST;
+import { CLIENT_DEPLOY_ENDPOINT } from '@/core/constants/endpoints';
 
 const KAKAO_LOGIN_URL =
   `https://kauth.kakao.com/oauth/authorize?` +
   `response_type=code&` +
   `client_id=${import.meta.env.VITE_KAKAO_LOGIN_CLIENT_ID}&` +
-  `redirect_uri=${baseURI}` +
+  `redirect_uri=${CLIENT_DEPLOY_ENDPOINT}` +
   `/login/kakao/oauth`;
 
 const JoinPage = () => {
