@@ -1,7 +1,10 @@
 import axios, { AxiosResponse } from 'axios';
 import { CustomAxiosInstance } from './types';
 
-const baseURL = import.meta.env.VITE_BACKEND_API_ENDPOINT;
+const baseURL =
+  import.meta.env.VITE_DEPLOY_TARGET === 'production'
+    ? import.meta.env.VITE_PROD_BACKEND_API_ENDPOINT
+    : import.meta.env.VITE_DEV_BACKEND_API_ENDPOINT;
 
 // 일반적으로 사용하는 axios 인스턴스
 export const baseInstance: CustomAxiosInstance = axios.create({
