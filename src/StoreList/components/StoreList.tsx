@@ -11,6 +11,7 @@ import { ProductBug, MyCoupon, PurchaseRes } from '@/core/types';
 import bugAPI from '@/core/api/functions/bugAPI';
 import paymentAPI from '@/core/api/functions/payment';
 import { BottomSheet, useBottomSheet } from '@/shared/BottomSheet';
+import { Toast } from '@/shared/Toast';
 
 const StoreList = () => {
   const [
@@ -54,6 +55,13 @@ const StoreList = () => {
 
   const handleWidget = () => {
     if (!selectProduct) return;
+
+    // TODO: 운영 환경에서는 아직 결제가 불가능하도록 막아놓았습니다.
+    if (import.meta.env.VITE_DEPLOY_TARGET === 'production') {
+      Toast.show({ message: '준비중인 기능이에요', status: 'info' });
+      return;
+    }
+
     mutation.mutate(
       {
         productId: selectProduct.id,
