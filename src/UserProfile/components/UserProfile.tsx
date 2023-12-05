@@ -7,8 +7,8 @@ import memberOptions from '@/core/api/options/member';
 import { Toast } from '@/shared/Toast';
 
 interface Inputs {
-  nickname?: string;
-  intro?: string;
+  nickname: string;
+  intro: string;
   profileImage?: File[];
 }
 
@@ -74,8 +74,20 @@ const UserProfile = ({
   }) => {
     const formData = new FormData();
     const modifyMemberRequest: ModifyMemberRequest = {};
-    if (nickname) modifyMemberRequest['nickname'] = nickname;
-    if (intro) modifyMemberRequest['intro'] = intro;
+    const newNickname = nickname.replaceAll(' ', '');
+    const newIntro = intro.trim();
+
+    if (newNickname) modifyMemberRequest['nickname'] = newNickname;
+    if (newIntro) modifyMemberRequest['intro'] = newIntro;
+    console.log(newNickname);
+    if (newNickname.length < 2 || 10 < newNickname.length) {
+      Toast.show({
+        message: '닉네임은 2자에서 10자로!',
+        status: 'danger'
+      });
+      return;
+    }
+
     formData.append(
       'modifyMemberRequest',
       new Blob([JSON.stringify(modifyMemberRequest)], {
