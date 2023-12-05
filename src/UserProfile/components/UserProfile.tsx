@@ -7,8 +7,8 @@ import memberOptions from '@/core/api/options/member';
 import { Toast } from '@/shared/Toast';
 
 interface Inputs {
-  nickname?: string;
-  intro?: string;
+  nickname: string;
+  intro: string;
   profileImage?: File[];
 }
 
@@ -74,8 +74,19 @@ const UserProfile = ({
   }) => {
     const formData = new FormData();
     const modifyMemberRequest: ModifyMemberRequest = {};
-    if (nickname) modifyMemberRequest['nickname'] = nickname;
-    if (intro) modifyMemberRequest['intro'] = intro;
+    const newNickname = nickname.replaceAll(' ', '');
+    const newIntro = intro.trim();
+
+    if (newNickname) modifyMemberRequest['nickname'] = newNickname;
+    if (newIntro) modifyMemberRequest['intro'] = newIntro;
+    if (newNickname.length < 2 || 10 < newNickname.length) {
+      Toast.show({
+        message: '닉네임은 2자에서 10자로!',
+        status: 'danger'
+      });
+      return;
+    }
+
     formData.append(
       'modifyMemberRequest',
       new Blob([JSON.stringify(modifyMemberRequest)], {
@@ -123,7 +134,6 @@ const UserProfile = ({
           <MdModeEdit />
         </div>
       )}
-
       {isEditMode ? (
         <form
           className="flex w-full flex-col items-center"
@@ -161,14 +171,15 @@ const UserProfile = ({
           </div>
           <div className="my-2 flex w-full max-w-[16rem] flex-col items-start gap-2">
             <input
-              placeholder={nickname}
+              // placeholder={nickname}
+              defaultValue={nickname}
               className={inputStyle}
               {...register('nickname')}
             />
 
             <input
-              placeholder={intro === '' ? '한 줄 소개' : intro}
               className={inputStyle}
+              defaultValue={intro === '' ? '한 줄 소개' : intro}
               {...register('intro')}
             />
             <span className="text-sm text-danger">
