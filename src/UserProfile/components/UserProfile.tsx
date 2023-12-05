@@ -79,7 +79,6 @@ const UserProfile = ({
 
     if (newNickname) modifyMemberRequest['nickname'] = newNickname;
     if (newIntro) modifyMemberRequest['intro'] = newIntro;
-    console.log(newNickname);
     if (newNickname.length < 2 || 10 < newNickname.length) {
       Toast.show({
         message: '닉네임은 2자에서 10자로!',
@@ -126,7 +125,6 @@ const UserProfile = ({
           <MdModeEdit />
         </div>
       )}
-
       {isEditMode ? (
         <form
           className="flex w-full flex-col items-center"
@@ -164,14 +162,15 @@ const UserProfile = ({
           </div>
           <div className="my-2 flex w-full max-w-[16rem] flex-col items-start gap-2">
             <input
-              placeholder={nickname}
+              // placeholder={nickname}
+              defaultValue={nickname}
               className={inputStyle}
               {...register('nickname')}
             />
 
             <input
-              placeholder={intro === '' ? '한 줄 소개' : intro}
               className={inputStyle}
+              defaultValue={intro === '' ? '한 줄 소개' : intro}
               {...register('intro')}
             />
             <span className="text-sm text-danger">
