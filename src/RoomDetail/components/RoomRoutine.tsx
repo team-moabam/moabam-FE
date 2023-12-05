@@ -28,7 +28,9 @@ const RoomRoutine = ({
     }))
   });
 
-  const { chooseDate, serverTime } = useContext(DateRoomDetailContext);
+  const { chooseDate, serverTime, roomCreatedDate } = useContext(
+    DateRoomDetailContext
+  );
 
   const certifyEndTime = new Date(serverTime);
   certifyEndTime.setHours(certifyTime);
@@ -59,12 +61,15 @@ const RoomRoutine = ({
       </FormProvider>
       <div className="mb-[0.88rem] flex justify-between text-base">
         <h4 className="text-black dark:text-white">나의 인증</h4>
-        {certifiedDates.includes(chooseDateString) || myCertificationImage ? (
+        {(isTodayRoom && serverTime.getTime() < certifyEndTime.getTime()) ||
+        (roomCreatedDate.getDate() === chooseDate.getDate() &&
+          roomCreatedDate.getTime() > certifyEndTime.getTime()) ? (
+          <></>
+        ) : certifiedDates.includes(chooseDateString) ||
+          myCertificationImage ? (
           <span className="text-light-point dark:text-dark-point">
             인증 성공
           </span>
-        ) : isTodayRoom && serverTime.getTime() < certifyEndTime.getTime() ? (
-          <></>
         ) : (
           <span className="text-danger">인증 실패</span>
         )}
