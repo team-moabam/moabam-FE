@@ -104,15 +104,24 @@ const UserProfile = ({
           message: '변경 성공',
           status: 'confirm'
         });
+        handleChangeNormalMode();
       },
-      onError: () => {
-        Toast.show({
-          message: '뭔가가 잘못되었습니다 ㄷㄷ',
-          status: 'danger'
-        });
+      onError: (e) => {
+        switch (e.request.status) {
+          case 409:
+            Toast.show({
+              message: '중복 닉네임 입니다.',
+              status: 'danger'
+            });
+            break;
+          default:
+            Toast.show({
+              message: '뭔가 잘 못 되었습니다.',
+              status: 'danger'
+            });
+        }
       }
     });
-    handleChangeNormalMode();
   };
 
   return (

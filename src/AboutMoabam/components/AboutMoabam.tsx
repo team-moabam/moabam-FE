@@ -53,10 +53,12 @@ const AboutMoabam = ({ theme }: AboutMoabamProps) => {
         <BirdButton
           text="깃허브 구경하기"
           birdImage="/assets/skins/sleepOmokSkin1.png"
+          link="https://github.com/orgs/team-moabam/repositories"
         />
         <BirdButton
           text="기획스토리 보기"
           birdImage="/assets/skins/awakeOwlSkin2.png"
+          link="https://windy-echo-a31.notion.site/MoaBam-abe2d962b807448e89562b9ecc5ea550"
         />
       </div>
     </div>
