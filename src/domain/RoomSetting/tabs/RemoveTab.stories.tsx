@@ -1,8 +1,8 @@
 import { Meta, StoryObj } from '@storybook/react';
 import { http, HttpResponse } from 'msw';
 import { Title, Description, Stories } from '@storybook/blocks';
-import { baseURL } from '@/core/mocks/baseURL';
-import { RoomInfoBeforeEditing } from '@/core/mocks/datas/room';
+import { baseURL } from '@/core/api/mocks/baseURL';
+import { RoomInfoBeforeEditing } from '@/core/api/mocks/datas/room';
 import RemoveTab from './RemoveTab';
 
 const meta = {
