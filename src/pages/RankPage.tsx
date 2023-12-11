@@ -1,8 +1,8 @@
 import { Suspense } from 'react';
 import { Header } from '@/shared/Header';
 import { Deffered } from '@/shared/Deffered';
-import RankList from '@/RankList/components/RankLIst';
-import RankListFallback from '@/RankList/components/RankListFallback';
+import RankList from '@/domain/RankList/components/RankLIst';
+import RankListFallback from '@/domain/RankList/components/RankListFallback';
 
 const RankPage = () => {
   return (

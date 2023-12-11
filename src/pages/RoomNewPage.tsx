@@ -10,7 +10,7 @@ import {
   TimeStep,
   useRoomForm,
   Navbar
-} from '@/RoomNew';
+} from '@/domain/RoomNew';
 
 export const steps = [
   'BirdStep',

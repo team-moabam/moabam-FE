@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { RankMember } from '@/core/types/Member';
 import { Header } from '@/shared/Header';
-import RoomLogItem from '../RoomLog/components/RoomLogItem';
+import RoomLogItem from '@/domain/RoomLog/components/RoomLogItem';
 
 const RoomLogPage = () => {
   const {

@@ -2,8 +2,8 @@ import { Suspense } from 'react';
 import { ErrorBoundary } from '@suspensive/react';
 import { NetworkFallback } from '@/shared/ErrorBoundary';
 import { Deffered } from '@/shared/Deffered';
-import RoomNavigate from '@/RoomNavigate/components/RoomNavigate';
-import RoomNavigateFallback from '@/RoomNavigate/components/RoomNavigateFallback';
+import RoomNavigate from '@/domain/RoomNavigate/components/RoomNavigate';
+import RoomNavigateFallback from '@/domain/RoomNavigate/components/RoomNavigateFallback';
 
 const Room = () => {
   return (

@@ -3,11 +3,16 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Controller } from 'swiper/modules';
 import { SwiperClass } from 'swiper/react';
 import { useMoveRoute } from '@/core/hooks';
-import SlideDown from '@/StartSlide/components/SlideDown';
-import FakeStartPage from '@/StartSlide/components/FakeStartPage';
-import { EventBanner } from '@/Promotion';
-import { PWAInstallBanner } from '@/PWAInstallBanner';
-import { SlideController, useDayTypes, RoomSlide, DayInfo } from '@/RoomSlide';
+import SlideDown from '@/domain/StartSlide/components/SlideDown';
+import FakeStartPage from '@/domain/StartSlide/components/FakeStartPage';
+import { EventBanner } from '@/domain/Promotion';
+import { PWAInstallBanner } from '@/domain/PWAInstallBanner';
+import {
+  SlideController,
+  useDayTypes,
+  RoomSlide,
+  DayInfo
+} from '@/domain/RoomSlide';
 
 const RoutinesPage = () => {
   const { DAY_TYPES, toggleDayType, dayType } = useDayTypes();

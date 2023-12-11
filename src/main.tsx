@@ -10,7 +10,7 @@ import { initializeFirebase, getFCMToken } from '@/core/utils/firebase';
 import { ThemeProvider } from '@/core/hooks/useTheme';
 import notificationAPI from '@/core/api/functions/notificationAPI';
 import queryClient from '@/core/api/queryClient';
-import { PWAInstallBannerProvider } from '@/PWAInstallBanner/hooks/usePWAInstallBanner';
+import { PWAInstallBannerProvider } from '@/domain/PWAInstallBanner/hooks/usePWAInstallBanner';
 import { setupMockServiceWorker, setupFCMServiceWorker } from './setupWorker';
 import './main.css';
 

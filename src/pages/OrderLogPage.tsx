@@ -1,8 +1,8 @@
 import { Suspense } from 'react';
 import { Header } from '@/shared/Header';
 import { Deffered } from '@/shared/Deffered';
-import OrderLogList from '@/OrderLogList/components/OrderLogList';
-import OrderLogListFallback from '@/OrderLogList/components/OrderLogListFallback';
+import OrderLogList from '@/domain/OrderLogList/components/OrderLogList';
+import OrderLogListFallback from '@/domain/OrderLogList/components/OrderLogListFallback';
 
 const OrderLogPage = () => {
   return (

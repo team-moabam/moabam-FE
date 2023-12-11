@@ -1,8 +1,8 @@
 import { Suspense } from 'react';
 import { Header } from '@/shared/Header';
 import { Deffered } from '@/shared/Deffered';
-import LogList from '@/LogList/components/LogList';
-import LogListFallback from '@/LogList/components/LogListFallback';
+import LogList from '@/domain/LogList/components/LogList';
+import LogListFallback from '@/domain/LogList/components/LogListFallback';
 
 const ParticipateLogPage = () => {
   return (

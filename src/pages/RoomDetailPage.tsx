@@ -5,9 +5,9 @@ import { useRouteData } from '@/core/hooks';
 import timeOption from '@/core/api/options/time';
 import { STORAGE_KEYS } from '@/core/constants/storageKeys';
 import { NetworkFallback } from '@/shared/ErrorBoundary';
-import RoomDetail from '@/RoomDetail/components/RoomDetail';
-import RoomSemi from '@/RoomDetail/components/RoomSemi';
-import RoomDetailFallback from '@/RoomDetail/components/RoomDetailFallback';
+import RoomDetail from '@/domain/RoomDetail/components/RoomDetail';
+import RoomSemi from '@/domain/RoomDetail/components/RoomSemi';
+import RoomDetailFallback from '@/domain/RoomDetail/components/RoomDetailFallback';
 
 const RoomDetailPage = () => {
   const {
