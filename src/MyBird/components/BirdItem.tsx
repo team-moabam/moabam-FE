@@ -18,7 +18,7 @@ const BirdItem = ({
   return (
     <>
       <div
-        className={`relative mb-2 grid aspect-[3/4] place-content-center overflow-hidden rounded-2xl bg-light-sub transition-all dark:bg-dark-sub ${
+        className={`relative mb-2 grid aspect-[3/4] place-content-center overflow-hidden rounded-2xl bg-light-sub transition-all hover:bg-slate-100 dark:bg-dark-sub dark:hover:bg-[#0D122D] ${
           isSelect && 'border-4 border-light-point dark:border-dark-point'
         }`}
       >

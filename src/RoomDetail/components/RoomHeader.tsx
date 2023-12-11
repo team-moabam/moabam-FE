@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useLocalStorage, useRouteData } from '@/core/hooks';
 import { RankMember } from '@/core/types/Member';
+import { CLIENT_DEPLOY_ENDPOINT } from '@/core/constants/endpoints';
 import { Header } from '@/shared/Header';
 import { Icon } from '@/shared/Icon';
 import { Toast } from '@/shared/Toast';
@@ -19,7 +20,7 @@ const RoomHeader = ({
   todayCertificateRank
 }: RoomHeaderProps) => {
   const { location } = useRouteData();
-  const sharePath = `${import.meta.env.VITE_DEPLOY_ENDPOINT}${location}`;
+  const sharePath = `${CLIENT_DEPLOY_ENDPOINT}${location}`;
   const [myUserId] = useLocalStorage('MEMBER_ID', null);
 
   const handleShareButtonClick = () => {

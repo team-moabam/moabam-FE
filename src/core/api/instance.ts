@@ -1,17 +1,16 @@
 import axios, { AxiosResponse } from 'axios';
+import { BACKEND_API_ENDPOINT } from '@/core/constants/endpoints';
 import { CustomAxiosInstance } from './types';
-
-const baseURL = import.meta.env.VITE_BACKEND_API_ENDPOINT;
 
 // 일반적으로 사용하는 axios 인스턴스
 export const baseInstance: CustomAxiosInstance = axios.create({
-  baseURL,
+  baseURL: BACKEND_API_ENDPOINT,
   withCredentials: true
 });
 
 // multipart/form-data 를 위한 axios 인스턴스
 export const formDataInstance: CustomAxiosInstance = axios.create({
-  baseURL,
+  baseURL: BACKEND_API_ENDPOINT,
   withCredentials: true,
   headers: { 'Content-Type': 'multipart/form-data' }
 });

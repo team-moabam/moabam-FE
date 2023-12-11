@@ -42,6 +42,8 @@ const RoomWorkspace = ({
   const { chooseDate, serverTime, roomCreatedDate } = useContext(
     DateRoomDetailContext
   );
+
+  const isTodayRoom = chooseDate.getDate() === serverTime.getDate();
   const chooseDateString = `${chooseDate.getFullYear()}${
     chooseDate.getMonth() + 1
   }${chooseDate.getDate() < 10 ? 0 : ''}${chooseDate.getDate()}`;
@@ -79,11 +81,11 @@ const RoomWorkspace = ({
     serverTime: Date,
     certifyTime: number
   ) => {
-    const certifyEndTime = new Date(serverTime);
-    certifyEndTime.setHours(certifyTime);
-    certifyEndTime.setMinutes(10);
-    certifyEndTime.setSeconds(0);
-    certifyEndTime.setMilliseconds(0);
+    const certifyStartTime = new Date(serverTime);
+    certifyStartTime.setHours(certifyTime);
+    certifyStartTime.setMinutes(0);
+    certifyStartTime.setSeconds(0);
+    certifyStartTime.setMilliseconds(0);
 
     const roomCreatedCertifyEndTime = new Date(roomCreatedDate);
     roomCreatedCertifyEndTime.setHours(certifyTime);
@@ -93,7 +95,7 @@ const RoomWorkspace = ({
 
     if (
       chooseDate.getDate() === serverTime.getDate() &&
-      certifyEndTime.getTime() > serverTime.getTime()
+      certifyStartTime.getTime() > serverTime.getTime()
     ) {
       e.preventDefault();
       Toast.show(
@@ -124,15 +126,39 @@ const RoomWorkspace = ({
             </div>
           ) : (
             <>
-              <CertificationProgress
-                percentage={completePercentage}
-                certifyTime={certifyTime}
-              />
-              {
-                <div className="flex justify-end">
+              {isTodayRoom ? (
+                <>
+                  <CertificationProgress
+                    percentage={completePercentage}
+                    certifyTime={certifyTime}
+                  />
+                  <div className="flex justify-end">
+                    <Link
+                      to={`log/${chooseDateString}`}
+                      className="mb-[2.13rem] flex w-fit items-center text-sm text-light-point dark:text-dark-point"
+                      state={{
+                        todayCertificateRank,
+                        routines,
+                        chooseDate,
+                        managerNickName
+                      }}
+                      onClick={(e: MouseEvent) => {
+                        handleLogLinkClick(e, serverTime, certifyTime);
+                      }}
+                    >
+                      인증사진 보러가기
+                      <Icon
+                        size="2xl"
+                        icon="BiChevronRight"
+                      />
+                    </Link>
+                  </div>
+                </>
+              ) : (
+                <div className="mb-[2.12rem] flex h-[2.56rem] w-full items-center justify-center rounded-[62.43rem] bg-light-point dark:bg-dark-point">
                   <Link
                     to={`log/${chooseDateString}`}
-                    className="mb-[2.13rem] flex w-fit items-center text-sm text-light-point dark:text-dark-point"
+                    className="flex w-fit items-center text-base"
                     state={{
                       todayCertificateRank,
                       routines,
@@ -143,14 +169,14 @@ const RoomWorkspace = ({
                       handleLogLinkClick(e, serverTime, certifyTime);
                     }}
                   >
-                    인증사진 보러가기
+                    이날의 인증사진 모음집
                     <Icon
                       size="2xl"
                       icon="BiChevronRight"
                     />
                   </Link>
                 </div>
-              }
+              )}
               <RoomRoutine
                 routines={routines}
                 myCertificationImage={myCertificationImage}

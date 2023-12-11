@@ -1,3 +1,5 @@
+import { BACKEND_API_ENDPOINT } from '@/core/constants/endpoints';
+
 export const baseURL = (path: string) => {
-  return import.meta.env.VITE_BACKEND_API_ENDPOINT + path;
+  return BACKEND_API_ENDPOINT + path;
 };

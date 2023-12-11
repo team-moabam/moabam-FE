@@ -54,7 +54,10 @@ const membersHandlers = [
 
   http.post(baseURL('/members/modify'), async ({ request }) => {
     const data = await request.formData();
-    console.log(data);
+
+    for (const key of data.keys()) {
+      console.log(key, ':', data.get(key));
+    }
     await delay(200);
     return HttpResponse.json({}, { status: 200 });
   }),

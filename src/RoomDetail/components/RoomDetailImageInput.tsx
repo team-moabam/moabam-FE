@@ -5,13 +5,17 @@ import clsx from 'clsx';
 import { Icon } from '@/shared/Icon';
 import { FormCertificationImage } from '../types/type';
 
-interface ImageInputProps {
+interface RoomDetailImageInputProps {
   content: string;
   image?: string | null;
   idx: number;
 }
 
-const ImageInput = ({ content, image, idx }: ImageInputProps) => {
+const RoomDetailImageInput = ({
+  content,
+  image,
+  idx
+}: RoomDetailImageInputProps) => {
   const {
     register,
     formState: { errors },
@@ -88,4 +92,4 @@ const ImageInput = ({ content, image, idx }: ImageInputProps) => {
   );
 };
 
-export default ImageInput;
+export default RoomDetailImageInput;

@@ -11,6 +11,7 @@ import { ProductBug, MyCoupon, PurchaseRes } from '@/core/types';
 import bugAPI from '@/core/api/functions/bugAPI';
 import paymentAPI from '@/core/api/functions/payment';
 import { BottomSheet, useBottomSheet } from '@/shared/BottomSheet';
+import { Toast } from '@/shared/Toast';
 
 const StoreList = () => {
   const [
@@ -54,6 +55,13 @@ const StoreList = () => {
 
   const handleWidget = () => {
     if (!selectProduct) return;
+
+    // TODO: 운영 환경에서는 아직 결제가 불가능하도록 막아놓았습니다.
+    if (import.meta.env.VITE_DEPLOY_TARGET === 'production') {
+      Toast.show({ message: '준비중인 기능이에요', status: 'info' });
+      return;
+    }
+
     mutation.mutate(
       {
         productId: selectProduct.id,
@@ -96,7 +104,7 @@ const StoreList = () => {
       <ul className="flex flex-col gap-2 p-5">
         {products.map((product) => (
           <li
-            className="flex cursor-pointer items-center gap-2 rounded-lg bg-light-sub p-3 font-extrabold dark:bg-dark-sub"
+            className="flex cursor-pointer items-center gap-2 rounded-lg bg-light-sub p-3 font-extrabold transition-all hover:bg-slate-100 dark:bg-dark-sub dark:hover:bg-[#0D122D]"
             key={product.id}
             onClick={() => handleOpenSheet(product)}
           >
@@ -139,7 +147,7 @@ const StoreList = () => {
             <div className="mt-8 flex flex-col gap-2 text-dark-gray">
               <div className="flex">
                 <h1 className="grow">상품가격</h1>
-                <h1>{selectProduct.price} </h1>
+                <h1>{selectProduct.price} 원</h1>
               </div>
               <div className="flex">
                 <h1 className="grow">할인</h1>
@@ -148,7 +156,12 @@ const StoreList = () => {
               <hr />
               <div className="flex font-extrabold text-light-point dark:text-dark-point">
                 <h1 className="grow">총 결제 금액</h1>
-                <h1>{selectProduct.price - (selectCoupon?.point ?? 0)}</h1>
+                <h1>
+                  {selectProduct.price - (selectCoupon?.point ?? 0) < 0
+                    ? 0
+                    : selectProduct.price - (selectCoupon?.point ?? 0)}{' '}
+                  원
+                </h1>
               </div>
               <button
                 className="btn btn-light-point dark:btn-dark-point mt-2"

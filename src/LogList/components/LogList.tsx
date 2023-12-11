@@ -29,7 +29,7 @@ const LogList = () => {
           to={roomId ? `/room/${roomId}` : ''}
           key={roomId}
         >
-          <li className="flex items-center gap-5 p-5">
+          <li className="flex items-center gap-5 p-5 transition-all hover:bg-slate-100 dark:hover:bg-[#0D122D]">
             <div
               className={`text-xl  ${
                 !deletedAt ? 'text-success' : 'text-dark-gray'
