@@ -48,7 +48,7 @@
           "internal", // 리액트 내부와 밀접한 연관이 있는 패키지
           "external", // 네트워크와 연관이 있는 패키지
           "unknown", // 그 외의 경로 미지정된 서드파티 패키지
-          "object", // core or shared 디렉토리의 소스코드
+          "object", // core, shared, domain 디렉토리의 소스코드
           "parent", // 부모 (../)
           "sibling", // 형제 (./)
           "index", // 현재 디렉토리
@@ -91,7 +91,7 @@
             "group": "external"
           },
           /**
-            core or shared 디렉토리의 소스코드
+            core, shared, domain 디렉토리의 소스코드
           */
           {
             "pattern": "{@,.,..}/core/**",
@@ -102,16 +102,8 @@
             "pattern": "{@,.,..}/shared/**",
             "group": "object"
           },
-          /**
-            도메인(domain) 디렉토리
-          */
           {
-            "pattern": "@/*/**", // 도메인 디렉토리에 들어 있는 각종 파일
-            "group": "object",
-            "position": "after"
-          },
-          {
-            "pattern": "@/*", // [domain] 디렉토리의 index.tsx 파일
+            "pattern": "{@,.,..}/domain/**",
             "group": "object",
             "position": "after"
           },

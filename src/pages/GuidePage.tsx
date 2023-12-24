@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Autoplay } from 'swiper/modules';
 import { useTheme } from '@/core/hooks';
-import { GuideContent, GUIDE_CONTENTS } from '@/Guide';
+import { GuideContent, GUIDE_CONTENTS } from '@/domain/Guide';
 import 'swiper/css/pagination';
-import '@/Guide/styles/swiperBullets.css';
+import '@/domain/Guide/styles/swiperBullets.css';
 
 const GuidePage = () => {
   const { theme } = useTheme();

@@ -1,6 +1,6 @@
 // MSW 서비스 워커를 등록하는 함수
 export const setupMockServiceWorker = async () => {
-  const { worker } = await import('@/core/mocks/browser');
+  const { worker } = await import('@/core/api/mocks/browser');
 
   return worker.start({
     onUnhandledRequest(request, print) {

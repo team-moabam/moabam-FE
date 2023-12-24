@@ -2,10 +2,10 @@ import { Suspense } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Header } from '@/shared/Header';
 import { Tab, TabItem, TabThumbnail } from '@/shared/Tab';
-import BirdItems from '@/MyBird/components/BirdItems';
-import MyBirdThumbnail from '@/MyBird/components/MyBirdThumbnail';
-import MyBirdProvider from '@/MyBird/components/MyBirdProvider';
-import HeaderWallet from '@/MyBird/components/HeaderWallet';
+import BirdItems from '@/domain/MyBird/components/BirdItems';
+import MyBirdThumbnail from '@/domain/MyBird/components/MyBirdThumbnail';
+import MyBirdProvider from '@/domain/MyBird/components/MyBirdProvider';
+import HeaderWallet from '@/domain/MyBird/components/HeaderWallet';
 
 const MyBirdPage = () => {
   const { state } = useLocation();

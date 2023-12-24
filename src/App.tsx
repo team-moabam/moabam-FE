@@ -8,8 +8,8 @@ import timeOption from '@/core/api/options/time';
 import getTimeRange from '@/core/utils/getTimeRange';
 import { Navbar } from '@/shared/Navbar';
 import { UnknownFallback } from '@/shared/ErrorBoundary';
-import { AboutMoabam } from '@/AboutMoabam';
-import { CommonMeta } from '@/Meta';
+import { AboutMoabam } from '@/domain/AboutMoabam';
+import { CommonMeta } from '@/domain/Meta';
 import 'swiper/css';
 import 'swiper/css/bundle';
 

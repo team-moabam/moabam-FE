@@ -5,7 +5,7 @@ import { useRouteData } from '@/core/hooks';
 import { QueryErrorBoundary, NetworkFallback } from '@/shared/ErrorBoundary';
 import { Header } from '@/shared/Header';
 import { Tab, TabItem } from '@/shared/Tab';
-import { RoomTab, MemberTab, LoadingFallback } from '@/RoomSetting';
+import { RoomTab, MemberTab, LoadingFallback } from '@/domain/RoomSetting';
 import NotFoundPage from './NotFoundPage';
 
 const RoomSettingPage = () => {

@@ -1,8 +1,8 @@
 import { Suspense } from 'react';
 import { Header } from '@/shared/Header';
 import { Deffered } from '@/shared/Deffered';
-import StoreList from '@/StoreList/components/StoreList';
-import StoreListFallback from '@/StoreList/components/StoreListFallback';
+import StoreList from '@/domain/StoreList/components/StoreList';
+import StoreListFallback from '@/domain/StoreList/components/StoreListFallback';
 
 const StorePage = () => {
   return (

@@ -6,14 +6,14 @@ import { motion } from 'framer-motion';
 import { useMoveRoute } from '@/core/hooks';
 import { NetworkFallback } from '@/shared/ErrorBoundary';
 import { Deffered } from '@/shared/Deffered';
-import { useDayTypes } from '@/RoomSlide';
+import { useDayTypes } from '@/domain/RoomSlide';
 import {
   UserInfoFallback,
   SwipeArrow,
   UserInfo,
   Background,
   FakeRoutinesPage
-} from '@/StartSlide';
+} from '@/domain/StartSlide';
 
 const StartPage = () => {
   const { dayType } = useDayTypes();
