@@ -18,11 +18,12 @@ const RoomDetail = ({
   checkedRoomJoin,
   serverTime
 }: RoomDetailProps) => {
-  const todayDateString = `${(serverTime || new Date()).getFullYear()}-${
-    (serverTime || new Date()).getMonth() + 1
-  }-${(serverTime || new Date()).getDate() < 10 ? 0 : ''}${(
-    serverTime || new Date()
-  ).getDate()}`;
+  const todayDate = serverTime || new Date();
+  const todayDateString = `${todayDate.getFullYear()}-${String(
+    todayDate.getMonth() + 1
+  ).padStart(2, '0')}-${
+    todayDate.getDate() < 10 ? 0 : ''
+  }${todayDate.getDate()}`;
 
   const { data: roomDetailData, status } = useQuery({
     ...roomOptions.detailByDate(roomId, todayDateString),
