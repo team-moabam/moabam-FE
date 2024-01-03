@@ -3,7 +3,7 @@ import { ErrorBoundary } from '@suspensive/react';
 import { Header } from '@/shared/Header';
 import { Deffered } from '@/shared/Deffered';
 import { NetworkFallback } from '@/shared/ErrorBoundary';
-import { EventList, EventListFallback } from '@/Promotion';
+import { EventList, EventListFallback } from '@/domain/Promotion';
 
 const EventPage = () => {
   return (
