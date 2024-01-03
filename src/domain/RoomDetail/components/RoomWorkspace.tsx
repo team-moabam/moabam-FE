@@ -155,10 +155,10 @@ const RoomWorkspace = ({
                   </div>
                 </>
               ) : (
-                <div className="mb-[2.12rem] flex h-[2.56rem] w-full items-center justify-center rounded-[62.43rem] bg-light-point dark:bg-dark-point">
+                <div className="mb-[2.12rem] flex h-[2.56rem] w-full items-center justify-center rounded-[62.43rem] bg-light-point dark:bg-dark-point-hover">
                   <Link
                     to={`log/${chooseDateString}`}
-                    className="flex w-fit items-center text-base"
+                    className="flex w-fit items-center text-base text-white"
                     state={{
                       todayCertificateRank,
                       routines,
