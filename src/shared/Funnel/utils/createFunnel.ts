@@ -10,7 +10,7 @@ import useFunnel from '../hooks/useFunnel';
 const createFunnel = <T extends readonly string[]>(steps: T) => ({
   Funnel: Funnel<T>,
   Step: Step<T>,
-  useFunnel: () => useFunnel<T>(steps)
+  useFunnel: (initialStep?: T[number]) => useFunnel<T>(steps, initialStep)
 });
 
 export default createFunnel;

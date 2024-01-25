@@ -1,7 +1,10 @@
 import { useState } from 'react';
 
-const useFunnel = <T extends readonly string[]>(steps: T) => {
-  const [step, setStep] = useState<T[number]>(steps[0]);
+const useFunnel = <T extends readonly string[]>(
+  steps: T,
+  initialStep: T[number] = steps[0]
+) => {
+  const [step, setStep] = useState<T[number]>(initialStep);
   const currentIdx = steps.indexOf(step);
 
   const hasPrev = currentIdx > 0;
