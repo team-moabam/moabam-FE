@@ -10,31 +10,52 @@ import * as FunnelStories from './Funnel.stories';
 
 ## **사용 방법**
 
-### 1. steps 정의
+### 1. createFunnel 함수 호출
+
+먼저 createFunnel 함수를 호출해서 `Funnel`, `Step`, `useFunnel` 를 가져와주세요.  
+createFunnel 함수는 step 배열 정보를 일일히 제네릭으로 넘겨주지 않아도 되도록 도와주는 헬퍼 함수입니다.
+
+step 배열에는 **as const**를 붙여서 좁은 타입으로 만들어주세요.
 
 ```tsx
-const steps = ["방선택", "인증시간", "루틴정보", "비밀번호", "마무리"] as const;
+const { Funnel, Step, useFunnel } = createFunnel([
+  '방선택',
+  '인증시간',
+  '루틴정보',
+  '비밀번호',
+  '마무리'
+] as const);
 ```
 
 ### 2. useFunnel 훅 선언
 
 ```tsx
-const funnel = useFunnel(steps, <최초로 보여줄 스텝>);
+const { step, hasNext, hasPrev, setStep, toNext, toPrev } = useFunnel();
 ```
 
 ### 3. Funnel, Step 컴포넌트 사용
 
+렌더링하고자 하는 Step을 Funnel 컴포넌트로 감싸주세요.  
+그리고 Step 컴포넌트에는 name 속성을 넘겨주세요.
+
 ```tsx
-<Funnel {...funnel}>
-  <Funnel.Step<typeof steps> name="마무리">마무리 페이지</Funnel.Step>
-  <Funnel.Step<typeof steps> name="방선택">방선택 페이지</Funnel.Step>
-  <Funnel.Step<typeof steps> name="인증시간">인증시간 페이지</Funnel.Step>
-  <Funnel.Step<typeof steps> name="루틴정보">루틴정보 페이지</Funnel.Step>
-  <Funnel.Step<typeof steps> name="비밀번호">비밀번호 페이지</Funnel.Step>
+<Funnel step={step}>
+  <Step name="마무리">
+    <div>마무리 페이지</div>
+    <button onClick={() => setStep('방선택')}>처음으로 이동하기</button>
+  </Step>
+  <Step name="방선택">방선택 페이지</Step>
+  <Step name="인증시간">인증시간 페이지</Step>
+  <Step name="루틴정보">루틴정보 페이지</Step>
+  <Step name="비밀번호">비밀번호 페이지</Step>
   <div>Step 컴포넌트가 아닌 요소는 렌더링에서 무시돼요.</div>
   <div>
-    children에 순서를 뒤죽박죽으로 등록해도 steps 배열에 들어가있는
-    순서로 스텝을 보여줘요.
+    children에 순서를 뒤죽박죽으로 등록해도 steps 배열에 들어가있는 순서로
+    스텝을 보여줘요.
+  </div>
+  <div>
+    또는 각 스텝에서 다음 스텝으로 넘어가는 로직에 setStep을 사용하고 핸들러로
+    전달할 수 있어요.
   </div>
 </Funnel>
 ```

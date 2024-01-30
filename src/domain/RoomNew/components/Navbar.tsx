@@ -1,25 +1,20 @@
 import { useQuery } from '@tanstack/react-query';
 import { useFormContext } from 'react-hook-form';
 import clsx from 'clsx';
-import { roomOptions } from '@/core/api/options';
-import { FunnelHook } from '@/shared/Funnel/hooks/useFunnel';
-import { LoadingSpinner } from '@/shared/LoadingSpinner';
 import { steps } from '@/pages/RoomNewPage';
+import { roomOptions } from '@/core/api/options';
+import { useFunnel } from '@/shared/Funnel';
+import { LoadingSpinner } from '@/shared/LoadingSpinner';
 import { Inputs } from '../hooks/useRoomForm';
 
-interface NavbarProps extends FunnelHook<typeof steps> {
+interface NavbarProps {
+  funnel: ReturnType<typeof useFunnel<typeof steps>>;
   isPending: boolean;
 }
 
-const Navbar = ({
-  isPending,
-  current,
-  hasNext,
-  hasPrev,
-  toNext,
-  toPrev
-}: NavbarProps) => {
+const Navbar = ({ isPending, funnel }: NavbarProps) => {
   const { trigger } = useFormContext<Inputs>();
+  const { step, hasNext, hasPrev, toNext, toPrev } = funnel;
 
   // 참여 중인 방 정보를 가져오는 동안 다음 스텝으로 넘어가지 못하도록 합니다.
   const { isSuccess } = useQuery({ ...roomOptions.myJoin() });
@@ -38,7 +33,7 @@ const Navbar = ({
       return;
     }
 
-    const isCompleted = await trigger(validationMaps[current], {
+    const isCompleted = await trigger(validationMaps[step], {
       shouldFocus: true
     });
 
