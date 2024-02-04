@@ -4,8 +4,8 @@ import { useFormContext } from 'react-hook-form';
 import { roomOptions } from '@/core/api/options';
 import { QueryErrorBoundary, NetworkFallback } from '@/shared/ErrorBoundary';
 import {
-  ROOM_COUNT,
-  ROOM_TYPES,
+  MAX_ROOM_COUNT,
+  FORM_LITERAL,
   TIME_RANGE
 } from '@/domain/RoomForm/constants/literals';
 import { Inputs } from '../hooks/useRoomForm';
@@ -29,12 +29,12 @@ const BirdCardSectionComponent = () => {
   });
 
   const isFull = (type: Inputs['roomType']) => {
-    return roomCount[type] >= ROOM_COUNT.max;
+    return roomCount[type] >= MAX_ROOM_COUNT;
   };
 
   return (
     <>
-      {ROOM_TYPES.map((roomType) => (
+      {FORM_LITERAL.roomType.value.map((roomType) => (
         <div
           className="w-full"
           key={roomType}

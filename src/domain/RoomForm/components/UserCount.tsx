@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { Icon } from '@/shared/Icon';
 import { iconButtonStyle, errorStyle } from '../constants/styles';
-import { USER_COUNT } from '../constants/literals';
+import { FORM_LITERAL } from '../constants/literals';
 
 const UserCount = () => {
   const {
@@ -15,7 +15,7 @@ const UserCount = () => {
 
   const handleSetUserCount = useCallback(
     (count: number) => {
-      if (count <= 0 || count > USER_COUNT.max) {
+      if (count <= 0 || count > FORM_LITERAL.userCount.max.value) {
         return;
       }
 

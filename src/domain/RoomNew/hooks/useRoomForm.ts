@@ -6,18 +6,13 @@ import roomAPI from '@/core/api/functions/roomAPI';
 import { useMoveRoute } from '@/core/hooks';
 import { Toast } from '@/shared/Toast';
 import {
-  FORM_MESSAGE,
-  ROOM_TYPES,
-  TIME_RANGE,
-  ROUTINE_NAME,
-  ROOM_NAME,
-  USER_COUNT,
-  PASSWORD
+  FORM_LITERAL as L,
+  TIME_RANGE
 } from '@/domain/RoomForm/constants/literals';
 
 export const formSchema = z.object({
-  roomType: z.enum(ROOM_TYPES, {
-    required_error: FORM_MESSAGE.ROOM_TYPE
+  roomType: z.enum(L.roomType.value, {
+    required_error: L.roomType.message
   }),
   certifyTime: z.number(),
   routines: z.array(
@@ -25,26 +20,26 @@ export const formSchema = z.object({
       value: z
         .string()
         .trim()
-        .min(ROUTINE_NAME.min, FORM_MESSAGE.ROUTINE_NAME)
-        .max(ROUTINE_NAME.max, FORM_MESSAGE.ROUTINE_NAME)
+        .min(L.routines.item.min.value, L.routines.item.min.message)
+        .max(L.routines.item.max.value, L.routines.item.max.message)
     })
   ),
   title: z
     .string()
     .trim()
-    .min(ROOM_NAME.min, FORM_MESSAGE.ROOM_NAME)
-    .max(ROOM_NAME.max, FORM_MESSAGE.ROOM_NAME),
+    .min(L.title.min.value, L.title.min.message)
+    .max(L.title.max.value, L.title.max.message),
   userCount: z
     .number()
-    .gte(USER_COUNT.min, FORM_MESSAGE.USER_COUNT)
-    .lte(USER_COUNT.max, FORM_MESSAGE.USER_COUNT),
+    .gte(L.userCount.min.value, L.userCount.min.message)
+    .lte(L.userCount.max.value, L.userCount.max.message),
   password: z.literal('').or(
     z
       .string()
-      .min(PASSWORD.min, FORM_MESSAGE.PASSWORD)
-      .max(PASSWORD.max, FORM_MESSAGE.PASSWORD)
+      .min(L.password.min.value, L.password.min.message)
+      .max(L.password.max.value, L.password.max.message)
       .refine((v) => /^\d*$/.test(v), {
-        message: FORM_MESSAGE.ONLY_NUMERIC_PASSWORD
+        message: L.password.onlyNumeric.message
       })
   )
 });

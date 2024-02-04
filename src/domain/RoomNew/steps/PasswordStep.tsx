@@ -1,9 +1,12 @@
 import clsx from 'clsx';
-import { PASSWORD } from '@/domain/RoomForm/constants/literals';
+import { FORM_LITERAL } from '@/domain/RoomForm/constants/literals';
 import { Password } from '@/domain/RoomForm';
 import { headingStyle, descriptionStyle } from '../constants/styles';
 
 const PasswordStep = () => {
+  const min = FORM_LITERAL.password.min.value;
+  const max = FORM_LITERAL.password.max.value;
+
   return (
     <>
       <h1 className={headingStyle}>
@@ -14,8 +17,7 @@ const PasswordStep = () => {
       </h1>
 
       <p className={clsx(descriptionStyle, 'mb-10')}>
-        선택사항입니다. {PASSWORD.min}자리에서 {PASSWORD.max}자리 숫자를
-        적어주세요!
+        선택사항입니다. {min}자리에서 {max}자리 숫자를 적어주세요!
       </p>
 
       <Password placeholder="비워두시면 공개방이 됩니다" />
