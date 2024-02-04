@@ -36,8 +36,6 @@ const roomAPI = {
     roomId: string;
     title: string;
     announcement: string;
-    // TODO: 루틴 수정을 제한하는 요구사항 발생
-    // routines: string[];
     password: string;
     certifyTime: number;
     maxUserCount: number;

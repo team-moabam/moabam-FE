@@ -40,12 +40,6 @@ const RoomSettingPage = () => {
                 <MemberTab roomId={roomId} />
               </Suspense>
             </TabItem>
-            {/* TODO: 앞으로 사용되지 않을 가능성이 높습니다. */}
-            {/* <TabItem title="방 삭제">
-              <Suspense fallback={<LoadingFallback />}>
-                <RemoveTab roomId={roomId} />
-              </Suspense>
-            </TabItem> */}
           </Tab>
         </ErrorBoundary>
       </QueryErrorBoundary>

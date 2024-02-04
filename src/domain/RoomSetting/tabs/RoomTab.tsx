@@ -7,7 +7,7 @@ import { Input } from '@/shared/Input';
 import { LoadingSpinner } from '@/shared/LoadingSpinner';
 import { formatHourString } from '@/domain/TimePicker/utils/hour';
 import { TIME_RANGE, FORM_LITERAL } from '@/domain/RoomForm/constants/literals';
-import { UserCount, Routines, Password } from '@/domain/RoomForm';
+import { UserCount, Password } from '@/domain/RoomForm';
 import { TimePicker } from '@/domain/TimePicker';
 import useRoomForm from '../hooks/useRoomForm';
 
@@ -117,12 +117,6 @@ const RoomTab = ({ roomId }: RoomTabProps) => {
             <p className={errorStyle}>{errors.certifyTime?.message}</p>
           )}
         </section>
-
-        {/* // TODO: 루틴 수정을 제한하는 요구사항 발생 */}
-        {/* <section className={sectionStyle}>
-          <label className={labelStyle}>루틴 목록</label>
-          <Routines />
-        </section> */}
 
         <section className={sectionStyle}>
           <label className={labelStyle}>인원</label>
