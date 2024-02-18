@@ -1,6 +1,6 @@
 import { useFormContext } from 'react-hook-form';
 import { Input } from '@/shared/Input';
-import { ROOM_NAME } from '@/domain/RoomForm/constants/literals';
+import { FORM_LITERAL } from '@/domain/RoomForm/constants/literals';
 import { Routines, UserCount } from '@/domain/RoomForm';
 import { errorStyle } from '../constants/styles';
 import { Inputs } from '../hooks/useRoomForm';
@@ -20,7 +20,7 @@ const RoutineStep = () => {
         </h2>
         <Input
           {...register('title')}
-          maxLength={ROOM_NAME.max}
+          maxLength={FORM_LITERAL.title.max.value}
           placeholder="짧고 명확하게!"
         />
         {errors.title && <p className={errorStyle}>{errors.title.message}</p>}
