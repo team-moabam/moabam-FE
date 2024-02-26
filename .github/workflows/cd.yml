@@ -45,6 +45,9 @@ jobs:
         env:
           SECRETS_CONTEXT: ${{ toJson(env) }}
 
+      - name: .env 파일 확인
+        run: cat .env
+
       - name: 빌드
         run: npm run build
 
@@ -76,6 +79,9 @@ jobs:
           jq -r 'to_entries|map("\(.key)=\(.value|tostring)")|.[]' <<< "$SECRETS_CONTEXT" >> .env
         env:
           SECRETS_CONTEXT: ${{ toJson(env) }}
+
+      - name: .env 파일 확인
+        run: cat .env
 
       - name: 빌드
         run: npm run build
