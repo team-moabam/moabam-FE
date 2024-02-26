@@ -4,6 +4,10 @@ on:
   push:
     branches: ['main', 'dev']
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 env:
   VITE_DEV_BACKEND_API_ENDPOINT: ${{ secrets.VITE_DEV_BACKEND_API_ENDPOINT }}
   VITE_PROD_BACKEND_API_ENDPOINT: ${{ secrets.VITE_PROD_BACKEND_API_ENDPOINT }}
