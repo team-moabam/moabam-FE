@@ -1,6 +1,6 @@
 import { FormProvider } from 'react-hook-form';
 import { motion } from 'framer-motion';
-import { useFunnel, Funnel } from '@/shared/Funnel';
+import { createFunnel } from '@/shared/Funnel';
 import { Header } from '@/shared/Header';
 import {
   BirdStep,
@@ -20,9 +20,7 @@ export const steps = [
   'SummaryStep'
 ] as const;
 
-const stepComponents: {
-  [key in (typeof steps)[number]]: JSX.Element;
-} = {
+const stepComponents: Record<(typeof steps)[number], JSX.Element> = {
   BirdStep: <BirdStep />,
   TimeStep: <TimeStep />,
   RoutineStep: <RoutineStep />,
@@ -30,8 +28,10 @@ const stepComponents: {
   SummaryStep: <SummaryStep />
 };
 
+const { Funnel, Step, useFunnel } = createFunnel(steps);
+
 const RoomNewPage = () => {
-  const funnel = useFunnel(steps);
+  const funnel = useFunnel();
   const { form, mutation, handleSubmit } = useRoomForm();
 
   return (
@@ -48,7 +48,7 @@ const RoomNewPage = () => {
         <main className="grow overflow-auto px-8 py-12">
           <Funnel {...funnel}>
             {steps.map((step) => (
-              <Funnel.Step
+              <Step
                 key={step}
                 name={step}
               >
@@ -60,12 +60,12 @@ const RoomNewPage = () => {
                 >
                   {stepComponents[step]}
                 </motion.div>
-              </Funnel.Step>
+              </Step>
             ))}
           </Funnel>
         </main>
         <Navbar
-          {...funnel}
+          funnel={funnel}
           isPending={mutation.isPending}
         />
       </form>

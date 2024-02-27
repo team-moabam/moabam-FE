@@ -6,12 +6,8 @@ import { roomOptions } from '@/core/api/options';
 import { Input } from '@/shared/Input';
 import { LoadingSpinner } from '@/shared/LoadingSpinner';
 import { formatHourString } from '@/domain/TimePicker/utils/hour';
-import {
-  TIME_RANGE,
-  ANNOUNCEMENT,
-  ROOM_NAME
-} from '@/domain/RoomForm/constants/literals';
-import { UserCount, Routines, Password } from '@/domain/RoomForm';
+import { TIME_RANGE, FORM_LITERAL } from '@/domain/RoomForm/constants/literals';
+import { UserCount, Password } from '@/domain/RoomForm';
 import { TimePicker } from '@/domain/TimePicker';
 import useRoomForm from '../hooks/useRoomForm';
 
@@ -67,7 +63,7 @@ const RoomTab = ({ roomId }: RoomTabProps) => {
           <Input
             id="title"
             {...register('title')}
-            maxLength={ROOM_NAME.max}
+            maxLength={FORM_LITERAL.title.max.value}
           />
           {errors.title && (
             <p className={errorStyle}>{errors.title?.message}</p>
@@ -81,7 +77,7 @@ const RoomTab = ({ roomId }: RoomTabProps) => {
           >
             <b>공지사항</b>
             <p className="text-xs text-gray-400">
-              {watchAnnouncement.length} / {ANNOUNCEMENT.max}
+              {watchAnnouncement.length} / {FORM_LITERAL.announcement.max.value}
             </p>
           </label>
           <ReactTextareaAutosize
@@ -92,7 +88,7 @@ const RoomTab = ({ roomId }: RoomTabProps) => {
               'dark:bg-dark-sub dark:focus:border-dark-point dark:focus:ring-dark-point'
             )}
             minRows={3}
-            maxLength={ANNOUNCEMENT.max}
+            maxLength={FORM_LITERAL.announcement.max.value}
             id="announcement"
             {...register('announcement')}
           />
@@ -121,12 +117,6 @@ const RoomTab = ({ roomId }: RoomTabProps) => {
             <p className={errorStyle}>{errors.certifyTime?.message}</p>
           )}
         </section>
-
-        {/* // TODO: 루틴 수정을 제한하는 요구사항 발생 */}
-        {/* <section className={sectionStyle}>
-          <label className={labelStyle}>루틴 목록</label>
-          <Routines />
-        </section> */}
 
         <section className={sectionStyle}>
           <label className={labelStyle}>인원</label>

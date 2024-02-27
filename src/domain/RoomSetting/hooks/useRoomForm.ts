@@ -6,47 +6,40 @@ import roomAPI from '@/core/api/functions/roomAPI';
 import { roomOptions } from '@/core/api/options';
 import { useMoveRoute } from '@/core/hooks';
 import { Toast } from '@/shared/Toast';
-import {
-  ANNOUNCEMENT,
-  ROUTINE_NAME,
-  ROOM_NAME,
-  USER_COUNT,
-  PASSWORD,
-  FORM_MESSAGE
-} from '@/domain/RoomForm/constants/literals';
+import { FORM_LITERAL as L } from '@/domain/RoomForm/constants/literals';
 
 export const formSchema = z.object({
   title: z
     .string()
     .trim()
-    .min(ROOM_NAME.min, FORM_MESSAGE.ROOM_NAME)
-    .max(ROOM_NAME.max, FORM_MESSAGE.ROOM_NAME),
+    .min(L.title.min.value, L.title.min.message)
+    .max(L.title.max.value, L.title.max.message),
   announcement: z
     .string()
     .trim()
-    .min(ANNOUNCEMENT.min, FORM_MESSAGE.ANNOUNCEMENT)
-    .max(ANNOUNCEMENT.max, FORM_MESSAGE.ANNOUNCEMENT),
+    .min(L.announcement.min.value)
+    .max(L.announcement.max.value, L.announcement.max.message),
   certifyTime: z.number(),
   routines: z.array(
     z.object({
       value: z
         .string()
         .trim()
-        .min(ROUTINE_NAME.min, FORM_MESSAGE.ROUTINE_NAME)
-        .max(ROUTINE_NAME.max, FORM_MESSAGE.ROUTINE_NAME)
+        .min(L.routines.item.min.value, L.routines.item.min.message)
+        .max(L.routines.item.max.value, L.routines.item.max.message)
     })
   ),
   userCount: z
     .number()
-    .gte(USER_COUNT.min, FORM_MESSAGE.USER_COUNT)
-    .lte(USER_COUNT.max, FORM_MESSAGE.USER_COUNT),
+    .gte(L.userCount.min.value, L.userCount.min.message)
+    .lte(L.userCount.max.value, L.userCount.max.message),
   password: z.literal('').or(
     z
       .string()
-      .min(PASSWORD.min, FORM_MESSAGE.PASSWORD)
-      .max(PASSWORD.max, FORM_MESSAGE.PASSWORD)
+      .min(L.password.min.value, L.password.min.message)
+      .max(L.password.max.value, L.password.max.message)
       .refine((v) => /^\d*$/.test(v), {
-        message: FORM_MESSAGE.ONLY_NUMERIC_PASSWORD
+        message: L.password.onlyNumeric.message
       })
   )
 });
@@ -79,8 +72,6 @@ const useRoomForm = ({ roomId, defaultValues }: useRoomFormProps) => {
         title: data.title,
         announcement: data.announcement,
         certifyTime: data.certifyTime % 24,
-        // TODO: 루틴 수정을 제한하는 요구사항 발생
-        // routines: data.routines.map((r) => r.value),
         maxUserCount: data.userCount,
         password: data.password
       },
@@ -106,19 +97,11 @@ const useRoomForm = ({ roomId, defaultValues }: useRoomFormProps) => {
           });
 
           if (error.response?.data?.validation) {
-            const {
-              title,
-              announcement,
-              routine,
-              password,
-              certifyTime,
-              maxUserCount
-            } = error.response.data.validation;
+            const { title, announcement, password, certifyTime, maxUserCount } =
+              error.response.data.validation;
 
             setError('title', { message: title });
             setError('announcement', { message: announcement });
-            // TODO: 루틴 수정을 제한하는 요구사항 발생
-            // setError('routines', { message: routine });
             setError('password', { message: password });
             setError('certifyTime', { message: certifyTime });
             setError('userCount', { message: maxUserCount });

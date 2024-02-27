@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 import { useFieldArray, useFormContext } from 'react-hook-form';
 import { InnerTextInput } from '@/shared/Input';
 import { Icon } from '@/shared/Icon';
-import { ROUTINE_COUNT, ROUTINE_NAME } from '../constants/literals';
+import { FORM_LITERAL } from '../constants/literals';
 import { errorStyle, iconButtonStyle } from '../constants/styles';
 
 const Routines = () => {
@@ -25,7 +25,7 @@ const Routines = () => {
   });
 
   const handleAppendRoutine = useCallback(() => {
-    if (routines.length >= ROUTINE_COUNT.max) {
+    if (routines.length >= FORM_LITERAL.routines.max.value) {
       return;
     }
 
@@ -54,10 +54,10 @@ const Routines = () => {
               text={
                 watchRoutines[idx].value.length.toString() +
                 ' / ' +
-                ROUTINE_NAME.max
+                FORM_LITERAL.routines.item.max.value
               }
               placeholder="루틴 이름"
-              maxLength={ROUTINE_NAME.max}
+              maxLength={FORM_LITERAL.routines.item.max.value}
             />
             {idx !== 0 && (
               <div
@@ -91,7 +91,7 @@ const Routines = () => {
           />
         </button>
         <div className="text-center text-xs">
-          {routines.length} / {ROUTINE_COUNT.max}
+          {routines.length} / {FORM_LITERAL.routines.max.value}
         </div>
       </li>
     </ul>

@@ -1,32 +1,31 @@
-import React, { PropsWithChildren } from 'react';
-import { StepNames } from '../types/funnel';
-import Step from './Step';
+import React from 'react';
+import Step, { StepProps } from './Step';
 
-interface FunnelProps<T extends StepNames> {
-  current: T[number];
+interface FunnelProps<T extends readonly string[]> {
+  step: T[number];
+  children: React.ReactNode;
 }
 
-const Funnel = <T extends StepNames>({
-  current,
+/** 하위 노드 중에서 렌더링 해야 할 Step 컴포넌트를 그리는 컴포넌트입니다. */
+const Funnel = <T extends readonly string[]>({
+  step,
   children
-}: PropsWithChildren<FunnelProps<T>>) => {
+}: FunnelProps<T>) => {
   const validChildren = React.Children.toArray(children)
-    .filter<React.ReactElement>(React.isValidElement)
-    .filter((child) => child.type === Step);
+    .filter(React.isValidElement)
+    .filter((child) => child.type === Step) as React.ReactElement<
+    StepProps<T>
+  >[];
 
-  const currentStepIndex = validChildren.findIndex(
-    (step) => step.props.name === current
-  );
+  const currentStep = validChildren.find((child) => child.props.name === step);
 
-  if (currentStepIndex === -1) {
+  if (!currentStep) {
     throw new Error(
-      '보여주려는 current 스텝이 Funnel의 children 중에 존재하지 않습니다.'
+      `Funnel의 children 중에서 ${step} 스텝이 존재하지 않습니다.`
     );
   }
 
-  return <>{validChildren[currentStepIndex]}</>;
+  return <>{currentStep}</>;
 };
-
-Funnel.Step = Step;
 
 export default Funnel;

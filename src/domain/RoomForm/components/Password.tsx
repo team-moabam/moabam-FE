@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { PasswordInput } from '@/shared/Input';
-import { PASSWORD } from '@/domain/RoomForm/constants/literals';
+import { FORM_LITERAL } from '@/domain/RoomForm/constants/literals';
 import { errorStyle } from '../constants/styles';
 
 interface PasswordProps {
@@ -29,7 +29,7 @@ const Password = ({ placeholder }: PasswordProps) => {
       <PasswordInput
         {...register('password')}
         placeholder={placeholder}
-        maxLength={PASSWORD.max}
+        maxLength={FORM_LITERAL.password.max.value}
         onChange={handleChangePassword}
       />
       {errors.password && (

@@ -1,0 +1,97 @@
+name: CD
+
+on:
+  push:
+    branches: ['main', 'dev']
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  VITE_DEV_BACKEND_API_ENDPOINT: ${{ secrets.VITE_DEV_BACKEND_API_ENDPOINT }}
+  VITE_PROD_BACKEND_API_ENDPOINT: ${{ secrets.VITE_PROD_BACKEND_API_ENDPOINT }}
+  VITE_DEV_DEPLOY_ENDPOINT: ${{ secrets.VITE_DEV_DEPLOY_ENDPOINT }}
+  VITE_PROD_DEPLOY_ENDPOINT: ${{ secrets.VITE_PROD_DEPLOY_ENDPOINT }}
+
+  VITE_KAKAO_LOGIN_CLIENT_ID: ${{ secrets.VITE_KAKAO_LOGIN_CLIENT_ID }}
+  VITE_FIREBASE_API_KEY: ${{ secrets.VITE_FIREBASE_API_KEY }}
+  VITE_FIREBASE_AUTH_DOMAIN: ${{ secrets.VITE_FIREBASE_AUTH_DOMAIN }}
+  VITE_FIREBASE_PROJECT_ID: ${{ secrets.VITE_FIREBASE_PROJECT_ID }}
+  VITE_FIREBASE_STORAGE_BUCKET: ${{ secrets.VITE_FIREBASE_STORAGE_BUCKET }}
+  VITE_FIREBASE_MESSAGING_SENDER_ID: ${{ secrets.VITE_FIREBASE_MESSAGING_SENDER_ID }}
+  VITE_FIREBASE_APP_ID: ${{ secrets.VITE_FIREBASE_APP_ID }}
+  VITE_FIREBASE_MEASUREMENT_ID: ${{ secrets.VITE_FIREBASE_MEASUREMENT_ID }}
+  VITE_FIREBASE_VAPID_PUBLIC_KEY: ${{ secrets.VITE_FIREBASE_VAPID_PUBLIC_KEY }}
+
+  VITE_TOSS_CLIENT_KET: ${{ secrets.VITE_TOSS_CLIENT_KET }}
+  VITE_TOSS_CUSTOMER_KEY: ${{ secrets.VITE_TOSS_CUSTOMER_KEY }}
+
+jobs:
+  production:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Node.js 및 NPM 설치
+        uses: ./.github/actions/install
+
+      - name: .env 파일 생성
+        run: |
+          echo "VITE_DEPLOY_TARGET=production" >> .env
+          jq -r 'to_entries|map("\(.key)=\(.value|tostring)")|.[]' <<< "$SECRETS_CONTEXT" >> .env
+        env:
+          SECRETS_CONTEXT: ${{ toJson(env) }}
+
+      - name: .env 파일 확인
+        run: cat .env
+
+      - name: 빌드
+        run: npm run build
+
+      - name: AWS credentials 설정
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: 'ap-northeast-2'
+
+      - name: S3 버킷에 업로드
+        run: aws s3 sync dist s3://${{ secrets.AWS_S3_WEB_HOST }} --delete
+
+      - name: CloudFront 캐시 무효화
+        run: aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_CLOUDFRONT_WEB_HOST_ID }} --paths '/*'
+  development:
+    if: github.ref == 'refs/heads/dev'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Node.js 및 NPM 설치
+        uses: ./.github/actions/install
+
+      - name: .env 파일 생성
+        run: |
+          echo "VITE_DEPLOY_TARGET=development" >> .env
+          jq -r 'to_entries|map("\(.key)=\(.value|tostring)")|.[]' <<< "$SECRETS_CONTEXT" >> .env
+        env:
+          SECRETS_CONTEXT: ${{ toJson(env) }}
+
+      - name: .env 파일 확인
+        run: cat .env
+
+      - name: 빌드
+        run: npm run build
+
+      - name: AWS credentials 설정
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: 'ap-northeast-2'
+
+      - name: S3 버킷에 업로드
+        run: aws s3 sync dist s3://${{ secrets.AWS_S3_DEV_WEB_HOST }} --delete
