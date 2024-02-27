@@ -1,19 +1,24 @@
-import { useMutation } from '@tanstack/react-query';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import z from 'zod';
+import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 import roomAPI from '@/core/api/functions/roomAPI';
+import { roomOptions } from '@/core/api/options';
 import { useMoveRoute } from '@/core/hooks';
 import { Toast } from '@/shared/Toast';
-import {
-  FORM_LITERAL as L,
-  TIME_RANGE
-} from '@/domain/RoomForm/constants/literals';
+import { FORM_LITERAL as L } from '@/domain/RoomForm/constants/literals';
 
 export const formSchema = z.object({
-  roomType: z.enum(L.roomType.value, {
-    required_error: L.roomType.message
-  }),
+  title: z
+    .string()
+    .trim()
+    .min(L.title.min.value, L.title.min.message)
+    .max(L.title.max.value, L.title.max.message),
+  announcement: z
+    .string()
+    .trim()
+    .min(L.announcement.min.value)
+    .max(L.announcement.max.value, L.announcement.max.message),
   certifyTime: z.number(),
   routines: z.array(
     z.object({
@@ -24,11 +29,6 @@ export const formSchema = z.object({
         .max(L.routines.item.max.value, L.routines.item.max.message)
     })
   ),
-  title: z
-    .string()
-    .trim()
-    .min(L.title.min.value, L.title.min.message)
-    .max(L.title.max.value, L.title.max.message),
   userCount: z
     .number()
     .gte(L.userCount.min.value, L.userCount.min.message)
@@ -46,22 +46,21 @@ export const formSchema = z.object({
 
 export type Inputs = z.infer<typeof formSchema>;
 
-const useRoomForm = () => {
+interface useRoomFormProps {
+  roomId: string;
+  defaultValues: Inputs;
+}
+
+const useRoomForm = ({ roomId, defaultValues }: useRoomFormProps) => {
+  const mutation = useMutation({
+    mutationFn: roomAPI.putRoom
+  });
+  const queryClient = useQueryClient();
+
   const moveTo = useMoveRoute();
 
-  const mutation = useMutation({
-    mutationFn: roomAPI.postRoom
-  });
-
   const form = useForm<Inputs>({
-    defaultValues: {
-      roomType: undefined,
-      certifyTime: TIME_RANGE['MORNING'][0],
-      routines: [{ value: '' }],
-      userCount: 5,
-      title: '',
-      password: ''
-    },
+    defaultValues,
     mode: 'onBlur',
     resolver: zodResolver(formSchema)
   });
@@ -69,44 +68,41 @@ const useRoomForm = () => {
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     mutation.mutate(
       {
+        roomId,
         title: data.title,
-        password: data.password,
-        roomType: data.roomType,
-        routines: data.routines.map((r) => r.value),
+        announcement: data.announcement,
         certifyTime: data.certifyTime % 24,
-        maxUserCount: data.userCount
+        maxUserCount: data.userCount,
+        password: data.password
       },
       {
         onSuccess: (data) => {
+          queryClient.invalidateQueries({
+            queryKey: roomOptions.detail(roomId).queryKey
+          });
+
           Toast.show({
-            message: '새로운 방을 만들었어요.',
+            message: '방 정보를 수정했어요.',
             status: 'confirm'
           });
 
-          moveTo('roomDetail', { roomId: data });
+          moveTo('roomDetail', { roomId });
         },
         onError: (error) => {
+          const { setError } = form;
+
           Toast.show({
-            message: error.response?.data?.message ?? '오류가 발생했어요.',
+            message: error.response?.data?.message || '오류가 발생했어요.',
             status: 'danger'
           });
 
           if (error.response?.data?.validation) {
-            const { setError } = form;
-
-            const {
-              title,
-              password,
-              roomType,
-              routines,
-              certifyTime,
-              maxUserCount
-            } = error.response.data.validation;
+            const { title, announcement, password, certifyTime, maxUserCount } =
+              error.response.data.validation;
 
             setError('title', { message: title });
+            setError('announcement', { message: announcement });
             setError('password', { message: password });
-            setError('roomType', { message: roomType });
-            setError('routines', { message: routines });
             setError('certifyTime', { message: certifyTime });
             setError('userCount', { message: maxUserCount });
           }
