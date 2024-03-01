@@ -8,6 +8,7 @@ import {
   errorStyle
 } from '../constants/styles';
 import { Inputs } from '../hooks/useRoomForm';
+import StepTemplate from '../components/StepTemplate';
 
 const TimeStep = () => {
   const {
@@ -18,7 +19,7 @@ const TimeStep = () => {
   const watchRoomType = useWatch({ name: 'roomType', control });
 
   return (
-    <>
+    <StepTemplate>
       <h1 className={headingStyle}>
         <strong>언제 </strong>
         인증할까요?
@@ -47,7 +48,7 @@ const TimeStep = () => {
       {errors.certifyTime && (
         <p className={errorStyle}>{errors.certifyTime.message}</p>
       )}
-    </>
+    </StepTemplate>
   );
 };
 

@@ -5,6 +5,7 @@ import { Routines, UserCount } from '@/domain/RoomForm';
 import { errorStyle } from '../constants/styles';
 import { Inputs } from '../hooks/useRoomForm';
 import { descriptionStyle } from '../constants/styles';
+import StepTemplate from '../components/StepTemplate';
 
 const RoutineStep = () => {
   const {
@@ -13,7 +14,7 @@ const RoutineStep = () => {
   } = useFormContext<Inputs>();
 
   return (
-    <>
+    <StepTemplate>
       <section className={sectionStyle}>
         <h2 className={headingStyle}>
           <b>방 이름</b>을 지어주세요.
@@ -39,7 +40,7 @@ const RoutineStep = () => {
         </h2>
         <UserCount />
       </section>
-    </>
+    </StepTemplate>
   );
 };
 

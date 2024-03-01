@@ -2,13 +2,14 @@ import clsx from 'clsx';
 import { FORM_LITERAL } from '@/domain/RoomForm/constants/literals';
 import { Password } from '@/domain/RoomForm';
 import { headingStyle, descriptionStyle } from '../constants/styles';
+import StepTemplate from '../components/StepTemplate';
 
 const PasswordStep = () => {
   const min = FORM_LITERAL.password.min.value;
   const max = FORM_LITERAL.password.max.value;
 
   return (
-    <>
+    <StepTemplate>
       <h1 className={headingStyle}>
         <strong>마지막 !</strong>
         <p>
@@ -21,7 +22,7 @@ const PasswordStep = () => {
       </p>
 
       <Password placeholder="비워두시면 공개방이 됩니다" />
-    </>
+    </StepTemplate>
   );
 };
 

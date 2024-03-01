@@ -6,6 +6,7 @@ import {
 } from '../constants/styles';
 import { Inputs } from '../hooks/useRoomForm';
 import BirdCardSection from '../components/BirdCardSection';
+import StepTemplate from '../components/StepTemplate';
 
 const BirdStep = () => {
   const {
@@ -13,7 +14,7 @@ const BirdStep = () => {
   } = useFormContext<Inputs>();
 
   return (
-    <>
+    <StepTemplate>
       <h1 className={headingStyle}>
         <strong>어떤 새를</strong>
         <p>키우는 방일까요?</p>
@@ -30,7 +31,7 @@ const BirdStep = () => {
       {errors.roomType && (
         <p className={errorStyle}>{errors.roomType.message}</p>
       )}
-    </>
+    </StepTemplate>
   );
 };
 
