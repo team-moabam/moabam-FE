@@ -1,4 +1,4 @@
-import { useFormContext } from 'react-hook-form';
+import { Controller, useFormContext, useWatch } from 'react-hook-form';
 import { formatHourString } from '@/domain/TimePicker/utils/hour';
 import { TIME_RANGE } from '@/domain/RoomForm/constants/literals';
 import { TimePicker } from '@/domain/TimePicker';
@@ -11,13 +11,11 @@ import { Inputs } from '../hooks/useRoomForm';
 
 const TimeStep = () => {
   const {
-    setValue,
-    watch,
+    control,
     formState: { errors }
   } = useFormContext<Inputs>();
 
-  const watchRoomType = watch('roomType');
-  const watchCertifyTime = watch('certifyTime');
+  const watchRoomType = useWatch({ name: 'roomType', control });
 
   return (
     <>
@@ -32,10 +30,16 @@ const TimeStep = () => {
 
       <section className="mt-10 flex w-full flex-col items-center gap-6">
         <div>{formatHourString(TIME_RANGE[watchRoomType][0])}</div>
-        <TimePicker
-          range={TIME_RANGE[watchRoomType]}
-          initialTime={watchCertifyTime}
-          onChangeTime={(time) => setValue('certifyTime', time)}
+        <Controller
+          name="certifyTime"
+          control={control}
+          render={({ field }) => (
+            <TimePicker
+              range={TIME_RANGE[watchRoomType]}
+              initialTime={field.value}
+              onChangeTime={field.onChange}
+            />
+          )}
         />
         <div>{formatHourString(TIME_RANGE[watchRoomType][1])}</div>
       </section>
