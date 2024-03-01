@@ -13,37 +13,35 @@ const RoomSettingPage = () => {
   const roomId = params.roomId || '';
 
   return (
-    <>
-      <QueryErrorBoundary fallback={<NetworkFallback />}>
-        <ErrorBoundary
-          fallback={<NotFoundPage />}
-          onError={(err) => {
-            if (isAxiosError(err) && err.response?.status === 404) {
-              return;
-            }
+    <QueryErrorBoundary fallback={<NetworkFallback />}>
+      <ErrorBoundary
+        fallback={<NotFoundPage />}
+        onError={(err) => {
+          if (isAxiosError(err) && err.response?.status === 404) {
+            return;
+          }
 
-            throw err;
-          }}
+          throw err;
+        }}
+      >
+        <Header prev />
+        <Tab
+          align="center"
+          itemStyle="mt-10 px-8"
         >
-          <Header prev />
-          <Tab
-            align="center"
-            itemStyle="mt-10 px-8"
-          >
-            <TabItem title="방 관리">
-              <Suspense fallback={<LoadingFallback />}>
-                <RoomTab roomId={roomId} />
-              </Suspense>
-            </TabItem>
-            <TabItem title="멤버 관리">
-              <Suspense fallback={<LoadingFallback />}>
-                <MemberTab roomId={roomId} />
-              </Suspense>
-            </TabItem>
-          </Tab>
-        </ErrorBoundary>
-      </QueryErrorBoundary>
-    </>
+          <TabItem title="방 관리">
+            <Suspense fallback={<LoadingFallback />}>
+              <RoomTab roomId={roomId} />
+            </Suspense>
+          </TabItem>
+          <TabItem title="멤버 관리">
+            <Suspense fallback={<LoadingFallback />}>
+              <MemberTab roomId={roomId} />
+            </Suspense>
+          </TabItem>
+        </Tab>
+      </ErrorBoundary>
+    </QueryErrorBoundary>
   );
 };
 
