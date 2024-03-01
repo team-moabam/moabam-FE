@@ -1,5 +1,5 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
-import { FormProvider } from 'react-hook-form';
+import { Controller, FormProvider } from 'react-hook-form';
 import ReactTextareaAutosize from 'react-textarea-autosize';
 import clsx from 'clsx';
 import { roomOptions } from '@/core/api/options';
@@ -44,11 +44,9 @@ const RoomTab = ({ roomId }: RoomTabProps) => {
   const {
     register,
     setValue,
-    watch,
+    control,
     formState: { errors }
   } = form;
-
-  const watchAnnouncement = watch('announcement');
 
   return (
     <FormProvider {...form}>
@@ -70,32 +68,38 @@ const RoomTab = ({ roomId }: RoomTabProps) => {
           )}
         </section>
 
-        <section className={sectionStyle}>
-          <label
-            className={clsx(labelStyle, 'flex justify-between')}
-            htmlFor="announcement"
-          >
-            <b>공지사항</b>
-            <p className="text-xs text-gray-400">
-              {watchAnnouncement.length} / {FORM_LITERAL.announcement.max.value}
-            </p>
-          </label>
-          <ReactTextareaAutosize
-            className={clsx(
-              'w-full resize-none p-3 text-sm',
-              'rounded-lg border border-gray-300 shadow-sm placeholder:text-gray-400',
-              'focus:border-light-point focus:outline-none focus:ring-1 focus:ring-light-point',
-              'dark:bg-dark-sub dark:focus:border-dark-point dark:focus:ring-dark-point'
-            )}
-            minRows={3}
-            maxLength={FORM_LITERAL.announcement.max.value}
-            id="announcement"
-            {...register('announcement')}
-          />
-          {errors.announcement && (
-            <p className={errorStyle}>{errors.announcement?.message}</p>
+        <Controller
+          name="announcement"
+          control={control}
+          render={({ field }) => (
+            <section className={sectionStyle}>
+              <label
+                className={clsx(labelStyle, 'flex justify-between')}
+                htmlFor="announcement"
+              >
+                <b>공지사항</b>
+                <p className="text-xs text-gray-400">
+                  {field.value.length} / {FORM_LITERAL.announcement.max.value}
+                </p>
+              </label>
+              <ReactTextareaAutosize
+                className={clsx(
+                  'w-full resize-none p-3 text-sm',
+                  'rounded-lg border border-gray-300 shadow-sm placeholder:text-gray-400',
+                  'focus:border-light-point focus:outline-none focus:ring-1 focus:ring-light-point',
+                  'dark:bg-dark-sub dark:focus:border-dark-point dark:focus:ring-dark-point'
+                )}
+                minRows={3}
+                maxLength={FORM_LITERAL.announcement.max.value}
+                id="announcement"
+                {...field}
+              />
+              {errors.announcement && (
+                <p className={errorStyle}>{errors.announcement?.message}</p>
+              )}
+            </section>
           )}
-        </section>
+        />
 
         <section className={sectionStyle}>
           <label
