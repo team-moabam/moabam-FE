@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
 import { useSuspenseQuery } from '@tanstack/react-query';
-import { useFormContext } from 'react-hook-form';
+import { useFormContext, useWatch } from 'react-hook-form';
 import { roomOptions } from '@/core/api/options';
 import { QueryErrorBoundary, NetworkFallback } from '@/shared/ErrorBoundary';
 import {
@@ -13,9 +13,9 @@ import BirdCard from './BirdCard';
 import BirdCardFallback from './BirdCardFallback';
 
 const BirdCardSectionComponent = () => {
-  const { setValue, watch } = useFormContext<Inputs>();
+  const { setValue, control } = useFormContext<Inputs>();
 
-  const watchType = watch('roomType');
+  const watchType = useWatch({ name: 'roomType', control });
 
   const { data: roomCount } = useSuspenseQuery({
     ...roomOptions.myJoin(),
