@@ -28,6 +28,8 @@
 TODO: 이미지 추가 예정
 
 ## 시연 영상
+[![Video Label](https://img.youtube.com/vi/_3enPDzkLns/0.jpg)](https://www.youtube.com/watch?v=_3enPDzkLns)
+
 
 ## 배포 주소
 
