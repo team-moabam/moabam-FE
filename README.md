@@ -3,33 +3,21 @@
 
 ![image](https://github.com/team-moabam/moabam-FE/assets/50488780/e7702870-af56-47fd-bb84-b816e959a0a9)
 
-## 주제 및 배경 소개
-
-![image](https://github.com/team-moabam/moabam-FE/assets/50488780/6d5c8c55-bebf-42b2-a574-4c1b8988df89)
-![image](https://github.com/team-moabam/moabam-FE/assets/50488780/6f0b21b6-fdad-4f3c-9b11-f97588e2d0b1)
-![image](https://github.com/team-moabam/moabam-FE/assets/50488780/44ac4903-e9d3-4302-919a-ffb6469ff7dc)
-
-## 아키텍처
-![image](https://github.com/team-moabam/moabam-FE/assets/50488780/6dfd5a1d-61b2-4ab8-b710-8807a9a66ccb)
-
-## 실행 화면
-
-### 오프닝, 메인, 검색 페이지
+## 오프닝, 메인, 검색 페이지
 ![moabam1](https://github.com/team-moabam/moabam-FE/assets/50488780/3957e291-4e9e-4fde-936d-13f61852f86c)
 
-### 마이, 스킨, 상점 페이지
+## 마이, 스킨, 상점 페이지
 ![moabam2](https://github.com/team-moabam/moabam-FE/assets/50488780/413c7ee6-6568-491d-ae3c-a6ee90be96c4)
 
-### 방 생성 페이지
+## 방 생성 페이지
 ![moabam3](https://github.com/team-moabam/moabam-FE/assets/50488780/fcef86e1-e024-466e-86a9-e6394cccffbc)
 
-### 방 상세 페이지
+## 방 상세 페이지
 
 TODO: 이미지 추가 예정
 
 ## 시연 영상
 [![Video Label](https://img.youtube.com/vi/_3enPDzkLns/0.jpg)](https://www.youtube.com/watch?v=_3enPDzkLns)
-
 
 ## 배포 주소
 
@@ -52,6 +40,16 @@ npm install
 ```sh
 npm run dev:msw # msw를 활성화하여 개발 서버 실행
 ```
+
+
+## 아키텍처
+![image](https://github.com/team-moabam/moabam-FE/assets/50488780/6dfd5a1d-61b2-4ab8-b710-8807a9a66ccb)
+
+## 주제 및 배경 소개
+
+![image](https://github.com/team-moabam/moabam-FE/assets/50488780/6d5c8c55-bebf-42b2-a574-4c1b8988df89)
+![image](https://github.com/team-moabam/moabam-FE/assets/50488780/6f0b21b6-fdad-4f3c-9b11-f97588e2d0b1)
+![image](https://github.com/team-moabam/moabam-FE/assets/50488780/44ac4903-e9d3-4302-919a-ffb6469ff7dc)
 
 ## 팀원 소개
 
@@ -109,7 +107,6 @@ npm run dev:msw # msw를 활성화하여 개발 서버 실행
         </tr>
     </tbody>
 </table>
-
 
 ## 기술 스택
 
