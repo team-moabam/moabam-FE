@@ -1,5 +1,4 @@
 import { FormProvider } from 'react-hook-form';
-import { motion } from 'framer-motion';
 import { createFunnel } from '@/shared/Funnel';
 import { Header } from '@/shared/Header';
 import {
@@ -20,14 +19,6 @@ export const steps = [
   'SummaryStep'
 ] as const;
 
-const stepComponents: Record<(typeof steps)[number], JSX.Element> = {
-  BirdStep: <BirdStep />,
-  TimeStep: <TimeStep />,
-  RoutineStep: <RoutineStep />,
-  PasswordStep: <PasswordStep />,
-  SummaryStep: <SummaryStep />
-};
-
 const { Funnel, Step, useFunnel } = createFunnel(steps);
 
 const RoomNewPage = () => {
@@ -47,21 +38,21 @@ const RoomNewPage = () => {
         />
         <main className="grow overflow-auto px-8 py-12">
           <Funnel {...funnel}>
-            {steps.map((step) => (
-              <Step
-                key={step}
-                name={step}
-              >
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ ease: 'easeInOut', duration: 0.25 }}
-                >
-                  {stepComponents[step]}
-                </motion.div>
-              </Step>
-            ))}
+            <Step name="BirdStep">
+              <BirdStep />
+            </Step>
+            <Step name="TimeStep">
+              <TimeStep />
+            </Step>
+            <Step name="RoutineStep">
+              <RoutineStep />
+            </Step>
+            <Step name="PasswordStep">
+              <PasswordStep />
+            </Step>
+            <Step name="SummaryStep">
+              <SummaryStep />
+            </Step>
           </Funnel>
         </main>
         <Navbar

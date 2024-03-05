@@ -5,6 +5,7 @@ import { formatHourString } from '@/domain/TimePicker/utils/hour';
 import { BIRD } from '@/domain/RoomForm/constants/literals';
 import { headingStyle, descriptionStyle } from '../constants/styles';
 import { Inputs } from '../hooks/useRoomForm';
+import StepTemplate from '../components/StepTemplate';
 
 interface Info {
   icon: keyof typeof iconMap;
@@ -14,7 +15,6 @@ interface Info {
 
 const SummaryStep = () => {
   const { getValues } = useFormContext<Inputs>();
-
   const routines = getValues('routines');
 
   const infos: Info[] = [
@@ -46,7 +46,7 @@ const SummaryStep = () => {
   ];
 
   return (
-    <>
+    <StepTemplate>
       <h1 className={headingStyle}>
         <strong>준비 끝 !</strong>
       </h1>
@@ -76,7 +76,7 @@ const SummaryStep = () => {
           </li>
         ))}
       </ul>
-    </>
+    </StepTemplate>
   );
 };
 

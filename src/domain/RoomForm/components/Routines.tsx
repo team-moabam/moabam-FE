@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { useFieldArray, useFormContext } from 'react-hook-form';
+import { useFieldArray, useFormContext, useWatch } from 'react-hook-form';
 import { InnerTextInput } from '@/shared/Input';
 import { Icon } from '@/shared/Icon';
 import { FORM_LITERAL } from '../constants/literals';
@@ -8,12 +8,9 @@ import { errorStyle, iconButtonStyle } from '../constants/styles';
 const Routines = () => {
   const {
     register,
-    watch,
     control,
     formState: { errors }
   } = useFormContext<{ routines: Array<{ value: string }> }>();
-
-  const watchRoutines = watch('routines');
 
   const {
     append,
@@ -23,6 +20,8 @@ const Routines = () => {
     name: 'routines',
     control
   });
+
+  const watchRoutines = useWatch({ name: 'routines', control });
 
   const handleAppendRoutine = useCallback(() => {
     if (routines.length >= FORM_LITERAL.routines.max.value) {
@@ -52,7 +51,7 @@ const Routines = () => {
               wrapperStyle="w-full"
               textStyle="text-xs text-gray-400"
               text={
-                watchRoutines[idx].value.length.toString() +
+                watchRoutines[idx]?.value.length.toString() +
                 ' / ' +
                 FORM_LITERAL.routines.item.max.value
               }

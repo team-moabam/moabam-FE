@@ -35,7 +35,7 @@ const BirdCard = ({
       )}
       onClick={handleSelect}
     >
-      <div className={clsx('w-24 rounded-full', BIRD[type].bg)}>
+      <div className={clsx('h-20 w-20 rounded-full', BIRD[type].bg)}>
         <img
           src={BIRD[type].image}
           className="p-4"

@@ -1,4 +1,4 @@
-import { useFormContext } from 'react-hook-form';
+import { Controller, useFormContext, useWatch } from 'react-hook-form';
 import { formatHourString } from '@/domain/TimePicker/utils/hour';
 import { TIME_RANGE } from '@/domain/RoomForm/constants/literals';
 import { TimePicker } from '@/domain/TimePicker';
@@ -8,19 +8,18 @@ import {
   errorStyle
 } from '../constants/styles';
 import { Inputs } from '../hooks/useRoomForm';
+import StepTemplate from '../components/StepTemplate';
 
 const TimeStep = () => {
   const {
-    setValue,
-    watch,
+    control,
     formState: { errors }
   } = useFormContext<Inputs>();
 
-  const watchRoomType = watch('roomType');
-  const watchCertifyTime = watch('certifyTime');
+  const watchRoomType = useWatch({ name: 'roomType', control });
 
   return (
-    <>
+    <StepTemplate>
       <h1 className={headingStyle}>
         <strong>언제 </strong>
         인증할까요?
@@ -32,10 +31,16 @@ const TimeStep = () => {
 
       <section className="mt-10 flex w-full flex-col items-center gap-6">
         <div>{formatHourString(TIME_RANGE[watchRoomType][0])}</div>
-        <TimePicker
-          range={TIME_RANGE[watchRoomType]}
-          initialTime={watchCertifyTime}
-          onChangeTime={(time) => setValue('certifyTime', time)}
+        <Controller
+          name="certifyTime"
+          control={control}
+          render={({ field }) => (
+            <TimePicker
+              range={TIME_RANGE[watchRoomType]}
+              initialTime={field.value}
+              onChangeTime={field.onChange}
+            />
+          )}
         />
         <div>{formatHourString(TIME_RANGE[watchRoomType][1])}</div>
       </section>
@@ -43,7 +48,7 @@ const TimeStep = () => {
       {errors.certifyTime && (
         <p className={errorStyle}>{errors.certifyTime.message}</p>
       )}
-    </>
+    </StepTemplate>
   );
 };
 

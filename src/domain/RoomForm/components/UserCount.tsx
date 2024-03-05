@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { useFormContext } from 'react-hook-form';
+import { useFormContext, useWatch } from 'react-hook-form';
 import { Icon } from '@/shared/Icon';
 import { iconButtonStyle, errorStyle } from '../constants/styles';
 import { FORM_LITERAL } from '../constants/literals';
@@ -7,11 +7,11 @@ import { FORM_LITERAL } from '../constants/literals';
 const UserCount = () => {
   const {
     setValue,
-    watch,
-    formState: { errors }
+    formState: { errors },
+    control
   } = useFormContext<{ userCount: number }>();
 
-  const watchUserCount = watch('userCount');
+  const watchUserCount = useWatch({ name: 'userCount', control });
 
   const handleSetUserCount = useCallback(
     (count: number) => {
