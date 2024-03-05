@@ -13,16 +13,87 @@
 따라서 ‘루틴’ 이라는 용어도 급부상 하게 되었습니다. 하지만 마음과는 달리 바쁜 일상, 집과 회사만 오가는 패턴으로 인해 이를 실천하기를 어려워 합니다.  
 이런 문제를 해결하기 위해, 그룹 + 보상 이라는 시스템으로 루틴을 실천할 수 있도록 도와주는 서비스인 모아밤을 기획하게 되었습니다.
 
+## 배포 주소
+
+➡️ 스토리북 URL: https://moabam-storybook.netlify.app/  
+➡️ Production 배포 URL: https://www.moabam.com/  
+➡️ Staging 배포 URL: https://dev.moabam.com/  
+
+## 시연 영상
+
 ## 개발 서버 실행 방법
 
-[➡️ 스토리북 URL](https://moabam-storybook.netlify.app/)  
-[➡️ 모아밤 Production 배포 URL](https://www.moabam.com/)  
-[➡️ 모아밤 Development 배포 URL](https://dev.moabam.com/)
+**패키지 설치**
 
-```
+```sh
 npm install
-npm run dev
 ```
+
+**개발 서버 실행**  
+
+로컬 환경에서 Mock API를 실행하기 위해서는 아래 커맨드로 msw를 활성화할 수 있습니다.  
+
+```sh
+npm run dev:msw # msw를 활성화하여 개발 서버 실행
+```
+
+## 팀원 소개
+
+<table align="center">
+    <tbody>
+        <tr>
+            <td>
+                <a href="https://github.com/chasj0326">
+                    <img src="https://avatars.githubusercontent.com/chasj0326" width="100" height="100"/>
+                </a>
+            </td>
+            <td>
+                <a href="https://github.com/bbearcookie">
+                    <img src="https://avatars.githubusercontent.com/bbearcookie" width="100" height="100"/>
+                </a>  
+            </td>
+            <td>
+                <a href="https://github.com/nayeon-hub">
+                    <img src="https://avatars.githubusercontent.com/nayeon-hub" width="100px" height="100px"/>
+                </a>
+            </td>
+            <td>
+                <a href="https://github.com/nsr1349">
+                    <img src="https://avatars.githubusercontent.com/nsr1349" width="100px" height="100px"/>
+                </a>  
+            </td>
+        </tr>
+        <tr>
+            <th>
+                <a href="https://github.com/chasj0326">차세진</a>
+            </th>
+            <th>
+                <a href="https://github.com/bbearcookie">이상훈</a>
+            </th>
+            <th>
+                <a href="https://github.com/nayeon-hub">박나연</a>
+            </th>
+            <th>
+                <a href="https://github.com/nsr1349">노성래</a>
+            </th>
+        </tr>
+        <tr>
+            <th>
+                FrontEnd
+            </th>
+            <th>
+                FrontEnd
+            </th>
+            <th>
+                FrontEnd
+            </th>
+            <th>
+                FrontEnd
+            </th>
+        </tr>
+    </tbody>
+</table>
+
 
 ## 기술 스택
 
