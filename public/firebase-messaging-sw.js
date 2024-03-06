@@ -1,16 +1,13 @@
-import { precacheAndRoute } from 'workbox-precaching';
-
-precacheAndRoute(self.__WB_MANIFEST);
+if (new URL(location.href).searchParams.get('msw') === 'true') {
+  self.importScripts('/mockServiceWorker.js');
+}
 
 self.addEventListener('install', function (e) {
-  console.log('[FCM] Service Worker Installed.');
   self.skipWaiting();
 });
 
 self.addEventListener('activate', function (e) {
-  console.log('[FCM] Service Worker Activated.');
-  // eslint-disable-next-line no-undef
-  e.waitUntil(clients.claim());
+  e.waitUntil(self.clients.claim());
 });
 
 self.addEventListener('push', function (e) {
@@ -45,18 +42,21 @@ self.addEventListener('notificationclick', function (e) {
 
   e.notification.close();
 
-  /* eslint-disable */
   e.waitUntil(
-    clients.matchAll({ includeUncontrolled: true }).then((windowClients) => {
-      if (windowClients.length > 0) {
-        const client = windowClients[0];
+    self.clients
+      .matchAll({ includeUncontrolled: true })
+      .then((windowClients) => {
+        if (windowClients.length > 0) {
+          const client = windowClients[0];
 
-        client.focus();
-        client.postMessage(url);
-      } else {
-        clients.openWindow(url);
-      }
-    })
+          client.focus();
+          client.postMessage({
+            type: 'notification-click',
+            url
+          });
+        } else {
+          self.clients.openWindow(url);
+        }
+      })
   );
-  /* eslint-enable */
 });

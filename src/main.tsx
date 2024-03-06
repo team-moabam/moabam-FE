@@ -14,12 +14,19 @@ import { PWAInstallBannerProvider } from '@/domain/PWAInstallBanner/hooks/usePWA
 import { setupMockServiceWorker, setupFCMServiceWorker } from './setupWorker';
 import './main.css';
 
-// 조건에 따라서 원하는 서비스 워커를 등록
+// 앱에서 사용되는 FCM 서비스 워커, MSW 서비스 워커를 등록
 const setupSW = async () => {
+  if (!('serviceWorker' in navigator)) {
+    return;
+  }
+
+  const workerUrl = new URL('/firebase-messaging-sw.js', location.origin);
+  workerUrl.searchParams.set('msw', import.meta.env.VITE_MSW);
+
+  await setupFCMServiceWorker(workerUrl);
+
   if (import.meta.env.VITE_MSW === 'true') {
-    await setupMockServiceWorker();
-  } else {
-    await setupFCMServiceWorker();
+    await setupMockServiceWorker(workerUrl);
   }
 };
 
