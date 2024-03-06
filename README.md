@@ -13,11 +13,11 @@
 ![moabam3](https://github.com/team-moabam/moabam-FE/assets/50488780/fcef86e1-e024-466e-86a9-e6394cccffbc)
 
 ## 방 상세 페이지
+![moabam4](https://github.com/team-moabam/moabam-FE/assets/50488780/2df250c2-635d-4436-bcbc-f537c3545ea1)
 
-TODO: 이미지 추가 예정
 
 ## 시연 영상
-[![Video Label](https://img.youtube.com/vi/_3enPDzkLns/0.jpg)](https://www.youtube.com/watch?v=_3enPDzkLns)
+[![시연 영상](https://github.com/team-moabam/moabam-FE/assets/50488780/63dcbe33-e382-4427-91bb-112310ee98a2)](https://www.youtube.com/watch?v=_3enPDzkLns)
 
 ## 배포 주소
 
